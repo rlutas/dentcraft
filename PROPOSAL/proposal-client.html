@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentcraft.ro - Propunere Platformă Digitală | Raul Lutas</title>
+    <meta name="description" content="Propunere tehnică pentru dezvoltarea platformei web Dentcraft.ro - Prima clinică stomatologică din Satu Mare cu patient portal complet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Modern vibrant color palette */
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --secondary: #00D9FF;
+            --accent: #FF6B00;
+            --success: #00E676;
+            --purple: #A855F7;
+            --pink: #EC4899;
+
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-blue: linear-gradient(135deg, #0066FF 0%, #00D9FF 100%);
+            --gradient-orange: linear-gradient(135deg, #FF6B00 0%, #FF9500 100%);
+            --gradient-green: linear-gradient(135deg, #00E676 0%, #00BFA5 100%);
+            --gradient-purple: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+            --gradient-rainbow: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+
+            --text-dark: #1a1a2e;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 30px 90px rgba(0, 0, 0, 0.2);
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.4);
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--off-white);
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h3 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+        h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+        .gradient-text {
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-rainbow {
+            background: var(--gradient-rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Cover Section - SPECTACULAR */
+        .cover-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 50%;
+            filter: blur(1px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .particle:nth-child(1) { width: 80px; height: 80px; left: 10%; top: 20%; animation: float1 18s infinite ease-in-out; }
+        .particle:nth-child(2) { width: 60px; height: 60px; left: 80%; top: 60%; animation: float2 22s infinite ease-in-out; }
+        .particle:nth-child(3) { width: 100px; height: 100px; left: 50%; top: 40%; animation: float3 25s infinite ease-in-out; }
+        .particle:nth-child(4) { width: 70px; height: 70px; left: 30%; top: 70%; animation: float4 20s infinite ease-in-out; }
+        .particle:nth-child(5) { width: 90px; height: 90px; left: 70%; top: 30%; animation: float5 24s infinite ease-in-out; }
+        .particle:nth-child(6) { width: 50px; height: 50px; left: 20%; top: 50%; animation: float6 19s infinite ease-in-out; }
+        .particle:nth-child(7) { width: 75px; height: 75px; left: 60%; top: 80%; animation: float7 21s infinite ease-in-out; }
+        .particle:nth-child(8) { width: 65px; height: 65px; left: 40%; top: 10%; animation: float8 23s infinite ease-in-out; }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.3; }
+            25% { transform: translate(50px, -40px) rotate(90deg) scale(1.2); opacity: 0.5; }
+            50% { transform: translate(80px, 20px) rotate(180deg) scale(0.8); opacity: 0.4; }
+            75% { transform: translate(30px, 60px) rotate(270deg) scale(1.1); opacity: 0.6; }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.4; }
+            25% { transform: translate(-60px, 50px) rotate(-90deg) scale(0.9); opacity: 0.3; }
+            50% { transform: translate(-30px, -30px) rotate(-180deg) scale(1.3); opacity: 0.6; }
+            75% { transform: translate(-80px, 10px) rotate(-270deg) scale(1); opacity: 0.5; }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.3; }
+            33% { transform: translate(40px, 70px) rotate(120deg) scale(1.1); opacity: 0.5; }
+            66% { transform: translate(-50px, -40px) rotate(240deg) scale(0.9); opacity: 0.4; }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.35; }
+            50% { transform: translate(-70px, -60px) rotate(180deg) scale(1.2); opacity: 0.6; }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.4; }
+            25% { transform: translate(60px, 30px) rotate(80deg) scale(0.85); opacity: 0.3; }
+            50% { transform: translate(-40px, 70px) rotate(160deg) scale(1.15); opacity: 0.55; }
+            75% { transform: translate(20px, -50px) rotate(240deg) scale(1); opacity: 0.5; }
+        }
+
+        @keyframes float6 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.35; }
+            33% { transform: translate(-30px, 40px) rotate(-110deg) scale(1.25); opacity: 0.6; }
+            66% { transform: translate(50px, -30px) rotate(-220deg) scale(0.95); opacity: 0.45; }
+        }
+
+        @keyframes float7 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.3; }
+            40% { transform: translate(70px, -50px) rotate(150deg) scale(1.1); opacity: 0.5; }
+            80% { transform: translate(-40px, 30px) rotate(300deg) scale(0.9); opacity: 0.4; }
+        }
+
+        @keyframes float8 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.4; }
+            30% { transform: translate(-50px, 60px) rotate(-100deg) scale(1.2); opacity: 0.6; }
+            60% { transform: translate(40px, -40px) rotate(-200deg) scale(0.85); opacity: 0.35; }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: var(--white);
+            padding: 60px 24px;
+            max-width: 900px;
+        }
+
+        .logo-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease-out, pulse 2s ease-in-out infinite;
+        }
+
+        .exclusive-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B00 0%, #FF9500 100%);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.4);
+            animation: fadeInDown 0.8s ease-out 0.2s both, glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 8px 30px rgba(255, 107, 0, 0.4); }
+            50% { box-shadow: 0 8px 50px rgba(255, 107, 0, 0.7); }
+        }
+
+        .cover-title {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-weight: 900;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .typing-text {
+            display: inline-block;
+            border-right: 3px solid var(--white);
+            padding-right: 10px;
+            animation: typing 3.5s steps(40) 0.8s both, blink 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .cover-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 40px;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cover-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            margin-top: 50px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 20px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatCard 3s ease-in-out infinite;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0s; }
+        .stat-card:nth-child(2) { animation-delay: 0.5s; }
+        .stat-card:nth-child(3) { animation-delay: 1s; }
+        .stat-card:nth-child(4) { animation-delay: 1.5s; }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: none;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Styles - MODERN */
+        section {
+            padding: 100px 24px;
+            position: relative;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+
+        /* Highlights Grid - GLASSMORPHISM */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .highlight-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+
+        .highlight-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-blue);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .highlight-card:hover .highlight-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.5);
+        }
+
+        .highlight-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .highlight-text {
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Pricing Cards - 3D SPECTACULAR */
+        .pricing-section {
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            perspective: 1000px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-20px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-20px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            background: var(--gradient-orange);
+            color: var(--white);
+            padding: 8px 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+            box-shadow: var(--shadow-md);
+            z-index: 10;
+        }
+
+        .pricing-header {
+            padding: 50px 40px;
+            background: var(--gradient-blue);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:nth-child(2) .pricing-header {
+            background: var(--gradient-purple);
+        }
+
+        .pricing-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pricing-header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-name {
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .pricing-tagline {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .pricing-price {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .pricing-body {
+            padding: 40px;
+        }
+
+        .pricing-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-features li:hover {
+            padding-left: 8px;
+            background: rgba(0, 102, 255, 0.03);
+            border-radius: 8px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: var(--gradient-blue);
+            color: var(--white);
+            text-align: center;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.15rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card:nth-child(2) .pricing-cta {
+            background: var(--gradient-purple);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .pricing-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.5);
+        }
+
+        /* Comparison Table - MODERN */
+        .comparison-wrapper {
+            margin-top: 60px;
+            border-radius: 24px;
+            overflow-x: auto;
+            box-shadow: var(--shadow-lg);
+            background: var(--white);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .comparison-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+        }
+
+        .comparison-table thead {
+            background: var(--gradient-blue);
+            color: var(--white);
+        }
+
+        .comparison-table th {
+            padding: 28px 20px;
+            text-align: left;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 1.05rem;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: rgba(0, 102, 255, 0.03);
+        }
+
+        .check-icon {
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .check-yes { color: var(--success); }
+        .check-no { color: #cbd5e0; }
+
+        /* ROI Section - SPECTACULAR */
+        .roi-section {
+            background: var(--gradient-green);
+            color: var(--white);
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roi-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .roi-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .roi-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .roi-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 30px;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .roi-value {
+            font-size: clamp(5rem, 15vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -4px;
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+        }
+
+        .roi-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        .roi-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .roi-detail-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .roi-detail-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .roi-detail-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Tech Stack - COLORFUL */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .tech-card {
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            filter: grayscale(0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover .tech-icon {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        .tech-name {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        /* Portfolio Section - Modern */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-blue);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .portfolio-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .portfolio-domain {
+            display: inline-block;
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-item p {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tech-badge {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .portfolio-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding-top: 24px;
+            border-top: 2px solid var(--off-white);
+        }
+
+        .portfolio-stat {
+            text-align: center;
+        }
+
+        .portfolio-stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .portfolio-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-top: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-link:hover {
+            gap: 12px;
+            color: var(--secondary);
+        }
+
+        .portfolio-note {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 20px;
+        }
+
+        .portfolio-note p {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .portfolio-note strong {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        /* CTA Section - BOLD */
+        .cta-section {
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 24px;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .cta-text {
+            font-size: 1.35rem;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 45px;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--white);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* Footer - CLEAN */
+        footer {
+            background: #1a1a2e;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 24px 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 20px;
+            }
+
+            .container {
+                padding: 0 20px;
+                max-width: 100%;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-price {
+                font-size: 3rem;
+            }
+
+            .roi-value {
+                font-size: 4rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+
+            .comparison-wrapper {
+                overflow-x: auto;
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+
+            .comparison-table {
+                min-width: 700px;
+            }
+
+            /* Tech Stack - 2 per rând pe mobil */
+            .tech-stack {
+                gap: 8px;
+            }
+
+            .tech-badge {
+                flex: 0 0 calc(50% - 4px);
+                text-align: center;
+            }
+
+            /* Portfolio grid - 1 colună pe mobil */
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Cover stats - 2x2 grid pe mobil */
+            .cover-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 20px 10px;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            /* Highlights grid */
+            .highlights-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Feature lists */
+            .features-list {
+                gap: 12px;
+            }
+
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+
+            .exclusive-badge {
+                font-size: 0.65rem;
+                padding: 6px 16px;
+                margin-top: 30px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cover-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-value {
+                font-size: 2.5rem;
+            }
+
+            .tech-badge {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Section -->
+    <section class="cover-section">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="cover-content">
+            <div class="logo-badge">DENTCRAFT.RO</div>
+
+            <h1 class="cover-title">Platforma Digitală<br>de Ultimă Generație</h1>
+
+            <p class="cover-subtitle">
+                Propunere personalizată pentru prima clinică stomatologică din Satu Mare cu patient portal complet, booking online și viewer 3D pentru scanări dentare
+            </p>
+
+            <div class="cover-stats">
+                <div class="stat-card">
+                    <div class="stat-value">7-9x</div>
+                    <div class="stat-label">ROI Anul 1</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+50%</div>
+                    <div class="stat-label">Eficiență</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">70%</div>
+                    <div class="stat-label">Booking Online</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Limbi (RO/HU/EN)</div>
+                </div>
+            </div>
+
+            <div class="exclusive-badge" style="margin-top: 50px;">✨ OFERTĂ EXCLUSIVĂ PENTRU DR. RĂZVAN PETRIC</div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section style="background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">DE CE DENTCRAFT?</div>
+                <h2 class="section-title">
+                    <span class="gradient-text-rainbow">Transformă-ți clinica</span><br>
+                    într-o experiență digitală premium
+                </h2>
+                <p class="section-subtitle">
+                    În 2024, pacienții se așteaptă la transparență, accesibilitate 24/7 și tehnologie modernă. Dentcraft va deveni liderul digital din Satu Mare.
+                </p>
+            </div>
+
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">🚀</div>
+                    <h3 class="highlight-title">Prima în Satu Mare</h3>
+                    <p class="highlight-text">Nicio clinică concurentă nu are patient portal complet. Vei fi pionier în digitalizare și vei atrage pacienți tech-savvy.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">💰</div>
+                    <h3 class="highlight-title">ROI Impresionant</h3>
+                    <p class="highlight-text">Investiție €6,500, return €70,000-95,000 în anul 1. Fiecare euro investit aduce înapoi 7-9 euro prin eficiență și pacienți noi.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">⚡</div>
+                    <h3 class="highlight-title">Automatizare Totală</h3>
+                    <p class="highlight-text">70% programări online, -50% timp administrativ, remindere automate reduc absențele cu 40%. Echipa ta se poate concentra pe pacienți.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">🌍</div>
+                    <h3 class="highlight-title">Accesibil Pentru Toți</h3>
+                    <p class="highlight-text">Multi-limbă (Română, Maghiară, Engleză) - ajungi la întreaga comunitate din Satu Mare fără bariere de comunicare.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">📱</div>
+                    <h3 class="highlight-title">Design de Clasă Mondială</h3>
+                    <p class="highlight-text">Inspirat din Dentakay.com - design premium, mobile-first, experiență utilizator impecabilă pe orice dispozitiv.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">🔒</div>
+                    <h3 class="highlight-title">Securitate Medicală</h3>
+                    <p class="highlight-text">GDPR compliant, backup zilnic, encriptare date sensibile, conformitate completă cu legislația medicală română.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">PACHETE & PREȚURI</div>
+                <h2 class="section-title">
+                    Alege <span class="gradient-text">varianta potrivită</span><br>
+                    pentru obiectivele tale
+                </h2>
+                <p class="section-subtitle">
+                    Două opțiuni de implementare, ambele construite pe arhitectură scalabilă. Începi simplu sau direct cu platforma completă - tu decizi.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Varianta 1 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Varianta 1</h3>
+                        <p class="pricing-tagline">Site Prezentare Premium</p>
+                        <div class="pricing-price">€3,200</div>
+                        <p class="pricing-period">+ €70/lună mentenanță</p>
+                    </div>
+                    <div class="pricing-body">
+                        <div class="pricing-timeline">
+                            ⏱️ Livrare în 4-6 săptămâni
+                        </div>
+
+                        <ul class="pricing-features">
+                            <li><span class="feature-icon">✓</span> Website modern, responsive, mobile-first</li>
+                            <li><span class="feature-icon">✓</span> Multi-limbă (RO/HU/EN) complet</li>
+                            <li><span class="feature-icon">✓</span> 8+ pagini servicii detaliate</li>
+                            <li><span class="feature-icon">✓</span> Galerie Before/After cu filtru</li>
+                            <li><span class="feature-icon">✓</span> Testimoniale text + video</li>
+                            <li><span class="feature-icon">✓</span> Blog educațional cu CMS</li>
+                            <li><span class="feature-icon">✓</span> Formular contact & programări</li>
+                            <li><span class="feature-icon">✓</span> SEO optimization complet</li>
+                            <li><span class="feature-icon">✓</span> Google Analytics & Tag Manager</li>
+                            <li><span class="feature-icon">✓</span> WhatsApp Business & Click-to-call</li>
+                        </ul>
+
+                        <a href="#contact" class="pricing-cta">Alege Varianta 1 →</a>
+                    </div>
+                </div>
+
+                <!-- Varianta 2 - Featured -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">RECOMANDAT</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Varianta 2</h3>
+                        <p class="pricing-tagline">Platformă Digitală Completă</p>
+                        <div class="pricing-price">€6,000</div>
+                        <p class="pricing-period">+ €125/lună mentenanță</p>
+                    </div>
+                    <div class="pricing-body">
+                        <div class="pricing-timeline">
+                            ⏱️ Livrare în 10-14 săptămâni
+                        </div>
+
+                        <ul class="pricing-features">
+                            <li><span class="feature-icon">✓</span> <strong>Tot din Varianta 1 PLUS:</strong></li>
+                            <li><span class="feature-icon">✓</span> Patient Portal cu autentificare</li>
+                            <li><span class="feature-icon">✓</span> Booking online cu calendar live</li>
+                            <li><span class="feature-icon">✓</span> Planuri tratament & prețuri personalizate</li>
+                            <li><span class="feature-icon">✓</span> Viewer 3D scanări dentare (Three.js)</li>
+                            <li><span class="feature-icon">✓</span> Galerie imagini diagnostice personale</li>
+                            <li><span class="feature-icon">✓</span> Notificări automate (email/SMS)</li>
+                            <li><span class="feature-icon">✓</span> Integrare droot.ro (CSV)</li>
+                            <li><span class="feature-icon">✓</span> Dashboard Doctor + Asistent + Admin</li>
+                            <li><span class="feature-icon">✓</span> Analytics & KPI-uri avansate</li>
+                            <li><span class="feature-icon">✓</span> 5 roluri utilizatori cu permisiuni</li>
+                        </ul>
+
+                        <a href="#contact" class="pricing-cta">Alege Varianta 2 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section style="background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">COMPARAȚIE DETALIATĂ</div>
+                <h2 class="section-title">
+                    Ce primești în <span class="gradient-text">fiecare variantă</span>
+                </h2>
+            </div>
+
+            <div class="comparison-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Funcționalitate</th>
+                            <th style="width: 25%;">Varianta 1</th>
+                            <th style="width: 25%;">Varianta 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Website Public Modern</strong></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Multi-limbă (RO/HU/EN)</td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Prezentare servicii detaliate (8+ pagini)</td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Galerie Before/After cu filtru</td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Blog educațional (CMS)</td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>SEO Optimization complet</td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Formular contact simplu</td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Patient Portal complet</strong></td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Booking online cu calendar live</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Vizualizare planuri tratament & prețuri</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Viewer 3D scanări dentare</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Galerie imagini diagnostice personale</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Notificări automate (email/SMS)</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Integrare droot.ro (CSV)</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard Doctor</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard Asistent/Recepție</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard Admin (CSV import, analytics)</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Analytics & KPI-uri avansate</td>
+                            <td><span class="check-icon check-no">—</span></td>
+                            <td><span class="check-icon check-yes">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section class="roi-section">
+        <div class="roi-content">
+            <div class="roi-badge">RETURN ON INVESTMENT</div>
+
+            <h2 class="roi-title">Investiția ta se întoarce amplificat</h2>
+
+            <div class="roi-value">7-9x ROI</div>
+
+            <p class="roi-subtitle">€70,000 - €95,000 revenue estimat în primul an</p>
+
+            <div class="roi-details">
+                <div class="roi-detail-card">
+                    <div class="roi-detail-value">€6,500</div>
+                    <div class="roi-detail-label">Investiție Totală An 1</div>
+                </div>
+                <div class="roi-detail-card">
+                    <div class="roi-detail-value">80-100</div>
+                    <div class="roi-detail-label">Lead-uri/Lună (M3+)</div>
+                </div>
+                <div class="roi-detail-card">
+                    <div class="roi-detail-value">24-30</div>
+                    <div class="roi-detail-label">Pacienți Noi/Lună</div>
+                </div>
+                <div class="roi-detail-card">
+                    <div class="roi-detail-value">€82,500</div>
+                    <div class="roi-detail-label">Profit Net An 1</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 40px; font-size: 1.05rem; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto;">
+                <strong>Proiecție conservativă</strong> bazată pe SEO organic + Google Ads moderat (€250/lună). Include conversie 30% lead→pacient, 60% completare tratament @ €500 avg. Cu marketing agressiv, ROI poate ajunge la 15-20x.
+            </p>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section style="background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">TEHNOLOGIE</div>
+                <h2 class="section-title">
+                    Stack tehnologic <span class="gradient-text">de ultimă generație</span>
+                </h2>
+                <p class="section-subtitle">
+                    Performanță, scalabilitate și securitate - folosim doar tehnologii moderne, dovedite și susținute de companii mari.
+                </p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">⚛️</div>
+                    <div class="tech-name">Next.js 14+</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📘</div>
+                    <div class="tech-name">TypeScript</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🎨</div>
+                    <div class="tech-name">Tailwind CSS</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🗄️</div>
+                    <div class="tech-name">Supabase</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🐘</div>
+                    <div class="tech-name">PostgreSQL</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🔐</div>
+                    <div class="tech-name">JWT Auth</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📧</div>
+                    <div class="tech-name">Resend Email</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🌐</div>
+                    <div class="tech-name">Vercel</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📊</div>
+                    <div class="tech-name">Analytics</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🔍</div>
+                    <div class="tech-name">SEO Tools</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🌍</div>
+                    <div class="tech-name">i18n</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📱</div>
+                    <div class="tech-name">PWA Ready</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 24px; color: white;">
+                    <h3 style="margin-bottom: 16px; font-size: 1.5rem; color: white;">⚡ Ultra Performant</h3>
+                    <p style="opacity: 0.95; line-height: 1.7;">Page load <2s, Google PageSpeed 90+, optimizat pentru conversie maximă.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #00E676 0%, #00BFA5 100%); padding: 40px; border-radius: 24px; color: white;">
+                    <h3 style="margin-bottom: 16px; font-size: 1.5rem; color: white;">🔒 Securitate Maximă</h3>
+                    <p style="opacity: 0.95; line-height: 1.7;">GDPR compliant, Row Level Security, backup zilnic, SSL/TLS encryption.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #FF6B00 0%, #FF9500 100%); padding: 40px; border-radius: 24px; color: white;">
+                    <h3 style="margin-bottom: 16px; font-size: 1.5rem; color: white;">📈 Infinit Scalabil</h3>
+                    <p style="opacity: 0.95; line-height: 1.7;">Support 10,000+ pacienți, 100,000+ programări, gata pentru creștere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section style="background: var(--off-white); padding: 100px 24px;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">PORTOFOLIU</div>
+                <h2 class="section-title">
+                    <span class="gradient-text">Proiecte Realizate</span><br>
+                    Cu Succes
+                </h2>
+                <p class="section-subtitle">
+                    O selecție din proiectele dezvoltate pentru clienți din diverse industrii
+                </p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- CheckID -->
+                <div class="portfolio-item" onclick="window.open('https://checkid.app', '_blank')">
+                    <div class="portfolio-icon">🆔</div>
+                    <h3>CheckID</h3>
+                    <span class="portfolio-domain">checkid.app</span>
+                    <p>Platformă SaaS complexă pentru verificarea automată a documentelor de identitate românești cu scanare OCR avansată și verificare în timp real a bazei de date ONJN pentru auto-excludere gambling.</p>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">OCR AI</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">GDPR</span>
+                    </div>
+
+                    <div class="portfolio-stats">
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">24/7</span>
+                            <span class="portfolio-stat-label">Disponibilitate</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">5 min</span>
+                            <span class="portfolio-stat-label">Sync DB</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">100%</span>
+                            <span class="portfolio-stat-label">Securitate</span>
+                        </div>
+                    </div>
+
+                    <a href="https://checkid.app" target="_blank" class="portfolio-link" onclick="event.stopPropagation()">
+                        Vizitează Proiectul →
+                    </a>
+                </div>
+
+                <!-- Avocat Tarta -->
+                <div class="portfolio-item" onclick="window.open('https://avocat-tarta.ro', '_blank')">
+                    <div class="portfolio-icon">⚖️</div>
+                    <h3>Avocat Tarta</h3>
+                    <span class="portfolio-domain">avocat-tarta.ro</span>
+                    <p>Site web profesional pentru cabinet de avocatură cu 7+ ani experiență. Design modern și performant, optimizare SEO avansată pentru poziționare organică pe 15+ termeni cheie din domeniul juridic.</p>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">SEO Pro</span>
+                        <span class="tech-badge">Responsive</span>
+                        <span class="tech-badge">Fast Load</span>
+                    </div>
+
+                    <div class="portfolio-stats">
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">500+</span>
+                            <span class="portfolio-stat-label">Clienți</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">95%</span>
+                            <span class="portfolio-stat-label">Rată Succes</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">7+</span>
+                            <span class="portfolio-stat-label">Ani Exp.</span>
+                        </div>
+                    </div>
+
+                    <a href="https://avocat-tarta.ro" target="_blank" class="portfolio-link" onclick="event.stopPropagation()">
+                        Vizitează Proiectul →
+                    </a>
+                </div>
+
+                <!-- Eghiseul -->
+                <div class="portfolio-item" onclick="window.open('https://eghiseul.ro', '_blank')">
+                    <div class="portfolio-icon">📄</div>
+                    <h3>Eghiseul</h3>
+                    <span class="portfolio-domain">eghiseul.ro</span>
+                    <p>Platformă digitală pentru obținerea documentelor oficiale românești online, accesibilă 24/7 pentru cetățeni din România și diaspora. Suport multilingv și asistență personalizată.</p>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">WordPress</span>
+                        <span class="tech-badge">WooCommerce</span>
+                        <span class="tech-badge">Payment Gateway</span>
+                        <span class="tech-badge">Multi-language</span>
+                    </div>
+
+                    <div class="portfolio-stats">
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">24/7</span>
+                            <span class="portfolio-stat-label">Online</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">51</span>
+                            <span class="portfolio-stat-label">Țări</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">Fast</span>
+                            <span class="portfolio-stat-label">Procesare</span>
+                        </div>
+                    </div>
+
+                    <a href="https://eghiseul.ro" target="_blank" class="portfolio-link" onclick="event.stopPropagation()">
+                        Vizitează Proiectul →
+                    </a>
+                </div>
+
+                <!-- eRoVinieta -->
+                <div class="portfolio-item" onclick="window.open('https://erovinieta.net', '_blank')">
+                    <div class="portfolio-icon">🚗</div>
+                    <h3>eRoVinieta</h3>
+                    <span class="portfolio-domain">erovinieta.net</span>
+                    <p>Platformă e-commerce full-stack pentru achiziție roviniete electronice CNAIR, distribuitor autorizat. Sistem de plăți dual (Netopia + Stripe), livrare automată instant prin SMS și email.</p>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">Full Stack</span>
+                        <span class="tech-badge">Stripe</span>
+                        <span class="tech-badge">Netopia</span>
+                        <span class="tech-badge">Auto SMS</span>
+                        <span class="tech-badge">CNAIR API</span>
+                    </div>
+
+                    <div class="portfolio-stats">
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">Instant</span>
+                            <span class="portfolio-stat-label">Livrare</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">2</span>
+                            <span class="portfolio-stat-label">Payment</span>
+                        </div>
+                        <div class="portfolio-stat">
+                            <span class="portfolio-stat-number">51</span>
+                            <span class="portfolio-stat-label">Țări</span>
+                        </div>
+                    </div>
+
+                    <a href="https://erovinieta.net" target="_blank" class="portfolio-link" onclick="event.stopPropagation()">
+                        Vizitează Proiectul →
+                    </a>
+                </div>
+            </div>
+
+            <div class="portfolio-note">
+                <p>
+                    <strong>Peste 50+ proiecte</strong> livrate cu succes pentru clienți din România și Europa,
+                    fiecare optimizat pentru performanță, SEO și experiență utilizator excepțională.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2 class="cta-title">Pregătit să revoluționezi<br>Dentcraft?</h2>
+
+            <p class="cta-text">
+                Hai să discutăm despre varianta potrivită pentru clinica ta și să construim împreună viitorul digital al Dentcraft.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="https://wa.me/40745850700?text=Bună%20Raul%2C%0A%0AAm%20văzut%20oferta%20și%20vreau%20să%20discutăm." class="cta-button">
+                    💬 Contactează pe WhatsApp
+                </a>
+                <a href="tel:+40745850700" class="cta-button secondary">
+                    📞 Programează Întâlnire
+                </a>
+            </div>
+
+            <div style="margin-top: 50px; padding: 24px; background: rgba(255, 255, 255, 0.1); border-radius: 16px; backdrop-filter: blur(10px);">
+                <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; opacity: 0.95;">
+                    ⏰ <strong>Oferta este valabilă 30 de zile de la data emiterii.</strong><br>
+                    💰 <strong>Prețurile afișate nu includ TVA (21%).</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Proiect</h4>
+                    <p>Dentcraft.ro</p>
+                    <p>Platformă Web Clinică Stomatologică</p>
+                    <p>Satu Mare, România</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Client</h4>
+                    <p>Dr. Răzvan Petric</p>
+                    <p>Dentcraft Satu Mare</p>
+                    <p>Lead Dentist & Owner</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Developer</h4>
+                    <p>Raul Lutas</p>
+                    <p>Full Stack Developer</p>
+                    <a href="mailto:serviciiseonethut@gmail.com">serviciiseonethut@gmail.com</a>
+                    <a href="tel:+40745850700">+40 745 850 700</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Inspiration</h4>
+                    <p>Design: Dentakay.com</p>
+                    <p>Modern dental UX benchmark</p>
+                    <p>Adaptat piața română</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p style="margin-bottom: 10px;">&copy; 2025 Raul Lutas. Propunere confidențială pentru Dr. Răzvan Petric / Dentcraft Satu Mare.</p>
+                <p style="opacity: 0.5; font-size: 0.85rem;">
+                    Document Version 1.0 | Octombrie 2025 | Built with Next.js + TypeScript + Supabase
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
