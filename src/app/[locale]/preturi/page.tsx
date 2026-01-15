@@ -1,10 +1,11 @@
 import * as LucideIcons from 'lucide-react'
-import { BadgePercent, Phone, Receipt } from 'lucide-react'
+import { BadgePercent, Calculator, Phone, Receipt } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { PriceCalculator } from '@/components/features/PriceCalculator'
 import { Link } from '@/i18n/navigation'
-import { getPricesGroupedByService, type Locale } from '@/lib/sanity/queries'
+import { getAllServices, getPricesGroupedByService, type Locale } from '@/lib/sanity/queries'
 
 // Price type based on Sanity schema
 type SanityPrice = {
@@ -26,6 +27,14 @@ type ServiceWithPrices = {
   slug: string
   icon: string | null
   prices: SanityPrice[]
+}
+
+// Calculator service type
+type CalculatorService = {
+  _id: string
+  title: string
+  slug: string
+  icon: string | null
 }
 
 type PageProps = {
@@ -67,34 +76,75 @@ export default async function PricesPage({ params }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  // Fetch prices grouped by service from Sanity
-  const servicesWithPrices = await getPricesGroupedByService(locale as Locale) as ServiceWithPrices[]
+  // Fetch prices grouped by service and all services for calculator from Sanity
+  const [servicesWithPrices, allServices] = await Promise.all([
+    getPricesGroupedByService(locale as Locale) as Promise<ServiceWithPrices[]>,
+    getAllServices(locale as Locale) as Promise<CalculatorService[]>,
+  ])
 
   // Filter to only show services that have prices
   const filteredServices = servicesWithPrices.filter(
     (service) => service.prices && service.prices.length > 0
   )
 
+  // Map services for calculator (only need _id, title, slug, icon)
+  const calculatorServices: CalculatorService[] = allServices.map((s) => ({
+    _id: s._id,
+    icon: s.icon,
+    slug: s.slug,
+    title: s.title,
+  }))
+
   return (
     <PricesPageContent
+      calculatorServices={calculatorServices}
       hasAnyPrices={filteredServices.length > 0}
+      locale={locale}
       servicesWithPrices={filteredServices}
     />
   )
 }
 
 async function PricesPageContent({
-  servicesWithPrices,
+  calculatorServices,
   hasAnyPrices,
+  locale,
+  servicesWithPrices,
 }: {
-  servicesWithPrices: ServiceWithPrices[]
+  calculatorServices: CalculatorService[]
   hasAnyPrices: boolean
+  locale: string
+  servicesWithPrices: ServiceWithPrices[]
 }) {
   const t = await getTranslations()
 
   // If no prices from Sanity, show placeholder
   if (!hasAnyPrices) {
-    return <PlaceholderPricesPage />
+    return <PlaceholderPricesPage calculatorServices={calculatorServices} locale={locale} />
+  }
+
+  // Translations for the price calculator
+  const calculatorTranslations = {
+    back: t('priceCalculator.back'),
+    calculate: t('priceCalculator.calculate'),
+    disclaimer: t('priceCalculator.disclaimer'),
+    estimatedPrice: t('priceCalculator.estimatedPrice'),
+    material: t('priceCalculator.material'),
+    materialPremium: t('priceCalculator.materialPremium'),
+    materialPremiumDesc: t('priceCalculator.materialPremiumDesc'),
+    materialStandard: t('priceCalculator.materialStandard'),
+    materialStandardDesc: t('priceCalculator.materialStandardDesc'),
+    next: t('priceCalculator.next'),
+    optionsSubtitle: t('priceCalculator.optionsSubtitle'),
+    optionsTitle: t('priceCalculator.optionsTitle'),
+    priceRange: t('priceCalculator.priceRange'),
+    quantity: t('priceCalculator.quantity'),
+    quantityUnit: t('priceCalculator.quantityUnit'),
+    reset: t('priceCalculator.reset'),
+    scheduleConsultation: t('priceCalculator.scheduleConsultation'),
+    selectService: t('priceCalculator.selectService'),
+    subtitle: t('priceCalculator.subtitle'),
+    title: t('priceCalculator.title'),
   }
 
   return (
@@ -110,6 +160,15 @@ async function PricesPageContent({
             <p className="text-body-lg text-muted max-w-2xl mx-auto">
               {t('prices.subtitle')}
             </p>
+            <div className="mt-8">
+              <a
+                className="btn btn-lg btn-primary inline-flex items-center gap-2"
+                href="#calculator"
+              >
+                <Calculator className="w-5 h-5" strokeWidth={1.5} />
+                {t('prices.tryCalculator')}
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -123,8 +182,36 @@ async function PricesPageContent({
         </div>
       </section>
 
+      {/* Price Calculator Section */}
+      <section className="section bg-white scroll-mt-20" id="calculator">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[var(--color-primary)]/10 mb-4">
+                <Calculator className="w-7 h-7 text-[var(--color-primary)]" strokeWidth={1.5} />
+              </div>
+              <h2 className="mb-3">{calculatorTranslations.title}</h2>
+              <p className="text-muted">
+                {calculatorTranslations.subtitle}
+              </p>
+            </div>
+            {calculatorServices.length > 0 ? (
+              <PriceCalculator
+                locale={locale}
+                services={calculatorServices}
+                translations={calculatorTranslations}
+              />
+            ) : (
+              <div className="card p-8 text-center">
+                <p className="text-muted">{t('priceCalculator.noServicesAvailable')}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Price Tables */}
-      <section className="section bg-white">
+      <section className="section bg-[var(--color-accent-light)]">
         <div className="container">
           <div className="space-y-12">
             {servicesWithPrices.map((service) => {
@@ -229,8 +316,38 @@ async function PricesPageContent({
 }
 
 // Placeholder component when Sanity has no data
-async function PlaceholderPricesPage() {
+async function PlaceholderPricesPage({
+  calculatorServices,
+  locale,
+}: {
+  calculatorServices: CalculatorService[]
+  locale: string
+}) {
   const t = await getTranslations()
+
+  // Translations for the price calculator
+  const calculatorTranslations = {
+    back: t('priceCalculator.back'),
+    calculate: t('priceCalculator.calculate'),
+    disclaimer: t('priceCalculator.disclaimer'),
+    estimatedPrice: t('priceCalculator.estimatedPrice'),
+    material: t('priceCalculator.material'),
+    materialPremium: t('priceCalculator.materialPremium'),
+    materialPremiumDesc: t('priceCalculator.materialPremiumDesc'),
+    materialStandard: t('priceCalculator.materialStandard'),
+    materialStandardDesc: t('priceCalculator.materialStandardDesc'),
+    next: t('priceCalculator.next'),
+    optionsSubtitle: t('priceCalculator.optionsSubtitle'),
+    optionsTitle: t('priceCalculator.optionsTitle'),
+    priceRange: t('priceCalculator.priceRange'),
+    quantity: t('priceCalculator.quantity'),
+    quantityUnit: t('priceCalculator.quantityUnit'),
+    reset: t('priceCalculator.reset'),
+    scheduleConsultation: t('priceCalculator.scheduleConsultation'),
+    selectService: t('priceCalculator.selectService'),
+    subtitle: t('priceCalculator.subtitle'),
+    title: t('priceCalculator.title'),
+  }
 
   const placeholderServices = [
     {
@@ -276,6 +393,15 @@ async function PlaceholderPricesPage() {
             <p className="text-body-lg text-muted max-w-2xl mx-auto">
               {t('prices.subtitle')}
             </p>
+            <div className="mt-8">
+              <a
+                className="btn btn-lg btn-primary inline-flex items-center gap-2"
+                href="#calculator"
+              >
+                <Calculator className="w-5 h-5" strokeWidth={1.5} />
+                {t('prices.tryCalculator')}
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -289,8 +415,36 @@ async function PlaceholderPricesPage() {
         </div>
       </section>
 
+      {/* Price Calculator Section */}
+      <section className="section bg-white scroll-mt-20" id="calculator">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[var(--color-primary)]/10 mb-4">
+                <Calculator className="w-7 h-7 text-[var(--color-primary)]" strokeWidth={1.5} />
+              </div>
+              <h2 className="mb-3">{calculatorTranslations.title}</h2>
+              <p className="text-muted">
+                {calculatorTranslations.subtitle}
+              </p>
+            </div>
+            {calculatorServices.length > 0 ? (
+              <PriceCalculator
+                locale={locale}
+                services={calculatorServices}
+                translations={calculatorTranslations}
+              />
+            ) : (
+              <div className="card p-8 text-center">
+                <p className="text-muted">{t('priceCalculator.noServicesAvailable')}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Placeholder Price Tables */}
-      <section className="section bg-white">
+      <section className="section bg-[var(--color-accent-light)]">
         <div className="container">
           <div className="space-y-12">
             {placeholderServices.map((service) => {

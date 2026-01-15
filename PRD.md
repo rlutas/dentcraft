@@ -438,12 +438,12 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to access the price calculator from the prices page.
 
 **Acceptance Criteria:**
-- [ ] Add PriceCalculator component to preturi page
-- [ ] Calculator positioned prominently above price lists
-- [ ] Calculator fetches service prices from Sanity
-- [ ] Smooth scroll to calculator from CTA buttons
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Add PriceCalculator component to preturi page
+- [x] Calculator positioned prominently above price lists
+- [x] Calculator fetches service prices from Sanity
+- [x] Smooth scroll to calculator from CTA buttons
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

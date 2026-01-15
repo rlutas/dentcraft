@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (5/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (7/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -37,6 +37,8 @@
 - US-028: Create gallery modal with case details
 - US-029: Create price calculator - step 1 (service selection)
 - US-030: Create price calculator - step 2 (options and quantity)
+- US-031: Create price calculator - results display
+- US-032: Integrate calculator into prices page
 
 ## In Progress
 (None)
@@ -730,4 +732,52 @@
   - Radio button-style selection uses aria-pressed and custom styling with radio circles
   - CalculatorOptions type exported from OptionsForm for use in parent and results components
   - canProceed validation: requires material selection only when materials are applicable
+---
+
+## Iteration 31 - US-031: Create price calculator - results display
+- What was implemented:
+  - Created `src/components/features/PriceCalculator/Results.tsx` client component
+  - Shows price range (min-max RON) with locale-aware number formatting
+  - Price calculation based on service type (using servicePriceRanges lookup table)
+  - Premium material multiplier applied when premium option selected
+  - Breakdown section showing: service name, quantity with unit, material type (if applicable)
+  - Disclaimer in amber warning box about final price being determined after consultation
+  - CTA button linking to contact page for scheduling free consultation
+  - Back button to return to options step, Reset button to start over
+  - Updated PriceCalculator/index.tsx to integrate Results component with reset handler
+  - Added locale prop to PriceCalculator for proper number formatting
+  - Added new translation keys for results step (estimatedPrice, priceRange, disclaimer, scheduleConsultation, reset)
+- Files changed:
+  - src/components/features/PriceCalculator/Results.tsx (new)
+  - src/components/features/PriceCalculator/index.tsx (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Price estimation uses lookup table with partial slug matching for flexibility
+  - Premium material multiplier is optional per service type (e.g., 1.5x for implants)
+  - ESLint jsx-sort-props requires callbacks (onClick, onChange) to be listed AFTER all other props
+  - ESLint import/order requires type imports and regular imports from same module together (no blank line)
+  - Use defaultPriceRange constant instead of servicePriceRanges['default'] to avoid TypeScript undefined issues
+---
+
+## Iteration 32 - US-032: Integrate calculator into prices page
+- What was implemented:
+  - Integrated PriceCalculator component into `/src/app/[locale]/preturi/page.tsx`
+  - Calculator positioned prominently above price lists with dedicated section
+  - Fetches all services from Sanity via getAllServices query for calculator
+  - Added "Calculeaza pretul tratamentului" CTA button in hero section
+  - Smooth scroll to calculator section via anchor link (#calculator)
+  - Added scroll-mt-20 class to calculator section for proper scroll offset
+  - Calculator shows fallback message when no services available in Sanity
+  - Both main content and placeholder pages have the calculator integrated
+- Files changed:
+  - src/app/[locale]/preturi/page.tsx (updated - added PriceCalculator integration)
+  - src/messages/ro.json (updated - added prices.tryCalculator translation)
+  - src/messages/en.json (updated - added prices.tryCalculator translation)
+  - src/messages/hu.json (updated - added prices.tryCalculator translation)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Calculator translations must be gathered in server component and passed as props to client component
+  - scroll-mt-20 class provides proper offset for sticky header when using anchor links
+  - Server component can fetch multiple data sources in parallel with Promise.all
+  - calculatorTranslations object pattern keeps translation keys organized for client components
 ---
