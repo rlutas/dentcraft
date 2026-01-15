@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (2/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (3/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -34,6 +34,7 @@
 - US-025: Create legal pages template
 - US-026: Create Before/After gallery page with filter
 - US-027: Create Before/After comparison slider component
+- US-028: Create gallery modal with case details
 
 ## In Progress
 (None)
@@ -650,4 +651,33 @@
   - Use passive: false for touchmove to prevent scrolling during drag
   - ARIA slider role requires aria-valuenow, aria-valuemin, aria-valuemax attributes
   - ESLint jsx-a11y enforces accessibility requirements strictly
+---
+
+## Iteration 28 - US-028: Create gallery modal with case details
+- What was implemented:
+  - Created `src/components/features/BeforeAfterGallery/GalleryModal.tsx` client component
+  - Modal integrates ComparisonSlider for before/after image comparison
+  - Shows case details: service badge, title, description, duration, doctor
+  - Previous/Next navigation with wrap-around (last->first, first->last)
+  - Keyboard navigation: Escape closes, ArrowLeft/ArrowRight navigates
+  - Close on backdrop click
+  - Pagination dots for quick navigation between cases
+  - ARIA attributes for accessibility (role="dialog", aria-modal, aria-labelledby)
+  - Body scroll prevention when modal is open
+  - Created `src/app/[locale]/galerie/GalleryPageClient.tsx` client wrapper
+  - Updated gallery page to use client components for modal state management
+  - Gallery cards now clickable to open modal with hover overlay
+  - Updated index.ts to export GalleryModal and GalleryCase type
+- Files changed:
+  - src/components/features/BeforeAfterGallery/GalleryModal.tsx (new)
+  - src/components/features/BeforeAfterGallery/index.ts (updated)
+  - src/app/[locale]/galerie/GalleryPageClient.tsx (new)
+  - src/app/[locale]/galerie/page.tsx (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Client components needed for modal state management (open/close, current index)
+  - Passing translations as props from server to client component keeps i18n working
+  - Pre-generate image URLs on server side to pass serializable data to client
+  - Body scroll prevention: set document.body.style.overflow = 'hidden' when modal opens
+  - Wrap-around navigation: when at end, go to 0; when at start, go to length-1
 ---

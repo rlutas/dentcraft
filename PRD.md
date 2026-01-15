@@ -380,14 +380,14 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to view full case details in a modal.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/BeforeAfterGallery/GalleryModal.tsx`
-- [ ] Opens on thumbnail click
-- [ ] Shows ComparisonSlider, treatment name, doctor, duration
-- [ ] Previous/Next navigation between cases
-- [ ] Close on backdrop click or Escape key
-- [ ] Keyboard navigation (arrow keys)
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/BeforeAfterGallery/GalleryModal.tsx`
+- [x] Opens on thumbnail click
+- [x] Shows ComparisonSlider, treatment name, doctor, duration
+- [x] Previous/Next navigation between cases
+- [x] Close on backdrop click or Escape key
+- [x] Keyboard navigation (arrow keys)
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 
