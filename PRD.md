@@ -150,11 +150,11 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a developer, I need a utility to generate optimized image URLs from Sanity.
 
 **Acceptance Criteria:**
-- [ ] Install `@sanity/image-url` package
-- [ ] Create `src/lib/sanity/image.ts` with urlFor() helper function
-- [ ] Helper supports width, height, quality parameters
-- [ ] Export helper function
-- [ ] Typecheck passes
+- [x] Install `@sanity/image-url` package
+- [x] Create `src/lib/sanity/image.ts` with urlFor() helper function
+- [x] Helper supports width, height, quality parameters
+- [x] Export helper function
+- [x] Typecheck passes
 
 ---
 

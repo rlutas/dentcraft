@@ -1,7 +1,7 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (11/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
@@ -18,6 +18,7 @@
 - US-009: Create FAQ and Price document schemas
 - US-010: Create Settings singleton and LegalPage schemas
 - US-011: Create GROQ queries for all content types
+- US-012: Create Sanity image URL helper
 
 ## In Progress
 (None)
@@ -254,4 +255,21 @@
   - Portable text arrays need `[]` suffix in projection: `fieldName.${locale}[]`
   - String interpolation with template literals works well for dynamic GROQ query building
   - Sanity client.fetch accepts params object as second argument for query variables
+---
+
+## Iteration 12 - US-012: Create Sanity image URL helper
+- What was implemented:
+  - Created `src/lib/sanity/image.ts` with comprehensive image URL utilities
+  - Main helper `urlFor(source)` returns ImageUrlBuilder for chaining transformations (width, height, quality, auto format, blur, etc.)
+  - Added `generateSrcSet()` helper for responsive image srcset generation
+  - Added `getBlurDataURL()` helper for blur placeholders
+  - Package @sanity/image-url was already installed in US-001
+- Files changed:
+  - src/lib/sanity/image.ts (new)
+  - PRD.md (updated)
+  - progress.txt (updated)
+- Learnings for future iterations:
+  - @sanity/image-url v2 exports SanityImageSource type directly from main module
+  - ImageUrlBuilder supports chaining: urlFor(image).width(800).quality(80).auto('format').url()
+  - Phase 1 (CMS Foundation) is now complete - all schemas and helpers are ready
 ---
