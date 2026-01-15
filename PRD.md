@@ -305,13 +305,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to browse blog articles.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/blog/page.tsx`
-- [ ] Fetches blog posts from Sanity, newest first
-- [ ] Displays blog cards: cover image, category badge, title, excerpt, date
-- [ ] Filter by category via URL params
-- [ ] Pagination (10 posts per page)
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/blog/page.tsx`
+- [x] Fetches blog posts from Sanity, newest first
+- [x] Displays blog cards: cover image, category badge, title, excerpt, date
+- [x] Filter by category via URL params
+- [x] Pagination (10 posts per page)
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

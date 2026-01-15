@@ -196,6 +196,22 @@
     "closed": "Closed",
     "followUs": "Follow us"
   },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles and tips for your dental health.",
+    "filterBy": "Filter by category",
+    "allCategories": "All",
+    "noPosts": "No posts found",
+    "noPostsDescription": "Check back soon for new articles about dental health.",
+    "viewAllPosts": "View all posts",
+    "minRead": "min read",
+    "noDate": "Unpublished",
+    "readMore": "Read more",
+    "relatedPosts": "Related posts",
+    "shareArticle": "Share this article",
+    "writtenBy": "Written by",
+    "publishedOn": "Published on"
+  },
   "contactForm": {
     "title": "Send us a message",
     "name": "Name",

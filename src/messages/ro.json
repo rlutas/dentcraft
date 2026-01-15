@@ -196,6 +196,22 @@
     "closed": "Inchis",
     "followUs": "Urmareste-ne"
   },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articole si sfaturi pentru sanatatea ta dentara.",
+    "filterBy": "Filtreaza dupa categorie",
+    "allCategories": "Toate",
+    "noPosts": "Nu exista articole",
+    "noPostsDescription": "Revino curand pentru articole noi despre sanatatea dentara.",
+    "viewAllPosts": "Vezi toate articolele",
+    "minRead": "min citire",
+    "noDate": "Data nepublicata",
+    "readMore": "Citeste mai mult",
+    "relatedPosts": "Articole similare",
+    "shareArticle": "Distribuie articolul",
+    "writtenBy": "Scris de",
+    "publishedOn": "Publicat pe"
+  },
   "contactForm": {
     "title": "Trimite-ne un mesaj",
     "name": "Nume",

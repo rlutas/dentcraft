@@ -196,6 +196,22 @@
     "closed": "Zarva",
     "followUs": "Kovessen minket"
   },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Cikkek es tanacsok a fogaszati egeszsegehez.",
+    "filterBy": "Szures kategoria szerint",
+    "allCategories": "Osszes",
+    "noPosts": "Nincs cikk",
+    "noPostsDescription": "Nemsokara ujabb cikkeket talalhat fogaszati egeszseggel kapcsolatban.",
+    "viewAllPosts": "Osszes cikk megtekintese",
+    "minRead": "perc olvasas",
+    "noDate": "Kozzetetlenul",
+    "readMore": "Tovabb olvasom",
+    "relatedPosts": "Kapcsolodo cikkek",
+    "shareArticle": "Cikk megosztasa",
+    "writtenBy": "Irta",
+    "publishedOn": "Kozzetve"
+  },
   "contactForm": {
     "title": "Kuldjön uzenetet",
     "name": "Nev",

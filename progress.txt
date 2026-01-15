@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (10/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (11/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -29,6 +29,7 @@
 - US-020: Create contact page with info and map
 - US-021: Create contact form component
 - US-022: Create contact form API route
+- US-023: Create blog listing page
 
 ## In Progress
 (None)
@@ -525,4 +526,27 @@
   - Resend package provides simple email sending: `resend.emails.send({ to, from, subject, html })`
   - HTML escaping is critical for user-submitted content in emails
   - Test validation by submitting invalid data and checking error responses
+---
+
+## Iteration 23 - US-023: Create blog listing page
+- What was implemented:
+  - Created `/src/app/[locale]/blog/page.tsx` with full Sanity integration
+  - Blog cards showing: cover image, category badge, title, excerpt, date, reading time estimate, author
+  - Category filter via URL params (`?category=slug`)
+  - Pagination with 10 posts per page (`?page=N`)
+  - Empty state when no posts found
+  - CTA section at the bottom
+  - Added blog translations to all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/app/[locale]/blog/page.tsx (new)
+  - src/messages/ro.json (updated - added blog translations)
+  - src/messages/en.json (updated - added blog translations)
+  - src/messages/hu.json (updated - added blog translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - exactOptionalPropertyTypes: build options objects conditionally instead of assigning undefined
+  - Reading time can be estimated from excerpt length (multiply by factor since excerpt is a preview)
+  - Category filter links use type cast: `'/blog?category=${slug}' as '/blog'`
+  - Pagination shows previous/next arrows plus numbered pages
+  - Empty state provides clear feedback and return link when filtered
 ---
