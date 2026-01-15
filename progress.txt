@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (1/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (2/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -33,6 +33,7 @@
 - US-024: Create individual blog post page
 - US-025: Create legal pages template
 - US-026: Create Before/After gallery page with filter
+- US-027: Create Before/After comparison slider component
 
 ## In Progress
 (None)
@@ -626,4 +627,27 @@
   - Split image preview uses two adjacent divs with w-1/2 each
   - URL params with typed routing: use string literal with type cast `'/galerie?service=slug' as '/galerie'`
   - Phase 3 (Interactive Features) begins - first story complete
+---
+
+## Iteration 27 - US-027: Create Before/After comparison slider component
+- What was implemented:
+  - Created `src/components/features/BeforeAfterGallery/ComparisonSlider.tsx` client component
+  - Draggable divider using mouse events (mousedown, mousemove, mouseup)
+  - Touch support for mobile (touchstart, touchmove, touchend)
+  - Keyboard accessibility (ArrowLeft/ArrowRight to move, Home/End for extremes)
+  - Labels for "Before" and "After" with customizable text via props
+  - Smooth sliding using CSS clipPath for revealing before/after
+  - Circular handle with left/right arrow icons
+  - ARIA attributes: role="slider", aria-valuenow, aria-valuemin, aria-valuemax
+  - Created `src/components/features/BeforeAfterGallery/index.ts` for exports
+- Files changed:
+  - src/components/features/BeforeAfterGallery/ComparisonSlider.tsx (new)
+  - src/components/features/BeforeAfterGallery/index.ts (new)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Use clipPath CSS property for smooth image reveal: `clipPath: inset(0 ${100-pos}% 0 0)`
+  - Global event listeners for mouse/touch tracking must be added to window during drag
+  - Use passive: false for touchmove to prevent scrolling during drag
+  - ARIA slider role requires aria-valuenow, aria-valuemin, aria-valuemax attributes
+  - ESLint jsx-a11y enforces accessibility requirements strictly
 ---

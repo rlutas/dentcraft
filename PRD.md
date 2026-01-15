@@ -366,13 +366,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to interactively compare before and after images.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/BeforeAfterGallery/ComparisonSlider.tsx`
-- [ ] Draggable divider to reveal before/after
-- [ ] Touch support for mobile
-- [ ] Labels for "Before" and "After"
-- [ ] Smooth sliding animation
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/BeforeAfterGallery/ComparisonSlider.tsx`
+- [x] Draggable divider to reveal before/after
+- [x] Touch support for mobile
+- [x] Labels for "Before" and "After"
+- [x] Smooth sliding animation
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 
@@ -585,6 +585,91 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 - [ ] Update testimonials section to fetch featured testimonials
 - [ ] Update team preview to fetch featured team members
 - [ ] Keep fallback placeholder data if Sanity not configured
+- [ ] Typecheck passes
+- [ ] Verify changes work in browser
+
+---
+
+### PHASE 5: Contact & Maps Integration
+
+---
+
+### US-043: Fix Google Maps embed with correct clinic coordinates
+**Description:** As a user, I want to see the exact clinic location on the map, not a generic Satu Mare location.
+
+**Acceptance Criteria:**
+- [ ] Get exact coordinates for "Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare"
+- [ ] Update contact page default Maps embed URL with correct coordinates
+- [ ] Embed should show clinic marker, not just city
+- [ ] Verify map loads correctly on contact page
+- [ ] Typecheck passes
+- [ ] Verify changes work in browser
+
+---
+
+### US-044: Fix Footer address and Maps link
+**Description:** As a user, I want the footer to show the full correct address and link to correct Google Maps location.
+
+**Acceptance Criteria:**
+- [ ] Update `footer.address` in all translation files (ro.json, en.json, hu.json) to full address: "Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare"
+- [ ] Update Footer.tsx Maps link to use correct encoded address that opens exact location
+- [ ] Test that clicking address opens Google Maps with correct destination
+- [ ] Typecheck passes
+- [ ] Verify changes work in browser
+
+---
+
+### US-045: Fix Google Maps directions link on contact page
+**Description:** As a user, when I click "Get Directions" I want to be taken to the correct clinic location.
+
+**Acceptance Criteria:**
+- [ ] Update contact page "Get Directions" button to use exact coordinates or verified address string
+- [ ] Test navigation link opens Google Maps with correct destination marker
+- [ ] Test on mobile that it opens Maps app with correct destination
+- [ ] Typecheck passes
+- [ ] Verify changes work in browser
+
+---
+
+### US-046: Add location preview section to homepage
+**Description:** As a user, I want to see clinic location info on homepage without going to contact page.
+
+**Acceptance Criteria:**
+- [ ] Add "Unde ne găsești" section before CTA on homepage
+- [ ] Display: address, phone, working hours, mini map preview (static image or small embed)
+- [ ] "Get Directions" button linking to Google Maps
+- [ ] Link to full contact page
+- [ ] Responsive design matching existing sections
+- [ ] Typecheck passes
+- [ ] Verify changes work in browser
+
+---
+
+### US-047: Update contact info constants with correct data
+**Description:** As a developer, I need a single source of truth for clinic contact information.
+
+**Acceptance Criteria:**
+- [ ] Create `src/lib/constants/contact.ts` with all contact info:
+  - address: "Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare"
+  - phone: "0741 199 977"
+  - email: "dentcraftsm@gmail.com"
+  - whatsapp: "0741 199 977"
+  - workingHours: "Luni - Vineri: 10:00 - 18:00"
+  - googleMapsUrl: (verified URL)
+  - coordinates: { lat, lng }
+- [ ] Update Footer.tsx to import from constants
+- [ ] Update contact page fallbacks to use constants
+- [ ] Typecheck passes
+
+---
+
+### US-048: Add working hours to homepage CTA section
+**Description:** As a user, I want to know clinic hours when deciding to call.
+
+**Acceptance Criteria:**
+- [ ] Add working hours text below phone number in CTA section
+- [ ] Format: "Luni - Vineri: 10:00 - 18:00"
+- [ ] Use muted/secondary text style
 - [ ] Typecheck passes
 - [ ] Verify changes work in browser
 
