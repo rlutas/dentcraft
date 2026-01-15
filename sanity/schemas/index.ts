@@ -10,6 +10,8 @@ import { service } from './documents/service'
 import { teamMember } from './documents/teamMember'
 import { testimonial } from './documents/testimonial'
 import { beforeAfter } from './documents/beforeAfter'
+import { blogCategory } from './documents/blogCategory'
+import { blogPost } from './documents/blogPost'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Objects
@@ -23,4 +25,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   teamMember,
   testimonial,
   beforeAfter,
+  blogCategory,
+  blogPost,
 ]

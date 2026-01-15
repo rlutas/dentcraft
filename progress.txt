@@ -1,7 +1,7 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (7/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (8/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
@@ -14,6 +14,7 @@
 - US-005: Create TeamMember document schema
 - US-006: Create Testimonial document schema
 - US-007: Create BeforeAfter document schema
+- US-008: Create BlogPost and BlogCategory schemas
 
 ## In Progress
 (None)
@@ -160,4 +161,24 @@
   - BeforeAfter cases use localizedText for description (not localizedPortableText) since rich text isn't needed for brief case descriptions
   - Image fields with required validation use `validation: (rule) => rule.required()`
   - Preview uses afterImage as media to show the successful result
+---
+
+## Iteration 8 - US-008: Create BlogPost and BlogCategory schemas
+- What was implemented:
+  - Created `sanity/schemas/documents/blogCategory.ts` with title (localizedString) and slug fields
+  - Created `sanity/schemas/documents/blogPost.ts` with all required fields: title, slug, excerpt, content (localizedPortableText), coverImage, category (reference to blogCategory), author (reference to teamMember), publishedAt, featured, seo
+  - Added validation for required fields (title, slug) on both schemas
+  - Custom preview for blogPost showing title, category, author, and published date
+  - Custom orderings for blogPost: newest first, oldest first, title
+  - Exported both schemas from `sanity/schemas/index.ts`
+- Files changed:
+  - sanity/schemas/documents/blogCategory.ts (new)
+  - sanity/schemas/documents/blogPost.ts (new)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - BlogCategory is a simple schema - just title and slug, no complex fields needed
+  - BlogPost references both blogCategory and teamMember for category and author
+  - Preview prepare can format dates using toLocaleDateString for locale-specific display
+  - Draft posts without publishedAt can show 'Draft' as fallback in preview
 ---

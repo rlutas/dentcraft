@@ -105,10 +105,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need to manage blog articles with categories.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/blogCategory.ts` with: title (localizedString), slug
-- [ ] Create `sanity/schemas/documents/blogPost.ts` with: title, slug, excerpt, content (localizedPortableText), coverImage, category (reference), author (reference to teamMember), publishedAt, featured, seo
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/blogCategory.ts` with: title (localizedString), slug
+- [x] Create `sanity/schemas/documents/blogPost.ts` with: title, slug, excerpt, content (localizedPortableText), coverImage, category (reference), author (reference to teamMember), publishedAt, featured, seo
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 
