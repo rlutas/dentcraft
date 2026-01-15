@@ -264,13 +264,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to find clinic contact information and location.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/contact/page.tsx`
-- [ ] Fetches contact info from Sanity settings
-- [ ] Displays: address, phone (click-to-call), email, working hours
-- [ ] Embed Google Maps iframe
-- [ ] WhatsApp quick contact button
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/contact/page.tsx`
+- [x] Fetches contact info from Sanity settings
+- [x] Displays: address, phone (click-to-call), email, working hours
+- [x] Embed Google Maps iframe
+- [x] WhatsApp quick contact button
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

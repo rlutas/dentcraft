@@ -174,7 +174,27 @@
   },
   "contact": {
     "title": "Kapcsolat",
-    "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet."
+    "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet.",
+    "phoneLabel": "Telefon",
+    "emailLabel": "Email",
+    "addressLabel": "Cim",
+    "workingHoursLabel": "Nyitvatartas",
+    "callDescription": "Hivjon minket idopontfoglalasert vagy informacioert",
+    "whatsappDescription": "Irjon WhatsApp-on gyors valaszert",
+    "whatsappPrefill": "Udvozlom! Konzultaciot szeretnek foglalni a Dentcraft klinikara.",
+    "emailDescription": "24 oran belul valaszolunk",
+    "addressDescription": "Varjuk kliniánkon",
+    "mapTitle": "Dentcraft klinika helye",
+    "findUs": "Talaljon meg minket",
+    "getDirections": "Utvonaltervezes",
+    "ctaTitle": "Gyors segitsegre van szuksege?",
+    "ctaSubtitle": "Hivjon minket most idopontfoglalasert vagy surgossegi esetben.",
+    "weekdays": "Hetfo - Pentek",
+    "saturday": "Szombat",
+    "sunday": "Vasarnap",
+    "byAppointment": "Idoponttal",
+    "closed": "Zarva",
+    "followUs": "Kovessen minket"
   },
   "footer": {
     "description": "Modern fogaszati klinika Szatmarneметiben, az On mosolyanak egeszsegere es szepsegere szentelve.",

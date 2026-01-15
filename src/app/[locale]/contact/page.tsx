@@ -1,197 +1,359 @@
-import { useTranslations } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
-import type { LocalePageProps } from '@/types'
+import {
+  Clock,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Youtube,
+} from 'lucide-react'
+import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { getSettings, type Locale } from '@/lib/sanity/queries'
 
-export default async function ContactPage({ params }: LocalePageProps) {
+// Settings type based on Sanity schema
+type SanitySettings = {
+  _id: string
+  siteName: string
+  logo: {
+    asset: {
+      _id: string
+      url: string
+    }
+    alt?: string
+  } | null
+  contact: {
+    phone: string
+    email: string
+    whatsapp: string
+    address: string
+  } | null
+  workingHours: Array<{
+    days: string
+    hours: string
+    closed: boolean
+  }> | null
+  socialLinks: {
+    facebook: string | null
+    instagram: string | null
+    youtube: string | null
+    linkedin: string | null
+    tiktok: string | null
+  } | null
+  googleMapsEmbed: string | null
+}
+
+type PageProps = {
+  params: Promise<{ locale: string }>
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale })
+
+  return {
+    title: t('contact.title'),
+    description: t('contact.subtitle'),
+  }
+}
+
+export default async function ContactPage({ params }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  return <ContactPageContent />
-}
-
-function ContactPageContent() {
-  const t = useTranslations()
+  // Fetch settings from Sanity
+  const settings = await getSettings(locale as Locale) as SanitySettings | null
 
   return (
-    <div className="section-padding container-padding">
-      <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <h1>{t('contact.title')}</h1>
-          <p className="mt-6 text-lg text-secondary max-w-3xl mx-auto">
-            {t('contact.subtitle')}
-          </p>
+    <ContactPageContent settings={settings} />
+  )
+}
+
+async function ContactPageContent({ settings }: { settings: SanitySettings | null }) {
+  const t = await getTranslations()
+
+  // Use Sanity data if available, otherwise use defaults from translations
+  const contactInfo = {
+    phone: settings?.contact?.phone || t('footer.phone'),
+    email: settings?.contact?.email || t('footer.email'),
+    whatsapp: settings?.contact?.whatsapp || t('footer.phone'),
+    address: settings?.contact?.address || t('footer.address'),
+  }
+
+  const workingHours = settings?.workingHours || [
+    { days: t('contact.weekdays'), hours: '10:00 - 18:00', closed: false },
+    { days: t('contact.saturday'), hours: t('contact.byAppointment'), closed: false },
+    { days: t('contact.sunday'), hours: '', closed: true },
+  ]
+
+  const socialLinks = settings?.socialLinks || null
+  const googleMapsEmbed = settings?.googleMapsEmbed || null
+
+  return (
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="gradient-hero">
+        <div className="container section">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
+              <MapPin className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
+            </div>
+            <h1 className="mb-6">{t('contact.title')}</h1>
+            <p className="text-body-lg text-muted max-w-2xl mx-auto">
+              {t('contact.subtitle')}
+            </p>
+          </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="card-base p-8">
-              <h2 className="text-h4 font-semibold mb-6">
-                {t('contact.info.address')}
-              </h2>
-              <div className="space-y-4 text-secondary">
-                <p>Str. Barbu Stefanescu Delavrancea nr.3</p>
-                <p>Satu Mare, Romania</p>
+      {/* Contact Content */}
+      <section className="section bg-white">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-6">
+              {/* Phone */}
+              <div className="card p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-1">
+                      {t('contact.phoneLabel')}
+                    </h3>
+                    <a
+                      className="text-body-lg text-[var(--color-primary)] hover:underline font-medium"
+                      href={`tel:+40${contactInfo.phone.replace(/\s/g, '').replace(/^0/, '')}`}
+                    >
+                      {contactInfo.phone}
+                    </a>
+                    <p className="text-body-sm text-muted mt-1">
+                      {t('contact.callDescription')}
+                    </p>
+                  </div>
+                </div>
               </div>
+
+              {/* WhatsApp */}
+              <div className="card p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-6 h-6 text-[#25D366]" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-1">
+                      WhatsApp
+                    </h3>
+                    <p className="text-body-sm text-muted mb-3">
+                      {t('contact.whatsappDescription')}
+                    </p>
+                    <a
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white rounded-lg font-medium hover:bg-[#20bd5a] transition-colors"
+                      href={`https://wa.me/40${contactInfo.whatsapp.replace(/\s/g, '').replace(/^0/, '')}?text=${encodeURIComponent(t('contact.whatsappPrefill'))}`}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <MessageCircle className="w-5 h-5" strokeWidth={1.5} />
+                      {t('common.whatsappMessage')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="card p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-1">
+                      {t('contact.emailLabel')}
+                    </h3>
+                    <a
+                      className="text-body-lg text-[var(--color-primary)] hover:underline font-medium"
+                      href={`mailto:${contactInfo.email}`}
+                    >
+                      {contactInfo.email}
+                    </a>
+                    <p className="text-body-sm text-muted mt-1">
+                      {t('contact.emailDescription')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="card p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-1">
+                      {t('contact.addressLabel')}
+                    </h3>
+                    <p className="text-body text-[var(--color-text)]">
+                      {contactInfo.address}
+                    </p>
+                    <p className="text-body-sm text-muted mt-1">
+                      {t('contact.addressDescription')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Working Hours */}
+              <div className="card p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-3">
+                      {t('contact.workingHoursLabel')}
+                    </h3>
+                    <div className="space-y-2">
+                      {workingHours.map((schedule, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between items-center text-body"
+                        >
+                          <span className="text-[var(--color-text)]">{schedule.days}</span>
+                          <span className={schedule.closed ? 'text-muted' : 'font-medium text-[var(--color-primary)]'}>
+                            {schedule.closed ? t('contact.closed') : schedule.hours}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              {socialLinks && (socialLinks.facebook || socialLinks.instagram || socialLinks.youtube || socialLinks.linkedin) && (
+                <div className="card p-6">
+                  <h3 className="text-lg font-semibold text-[var(--color-text)] mb-4">
+                    {t('contact.followUs')}
+                  </h3>
+                  <div className="flex gap-3">
+                    {socialLinks.facebook && (
+                      <a
+                        aria-label="Facebook"
+                        className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center hover:bg-[var(--color-accent)] transition-colors"
+                        href={socialLinks.facebook}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <Facebook className="w-5 h-5 text-[var(--color-text)]" strokeWidth={1.5} />
+                      </a>
+                    )}
+                    {socialLinks.instagram && (
+                      <a
+                        aria-label="Instagram"
+                        className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center hover:bg-[var(--color-accent)] transition-colors"
+                        href={socialLinks.instagram}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <Instagram className="w-5 h-5 text-[var(--color-text)]" strokeWidth={1.5} />
+                      </a>
+                    )}
+                    {socialLinks.youtube && (
+                      <a
+                        aria-label="YouTube"
+                        className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center hover:bg-[var(--color-accent)] transition-colors"
+                        href={socialLinks.youtube}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <Youtube className="w-5 h-5 text-[var(--color-text)]" strokeWidth={1.5} />
+                      </a>
+                    )}
+                    {socialLinks.linkedin && (
+                      <a
+                        aria-label="LinkedIn"
+                        className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center hover:bg-[var(--color-accent)] transition-colors"
+                        href={socialLinks.linkedin}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <Linkedin className="w-5 h-5 text-[var(--color-text)]" strokeWidth={1.5} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="card-base p-8">
-              <h2 className="text-h4 font-semibold mb-6">
-                {t('contact.info.phone')}
-              </h2>
-              <a
-                href="tel:+40741199977"
-                className="text-lg text-primary hover:underline"
-              >
-                +40 741 199 977
-              </a>
-            </div>
+            {/* Map Section */}
+            <div className="space-y-6">
+              <div className="card p-0 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--color-accent-light)]">
+                  {googleMapsEmbed ? (
+                    <iframe
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src={googleMapsEmbed}
+                      title={t('contact.mapTitle')}
+                    />
+                  ) : (
+                    // Default Google Maps embed for Satu Mare clinic
+                    <iframe
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2673.5!2d22.876!3d47.789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4738069e0d5f2d33%3A0x1!2sSatu%20Mare!5e0!3m2!1sen!2sro!4v1"
+                      title={t('contact.mapTitle')}
+                    />
+                  )}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">
+                    {t('contact.findUs')}
+                  </h3>
+                  <p className="text-body text-muted mb-4">
+                    {contactInfo.address}
+                  </p>
+                  <a
+                    className="btn btn-secondary inline-flex items-center gap-2"
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(contactInfo.address)}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <MapPin className="w-4 h-4" strokeWidth={1.5} />
+                    {t('contact.getDirections')}
+                  </a>
+                </div>
+              </div>
 
-            <div className="card-base p-8">
-              <h2 className="text-h4 font-semibold mb-6">
-                {t('contact.info.schedule')}
-              </h2>
-              <div className="space-y-2 text-secondary">
-                <p>
-                  <span className="font-medium text-foreground">
-                    {t('contact.info.weekdays')}:
-                  </span>{' '}
-                  10:00 - 18:00
+              {/* Quick Contact CTA */}
+              <div className="card p-8 bg-[var(--color-primary)] text-white">
+                <h3 className="text-xl font-semibold mb-2">
+                  {t('contact.ctaTitle')}
+                </h3>
+                <p className="opacity-90 mb-6">
+                  {t('contact.ctaSubtitle')}
                 </p>
-                <p>
-                  <span className="font-medium text-foreground">
-                    {t('contact.info.weekend')}:
-                  </span>{' '}
-                  {t('contact.info.closed')}
-                </p>
+                <a
+                  className="btn bg-white text-[var(--color-primary)] hover:bg-[var(--color-accent)] w-full flex items-center justify-center gap-2"
+                  href={`tel:+40${contactInfo.phone.replace(/\s/g, '').replace(/^0/, '')}`}
+                >
+                  <Phone className="w-5 h-5" strokeWidth={1.5} />
+                  {t('common.callNow')}
+                </a>
               </div>
             </div>
           </div>
-
-          {/* Contact Form */}
-          <div className="card-base p-8">
-            <h2 className="text-h4 font-semibold mb-6">
-              {t('contact.form.submit')}
-            </h2>
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {t('contact.form.name')} *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="input-base"
-                  placeholder={t('contact.form.name')}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {t('contact.form.email')} *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="input-base"
-                  placeholder={t('contact.form.email')}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {t('contact.form.phone')} *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  className="input-base"
-                  placeholder={t('contact.form.phone')}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {t('contact.form.subject')}
-                </label>
-                <select id="subject" name="subject" className="input-base">
-                  <option value="appointment">
-                    {t('contact.form.subjects.appointment')}
-                  </option>
-                  <option value="information">
-                    {t('contact.form.subjects.information')}
-                  </option>
-                  <option value="emergency">
-                    {t('contact.form.subjects.emergency')}
-                  </option>
-                  <option value="other">
-                    {t('contact.form.subjects.other')}
-                  </option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {t('contact.form.message')} *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="input-base resize-none"
-                  placeholder={t('contact.form.message')}
-                />
-              </div>
-
-              <div className="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="gdpr"
-                  name="gdpr"
-                  required
-                  className="mt-1 h-4 w-4 rounded border-accent text-primary focus:ring-primary"
-                />
-                <label htmlFor="gdpr" className="text-sm text-secondary">
-                  {t('contact.form.gdprConsent')}
-                </label>
-              </div>
-
-              <button type="submit" className="btn-primary w-full">
-                {t('contact.form.submit')}
-              </button>
-            </form>
-          </div>
         </div>
-
-        {/* Map placeholder */}
-        <div className="mt-16">
-          <div className="w-full h-96 bg-muted rounded-2xl flex items-center justify-center">
-            <p className="text-secondary">Google Maps will be embedded here</p>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   )
 }

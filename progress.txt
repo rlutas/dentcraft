@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (7/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (8/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -26,6 +26,7 @@
 - US-017: Create testimonials page
 - US-018: Create FAQ page with accordion
 - US-019: Create prices page with basic listing
+- US-020: Create contact page with info and map
 
 ## In Progress
 (None)
@@ -448,4 +449,29 @@
   - Price formatting with Intl.NumberFormat('ro-RO') for Romanian number format
   - Promotional prices use green styling (bg-green-50, text-green-600) for visual distinction
   - Prices grouped by service using GROQ query with references() function
+---
+
+## Iteration 20 - US-020: Create contact page with info and map
+- What was implemented:
+  - Updated `/src/app/[locale]/contact/page.tsx` with full Sanity integration
+  - Contact info cards displaying: phone (click-to-call), WhatsApp quick contact, email, address
+  - Working hours display with closed day indication
+  - Embedded Google Maps iframe from Sanity settings (with fallback)
+  - Social links section (Facebook, Instagram, YouTube, LinkedIn)
+  - Quick contact CTA card with phone button
+  - Get directions link to Google Maps
+  - `getSettings` query fetches contact info from Sanity settings singleton
+  - Added translation keys for contact page in all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/app/[locale]/contact/page.tsx (updated)
+  - src/messages/ro.json (updated - added contact section translations)
+  - src/messages/en.json (updated - added contact section translations)
+  - src/messages/hu.json (updated - added contact section translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Contact page uses settings singleton document for phone, email, address, working hours
+  - WhatsApp links use wa.me API with pre-filled message: `https://wa.me/40${phone}?text=${encodeURIComponent(message)}`
+  - Google Maps embed uses iframe with src from Sanity googleMapsEmbed field
+  - Working hours array supports closed days with boolean flag
+  - Social links conditionally render only when URLs are provided in settings
 ---

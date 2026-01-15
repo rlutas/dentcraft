@@ -174,7 +174,27 @@
   },
   "contact": {
     "title": "Contact us",
-    "subtitle": "We're here for you. Book a consultation or send us a message."
+    "subtitle": "We're here for you. Book a consultation or send us a message.",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "workingHoursLabel": "Working hours",
+    "callDescription": "Call us for appointments or information",
+    "whatsappDescription": "Message us on WhatsApp for quick response",
+    "whatsappPrefill": "Hello! I would like to book a consultation at Dentcraft clinic.",
+    "emailDescription": "We respond within 24 hours",
+    "addressDescription": "We're waiting for you at our clinic",
+    "mapTitle": "Dentcraft clinic location",
+    "findUs": "Find us",
+    "getDirections": "Get directions",
+    "ctaTitle": "Need help fast?",
+    "ctaSubtitle": "Call us now for appointments or dental emergencies.",
+    "weekdays": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "byAppointment": "By appointment",
+    "closed": "Closed",
+    "followUs": "Follow us"
   },
   "footer": {
     "description": "Modern dental clinic in Satu Mare, dedicated to the health and beauty of your smile.",

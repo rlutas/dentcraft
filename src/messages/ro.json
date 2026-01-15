@@ -174,7 +174,27 @@
   },
   "contact": {
     "title": "Contacteaza-ne",
-    "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj."
+    "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj.",
+    "phoneLabel": "Telefon",
+    "emailLabel": "Email",
+    "addressLabel": "Adresa",
+    "workingHoursLabel": "Program de lucru",
+    "callDescription": "Suna-ne pentru programari sau informatii",
+    "whatsappDescription": "Scrie-ne pe WhatsApp pentru raspuns rapid",
+    "whatsappPrefill": "Buna! As dori sa programez o consultatie la clinica Dentcraft.",
+    "emailDescription": "Raspundem in maxim 24 de ore",
+    "addressDescription": "Te asteptam la clinica noastra",
+    "mapTitle": "Locatia clinicii Dentcraft",
+    "findUs": "Gaseste-ne",
+    "getDirections": "Obtine indicatii",
+    "ctaTitle": "Ai nevoie de ajutor rapid?",
+    "ctaSubtitle": "Suna-ne acum pentru programari sau urgente dentare.",
+    "weekdays": "Luni - Vineri",
+    "saturday": "Sambata",
+    "sunday": "Duminica",
+    "byAppointment": "Cu programare",
+    "closed": "Inchis",
+    "followUs": "Urmareste-ne"
   },
   "footer": {
     "description": "Clinica stomatologica moderna in Satu Mare, dedicata sanatatii si frumusetii zambetului tau.",
