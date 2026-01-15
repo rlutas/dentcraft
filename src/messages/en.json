@@ -286,7 +286,16 @@
     "priceRange": "Price range",
     "disclaimer": "Final price will be determined after consultation.",
     "scheduleConsultation": "Schedule free consultation",
-    "noServicesAvailable": "No services available for the calculator."
+    "noServicesAvailable": "No services available for the calculator.",
+    "optionsTitle": "Treatment Details",
+    "optionsSubtitle": "Specify treatment details for a more accurate estimate.",
+    "quantity": "Number of units",
+    "quantityUnit": "teeth/units",
+    "material": "Material type",
+    "materialStandard": "Standard",
+    "materialStandardDesc": "Quality materials with optimal price-performance ratio",
+    "materialPremium": "Premium",
+    "materialPremiumDesc": "Top-tier materials with superior aesthetics and durability"
   },
   "footer": {
     "description": "Modern dental clinic in Satu Mare, dedicated to the health and beauty of your smile.",

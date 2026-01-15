@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (4/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (5/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -36,6 +36,7 @@
 - US-027: Create Before/After comparison slider component
 - US-028: Create gallery modal with case details
 - US-029: Create price calculator - step 1 (service selection)
+- US-030: Create price calculator - step 2 (options and quantity)
 
 ## In Progress
 (None)
@@ -705,4 +706,28 @@
   - Translations passed as props to client component to maintain server/client separation
   - aria-pressed attribute used for toggle button accessibility
   - Selected state styling: border color + background + checkmark icon + icon background invert
+---
+
+## Iteration 30 - US-030: Create price calculator - step 2 (options and quantity)
+- What was implemented:
+  - Created `src/components/features/PriceCalculator/OptionsForm.tsx` client component
+  - Quantity selector with +/- buttons (range: 1-32 units)
+  - Material options (Standard/Premium) for applicable services (implants, crowns, veneers, prosthetics)
+  - Dynamic service detection to show/hide material options based on service slug
+  - Back button to return to service selection, Calculate button to proceed to results
+  - Added new translations for options step in all 3 locales (RO/EN/HU)
+  - Updated PriceCalculator index.tsx to manage options state and integrate OptionsForm
+- Files changed:
+  - src/components/features/PriceCalculator/OptionsForm.tsx (new)
+  - src/components/features/PriceCalculator/index.tsx (updated)
+  - src/messages/ro.json (updated - added options translations)
+  - src/messages/en.json (updated - added options translations)
+  - src/messages/hu.json (updated - added options translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Material options only shown for specific service types (implants, crowns, veneers, prosthetics)
+  - Quantity range limited to 1-32 (covers most dental scenarios)
+  - Radio button-style selection uses aria-pressed and custom styling with radio circles
+  - CalculatorOptions type exported from OptionsForm for use in parent and results components
+  - canProceed validation: requires material selection only when materials are applicable
 ---

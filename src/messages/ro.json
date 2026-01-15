@@ -286,7 +286,16 @@
     "priceRange": "Interval de pret",
     "disclaimer": "Pretul final va fi stabilit dupa consultatie.",
     "scheduleConsultation": "Programeaza consultatie gratuita",
-    "noServicesAvailable": "Nu exista servicii disponibile pentru calculator."
+    "noServicesAvailable": "Nu exista servicii disponibile pentru calculator.",
+    "optionsTitle": "Detalii tratament",
+    "optionsSubtitle": "Specifica detaliile tratamentului pentru o estimare mai precisa.",
+    "quantity": "Numar de unitati",
+    "quantityUnit": "dinti/unitati",
+    "material": "Tipul materialului",
+    "materialStandard": "Standard",
+    "materialStandardDesc": "Materiale de calitate cu raport pret-performanta optim",
+    "materialPremium": "Premium",
+    "materialPremiumDesc": "Materiale de top cu estetica si durabilitate superioare"
   },
   "footer": {
     "description": "Clinica stomatologica moderna in Satu Mare, dedicata sanatatii si frumusetii zambetului tau.",

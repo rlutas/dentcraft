@@ -2,7 +2,10 @@
 
 import { useState } from 'react'
 
+import { OptionsForm } from './OptionsForm'
 import { ServiceSelect } from './ServiceSelect'
+
+import type { CalculatorOptions } from './OptionsForm'
 
 // Type for a selectable service
 export type CalculatorService = {
@@ -16,7 +19,18 @@ export type CalculatorService = {
 type PriceCalculatorProps = {
   services: CalculatorService[]
   translations: {
+    back: string
+    calculate: string
+    material: string
+    materialPremium: string
+    materialPremiumDesc: string
+    materialStandard: string
+    materialStandardDesc: string
     next: string
+    optionsSubtitle: string
+    optionsTitle: string
+    quantity: string
+    quantityUnit: string
     selectService: string
     subtitle: string
     title: string
@@ -26,9 +40,16 @@ type PriceCalculatorProps = {
 // Calculator steps
 type Step = 'service' | 'options' | 'results'
 
+// Export CalculatorOptions type
+export type { CalculatorOptions }
+
 export function PriceCalculator({ services, translations }: PriceCalculatorProps) {
   const [currentStep, setCurrentStep] = useState<Step>('service')
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null)
+  const [options, setOptions] = useState<CalculatorOptions>({
+    materialType: null,
+    quantity: 1,
+  })
 
   // Handle service selection
   const handleServiceSelect = (serviceId: string) => {
@@ -42,6 +63,20 @@ export function PriceCalculator({ services, translations }: PriceCalculatorProps
     } else if (currentStep === 'options') {
       setCurrentStep('results')
     }
+  }
+
+  // Handle back button click
+  const handleBack = () => {
+    if (currentStep === 'options') {
+      setCurrentStep('service')
+    } else if (currentStep === 'results') {
+      setCurrentStep('options')
+    }
+  }
+
+  // Handle options change
+  const handleOptionsChange = (newOptions: CalculatorOptions) => {
+    setOptions(newOptions)
   }
 
   // Get the selected service
@@ -60,13 +95,16 @@ export function PriceCalculator({ services, translations }: PriceCalculatorProps
         />
       )}
 
-      {/* Step 2: Options (placeholder for US-030) */}
+      {/* Step 2: Options */}
       {currentStep === 'options' && selectedService && (
-        <div className="text-center py-8">
-          <p className="text-muted">
-            Options form for {selectedService.title} will be implemented in US-030
-          </p>
-        </div>
+        <OptionsForm
+          onBack={handleBack}
+          onChange={handleOptionsChange}
+          onNext={handleNext}
+          options={options}
+          serviceSlug={selectedService.slug}
+          translations={translations}
+        />
       )}
 
       {/* Step 3: Results (placeholder for US-031) */}

@@ -286,7 +286,16 @@
     "priceRange": "Ar tartomany",
     "disclaimer": "A vegleges arat a konzultacio utan allapitjuk meg.",
     "scheduleConsultation": "Ingyenes konzultacio foglalas",
-    "noServicesAvailable": "Nincs elerheto szolgaltatas a kalkulatorhoz."
+    "noServicesAvailable": "Nincs elerheto szolgaltatas a kalkulatorhoz.",
+    "optionsTitle": "Kezelesi reszletek",
+    "optionsSubtitle": "Adja meg a kezelesi reszleteket a pontosabb becsléshez.",
+    "quantity": "Egysegek szama",
+    "quantityUnit": "fog/egyseg",
+    "material": "Anyag tipusa",
+    "materialStandard": "Standard",
+    "materialStandardDesc": "Minosegi anyagok optimalis ar-ertek arannyal",
+    "materialPremium": "Premiu",
+    "materialPremiumDesc": "Csucskategoras anyagok kivaló esztetikával és tartóssággal"
   },
   "footer": {
     "description": "Modern fogaszati klinika Szatmarneметiben, az On mosolyanak egeszsegere es szepsegere szentelve.",
