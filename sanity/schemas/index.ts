@@ -8,6 +8,7 @@ import { localizedPortableText } from './objects/localizedPortableText'
 
 import { service } from './documents/service'
 import { teamMember } from './documents/teamMember'
+import { testimonial } from './documents/testimonial'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Objects
@@ -19,4 +20,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
   service,
   teamMember,
+  testimonial,
 ]

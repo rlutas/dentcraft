@@ -83,10 +83,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need to manage patient testimonials (text and video).
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/testimonial.ts` with fields: patientName, patientPhoto, rating (1-5), text (localizedText), videoUrl, videoFile, service (reference), doctor (reference), featured (boolean), date
-- [ ] Add validation: rating min 1 max 5
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/testimonial.ts` with fields: patientName, patientPhoto, rating (1-5), text (localizedText), videoUrl, videoFile, service (reference), doctor (reference), featured (boolean), date
+- [x] Add validation: rating min 1 max 5
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 
