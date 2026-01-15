@@ -292,12 +292,12 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a developer, I need a backend endpoint to process contact form submissions.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/api/contact/route.ts`
-- [ ] Validate all required fields server-side
-- [ ] Send email notification using Resend or similar service
-- [ ] Return appropriate success/error responses
-- [ ] Add rate limiting (max 5 requests per minute per IP)
-- [ ] Typecheck passes
+- [x] Create `/src/app/api/contact/route.ts`
+- [x] Validate all required fields server-side
+- [x] Send email notification using Resend or similar service
+- [x] Return appropriate success/error responses
+- [x] Add rate limiting (max 5 requests per minute per IP)
+- [x] Typecheck passes
 
 ---
 

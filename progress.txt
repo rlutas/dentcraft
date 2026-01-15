@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (9/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (10/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -28,6 +28,7 @@
 - US-019: Create prices page with basic listing
 - US-020: Create contact page with info and map
 - US-021: Create contact form component
+- US-022: Create contact form API route
 
 ## In Progress
 (None)
@@ -501,4 +502,27 @@
   - Phone regex validation: `/^[0-9+\s()-]{6,20}$/` for flexible international formats
   - GDPR consent checkbox is required for compliance
   - Form submits to /api/contact route (to be implemented in US-022)
+---
+
+## Iteration 22 - US-022: Create contact form API route
+- What was implemented:
+  - Created `/src/app/api/contact/route.ts` with POST handler
+  - Server-side validation for all required fields (name, email, subject, message, gdprConsent)
+  - Resend integration for sending email notifications
+  - HTML email template with styled table layout
+  - Rate limiting: max 5 requests per minute per IP (in-memory store)
+  - HTML escaping to prevent XSS in email content
+  - Graceful fallback when RESEND_API_KEY is not configured
+  - Updated .env.example with RESEND_API_KEY and CONTACT_EMAIL variables
+- Files changed:
+  - src/app/api/contact/route.ts (new)
+  - .env.example (updated)
+  - package.json (added resend dependency)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - exactOptionalPropertyTypes requires careful handling: don't assign undefined to optional props, conditionally add them
+  - In-memory rate limiting works for single-server deployments; use Redis for production clusters
+  - Resend package provides simple email sending: `resend.emails.send({ to, from, subject, html })`
+  - HTML escaping is critical for user-submitted content in emails
+  - Test validation by submitting invalid data and checking error responses
 ---
