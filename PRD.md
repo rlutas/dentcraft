@@ -116,10 +116,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need to manage FAQs and pricing items.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/faq.ts` with: question (localizedString), answer (localizedPortableText), category (select: general/pricing/treatments/appointments), services (references), order
-- [ ] Create `sanity/schemas/documents/price.ts` with: service (reference), name (localizedString), description, priceMin, priceMax, unit, isPromotion, promotionPrice, includesInCalculator
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/faq.ts` with: question (localizedString), answer (localizedPortableText), category (select: general/pricing/treatments/appointments), services (references), order
+- [x] Create `sanity/schemas/documents/price.ts` with: service (reference), name (localizedString), description, priceMin, priceMax, unit, isPromotion, promotionPrice, includesInCalculator
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 

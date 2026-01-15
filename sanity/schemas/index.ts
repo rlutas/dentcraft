@@ -12,6 +12,8 @@ import { testimonial } from './documents/testimonial'
 import { beforeAfter } from './documents/beforeAfter'
 import { blogCategory } from './documents/blogCategory'
 import { blogPost } from './documents/blogPost'
+import { faq } from './documents/faq'
+import { price } from './documents/price'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Objects
@@ -27,4 +29,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   beforeAfter,
   blogCategory,
   blogPost,
+  faq,
+  price,
 ]
