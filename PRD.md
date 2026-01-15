@@ -395,13 +395,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to select a treatment type to estimate cost.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/PriceCalculator/index.tsx`
-- [ ] Create `src/components/features/PriceCalculator/ServiceSelect.tsx`
-- [ ] Display services as selectable cards with icons
-- [ ] Single selection with visual highlight
-- [ ] "Next" button to proceed
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/PriceCalculator/index.tsx`
+- [x] Create `src/components/features/PriceCalculator/ServiceSelect.tsx`
+- [x] Display services as selectable cards with icons
+- [x] Single selection with visual highlight
+- [x] "Next" button to proceed
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

@@ -274,6 +274,20 @@
       "gdprRequired": "You must accept the privacy policy"
     }
   },
+  "priceCalculator": {
+    "title": "Price Calculator",
+    "subtitle": "Select a service to estimate your treatment cost.",
+    "selectService": "Select a service",
+    "next": "Next step",
+    "back": "Back",
+    "calculate": "Calculate price",
+    "reset": "Start over",
+    "estimatedPrice": "Estimated price",
+    "priceRange": "Price range",
+    "disclaimer": "Final price will be determined after consultation.",
+    "scheduleConsultation": "Schedule free consultation",
+    "noServicesAvailable": "No services available for the calculator."
+  },
   "footer": {
     "description": "Modern dental clinic in Satu Mare, dedicated to the health and beauty of your smile.",
     "quickLinks": "Quick Links",

@@ -274,6 +274,20 @@
       "gdprRequired": "Trebuie sa accepti politica de confidentialitate"
     }
   },
+  "priceCalculator": {
+    "title": "Calculator de pret",
+    "subtitle": "Selecteaza serviciul pentru a estima costul tratamentului.",
+    "selectService": "Selecteaza un serviciu",
+    "next": "Urmatorul pas",
+    "back": "Inapoi",
+    "calculate": "Calculeaza pretul",
+    "reset": "Incepe din nou",
+    "estimatedPrice": "Pret estimat",
+    "priceRange": "Interval de pret",
+    "disclaimer": "Pretul final va fi stabilit dupa consultatie.",
+    "scheduleConsultation": "Programeaza consultatie gratuita",
+    "noServicesAvailable": "Nu exista servicii disponibile pentru calculator."
+  },
   "footer": {
     "description": "Clinica stomatologica moderna in Satu Mare, dedicata sanatatii si frumusetii zambetului tau.",
     "quickLinks": "Link-uri rapide",

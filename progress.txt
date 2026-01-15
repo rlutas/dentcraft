@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (3/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (4/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -35,6 +35,7 @@
 - US-026: Create Before/After gallery page with filter
 - US-027: Create Before/After comparison slider component
 - US-028: Create gallery modal with case details
+- US-029: Create price calculator - step 1 (service selection)
 
 ## In Progress
 (None)
@@ -680,4 +681,28 @@
   - Pre-generate image URLs on server side to pass serializable data to client
   - Body scroll prevention: set document.body.style.overflow = 'hidden' when modal opens
   - Wrap-around navigation: when at end, go to 0; when at start, go to length-1
+---
+
+## Iteration 29 - US-029: Create price calculator - step 1 (service selection)
+- What was implemented:
+  - Created `src/components/features/PriceCalculator/index.tsx` - main calculator component with step management
+  - Created `src/components/features/PriceCalculator/ServiceSelect.tsx` - service selection step with card grid
+  - Services displayed as selectable cards with dynamic Lucide icons
+  - Single selection with visual highlight (border, background, checkmark)
+  - "Next" button disabled until service selected, enabled when selected
+  - Placeholder steps for options (US-030) and results (US-031)
+  - Added priceCalculator translations to all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/components/features/PriceCalculator/index.tsx (new)
+  - src/components/features/PriceCalculator/ServiceSelect.tsx (new)
+  - src/messages/ro.json (updated - added priceCalculator translations)
+  - src/messages/en.json (updated - added priceCalculator translations)
+  - src/messages/hu.json (updated - added priceCalculator translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - PriceCalculator uses multi-step wizard pattern with state machine for currentStep
+  - Services passed as props from server component (for Sanity integration in US-032)
+  - Translations passed as props to client component to maintain server/client separation
+  - aria-pressed attribute used for toggle button accessibility
+  - Selected state styling: border color + background + checkmark icon + icon background invert
 ---

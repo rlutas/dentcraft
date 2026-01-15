@@ -274,6 +274,20 @@
       "gdprRequired": "El kell fogadnia az adatvedelmi szabalyzatot"
     }
   },
+  "priceCalculator": {
+    "title": "Arkalkulátor",
+    "subtitle": "Valasszon szolgaltatast a kezelesi koltseg becslesehez.",
+    "selectService": "Valasszon szolgaltatast",
+    "next": "Kovetkezo lepes",
+    "back": "Vissza",
+    "calculate": "Ar szamitasa",
+    "reset": "Ujrakezdes",
+    "estimatedPrice": "Becsult ar",
+    "priceRange": "Ar tartomany",
+    "disclaimer": "A vegleges arat a konzultacio utan allapitjuk meg.",
+    "scheduleConsultation": "Ingyenes konzultacio foglalas",
+    "noServicesAvailable": "Nincs elerheto szolgaltatas a kalkulatorhoz."
+  },
   "footer": {
     "description": "Modern fogaszati klinika Szatmarneметiben, az On mosolyanak egeszsegere es szepsegere szentelve.",
     "quickLinks": "Gyors linkek",
