@@ -180,13 +180,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to see all available services in a grid.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/servicii/page.tsx`
-- [ ] Fetches all services from Sanity ordered by `order` field
-- [ ] Displays grid of service cards (icon, title, short description)
-- [ ] Each card links to individual service page
-- [ ] Responsive: 3 columns desktop, 2 tablet, 1 mobile
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/servicii/page.tsx`
+- [x] Fetches all services from Sanity ordered by `order` field
+- [x] Displays grid of service cards (icon, title, short description)
+- [x] Each card links to individual service page
+- [x] Responsive: 3 columns desktop, 2 tablet, 1 mobile
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

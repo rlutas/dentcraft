@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (1/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (2/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -20,6 +20,7 @@
 - US-011: Create GROQ queries for all content types
 - US-012: Create Sanity image URL helper
 - US-013: Create service page template with Sanity integration
+- US-014: Create services listing page
 
 ## In Progress
 (None)
@@ -301,4 +302,24 @@
   - Use bracket notation for index signature access: `block['children']` not `block.children`
   - PortableText rendering can use simple approach with array filtering for basic use cases
   - Dynamic Lucide icons can be loaded with `import * as LucideIcons from 'lucide-react'` and accessed by name
+---
+
+## Iteration 14 - US-014: Create services listing page
+- What was implemented:
+  - Updated `/src/app/[locale]/servicii/page.tsx` to fetch services from Sanity
+  - Hero section with page title and subtitle from translations
+  - Grid of service cards (3 columns desktop, 2 tablet, 1 mobile)
+  - Each card displays: dynamic Lucide icon, title, short description, "Learn more" link
+  - Links use typed routing: `{ pathname: '/servicii/[slug]', params: { slug: service.slug } }`
+  - Placeholder component shows when Sanity has no services (graceful fallback)
+  - CTA section with appointment button and phone number
+  - generateMetadata for SEO
+- Files changed:
+  - src/app/[locale]/servicii/page.tsx (updated)
+  - PRD.md (updated)
+  - progress.txt (updated)
+- Learnings for future iterations:
+  - For dynamic routes with next-intl typed routing, use object format: `href={{ pathname: '/servicii/[slug]', params: { slug: value } }}`
+  - String template literals like `/servicii/${slug}` don't work with typed routes - must use object format
+  - getAllServices returns services ordered by `order` field (implemented in GROQ query)
 ---
