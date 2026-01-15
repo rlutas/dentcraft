@@ -275,6 +275,14 @@
       "gdprRequired": "You must accept the privacy policy"
     }
   },
+  "cookieConsent": {
+    "title": "We use cookies",
+    "description": "This site uses cookies to improve your experience. Some are essential for the site to work, others help us understand how you use it. Read more in our",
+    "acceptAll": "Accept all",
+    "onlyEssential": "Essential only",
+    "customize": "Customize",
+    "cookiePolicy": "Cookie Policy"
+  },
   "priceCalculator": {
     "title": "Price Calculator",
     "subtitle": "Select a service to estimate your treatment cost.",

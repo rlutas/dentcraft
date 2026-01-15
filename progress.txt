@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (7/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (8/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -39,6 +39,7 @@
 - US-030: Create price calculator - step 2 (options and quantity)
 - US-031: Create price calculator - results display
 - US-032: Integrate calculator into prices page
+- US-033: Create cookie consent banner
 
 ## In Progress
 (None)
@@ -780,4 +781,34 @@
   - scroll-mt-20 class provides proper offset for sticky header when using anchor links
   - Server component can fetch multiple data sources in parallel with Promise.all
   - calculatorTranslations object pattern keeps translation keys organized for client components
+---
+
+## Iteration 33 - US-033: Create cookie consent banner
+- What was implemented:
+  - Created `src/components/features/CookieConsent/index.tsx` client component with:
+    - Fixed bottom banner with cookie icon, title, description, link to cookie policy
+    - "Accept All" primary button and "Only Essential" secondary button
+    - Close button (X) that triggers essential-only consent
+    - ARIA attributes for accessibility (role="dialog", aria-labelledby, aria-describedby)
+  - Created `src/components/features/CookieConsent/CookieConsentWrapper.tsx` for i18n integration
+  - Banner appears on first visit with 500ms delay to prevent flash
+  - Stores consent value ('all', 'essential', 'custom') in localStorage
+  - Stores detailed preferences (essential, analytics, marketing) in localStorage
+  - Exports utility functions: getCookieConsent, getCookiePreferences, isAnalyticsEnabled, isMarketingEnabled
+  - Integrated into layout.tsx after Footer component
+  - Added cookieConsent translations to all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/components/features/CookieConsent/index.tsx (new)
+  - src/components/features/CookieConsent/CookieConsentWrapper.tsx (new)
+  - src/app/[locale]/layout.tsx (updated - added CookieConsentWrapper)
+  - src/messages/ro.json (updated - added cookieConsent translations)
+  - src/messages/en.json (updated - added cookieConsent translations)
+  - src/messages/hu.json (updated - added cookieConsent translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Use wrapper component pattern for client components that need translations from useTranslations
+  - localStorage check with delay prevents hydration mismatch and banner flash
+  - isMounted state pattern ensures client-only rendering for localStorage access
+  - CookiePreferences type can be extended in US-034 for customize modal
+  - GDPR requires clear consent options - "Accept All" and "Essential Only" are minimum requirements
 ---

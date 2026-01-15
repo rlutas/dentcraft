@@ -275,6 +275,14 @@
       "gdprRequired": "Trebuie sa accepti politica de confidentialitate"
     }
   },
+  "cookieConsent": {
+    "title": "Folosim cookie-uri",
+    "description": "Acest site foloseste cookie-uri pentru a-ti imbunatati experienta. Unele sunt esentiale pentru functionarea site-ului, altele ne ajuta sa intelegem cum il utilizezi. Citeste mai multe in",
+    "acceptAll": "Accepta toate",
+    "onlyEssential": "Doar esentiale",
+    "customize": "Personalizeaza",
+    "cookiePolicy": "Politica de cookies"
+  },
   "priceCalculator": {
     "title": "Calculator de pret",
     "subtitle": "Selecteaza serviciul pentru a estima costul tratamentului.",

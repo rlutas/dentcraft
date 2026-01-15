@@ -451,14 +451,14 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to control which cookies the site uses (GDPR).
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/CookieConsent/index.tsx`
-- [ ] Banner appears on first visit (fixed bottom)
-- [ ] Buttons: "Accept All", "Only Essential", "Customize"
-- [ ] Stores preference in localStorage
-- [ ] Does not show again after choice made
-- [ ] Link to cookie policy page
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/CookieConsent/index.tsx`
+- [x] Banner appears on first visit (fixed bottom)
+- [x] Buttons: "Accept All", "Only Essential", "Customize"
+- [x] Stores preference in localStorage
+- [x] Does not show again after choice made
+- [x] Link to cookie policy page
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

@@ -275,6 +275,14 @@
       "gdprRequired": "El kell fogadnia az adatvedelmi szabalyzatot"
     }
   },
+  "cookieConsent": {
+    "title": "Sutiket hasznalunk",
+    "description": "Ez a webhely sutiket hasznal az elmeny javitasahoz. Nehany nelkulozhetetlen az oldal mukodesehez, masok segitenek megerteni, hogyan hasznalja. Tovabbi informaciok a",
+    "acceptAll": "Osszes elfogadasa",
+    "onlyEssential": "Csak a szuksegesek",
+    "customize": "Testreszabas",
+    "cookiePolicy": "Suti szabalyzat"
+  },
   "priceCalculator": {
     "title": "Arkalkulátor",
     "subtitle": "Valasszon szolgaltatast a kezelesi koltseg becslesehez.",
