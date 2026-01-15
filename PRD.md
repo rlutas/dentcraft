@@ -423,14 +423,14 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to see my estimated treatment cost.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/PriceCalculator/Results.tsx`
-- [ ] Shows price range (min - max RON)
-- [ ] Breakdown of selected options
-- [ ] Clear disclaimer: "Final price determined after consultation"
-- [ ] CTA button: "Schedule free consultation"
-- [ ] Option to reset and start over
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/PriceCalculator/Results.tsx`
+- [x] Shows price range (min - max RON)
+- [x] Breakdown of selected options
+- [x] Clear disclaimer: "Final price determined after consultation"
+- [x] CTA button: "Schedule free consultation"
+- [x] Option to reset and start over
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

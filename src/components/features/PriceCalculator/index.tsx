@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-
-import { OptionsForm } from './OptionsForm'
-import { ServiceSelect } from './ServiceSelect'
-
 import type { CalculatorOptions } from './OptionsForm'
+import { OptionsForm } from './OptionsForm'
+import { Results } from './Results'
+import { ServiceSelect } from './ServiceSelect'
 
 // Type for a selectable service
 export type CalculatorService = {
@@ -17,10 +16,13 @@ export type CalculatorService = {
 
 // Props for the PriceCalculator component
 type PriceCalculatorProps = {
+  locale: string
   services: CalculatorService[]
   translations: {
     back: string
     calculate: string
+    disclaimer: string
+    estimatedPrice: string
     material: string
     materialPremium: string
     materialPremiumDesc: string
@@ -29,8 +31,11 @@ type PriceCalculatorProps = {
     next: string
     optionsSubtitle: string
     optionsTitle: string
+    priceRange: string
     quantity: string
     quantityUnit: string
+    reset: string
+    scheduleConsultation: string
     selectService: string
     subtitle: string
     title: string
@@ -43,7 +48,11 @@ type Step = 'service' | 'options' | 'results'
 // Export CalculatorOptions type
 export type { CalculatorOptions }
 
-export function PriceCalculator({ services, translations }: PriceCalculatorProps) {
+export function PriceCalculator({
+  locale,
+  services,
+  translations,
+}: PriceCalculatorProps) {
   const [currentStep, setCurrentStep] = useState<Step>('service')
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null)
   const [options, setOptions] = useState<CalculatorOptions>({
@@ -74,6 +83,16 @@ export function PriceCalculator({ services, translations }: PriceCalculatorProps
     }
   }
 
+  // Handle reset - go back to start
+  const handleReset = () => {
+    setCurrentStep('service')
+    setSelectedServiceId(null)
+    setOptions({
+      materialType: null,
+      quantity: 1,
+    })
+  }
+
   // Handle options change
   const handleOptionsChange = (newOptions: CalculatorOptions) => {
     setOptions(newOptions)
@@ -87,33 +106,36 @@ export function PriceCalculator({ services, translations }: PriceCalculatorProps
       {/* Step 1: Service Selection */}
       {currentStep === 'service' && (
         <ServiceSelect
-          onNext={handleNext}
-          onSelect={handleServiceSelect}
           selectedServiceId={selectedServiceId}
           services={services}
           translations={translations}
+          onNext={handleNext}
+          onSelect={handleServiceSelect}
         />
       )}
 
       {/* Step 2: Options */}
       {currentStep === 'options' && selectedService && (
         <OptionsForm
-          onBack={handleBack}
-          onChange={handleOptionsChange}
-          onNext={handleNext}
           options={options}
           serviceSlug={selectedService.slug}
           translations={translations}
+          onBack={handleBack}
+          onChange={handleOptionsChange}
+          onNext={handleNext}
         />
       )}
 
-      {/* Step 3: Results (placeholder for US-031) */}
-      {currentStep === 'results' && (
-        <div className="text-center py-8">
-          <p className="text-muted">
-            Results display will be implemented in US-031
-          </p>
-        </div>
+      {/* Step 3: Results */}
+      {currentStep === 'results' && selectedService && (
+        <Results
+          locale={locale}
+          options={options}
+          service={selectedService}
+          translations={translations}
+          onBack={handleBack}
+          onReset={handleReset}
+        />
       )}
     </div>
   )
