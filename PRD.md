@@ -194,13 +194,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to see all doctors and staff members.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/echipa/page.tsx`
-- [ ] Fetches all team members from Sanity ordered by `order` field
-- [ ] Displays grid of team cards (photo, name, role, specializations)
-- [ ] Each card links to individual profile
-- [ ] Responsive grid layout
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/echipa/page.tsx`
+- [x] Fetches all team members from Sanity ordered by `order` field
+- [x] Displays grid of team cards (photo, name, role, specializations)
+- [x] Each card links to individual profile
+- [x] Responsive grid layout
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 
