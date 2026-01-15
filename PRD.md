@@ -50,11 +50,11 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a developer, I need SEO metadata and rich text schemas for content pages.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/objects/seo.ts` with: metaTitle (localizedString), metaDescription (localizedText), ogImage (image), noIndex (boolean)
-- [ ] Create `sanity/schemas/objects/portableText.ts` with blocks, images, and video embed support
-- [ ] Create `sanity/schemas/objects/localizedPortableText.ts` wrapping portableText for RO/EN/HU
-- [ ] Export all from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/objects/seo.ts` with: metaTitle (localizedString), metaDescription (localizedText), ogImage (image), noIndex (boolean)
+- [x] Create `sanity/schemas/objects/portableText.ts` with blocks, images, and video embed support
+- [x] Create `sanity/schemas/objects/localizedPortableText.ts` wrapping portableText for RO/EN/HU
+- [x] Export all from schemas index
+- [x] Typecheck passes
 
 ---
 
