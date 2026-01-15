@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentcraft - Preview Culori & Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F5F0E8;
+            color: #1A1A1A;
+            line-height: 1.6;
+        }
+
+        /* ========== PALETA CULORI ========== */
+        .color-palette {
+            background: #FFFFFF;
+            padding: 40px;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .color-palette h2 {
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .color-box {
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 100px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .color-code {
+            font-size: 12px;
+            color: #6B6B6B;
+            font-family: monospace;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: #FFFFFF;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #6B6B6B;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #1A1A1A;
+        }
+
+        .btn-header {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn-header:hover {
+            background: #333333;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 80px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F5F0E8 100%);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6B6B6B;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #D4C4B0;
+            color: #1A1A1A;
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #C4B4A0;
+            transform: translateY(-2px);
+        }
+
+        /* ========== SERVICII ========== */
+        .section {
+            padding: 80px 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            color: #6B6B6B;
+            font-size: 18px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #FFFFFF;
+            padding: 32px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 196, 176, 0.3);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #F5F0E8;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #6B6B6B;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: #1A1A1A;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* ========== TESTIMONIALE ========== */
+        .testimonials {
+            background: #FFFFFF;
+        }
+
+        .testimonial-card {
+            background: #F5F0E8;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-card p {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        .testimonial-rating {
+            color: #D4C4B0;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* ========== CALCULATOR ========== */
+        .calculator {
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .calculator h3 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1A1A1A;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #D4C4B0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #1A1A1A;
+        }
+
+        .price-result {
+            background: #F5F0E8;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .price-result .label {
+            color: #6B6B6B;
+            margin-bottom: 8px;
+        }
+
+        .price-result .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: #FFFFFF;
+            padding: 32px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #D4C4B0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 16px;
+        }
+
+        .contact-card h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            color: #6B6B6B;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 60px 40px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .footer a {
+            color: #9A9A9A;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #D4C4B0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #6B6B6B;
+        }
+
+        /* ========== WHATSAPP BUTTON ========== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* ========== COOKIE BANNER ========== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            padding: 20px 40px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            z-index: 999;
+        }
+
+        .cookie-banner p {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .cookie-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .cookie-accept {
+            background: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        .cookie-settings {
+            background: #F5F0E8;
+            color: #1A1A1A;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PALETA CULORI -->
+    <div class="color-palette">
+        <h2>Paleta de Culori - Dentcraft</h2>
+        <div class="colors-grid">
+            <div class="color-box">
+                <div class="color-swatch" style="background: #F5F0E8;"></div>
+                <div class="color-name">Bej Deschis</div>
+                <div class="color-code">#F5F0E8</div>
+                <div class="color-code">Background</div>
+            </div>
+            <div class="color-box">
+                <div class="color-swatch" style="background: #FFFFFF;"></div>
+                <div class="color-name">Alb</div>
+                <div class="color-code">#FFFFFF</div>
+                <div class="color-code">Cards</div>
+            </div>
+            <div class="color-box">
+                <div class="color-swatch" style="background: #D4C4B0;"></div>
+                <div class="color-name">Bej Principal</div>
+                <div class="color-code">#D4C4B0</div>
+                <div class="color-code">Accent</div>
+            </div>
+            <div class="color-box">
+                <div class="color-swatch" style="background: #C4B4A0;"></div>
+                <div class="color-name">Bej Hover</div>
+                <div class="color-code">#C4B4A0</div>
+                <div class="color-code">Hover State</div>
+            </div>
+            <div class="color-box">
+                <div class="color-swatch" style="background: #1A1A1A;"></div>
+                <div class="color-name">Negru</div>
+                <div class="color-code">#1A1A1A</div>
+                <div class="color-code">Text & Butoane</div>
+            </div>
+            <div class="color-box">
+                <div class="color-swatch" style="background: #6B6B6B;"></div>
+                <div class="color-name">Gri</div>
+                <div class="color-code">#6B6B6B</div>
+                <div class="color-code">Text Secundar</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">DENTCRAFT</div>
+        <nav class="nav">
+            <a href="#">Acasa</a>
+            <a href="#">Servicii</a>
+            <a href="#">Echipa</a>
+            <a href="#">Galerie</a>
+            <a href="#">Preturi</a>
+            <a href="#">Contact</a>
+        </nav>
+        <a href="#" class="btn-header">Programeaza</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Zambetul tau, <br>prioritatea noastra</h1>
+        <p>Clinica stomatologica moderna in Satu Mare. Tratamente de calitate, tehnologie avansata, echipa dedicata.</p>
+        <div class="hero-buttons">
+            <button class="btn-primary">Programeaza Consultatie</button>
+            <button class="btn-secondary">Descopera Serviciile</button>
+        </div>
+    </section>
+
+    <!-- SERVICII -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Serviciile Noastre</h2>
+            <p>Tratamente complete pentru sanatatea si estetica dentara</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🦷</div>
+                <h3>Estetica Dentara</h3>
+                <p>Fatete ceramice, albire dentara, Digital Smile Design pentru zambetul perfect.</p>
+                <a href="#" class="service-link">Afla mai mult →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Implantologie</h3>
+                <p>Implanturi dentare premium cu garantie. Solutii permanente pentru dintii lipsa.</p>
+                <a href="#" class="service-link">Afla mai mult →</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">😊</div>
+                <h3>Ortodontie</h3>
+                <p>Aparate dentare clasice si invizibile pentru alinierea perfecta a dintilor.</p>
+                <a href="#" class="service-link">Afla mai mult →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="section testimonials">
+        <div class="section-title">
+            <h2>Ce spun pacientii</h2>
+            <p>Recenzii reale de la pacienti multumiti</p>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-rating">★★★★★</div>
+            <p>"Experienta la Dentcraft a fost exceptionala. Dr. Petric si echipa sunt foarte profesionisti, iar rezultatul tratamentului meu a depasit asteptarile. Recomand cu incredere!"</p>
+            <div class="testimonial-author">Maria I. - Pacient</div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR PRET -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Calculator Pret</h2>
+            <p>Estimeaza costul tratamentului tau</p>
+        </div>
+        <div class="calculator">
+            <h3>Calculeaza pretul</h3>
+            <div class="form-group">
+                <label>Selecteaza tratamentul</label>
+                <select>
+                    <option>Alege tratamentul...</option>
+                    <option>Fatete ceramice</option>
+                    <option>Implant dentar</option>
+                    <option>Coroana dentara</option>
+                    <option>Albire dentara</option>
+                    <option>Aparat ortodontic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Numar unitati</label>
+                <input type="number" value="1" min="1" max="20">
+            </div>
+            <div class="price-result">
+                <div class="label">Pret estimativ</div>
+                <div class="price">€800 - €1,200</div>
+            </div>
+            <button class="btn-primary" style="width: 100%; margin-top: 20px;">Programeaza Consultatie</button>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Contact</h2>
+            <p>Suntem aici pentru tine</p>
+        </div>
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h4>Adresa</h4>
+                <p>Str. Barbu Stefanescu Delavrancea nr.3<br>Satu Mare</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h4>Telefon</h4>
+                <p>0741 199 977</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h4>Email</h4>
+                <p>dentcraftsm@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🕐</div>
+                <h4>Program</h4>
+                <p>Luni - Vineri<br>10:00 - 18:00</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>DENTCRAFT</h4>
+                <p style="color: #9A9A9A;">Clinica stomatologica moderna in Satu Mare. Zambetul tau, prioritatea noastra.</p>
+            </div>
+            <div>
+                <h4>Servicii</h4>
+                <a href="#">Estetica Dentara</a>
+                <a href="#">Implantologie</a>
+                <a href="#">Ortodontie</a>
+                <a href="#">Pedodontie</a>
+            </div>
+            <div>
+                <h4>Informatii</h4>
+                <a href="#">Despre Noi</a>
+                <a href="#">Echipa</a>
+                <a href="#">Blog</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="#">Politica Cookies</a>
+                <a href="#">Confidentialitate</a>
+                <a href="#">Termeni si Conditii</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Dentcraft. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP BUTTON -->
+    <div class="whatsapp-btn">💬</div>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner">
+        <p>Folosim cookies pentru a-ti oferi cea mai buna experienta pe site-ul nostru. <a href="#" style="color: #1A1A1A;">Afla mai mult</a></p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-settings">Setari</button>
+            <button class="cookie-btn cookie-accept">Accept toate</button>
+        </div>
+    </div>
+
+</body>
+</html>

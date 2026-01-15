@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "title": "Dentcraft - Clinica Stomatologica Satu Mare",
+    "description": "Clinica stomatologica moderna in Satu Mare. Servicii complete de stomatologie: implanturi, estetica dentara, ortodontie. Programeaza-te acum!"
+  },
+  "navigation": {
+    "home": "Acasa",
+    "services": "Servicii",
+    "team": "Echipa",
+    "gallery": "Galerie",
+    "testimonials": "Testimoniale",
+    "prices": "Preturi",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "common": {
+    "learnMore": "Afla mai mult",
+    "seeAll": "Vezi toate serviciile",
+    "bookAppointment": "Programeaza consultatie",
+    "discoverServices": "Descopera serviciile",
+    "contactUs": "Contacteaza-ne",
+    "callNow": "Suna acum",
+    "whatsappMessage": "Scrie pe WhatsApp",
+    "getPrice": "Afla pretul",
+    "readMore": "Citeste mai mult",
+    "loading": "Se incarca...",
+    "error": "A aparut o eroare",
+    "success": "Succes!",
+    "required": "Obligatoriu",
+    "submit": "Trimite",
+    "close": "Inchide",
+    "next": "Urmatorul",
+    "previous": "Anterior",
+    "yearsExperience": "ani experienta",
+    "happyPatients": "pacienti multumiti",
+    "googleRating": "rating Google",
+    "guarantee": "garantie satisfactie"
+  },
+  "hero": {
+    "badge": "Clinica #1 in Satu Mare",
+    "title": "Zambetul tau, prioritatea noastra",
+    "subtitle": "Clinica stomatologica moderna in Satu Mare, cu echipa de specialisti dedicati sanatatii tale dentare.",
+    "cta": {
+      "primary": "Programeaza consultatie",
+      "secondary": "Descopera serviciile"
+    }
+  },
+  "services": {
+    "title": "Serviciile noastre",
+    "subtitle": "Oferim o gama completa de servicii stomatologice, de la preventie pana la tratamente complexe.",
+    "categories": {
+      "generalDentistry": "Stomatologie Generala",
+      "cosmeticDentistry": "Estetica Dentara",
+      "implantology": "Implantologie",
+      "orthodontics": "Ortodontie",
+      "pediatric": "Pedodontie",
+      "emergencies": "Urgente Dentare"
+    },
+    "descriptions": {
+      "generalDentistry": "Consultatii, igienizari profesionale, obturatii si tratamente preventive pentru sanatatea dentara.",
+      "cosmeticDentistry": "Fatete dentare, albire profesionala si tratamente estetice pentru un zambet perfect.",
+      "implantology": "Implanturi dentare de ultima generatie pentru inlocuirea dintilor lipsa.",
+      "orthodontics": "Aparate dentare clasice si invizibile pentru alinierea perfecta a dintilor.",
+      "pediatric": "Tratamente blande si prietenoase pentru sanatatea dentara a celor mici.",
+      "emergencies": "Asistenta rapida pentru urgente dentare, disponibila si in weekend."
+    }
+  },
+  "whyUs": {
+    "title": "De ce Dentcraft?",
+    "subtitle": "Suntem dedicati excelentei in stomatologie moderna.",
+    "reasons": {
+      "technology": {
+        "title": "Tehnologie Avansata",
+        "description": "Echipamente de ultima generatie pentru diagnostic precis si tratamente eficiente."
+      },
+      "team": {
+        "title": "Echipa de Experti",
+        "description": "Medici specialisti cu experienta vasta si formare continua."
+      },
+      "comfort": {
+        "title": "Confort Maxim",
+        "description": "Mediu relaxant si tratamente fara durere pentru o experienta placuta."
+      },
+      "prices": {
+        "title": "Preturi Corecte",
+        "description": "Transparenta totala in preturi, fara costuri ascunse."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Ce spun pacientii nostri",
+    "subtitle": "Recenzii reale de la pacienti multumiti.",
+    "treatments": {
+      "veneers": "Fatete dentare",
+      "implant": "Implant dentar",
+      "whitening": "Albire dentara"
+    },
+    "quotes": {
+      "1": "Rezultat exceptional! Echipa de la Dentcraft mi-a transformat complet zambetul. Recomand cu toata increderea.",
+      "2": "Am fost foarte multumit de profesionalismul si atentia acordata. Implantul arata si se simte ca un dinte natural.",
+      "3": "Albirea a depasit asteptarile mele. Personalul este foarte prietenos si procedura a fost rapida si confortabila."
+    }
+  },
+  "cta": {
+    "title": "Programeaza o consultatie gratuita",
+    "subtitle": "Fa primul pas catre zambetul perfect. Te asteptam la clinica noastra!"
+  },
+  "team": {
+    "title": "Echipa noastra",
+    "subtitle": "Specialisti dedicati cu experienta vasta in stomatologie moderna."
+  },
+  "contact": {
+    "title": "Contacteaza-ne",
+    "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj."
+  },
+  "footer": {
+    "description": "Clinica stomatologica moderna in Satu Mare, dedicata sanatatii si frumusetii zambetului tau.",
+    "quickLinks": "Link-uri rapide",
+    "contactInfo": "Contact",
+    "address": "Str. B.S. Delavrancea 3, Satu Mare",
+    "phone": "0741 199 977",
+    "email": "dentcraftsm@gmail.com",
+    "hours": "L-V: 10:00 - 18:00",
+    "copyright": "Toate drepturile rezervate.",
+    "privacy": "Confidentialitate",
+    "cookies": "Cookies",
+    "terms": "Termeni si conditii"
+  },
+  "errors": {
+    "404": {
+      "title": "Pagina nu a fost gasita",
+      "description": "Ne pare rau, dar pagina pe care o cauti nu exista sau a fost mutata.",
+      "backHome": "Inapoi acasa"
+    },
+    "500": {
+      "title": "Eroare de server",
+      "description": "A aparut o eroare. Te rugam sa incerci din nou mai tarziu.",
+      "backHome": "Inapoi acasa"
+    }
+  }
+}

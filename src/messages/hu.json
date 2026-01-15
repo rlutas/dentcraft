@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "title": "Dentcraft - Fogaszati Klinika Szatmarnemeti",
+    "description": "Modern fogaszati klinika Szatmarneметiben. Teljes koru fogaszati szolgaltatasok: implantatum, esztetikai fogaszat, fogszabalyozas. Foglaljon idopontot most!"
+  },
+  "navigation": {
+    "home": "Fooldal",
+    "services": "Szolgaltatasok",
+    "team": "Csapat",
+    "gallery": "Galeria",
+    "testimonials": "Velemenyek",
+    "prices": "Arak",
+    "blog": "Blog",
+    "faq": "GYIK",
+    "contact": "Kapcsolat"
+  },
+  "common": {
+    "learnMore": "Tudj meg tobbet",
+    "seeAll": "Osszes szolgaltatas",
+    "bookAppointment": "Idopont foglalas",
+    "discoverServices": "Szolgaltatasok felfedezese",
+    "contactUs": "Kapcsolat",
+    "callNow": "Hivjon most",
+    "whatsappMessage": "Irjon WhatsApp-on",
+    "getPrice": "Arak megtekintese",
+    "readMore": "Tovabb olvasom",
+    "loading": "Betoltes...",
+    "error": "Hiba tortent",
+    "success": "Sikeres!",
+    "required": "Kotelezo",
+    "submit": "Kuldes",
+    "close": "Bezaras",
+    "next": "Kovetkezo",
+    "previous": "Elozo",
+    "yearsExperience": "ev tapasztalat",
+    "happyPatients": "elegedett paciens",
+    "googleRating": "Google ertekeles",
+    "guarantee": "elegedettsegi garancia"
+  },
+  "hero": {
+    "badge": "#1 Klinika Szatmarban",
+    "title": "Az On mosolya, a mi prioritasunk",
+    "subtitle": "Modern fogaszati klinika Szatmarneметiben, szakemberekbol allo csapattal, akik az On fogaszati egeszsegere figyelnek.",
+    "cta": {
+      "primary": "Idopont foglalas",
+      "secondary": "Szolgaltatasok felfedezese"
+    }
+  },
+  "services": {
+    "title": "Szolgaltatasaink",
+    "subtitle": "Teljes koru fogaszati szolgaltatasokat kinalunk, a megelozestol a komplex kezelesekig.",
+    "categories": {
+      "generalDentistry": "Altalanos fogaszat",
+      "cosmeticDentistry": "Esztetikai fogaszat",
+      "implantology": "Implantologia",
+      "orthodontics": "Fogszabalyozas",
+      "pediatric": "Gyermekfogaszat",
+      "emergencies": "Surgossegi fogaszat"
+    },
+    "descriptions": {
+      "generalDentistry": "Konzultaciok, professzionalis tisztitas, tomesek es megelozo kezelesek a fogaszati egeszsegert.",
+      "cosmeticDentistry": "Foghejakak, professzionalis feherites es esztetikai kezelesek a tokeletes mosolyert.",
+      "implantology": "Legmodernebb fogimplantatumok a hianyzo fogak potlasara.",
+      "orthodontics": "Klasszikus es lathatatlan fogszabalyozok a tokeletes fogsorert.",
+      "pediatric": "Gyenged es baratságos kezelesek a gyermekek fogaszati egeszsegeert.",
+      "emergencies": "Gyors segitseg fogaszati surgossegeknel, hetvegen is elerheto."
+    }
+  },
+  "whyUs": {
+    "title": "Miert a Dentcraft?",
+    "subtitle": "Elkotelezettek vagyunk a modern fogaszat kivalosaga mellett.",
+    "reasons": {
+      "technology": {
+        "title": "Fejlett Technologia",
+        "description": "Legmodernebb felszereles a pontos diagnozishoz es hatekonyk kezelesekhez."
+      },
+      "team": {
+        "title": "Szakerto Csapat",
+        "description": "Szakorvosok szeles koru tapasztalattal es folyamatos kepzessel."
+      },
+      "comfort": {
+        "title": "Maximalis Kenyelem",
+        "description": "Nyugodt kornyezet es fajdalommentes kezelesek a kellemes elmenyert."
+      },
+      "prices": {
+        "title": "Korrekt Arak",
+        "description": "Teljes arathatosag az arakban, rejtett koltsegek nelkul."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Mit mondanak pacienseink",
+    "subtitle": "Valos velemenyek elegedett paciensektol.",
+    "treatments": {
+      "veneers": "Foghejak",
+      "implant": "Fogimplantatum",
+      "whitening": "Fogfeherites"
+    },
+    "quotes": {
+      "1": "Kivaló eredmeny! A Dentcraft csapata teljesen atalakitotta a mosolyomat. Teljes bizalommal ajanlom.",
+      "2": "Nagyon elegedett voltam a professzionalizmussal es az odafigyelęssel. Az implantatum ugy nez ki es ugy erződik, mint egy termeszetes fog.",
+      "3": "A feherites felulmalda a varakozasaimat. A szemelyzet nagyon baratsagos es az eljaras gyors es kenyelmes volt."
+    }
+  },
+  "cta": {
+    "title": "Foglaljon ingyenes konzultaciot",
+    "subtitle": "Tegye meg az elso lepest a tokeletes mosoly fele. Varjuk kliniánkon!"
+  },
+  "team": {
+    "title": "Csapatunk",
+    "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban."
+  },
+  "contact": {
+    "title": "Kapcsolat",
+    "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet."
+  },
+  "footer": {
+    "description": "Modern fogaszati klinika Szatmarneметiben, az On mosolyanak egeszsegere es szepsegere szentelve.",
+    "quickLinks": "Gyors linkek",
+    "contactInfo": "Kapcsolat",
+    "address": "B.S. Delavrancea utca 3, Szatmarnemeti",
+    "phone": "0741 199 977",
+    "email": "dentcraftsm@gmail.com",
+    "hours": "H-P: 10:00 - 18:00",
+    "copyright": "Minden jog fenntartva.",
+    "privacy": "Adatvedelmi szabalyzat",
+    "cookies": "Sutik",
+    "terms": "Felhasznalasi feltetelek"
+  },
+  "errors": {
+    "404": {
+      "title": "Az oldal nem talalhato",
+      "description": "Sajnaljuk, de a keresett oldal nem letezik vagy athelyeztek.",
+      "backHome": "Vissza a fooldalra"
+    },
+    "500": {
+      "title": "Szerverhiba",
+      "description": "Hiba tortent. Kerjem, probálja ujra kesobb.",
+      "backHome": "Vissza a fooldalra"
+    }
+  }
+}

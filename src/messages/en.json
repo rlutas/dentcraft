@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "title": "Dentcraft - Dental Clinic Satu Mare",
+    "description": "Modern dental clinic in Satu Mare. Complete dental services: implants, cosmetic dentistry, orthodontics. Book your appointment now!"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "team": "Team",
+    "gallery": "Gallery",
+    "testimonials": "Testimonials",
+    "prices": "Prices",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "seeAll": "View all services",
+    "bookAppointment": "Book appointment",
+    "discoverServices": "Discover services",
+    "contactUs": "Contact us",
+    "callNow": "Call now",
+    "whatsappMessage": "Message on WhatsApp",
+    "getPrice": "Get price",
+    "readMore": "Read more",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "required": "Required",
+    "submit": "Submit",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "yearsExperience": "years experience",
+    "happyPatients": "happy patients",
+    "googleRating": "Google rating",
+    "guarantee": "satisfaction guarantee"
+  },
+  "hero": {
+    "badge": "#1 Clinic in Satu Mare",
+    "title": "Your smile, our priority",
+    "subtitle": "Modern dental clinic in Satu Mare, with a team of specialists dedicated to your dental health.",
+    "cta": {
+      "primary": "Book appointment",
+      "secondary": "Discover services"
+    }
+  },
+  "services": {
+    "title": "Our services",
+    "subtitle": "We offer a complete range of dental services, from prevention to complex treatments.",
+    "categories": {
+      "generalDentistry": "General Dentistry",
+      "cosmeticDentistry": "Cosmetic Dentistry",
+      "implantology": "Implantology",
+      "orthodontics": "Orthodontics",
+      "pediatric": "Pediatric Dentistry",
+      "emergencies": "Dental Emergencies"
+    },
+    "descriptions": {
+      "generalDentistry": "Consultations, professional cleanings, fillings and preventive treatments for dental health.",
+      "cosmeticDentistry": "Dental veneers, professional whitening and aesthetic treatments for a perfect smile.",
+      "implantology": "State-of-the-art dental implants for replacing missing teeth.",
+      "orthodontics": "Classic and invisible braces for perfect teeth alignment.",
+      "pediatric": "Gentle and friendly treatments for children's dental health.",
+      "emergencies": "Fast assistance for dental emergencies, also available on weekends."
+    }
+  },
+  "whyUs": {
+    "title": "Why Dentcraft?",
+    "subtitle": "We are dedicated to excellence in modern dentistry.",
+    "reasons": {
+      "technology": {
+        "title": "Advanced Technology",
+        "description": "State-of-the-art equipment for precise diagnosis and efficient treatments."
+      },
+      "team": {
+        "title": "Expert Team",
+        "description": "Specialist doctors with extensive experience and continuous training."
+      },
+      "comfort": {
+        "title": "Maximum Comfort",
+        "description": "Relaxing environment and painless treatments for a pleasant experience."
+      },
+      "prices": {
+        "title": "Fair Prices",
+        "description": "Total transparency in pricing, no hidden costs."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What our patients say",
+    "subtitle": "Real reviews from satisfied patients.",
+    "treatments": {
+      "veneers": "Dental veneers",
+      "implant": "Dental implant",
+      "whitening": "Teeth whitening"
+    },
+    "quotes": {
+      "1": "Exceptional result! The Dentcraft team completely transformed my smile. I recommend with full confidence.",
+      "2": "I was very satisfied with the professionalism and attention. The implant looks and feels like a natural tooth.",
+      "3": "The whitening exceeded my expectations. The staff is very friendly and the procedure was quick and comfortable."
+    }
+  },
+  "cta": {
+    "title": "Book a free consultation",
+    "subtitle": "Take the first step towards the perfect smile. We're waiting for you at our clinic!"
+  },
+  "team": {
+    "title": "Our team",
+    "subtitle": "Dedicated specialists with extensive experience in modern dentistry."
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "We're here for you. Book a consultation or send us a message."
+  },
+  "footer": {
+    "description": "Modern dental clinic in Satu Mare, dedicated to the health and beauty of your smile.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact",
+    "address": "3 B.S. Delavrancea St., Satu Mare",
+    "phone": "0741 199 977",
+    "email": "dentcraftsm@gmail.com",
+    "hours": "Mon-Fri: 10:00 AM - 6:00 PM",
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookies",
+    "terms": "Terms & Conditions"
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "description": "Sorry, but the page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to home"
+    },
+    "500": {
+      "title": "Server error",
+      "description": "An error occurred. Please try again later.",
+      "backHome": "Back to home"
+    }
+  }
+}
