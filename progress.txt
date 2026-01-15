@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (1/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -32,6 +32,7 @@
 - US-023: Create blog listing page
 - US-024: Create individual blog post page
 - US-025: Create legal pages template
+- US-026: Create Before/After gallery page with filter
 
 ## In Progress
 (None)
@@ -601,4 +602,28 @@
   - Catch-all routes use `[...slug]` and receive slug as array in params
   - Legal pages should validate against allowed slug list before querying Sanity
   - Phase 2 (Inner Pages) is now COMPLETE - all 13 stories finished
+---
+
+## Iteration 26 - US-026: Create Before/After gallery page with filter
+- What was implemented:
+  - Created `/src/app/[locale]/galerie/page.tsx` with full Sanity integration
+  - Gallery cards showing split before/after image preview (side by side)
+  - Filter buttons for treatment types via URL params (`?service=slug`)
+  - Updated `getAllBeforeAfter` query to accept optional serviceSlug filter
+  - Grid display with treatment type badge, title, description, duration, doctor
+  - Featured badge for highlighted cases
+  - Placeholder gallery cards when Sanity has no data
+  - Added gallery translations to all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/app/[locale]/galerie/page.tsx (new)
+  - src/lib/sanity/queries.ts (updated - added service filter to getAllBeforeAfter)
+  - src/messages/ro.json (updated - added gallery translations)
+  - src/messages/en.json (updated - added gallery translations)
+  - src/messages/hu.json (updated - added gallery translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Gallery page follows same filter pattern as testimonials page
+  - Split image preview uses two adjacent divs with w-1/2 each
+  - URL params with typed routing: use string literal with type cast `'/galerie?service=slug' as '/galerie'`
+  - Phase 3 (Interactive Features) begins - first story complete
 ---

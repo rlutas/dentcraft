@@ -352,13 +352,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to browse treatment results by category.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/galerie/page.tsx`
-- [ ] Fetches all beforeAfter cases from Sanity
-- [ ] Filter buttons for treatment types (All, Implants, Veneers, etc.)
-- [ ] Grid display of thumbnail cards
-- [ ] Each card shows treatment type badge
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/galerie/page.tsx`
+- [x] Fetches all beforeAfter cases from Sanity
+- [x] Filter buttons for treatment types (All, Implants, Veneers, etc.)
+- [x] Grid display of thumbnail cards
+- [x] Each card shows treatment type badge
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

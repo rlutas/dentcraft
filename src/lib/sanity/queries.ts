@@ -275,8 +275,20 @@ export async function getFeaturedTestimonials(locale: Locale) {
 // BEFORE/AFTER QUERIES
 // ============================================
 
-export async function getAllBeforeAfter(locale: Locale) {
-  const query = `*[_type == "beforeAfter"] | order(featured desc, _createdAt desc) {
+export async function getAllBeforeAfter(
+  locale: Locale,
+  options?: {
+    serviceSlug?: string
+  }
+) {
+  const { serviceSlug } = options || {}
+
+  let filter = '_type == "beforeAfter"'
+  if (serviceSlug) {
+    filter += ' && service->slug.current == $serviceSlug'
+  }
+
+  const query = `*[${filter}] | order(featured desc, _createdAt desc) {
     _id,
     ${localizedField('title', locale)},
     "service": service-> {
@@ -302,7 +314,7 @@ export async function getAllBeforeAfter(locale: Locale) {
     featured
   }`
 
-  return client.fetch(query)
+  return client.fetch(query, { serviceSlug })
 }
 
 export async function getFeaturedBeforeAfter(locale: Locale) {

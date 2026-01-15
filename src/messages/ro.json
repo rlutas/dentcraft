@@ -88,6 +88,34 @@
       }
     }
   },
+  "gallery": {
+    "title": "Galerie Inainte si Dupa",
+    "subtitle": "Vezi transformarile pacientilor nostri. Rezultate reale, zambete reale.",
+    "filterBy": "Filtreaza dupa tratament",
+    "allTreatments": "Toate tratamentele",
+    "noCases": "Nu exista cazuri pentru acest filtru.",
+    "before": "Inainte",
+    "after": "Dupa",
+    "duration": "Durata",
+    "featured": "Recomandat",
+    "placeholder": {
+      "case1": {
+        "title": "Transformare completa a zambetului",
+        "treatment": "Fatete dentare",
+        "duration": "2 saptamani"
+      },
+      "case2": {
+        "title": "Reconstructie cu implanturi",
+        "treatment": "Implant dentar",
+        "duration": "4 luni"
+      },
+      "case3": {
+        "title": "Albire profesionala",
+        "treatment": "Albire dentara",
+        "duration": "1 ora"
+      }
+    }
+  },
   "testimonials": {
     "title": "Ce spun pacientii nostri",
     "subtitle": "Recenzii reale de la pacienti multumiti.",

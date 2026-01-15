@@ -88,6 +88,34 @@
       }
     }
   },
+  "gallery": {
+    "title": "Elotte es Utana Galeria",
+    "subtitle": "Tekintse meg pacienseink atalakulasat. Valos eredmenyek, valos mosolyok.",
+    "filterBy": "Szures kezeles szerint",
+    "allTreatments": "Minden kezeles",
+    "noCases": "Nincs talalt eset ezzel a szurovel.",
+    "before": "Elotte",
+    "after": "Utana",
+    "duration": "Idotartam",
+    "featured": "Kiemelt",
+    "placeholder": {
+      "case1": {
+        "title": "Teljes mosoly atalakitas",
+        "treatment": "Foghejak",
+        "duration": "2 het"
+      },
+      "case2": {
+        "title": "Implantatum rekonstrukcio",
+        "treatment": "Fogimplantatum",
+        "duration": "4 honap"
+      },
+      "case3": {
+        "title": "Professzionalis feherites",
+        "treatment": "Fogfeherites",
+        "duration": "1 ora"
+      }
+    }
+  },
   "testimonials": {
     "title": "Mit mondanak pacienseink",
     "subtitle": "Valos velemenyek elegedett paciensektol.",

@@ -88,6 +88,34 @@
       }
     }
   },
+  "gallery": {
+    "title": "Before & After Gallery",
+    "subtitle": "See our patients' transformations. Real results, real smiles.",
+    "filterBy": "Filter by treatment",
+    "allTreatments": "All treatments",
+    "noCases": "No cases found for this filter.",
+    "before": "Before",
+    "after": "After",
+    "duration": "Duration",
+    "featured": "Featured",
+    "placeholder": {
+      "case1": {
+        "title": "Complete smile transformation",
+        "treatment": "Dental veneers",
+        "duration": "2 weeks"
+      },
+      "case2": {
+        "title": "Implant reconstruction",
+        "treatment": "Dental implant",
+        "duration": "4 months"
+      },
+      "case3": {
+        "title": "Professional whitening",
+        "treatment": "Teeth whitening",
+        "duration": "1 hour"
+      }
+    }
+  },
   "testimonials": {
     "title": "What our patients say",
     "subtitle": "Real reviews from satisfied patients.",
