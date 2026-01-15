@@ -62,10 +62,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need to manage dental services in the CMS.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/service.ts` with fields: title (localizedString), slug, icon (string for Lucide name), shortDescription, description (localizedPortableText), benefits (array), process (array of steps), heroImage, priceRange, seo, order
-- [ ] Add validation for required fields (title, slug)
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/service.ts` with fields: title (localizedString), slug, icon (string for Lucide name), shortDescription, description (localizedPortableText), benefits (array), process (array of steps), heroImage, priceRange, seo, order
+- [x] Add validation for required fields (title, slug)
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 
