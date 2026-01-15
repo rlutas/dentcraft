@@ -1,6 +1,9 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
-// Schema types will be added here as they are created
-// Import and add to the schemaTypes array below
+import { localizedString } from './objects/localizedString'
+import { localizedText } from './objects/localizedText'
 
-export const schemaTypes: SchemaTypeDefinition[] = []
+export const schemaTypes: SchemaTypeDefinition[] = [
+  localizedString,
+  localizedText,
+]

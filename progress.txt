@@ -1,13 +1,14 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (1/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (2/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
 - US-001: Initialize Sanity Studio project
+- US-002: Create localizedString and localizedText object schemas
 
 ## In Progress
 (None)
@@ -54,4 +55,19 @@
   - next-sanity@12+ requires Next.js 16, use @11 for Next.js 15
   - TypeScript exactOptionalPropertyTypes requires explicit string defaults
   - Studio route bypasses locale routing via separate app directory structure
+---
+
+## Iteration 2 - US-002: Create localizedString and localizedText object schemas
+- What was implemented:
+  - Created `sanity/schemas/objects/localizedString.ts` with ro, en, hu string fields
+  - Created `sanity/schemas/objects/localizedText.ts` with ro, en, hu text fields
+  - Updated `sanity/schemas/index.ts` to export both schema types
+- Files changed:
+  - sanity/schemas/objects/localizedString.ts (new)
+  - sanity/schemas/objects/localizedText.ts (new)
+  - sanity/schemas/index.ts (updated)
+- Learnings for future iterations:
+  - Sanity uses defineType and defineField from 'sanity' package for schema definitions
+  - Object schemas go in sanity/schemas/objects/ directory
+  - All schemas must be exported from schemaTypes array in index.ts
 ---

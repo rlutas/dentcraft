@@ -39,10 +39,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a developer, I need reusable schema objects for multilingual content (RO/EN/HU).
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/objects/localizedString.ts` with fields: ro, en, hu (type: string)
-- [ ] Create `sanity/schemas/objects/localizedText.ts` with fields: ro, en, hu (type: text)
-- [ ] Export both from `sanity/schemas/index.ts`
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/objects/localizedString.ts` with fields: ro, en, hu (type: string)
+- [x] Create `sanity/schemas/objects/localizedText.ts` with fields: ro, en, hu (type: text)
+- [x] Export both from `sanity/schemas/index.ts`
+- [x] Typecheck passes
 
 ---
 
