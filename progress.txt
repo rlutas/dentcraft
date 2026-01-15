@@ -3,8 +3,9 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (10/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - COMPLETE (11/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
+- **Phase 5:** Contact & Maps Integration (US-043 to US-048) - NOT STARTED
 
 ## Completed Stories
 - US-001: Initialize Sanity Studio project
@@ -42,6 +43,7 @@
 - US-033: Create cookie consent banner
 - US-034: Create cookie preferences modal
 - US-035: Create WhatsApp floating button
+- US-036: Create video testimonial player component
 
 ## In Progress
 (None)
@@ -864,4 +866,34 @@
   - Pulse animation can be stopped after initial period by toggling isPulsing state
   - z-40 places button below cookie consent (z-50) to not interfere with GDPR UI
   - Theme already had --color-whatsapp and --shadow-whatsapp defined for consistency
+---
+
+## Iteration 36 - US-036: Create video testimonial player component
+- What was implemented:
+  - Created `src/components/features/VideoTestimonial/VideoPlayer.tsx` client component
+  - Custom play button overlay on thumbnail with hover scale effect
+  - Supports YouTube, Vimeo embeds, and direct video files via URL parsing
+  - Auto-detects video source type from URL patterns
+  - YouTube videos: extracts video ID, auto-generates thumbnail from img.youtube.com
+  - Vimeo videos: extracts video ID, embeds with Vimeo player
+  - Direct videos: HTML5 video element with custom controls
+  - Muted by default with toggle unmute button
+  - Responsive 16:9 aspect ratio using aspect-video class
+  - Custom controls for direct video: play/pause center button, bottom control bar with mute toggle
+  - Controls auto-hide after 3 seconds when playing
+  - Keyboard shortcuts: Space/K to play/pause, M to mute/unmute, Escape to close
+  - Close button option via showCloseButton prop
+  - Title overlay on thumbnail and during playback
+  - Created index.ts for component exports
+- Files changed:
+  - src/components/features/VideoTestimonial/VideoPlayer.tsx (new)
+  - src/components/features/VideoTestimonial/index.ts (new)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - exactOptionalPropertyTypes requires checking `match && match[1]` before using captured group
+  - YouTube thumbnail URL pattern: img.youtube.com/vi/{videoId}/maxresdefault.jpg
+  - Vimeo thumbnails require API call (not included - uses posterUrl prop instead)
+  - YouTube embed params: autoplay=1&mute={0|1}&rel=0 for autoplay with mute control
+  - useRef with NodeJS.Timeout for cleanup timeout tracking
+  - Phase 3 (Interactive Features) is now COMPLETE - all 11 stories finished
 ---

@@ -496,13 +496,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to watch video testimonials.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/VideoTestimonial/VideoPlayer.tsx`
-- [ ] Custom play button overlay on thumbnail
-- [ ] Supports YouTube/Vimeo embeds and direct video files
-- [ ] Muted by default with unmute button
-- [ ] Responsive video aspect ratio (16:9)
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/VideoTestimonial/VideoPlayer.tsx`
+- [x] Custom play button overlay on thumbnail
+- [x] Supports YouTube/Vimeo embeds and direct video files
+- [x] Muted by default with unmute button
+- [x] Responsive video aspect ratio (16:9)
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 
