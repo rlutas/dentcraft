@@ -121,6 +121,25 @@
     "servicesOffered": "Servicii oferite",
     "viewAll": "Vezi toata echipa"
   },
+  "prices": {
+    "title": "Lista de preturi",
+    "subtitle": "Preturi transparente pentru toate serviciile noastre stomatologice.",
+    "disclaimer": "* Preturile afisate sunt orientative si pot varia in functie de complexitatea cazului. Pretul final va fi stabilit dupa consultatie.",
+    "promotion": "Promotie",
+    "ctaTitle": "Vrei o evaluare personalizata?",
+    "ctaSubtitle": "Programeaza o consultatie gratuita pentru a primi un plan de tratament si o estimare de pret personalizata.",
+    "perTooth": "dinte",
+    "perImplant": "implant",
+    "placeholder": {
+      "consultation": "Consultatie",
+      "cleaning": "Igienizare profesionala",
+      "filling": "Obturatie (plomba)",
+      "whitening": "Albire dentara",
+      "veneers": "Fatete dentare",
+      "implant": "Implant dentar",
+      "crown": "Coroana dentara"
+    }
+  },
   "faq": {
     "title": "Intrebari frecvente",
     "subtitle": "Raspunsuri la cele mai comune intrebari despre serviciile noastre stomatologice.",

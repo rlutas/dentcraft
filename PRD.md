@@ -249,14 +249,14 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to see treatment prices organized by service.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/preturi/page.tsx`
-- [ ] Fetches prices from Sanity grouped by service
-- [ ] Displays price tables organized by service category
-- [ ] Shows price range (min-max) and unit
-- [ ] Highlights promotional prices if applicable
-- [ ] Disclaimer about prices being estimates
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/preturi/page.tsx`
+- [x] Fetches prices from Sanity grouped by service
+- [x] Displays price tables organized by service category
+- [x] Shows price range (min-max) and unit
+- [x] Highlights promotional prices if applicable
+- [x] Disclaimer about prices being estimates
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

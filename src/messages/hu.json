@@ -121,6 +121,25 @@
     "servicesOffered": "Szolgaltatasok",
     "viewAll": "Teljes csapat"
   },
+  "prices": {
+    "title": "Arlista",
+    "subtitle": "Atlathato arak minden fogaszati szolgaltatasunkra.",
+    "disclaimer": "* A feltuntetett arak tajekoztatoak es az eset osszettetsegétől fuggoen valtozhatnak. A vegleges arat a konzultacio utan allapitjuk meg.",
+    "promotion": "Akcio",
+    "ctaTitle": "Szemelyre szabott ertekelest szeretne?",
+    "ctaSubtitle": "Foglaljon ingyenes konzultaciot kezelesi terv es szemelyre szabott arbecsles erdekeben.",
+    "perTooth": "fog",
+    "perImplant": "implantatum",
+    "placeholder": {
+      "consultation": "Konzultacio",
+      "cleaning": "Professzionalis tisztitas",
+      "filling": "Tomes",
+      "whitening": "Fogfeherites",
+      "veneers": "Foghejak",
+      "implant": "Fogimplantatum",
+      "crown": "Fogkorona"
+    }
+  },
   "faq": {
     "title": "Gyakran Ismetelt Kerdesek",
     "subtitle": "Valaszok a leggyakoribb kerdesekre fogaszati szolgaltatasainkrol.",

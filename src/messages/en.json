@@ -121,6 +121,25 @@
     "servicesOffered": "Services offered",
     "viewAll": "View all team"
   },
+  "prices": {
+    "title": "Price List",
+    "subtitle": "Transparent prices for all our dental services.",
+    "disclaimer": "* Prices shown are indicative and may vary depending on the complexity of the case. The final price will be determined after consultation.",
+    "promotion": "Promotion",
+    "ctaTitle": "Want a personalized evaluation?",
+    "ctaSubtitle": "Book a free consultation to receive a treatment plan and personalized price estimate.",
+    "perTooth": "tooth",
+    "perImplant": "implant",
+    "placeholder": {
+      "consultation": "Consultation",
+      "cleaning": "Professional cleaning",
+      "filling": "Filling",
+      "whitening": "Teeth whitening",
+      "veneers": "Dental veneers",
+      "implant": "Dental implant",
+      "crown": "Dental crown"
+    }
+  },
   "faq": {
     "title": "Frequently Asked Questions",
     "subtitle": "Answers to the most common questions about our dental services.",

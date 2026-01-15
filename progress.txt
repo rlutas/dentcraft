@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (6/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (7/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -25,6 +25,7 @@
 - US-016: Create individual team member page
 - US-017: Create testimonials page
 - US-018: Create FAQ page with accordion
+- US-019: Create prices page with basic listing
 
 ## In Progress
 (None)
@@ -424,4 +425,27 @@
   - Category tabs pattern: filter displayed content based on active category state
   - Placeholder content follows same pattern as previous pages (translations for placeholder text)
   - Portable text rendering can be simple (just text extraction) for basic content like FAQ answers
+---
+
+## Iteration 19 - US-019: Create prices page with basic listing
+- What was implemented:
+  - Created `/src/app/[locale]/preturi/page.tsx` with full Sanity integration
+  - Price tables organized by service category using `getPricesGroupedByService` query
+  - Each service displayed as a card with icon, title, and price list
+  - Shows price range (min-max) with unit when applicable
+  - Promotional prices highlighted with badge and strikethrough original price
+  - Disclaimer about prices being estimates displayed below hero
+  - Placeholder prices shown when Sanity has no data
+  - Added translation keys for prices page in all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/app/[locale]/preturi/page.tsx (new)
+  - src/messages/ro.json (updated - added prices section translations)
+  - src/messages/en.json (updated - added prices section translations)
+  - src/messages/hu.json (updated - added prices section translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - LucideIcons type casting must use `Record<string, LucideIcon | unknown>` pattern to satisfy TypeScript
+  - Price formatting with Intl.NumberFormat('ro-RO') for Romanian number format
+  - Promotional prices use green styling (bg-green-50, text-green-600) for visual distinction
+  - Prices grouped by service using GROQ query with references() function
 ---
