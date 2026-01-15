@@ -1,7 +1,7 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (5/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (7/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
@@ -12,6 +12,8 @@
 - US-003: Create SEO and portableText object schemas
 - US-004: Create Service document schema
 - US-005: Create TeamMember document schema
+- US-006: Create Testimonial document schema
+- US-007: Create BeforeAfter document schema
 
 ## In Progress
 (None)
@@ -123,4 +125,39 @@
   - Reference fields use `defineArrayMember({ type: 'reference', to: [{ type: 'docType' }] })`
   - Array of objects with preview prepare allows custom formatting with multiple select fields
   - Name field uses plain string type (not localizedString) for proper person names
+---
+
+## Iteration 6 - US-006: Create Testimonial document schema
+- What was implemented:
+  - Created `sanity/schemas/documents/testimonial.ts` with all required fields
+  - Fields: patientName (string), patientPhoto (image with hotspot), rating (number 1-5), text (localizedText), videoUrl (url), videoFile (file), service (reference), doctor (reference), featured (boolean), date
+  - Added validation: rating min 1 max 5 with integer constraint
+  - Exported testimonial schema from `sanity/schemas/index.ts`
+  - Custom preview with star rating display (★☆) and service name
+- Files changed:
+  - sanity/schemas/documents/testimonial.ts (new)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Single reference fields use `type: 'reference', to: [{ type: 'docType' }]` without array wrapper
+  - File fields support accept option for MIME type filtering (e.g., 'video/*')
+  - Unicode characters (★☆) work in preview prepare for visual star ratings
+---
+
+## Iteration 7 - US-007: Create BeforeAfter document schema
+- What was implemented:
+  - Created `sanity/schemas/documents/beforeAfter.ts` with all required fields
+  - Fields: title (localizedString), service (reference), doctor (reference), beforeImage (required image with hotspot), afterImage (required image with hotspot), description (localizedText), treatmentDuration (string), featured (boolean)
+  - Added validation: both beforeImage and afterImage are required
+  - Custom preview showing title, service name, featured status, and after image
+  - Custom orderings: Featured First, Newest First
+  - Exported beforeAfter schema from `sanity/schemas/index.ts`
+- Files changed:
+  - sanity/schemas/documents/beforeAfter.ts (new)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - BeforeAfter cases use localizedText for description (not localizedPortableText) since rich text isn't needed for brief case descriptions
+  - Image fields with required validation use `validation: (rule) => rule.required()`
+  - Preview uses afterImage as media to show the successful result
 ---

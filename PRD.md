@@ -94,10 +94,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need to manage before/after case galleries.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/beforeAfter.ts` with fields: title (localizedString), service (reference), doctor (reference), beforeImage (required), afterImage (required), description, treatmentDuration, featured
-- [ ] Both images required with hotspot enabled
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/beforeAfter.ts` with fields: title (localizedString), service (reference), doctor (reference), beforeImage (required), afterImage (required), description, treatmentDuration, featured
+- [x] Both images required with hotspot enabled
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 
