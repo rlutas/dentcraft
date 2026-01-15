@@ -139,10 +139,10 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a developer, I need reusable GROQ queries to fetch CMS content.
 
 **Acceptance Criteria:**
-- [ ] Create `src/lib/sanity/queries.ts` with queries for: getAllServices, getServiceBySlug, getAllTeamMembers, getTeamMemberBySlug, getFeaturedTestimonials, getAllBeforeAfter, getBlogPosts, getFAQs, getPrices, getSettings
-- [ ] All queries include proper projections for localized content
-- [ ] Export query functions that accept locale parameter
-- [ ] Typecheck passes
+- [x] Create `src/lib/sanity/queries.ts` with queries for: getAllServices, getServiceBySlug, getAllTeamMembers, getTeamMemberBySlug, getFeaturedTestimonials, getAllBeforeAfter, getBlogPosts, getFAQs, getPrices, getSettings
+- [x] All queries include proper projections for localized content
+- [x] Export query functions that accept locale parameter
+- [x] Typecheck passes
 
 ---
 

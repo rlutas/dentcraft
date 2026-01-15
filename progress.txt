@@ -1,7 +1,7 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (10/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (11/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
@@ -17,6 +17,7 @@
 - US-008: Create BlogPost and BlogCategory schemas
 - US-009: Create FAQ and Price document schemas
 - US-010: Create Settings singleton and LegalPage schemas
+- US-011: Create GROQ queries for all content types
 
 ## In Progress
 (None)
@@ -233,4 +234,24 @@
   - Lucide icons need type casting: `const icon = (Icon: ComponentType) => Icon as ComponentType`
   - URL fields use `type: 'url'` for proper validation
   - Date fields can specify format with `options.dateFormat`
+---
+
+## Iteration 11 - US-011: Create GROQ queries for all content types
+- What was implemented:
+  - Created `src/lib/sanity/queries.ts` with comprehensive GROQ queries for all content types
+  - Query functions: getAllServices, getServiceBySlug, getServiceSlugs, getAllTeamMembers, getTeamMemberBySlug, getTeamMemberSlugs, getAllTestimonials, getFeaturedTestimonials, getAllBeforeAfter, getFeaturedBeforeAfter, getBlogPosts, getBlogPostBySlug, getBlogPostSlugs, getBlogCategories, getBlogPostsCount, getFAQs, getFAQsByCategory, getPrices, getPricesGroupedByService, getSettings, getLegalPageBySlug, getLegalPageSlugs
+  - All queries accept locale parameter (ro/en/hu) for localized content projection
+  - Helper functions for consistent localized field projections
+  - Queries include proper dereferencing with `->` for referenced documents
+  - Support for pagination (getBlogPosts with limit/offset) and filtering (category, featured, etc.)
+- Files changed:
+  - src/lib/sanity/queries.ts (new)
+  - PRD.md (updated)
+  - progress.txt (updated)
+- Learnings for future iterations:
+  - Use helper functions for repeated localized field projections to keep queries DRY
+  - GROQ uses `->` for dereferencing references inline
+  - Portable text arrays need `[]` suffix in projection: `fieldName.${locale}[]`
+  - String interpolation with template literals works well for dynamic GROQ query building
+  - Sanity client.fetch accepts params object as second argument for query variables
 ---
