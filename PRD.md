@@ -127,11 +127,11 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need global site settings and legal pages.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/settings.ts` (singleton) with: siteName, logo, contact (phone, email, whatsapp, address), workingHours, social links, googleMapsEmbed
-- [ ] Create `sanity/schemas/documents/legalPage.ts` with: title, slug, content, lastUpdated
-- [ ] Configure desk structure for singleton settings
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/settings.ts` (singleton) with: siteName, logo, contact (phone, email, whatsapp, address), workingHours, social links, googleMapsEmbed
+- [x] Create `sanity/schemas/documents/legalPage.ts` with: title, slug, content, lastUpdated
+- [x] Configure desk structure for singleton settings
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 

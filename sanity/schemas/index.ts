@@ -14,6 +14,8 @@ import { blogCategory } from './documents/blogCategory'
 import { blogPost } from './documents/blogPost'
 import { faq } from './documents/faq'
 import { price } from './documents/price'
+import { settings } from './documents/settings'
+import { legalPage } from './documents/legalPage'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Objects
@@ -31,4 +33,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   blogPost,
   faq,
   price,
+  settings,
+  legalPage,
 ]

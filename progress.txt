@@ -1,7 +1,7 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (8/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (10/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
@@ -15,6 +15,8 @@
 - US-006: Create Testimonial document schema
 - US-007: Create BeforeAfter document schema
 - US-008: Create BlogPost and BlogCategory schemas
+- US-009: Create FAQ and Price document schemas
+- US-010: Create Settings singleton and LegalPage schemas
 
 ## In Progress
 (None)
@@ -181,4 +183,54 @@
   - BlogPost references both blogCategory and teamMember for category and author
   - Preview prepare can format dates using toLocaleDateString for locale-specific display
   - Draft posts without publishedAt can show 'Draft' as fallback in preview
+---
+
+## Iteration 9 - US-009: Create FAQ and Price document schemas
+- What was implemented:
+  - Created `sanity/schemas/documents/faq.ts` with all required fields
+  - Fields: question (localizedString), answer (localizedPortableText), category (select with radio layout), services (references array), order
+  - Created `sanity/schemas/documents/price.ts` with all required fields
+  - Fields: service (reference), name (localizedString), description (localizedText), priceMin, priceMax, unit, isPromotion, promotionPrice (conditionally hidden), includesInCalculator
+  - Added validation for required fields
+  - Exported both schemas from `sanity/schemas/index.ts`
+- Files changed:
+  - sanity/schemas/documents/faq.ts (new)
+  - sanity/schemas/documents/price.ts (new)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Use `options.layout: 'radio'` for select fields with few options
+  - `hidden: ({ parent }) => !parent?.field` allows conditional field visibility in Sanity
+  - Price documents reference services to enable grouping prices by service category
+  - Category-based FAQs use string select with defined list for filtering/grouping
+---
+
+## Iteration 10 - US-010: Create Settings singleton and LegalPage schemas
+- What was implemented:
+  - Created `sanity/schemas/documents/settings.ts` singleton schema with:
+    - siteName (localizedString), logo (image), contact object (phone, email, whatsapp, address)
+    - workingHours (array with days, hours, closed fields)
+    - socialLinks (object with facebook, instagram, youtube, linkedin, tiktok URLs)
+    - googleMapsEmbed (url)
+  - Created `sanity/schemas/documents/legalPage.ts` schema with:
+    - title (localizedString), slug, content (localizedPortableText), lastUpdated (date)
+  - Created `sanity/deskStructure.ts` for custom Sanity Studio desk structure
+    - Settings displayed as singleton (single document with fixed ID 'siteSettings')
+    - Organized content into logical groups with icons
+    - Blog section nested with Posts and Categories
+  - Updated `sanity.config.ts` to use custom desk structure
+  - Exported both schemas from `sanity/schemas/index.ts`
+- Files changed:
+  - sanity/schemas/documents/settings.ts (new)
+  - sanity/schemas/documents/legalPage.ts (new)
+  - sanity/deskStructure.ts (new)
+  - sanity.config.ts (updated)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Singleton documents use fixed documentId in desk structure: `S.document().schemaType('settings').documentId('siteSettings')`
+  - structureTool() accepts structure option for custom desk organization
+  - Lucide icons need type casting: `const icon = (Icon: ComponentType) => Icon as ComponentType`
+  - URL fields use `type: 'url'` for proper validation
+  - Date fields can specify format with `options.dateFormat`
 ---
