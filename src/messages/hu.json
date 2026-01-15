@@ -196,6 +196,40 @@
     "closed": "Zarva",
     "followUs": "Kovessen minket"
   },
+  "contactForm": {
+    "title": "Kuldjön uzenetet",
+    "name": "Nev",
+    "namePlaceholder": "Teljes neve",
+    "email": "Email",
+    "emailPlaceholder": "cim@email.com",
+    "phone": "Telefon (opcionalis)",
+    "phonePlaceholder": "0741 123 456",
+    "subject": "Targy",
+    "subjectPlaceholder": "Valasszon targyat",
+    "message": "Uzenet",
+    "messagePlaceholder": "Roviden irja le a kapcsolatfelvetel okat...",
+    "gdprConsent": "Elfogadom a szemelyes adataim kezeleset az adatvedelmi szabalyzat szerint.",
+    "sending": "Kuldes...",
+    "successMessage": "Uzenete sikeresen elkuldve! A lehetô leghamarabb felkeressuk.",
+    "errorMessage": "Hiba tortent. Probalja ujra vagy hivjon minket telefonon.",
+    "subjects": {
+      "consultation": "Konzultacio foglalas",
+      "appointment": "Atidopontositas",
+      "pricing": "Arinformaciok",
+      "other": "Egyeb"
+    },
+    "errors": {
+      "nameRequired": "A nev megadasa kotelezo",
+      "nameTooShort": "A nevnek legalabb 2 karakternek kell lennie",
+      "emailRequired": "Az email cim megadasa kotelezo",
+      "emailInvalid": "Az email cim nem ervenyes",
+      "phoneInvalid": "A telefonszam nem ervenyes",
+      "subjectRequired": "Kerjem valasszon targyat",
+      "messageRequired": "Az uzenet megadasa kotelezo",
+      "messageTooShort": "Az uzenetnek legalabb 10 karakternek kell lennie",
+      "gdprRequired": "El kell fogadnia az adatvedelmi szabalyzatot"
+    }
+  },
   "footer": {
     "description": "Modern fogaszati klinika Szatmarneметiben, az On mosolyanak egeszsegere es szepsegere szentelve.",
     "quickLinks": "Gyors linkek",

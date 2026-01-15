@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (8/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (9/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -27,6 +27,7 @@
 - US-018: Create FAQ page with accordion
 - US-019: Create prices page with basic listing
 - US-020: Create contact page with info and map
+- US-021: Create contact form component
 
 ## In Progress
 (None)
@@ -474,4 +475,30 @@
   - Google Maps embed uses iframe with src from Sanity googleMapsEmbed field
   - Working hours array supports closed days with boolean flag
   - Social links conditionally render only when URLs are provided in settings
+---
+
+## Iteration 21 - US-021: Create contact form component
+- What was implemented:
+  - Created `src/components/features/ContactForm/index.tsx` client component
+  - Form fields: name (required), email (required), phone (optional), subject dropdown (required), message (required), GDPR checkbox (required)
+  - Client-side validation with error messages displayed under each field
+  - Loading state with spinner icon during form submission
+  - Success/error message display after submission
+  - Form resets on successful submission
+  - Integrated ContactForm into contact page below the map section
+  - Added translation keys for contactForm in all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/components/features/ContactForm/index.tsx (new)
+  - src/app/[locale]/contact/page.tsx (updated - added ContactForm import and integration)
+  - src/messages/ro.json (updated - added contactForm translations)
+  - src/messages/en.json (updated - added contactForm translations)
+  - src/messages/hu.json (updated - added contactForm translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Client components with 'use client' directive for form interactivity
+  - useCallback for memoizing form handlers to prevent unnecessary re-renders
+  - Email regex validation: `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`
+  - Phone regex validation: `/^[0-9+\s()-]{6,20}$/` for flexible international formats
+  - GDPR consent checkbox is required for compliance
+  - Form submits to /api/contact route (to be implemented in US-022)
 ---

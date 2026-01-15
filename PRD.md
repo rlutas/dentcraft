@@ -278,13 +278,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to send a message to the clinic.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/ContactForm/index.tsx`
-- [ ] Fields: name, email, phone, subject (dropdown), message, GDPR checkbox
-- [ ] Client-side validation with error messages
-- [ ] Submit button with loading state
-- [ ] Integrate into contact page
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/ContactForm/index.tsx`
+- [x] Fields: name, email, phone, subject (dropdown), message, GDPR checkbox
+- [x] Client-side validation with error messages
+- [x] Submit button with loading state
+- [x] Integrate into contact page
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

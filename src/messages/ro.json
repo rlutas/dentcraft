@@ -196,6 +196,40 @@
     "closed": "Inchis",
     "followUs": "Urmareste-ne"
   },
+  "contactForm": {
+    "title": "Trimite-ne un mesaj",
+    "name": "Nume",
+    "namePlaceholder": "Numele tau complet",
+    "email": "Email",
+    "emailPlaceholder": "adresa@email.com",
+    "phone": "Telefon (optional)",
+    "phonePlaceholder": "0741 123 456",
+    "subject": "Subiect",
+    "subjectPlaceholder": "Selecteaza un subiect",
+    "message": "Mesaj",
+    "messagePlaceholder": "Descrie pe scurt motivul contactarii...",
+    "gdprConsent": "Sunt de acord cu prelucrarea datelor personale conform politicii de confidentialitate.",
+    "sending": "Se trimite...",
+    "successMessage": "Mesajul a fost trimis cu succes! Te vom contacta in cel mai scurt timp.",
+    "errorMessage": "A aparut o eroare. Te rugam sa incerci din nou sau sa ne contactezi telefonic.",
+    "subjects": {
+      "consultation": "Programare consultatie",
+      "appointment": "Reprogramare",
+      "pricing": "Informatii preturi",
+      "other": "Altele"
+    },
+    "errors": {
+      "nameRequired": "Numele este obligatoriu",
+      "nameTooShort": "Numele trebuie sa aiba cel putin 2 caractere",
+      "emailRequired": "Adresa de email este obligatorie",
+      "emailInvalid": "Adresa de email nu este valida",
+      "phoneInvalid": "Numarul de telefon nu este valid",
+      "subjectRequired": "Te rugam sa selectezi un subiect",
+      "messageRequired": "Mesajul este obligatoriu",
+      "messageTooShort": "Mesajul trebuie sa aiba cel putin 10 caractere",
+      "gdprRequired": "Trebuie sa accepti politica de confidentialitate"
+    }
+  },
   "footer": {
     "description": "Clinica stomatologica moderna in Satu Mare, dedicata sanatatii si frumusetii zambetului tau.",
     "quickLinks": "Link-uri rapide",

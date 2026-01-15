@@ -196,6 +196,40 @@
     "closed": "Closed",
     "followUs": "Follow us"
   },
+  "contactForm": {
+    "title": "Send us a message",
+    "name": "Name",
+    "namePlaceholder": "Your full name",
+    "email": "Email",
+    "emailPlaceholder": "address@email.com",
+    "phone": "Phone (optional)",
+    "phonePlaceholder": "0741 123 456",
+    "subject": "Subject",
+    "subjectPlaceholder": "Select a subject",
+    "message": "Message",
+    "messagePlaceholder": "Briefly describe the reason for contacting us...",
+    "gdprConsent": "I agree to the processing of my personal data according to the privacy policy.",
+    "sending": "Sending...",
+    "successMessage": "Your message has been sent successfully! We will contact you as soon as possible.",
+    "errorMessage": "An error occurred. Please try again or contact us by phone.",
+    "subjects": {
+      "consultation": "Book consultation",
+      "appointment": "Reschedule appointment",
+      "pricing": "Pricing information",
+      "other": "Other"
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "nameTooShort": "Name must be at least 2 characters",
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Email address is not valid",
+      "phoneInvalid": "Phone number is not valid",
+      "subjectRequired": "Please select a subject",
+      "messageRequired": "Message is required",
+      "messageTooShort": "Message must be at least 10 characters",
+      "gdprRequired": "You must accept the privacy policy"
+    }
+  },
   "footer": {
     "description": "Modern dental clinic in Satu Mare, dedicated to the health and beauty of your smile.",
     "quickLinks": "Quick Links",

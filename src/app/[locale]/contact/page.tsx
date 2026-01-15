@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ContactForm } from '@/components/features/ContactForm'
 import { getSettings, type Locale } from '@/lib/sanity/queries'
 
 // Settings type based on Sanity schema
@@ -349,6 +350,18 @@ async function ContactPageContent({ settings }: { settings: SanitySettings | nul
                   <Phone className="w-5 h-5" strokeWidth={1.5} />
                   {t('common.callNow')}
                 </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form Section */}
+          <div className="mt-12">
+            <div className="max-w-2xl mx-auto">
+              <div className="card p-8">
+                <h2 className="text-2xl font-semibold text-[var(--color-text)] mb-6 text-center">
+                  {t('contactForm.title')}
+                </h2>
+                <ContactForm />
               </div>
             </div>
           </div>
