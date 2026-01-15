@@ -235,13 +235,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to find answers to common questions.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/faq/page.tsx`
-- [ ] Fetches FAQs from Sanity grouped by category
-- [ ] Create Accordion component in `src/components/ui/Accordion.tsx`
-- [ ] Display FAQs in accordion format, grouped by category tabs
-- [ ] Smooth expand/collapse animation
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/faq/page.tsx`
+- [x] Fetches FAQs from Sanity grouped by category
+- [x] Create Accordion component in `src/components/ui/Accordion.tsx`
+- [x] Display FAQs in accordion format, grouped by category tabs
+- [x] Smooth expand/collapse animation
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (4/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (6/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -23,6 +23,8 @@
 - US-014: Create services listing page
 - US-015: Create team listing page
 - US-016: Create individual team member page
+- US-017: Create testimonials page
+- US-018: Create FAQ page with accordion
 
 ## In Progress
 (None)
@@ -372,4 +374,54 @@
   - PortableTextRenderer component can be reused between pages (consider extracting to shared component later)
   - Typed routing for service links uses object format: `{ pathname: '/servicii/[slug]', params: { slug } }`
   - 404 page is automatically shown when notFound() is called - works correctly
+---
+
+## Iteration 17 - US-017: Create testimonials page
+- What was implemented:
+  - Created `/src/app/[locale]/testimoniale/page.tsx` with full Sanity integration
+  - Testimonial cards display: patient name, rating stars (1-5), text, treatment type
+  - Video testimonials have play button overlay (supports YouTube/Vimeo/direct video files)
+  - Filter by treatment type via URL params (`?service=slug`)
+  - Updated `getAllTestimonials` query to accept optional serviceSlug filter
+  - Added translation keys for testimonials page in all 3 locales (RO/EN/HU)
+  - Placeholder testimonials shown when Sanity has no data
+- Files changed:
+  - src/app/[locale]/testimoniale/page.tsx (new)
+  - src/lib/sanity/queries.ts (updated - added service filter to getAllTestimonials)
+  - src/messages/ro.json (updated - added testimonials page translations)
+  - src/messages/en.json (updated - added testimonials page translations)
+  - src/messages/hu.json (updated - added testimonials page translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - ESLint import order: lucide-react imports should come before type imports from next
+  - ESLint jsx-sort-props: shorthand props (fill, priority) must be listed before other props
+  - URL params with typed routing: use string literal with type cast `'/testimoniale?service=slug' as '/testimoniale'`
+  - searchParams in Next.js 15 must be awaited: `const resolvedSearchParams = await searchParams`
+  - Testimonials page pattern: fetch all testimonials + all services (for filter buttons)
+---
+
+## Iteration 18 - US-018: Create FAQ page with accordion
+- What was implemented:
+  - Created `/src/app/[locale]/faq/page.tsx` with full Sanity integration
+  - Created `src/app/[locale]/faq/FAQPageClient.tsx` for interactive category tabs
+  - Created `src/components/ui/Accordion.tsx` reusable component with smooth animations
+  - Accordion supports single or multiple open items via `allowMultiple` prop
+  - FAQ page displays category tabs (General, Pricing, Treatments, Appointments)
+  - Uses `getFAQsByCategory` GROQ query to fetch FAQs grouped by category
+  - Placeholder FAQs shown when Sanity has no data
+  - Added translation keys for FAQ page in all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/app/[locale]/faq/page.tsx (new)
+  - src/app/[locale]/faq/FAQPageClient.tsx (new)
+  - src/components/ui/Accordion.tsx (new)
+  - src/messages/ro.json (updated - added faq section translations)
+  - src/messages/en.json (updated - added faq section translations)
+  - src/messages/hu.json (updated - added faq section translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Client components needed for interactive tabs/accordion state management
+  - Accordion uses CSS max-h transition with overflow-hidden for smooth animations
+  - Category tabs pattern: filter displayed content based on active category state
+  - Placeholder content follows same pattern as previous pages (translations for placeholder text)
+  - Portable text rendering can be simple (just text extraction) for basic content like FAQ answers
 ---

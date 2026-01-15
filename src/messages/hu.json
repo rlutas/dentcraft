@@ -121,6 +121,38 @@
     "servicesOffered": "Szolgaltatasok",
     "viewAll": "Teljes csapat"
   },
+  "faq": {
+    "title": "Gyakran Ismetelt Kerdesek",
+    "subtitle": "Valaszok a leggyakoribb kerdesekre fogaszati szolgaltatasainkrol.",
+    "stillHaveQuestions": "Meg mindig vannak kerdesei?",
+    "contactUsText": "Csapatunk keszen all a segitsegere. Keressen minket barmilyen kerdessel.",
+    "categories": {
+      "general": "Altalanos",
+      "pricing": "Arak",
+      "treatments": "Kezelesek",
+      "appointments": "Idopontok"
+    },
+    "placeholder": {
+      "general": {
+        "q1": "Milyen szolgaltatasokat kinal a Dentcraft klinika?",
+        "a1": "Teljes koru fogaszati szolgaltatasokat kinalunk, beleertve az altalanos fogaszatot, esztetikai fogaszatot, implantologiat, fogszabalyozast, gyermekfogaszatot es surgossegi fogaszatot.",
+        "q2": "Ingyenes az elso konzultacio?",
+        "a2": "Igen, az elso konzultacio ingyenes. Teljes koru felmerest kap fogaszati allapotarol es szemelyreaszabott kezelesi tervet."
+      },
+      "pricing": {
+        "q1": "Milyen fizetesi modokat fogadnak el?",
+        "a1": "Keszpenzt, bankkartyat es atutalast is elfogadunk. Osszetettebb kezelesekre reszletfizetesi lehetoseget is kinalunk."
+      },
+      "treatments": {
+        "q1": "Mennyi ideig tart egy fogimplantatum?",
+        "a1": "A fogimplantatum eljaras altalaban 3-6 honapig tart, az eset osszetettsegétől és a szukseges gyogyulasi idotol fuggoen."
+      },
+      "appointments": {
+        "q1": "Hogyan foglalhatok konzultaciot?",
+        "a1": "Konzultaciot foglalhat telefonon a 0741 199 977 szamon, WhatsApp-on vagy a weboldalon talalhato kapcsolatfelveteli urlap kitoltesevel."
+      }
+    }
+  },
   "contact": {
     "title": "Kapcsolat",
     "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet."

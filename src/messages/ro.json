@@ -121,6 +121,38 @@
     "servicesOffered": "Servicii oferite",
     "viewAll": "Vezi toata echipa"
   },
+  "faq": {
+    "title": "Intrebari frecvente",
+    "subtitle": "Raspunsuri la cele mai comune intrebari despre serviciile noastre stomatologice.",
+    "stillHaveQuestions": "Mai ai intrebari?",
+    "contactUsText": "Echipa noastra este aici sa te ajute. Contacteaza-ne pentru orice nelamurire.",
+    "categories": {
+      "general": "Generale",
+      "pricing": "Preturi",
+      "treatments": "Tratamente",
+      "appointments": "Programari"
+    },
+    "placeholder": {
+      "general": {
+        "q1": "Ce servicii ofera clinica Dentcraft?",
+        "a1": "Oferim o gama completa de servicii stomatologice, inclusiv stomatologie generala, estetica dentara, implantologie, ortodontie, pedodontie si urgente dentare.",
+        "q2": "Este prima consultatie gratuita?",
+        "a2": "Da, prima consultatie este gratuita. Vei primi o evaluare completa a sanatatii tale dentare si un plan de tratament personalizat."
+      },
+      "pricing": {
+        "q1": "Care sunt modalitatile de plata acceptate?",
+        "a1": "Acceptam plata in numerar, card bancar si transfer bancar. Oferim si posibilitatea de plata in rate pentru tratamentele mai complexe."
+      },
+      "treatments": {
+        "q1": "Cat dureaza un implant dentar?",
+        "a1": "Procedura de implant dentar dureaza de obicei intre 3-6 luni, in functie de complexitatea cazului si timpul necesar pentru vindecare."
+      },
+      "appointments": {
+        "q1": "Cum pot programa o consultatie?",
+        "a1": "Poti programa o consultatie telefonic la 0741 199 977, prin WhatsApp sau completand formularul de contact de pe site."
+      }
+    }
+  },
   "contact": {
     "title": "Contacteaza-ne",
     "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj."
