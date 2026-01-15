@@ -319,14 +319,14 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to read full blog articles.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/blog/[slug]/page.tsx`
-- [ ] Fetches post by slug from Sanity
-- [ ] Displays: cover image, title, author, date, reading time, content
-- [ ] Create PortableText renderer component for rich content
-- [ ] Related posts section at bottom
-- [ ] Generates static params for all posts
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/blog/[slug]/page.tsx`
+- [x] Fetches post by slug from Sanity
+- [x] Displays: cover image, title, author, date, reading time, content
+- [x] Create PortableText renderer component for rich content
+- [x] Related posts section at bottom
+- [x] Generates static params for all posts
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

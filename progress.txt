@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (11/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (12/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -30,6 +30,7 @@
 - US-021: Create contact form component
 - US-022: Create contact form API route
 - US-023: Create blog listing page
+- US-024: Create individual blog post page
 
 ## In Progress
 (None)
@@ -549,4 +550,34 @@
   - Category filter links use type cast: `'/blog?category=${slug}' as '/blog'`
   - Pagination shows previous/next arrows plus numbered pages
   - Empty state provides clear feedback and return link when filtered
+---
+
+## Iteration 24 - US-024: Create individual blog post page
+- What was implemented:
+  - Created `/src/app/[locale]/blog/[slug]/page.tsx` with full Sanity integration
+  - Hero section with category badge, title, author, date, and reading time
+  - Full-width cover image with rounded corners and shadow
+  - Excerpt styled as intro paragraph
+  - PortableText content rendering with proper styling
+  - Share button with Web Share API support
+  - Author bio card at bottom of article
+  - Related posts section showing 2 posts from same category
+  - Created `src/components/ui/PortableTextRenderer.tsx` component:
+    - Supports headings (h2-h4), paragraphs, blockquotes
+    - Supports lists (bullet and numbered)
+    - Inline marks: strong, em, underline, code, links
+    - Image blocks with captions
+    - Video embeds (YouTube, Vimeo)
+  - generateStaticParams for all blog posts in all locales
+  - generateMetadata with SEO data from post
+- Files changed:
+  - src/app/[locale]/blog/[slug]/page.tsx (new)
+  - src/components/ui/PortableTextRenderer.tsx (new)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - PortableText renderer handles nested marks by processing in reverse order
+  - Use `any[]` type for PortableText value to handle various Sanity content structures
+  - Video embeds need URL parsing to extract video IDs for YouTube/Vimeo
+  - List items must be grouped before rendering to create proper ul/ol elements
+  - Reading time calculated from word count (200 words/minute)
 ---
