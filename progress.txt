@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (1/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -19,6 +19,7 @@
 - US-010: Create Settings singleton and LegalPage schemas
 - US-011: Create GROQ queries for all content types
 - US-012: Create Sanity image URL helper
+- US-013: Create service page template with Sanity integration
 
 ## In Progress
 (None)
@@ -272,4 +273,32 @@
   - @sanity/image-url v2 exports SanityImageSource type directly from main module
   - ImageUrlBuilder supports chaining: urlFor(image).width(800).quality(80).auto('format').url()
   - Phase 1 (CMS Foundation) is now complete - all schemas and helpers are ready
+---
+
+## Iteration 13 - US-013: Create service page template with Sanity integration
+- What was implemented:
+  - Created `/src/app/[locale]/servicii/[slug]/page.tsx` with full Sanity integration
+  - Hero section with service icon, title, description, price range, and hero image using next/image
+  - Description section rendering portable text content
+  - Benefits section displaying array of benefit items with icons
+  - Process timeline showing treatment steps with numbered timeline UI
+  - FAQ accordion using native `<details>` element for service-related FAQs
+  - CTA section with call-to-action buttons
+  - `generateStaticParams` for static generation of all services in all locales
+  - `generateMetadata` for SEO with title, description, and open graph images
+  - Dynamic Lucide icon loading based on service.icon field from Sanity
+  - Simple PortableText renderer for description content
+- Files changed:
+  - src/app/[locale]/servicii/[slug]/page.tsx (new)
+  - src/types/global.d.ts (fixed ESLint error)
+  - .env.local (created from .env.example for build)
+  - PRD.md (updated)
+  - progress.txt (updated)
+- Learnings for future iterations:
+  - ESLint import/order rule is strict: type imports from external packages go first, then type imports from framework, then regular imports
+  - Props must be sorted: shorthand props (fill, priority) first, then alphabetically
+  - Reserved props (key) must be listed first before other props
+  - Use bracket notation for index signature access: `block['children']` not `block.children`
+  - PortableText rendering can use simple approach with array filtering for basic use cases
+  - Dynamic Lucide icons can be loaded with `import * as LucideIcons from 'lucide-react'` and accessed by name
 ---

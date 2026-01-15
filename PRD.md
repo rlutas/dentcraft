@@ -166,13 +166,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to view detailed information about each dental service.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/servicii/[slug]/page.tsx`
-- [ ] Page fetches service data from Sanity using slug
-- [ ] Displays: hero with image, description, benefits list, process timeline, price range, FAQ accordion
-- [ ] Uses existing design system (cards, buttons, sections)
-- [ ] Generates static params for all services
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/servicii/[slug]/page.tsx`
+- [x] Page fetches service data from Sanity using slug
+- [x] Displays: hero with image, description, benefits list, process timeline, price range, FAQ accordion
+- [x] Uses existing design system (cards, buttons, sections)
+- [x] Generates static params for all services
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 
