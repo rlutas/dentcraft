@@ -281,7 +281,17 @@
     "acceptAll": "Accepta toate",
     "onlyEssential": "Doar esentiale",
     "customize": "Personalizeaza",
-    "cookiePolicy": "Politica de cookies"
+    "cookiePolicy": "Politica de cookies",
+    "preferencesTitle": "Preferinte cookie-uri",
+    "preferencesDescription": "Alege ce tipuri de cookie-uri doresti sa accepti. Cookie-urile esentiale nu pot fi dezactivate deoarece sunt necesare pentru functionarea site-ului.",
+    "savePreferences": "Salveaza preferintele",
+    "essentialTitle": "Cookie-uri esentiale",
+    "essentialDescription": "Necesare pentru functionarea de baza a site-ului. Includ cookie-uri pentru sesiune, preferinte de limba si securitate.",
+    "analyticsTitle": "Cookie-uri analitice",
+    "analyticsDescription": "Ne ajuta sa intelegem cum utilizezi site-ul pentru a-l imbunatati. Colecteaza date anonime despre vizite si interactiuni.",
+    "marketingTitle": "Cookie-uri de marketing",
+    "marketingDescription": "Folosite pentru a-ti afisa reclame relevante pe alte site-uri si pentru a masura eficacitatea campaniilor publicitare.",
+    "alwaysActive": "Mereu activ"
   },
   "priceCalculator": {
     "title": "Calculator de pret",

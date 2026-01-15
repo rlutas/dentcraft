@@ -466,13 +466,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to customize my cookie preferences.
 
 **Acceptance Criteria:**
-- [ ] Add modal to CookieConsent component
-- [ ] Categories: Essential (locked on), Analytics, Marketing
-- [ ] Toggle switches for each category
-- [ ] Description of what each category does
-- [ ] "Save Preferences" button
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Add modal to CookieConsent component
+- [x] Categories: Essential (locked on), Analytics, Marketing
+- [x] Toggle switches for each category
+- [x] Description of what each category does
+- [x] "Save Preferences" button
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

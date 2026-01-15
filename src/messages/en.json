@@ -281,7 +281,17 @@
     "acceptAll": "Accept all",
     "onlyEssential": "Essential only",
     "customize": "Customize",
-    "cookiePolicy": "Cookie Policy"
+    "cookiePolicy": "Cookie Policy",
+    "preferencesTitle": "Cookie Preferences",
+    "preferencesDescription": "Choose which types of cookies you want to accept. Essential cookies cannot be disabled as they are required for the site to function.",
+    "savePreferences": "Save Preferences",
+    "essentialTitle": "Essential Cookies",
+    "essentialDescription": "Required for basic site functionality. Includes cookies for sessions, language preferences, and security.",
+    "analyticsTitle": "Analytics Cookies",
+    "analyticsDescription": "Help us understand how you use the site to improve it. Collect anonymous data about visits and interactions.",
+    "marketingTitle": "Marketing Cookies",
+    "marketingDescription": "Used to show you relevant ads on other sites and to measure the effectiveness of advertising campaigns.",
+    "alwaysActive": "Always active"
   },
   "priceCalculator": {
     "title": "Price Calculator",

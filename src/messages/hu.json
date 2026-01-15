@@ -281,7 +281,17 @@
     "acceptAll": "Osszes elfogadasa",
     "onlyEssential": "Csak a szuksegesek",
     "customize": "Testreszabas",
-    "cookiePolicy": "Suti szabalyzat"
+    "cookiePolicy": "Suti szabalyzat",
+    "preferencesTitle": "Suti beallitasok",
+    "preferencesDescription": "Valassza ki, milyen tipusu sutiket szeretne elfogadni. Az alapveto sutik nem tilthatoak le, mert szuksegesek a webhely mukodesehez.",
+    "savePreferences": "Beallitasok mentese",
+    "essentialTitle": "Alapveto sutik",
+    "essentialDescription": "Szuksegesek az oldal alapveto mukodesehez. Tartalmazzak a munkamenet, nyelvi beallitasok es biztonsagi sutiket.",
+    "analyticsTitle": "Analitikai sutik",
+    "analyticsDescription": "Segitenek megerteni, hogyan hasznalja a webhelyet, hogy javithassuk azt. Anonim adatokat gyujtenek a latogatasokrol es interakciokrol.",
+    "marketingTitle": "Marketing sutik",
+    "marketingDescription": "Relevans hirdetesek megjelenitesehez hasznaljuk mas webhelyeken, es a reklamkampanyok hatekonysaganak meresehez.",
+    "alwaysActive": "Mindig aktiv"
   },
   "priceCalculator": {
     "title": "Arkalkulátor",
