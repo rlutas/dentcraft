@@ -91,6 +91,12 @@
   "testimonials": {
     "title": "Ce spun pacientii nostri",
     "subtitle": "Recenzii reale de la pacienti multumiti.",
+    "allTreatments": "Toate tratamentele",
+    "filterBy": "Filtreaza dupa tratament",
+    "noTestimonials": "Nu exista testimoniale pentru acest filtru.",
+    "videoTestimonial": "Video testimonial",
+    "playVideo": "Reda video",
+    "writtenBy": "de la",
     "treatments": {
       "veneers": "Fatete dentare",
       "implant": "Implant dentar",

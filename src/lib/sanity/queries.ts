@@ -197,8 +197,20 @@ export async function getTeamMemberSlugs() {
 // TESTIMONIAL QUERIES
 // ============================================
 
-export async function getAllTestimonials(locale: Locale) {
-  const query = `*[_type == "testimonial"] | order(date desc) {
+export async function getAllTestimonials(
+  locale: Locale,
+  options?: {
+    serviceSlug?: string
+  }
+) {
+  const { serviceSlug } = options || {}
+
+  let filter = '_type == "testimonial"'
+  if (serviceSlug) {
+    filter += ' && service->slug.current == $serviceSlug'
+  }
+
+  const query = `*[${filter}] | order(date desc) {
     _id,
     patientName,
     patientPhoto {
@@ -225,7 +237,7 @@ export async function getAllTestimonials(locale: Locale) {
     date
   }`
 
-  return client.fetch(query)
+  return client.fetch(query, { serviceSlug })
 }
 
 export async function getFeaturedTestimonials(locale: Locale) {

@@ -221,13 +221,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to see all patient testimonials.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/testimoniale/page.tsx`
-- [ ] Fetches all testimonials from Sanity
-- [ ] Displays testimonial cards with: patient name, rating stars, text, treatment type
-- [ ] Video testimonials show play button overlay
-- [ ] Filter by treatment type (optional, via URL params)
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/testimoniale/page.tsx`
+- [x] Fetches all testimonials from Sanity
+- [x] Displays testimonial cards with: patient name, rating stars, text, treatment type
+- [x] Video testimonials show play button overlay
+- [x] Filter by treatment type (optional, via URL params)
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

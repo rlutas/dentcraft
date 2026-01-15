@@ -91,6 +91,12 @@
   "testimonials": {
     "title": "What our patients say",
     "subtitle": "Real reviews from satisfied patients.",
+    "allTreatments": "All treatments",
+    "filterBy": "Filter by treatment",
+    "noTestimonials": "No testimonials found for this filter.",
+    "videoTestimonial": "Video testimonial",
+    "playVideo": "Play video",
+    "writtenBy": "from",
     "treatments": {
       "veneers": "Dental veneers",
       "implant": "Dental implant",

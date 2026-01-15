@@ -91,6 +91,12 @@
   "testimonials": {
     "title": "Mit mondanak pacienseink",
     "subtitle": "Valos velemenyek elegedett paciensektol.",
+    "allTreatments": "Minden kezeles",
+    "filterBy": "Szures kezeles szerint",
+    "noTestimonials": "Nincs talalt velemeny ezzel a szurovel.",
+    "videoTestimonial": "Video velemeny",
+    "playVideo": "Video lejatszasa",
+    "writtenBy": "től",
     "treatments": {
       "veneers": "Foghejak",
       "implant": "Fogimplantatum",
