@@ -480,15 +480,15 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want quick access to WhatsApp contact.
 
 **Acceptance Criteria:**
-- [ ] Create `src/components/features/WhatsAppButton/index.tsx`
-- [ ] Fixed position bottom-right corner
-- [ ] WhatsApp green color (#25D366)
-- [ ] Subtle pulse animation on load
-- [ ] Click opens WhatsApp with pre-filled message
-- [ ] Responsive: smaller on mobile
-- [ ] Does not overlap important content
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `src/components/features/WhatsAppButton/index.tsx`
+- [x] Fixed position bottom-right corner
+- [x] WhatsApp green color (#25D366)
+- [x] Subtle pulse animation on load
+- [x] Click opens WhatsApp with pre-filled message
+- [x] Responsive: smaller on mobile
+- [x] Does not overlap important content
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

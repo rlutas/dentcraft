@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Header, Footer } from '@/components/layout'
 import { CookieConsentWrapper } from '@/components/features/CookieConsent/CookieConsentWrapper'
+import { WhatsAppButtonWrapper } from '@/components/features/WhatsAppButton/WhatsAppButtonWrapper'
 import '@/styles/globals.css'
 
 const inter = Inter({
@@ -80,6 +81,7 @@ export default async function LocaleLayout({ children, params }: Props) {
               {children}
             </main>
             <Footer />
+            <WhatsAppButtonWrapper />
             <CookieConsentWrapper />
           </div>
         </NextIntlClientProvider>

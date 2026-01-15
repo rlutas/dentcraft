@@ -300,3 +300,24 @@
     #ede6db 100%
   );
 }
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* WhatsApp button pulse animation */
+@keyframes pulse-whatsapp {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px rgb(37 211 102 / 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgb(37 211 102 / 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-whatsapp {
+  animation: pulse-whatsapp 2s ease-in-out infinite;
+}

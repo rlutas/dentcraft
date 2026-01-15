@@ -3,7 +3,7 @@
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
-- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (8/11 complete)
+- **Phase 3:** Interactive Features (US-026 to US-036) - IN PROGRESS (10/11 complete)
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
@@ -40,6 +40,8 @@
 - US-031: Create price calculator - results display
 - US-032: Integrate calculator into prices page
 - US-033: Create cookie consent banner
+- US-034: Create cookie preferences modal
+- US-035: Create WhatsApp floating button
 
 ## In Progress
 (None)
@@ -811,4 +813,55 @@
   - isMounted state pattern ensures client-only rendering for localStorage access
   - CookiePreferences type can be extended in US-034 for customize modal
   - GDPR requires clear consent options - "Accept All" and "Essential Only" are minimum requirements
+---
+
+## Iteration 34 - US-034: Create cookie preferences modal
+- What was implemented:
+  - Added preferences modal to CookieConsent component
+  - Three cookie categories: Essential (locked on), Analytics, Marketing
+  - Toggle switches for Analytics and Marketing with role="switch" accessibility
+  - Category descriptions explaining purpose of each cookie type
+  - "Save Preferences" button saves custom preferences to localStorage
+  - Modal closes on backdrop click or Escape key
+  - Body scroll prevention when modal is open
+  - Added modal translations in all 3 locales (RO/EN/HU)
+- Files changed:
+  - src/components/features/CookieConsent/index.tsx (updated - added modal state, handlers, and modal UI)
+  - src/components/features/CookieConsent/CookieConsentWrapper.tsx (updated - added modal translations)
+  - src/messages/ro.json (updated - added modal translations)
+  - src/messages/en.json (updated - added modal translations)
+  - src/messages/hu.json (updated - added modal translations)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Toggle switches use role="switch" with aria-checked for accessibility
+  - Essential cookies shown as locked with Lock icon and "Always active" label
+  - Modal z-index (z-[60]) must be higher than banner z-index (z-50)
+  - Event handlers for keyboard (Escape) and backdrop click improve UX
+  - Sticky header/footer in modal keeps controls visible during scroll
+---
+
+## Iteration 35 - US-035: Create WhatsApp floating button
+- What was implemented:
+  - Created `src/components/features/WhatsAppButton/index.tsx` client component
+  - Fixed position bottom-right corner (bottom-4 right-4 mobile, bottom-6 right-6 desktop)
+  - WhatsApp green color (#25D366) with matching shadow
+  - Subtle pulse animation on load (stops after 5 seconds)
+  - Click opens WhatsApp with pre-filled message using wa.me API
+  - Responsive sizing: h-14 w-14 on mobile, h-16 w-16 on desktop
+  - Created `src/components/features/WhatsAppButton/WhatsAppButtonWrapper.tsx` for i18n integration
+  - Added custom pulse-whatsapp animation to globals.css
+  - Integrated into layout.tsx after Footer, before CookieConsent
+  - Button appears after 1 second delay to prevent flash
+- Files changed:
+  - src/components/features/WhatsAppButton/index.tsx (new)
+  - src/components/features/WhatsAppButton/WhatsAppButtonWrapper.tsx (new)
+  - src/styles/globals.css (updated - added pulse-whatsapp animation)
+  - src/app/[locale]/layout.tsx (updated - added WhatsAppButtonWrapper)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - WhatsApp URL format: wa.me/{phone}?text={encodedMessage} where phone uses country code (40 for Romania)
+  - Client-side delay pattern (isMounted + setTimeout) prevents hydration issues and flash
+  - Pulse animation can be stopped after initial period by toggling isPulsing state
+  - z-40 places button below cookie consent (z-50) to not interfere with GDPR UI
+  - Theme already had --color-whatsapp and --shadow-whatsapp defined for consistency
 ---
