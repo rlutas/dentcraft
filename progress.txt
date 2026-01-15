@@ -1,19 +1,23 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - NOT STARTED
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (1/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
 ## Completed Stories
-(None yet)
+- US-001: Initialize Sanity Studio project
 
 ## In Progress
 (None)
 
 ## Learnings
 (Patterns discovered during implementation)
+- Use bracket notation for process.env access: `process.env['VARIABLE']` instead of `process.env.VARIABLE` to satisfy exactOptionalPropertyTypes
+- next-sanity@11 is compatible with Next.js 15, sanity@4, and @sanity/client@7
+- Sanity Studio route needs its own layout.tsx to avoid locale routing conflicts
+- Use `as const` for href arrays to satisfy next-intl typed routes
 
 ---
 
@@ -25,4 +29,29 @@
 - Each story sized for single context window (~10 min AI work)
 - Foundation already complete: Next.js 15, Tailwind v4, next-intl, Header/Footer/Homepage with placeholder
 
+---
+
+## Iteration 1 - US-001: Initialize Sanity Studio project
+- What was implemented:
+  - Installed Sanity dependencies (next-sanity@11, sanity@4, @sanity/client@7, @sanity/image-url, styled-components@6)
+  - Created sanity.config.ts at project root
+  - Created src/lib/sanity/client.ts with createClient setup and preview client
+  - Created sanity/schemas/index.ts (empty, ready for future schemas)
+  - Created Sanity Studio route at /studio with dedicated layout
+  - Updated .env.example with SANITY_* environment variables
+- Files changed:
+  - package.json (added dependencies)
+  - sanity.config.ts (new)
+  - sanity/schemas/index.ts (new)
+  - src/lib/sanity/client.ts (new)
+  - src/app/studio/[[...tool]]/page.tsx (new)
+  - src/app/studio/[[...tool]]/layout.tsx (new)
+  - .env.example (updated)
+- Pre-existing type errors fixed:
+  - src/app/[locale]/layout.tsx - fixed metadata title/description typing
+  - src/components/layout/Footer.tsx - fixed Link href typing with `as const`
+- Learnings for future iterations:
+  - next-sanity@12+ requires Next.js 16, use @11 for Next.js 15
+  - TypeScript exactOptionalPropertyTypes requires explicit string defaults
+  - Studio route bypasses locale routing via separate app directory structure
 ---

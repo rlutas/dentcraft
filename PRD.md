@@ -26,12 +26,12 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a developer, I need Sanity CMS configured so content can be managed dynamically.
 
 **Acceptance Criteria:**
-- [ ] Create Sanity project with `npx sanity@latest init`
-- [ ] Configure `sanity.config.ts` with project ID and dataset
-- [ ] Add Sanity client in `src/lib/sanity/client.ts`
-- [ ] Add environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_API_TOKEN`
-- [ ] Verify Sanity Studio runs at `/studio` route
-- [ ] Typecheck passes
+- [x] Create Sanity project with `npx sanity@latest init`
+- [x] Configure `sanity.config.ts` with project ID and dataset
+- [x] Add Sanity client in `src/lib/sanity/client.ts`
+- [x] Add environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_API_TOKEN`
+- [x] Verify Sanity Studio runs at `/studio` route
+- [x] Typecheck passes
 
 ---
 
