@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getBlogPostBySlug, getBlogPosts, getBlogPostSlugs, type Locale } from '@/lib/sanity/queries'
+import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
 
 type BlogPost = {
@@ -91,28 +92,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  return {
-    description: post.seo?.metaDescription || post.excerpt || undefined,
-    openGraph: post.seo?.ogImage?.asset
-      ? {
-          images: [
-            {
-              url: urlFor(post.seo.ogImage).width(1200).height(630).url(),
-            },
-          ],
-        }
-      : post.coverImage?.asset
-        ? {
-            images: [
-              {
-                url: urlFor(post.coverImage).width(1200).height(630).url(),
-              },
-            ],
-          }
-        : undefined,
-    robots: post.seo?.noIndex ? { index: false } : undefined,
-    title: post.seo?.metaTitle || post.title,
+  // Convert SEO data to expected format with correct types
+  const seoData = post.seo ? {
+    metaTitle: post.seo.metaTitle,
+    metaDescription: post.seo.metaDescription,
+    ogImage: post.seo.ogImage?.asset ? { asset: { _ref: post.seo.ogImage.asset._id } } : null,
+    noIndex: post.seo.noIndex || false,
+  } : null
+
+  // Build options object conditionally to avoid undefined values (exactOptionalPropertyTypes)
+  const metadataOptions: Parameters<typeof generateDynamicPageMetadata>[0] = {
+    title: post.title,
+    locale: locale as SEOLocale,
+    path: '/blog/[slug]',
+    slug,
+    seo: seoData,
+    imageUrlBuilder: (img) => urlFor(img).width(1200).height(630).url(),
   }
+
+  if (post.excerpt) {
+    metadataOptions.description = post.excerpt
+  }
+
+  if (post.coverImage?.asset) {
+    metadataOptions.fallbackImage = urlFor(post.coverImage).width(1200).height(630).url()
+  }
+
+  return generateDynamicPageMetadata(metadataOptions)
 }
 
 export default async function BlogPostPage({ params }: PageProps) {

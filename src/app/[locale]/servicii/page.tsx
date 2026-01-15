@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { getAllServices, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import type { LocalePageProps } from '@/types'
 
 // Service type based on Sanity schema
@@ -32,10 +33,12 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('services.title'),
     description: t('services.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/servicii',
+  })
 }
 
 export default async function ServicesPage({ params }: LocalePageProps) {

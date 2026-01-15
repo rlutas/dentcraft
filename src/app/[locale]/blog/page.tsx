@@ -10,6 +10,7 @@ import {
   getBlogPostsCount,
   type Locale,
 } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 
 const POSTS_PER_PAGE = 10
 
@@ -60,10 +61,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
-    description: t('blog.subtitle'),
+  return generatePageMetadata({
     title: t('blog.title'),
-  }
+    description: t('blog.subtitle'),
+    locale: locale as SEOLocale,
+    path: '/blog',
+  })
 }
 
 export default async function BlogPage({ params, searchParams }: PageProps) {

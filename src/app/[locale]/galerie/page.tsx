@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllBeforeAfter, getAllServices, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import { GalleryPageClient, PlaceholderGalleryGrid } from './GalleryPageClient'
 
 // BeforeAfter case type based on Sanity schema
@@ -54,10 +55,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('gallery.title'),
     description: t('gallery.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/galerie',
+  })
 }
 
 export default async function GalleryPage({ params, searchParams }: PageProps) {

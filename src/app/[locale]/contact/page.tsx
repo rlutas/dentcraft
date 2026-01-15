@@ -13,6 +13,7 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ContactForm } from '@/components/features/ContactForm'
 import { getSettings, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 
 // Settings type based on Sanity schema
 type SanitySettings = {
@@ -55,10 +56,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('contact.title'),
     description: t('contact.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/contact',
+  })
 }
 
 export default async function ContactPage({ params }: PageProps) {

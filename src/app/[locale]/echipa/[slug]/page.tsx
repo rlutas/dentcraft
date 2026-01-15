@@ -14,6 +14,7 @@ import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sanity/queries'
+import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -75,23 +76,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {}
   }
 
-  const title = member.seo?.metaTitle || member.name
-  const description = member.seo?.metaDescription || member.role || ''
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: member.seo?.ogImage
-        ? [urlFor(member.seo.ogImage).width(1200).height(630).url()]
-        : member.photo
-          ? [urlFor(member.photo).width(1200).height(630).url()]
-          : [],
-    },
-    robots: member.seo?.noIndex ? { index: false } : undefined,
+  // Build options object conditionally to avoid undefined values (exactOptionalPropertyTypes)
+  const metadataOptions: Parameters<typeof generateDynamicPageMetadata>[0] = {
+    title: member.name,
+    locale: locale as SEOLocale,
+    path: '/echipa/[slug]',
+    slug,
+    seo: member.seo,
+    imageUrlBuilder: (img) => urlFor(img).width(1200).height(630).url(),
   }
+
+  if (member.role) {
+    metadataOptions.description = member.role
+  }
+
+  if (member.photo) {
+    metadataOptions.fallbackImage = urlFor(member.photo).width(1200).height(630).url()
+  }
+
+  return generateDynamicPageMetadata(metadataOptions)
 }
 
 export default async function TeamMemberPage({ params }: Props) {

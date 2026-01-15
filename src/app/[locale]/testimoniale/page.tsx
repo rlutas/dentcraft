@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllServices, getAllTestimonials, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 
 // Testimonial type based on Sanity schema
 type SanityTestimonial = {
@@ -56,10 +57,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('testimonials.title'),
     description: t('testimonials.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/testimoniale',
+  })
 }
 
 export default async function TestimonialsPage({ params, searchParams }: PageProps) {

@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
+import { generateRootMetadata, type Locale } from '@/lib/seo'
 import { Header, Footer } from '@/components/layout'
 import { CookieConsentWrapper } from '@/components/features/CookieConsent/CookieConsentWrapper'
 import { WhatsAppButtonWrapper } from '@/components/features/WhatsAppButton/WhatsAppButtonWrapper'
@@ -26,39 +27,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-
-  const titles: Record<string, string> = {
-    ro: 'Dentcraft - Clinica Stomatologica Satu Mare',
-    en: 'Dentcraft - Dental Clinic Satu Mare',
-    hu: 'Dentcraft - Fogaszati Klinika Szatmarnemeti',
-  }
-
-  const descriptions: Record<string, string> = {
-    ro: 'Clinica stomatologica moderna in Satu Mare. Servicii complete de stomatologie: implanturi, estetica dentara, ortodontie. Programeaza-te acum!',
-    en: 'Modern dental clinic in Satu Mare. Complete dental services: implants, cosmetic dentistry, orthodontics. Book your appointment now!',
-    hu: 'Modern fogaszati klinika Szatmarneметiben. Teljes koru fogaszati szolgaltatasok: implantatum, esztetikai fogaszat, fogszabalyozas. Foglaljon idopontot most!',
-  }
-
-  const title = titles[locale] ?? titles['ro'] ?? 'Dentcraft'
-  const description =
-    descriptions[locale] ?? descriptions['ro'] ?? 'Clinica stomatologica'
-
-  return {
-    title: {
-      default: title,
-      template: `%s | Dentcraft`,
-    },
-    description,
-    metadataBase: new URL('https://dentcraft.ro'),
-    alternates: {
-      canonical: '/',
-      languages: {
-        ro: '/',
-        en: '/en',
-        hu: '/hu',
-      },
-    },
-  }
+  return generateRootMetadata(locale as Locale)
 }
 
 export default async function LocaleLayout({ children, params }: Props) {

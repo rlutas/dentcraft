@@ -4,7 +4,7 @@
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - COMPLETE (11/11 complete)
-- **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
+- **Phase 4:** Polish & SEO (US-037 to US-042) - IN PROGRESS (1/6 complete)
 - **Phase 5:** Contact & Maps Integration (US-043 to US-048) - NOT STARTED
 
 ## Completed Stories
@@ -44,6 +44,7 @@
 - US-034: Create cookie preferences modal
 - US-035: Create WhatsApp floating button
 - US-036: Create video testimonial player component
+- US-037: Add SEO metadata to all pages
 
 ## In Progress
 (None)
@@ -896,4 +897,44 @@
   - YouTube embed params: autoplay=1&mute={0|1}&rel=0 for autoplay with mute control
   - useRef with NodeJS.Timeout for cleanup timeout tracking
   - Phase 3 (Interactive Features) is now COMPLETE - all 11 stories finished
+---
+
+## Iteration 37 - US-037: Add SEO metadata to all pages
+- What was implemented:
+  - Created `src/lib/seo.ts` comprehensive SEO helper library with:
+    - `generatePageMetadata()` for static pages with title, description, hreflang, OG tags
+    - `generateDynamicPageMetadata()` for dynamic content pages (services, blog, team)
+    - `generateRootMetadata()` for root layout metadata
+    - Automatic hreflang tag generation for all 3 languages (RO/EN/HU)
+    - Localized pathname mapping for proper alternate URLs
+    - Title format: "Page Title | Dentcraft Satu Mare"
+  - Updated all page files to use the new SEO helpers:
+    - Root layout.tsx uses generateRootMetadata()
+    - Static pages (servicii, echipa, contact, galerie, testimoniale, preturi, blog, faq) use generatePageMetadata()
+    - Dynamic pages (servicii/[slug], echipa/[slug], blog/[slug]) use generateDynamicPageMetadata()
+    - Legal pages use generatePageMetadata() with noIndex flag
+  - Open Graph and Twitter card meta tags automatically generated
+  - Properly handles Sanity SEO fields (metaTitle, metaDescription, ogImage, noIndex)
+- Files changed:
+  - src/lib/seo.ts (new)
+  - src/app/[locale]/layout.tsx (updated - uses generateRootMetadata)
+  - src/app/[locale]/servicii/page.tsx (updated)
+  - src/app/[locale]/servicii/[slug]/page.tsx (updated)
+  - src/app/[locale]/echipa/page.tsx (updated)
+  - src/app/[locale]/echipa/[slug]/page.tsx (updated)
+  - src/app/[locale]/contact/page.tsx (updated)
+  - src/app/[locale]/galerie/page.tsx (updated)
+  - src/app/[locale]/testimoniale/page.tsx (updated)
+  - src/app/[locale]/preturi/page.tsx (updated)
+  - src/app/[locale]/blog/page.tsx (updated)
+  - src/app/[locale]/blog/[slug]/page.tsx (updated)
+  - src/app/[locale]/faq/page.tsx (updated)
+  - src/app/[locale]/[...slug]/page.tsx (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - exactOptionalPropertyTypes requires building options objects conditionally - never assign undefined
+  - Use `Parameters<typeof functionName>[0]` to get function parameter types for conditional building
+  - Hreflang tags need to map internal routes to localized pathnames correctly
+  - Legal pages should use noIndex: true to avoid duplicate content issues
+  - Phase 4 (Polish & SEO) has begun - first story complete
 ---

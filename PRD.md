@@ -514,13 +514,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a site owner, I want all pages optimized for search engines.
 
 **Acceptance Criteria:**
-- [ ] Create `src/lib/seo.ts` with generateMetadata helper
-- [ ] Each page exports generateMetadata function
-- [ ] Title format: "Page Title | Dentcraft Satu Mare"
-- [ ] Meta descriptions from Sanity SEO fields
-- [ ] Open Graph tags with images
-- [ ] Hreflang tags for all 3 languages
-- [ ] Typecheck passes
+- [x] Create `src/lib/seo.ts` with generateMetadata helper
+- [x] Each page exports generateMetadata function
+- [x] Title format: "Page Title | Dentcraft Satu Mare"
+- [x] Meta descriptions from Sanity SEO fields
+- [x] Open Graph tags with images
+- [x] Hreflang tags for all 3 languages
+- [x] Typecheck passes
 
 ---
 

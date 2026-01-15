@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { PriceCalculator } from '@/components/features/PriceCalculator'
 import { Link } from '@/i18n/navigation'
 import { getAllServices, getPricesGroupedByService, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 
 // Price type based on Sanity schema
 type SanityPrice = {
@@ -46,10 +47,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('prices.title'),
     description: t('prices.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/preturi',
+  })
 }
 
 // Helper to get Lucide icon by name

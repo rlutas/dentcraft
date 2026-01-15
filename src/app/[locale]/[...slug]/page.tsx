@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { getLegalPageBySlug, getLegalPageSlugs, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
 
 // List of valid legal page slugs
@@ -72,9 +73,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  return {
-    title: page.title,
+  // Map slug to path for SEO helper
+  const pathMap: Record<string, string> = {
+    'politica-confidentialitate': '/politica-confidentialitate',
+    'privacy-policy': '/politica-confidentialitate',
+    'politica-cookies': '/politica-cookies',
+    'cookie-policy': '/politica-cookies',
+    'termeni-conditii': '/termeni-conditii',
+    'terms-conditions': '/termeni-conditii',
   }
+
+  return generatePageMetadata({
+    title: page.title,
+    locale: locale as SEOLocale,
+    path: pathMap[pageSlug] || `/${pageSlug}`,
+    noIndex: true, // Legal pages typically don't need indexing
+  })
 }
 
 export default async function LegalPage({ params }: PageProps) {

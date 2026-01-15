@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { getFAQsByCategory, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import FAQPageClient from './FAQPageClient'
 
 // FAQ type based on Sanity schema
@@ -35,10 +36,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('faq.title'),
     description: t('faq.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/faq',
+  })
 }
 
 export default async function FAQPage({ params }: PageProps) {

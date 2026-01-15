@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllTeamMembers, type Locale } from '@/lib/sanity/queries'
+import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import type { LocalePageProps } from '@/types'
 
 // Team member type based on Sanity schema
@@ -29,10 +30,12 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   const { locale } = await params
   const t = await getTranslations({ locale })
 
-  return {
+  return generatePageMetadata({
     title: t('team.title'),
     description: t('team.subtitle'),
-  }
+    locale: locale as SEOLocale,
+    path: '/echipa',
+  })
 }
 
 export default async function TeamPage({ params }: LocalePageProps) {

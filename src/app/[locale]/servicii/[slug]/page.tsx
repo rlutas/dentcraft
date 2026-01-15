@@ -15,6 +15,7 @@ import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getServiceBySlug, getServiceSlugs, getFAQs, type Locale } from '@/lib/sanity/queries'
+import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -82,23 +83,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {}
   }
 
-  const title = service.seo?.metaTitle || service.title
-  const description = service.seo?.metaDescription || service.shortDescription || ''
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: service.seo?.ogImage
-        ? [urlFor(service.seo.ogImage).width(1200).height(630).url()]
-        : service.heroImage
-          ? [urlFor(service.heroImage).width(1200).height(630).url()]
-          : [],
-    },
-    robots: service.seo?.noIndex ? { index: false } : undefined,
+  // Build options object conditionally to avoid undefined values (exactOptionalPropertyTypes)
+  const metadataOptions: Parameters<typeof generateDynamicPageMetadata>[0] = {
+    title: service.title,
+    locale: locale as SEOLocale,
+    path: '/servicii/[slug]',
+    slug,
+    seo: service.seo,
+    imageUrlBuilder: (img) => urlFor(img).width(1200).height(630).url(),
   }
+
+  if (service.shortDescription) {
+    metadataOptions.description = service.shortDescription
+  }
+
+  if (service.heroImage) {
+    metadataOptions.fallbackImage = urlFor(service.heroImage).width(1200).height(630).url()
+  }
+
+  return generateDynamicPageMetadata(metadataOptions)
 }
 
 export default async function ServicePage({ params }: Props) {
