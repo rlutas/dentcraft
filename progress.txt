@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (12/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - COMPLETE (13/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -31,6 +31,7 @@
 - US-022: Create contact form API route
 - US-023: Create blog listing page
 - US-024: Create individual blog post page
+- US-025: Create legal pages template
 
 ## In Progress
 (None)
@@ -580,4 +581,24 @@
   - Video embeds need URL parsing to extract video IDs for YouTube/Vimeo
   - List items must be grouped before rendering to create proper ul/ol elements
   - Reading time calculated from word count (200 words/minute)
+---
+
+## Iteration 25 - US-025: Create legal pages template
+- What was implemented:
+  - Created `/src/app/[locale]/[...slug]/page.tsx` catch-all route for legal pages
+  - Supports slugs: politica-confidentialitate, politica-cookies, termeni-conditii (RO), and English variants
+  - Hero section with FileText icon and page title
+  - Last updated date displayed below title
+  - PortableText content rendering in a card layout
+  - Quick navigation links to other legal pages at bottom
+  - Back to home button
+  - Returns 404 for invalid slugs or missing content
+  - generateStaticParams for all legal pages in all locales
+- Files changed:
+  - src/app/[locale]/[...slug]/page.tsx (new)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Catch-all routes use `[...slug]` and receive slug as array in params
+  - Legal pages should validate against allowed slug list before querying Sanity
+  - Phase 2 (Inner Pages) is now COMPLETE - all 13 stories finished
 ---

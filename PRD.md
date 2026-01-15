@@ -334,13 +334,13 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to read privacy policy, cookie policy, and terms.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/[...slug]/page.tsx` for legal pages
-- [ ] Matches slugs: politica-confidentialitate, politica-cookies, termeni-conditii
-- [ ] Fetches content from Sanity legalPage documents
-- [ ] Simple layout with title and portable text content
-- [ ] Last updated date displayed
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/[...slug]/page.tsx` for legal pages
+- [x] Matches slugs: politica-confidentialitate, politica-cookies, termeni-conditii
+- [x] Fetches content from Sanity legalPage documents
+- [x] Simple layout with title and portable text content
+- [x] Last updated date displayed
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 
