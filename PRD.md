@@ -208,12 +208,12 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a user, I want to view detailed profile for each doctor.
 
 **Acceptance Criteria:**
-- [ ] Create `/src/app/[locale]/echipa/[slug]/page.tsx`
-- [ ] Displays: hero with photo, bio section, education list, certifications, services offered
-- [ ] Links to related services
-- [ ] Generates static params for all team members
-- [ ] Typecheck passes
-- [ ] Verify changes work in browser
+- [x] Create `/src/app/[locale]/echipa/[slug]/page.tsx`
+- [x] Displays: hero with photo, bio section, education list, certifications, services offered
+- [x] Links to related services
+- [x] Generates static params for all team members
+- [x] Typecheck passes
+- [x] Verify changes work in browser
 
 ---
 

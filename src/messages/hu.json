@@ -108,7 +108,12 @@
   },
   "team": {
     "title": "Csapatunk",
-    "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban."
+    "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban.",
+    "about": "Rolunk",
+    "education": "Tanulmanyok",
+    "certifications": "Tanusitvanyok",
+    "servicesOffered": "Szolgaltatasok",
+    "viewAll": "Teljes csapat"
   },
   "contact": {
     "title": "Kapcsolat",

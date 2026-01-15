@@ -108,7 +108,12 @@
   },
   "team": {
     "title": "Echipa noastra",
-    "subtitle": "Specialisti dedicati cu experienta vasta in stomatologie moderna."
+    "subtitle": "Specialisti dedicati cu experienta vasta in stomatologie moderna.",
+    "about": "Despre",
+    "education": "Studii",
+    "certifications": "Certificari",
+    "servicesOffered": "Servicii oferite",
+    "viewAll": "Vezi toata echipa"
   },
   "contact": {
     "title": "Contacteaza-ne",

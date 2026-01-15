@@ -2,7 +2,7 @@
 
 ## Current Status
 - **Phase 1:** CMS Foundation (US-001 to US-012) - COMPLETE (12/12 complete)
-- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (3/13 complete)
+- **Phase 2:** Inner Pages (US-013 to US-025) - IN PROGRESS (4/13 complete)
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
 
@@ -22,6 +22,7 @@
 - US-013: Create service page template with Sanity integration
 - US-014: Create services listing page
 - US-015: Create team listing page
+- US-016: Create individual team member page
 
 ## In Progress
 (None)
@@ -345,4 +346,30 @@
   - Specializations limited to 3 visible tags with "+N" overflow indicator
   - Same pattern as services page: fetch from Sanity, fallback to placeholder if empty
   - Image component with fill prop requires parent with position: relative and defined dimensions
+---
+
+## Iteration 16 - US-016: Create individual team member page
+- What was implemented:
+  - Created `/src/app/[locale]/echipa/[slug]/page.tsx` with full Sanity integration
+  - Hero section with photo (or User icon placeholder), name, role, and specialization tags
+  - Bio section rendering portable text content with BookOpen icon
+  - Education section showing degree, institution, and year in card layout
+  - Certifications section with 2-column grid layout
+  - Services offered section with links to individual service pages (typed routing)
+  - CTA section with appointment booking and "View all team" button
+  - `generateStaticParams` for static generation of all team members in all locales
+  - `generateMetadata` for SEO with title, description, and open graph images
+  - Added translation keys for team member page: about, education, certifications, servicesOffered, viewAll
+- Files changed:
+  - src/app/[locale]/echipa/[slug]/page.tsx (new)
+  - src/messages/ro.json (updated - added team section translations)
+  - src/messages/en.json (updated - added team section translations)
+  - src/messages/hu.json (updated - added team section translations)
+  - PRD.md (updated)
+  - progress.txt (updated)
+- Learnings for future iterations:
+  - Team member page follows same pattern as service page: fetch by slug, notFound() if not found
+  - PortableTextRenderer component can be reused between pages (consider extracting to shared component later)
+  - Typed routing for service links uses object format: `{ pathname: '/servicii/[slug]', params: { slug } }`
+  - 404 page is automatically shown when notFound() is called - works correctly
 ---

@@ -108,7 +108,12 @@
   },
   "team": {
     "title": "Our team",
-    "subtitle": "Dedicated specialists with extensive experience in modern dentistry."
+    "subtitle": "Dedicated specialists with extensive experience in modern dentistry.",
+    "about": "About",
+    "education": "Education",
+    "certifications": "Certifications",
+    "servicesOffered": "Services offered",
+    "viewAll": "View all team"
   },
   "contact": {
     "title": "Contact us",
