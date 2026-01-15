@@ -73,9 +73,9 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Description:** As a content manager, I need to manage team members/doctors in the CMS.
 
 **Acceptance Criteria:**
-- [ ] Create `sanity/schemas/documents/teamMember.ts` with fields: name, slug, role (localizedString), specializations (array), photo (image with hotspot), bio (localizedPortableText), education (array), certifications (array), services (references), order, seo
-- [ ] Export from schemas index
-- [ ] Typecheck passes
+- [x] Create `sanity/schemas/documents/teamMember.ts` with fields: name, slug, role (localizedString), specializations (array), photo (image with hotspot), bio (localizedPortableText), education (array), certifications (array), services (references), order, seo
+- [x] Export from schemas index
+- [x] Typecheck passes
 
 ---
 

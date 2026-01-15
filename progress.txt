@@ -1,7 +1,7 @@
 # Progress Log
 
 ## Current Status
-- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (2/12 complete)
+- **Phase 1:** CMS Foundation (US-001 to US-012) - IN PROGRESS (5/12 complete)
 - **Phase 2:** Inner Pages (US-013 to US-025) - NOT STARTED
 - **Phase 3:** Interactive Features (US-026 to US-036) - NOT STARTED
 - **Phase 4:** Polish & SEO (US-037 to US-042) - NOT STARTED
@@ -9,6 +9,9 @@
 ## Completed Stories
 - US-001: Initialize Sanity Studio project
 - US-002: Create localizedString and localizedText object schemas
+- US-003: Create SEO and portableText object schemas
+- US-004: Create Service document schema
+- US-005: Create TeamMember document schema
 
 ## In Progress
 (None)
@@ -70,4 +73,54 @@
   - Sanity uses defineType and defineField from 'sanity' package for schema definitions
   - Object schemas go in sanity/schemas/objects/ directory
   - All schemas must be exported from schemaTypes array in index.ts
+---
+
+## Iteration 3 - US-003: Create SEO and portableText object schemas
+- What was implemented:
+  - Created `sanity/schemas/objects/seo.ts` with metaTitle, metaDescription, ogImage, noIndex fields
+  - Created `sanity/schemas/objects/portableText.ts` with blocks (h2-h4, blockquote), lists, marks (strong/em/underline), link annotations, images with alt/caption, and video embed support
+  - Created `sanity/schemas/objects/localizedPortableText.ts` wrapping portableText for RO/EN/HU
+  - Updated `sanity/schemas/index.ts` to export all new schemas
+- Files changed:
+  - sanity/schemas/objects/seo.ts (new)
+  - sanity/schemas/objects/portableText.ts (new)
+  - sanity/schemas/objects/localizedPortableText.ts (new)
+  - sanity/schemas/index.ts (updated)
+- Learnings for future iterations:
+  - Use defineArrayMember for array items in Sanity schemas
+  - portableText is defined as type 'array' not 'object', containing block and other content types
+  - Video embed uses inline object type with name for custom block types
+---
+
+## Iteration 4 - US-004: Create Service document schema
+- What was implemented:
+  - Created `sanity/schemas/documents/service.ts` with all required fields: title (localizedString), slug, icon, shortDescription, description (localizedPortableText), benefits (array of objects), process (array of steps), heroImage, priceRange, seo, order
+  - Added validation for required fields (title, slug)
+  - Exported service schema from `sanity/schemas/index.ts`
+  - Organized index.ts with comments separating Objects and Documents
+- Files changed:
+  - sanity/schemas/documents/service.ts (new)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Document schemas go in sanity/schemas/documents/ directory (separate from objects/)
+  - Use `defineArrayMember` for inline object types in arrays
+  - Preview prepare function allows custom formatting in Sanity Studio list views
+  - Orderings allow custom sort options in Studio document lists
+---
+
+## Iteration 5 - US-005: Create TeamMember document schema
+- What was implemented:
+  - Created `sanity/schemas/documents/teamMember.ts` with all required fields
+  - Fields: name (string), slug, role (localizedString), specializations (array of objects), photo (image with hotspot), bio (localizedPortableText), education (array with institution/degree/year), certifications (array with name/issuer/year), services (references to service), order, seo
+  - Added validation for required fields (name, slug)
+  - Exported teamMember schema from `sanity/schemas/index.ts`
+- Files changed:
+  - sanity/schemas/documents/teamMember.ts (new)
+  - sanity/schemas/index.ts (updated)
+  - PRD.md (updated)
+- Learnings for future iterations:
+  - Reference fields use `defineArrayMember({ type: 'reference', to: [{ type: 'docType' }] })`
+  - Array of objects with preview prepare allows custom formatting with multiple select fields
+  - Name field uses plain string type (not localizedString) for proper person names
 ---
