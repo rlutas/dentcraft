@@ -7,6 +7,7 @@ import { locales, localeFlags, type Locale } from '@/i18n/config'
 import { cn } from '@/lib/utils'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 import MobileMenu from './MobileMenu'
 
 // Static routes without dynamic segments
@@ -30,6 +31,8 @@ const navItems: NavItem[] = [
   { href: '/servicii', key: 'services' },
   { href: '/echipa', key: 'team' },
   { href: '/preturi', key: 'prices' },
+  { href: '/galerie', key: 'gallery' },
+  { href: '/blog', key: 'blog' },
   { href: '/contact', key: 'contact' },
 ]
 
@@ -44,10 +47,10 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
 
-  // Handle scroll detection for glass morphism effect
+  // Handle scroll detection for transparent to solid transition
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      setIsScrolled(window.scrollY > 50)
     }
 
     handleScroll() // Check initial state
@@ -98,9 +101,9 @@ export default function Header() {
     <>
       <header
         className={cn(
-          'fixed top-0 right-0 left-0 z-50 transition-all duration-300 ease-out',
+          'fixed top-0 right-0 left-0 z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-white/80 shadow-header backdrop-blur-xl'
+            ? 'bg-white/95 shadow-md backdrop-blur-md'
             : 'bg-transparent'
         )}
       >
@@ -109,11 +112,16 @@ export default function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="group relative z-10 flex items-center gap-2"
+              className="group relative z-10 flex items-center"
             >
-              <span className="text-[22px] font-bold tracking-tight text-foreground transition-opacity duration-300 group-hover:opacity-70">
-                DENTCRAFT
-              </span>
+              <Image
+                src="/branding/LOGO_BLACK_FINAL.png"
+                alt="Dentcraft"
+                width={130}
+                height={32}
+                className="h-7 w-auto transition-opacity duration-300 group-hover:opacity-70"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation - Center */}

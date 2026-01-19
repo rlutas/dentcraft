@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { getFAQsByCategory, type Locale } from '@/lib/sanity/queries'
 import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getFAQSchema } from '@/lib/schema'
 import FAQPageClient from './FAQPageClient'
 
 // FAQ type based on Sanity schema
@@ -61,6 +62,19 @@ export default async function FAQPage({ params }: PageProps) {
   )
 }
 
+// Helper to extract plain text from Sanity block content
+function extractPlainText(blocks: SanityFAQ['answer']): string {
+  return blocks
+    .map((block) => {
+      if (block.children) {
+        return block.children.map((child) => child.text).join('')
+      }
+      return ''
+    })
+    .join(' ')
+    .trim()
+}
+
 async function FAQPageContent({
   faqsByCategory,
   hasAnyFAQs,
@@ -83,8 +97,23 @@ async function FAQPageContent({
     { key: 'appointments' as const, label: t('faq.categories.appointments'), faqs: faqsByCategory.appointments || [] },
   ].filter((cat) => cat.faqs.length > 0)
 
+  // Prepare FAQ schema data - flatten all FAQs from all categories
+  const allFaqs = Object.values(faqsByCategory)
+    .flat()
+    .filter(Boolean)
+    .map((faq) => ({
+      question: faq.question,
+      answer: extractPlainText(faq.answer),
+    }))
+
+  const faqSchema = getFAQSchema(allFaqs)
+
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section */}
       <section className="gradient-hero">
         <div className="container section">

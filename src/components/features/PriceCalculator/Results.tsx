@@ -74,6 +74,7 @@ type ResultsProps = {
   service: CalculatorService
   translations: {
     back: string
+    details: string
     disclaimer: string
     estimatedPrice: string
     material: string
@@ -84,6 +85,7 @@ type ResultsProps = {
     quantityUnit: string
     reset: string
     scheduleConsultation: string
+    service: string
   }
 }
 
@@ -155,12 +157,12 @@ export function Results({
       {/* Breakdown */}
       <div className="bg-white border border-[var(--color-border)] rounded-xl p-4 md:p-6 mb-6">
         <h4 className="text-sm font-medium text-muted uppercase tracking-wide mb-4">
-          Detalii
+          {translations.details}
         </h4>
         <div className="space-y-3">
           {/* Service */}
           <div className="flex justify-between items-center">
-            <span className="text-[var(--color-text)]">Serviciu</span>
+            <span className="text-[var(--color-text)]">{translations.service}</span>
             <span className="font-medium text-[var(--color-text)]">
               {service.title}
             </span>

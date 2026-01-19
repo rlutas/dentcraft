@@ -130,6 +130,7 @@ async function PricesPageContent({
   const calculatorTranslations = {
     back: t('priceCalculator.back'),
     calculate: t('priceCalculator.calculate'),
+    details: t('priceCalculator.details'),
     disclaimer: t('priceCalculator.disclaimer'),
     estimatedPrice: t('priceCalculator.estimatedPrice'),
     material: t('priceCalculator.material'),
@@ -146,6 +147,7 @@ async function PricesPageContent({
     reset: t('priceCalculator.reset'),
     scheduleConsultation: t('priceCalculator.scheduleConsultation'),
     selectService: t('priceCalculator.selectService'),
+    service: t('priceCalculator.service'),
     subtitle: t('priceCalculator.subtitle'),
     title: t('priceCalculator.title'),
   }
@@ -318,6 +320,48 @@ async function PricesPageContent({
   )
 }
 
+// Fallback services when Sanity has no data
+function getFallbackServices(t: Awaited<ReturnType<typeof getTranslations>>): CalculatorService[] {
+  return [
+    {
+      _id: 'fallback-general',
+      title: t('services.categories.generalDentistry'),
+      slug: 'stomatologie-generala',
+      icon: 'Stethoscope',
+    },
+    {
+      _id: 'fallback-cosmetic',
+      title: t('services.categories.cosmeticDentistry'),
+      slug: 'estetica-dentara',
+      icon: 'Sparkles',
+    },
+    {
+      _id: 'fallback-implants',
+      title: t('services.categories.implantology'),
+      slug: 'implantologie',
+      icon: 'Syringe',
+    },
+    {
+      _id: 'fallback-orthodontics',
+      title: t('services.categories.orthodontics'),
+      slug: 'ortodontie',
+      icon: 'Smile',
+    },
+    {
+      _id: 'fallback-pediatric',
+      title: t('services.categories.pediatric'),
+      slug: 'pedodontie',
+      icon: 'Baby',
+    },
+    {
+      _id: 'fallback-emergencies',
+      title: t('services.categories.emergencies'),
+      slug: 'urgente-dentare',
+      icon: 'AlertCircle',
+    },
+  ]
+}
+
 // Placeholder component when Sanity has no data
 async function PlaceholderPricesPage({
   calculatorServices,
@@ -332,6 +376,7 @@ async function PlaceholderPricesPage({
   const calculatorTranslations = {
     back: t('priceCalculator.back'),
     calculate: t('priceCalculator.calculate'),
+    details: t('priceCalculator.details'),
     disclaimer: t('priceCalculator.disclaimer'),
     estimatedPrice: t('priceCalculator.estimatedPrice'),
     material: t('priceCalculator.material'),
@@ -348,9 +393,15 @@ async function PlaceholderPricesPage({
     reset: t('priceCalculator.reset'),
     scheduleConsultation: t('priceCalculator.scheduleConsultation'),
     selectService: t('priceCalculator.selectService'),
+    service: t('priceCalculator.service'),
     subtitle: t('priceCalculator.subtitle'),
     title: t('priceCalculator.title'),
   }
+
+  // Use fallback services if Sanity has no data
+  const servicesForCalculator = calculatorServices.length > 0
+    ? calculatorServices
+    : getFallbackServices(t)
 
   const placeholderServices = [
     {
@@ -431,17 +482,11 @@ async function PlaceholderPricesPage({
                 {calculatorTranslations.subtitle}
               </p>
             </div>
-            {calculatorServices.length > 0 ? (
-              <PriceCalculator
-                locale={locale}
-                services={calculatorServices}
-                translations={calculatorTranslations}
-              />
-            ) : (
-              <div className="card p-8 text-center">
-                <p className="text-muted">{t('priceCalculator.noServicesAvailable')}</p>
-              </div>
-            )}
+            <PriceCalculator
+              locale={locale}
+              services={servicesForCalculator}
+              translations={calculatorTranslations}
+            />
           </div>
         </div>
       </section>

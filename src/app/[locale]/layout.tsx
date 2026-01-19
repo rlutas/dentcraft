@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { generateRootMetadata, type Locale } from '@/lib/seo'
+import { getOrganizationSchema } from '@/lib/schema'
 import { Header, Footer } from '@/components/layout'
 import { CookieConsentWrapper } from '@/components/features/CookieConsent/CookieConsentWrapper'
 import { WhatsAppButtonWrapper } from '@/components/features/WhatsAppButton/WhatsAppButtonWrapper'
@@ -43,6 +44,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationSchema()) }}
+        />
         <NextIntlClientProvider messages={messages}>
           <div className="relative flex min-h-screen flex-col">
             <Header />

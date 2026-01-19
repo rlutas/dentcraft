@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllTeamMembers, type Locale } from '@/lib/sanity/queries'
 import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { fallbackTeamMembers } from '@/lib/fallback-team'
 import type { LocalePageProps } from '@/types'
 
 // Team member type based on Sanity schema
@@ -167,27 +168,6 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
 async function PlaceholderTeamPage() {
   const t = await getTranslations()
 
-  const placeholderMembers = [
-    {
-      key: 'doctor1',
-      name: 'Dr. Razvan Petric',
-      role: 'Medic Stomatolog',
-      specializations: ['Implantologie', 'Estetica Dentara'],
-    },
-    {
-      key: 'doctor2',
-      name: 'Dr. Ana Popescu',
-      role: 'Medic Ortodont',
-      specializations: ['Ortodontie', 'Aparate Invizibile'],
-    },
-    {
-      key: 'doctor3',
-      name: 'Dr. Mihai Ionescu',
-      role: 'Medic Stomatolog',
-      specializations: ['Stomatologie Generala', 'Pedodontie'],
-    },
-  ]
-
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -205,14 +185,28 @@ async function PlaceholderTeamPage() {
       {/* Team Grid */}
       <section className="section bg-white">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {placeholderMembers.map((member) => (
-              <div key={member.key} className="card group">
-                {/* Photo Placeholder */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {fallbackTeamMembers.map((member) => (
+              <Link
+                key={member.key}
+                className="card group cursor-pointer"
+                href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
+              >
+                {/* Photo */}
                 <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-5 bg-[var(--color-accent-light)]">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <User className="w-20 h-20 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
-                  </div>
+                  {member.photo ? (
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <User className="w-20 h-20 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
+                    </div>
+                  )}
                 </div>
 
                 {/* Name */}
@@ -236,11 +230,11 @@ async function PlaceholderTeamPage() {
                 </div>
 
                 {/* View Profile Link */}
-                <span className="flex items-center gap-2 font-semibold text-body-sm text-muted mt-auto">
+                <span className="flex items-center gap-2 font-semibold text-body-sm group-hover:gap-3 transition-all mt-auto">
                   {t('common.learnMore')}
                   <span aria-hidden="true">&rarr;</span>
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

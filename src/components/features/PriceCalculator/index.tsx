@@ -21,6 +21,7 @@ type PriceCalculatorProps = {
   translations: {
     back: string
     calculate: string
+    details: string
     disclaimer: string
     estimatedPrice: string
     material: string
@@ -37,6 +38,7 @@ type PriceCalculatorProps = {
     reset: string
     scheduleConsultation: string
     selectService: string
+    service: string
     subtitle: string
     title: string
   }

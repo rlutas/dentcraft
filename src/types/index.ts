@@ -213,3 +213,40 @@ export type SiteSettings = {
   googleMapsEmbed?: string
   googleReviewsUrl?: string
 }
+
+/**
+ * Localized string for multi-language support
+ */
+export type LocalizedString = {
+  ro: string
+  en: string
+  hu: string
+}
+
+/**
+ * Google Review item
+ */
+export type GoogleReview = {
+  id: string
+  author: string
+  rating: number
+  date: LocalizedString
+  text: LocalizedString
+  photoUrl: string | null
+  relativeDate?: string
+  localGuide?: boolean
+  reviewCount?: number
+  photoCount?: number
+}
+
+/**
+ * Google Reviews data structure
+ */
+export type GoogleReviewsData = {
+  placeId: string
+  rating: number
+  totalReviews: number
+  lastUpdated: string
+  googleMapsUrl?: string
+  reviews: GoogleReview[]
+}

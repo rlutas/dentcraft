@@ -11,6 +11,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { fallbackServices, getFallbackServiceBySlug, getFallbackServiceSlugs } from '@/lib/fallback-services'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
@@ -65,11 +66,15 @@ type FAQ = {
 // Generate static paths for all services in all locales
 export async function generateStaticParams() {
   const serviceSlugs = await getServiceSlugs()
+  const fallbackSlugs = getFallbackServiceSlugs()
+
+  // Combine Sanity slugs with fallback slugs (dedupe in case they overlap)
+  const allSlugs = [...new Set([...serviceSlugs.map(s => s.slug), ...fallbackSlugs])]
 
   return routing.locales.flatMap((locale) =>
-    serviceSlugs.map((item) => ({
+    allSlugs.map((slug) => ({
       locale,
-      slug: item.slug,
+      slug,
     }))
   )
 }
@@ -78,8 +83,20 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params
   const service = await getServiceBySlug(slug, locale as Locale) as Service | null
+  const t = await getTranslations({ locale })
 
+  // If no Sanity service, check for fallback service
   if (!service) {
+    const fallbackService = getFallbackServiceBySlug(slug)
+    if (fallbackService) {
+      return generateDynamicPageMetadata({
+        title: t(`services.fallback.${fallbackService.titleKey}`),
+        description: t(`services.fallback.${fallbackService.descriptionKey}`),
+        locale: locale as SEOLocale,
+        path: '/servicii/[slug]',
+        slug,
+      })
+    }
     return {}
   }
 
@@ -113,7 +130,12 @@ export default async function ServicePage({ params }: Props) {
     getFAQs(locale as Locale, { serviceSlug: slug }) as Promise<FAQ[]>,
   ])
 
+  // If no Sanity service, check for fallback service
   if (!service) {
+    const fallbackService = getFallbackServiceBySlug(slug)
+    if (fallbackService) {
+      return <FallbackServicePageContent fallbackService={fallbackService} />
+    }
     notFound()
   }
 
@@ -367,5 +389,157 @@ function FAQAccordionItem({ question, answer }: { question: string; answer: Arra
       </summary>
       <p className="mt-4 text-muted">{answerText}</p>
     </details>
+  )
+}
+
+// Fallback service page content when Sanity has no data
+async function FallbackServicePageContent({ fallbackService }: { fallbackService: typeof fallbackServices[number] }) {
+  const t = await getTranslations()
+  const ServiceIcon = fallbackService.Icon
+
+  return (
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="gradient-hero">
+        <div className="container section">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div>
+              <div className="w-16 h-16 rounded-2xl bg-[var(--color-accent-light)] flex items-center justify-center mb-6 text-[var(--color-primary)]">
+                {fallbackService.iconPath ? (
+                  <Image
+                    alt=""
+                    className="w-8 h-8"
+                    height={32}
+                    src={fallbackService.iconPath}
+                    width={32}
+                  />
+                ) : (
+                  <ServiceIcon className="w-8 h-8" strokeWidth={1.5} />
+                )}
+              </div>
+
+              <h1 className="mb-6">{t(`services.fallback.${fallbackService.titleKey}`)}</h1>
+
+              <p className="text-body-lg text-muted mb-8">
+                {t(`services.fallback.${fallbackService.descriptionKey}`)}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link className="btn btn-primary btn-lg" href="/contact">
+                  {t('common.bookAppointment')}
+                </Link>
+                <a
+                  className="btn btn-secondary btn-lg flex items-center gap-2"
+                  href="tel:+40741199977"
+                >
+                  <Phone className="w-5 h-5" strokeWidth={1.5} />
+                  0741 199 977
+                </a>
+              </div>
+            </div>
+
+            {/* Placeholder image area */}
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-[var(--color-accent-light)] flex items-center justify-center">
+              {fallbackService.iconPath ? (
+                <Image
+                  alt=""
+                  className="w-32 h-32 opacity-30"
+                  height={128}
+                  src={fallbackService.iconPath}
+                  width={128}
+                />
+              ) : (
+                <ServiceIcon className="w-32 h-32 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      {fallbackService.benefits && fallbackService.benefits.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2>{t('services.benefits')}</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {fallbackService.benefits.map((benefit, index) => (
+                <div key={index} className="card">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center mb-4">
+                    <CheckCircle className="w-6 h-6 text-[var(--color-success)]" strokeWidth={1.5} />
+                  </div>
+                  <h4 className="mb-3">{t(`services.fallback.${benefit.titleKey}`)}</h4>
+                  <p className="text-body-sm text-muted">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Process Section */}
+      {fallbackService.process && fallbackService.process.length > 0 && (
+        <section className="section bg-white">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2>{t('services.process')}</h2>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <div className="relative">
+                {/* Timeline line */}
+                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[var(--color-border)]" />
+
+                {/* Steps */}
+                <div className="space-y-8">
+                  {fallbackService.process.map((step, index) => (
+                    <div key={index} className="relative flex gap-6">
+                      {/* Step number */}
+                      <div className="relative z-10 w-12 h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white font-bold shrink-0">
+                        {step.stepNumber}
+                      </div>
+
+                      {/* Step content */}
+                      <div className="card flex-1 !py-5">
+                        <div className="flex items-center gap-3 mb-2">
+                          <Clock className="w-4 h-4 text-[var(--color-secondary)]" strokeWidth={1.5} />
+                          <span className="text-body-sm text-muted">{t('services.step')} {step.stepNumber}</span>
+                        </div>
+                        <h4 className="mb-2">{t(`services.fallback.${step.titleKey}`)}</h4>
+                        <p className="text-body-sm text-muted">{t(`services.fallback.${step.descriptionKey}`)}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 bg-[var(--color-accent)]">
+        <div className="container">
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
+            <h2>{t('cta.title')}</h2>
+            <p className="mt-4 text-muted text-body-lg">
+              {t('cta.subtitle')}
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link className="btn btn-lg btn-primary" href="/contact">
+                {t('common.bookAppointment')}
+              </Link>
+              <Link className="btn btn-lg btn-secondary flex items-center gap-2" href="/servicii">
+                {t('common.seeAll')}
+                <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

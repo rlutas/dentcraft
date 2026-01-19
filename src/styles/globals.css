@@ -321,3 +321,823 @@
 .animate-pulse-whatsapp {
   animation: pulse-whatsapp 2s ease-in-out infinite;
 }
+
+/* ============================================
+   TESTIMONIALS SECTION STYLES
+   ============================================ */
+
+/* Testimonials background - subtle teal/blue tint */
+.testimonials-bg {
+  background: linear-gradient(
+    135deg,
+    #f0f7f7 0%,
+    #f5f8f8 50%,
+    #eef5f4 100%
+  );
+}
+
+/* Featured testimonial card */
+.testimonial-card-featured {
+  position: relative;
+  background-color: var(--color-card);
+  border-radius: var(--radius-3xl);
+  padding: 2.5rem;
+  box-shadow: 0 8px 40px rgb(0 0 0 / 0.08);
+  border: 1px solid var(--color-border-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card-featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 60px rgb(0 0 0 / 0.12);
+}
+
+/* Standard testimonial card */
+.testimonial-card {
+  position: relative;
+  background-color: var(--color-card);
+  border-radius: var(--radius-2xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Gradient avatars for testimonials */
+.testimonial-avatar-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.testimonial-avatar-gradient-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.testimonial-avatar-gradient-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* ============================================
+   WHY US SECTION STYLES
+   ============================================ */
+
+/* Why Us pattern background */
+.why-us-pattern {
+  background-image: radial-gradient(circle at 1px 1px, var(--color-foreground) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* Why Us item container */
+.why-us-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--color-card);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+}
+
+.why-us-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-accent);
+}
+
+/* Number badge */
+.why-us-number {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  background: var(--color-accent-light);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Icon container base */
+.why-us-icon-container {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.why-us-item:hover .why-us-icon-container {
+  transform: scale(1.05);
+}
+
+/* Icon shapes with gradients */
+.why-us-icon-circle {
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.why-us-icon-hexagon {
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.why-us-icon-rounded-square {
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Connector line between items */
+.why-us-connector {
+  position: absolute;
+  bottom: -2rem;
+  left: 3.5rem;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+}
+
+/* ============================================
+   HERO SECTION STYLES
+   ============================================ */
+
+/* Hero section background with enhanced gradient */
+.hero-section {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(250, 248, 245, 0.97) 0%,
+      rgba(245, 240, 232, 0.95) 30%,
+      rgba(232, 222, 208, 0.9) 70%,
+      rgba(212, 196, 176, 0.85) 100%
+    );
+  position: relative;
+}
+
+/* Hero background pattern - subtle dot grid */
+.hero-bg-pattern {
+  background-image:
+    radial-gradient(circle at 2px 2px, rgba(26, 26, 26, 0.03) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+/* Hero badge with subtle animation */
+.hero-badge {
+  animation: badge-pulse 3s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 196, 176, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 196, 176, 0.3);
+  }
+}
+
+/* Hero visual container */
+.hero-visual {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Floating card animations */
+.hero-float-card {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.hero-float-card-delayed {
+  animation: hero-float 6s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.hero-float-card-slow {
+  animation: hero-float-slow 8s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes hero-float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-8px) translateX(4px);
+  }
+  75% {
+    transform: translateY(4px) translateX(-4px);
+  }
+}
+
+/* Floating dots animations */
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-15px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-5px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  75% {
+    transform: translateY(5px) translateX(-8px);
+  }
+}
+
+/* Gentle drift animation for decorative icons */
+@keyframes drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(8px, -12px) rotate(5deg);
+  }
+  40% {
+    transform: translate(-5px, -8px) rotate(-3deg);
+  }
+  60% {
+    transform: translate(10px, 6px) rotate(4deg);
+  }
+  80% {
+    transform: translate(-8px, 10px) rotate(-5deg);
+  }
+}
+
+/* Morphing blob animations */
+.animate-morph {
+  animation: morph 20s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.animate-morph-reverse {
+  animation: morph-reverse 25s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes morph {
+  0%, 100% {
+    d: path("M320 200C320 280 260 340 180 340C100 340 40 280 40 200C40 120 100 60 180 60C260 60 320 120 320 200Z");
+  }
+  25% {
+    d: path("M330 210C330 290 250 350 170 340C90 330 30 270 50 190C70 110 130 50 200 60C270 70 330 130 330 210Z");
+  }
+  50% {
+    d: path("M310 190C310 270 270 330 190 340C110 350 50 290 40 210C30 130 80 60 160 50C240 40 310 110 310 190Z");
+  }
+  75% {
+    d: path("M340 200C340 280 280 340 190 330C100 320 40 260 50 180C60 100 120 50 200 60C280 70 340 120 340 200Z");
+  }
+}
+
+@keyframes morph-reverse {
+  0%, 100% {
+    d: path("M340 180C340 260 280 320 200 320C120 320 60 260 60 180C60 100 120 40 200 40C280 40 340 100 340 180Z");
+  }
+  33% {
+    d: path("M350 190C350 270 290 330 210 330C130 330 70 270 60 190C50 110 110 50 190 40C270 30 350 100 350 190Z");
+  }
+  66% {
+    d: path("M330 170C330 250 270 310 190 310C110 310 50 250 70 170C90 90 140 40 220 50C300 60 330 90 330 170Z");
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Trust stat hover effect */
+.trust-stat {
+  cursor: default;
+  position: relative;
+}
+
+.trust-stat::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: var(--color-accent-light);
+  border-radius: var(--radius-xl);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.trust-stat:hover::before {
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+/* ============================================
+   SECTION BACKGROUNDS & DIVIDERS
+   ============================================ */
+
+/* Section with warm cream/beige gradient */
+.section-cream {
+  background: linear-gradient(
+    180deg,
+    #faf8f5 0%,
+    #f5f0e8 50%,
+    #f0ebe3 100%
+  );
+}
+
+/* Section with light gray/neutral background */
+.section-light {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fafafa 100%
+  );
+}
+
+/* Section with warm accent background */
+.section-warm {
+  background: linear-gradient(
+    135deg,
+    #f5ede3 0%,
+    #ebe0d2 50%,
+    #e8dccb 100%
+  );
+}
+
+/* Dark premium section */
+.section-dark {
+  background: linear-gradient(
+    135deg,
+    #1a1a1a 0%,
+    #252525 50%,
+    #1f1f1f 100%
+  );
+}
+
+/* CTA gradient section */
+.section-cta {
+  background: linear-gradient(
+    135deg,
+    #1a1a1a 0%,
+    #2a2a2a 30%,
+    #1a1a1a 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+/* CTA background pattern */
+.section-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Wave divider SVG styling */
+.section-divider {
+  position: relative;
+  margin-top: -1px;
+}
+
+.section-divider-wave {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section-divider-wave-flipped {
+  transform: scaleY(-1);
+}
+
+/* Subtle top border divider */
+.section-border-top {
+  border-top: 1px solid var(--color-border-light);
+}
+
+/* Gradient line divider */
+.section-divider-line {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent) 20%,
+    var(--color-accent) 80%,
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+/* ============================================
+   LOCATION SECTION STYLES
+   ============================================ */
+
+.location-card {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fdfcfb 100%
+  );
+  border-radius: var(--radius-3xl);
+  padding: 3rem;
+  box-shadow: 0 8px 40px rgb(0 0 0 / 0.06);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.location-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent) 0%,
+    var(--color-accent-hover) 50%,
+    var(--color-accent) 100%
+  );
+}
+
+.location-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  transition: all 0.3s ease;
+}
+
+.location-info-item:hover {
+  background: var(--color-accent-light);
+  transform: translateY(-4px);
+}
+
+.location-icon-wrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.location-info-item:hover .location-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.location-icon-address {
+  background: linear-gradient(135deg, #e8dccb 0%, #d4c4b0 100%);
+  color: var(--color-primary);
+}
+
+.location-icon-phone {
+  background: linear-gradient(135deg, #d4c4b0 0%, #c4b4a0 100%);
+  color: var(--color-primary);
+}
+
+.location-icon-hours {
+  background: linear-gradient(135deg, #c4b4a0 0%, #b4a490 100%);
+  color: var(--color-primary);
+}
+
+/* ============================================
+   CTA SECTION ENHANCED STYLES
+   ============================================ */
+
+.cta-card {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fdfcfb 100%
+  );
+  border-radius: var(--radius-3xl);
+  padding: 3.5rem 2.5rem;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .cta-card {
+    padding: 4rem 4rem;
+  }
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--color-accent-light) 0%, transparent 70%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.cta-card::after {
+  content: '';
+  position: absolute;
+  bottom: -50%;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* CTA decorative elements */
+.cta-decoration {
+  position: absolute;
+  pointer-events: none;
+}
+
+.cta-decoration-1 {
+  top: 2rem;
+  left: 2rem;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.cta-decoration-2 {
+  bottom: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent-light);
+  border-radius: var(--radius-lg);
+  opacity: 0.4;
+}
+
+/* ============================================
+   DARK TESTIMONIALS SECTION
+   ============================================ */
+
+.testimonials-dark {
+  background: linear-gradient(
+    135deg,
+    #1a1a1a 0%,
+    #252525 30%,
+    #1f1f1f 70%,
+    #1a1a1a 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.02) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* Testimonial card on dark background */
+.testimonial-card-dark {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-2xl);
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.testimonial-card-dark:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Featured testimonial card on dark */
+.testimonial-card-featured-dark {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-3xl);
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.testimonial-card-featured-dark:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   SERVICES SECTION - PREMIUM MINIMAL
+   ============================================ */
+
+/* Clean white background with good contrast against hero */
+.services-section {
+  background-color: #ffffff;
+}
+
+/* Service card - clean white with subtle shadow */
+.service-card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-2xl);
+  padding: 2rem;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.04);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Elegant lift effect on hover */
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.1);
+  border-color: var(--color-accent);
+}
+
+/* Large icon container with subtle gradient */
+.service-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-light) 0%,
+    var(--color-accent) 100%
+  );
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   WHY US SECTION ENHANCED
+   ============================================ */
+
+.why-us-section {
+  position: relative;
+}
+
+.why-us-grid-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border-light);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.why-us-grid-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent);
+}
+
+.why-us-grid-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.why-us-grid-item:hover::before {
+  opacity: 1;
+}
+
+.why-us-icon-box {
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.why-us-grid-item:hover .why-us-icon-box {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.why-us-icon-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.why-us-icon-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.why-us-icon-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.why-us-icon-4 {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Section header badge */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.section-badge-line {
+  width: 2rem;
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.section-badge-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted-foreground);
+}

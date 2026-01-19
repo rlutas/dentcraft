@@ -15,6 +15,7 @@ import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -59,10 +60,16 @@ type TeamMember = {
 export async function generateStaticParams() {
   const teamMemberSlugs = await getTeamMemberSlugs()
 
+  // Combine Sanity slugs with fallback slugs
+  const allSlugs = new Set<string>([
+    ...teamMemberSlugs.map((item) => item.slug),
+    ...fallbackTeamMembers.map((member) => member.slug),
+  ])
+
   return routing.locales.flatMap((locale) =>
-    teamMemberSlugs.map((item) => ({
+    Array.from(allSlugs).map((slug) => ({
       locale,
-      slug: item.slug,
+      slug,
     }))
   )
 }
@@ -72,25 +79,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params
   const member = await getTeamMemberBySlug(slug, locale as Locale) as TeamMember | null
 
-  if (!member) {
+  // Try to find fallback member if Sanity returns null
+  const fallbackMember = !member
+    ? fallbackTeamMembers.find((m) => m.slug === slug)
+    : null
+
+  if (!member && !fallbackMember) {
     return {}
   }
 
   // Build options object conditionally to avoid undefined values (exactOptionalPropertyTypes)
   const metadataOptions: Parameters<typeof generateDynamicPageMetadata>[0] = {
-    title: member.name,
+    title: member?.name ?? fallbackMember?.name ?? '',
     locale: locale as SEOLocale,
     path: '/echipa/[slug]',
     slug,
-    seo: member.seo,
+    seo: member?.seo ?? null,
     imageUrlBuilder: (img) => urlFor(img).width(1200).height(630).url(),
   }
 
-  if (member.role) {
-    metadataOptions.description = member.role
+  const role = member?.role ?? fallbackMember?.role
+  if (role) {
+    metadataOptions.description = role
   }
 
-  if (member.photo) {
+  if (member?.photo) {
     metadataOptions.fallbackImage = urlFor(member.photo).width(1200).height(630).url()
   }
 
@@ -103,7 +116,12 @@ export default async function TeamMemberPage({ params }: Props) {
 
   const member = await getTeamMemberBySlug(slug, locale as Locale) as TeamMember | null
 
+  // Try to find fallback member if Sanity returns null
   if (!member) {
+    const fallbackMember = fallbackTeamMembers.find((m) => m.slug === slug)
+    if (fallbackMember) {
+      return <FallbackTeamMemberPageContent member={fallbackMember} />
+    }
     notFound()
   }
 
@@ -342,6 +360,172 @@ function PortableTextRenderer({ content }: { content: Array<{ _type: string; [ke
         }
         return null
       })}
+    </div>
+  )
+}
+
+// Fallback page content when using placeholder data
+async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamMember }) {
+  const t = await getTranslations()
+
+  return (
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="gradient-hero">
+        <div className="container section">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Photo */}
+            <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 rounded-3xl overflow-hidden shadow-[var(--shadow-card)] bg-[var(--color-accent-light)]">
+              {member.photo ? (
+                <Image
+                  src={member.photo}
+                  alt={member.name}
+                  fill
+                  priority
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <User className="w-32 h-32 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
+                </div>
+              )}
+            </div>
+
+            {/* Content */}
+            <div>
+              <h1 className="mb-4">{member.name}</h1>
+
+              <p className="text-body-lg font-medium text-[var(--color-primary)] mb-6">
+                {member.role}
+              </p>
+
+              {/* Specializations */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {member.specializations.map((spec, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 text-body-sm bg-[var(--color-accent-light)] text-[var(--color-text)] rounded-full font-medium"
+                  >
+                    {spec}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link className="btn btn-primary btn-lg" href="/contact">
+                  {t('common.bookAppointment')}
+                </Link>
+                <a
+                  className="btn btn-secondary btn-lg flex items-center gap-2"
+                  href="tel:+40741199977"
+                >
+                  <Phone className="w-5 h-5" strokeWidth={1.5} />
+                  0741 199 977
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bio Section */}
+      <section className="section bg-white">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center">
+                <BookOpen className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+              </div>
+              <h2 className="!mb-0">{t('team.about')}</h2>
+            </div>
+            <div className="prose prose-lg">
+              <p>{member.bio}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      {member.education.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="max-w-3xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+                </div>
+                <h2 className="!mb-0">{t('team.education')}</h2>
+              </div>
+
+              <div className="space-y-4">
+                {member.education.map((edu, index) => (
+                  <div key={index} className="card">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h4 className="mb-1">{edu.degree}</h4>
+                        <p className="text-muted">{edu.institution}</p>
+                      </div>
+                      <span className="text-body-sm font-semibold text-[var(--color-primary)] bg-[var(--color-accent-light)] px-3 py-1 rounded-full shrink-0">
+                        {edu.year}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Certifications Section */}
+      {member.certifications.length > 0 && (
+        <section className="section bg-white">
+          <div className="container">
+            <div className="max-w-3xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center">
+                  <Award className="w-6 h-6 text-[var(--color-primary)]" strokeWidth={1.5} />
+                </div>
+                <h2 className="!mb-0">{t('team.certifications')}</h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {member.certifications.map((cert, index) => (
+                  <div key={index} className="card">
+                    <h4 className="mb-1">{cert.name}</h4>
+                    <p className="text-body-sm text-muted mb-2">{cert.issuer}</p>
+                    <span className="text-body-sm font-semibold text-[var(--color-secondary)]">
+                      {cert.year}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 bg-[var(--color-accent)]">
+        <div className="container">
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
+            <h2>{t('cta.title')}</h2>
+            <p className="mt-4 text-muted text-body-lg">
+              {t('cta.subtitle')}
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link className="btn btn-lg btn-primary" href="/contact">
+                {t('common.bookAppointment')}
+              </Link>
+              <Link className="btn btn-lg btn-secondary flex items-center gap-2" href="/echipa">
+                {t('team.viewAll')}
+                <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

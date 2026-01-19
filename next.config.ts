@@ -11,13 +11,23 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
-      // Add CDN patterns here when needed
-      // Example for Sanity CDN:
-      // {
-      //   protocol: 'https',
-      //   hostname: 'cdn.sanity.io',
-      // },
+      // Sanity CDN for CMS images
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'drpetric.ro',
+      },
+      // Google user profile photos (for Google Reviews)
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
     ],
+    // Allow unoptimized external images
+    unoptimized: false,
   },
 
   // Security headers

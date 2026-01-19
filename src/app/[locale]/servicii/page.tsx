@@ -1,7 +1,9 @@
 import type { LucideIcon } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { fallbackServices } from '@/lib/fallback-services'
 import { Link } from '@/i18n/navigation'
 import { getAllServices, type Locale } from '@/lib/sanity/queries'
 import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
@@ -136,18 +138,9 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
   )
 }
 
-// Placeholder component when Sanity has no data
+// Placeholder component when Sanity has no data - uses fallback services with working links
 async function PlaceholderServicesPage() {
   const t = await getTranslations()
-
-  const placeholderServices = [
-    { key: 'generalDentistry', Icon: LucideIcons.Stethoscope },
-    { key: 'cosmeticDentistry', Icon: LucideIcons.Sparkles },
-    { key: 'implantology', Icon: LucideIcons.Settings },
-    { key: 'orthodontics', Icon: LucideIcons.Smile },
-    { key: 'pediatric', Icon: LucideIcons.Baby },
-    { key: 'emergencies', Icon: LucideIcons.AlertTriangle },
-  ]
 
   return (
     <div className="flex flex-col">
@@ -167,20 +160,34 @@ async function PlaceholderServicesPage() {
       <section className="section bg-white">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {placeholderServices.map((service) => (
-              <div key={service.key} className="card group">
+            {fallbackServices.map((service) => (
+              <Link
+                key={service.slug}
+                className="card group cursor-pointer"
+                href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+              >
                 <div className="w-14 h-14 rounded-2xl bg-[var(--color-accent-light)] flex items-center justify-center mb-5 text-[var(--color-primary)]">
-                  <service.Icon className="w-7 h-7" strokeWidth={1.5} />
+                  {service.iconPath ? (
+                    <Image
+                      src={service.iconPath}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="w-7 h-7"
+                    />
+                  ) : (
+                    <service.Icon className="w-7 h-7" strokeWidth={1.5} />
+                  )}
                 </div>
-                <h3 className="mb-3">{t(`services.categories.${service.key}`)}</h3>
+                <h3 className="mb-3">{t(`services.fallback.${service.titleKey}`)}</h3>
                 <p className="text-body-sm text-muted mb-5">
-                  {t(`services.descriptions.${service.key}`)}
+                  {t(`services.fallback.${service.descriptionKey}`)}
                 </p>
-                <span className="flex items-center gap-2 font-semibold text-body-sm text-muted">
+                <span className="flex items-center gap-2 font-semibold text-body-sm group-hover:gap-3 transition-all">
                   {t('common.learnMore')}
                   <span aria-hidden="true">&rarr;</span>
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

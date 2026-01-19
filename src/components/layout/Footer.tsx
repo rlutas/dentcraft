@@ -1,7 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
+import { CONTACT } from '@/lib/constants/contact'
 
 const FacebookIcon = () => (
   <svg
@@ -131,9 +133,13 @@ export function Footer() {
           {/* Brand column */}
           <div className="space-y-4">
             <Link className="inline-block" href="/">
-              <span className="text-2xl font-bold tracking-tight">
-                DENTCRAFT
-              </span>
+              <Image
+                src="/branding/LOGO_WHITE_FINAL.png"
+                alt="Dentcraft"
+                width={140}
+                height={35}
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-sm leading-relaxed text-white/70">
               {t('description')}
@@ -189,7 +195,7 @@ export function Footer() {
               <li>
                 <a
                   className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-200 hover:text-[#D4C4B0]"
-                  href="https://maps.google.com/?q=Str.+B.S.+Delavrancea+3,+Satu+Mare"
+                  href={CONTACT.googleMapsUrl}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -202,7 +208,7 @@ export function Footer() {
               <li>
                 <a
                   className="flex items-center gap-3 text-sm text-white/70 transition-colors duration-200 hover:text-[#D4C4B0]"
-                  href="tel:+40741199977"
+                  href={`tel:${CONTACT.phoneFormatted.replace(/\s/g, '')}`}
                 >
                   <span className="shrink-0">
                     <PhoneIcon />
@@ -213,7 +219,7 @@ export function Footer() {
               <li>
                 <a
                   className="flex items-center gap-3 text-sm text-white/70 transition-colors duration-200 hover:text-[#D4C4B0]"
-                  href="mailto:dentcraftsm@gmail.com"
+                  href={`mailto:${CONTACT.email}`}
                 >
                   <span className="shrink-0">
                     <MailIcon />

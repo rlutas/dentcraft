@@ -144,11 +144,11 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
       role="dialog"
     >
       <div className="mx-auto max-w-4xl">
-        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl">
+        <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-xl">
           {/* Close button */}
           <button
             aria-label={translations.onlyEssential}
-            className="absolute top-3 right-3 rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            className="absolute top-3 right-3 rounded-full p-1.5 text-[var(--color-secondary)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]"
             onClick={handleClose}
             type="button"
           >
@@ -165,13 +165,13 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
               {/* Content */}
               <div className="flex-1">
                 <h2
-                  className="text-lg font-semibold text-gray-900"
+                  className="text-lg font-semibold text-[var(--color-foreground)]"
                   id="cookie-consent-title"
                 >
                   {translations.title}
                 </h2>
                 <p
-                  className="mt-1 text-sm text-gray-600"
+                  className="mt-1 text-sm text-[var(--color-secondary)]"
                   id="cookie-consent-description"
                 >
                   {translations.description}{' '}
@@ -194,14 +194,14 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
                     {translations.acceptAll}
                   </button>
                   <button
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                    className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
                     onClick={handleEssentialOnly}
                     type="button"
                   >
                     {translations.onlyEssential}
                   </button>
                   <button
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                    className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
                     onClick={handleCustomize}
                     type="button"
                   >
@@ -224,46 +224,46 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
         >
           <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl">
             {/* Modal Header */}
-            <div className="sticky top-0 z-10 border-b border-gray-100 bg-white px-6 py-4">
+            <div className="sticky top-0 z-10 border-b border-[var(--color-border-light)] bg-white px-6 py-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-[var(--color-foreground)]">
                   {translations.preferencesTitle}
                 </h3>
                 <button
                   aria-label={translations.onlyEssential}
-                  className="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                  className="rounded-full p-1.5 text-[var(--color-secondary)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]"
                   onClick={() => setShowModal(false)}
                   type="button"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-[var(--color-secondary)]">
                 {translations.preferencesDescription}
               </p>
             </div>
 
             {/* Cookie Categories */}
-            <div className="divide-y divide-gray-100 px-6">
+            <div className="divide-y divide-[var(--color-border-light)] px-6">
               {/* Essential Cookies - Always enabled */}
               <div className="py-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h4 className="font-medium text-gray-900">
+                      <h4 className="font-medium text-[var(--color-foreground)]">
                         {translations.essentialTitle}
                       </h4>
-                      <Lock className="h-4 w-4 text-gray-400" />
+                      <Lock className="h-4 w-4 text-[var(--color-secondary)]" />
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-[var(--color-secondary)]">
                       {translations.essentialDescription}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-green-600">
+                    <span className="text-xs font-medium text-[var(--color-success)]">
                       {translations.alwaysActive}
                     </span>
-                    <div className="relative h-6 w-11 cursor-not-allowed rounded-full bg-green-500">
+                    <div className="relative h-6 w-11 cursor-not-allowed rounded-full bg-[var(--color-success)]">
                       <span className="absolute top-0.5 right-0.5 h-5 w-5 rounded-full bg-white shadow-sm" />
                     </div>
                   </div>
@@ -274,10 +274,10 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
               <div className="py-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900">
+                    <h4 className="font-medium text-[var(--color-foreground)]">
                       {translations.analyticsTitle}
                     </h4>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-[var(--color-secondary)]">
                       {translations.analyticsDescription}
                     </p>
                   </div>
@@ -285,7 +285,7 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
                     aria-checked={analyticsEnabled}
                     aria-label={translations.analyticsTitle}
                     className={`relative h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none ${
-                      analyticsEnabled ? 'bg-primary' : 'bg-gray-200'
+                      analyticsEnabled ? 'bg-primary' : 'bg-[var(--color-border-light)]'
                     }`}
                     onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
                     role="switch"
@@ -304,10 +304,10 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
               <div className="py-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900">
+                    <h4 className="font-medium text-[var(--color-foreground)]">
                       {translations.marketingTitle}
                     </h4>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-[var(--color-secondary)]">
                       {translations.marketingDescription}
                     </p>
                   </div>
@@ -315,7 +315,7 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
                     aria-checked={marketingEnabled}
                     aria-label={translations.marketingTitle}
                     className={`relative h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none ${
-                      marketingEnabled ? 'bg-primary' : 'bg-gray-200'
+                      marketingEnabled ? 'bg-primary' : 'bg-[var(--color-border-light)]'
                     }`}
                     onClick={() => setMarketingEnabled(!marketingEnabled)}
                     role="switch"
@@ -332,10 +332,10 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 border-t border-gray-100 bg-white px-6 py-4">
+            <div className="sticky bottom-0 border-t border-[var(--color-border-light)] bg-white px-6 py-4">
               <div className="flex gap-3">
                 <button
-                  className="flex-1 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                  className="flex-1 rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
                   onClick={handleAcceptAll}
                   type="button"
                 >
