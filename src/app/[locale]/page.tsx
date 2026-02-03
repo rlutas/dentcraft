@@ -2,12 +2,9 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import {
-  Clock,
   Heart,
   Microscope,
-  Phone,
   Play,
-  Quote,
   Star,
   Stethoscope,
   User,
@@ -16,9 +13,12 @@ import {
 } from 'lucide-react'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
+import { BookingButton } from '@/components/ui/BookingButton'
 import googleReviews from '@/data/google-reviews.json'
 import type { Locale } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
+// CONTACT is imported for future use when real video URLs are available
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CONTACT } from '@/lib/constants/contact'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
@@ -267,9 +267,9 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact" className="btn btn-primary btn-lg">
+                <BookingButton>
                   {t('hero.cta.primary')}
-                </Link>
+                </BookingButton>
                 <Link href="/servicii" className="btn btn-secondary btn-lg">
                   {t('hero.cta.secondary')}
                 </Link>
@@ -823,209 +823,308 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         </div>
       </section>
 
-      {/* Featured Testimonials Section - From Sanity CMS */}
-      {hasSanityTestimonials && (
-        <section className="py-20 md:py-28 bg-[#f5f0e8] relative overflow-hidden">
-          {/* Subtle decorative background */}
-          <div className="absolute top-0 left-0 w-80 h-80 bg-[var(--color-accent)]/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
+      {/* Video Reels Testimonials Section - Instagram/TikTok Style */}
+      <section className="video-testimonials-section py-24 md:py-32 relative overflow-hidden">
+        {/* Dramatic gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] via-[#1a1816] to-[#0a0a0a]" />
 
-          <div className="container relative z-10">
-            {/* Section header */}
-            <div className="text-center mb-16">
-              <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
+        {/* Animated gradient mesh */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-[#d4c4b0]/10 blur-[120px] animate-float-slow" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#8b7355]/10 blur-[100px] animate-float-medium" />
+        </div>
+
+        {/* Decorative grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }} />
+
+        <div className="container relative z-10">
+          {/* Section header - Editorial style */}
+          <div className="text-center mb-16 lg:mb-20">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#d4c4b0]" />
+              <span className="text-[#d4c4b0] text-sm font-medium tracking-[0.25em] uppercase">
                 {t('featuredTestimonials.badge')}
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
-                {t('featuredTestimonials.title')}
-              </h2>
-              <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
-                {t('featuredTestimonials.subtitle')}
-              </p>
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#d4c4b0]" />
             </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight">
+              {t('featuredTestimonials.title')}
+            </h2>
+            <p className="text-lg text-white/50 leading-relaxed max-w-2xl mx-auto">
+              {t('featuredTestimonials.subtitle')}
+            </p>
+          </div>
 
-            {/* Testimonials Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {testimonials.slice(0, 6).map((testimonial, index) => {
-                const hasVideo = testimonial.videoUrl || testimonial.videoFile?.asset?.url
-                const videoUrl = testimonial.videoUrl || testimonial.videoFile?.asset?.url
+          {/* Video Reels Grid - 3 Vertical Videos */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+            {/* Video Reel 1 - Implant Story */}
+            <div className="group relative animate-[fadeInUp_0.6s_ease-out_both]" style={{ animationDelay: '0.1s' }}>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]
+                border border-white/10 group-hover:border-[#d4c4b0]/40 transition-all duration-500
+                shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)] group-hover:shadow-[0_30px_80px_-20px_rgba(212,196,176,0.15)]">
+                {/* Video placeholder gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
 
-                return (
-                  <div
-                    key={testimonial._id}
-                    className="group bg-[#faf8f5] rounded-3xl p-6 md:p-8 relative
-                      border border-transparent hover:border-[var(--color-accent)]
-                      transition-all duration-500 ease-out
-                      hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]
-                      animate-[fadeInUp_0.6s_ease-out_both] flex flex-col"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    {/* Video Thumbnail (if video testimonial) */}
-                    {hasVideo && (
-                      <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[var(--color-accent-light)]">
-                        {testimonial.patientPhoto?.asset?.url ? (
-                          <Image
-                            fill
-                            alt={testimonial.patientPhoto.alt || testimonial.patientName}
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            src={urlFor(testimonial.patientPhoto).width(400).height(225).quality(80).url()}
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[var(--color-accent-light)] to-[var(--color-accent)]">
-                            <Quote className="w-12 h-12 text-[var(--color-primary)] opacity-20" strokeWidth={1} />
-                          </div>
-                        )}
-                        {/* Play Button Overlay */}
-                        <a
-                          href={videoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors"
-                        >
-                          <div className="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-lg
-                            group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
-                            <Play className="w-7 h-7 text-[var(--color-primary)] ml-1" fill="currentColor" />
-                          </div>
-                        </a>
-                        {/* Video Badge */}
-                        <span className="absolute top-3 left-3 px-3 py-1.5 bg-white/95 rounded-full text-xs font-semibold text-[var(--color-primary)] shadow-sm">
-                          {t('featuredTestimonials.videoTestimonial')}
-                        </span>
-                      </div>
-                    )}
+                {/* Decorative patient image or gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#2a2520] via-[#1a1816] to-[#0f0f0f]" />
 
-                    {/* Quote Icon for text-only testimonials */}
-                    {!hasVideo && (
-                      <div className="mb-5">
-                        <Quote className="w-10 h-10 text-[var(--color-accent)] opacity-60" strokeWidth={1.5} />
-                      </div>
-                    )}
-
-                    {/* Rating Stars */}
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 transition-colors ${
-                            i < testimonial.rating
-                              ? 'text-[var(--color-warning)] fill-[var(--color-warning)]'
-                              : 'text-[var(--color-border)]'
-                          }`}
-                          strokeWidth={1.5}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Testimonial Text */}
-                    {testimonial.text && (
-                      <blockquote className="mb-6 flex-grow">
-                        <p className="text-[var(--color-primary)] leading-relaxed line-clamp-4">
-                          &ldquo;{testimonial.text}&rdquo;
-                        </p>
-                      </blockquote>
-                    )}
-
-                    {/* Patient Info */}
-                    <div className="flex items-center gap-4 pt-5 border-t border-[var(--color-border-light)] mt-auto">
-                      {!hasVideo && testimonial.patientPhoto?.asset?.url ? (
-                        <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[var(--color-accent-light)]">
-                          <Image
-                            fill
-                            alt={testimonial.patientPhoto.alt || testimonial.patientName}
-                            className="object-cover"
-                            sizes="48px"
-                            src={urlFor(testimonial.patientPhoto).width(48).height(48).quality(80).url()}
-                          />
-                        </div>
-                      ) : !hasVideo ? (
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-accent-light)] to-[var(--color-accent)] flex items-center justify-center ring-2 ring-[var(--color-accent-light)]">
-                          <span className="text-lg font-semibold text-[var(--color-primary)]">
-                            {testimonial.patientName.charAt(0).toUpperCase()}
-                          </span>
-                        </div>
-                      ) : null}
-                      <div>
-                        <p className="font-semibold text-[var(--color-primary)]">{testimonial.patientName}</p>
-                        {testimonial.service && (
-                          <p className="text-sm text-[var(--color-secondary)]">
-                            {testimonial.service.title}
-                          </p>
-                        )}
-                      </div>
+                {/* Play button - centered */}
+                <a
+                  href="https://youtube.com/shorts/example1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center z-10"
+                >
+                  <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center
+                    border border-white/20 group-hover:scale-110 group-hover:bg-white/20
+                    transition-all duration-500 cursor-pointer">
+                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
+                      shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                      <Play className="w-6 h-6 text-[#1a1a1a] ml-0.5" fill="currentColor" />
                     </div>
                   </div>
-                )
-              })}
+                </a>
+
+                {/* Top badge */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                  <span className="px-3 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-xs font-medium text-white/90
+                    border border-white/10">
+                    Implant Dentar
+                  </span>
+                  <div className="flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-sm rounded-full">
+                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span className="text-xs text-white/80">YouTube</span>
+                  </div>
+                </div>
+
+                {/* Bottom content */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-[#d4c4b0] fill-[#d4c4b0]" strokeWidth={1.5} />
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="text-white/90 text-sm leading-relaxed mb-4 line-clamp-3">
+                    &ldquo;Implantul a schimbat totul. Acum pot manca orice si ma simt incredibil de bine!&rdquo;
+                  </p>
+                  {/* Patient */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#d4c4b0]/20 flex items-center justify-center border border-white/10">
+                      <span className="text-sm font-medium text-white">M</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-white text-sm">Maria P.</p>
+                      <p className="text-white/50 text-xs">Implantologie</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hover overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#d4c4b0]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
             </div>
 
-            {/* View All Button */}
-            <div className="mt-12 text-center">
-              <Link
-                href="/testimoniale"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white
-                  rounded-full font-medium text-lg
-                  hover:bg-[var(--color-primary)]/90 hover:shadow-[0_10px_40px_-10px_rgba(26,26,26,0.4)]
-                  transition-all duration-300"
-              >
-                {t('featuredTestimonials.viewAll')}
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+            {/* Video Reel 2 - Smile Makeover - Featured/Larger */}
+            <div className="group relative animate-[fadeInUp_0.6s_ease-out_both] md:-mt-8 md:mb-8" style={{ animationDelay: '0.2s' }}>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]
+                border border-white/10 group-hover:border-[#d4c4b0]/40 transition-all duration-500
+                shadow-[0_25px_80px_-20px_rgba(0,0,0,0.6)] group-hover:shadow-[0_35px_100px_-20px_rgba(212,196,176,0.2)]
+                ring-1 ring-[#d4c4b0]/20">
+                {/* Video placeholder gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+
+                {/* Decorative gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#2d2825] via-[#1f1c1a] to-[#0f0e0d]" />
+
+                {/* Featured badge */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+                  <span className="px-4 py-1.5 bg-[#d4c4b0] rounded-full text-xs font-semibold text-[#1a1a1a] uppercase tracking-wider">
+                    Popular
+                  </span>
+                </div>
+
+                {/* Play button - centered */}
+                <a
+                  href="https://youtube.com/shorts/example2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center z-10"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+                  <div className="w-24 h-24 rounded-full bg-[#d4c4b0]/20 backdrop-blur-md flex items-center justify-center
+                    border border-[#d4c4b0]/30 group-hover:scale-110 group-hover:bg-[#d4c4b0]/30
+                    transition-all duration-500 cursor-pointer">
+                    <div className="w-16 h-16 rounded-full bg-[#d4c4b0] flex items-center justify-center
+                      shadow-[0_8px_32px_rgba(212,196,176,0.4)]">
+                      <Play className="w-7 h-7 text-[#1a1a1a] ml-0.5" fill="currentColor" />
+                    </div>
+                  </div>
+                </a>
+
+                {/* Top right - YouTube badge */}
+                <div className="absolute top-4 right-4 z-10">
+                  <div className="flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-sm rounded-full">
+                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span className="text-xs text-white/80">YouTube</span>
+                  </div>
+                </div>
+
+                {/* Bottom content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 border border-white/10">
+                    Fatete Dentare
+                  </span>
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-[#d4c4b0] fill-[#d4c4b0]" strokeWidth={1.5} />
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="text-white text-base leading-relaxed mb-4 line-clamp-3">
+                    &ldquo;Zambetul meu s-a transformat complet! Fatetele arata incredibil de natural.&rdquo;
+                  </p>
+                  {/* Patient */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-full bg-[#d4c4b0]/30 flex items-center justify-center border border-[#d4c4b0]/20">
+                      <span className="text-base font-medium text-white">A</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white">Andreea S.</p>
+                      <p className="text-white/50 text-sm">Estetica Dentara</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hover overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#d4c4b0]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+            </div>
+
+            {/* Video Reel 3 - Whitening */}
+            <div className="group relative animate-[fadeInUp_0.6s_ease-out_both]" style={{ animationDelay: '0.3s' }}>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]
+                border border-white/10 group-hover:border-[#d4c4b0]/40 transition-all duration-500
+                shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)] group-hover:shadow-[0_30px_80px_-20px_rgba(212,196,176,0.15)]">
+                {/* Video placeholder gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+
+                {/* Decorative gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#252220] via-[#1a1816] to-[#0f0f0f]" />
+
+                {/* Play button - centered */}
+                <a
+                  href="https://youtube.com/shorts/example3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center z-10"
+                >
+                  <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center
+                    border border-white/20 group-hover:scale-110 group-hover:bg-white/20
+                    transition-all duration-500 cursor-pointer">
+                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
+                      shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                      <Play className="w-6 h-6 text-[#1a1a1a] ml-0.5" fill="currentColor" />
+                    </div>
+                  </div>
+                </a>
+
+                {/* Top badge */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                  <span className="px-3 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-xs font-medium text-white/90
+                    border border-white/10">
+                    Albire Dentara
+                  </span>
+                  <div className="flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-sm rounded-full">
+                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span className="text-xs text-white/80">YouTube</span>
+                  </div>
+                </div>
+
+                {/* Bottom content */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-[#d4c4b0] fill-[#d4c4b0]" strokeWidth={1.5} />
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="text-white/90 text-sm leading-relaxed mb-4 line-clamp-3">
+                    &ldquo;Rezultat uimitor dupa o singura sedinta! Dintii mei arata stralucitor.&rdquo;
+                  </p>
+                  {/* Patient */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#d4c4b0]/20 flex items-center justify-center border border-white/10">
+                      <span className="text-sm font-medium text-white">I</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-white text-sm">Ioana D.</p>
+                      <p className="text-white/50 text-xs">Albire Profesionala</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hover overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#d4c4b0]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
             </div>
           </div>
-        </section>
-      )}
+
+          {/* Bottom CTA */}
+          <div className="mt-16 text-center">
+            <Link
+              href="/testimoniale"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#d4c4b0] text-[#1a1a1a]
+                rounded-full font-semibold text-base hover:bg-white
+                transition-all duration-300 hover:shadow-[0_8px_30px_rgba(212,196,176,0.3)]
+                group"
+            >
+              {t('featuredTestimonials.viewAll')}
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Google Reviews Section - Dynamic from JSON */}
       <section className={`py-16 md:py-24 relative overflow-hidden ${hasSanityTestimonials ? 'bg-white' : 'bg-[#f5f0e8]'}`}>
         <div className="container relative z-10">
-          {/* Section header with Google rating */}
+          {/* Section header */}
           <div className="text-center mb-10">
             <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
               {t('testimonials.badge')}
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)]">
               {t('testimonials.title')}
             </h2>
-            {/* Google rating summary */}
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[var(--color-warning)] text-[var(--color-warning)]" />
-                ))}
-              </div>
-              <span className="font-bold text-lg text-[var(--color-primary)]">{googleReviews.rating}</span>
-              <span className="text-[var(--color-secondary)]">({googleReviews.totalReviews} {t('testimonials.reviewsOnGoogle')})</span>
-            </div>
           </div>
 
-          {/* Google Reviews Slider */}
-          <GoogleReviewsSlider reviews={googleReviews.reviews} locale={locale} />
-
-          {/* Link to all Google reviews */}
-          <div className="mt-10 text-center">
-            <a
-              href="https://www.google.com/maps/place/DENTCRAFT/@47.7897,22.8747,17z/data=!4m8!3m7!1s0x4738059c49336e2f:0xc5f8c1c74c29f519!8m2!3d47.7897!4d22.8747!9m1!1b1!16s%2Fg%2F11j20h5jw3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-[var(--color-border)] rounded-full hover:shadow-md transition-all duration-300"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              <span className="font-semibold text-[var(--color-primary)]">{t('testimonials.viewAllOnGoogle')}</span>
-            </a>
-          </div>
+          {/* Google Reviews Slider - includes overview, carousel, and action buttons */}
+          <GoogleReviewsSlider
+            googleMapsUrl={googleReviews.googleMapsUrl}
+            locale={locale}
+            rating={googleReviews.rating}
+            reviews={googleReviews.reviews}
+            totalReviews={googleReviews.totalReviews}
+          />
         </div>
       </section>
 

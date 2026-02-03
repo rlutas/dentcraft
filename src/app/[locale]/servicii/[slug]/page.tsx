@@ -11,7 +11,9 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { fallbackServices, getFallbackServiceBySlug, getFallbackServiceSlugs } from '@/lib/fallback-services'
+import { getFallbackServiceBySlug, getFallbackServiceSlugs } from '@/lib/fallback-services'
+import type { fallbackServices } from '@/lib/fallback-services'
+import { BookingButton } from '@/components/ui/BookingButton'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
@@ -188,9 +190,9 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
               )}
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link className="btn btn-primary btn-lg" href="/contact">
+                <BookingButton>
                   {t('common.bookAppointment')}
-                </Link>
+                </BookingButton>
                 <a
                   className="btn btn-secondary btn-lg flex items-center gap-2"
                   href="tel:+40741199977"
@@ -320,9 +322,9 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
               {t('cta.subtitle')}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link className="btn btn-lg btn-primary" href="/contact">
+              <BookingButton>
                 {t('common.bookAppointment')}
-              </Link>
+              </BookingButton>
               <Link className="btn btn-lg btn-secondary flex items-center gap-2" href="/servicii">
                 {t('common.seeAll')}
                 <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
@@ -426,9 +428,9 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link className="btn btn-primary btn-lg" href="/contact">
+                <BookingButton>
                   {t('common.bookAppointment')}
-                </Link>
+                </BookingButton>
                 <a
                   className="btn btn-secondary btn-lg flex items-center gap-2"
                   href="tel:+40741199977"
@@ -529,9 +531,9 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
               {t('cta.subtitle')}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link className="btn btn-lg btn-primary" href="/contact">
+              <BookingButton>
                 {t('common.bookAppointment')}
-              </Link>
+              </BookingButton>
               <Link className="btn btn-lg btn-secondary flex items-center gap-2" href="/servicii">
                 {t('common.seeAll')}
                 <ArrowRight className="w-5 h-5" strokeWidth={1.5} />

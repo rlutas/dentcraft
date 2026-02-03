@@ -53,6 +53,15 @@
     "benefits": "Benefits",
     "process": "Treatment process",
     "step": "Step",
+    "generalDentistry": "General Dentistry",
+    "cosmeticDentistry": "Cosmetic Dentistry",
+    "prosthetics": "Dental Prosthetics",
+    "implantology": "Dental Implants",
+    "orthodontics": "Orthodontics",
+    "endodontics": "Root Canal Treatment",
+    "oralSurgery": "Oral Surgery",
+    "pediatricDentistry": "Pediatric Dentistry",
+    "dentalEmergencies": "Dental Emergencies",
     "categories": {
       "generalDentistry": "General Dentistry",
       "cosmeticDentistry": "Cosmetic Dentistry",
@@ -395,7 +404,8 @@
     "title": "Success stories",
     "subtitle": "Discover our patients' experiences and their transformations.",
     "videoTestimonial": "Video",
-    "viewAll": "View all testimonials"
+    "viewAll": "View all testimonials",
+    "noTestimonials": "Testimonials will be available soon."
   },
   "testimonials": {
     "badge": "Testimonials",
@@ -503,6 +513,7 @@
     }
   },
   "contact": {
+    "badge": "Contact",
     "title": "Contact us",
     "subtitle": "We're here for you. Book a consultation or send us a message.",
     "phoneLabel": "Phone",
@@ -544,6 +555,11 @@
   },
   "contactForm": {
     "title": "Send us a message",
+    "subtitle": "We respond as soon as possible.",
+    "attachments": "Attachments",
+    "optional": "optional",
+    "dragDropFiles": "Drag files here or click to select",
+    "fileTypesAllowed": "PNG, JPG, PDF, DOC up to 10MB",
     "name": "Name",
     "namePlaceholder": "Your full name",
     "email": "Email",
@@ -630,7 +646,10 @@
     "copyright": "All rights reserved.",
     "privacy": "Privacy Policy",
     "cookies": "Cookies",
-    "terms": "Terms & Conditions"
+    "terms": "Terms & Conditions",
+    "ctaTitle": "Book a consultation",
+    "ctaSubtitle": "We are here for your perfect smile",
+    "bookAppointment": "Book now"
   },
   "errors": {
     "404": {
@@ -642,6 +661,36 @@
       "title": "Server error",
       "description": "An error occurred. Please try again later.",
       "backHome": "Back to home"
+    }
+  },
+  "callbackPopup": {
+    "badge": "Quick booking",
+    "title": "We'll call you",
+    "subtitle": "Fill out the form and we'll contact you shortly to schedule a consultation.",
+    "nameLabel": "Your name",
+    "namePlaceholder": "e.g. John Smith",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "e.g. 0741 234 567",
+    "serviceLabel": "Desired service",
+    "servicePlaceholder": "Select a service",
+    "timeLabel": "When should we call you?",
+    "timePlaceholder": "Select time slot",
+    "timeMorning": "Morning",
+    "timeAfternoon": "Afternoon",
+    "timeEvening": "Evening",
+    "promise": "We'll call you within 24 hours to confirm your appointment.",
+    "submit": "Send request",
+    "sending": "Sending...",
+    "close": "Close",
+    "successTitle": "Request sent!",
+    "successMessage": "Thank you! We'll contact you shortly to confirm your appointment.",
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "nameTooShort": "Name must be at least 2 characters",
+      "phoneRequired": "Please enter your phone number",
+      "phoneInvalid": "Phone number is not valid",
+      "serviceRequired": "Please select a service",
+      "timeRequired": "Please select a time slot"
     }
   }
 }

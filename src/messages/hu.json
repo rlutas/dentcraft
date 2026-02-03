@@ -53,6 +53,15 @@
     "benefits": "Elonyok",
     "process": "Kezelesi folyamat",
     "step": "Lepes",
+    "generalDentistry": "Altalanos Fogaszat",
+    "cosmeticDentistry": "Esztetikai Fogaszat",
+    "prosthetics": "Fogpotlastan",
+    "implantology": "Fogimplantatumok",
+    "orthodontics": "Fogszabalyozas",
+    "endodontics": "Endodoncia",
+    "oralSurgery": "Szajsebeszet",
+    "pediatricDentistry": "Gyermekfogaszat",
+    "dentalEmergencies": "Surgossegi Fogaszat",
     "categories": {
       "generalDentistry": "Altalanos fogaszat",
       "cosmeticDentistry": "Esztetikai fogaszat",
@@ -395,7 +404,8 @@
     "title": "Sikertortenetek",
     "subtitle": "Fedezze fel pacienseink elmenyeit es atalakulasaikat.",
     "videoTestimonial": "Video",
-    "viewAll": "Osszes velemeny megtekintese"
+    "viewAll": "Osszes velemeny megtekintese",
+    "noTestimonials": "A velemenyek hamarosan elerhetek lesznek."
   },
   "testimonials": {
     "badge": "Velemenyek",
@@ -503,6 +513,7 @@
     }
   },
   "contact": {
+    "badge": "Kapcsolat",
     "title": "Kapcsolat",
     "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet.",
     "phoneLabel": "Telefon",
@@ -544,6 +555,11 @@
   },
   "contactForm": {
     "title": "Kuldjön uzenetet",
+    "subtitle": "A lehetô leghamarabb válaszolunk.",
+    "attachments": "Csatolmányok",
+    "optional": "opcionális",
+    "dragDropFiles": "Húzza ide a fájlokat vagy kattintson a kiválasztáshoz",
+    "fileTypesAllowed": "PNG, JPG, PDF, DOC max 10MB",
     "name": "Nev",
     "namePlaceholder": "Teljes neve",
     "email": "Email",
@@ -630,7 +646,10 @@
     "copyright": "Minden jog fenntartva.",
     "privacy": "Adatvedelmi szabalyzat",
     "cookies": "Sutik",
-    "terms": "Felhasznalasi feltetelek"
+    "terms": "Felhasznalasi feltetelek",
+    "ctaTitle": "Foglaljon idopontot",
+    "ctaSubtitle": "Itt vagyunk a tokeletes mosolyaert",
+    "bookAppointment": "Foglaljon most"
   },
   "errors": {
     "404": {
@@ -642,6 +661,36 @@
       "title": "Szerverhiba",
       "description": "Hiba tortent. Kerjem, probálja ujra kesobb.",
       "backHome": "Vissza a fooldalra"
+    }
+  },
+  "callbackPopup": {
+    "badge": "Gyors foglalás",
+    "title": "Visszahívunk",
+    "subtitle": "Töltse ki az űrlapot, és hamarosan felvesszük Önnel a kapcsolatot a konzultáció egyeztetéséhez.",
+    "nameLabel": "Neve",
+    "namePlaceholder": "pl. Kovács János",
+    "phoneLabel": "Telefonszám",
+    "phonePlaceholder": "pl. 0741 234 567",
+    "serviceLabel": "Kívánt szolgáltatás",
+    "servicePlaceholder": "Válasszon szolgáltatást",
+    "timeLabel": "Mikor hívjuk vissza?",
+    "timePlaceholder": "Válasszon idősávot",
+    "timeMorning": "Délelőtt",
+    "timeAfternoon": "Délután",
+    "timeEvening": "Este",
+    "promise": "24 órán belül felhívjuk a találkozó megerősítéséhez.",
+    "submit": "Kérés küldése",
+    "sending": "Küldés...",
+    "close": "Bezárás",
+    "successTitle": "Kérés elküldve!",
+    "successMessage": "Köszönjük! Hamarosan felvesszük Önnel a kapcsolatot a találkozó megerősítéséhez.",
+    "errors": {
+      "nameRequired": "Kérjük, adja meg a nevét",
+      "nameTooShort": "A névnek legalább 2 karakter hosszúnak kell lennie",
+      "phoneRequired": "Kérjük, adja meg a telefonszámát",
+      "phoneInvalid": "A telefonszám nem érvényes",
+      "serviceRequired": "Kérjük, válasszon szolgáltatást",
+      "timeRequired": "Kérjük, válasszon idősávot"
     }
   }
 }

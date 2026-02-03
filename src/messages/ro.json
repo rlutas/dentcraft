@@ -53,6 +53,15 @@
     "benefits": "Beneficii",
     "process": "Procesul de tratament",
     "step": "Pasul",
+    "generalDentistry": "Stomatologie Generala",
+    "cosmeticDentistry": "Estetica Dentara",
+    "prosthetics": "Protetica Dentara",
+    "implantology": "Implantologie",
+    "orthodontics": "Ortodontie",
+    "endodontics": "Endodontie",
+    "oralSurgery": "Chirurgie Oro-Maxilo-Faciala",
+    "pediatricDentistry": "Pedodontie",
+    "dentalEmergencies": "Urgente Dentare",
     "categories": {
       "generalDentistry": "Stomatologie Generala",
       "cosmeticDentistry": "Estetica Dentara",
@@ -395,7 +404,8 @@
     "title": "Povesti de succes",
     "subtitle": "Descopera experientele pacientilor nostri si transformarile lor.",
     "videoTestimonial": "Video",
-    "viewAll": "Vezi toate testimonialele"
+    "viewAll": "Vezi toate testimonialele",
+    "noTestimonials": "Testimonialele vor fi disponibile in curand."
   },
   "testimonials": {
     "badge": "Recenzii Google",
@@ -503,6 +513,7 @@
     }
   },
   "contact": {
+    "badge": "Contact",
     "title": "Contacteaza-ne",
     "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj.",
     "phoneLabel": "Telefon",
@@ -544,6 +555,11 @@
   },
   "contactForm": {
     "title": "Trimite-ne un mesaj",
+    "subtitle": "Raspundem in cel mai scurt timp posibil.",
+    "attachments": "Atasamente",
+    "optional": "optional",
+    "dragDropFiles": "Trage fisierele aici sau apasa pentru a selecta",
+    "fileTypesAllowed": "PNG, JPG, PDF, DOC pana la 10MB",
     "name": "Nume",
     "namePlaceholder": "Numele tau complet",
     "email": "Email",
@@ -630,7 +646,10 @@
     "copyright": "Toate drepturile rezervate.",
     "privacy": "Confidentialitate",
     "cookies": "Cookies",
-    "terms": "Termeni si conditii"
+    "terms": "Termeni si conditii",
+    "ctaTitle": "Programeaza o consultatie",
+    "ctaSubtitle": "Suntem aici pentru zambetul tau perfect",
+    "bookAppointment": "Programeaza acum"
   },
   "errors": {
     "404": {
@@ -642,6 +661,36 @@
       "title": "Eroare de server",
       "description": "A aparut o eroare. Te rugam sa incerci din nou mai tarziu.",
       "backHome": "Inapoi acasa"
+    }
+  },
+  "callbackPopup": {
+    "badge": "Programare rapida",
+    "title": "Te sunam noi",
+    "subtitle": "Completeaza formularul si te contactam in cel mai scurt timp pentru a programa o consultatie.",
+    "nameLabel": "Numele tau",
+    "namePlaceholder": "ex: Maria Popescu",
+    "phoneLabel": "Numar de telefon",
+    "phonePlaceholder": "ex: 0741 234 567",
+    "serviceLabel": "Serviciul dorit",
+    "servicePlaceholder": "Selecteaza serviciul",
+    "timeLabel": "Cand preferi sa te sunam?",
+    "timePlaceholder": "Selecteaza intervalul orar",
+    "timeMorning": "Dimineata",
+    "timeAfternoon": "Dupa-amiaza",
+    "timeEvening": "Seara",
+    "promise": "Te sunam in maxim 24 de ore pentru a confirma programarea.",
+    "submit": "Trimite cererea",
+    "sending": "Se trimite...",
+    "close": "Inchide",
+    "successTitle": "Cerere trimisa!",
+    "successMessage": "Multumim! Te vom contacta in cel mai scurt timp pentru a confirma programarea.",
+    "errors": {
+      "nameRequired": "Te rugam sa introduci numele",
+      "nameTooShort": "Numele trebuie sa aiba cel putin 2 caractere",
+      "phoneRequired": "Te rugam sa introduci numarul de telefon",
+      "phoneInvalid": "Numarul de telefon nu este valid",
+      "serviceRequired": "Te rugam sa selectezi un serviciu",
+      "timeRequired": "Te rugam sa selectezi un interval orar"
     }
   }
 }
