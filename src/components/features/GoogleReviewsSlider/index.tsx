@@ -48,6 +48,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: Locale }) {
             <img
               alt={review.author}
               className="w-10 h-10 rounded-full object-cover"
+              loading="lazy"
               referrerPolicy="no-referrer"
               src={review.photoUrl}
             />
@@ -97,9 +98,9 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
   const topRowReviews = reviews.slice(0, midPoint)
   const bottomRowReviews = reviews.slice(midPoint)
 
-  // Duplicate for infinite scroll effect
-  const topRowDuplicated = [...topRowReviews, ...topRowReviews, ...topRowReviews]
-  const bottomRowDuplicated = [...bottomRowReviews, ...bottomRowReviews, ...bottomRowReviews]
+  // Duplicate for infinite scroll effect (2x is sufficient for seamless loop)
+  const topRowDuplicated = [...topRowReviews, ...topRowReviews]
+  const bottomRowDuplicated = [...bottomRowReviews, ...bottomRowReviews]
 
   return (
     <div className="space-y-10">

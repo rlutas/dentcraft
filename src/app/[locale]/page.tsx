@@ -253,7 +253,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
               {/* Badge */}
               <div className="hero-stagger-1 mb-3 lg:mb-5">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
-                  bg-white/70 text-[#5a4a3a] border border-[#e0d5c8] shadow-[0_2px_12px_rgba(180,160,130,0.12)] backdrop-blur-sm">
+                  bg-white text-[#5a4a3a] border border-[#e0d5c8] shadow-[0_2px_12px_rgba(180,160,130,0.12)]">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   {t('hero.badge')}
                 </span>
@@ -328,6 +328,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     alt="Echipa Dentcraft - Clinica Stomatologica Satu Mare"
                     width={1200}
                     height={800}
+                    sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 400px, (max-width: 1535px) 560px, 650px"
                     className="w-full lg:w-[400px] xl:w-[560px] 2xl:w-[650px] h-auto block object-cover"
                     priority
                   />
@@ -335,7 +336,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
 
                 {/* Floating card: Google Rating - top left, compact on mobile */}
                 <div className="absolute left-2 lg:-left-10 -top-3 lg:top-4 z-10
-                  bg-white/95 backdrop-blur-sm rounded-lg lg:rounded-2xl
+                  bg-white rounded-lg lg:rounded-2xl
                   shadow-[0_4px_20px_rgba(0,0,0,0.06)] lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)]
                   px-2 lg:px-4 py-1.5 lg:py-3
                   border border-[#f0ebe4]/80
@@ -352,7 +353,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
 
                 {/* Floating card: Experience badge - bottom right, compact on mobile */}
                 <div className="absolute right-2 lg:-right-8 xl:-right-12 -bottom-3 lg:bottom-10 z-10
-                  bg-white/95 backdrop-blur-sm rounded-lg lg:rounded-2xl
+                  bg-white rounded-lg lg:rounded-2xl
                   shadow-[0_4px_20px_rgba(0,0,0,0.06)] lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)]
                   px-2 lg:px-4 py-1.5 lg:py-3
                   border border-[#f0ebe4]/80

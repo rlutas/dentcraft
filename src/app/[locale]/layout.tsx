@@ -7,8 +7,7 @@ import { routing } from '@/i18n/routing'
 import { generateRootMetadata, type Locale } from '@/lib/seo'
 import { getOrganizationSchema } from '@/lib/schema'
 import { Header, Footer } from '@/components/layout'
-import { CookieConsentWrapper } from '@/components/features/CookieConsent/CookieConsentWrapper'
-import { WhatsAppButtonWrapper } from '@/components/features/WhatsAppButton/WhatsAppButtonWrapper'
+import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
 import '@/styles/globals.css'
 
 const inter = Inter({
@@ -55,8 +54,7 @@ export default async function LocaleLayout({ children, params }: Props) {
               {children}
             </main>
             <Footer />
-            <WhatsAppButtonWrapper />
-            <CookieConsentWrapper />
+            <LazyClientComponents />
           </div>
         </NextIntlClientProvider>
       </body>

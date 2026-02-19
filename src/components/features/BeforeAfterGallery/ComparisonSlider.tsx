@@ -151,7 +151,7 @@ export function ComparisonSlider({
       <div className="absolute inset-0">
         <Image
           fill
-          priority
+          loading="lazy"
           alt={afterAlt}
           className="object-cover"
           draggable={false}
@@ -171,7 +171,7 @@ export function ComparisonSlider({
       >
         <Image
           fill
-          priority
+          loading="lazy"
           alt={beforeAlt}
           className="object-cover"
           draggable={false}

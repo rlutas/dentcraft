@@ -80,7 +80,7 @@ export default function MobileMenu({
             animate="open"
             exit="closed"
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[75] bg-foreground/20 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-[75] bg-foreground/30 lg:hidden"
             onClick={onClose}
             aria-hidden="true"
           />

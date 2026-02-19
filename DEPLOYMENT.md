@@ -2,6 +2,8 @@
 
 Dentcraft is a Next.js 15 website for a dental clinic, using Sanity CMS, Resend for transactional emails, and next-intl for multi-language support (Romanian, English, Hungarian). This guide covers everything needed to deploy the project to Vercel.
 
+> **Status (Feb 2026):** The codebase builds successfully and is ready for deployment. All pages, forms, and features are implemented. See [README.md](./README.md) for the full feature list.
+
 ---
 
 ## Prerequisites

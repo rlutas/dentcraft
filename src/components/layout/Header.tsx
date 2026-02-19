@@ -121,7 +121,7 @@ export default function Header() {
         className={cn(
           'fixed top-0 right-0 left-0 z-[70] transition-all duration-500',
           isScrolled
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_1px_0_0_rgba(0,0,0,0.04),0_4px_20px_-4px_rgba(0,0,0,0.08)]'
+            ? 'bg-white/[0.97] shadow-[0_1px_0_0_rgba(0,0,0,0.04),0_4px_20px_-4px_rgba(0,0,0,0.08)]'
             : 'bg-transparent',
           // Hide header on mobile when menu is open
           isMobileMenuOpen && 'lg:visible invisible'

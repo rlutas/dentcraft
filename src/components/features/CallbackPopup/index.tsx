@@ -151,7 +151,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-[#1a1a1a]/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#1a1a1a]/70"
           />
 
           {/* Popup Container */}
