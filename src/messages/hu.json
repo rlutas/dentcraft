@@ -405,18 +405,18 @@
     "title": "Az On kenyelmere tervezett ter",
     "subtitle": "Fedezze fel modern klinikankat, amely a legujabb fogaszati technologiaval van felszerelve, meleg es baratsagos kornyezetben.",
     "captions": {
-      "reception": "Modern recepcio es fogadoterulet",
-      "treatment": "Legmodernebb kezeloszoba",
-      "equipment": "Fejlett fogaszati berendezesek",
-      "waiting": "Kenyelmes varoterem",
-      "detail": "Figyelem minden reszletre"
+      "reception": "Dentcraft recepcio",
+      "treatment": "Premium varoterem",
+      "equipment": "Modern kezeloszoba",
+      "waiting": "Belso kialakitas a reszletekre figyelve",
+      "detail": "Pihenozona"
     },
     "images": {
-      "reception": "A Dentcraft klinika recepcioja",
-      "treatment": "Fogaszati kezeloszoba",
-      "equipment": "Modern fogaszati berendezes",
-      "waiting": "A klinika varoterme",
-      "detail": "Klinika belso reszlete"
+      "reception": "Dentcraft klinika recepcio",
+      "waiting": "Dentcraft klinika varoterem",
+      "treatment": "Modern fogaszati kezeloszoba",
+      "detail": "Klinika belso folyoso",
+      "equipment": "Klinika pihenozona"
     },
     "features": {
       "equipment": {
