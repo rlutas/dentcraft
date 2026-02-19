@@ -52,7 +52,7 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
   const t = await getTranslations()
 
   // Use Sanity data or fallback
-  const hasMembers = teamMembers && teamMembers.length > 0
+  const hasMembers = teamMembers && teamMembers.length >= 6
 
   return (
     <div className="flex flex-col">

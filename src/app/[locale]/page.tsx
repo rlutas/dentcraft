@@ -710,11 +710,11 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
           </div>
 
           {/* Team Grid - Premium cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {(() => {
               // Use Sanity data only if it has enough members to fill the grid, otherwise use fallback
-              const members = hasSanityTeamMembers && teamMembers.length >= 4 ? teamMembers : fallbackTeamMembers
-              return members.slice(0, 4).map((member, index) => (
+              const members = hasSanityTeamMembers && teamMembers.length >= 6 ? teamMembers : fallbackTeamMembers
+              return members.slice(0, 6).map((member, index) => (
                 <ScrollReveal
                   key={'_id' in member ? member._id : member.key}
                   animation="fade-up"
