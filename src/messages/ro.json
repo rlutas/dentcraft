@@ -409,14 +409,16 @@
       "treatment": "Receptia Dentcraft",
       "equipment": "Cabinet de tratament modern",
       "waiting": "Camera de sterilizare",
-      "detail": "Zona de relaxare"
+      "detail": "Sala de asteptare",
+      "treatmentRoom": "Cabinet de tratament"
     },
     "images": {
       "reception": "Sala de asteptare a clinicii Dentcraft",
       "waiting": "Receptia clinicii Dentcraft",
       "treatment": "Cabinet de tratament dentar modern",
       "detail": "Camera de sterilizare",
-      "equipment": "Zona de relaxare clinica"
+      "equipment": "Sala de asteptare clinica",
+      "treatmentRoom": "Cabinet de tratament Dentcraft"
     },
     "features": {
       "equipment": {

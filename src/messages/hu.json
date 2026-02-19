@@ -409,14 +409,16 @@
       "treatment": "Dentcraft recepcio",
       "equipment": "Modern kezeloszoba",
       "waiting": "Sterilizalo szoba",
-      "detail": "Pihenozona"
+      "detail": "Varoterem",
+      "treatmentRoom": "Kezeloszoba"
     },
     "images": {
       "reception": "Dentcraft klinika varoterem",
       "waiting": "Dentcraft klinika recepcio",
       "treatment": "Modern fogaszati kezeloszoba",
       "detail": "Sterilizalo szoba",
-      "equipment": "Klinika pihenozona"
+      "equipment": "Klinika varoterem",
+      "treatmentRoom": "Dentcraft kezeloszoba"
     },
     "features": {
       "equipment": {

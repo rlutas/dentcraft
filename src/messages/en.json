@@ -409,14 +409,16 @@
       "treatment": "Dentcraft Reception",
       "equipment": "Modern treatment room",
       "waiting": "Sterilization room",
-      "detail": "Relaxation area"
+      "detail": "Waiting room",
+      "treatmentRoom": "Treatment room"
     },
     "images": {
       "reception": "Dentcraft clinic waiting area",
       "waiting": "Dentcraft clinic reception",
       "treatment": "Modern dental treatment room",
       "detail": "Sterilization room",
-      "equipment": "Clinic relaxation area"
+      "equipment": "Clinic waiting room",
+      "treatmentRoom": "Dentcraft treatment room"
     },
     "features": {
       "equipment": {
