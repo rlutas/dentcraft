@@ -73,7 +73,7 @@ export function ComparisonSlider({
     if (!isDragging) return
     const touch = e.touches[0]
     if (touch) {
-      e.preventDefault() // Prevent scrolling while dragging
+      if (e.cancelable) e.preventDefault() // Prevent scrolling while dragging
       setSliderPosition(calculatePosition(touch.clientX))
     }
   }, [isDragging, calculatePosition])

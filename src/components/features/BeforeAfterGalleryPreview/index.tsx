@@ -2,6 +2,7 @@
 
 import { Clock } from 'lucide-react'
 import { ComparisonSlider } from '@/components/features/BeforeAfterGallery/ComparisonSlider'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 interface BeforeAfterCase {
   _id: string
@@ -56,87 +57,61 @@ export function BeforeAfterGalleryPreview({
         const afterImageUrl = caseItem.afterImageUrl || '/placeholder-after.jpg'
 
         return (
-          <div
-            key={caseItem._id}
-            className="group relative bg-[#faf8f5] rounded-3xl p-6 md:p-8
-              border border-transparent hover:border-[var(--color-accent)]
-              transition-all duration-500 ease-out
-              hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]
-              hover:-translate-y-2
-              animate-[fadeInUp_0.6s_ease-out_both]"
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            {/* Service badge - top */}
-            {caseItem.service && (
-              <div className="mb-4">
-                <span className="inline-flex items-center px-4 py-2 bg-[var(--color-accent-light)]
-                  text-[var(--color-primary)] text-xs font-semibold uppercase tracking-wider
-                  rounded-full">
-                  {caseItem.service.title}
-                </span>
+          <ScrollReveal key={caseItem._id} animation="fade-up" delay={index * 150}>
+            <div
+              className="group relative bg-white border border-[#e8e0d5]
+                rounded-2xl md:rounded-3xl overflow-hidden p-0
+                shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)]
+                hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.2)]
+                hover:border-[#d4c4b0]
+                hover:-translate-y-1.5
+                transition-all duration-500 ease-out"
+            >
+              {/* Comparison Slider - edge-to-edge */}
+              <div className="relative">
+                {/* Service badge - overlaid on slider */}
+                {caseItem.service && (
+                  <span className="absolute top-3 left-3 z-10 inline-flex items-center px-3 py-1.5
+                    bg-white/90 backdrop-blur-sm text-[#2a2118] text-xs font-semibold uppercase tracking-wider rounded-full
+                    shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
+                    {caseItem.service.title}
+                  </span>
+                )}
+
+                <ComparisonSlider
+                  afterAlt={caseItem.afterImage?.alt || `${caseItem.title} - After`}
+                  afterLabel={afterLabel}
+                  afterSrc={afterImageUrl}
+                  beforeAlt={caseItem.beforeImage?.alt || `${caseItem.title} - Before`}
+                  beforeLabel={beforeLabel}
+                  beforeSrc={beforeImageUrl}
+                  className="aspect-[3/2]"
+                />
               </div>
-            )}
 
-            {/* Comparison Slider - LARGER images */}
-            <div className="relative rounded-2xl overflow-hidden mb-8
-              shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)]
-              group-hover:shadow-[0_15px_40px_-10px_rgba(0,0,0,0.2)]
-              transition-shadow duration-500
-              ring-1 ring-[var(--color-border-light)] group-hover:ring-[var(--color-accent)]/50">
-              <ComparisonSlider
-                afterAlt={caseItem.afterImage?.alt || `${caseItem.title} - After`}
-                afterLabel={afterLabel}
-                afterSrc={afterImageUrl}
-                beforeAlt={caseItem.beforeImage?.alt || `${caseItem.title} - Before`}
-                beforeLabel={beforeLabel}
-                beforeSrc={beforeImageUrl}
-                className="aspect-[3/2]"
-              />
-            </div>
+              {/* Text content */}
+              <div className="px-4 py-4 md:px-5 md:py-5">
+                <h3 className="text-xl md:text-2xl font-bold text-[var(--color-primary)] leading-tight">
+                  {caseItem.title}
+                </h3>
 
-            {/* Text content - better arrangement */}
-            <div className="space-y-4">
-              {/* Case title - larger */}
-              <h3 className="text-xl md:text-2xl font-bold text-[var(--color-primary)] leading-tight">
-                {caseItem.title}
-              </h3>
+                {caseItem.description && (
+                  <p className="text-[var(--color-secondary)] text-sm leading-relaxed line-clamp-2 mt-2">
+                    {caseItem.description}
+                  </p>
+                )}
 
-              {/* Description if available */}
-              {caseItem.description && (
-                <p className="text-[var(--color-secondary)] text-sm leading-relaxed line-clamp-2">
-                  {caseItem.description}
-                </p>
-              )}
-
-              {/* Duration badge - cleaner design */}
-              {caseItem.treatmentDuration && (
-                <div className="flex items-center gap-3 pt-4 border-t border-[var(--color-border-light)]">
-                  <div className="w-11 h-11 rounded-xl
-                    bg-gradient-to-br from-[var(--color-accent-light)] via-[var(--color-accent)]/30 to-[var(--color-accent)]/50
-                    flex items-center justify-center
-                    group-hover:from-[var(--color-accent)] group-hover:via-[var(--color-accent)] group-hover:to-[var(--color-accent-hover)]
-                    transition-all duration-500
-                    shadow-[0_6px_20px_-8px_rgba(212,196,176,0.6)]">
-                    <Clock className="w-5 h-5 text-[var(--color-primary)]" strokeWidth={1.5} />
+                {caseItem.treatmentDuration && (
+                  <div className="flex items-center gap-2 mt-3">
+                    <Clock className="w-4 h-4 text-[#8b7355]" strokeWidth={1.5} />
+                    <span className="text-sm text-[#8b7355]">
+                      {durationLabel}: <span className="font-semibold text-[#2a2118]">{caseItem.treatmentDuration}</span>
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-[var(--color-secondary)] text-xs font-semibold uppercase tracking-wider mb-0.5">
-                      {durationLabel}
-                    </p>
-                    <p className="text-[var(--color-primary)] font-bold">
-                      {caseItem.treatmentDuration}
-                    </p>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-
-            {/* Subtle background number - like Services section */}
-            <span className="absolute top-6 right-6 text-6xl font-bold text-[var(--color-primary)]/[0.03]
-              group-hover:text-[var(--color-accent)]/20 transition-colors duration-500 select-none">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-          </div>
+          </ScrollReveal>
         )
       })}
     </div>

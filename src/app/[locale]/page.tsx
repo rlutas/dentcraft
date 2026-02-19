@@ -1167,16 +1167,24 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
 
           <div className="container relative z-10">
             {/* Section header */}
-            <div className="text-center mb-16">
-              <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
-                {t('galleryPreview.badge')}
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
-                {t('galleryPreview.title')}
-              </h2>
-              <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
-                {t('galleryPreview.subtitle')}
-              </p>
+            <div className="text-center mb-16 lg:mb-20">
+              <ScrollReveal animation="fade-up">
+                <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
+                  text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
+                  {t('galleryPreview.badge')}
+                </span>
+              </ScrollReveal>
+
+              <ScrollReveal animation="fade-up" delay={200}>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#2a2118] mb-5">
+                  {t('galleryPreview.title')}
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={400}>
+                <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
+                  {t('galleryPreview.subtitle')}
+                </p>
+              </ScrollReveal>
             </div>
 
             {/* Before/After Gallery Grid */}
@@ -1188,25 +1196,19 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
             />
 
             {/* View All Button */}
-            <div className="mt-12 text-center">
+            <ScrollReveal animation="fade-up" delay={300} className="mt-12 md:mt-16 text-center">
               <Link
                 href="/galerie"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white
-                  rounded-full font-medium text-lg
-                  hover:bg-[var(--color-primary)]/90 hover:shadow-[0_10px_40px_-10px_rgba(26,26,26,0.4)]
-                  transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-7 py-3.5
+                  border-2 border-[#2a2118] text-[#2a2118] rounded-full font-semibold
+                  hover:bg-[#2a2118] hover:text-white transition-all duration-300"
               >
                 {t('galleryPreview.viewAll')}
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
       )}
