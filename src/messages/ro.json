@@ -405,17 +405,17 @@
     "title": "Un spatiu gandit pentru confortul tau",
     "subtitle": "Descopera clinica noastra moderna, dotata cu cea mai noua tehnologie dentara intr-un mediu cald si primitor.",
     "captions": {
-      "reception": "Receptia Dentcraft",
-      "treatment": "Sala de asteptare premium",
+      "reception": "Sala de asteptare",
+      "treatment": "Receptia Dentcraft",
       "equipment": "Cabinet de tratament modern",
-      "waiting": "Design interior cu atentie la detalii",
+      "waiting": "Camera de sterilizare",
       "detail": "Zona de relaxare"
     },
     "images": {
-      "reception": "Receptia clinicii Dentcraft",
-      "waiting": "Sala de asteptare a clinicii Dentcraft",
+      "reception": "Sala de asteptare a clinicii Dentcraft",
+      "waiting": "Receptia clinicii Dentcraft",
       "treatment": "Cabinet de tratament dentar modern",
-      "detail": "Hol interior clinica",
+      "detail": "Camera de sterilizare",
       "equipment": "Zona de relaxare clinica"
     },
     "features": {

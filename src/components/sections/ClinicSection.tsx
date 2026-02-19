@@ -18,10 +18,10 @@ interface ClinicSectionProps {
 }
 
 const IMG = {
-  main: { src: '/images/clinic/clinic-1.jpg', alt: 'clinic.images.reception' },
-  treatment: { src: '/images/clinic/clinic-11.jpg', alt: 'clinic.images.waiting' },
+  main: { src: '/images/clinic/clinic-11.jpg', alt: 'clinic.images.reception' },
+  treatment: { src: '/images/clinic/clinic-1.jpg', alt: 'clinic.images.waiting' },
   equipment: { src: '/images/clinic/clinic-6.jpg', alt: 'clinic.images.treatment' },
-  waiting: { src: '/images/clinic/clinic-4.jpg', alt: 'clinic.images.detail' },
+  waiting: { src: '/images/clinic/clinic-10.jpg', alt: 'clinic.images.detail' },
   detail: { src: '/images/clinic/clinic-3.jpg', alt: 'clinic.images.equipment' },
 }
 
@@ -111,7 +111,7 @@ export function ClinicSection({ t }: ClinicSectionProps) {
                 alt={t(IMG.treatment.alt)}
                 fill
                 sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover object-left transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/60 via-transparent to-transparent
                 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -153,7 +153,7 @@ export function ClinicSection({ t }: ClinicSectionProps) {
                 alt={t(IMG.treatment.alt)}
                 fill
                 sizes="50vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover object-left transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/60 via-transparent to-transparent
                 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

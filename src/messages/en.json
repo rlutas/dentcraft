@@ -405,17 +405,17 @@
     "title": "A space designed for your comfort",
     "subtitle": "Discover our modern clinic, equipped with the latest dental technology in a warm and welcoming environment.",
     "captions": {
-      "reception": "Dentcraft Reception",
-      "treatment": "Premium waiting area",
+      "reception": "Waiting area",
+      "treatment": "Dentcraft Reception",
       "equipment": "Modern treatment room",
-      "waiting": "Interior design with attention to detail",
+      "waiting": "Sterilization room",
       "detail": "Relaxation area"
     },
     "images": {
-      "reception": "Dentcraft clinic reception",
-      "waiting": "Dentcraft clinic waiting area",
+      "reception": "Dentcraft clinic waiting area",
+      "waiting": "Dentcraft clinic reception",
       "treatment": "Modern dental treatment room",
-      "detail": "Clinic interior hallway",
+      "detail": "Sterilization room",
       "equipment": "Clinic relaxation area"
     },
     "features": {
