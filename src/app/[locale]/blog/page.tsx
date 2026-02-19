@@ -140,15 +140,46 @@ async function BlogPageContent({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
-              <BookOpen className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
-            </div>
-            <h1 className="mb-6">{t('blog.title')}</h1>
-            <p className="text-body-lg text-muted max-w-2xl mx-auto">{t('blog.subtitle')}</p>
+      {/* Hero Section - Dark Editorial */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
+        {/* Dramatic lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }} />
+
+        <div className="container relative z-10">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-3 mb-12">
+            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
+              Acasă
+            </Link>
+            <span className="text-white/20">/</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">Blog</span>
+          </div>
+
+          <div className="max-w-4xl">
+            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
+              Sfaturi și informații
+            </span>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              {t('blog.title')}
+            </h1>
+
+            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+              {t('blog.subtitle')}
+            </p>
+          </div>
+
+          {/* Decorative line */}
+          <div className="mt-16 flex items-center gap-6">
+            <div className="w-24 h-px bg-[#d4c4b0]" />
+            <span className="text-white/30 text-sm">Articole pentru sănătatea ta dentară</span>
           </div>
         </div>
       </section>

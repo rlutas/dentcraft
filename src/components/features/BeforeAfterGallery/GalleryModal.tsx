@@ -24,6 +24,7 @@ export type GalleryCase = {
       url: string
     }
     alt?: string
+    generatedUrl?: string
   }
   afterImage: {
     asset: {
@@ -31,6 +32,7 @@ export type GalleryCase = {
       url: string
     }
     alt?: string
+    generatedUrl?: string
   }
   description: string | null
   treatmentDuration: string | null

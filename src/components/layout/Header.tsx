@@ -11,6 +11,7 @@ import Image from 'next/image'
 import MobileMenu from './MobileMenu'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 import CallbackPopup from '@/components/features/CallbackPopup'
+import { BookingButton } from '@/components/ui/BookingButton'
 
 // Static routes without dynamic segments
 type StaticRoute =
@@ -48,7 +49,6 @@ const localeNames: Record<Locale, string> = {
 export default function Header() {
   const t = useTranslations('navigation')
   const tServices = useTranslations('services')
-  const tCommon = useTranslations('common')
   const locale = useLocale() as Locale
   const pathname = usePathname()
   const router = useRouter()
@@ -150,9 +150,9 @@ export default function Header() {
                 <Image
                   src="/branding/LOGO_BLACK_FINAL.png"
                   alt="Dentcraft"
-                  width={140}
-                  height={35}
-                  className="h-8 w-auto transition-all duration-300 group-hover:opacity-80"
+                  width={420}
+                  height={59}
+                  className="h-7 w-auto lg:h-8 transition-all duration-300 group-hover:opacity-80"
                   priority
                 />
                 {/* Subtle glow on hover */}
@@ -162,7 +162,7 @@ export default function Header() {
 
             {/* Desktop Navigation - Centered with flex */}
             <div className="hidden flex-1 justify-center lg:flex">
-              <ul className="flex items-center gap-1">
+              <ul className="flex items-center gap-0 xl:gap-1">
                 {navItems.map((item) => {
                   // Special handling for Services dropdown
                   if (item.key === 'services') {
@@ -183,7 +183,7 @@ export default function Header() {
                         <Link
                           href={item.href}
                           className={cn(
-                            'relative flex items-center gap-1 px-4 py-2.5 text-[13px] font-medium tracking-[0.02em] uppercase transition-all duration-300',
+                            'relative flex items-center gap-1 px-2.5 xl:px-4 py-2.5 text-[12px] xl:text-[13px] font-semibold tracking-[0.02em] uppercase transition-all duration-300',
                             isActiveLink(item.href)
                               ? 'text-[#1a1a1a]'
                               : 'text-[#6b6b6b] hover:text-[#1a1a1a]'
@@ -271,7 +271,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          'relative px-4 py-2.5 text-[13px] font-medium tracking-[0.02em] uppercase transition-all duration-300',
+                          'relative px-2.5 xl:px-4 py-2.5 text-[12px] xl:text-[13px] font-semibold tracking-[0.02em] uppercase transition-all duration-300',
                           isActiveLink(item.href)
                             ? 'text-[#1a1a1a]'
                             : 'text-[#6b6b6b] hover:text-[#1a1a1a]'
@@ -297,9 +297,18 @@ export default function Header() {
               </ul>
             </div>
 
-            {/* Right side - Language Switcher + CTA */}
+            {/* Right side - CTA + Language Switcher */}
             <div className="flex shrink-0 items-center gap-3">
-              {/* Language Switcher - Compact Dropdown */}
+              {/* CTA Button - Desktop only (mobile menu has its own) */}
+              <div className="hidden lg:block">
+                <BookingButton
+                  variant="primary"
+                  size="sm"
+                  className="lg:!px-4 lg:!py-2.5 lg:!text-xs xl:!px-6 xl:!py-3 xl:!text-sm"
+                />
+              </div>
+
+              {/* Language Switcher - Compact Dropdown (after CTA) */}
               <div
                 className="relative hidden md:block"
                 data-language-switcher
@@ -379,34 +388,11 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
-              {/* CTA Button - Desktop - Premium */}
-              <button
-                onClick={() => setIsCallbackPopupOpen(true)}
-                className={cn(
-                  'hidden lg:inline-flex items-center gap-2 group',
-                  'px-5 py-2.5 rounded-full text-[12px] font-semibold tracking-wide uppercase',
-                  'bg-[#1a1a1a] text-white',
-                  'transition-all duration-300',
-                  'hover:bg-[#2a2a2a] hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.3)]',
-                  'hover:-translate-y-0.5'
-                )}
-              >
-                {tCommon('bookAppointment')}
-                <svg
-                  className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-
               {/* Mobile Menu Toggle - Refined */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={cn(
-                  'relative z-10 flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 lg:hidden',
+                  'relative z-10 flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 lg:hidden',
                   'border border-transparent',
                   'text-[#1a1a1a] hover:bg-[#f5f0e8]',
                   isMobileMenuOpen && 'bg-[#f5f0e8]'
@@ -423,7 +409,7 @@ export default function Header() {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <X className="h-5 w-5" strokeWidth={1.5} />
+                      <X className="h-7 w-7" strokeWidth={1.75} />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -433,7 +419,7 @@ export default function Header() {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Menu className="h-5 w-5" strokeWidth={1.5} />
+                      <Menu className="h-7 w-7" strokeWidth={1.75} />
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -638,7 +638,17 @@ export async function getSettings(locale: Locale) {
       linkedin,
       tiktok
     },
-    googleMapsEmbed
+    googleMapsEmbed,
+    heroImages {
+      teamPhoto {
+        asset->,
+        alt
+      },
+      clinicPhoto {
+        asset->,
+        alt
+      }
+    }
   }`
 
   return client.fetch(query)

@@ -154,34 +154,57 @@ async function PricesPageContent({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
-              <Receipt className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
-            </div>
-            <h1 className="mb-6">{t('prices.title')}</h1>
-            <p className="text-body-lg text-muted max-w-2xl mx-auto">
+      {/* Hero Section - Dark Editorial */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
+        {/* Dramatic lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }} />
+
+        <div className="container relative z-10">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-3 mb-12">
+            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
+              Acasă
+            </Link>
+            <span className="text-white/20">/</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">Prețuri</span>
+          </div>
+
+          <div className="max-w-4xl">
+            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
+              Tarife transparente
+            </span>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              {t('prices.title')}
+            </h1>
+
+            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed mb-10">
               {t('prices.subtitle')}
             </p>
-            <div className="mt-8">
-              <a
-                className="btn btn-lg btn-primary inline-flex items-center gap-2"
-                href="#calculator"
-              >
-                <Calculator className="w-5 h-5" strokeWidth={1.5} />
-                {t('prices.tryCalculator')}
-              </a>
-            </div>
+
+            <a
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#d4c4b0] text-[#0d0d0d] rounded-full
+                font-semibold hover:bg-white transition-colors duration-300"
+              href="#calculator"
+            >
+              <Calculator className="w-5 h-5" strokeWidth={1.5} />
+              {t('prices.tryCalculator')}
+            </a>
           </div>
         </div>
       </section>
 
       {/* Disclaimer */}
-      <section className="py-6 bg-[var(--color-accent-light)]">
+      <section className="py-4 bg-[#f8f5f0] border-b border-[#e8e0d5]">
         <div className="container">
-          <p className="text-center text-body-sm text-muted">
+          <p className="text-center text-sm text-[#6b6b6b]">
             {t('prices.disclaimer')}
           </p>
         </div>
@@ -436,32 +459,55 @@ async function PlaceholderPricesPage({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
-              <Receipt className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
-            </div>
-            <h1 className="mb-6">{t('prices.title')}</h1>
-            <p className="text-body-lg text-muted max-w-2xl mx-auto">
+      {/* Hero Section - Dark Editorial */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
+        {/* Dramatic lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }} />
+
+        <div className="container relative z-10">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-3 mb-12">
+            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
+              Acasă
+            </Link>
+            <span className="text-white/20">/</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">Prețuri</span>
+          </div>
+
+          <div className="max-w-4xl">
+            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
+              Tarife transparente
+            </span>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              {t('prices.title')}
+            </h1>
+
+            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed mb-10">
               {t('prices.subtitle')}
             </p>
-            <div className="mt-8">
-              <a
-                className="btn btn-lg btn-primary inline-flex items-center gap-2"
-                href="#calculator"
-              >
-                <Calculator className="w-5 h-5" strokeWidth={1.5} />
-                {t('prices.tryCalculator')}
-              </a>
-            </div>
+
+            <a
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#d4c4b0] text-[#0d0d0d] rounded-full
+                font-semibold hover:bg-white transition-colors duration-300"
+              href="#calculator"
+            >
+              <Calculator className="w-5 h-5" strokeWidth={1.5} />
+              {t('prices.tryCalculator')}
+            </a>
           </div>
         </div>
       </section>
 
       {/* Disclaimer */}
-      <section className="py-6 bg-[var(--color-accent-light)]">
+      <section className="py-4 bg-[#f8f5f0] border-b border-[#e8e0d5]">
         <div className="container">
           <p className="text-center text-body-sm text-muted">
             {t('prices.disclaimer')}

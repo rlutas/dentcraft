@@ -9,7 +9,7 @@ import {
   Crown,
   Activity,
   Scissors,
-  Baby,
+  Sparkles,
   AlertCircle,
   Heart,
 } from 'lucide-react'
@@ -186,7 +186,7 @@ export const fallbackServices: FallbackService[] = [
     slug: 'pedodontie',
     titleKey: 'pediatricDentistry',
     descriptionKey: 'pediatricDentistryDesc',
-    Icon: Baby,
+    Icon: Sparkles,
     iconPath: '/icons/002-tooth-7.svg',
     order: 8,
     benefits: [

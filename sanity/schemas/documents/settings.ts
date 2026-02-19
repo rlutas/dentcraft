@@ -139,6 +139,47 @@ export const settings = defineType({
       type: 'url',
       description: 'The embed URL for Google Maps iframe (src attribute)',
     }),
+    defineField({
+      name: 'heroImages',
+      title: 'Hero Images',
+      type: 'object',
+      description: 'Images used in hero sections across the website',
+      fields: [
+        defineField({
+          name: 'teamPhoto',
+          title: 'Team Photo (Homepage Hero)',
+          type: 'image',
+          description: 'Photo of the team displayed on the homepage hero section',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              description: 'Alternative text for accessibility',
+            }),
+          ],
+        }),
+        defineField({
+          name: 'clinicPhoto',
+          title: 'Clinic Photo',
+          type: 'image',
+          description: 'Photo of the clinic interior/exterior',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+            }),
+          ],
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare() {

@@ -63,15 +63,6 @@ const staggerContainer = {
   },
 }
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-}
-
 export default function ContactPageContent({
   contactInfo,
   workingHours,
@@ -82,65 +73,47 @@ export default function ContactPageContent({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Refined with geometric accents */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf8f5] via-[#f5f0e8] to-[#e8ded0]">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Subtle grid pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px)`,
-              backgroundSize: '60px 60px',
-            }}
-          />
-          {/* Floating orbs */}
-          <motion.div
-            className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[#d4c4b0]/30 blur-3xl"
-            animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
-            className="absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-[#d4c4b0]/20 blur-3xl"
-            animate={{ y: [0, -15, 0], x: [0, 15, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          />
-        </div>
+      {/* Hero Section - Dark Editorial */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
+        {/* Dramatic lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
 
-        <div className="container relative z-10 py-20 lg:py-28">
+        {/* Grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px',
+          }}
+        />
+
+        <div className="container relative z-10">
           <motion.div
-            className="mx-auto max-w-3xl text-center"
+            className="max-w-4xl"
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
           >
-            {/* Badge */}
-            <motion.div variants={fadeInUp} className="mb-6 flex items-center justify-center gap-3">
-              <span className="h-px w-8 bg-[#d4c4b0]" />
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6b6b6b]">
-                {t('contact.badge') || 'Contact'}
-              </span>
-              <span className="h-px w-8 bg-[#d4c4b0]" />
+            {/* Breadcrumb */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-12">
+              <span className="text-white/40 text-sm">Acasă</span>
+              <span className="text-white/20">/</span>
+              <span className="text-[#d4c4b0] text-sm font-medium">Contact</span>
             </motion.div>
 
-            {/* Icon */}
-            <motion.div
-              variants={scaleIn}
-              className="mb-8 inline-flex items-center justify-center"
+            {/* Badge */}
+            <motion.span
+              variants={fadeInUp}
+              className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6"
             >
-              <div className="relative">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0] blur-xl opacity-50" />
-                <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#333333] shadow-lg">
-                  <MapPin className="h-9 w-9 text-white" strokeWidth={1.5} />
-                </div>
-              </div>
-            </motion.div>
+              {t('contact.badge') || 'Contact'}
+            </motion.span>
 
             {/* Title */}
             <motion.h1
               variants={fadeInUp}
-              className="mb-6 text-4xl font-bold tracking-tight text-[#1a1a1a] sm:text-5xl lg:text-6xl"
-              style={{ letterSpacing: '-0.025em' }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]"
             >
               {t('contact.title')}
             </motion.h1>
@@ -148,24 +121,17 @@ export default function ContactPageContent({
             {/* Subtitle */}
             <motion.p
               variants={fadeInUp}
-              className="mx-auto max-w-xl text-lg text-[#6b6b6b] lg:text-xl"
-              style={{ lineHeight: 1.7 }}
+              className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed"
             >
               {t('contact.subtitle')}
             </motion.p>
-          </motion.div>
-        </div>
 
-        {/* Decorative bottom wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg
-            className="w-full text-white"
-            viewBox="0 0 1440 60"
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
-            <path d="M0,60 L0,20 Q360,60 720,20 T1440,20 L1440,60 Z" />
-          </svg>
+            {/* Decorative line */}
+            <motion.div variants={fadeInUp} className="mt-16 flex items-center gap-6">
+              <div className="w-24 h-px bg-[#d4c4b0]" />
+              <span className="text-white/30 text-sm">Satu Mare, România</span>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

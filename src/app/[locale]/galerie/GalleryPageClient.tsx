@@ -32,7 +32,6 @@ type GalleryPageClientProps = {
     title: string
     viewDetails: string
   }
-  urlForImage: (image: { asset: { url: string } }) => string
 }
 
 export function GalleryPageClient({
@@ -40,7 +39,6 @@ export function GalleryPageClient({
   currentFilter,
   services,
   translations: t,
-  urlForImage,
 }: GalleryPageClientProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0)
@@ -60,14 +58,46 @@ export function GalleryPageClient({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="mb-6">{t.title}</h1>
-            <p className="text-body-lg text-muted max-w-2xl mx-auto">
+      {/* Hero Section - Dark Editorial */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
+        {/* Dramatic lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }} />
+
+        <div className="container relative z-10">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-3 mb-12">
+            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
+              Acasă
+            </Link>
+            <span className="text-white/20">/</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">Galerie</span>
+          </div>
+
+          <div className="max-w-4xl">
+            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
+              Transformări reale
+            </span>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              {t.title}
+            </h1>
+
+            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
               {t.subtitle}
             </p>
+          </div>
+
+          {/* Decorative line */}
+          <div className="mt-16 flex items-center gap-6">
+            <div className="w-24 h-px bg-[#d4c4b0]" />
+            <span className="text-white/30 text-sm">{cases.length} cazuri documentate</span>
           </div>
         </div>
       </section>
@@ -124,7 +154,6 @@ export function GalleryPageClient({
                   caseItem={caseItem}
                   index={index}
                   translations={t}
-                  urlForImage={urlForImage}
                   onOpenModal={openModal}
                 />
               ))}
@@ -179,13 +208,11 @@ function GalleryCard({
   index,
   onOpenModal,
   translations: t,
-  urlForImage,
 }: {
   caseItem: GalleryCase
   index: number
   onOpenModal: (index: number) => void
   translations: GalleryPageClientProps['translations']
-  urlForImage: (image: { asset: { url: string } }) => string
 }) {
   return (
     <div className="card group overflow-hidden">
@@ -200,13 +227,13 @@ function GalleryCard({
         <div className="absolute inset-0 flex transition-transform group-hover:scale-105">
           {/* Before side */}
           <div className="relative w-1/2 h-full overflow-hidden">
-            {caseItem.beforeImage?.asset && (
+            {caseItem.beforeImage?.generatedUrl && (
               <Image
                 fill
                 alt={caseItem.beforeImage.alt || t.before}
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 17vw"
-                src={urlForImage(caseItem.beforeImage)}
+                src={caseItem.beforeImage.generatedUrl}
               />
             )}
             {/* Before label */}
@@ -216,13 +243,13 @@ function GalleryCard({
           </div>
           {/* After side */}
           <div className="relative w-1/2 h-full overflow-hidden">
-            {caseItem.afterImage?.asset && (
+            {caseItem.afterImage?.generatedUrl && (
               <Image
                 fill
                 alt={caseItem.afterImage.alt || t.after}
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 17vw"
-                src={urlForImage(caseItem.afterImage)}
+                src={caseItem.afterImage.generatedUrl}
               />
             )}
             {/* After label */}

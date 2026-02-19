@@ -11,6 +11,7 @@ export function WhatsAppButtonWrapper() {
       ariaLabel={t('common.whatsappMessage')}
       message={t('contact.whatsappPrefill')}
       phoneNumber={t('footer.phone')}
+      tooltipText={t('common.whatsappTooltip')}
     />
   )
 }

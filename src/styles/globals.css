@@ -473,7 +473,337 @@
    HERO SECTION STYLES
    ============================================ */
 
-/* Hero section background with enhanced gradient */
+/* Hero fullbleed section */
+.hero-fullbleed {
+  position: relative;
+}
+
+/* Rich gradient background for hero (when no clinic photo) */
+.hero-gradient-dramatic {
+  background:
+    linear-gradient(
+      155deg,
+      #faf8f5 0%,
+      #f5f0e8 20%,
+      #ede6db 45%,
+      #e4dacb 65%,
+      #d9ccba 85%,
+      #d0c1ac 100%
+    );
+}
+
+/* ===== HERO CINEMATIC ENTRANCE ===== */
+
+/* Background glow breathes in */
+.hero-bg-glow {
+  animation: heroBgGlow 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+@keyframes heroBgGlow {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Staggered text entrance - slides up with spring ease + slight blur clear */
+.hero-stagger-1 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+.hero-stagger-2 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+.hero-stagger-3 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
+.hero-stagger-4 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
+.hero-stagger-5 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both; }
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+  }
+  60% {
+    filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Photo entrance - scales up from slightly small with a cinematic reveal */
+.hero-photo-reveal {
+  animation: heroPhotoIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+@keyframes heroPhotoIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+    filter: blur(4px);
+  }
+  50% {
+    filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Floating cards - pop in with bounce + then float forever */
+.hero-float-card-1 {
+  animation:
+    heroCardPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both,
+    heroCardFloat1 5s ease-in-out 1.6s infinite;
+}
+.hero-float-card-2 {
+  animation:
+    heroCardPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.15s both,
+    heroCardFloat2 6s ease-in-out 1.85s infinite;
+}
+
+@keyframes heroCardPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(16px);
+  }
+  70% {
+    transform: scale(1.05) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Subtle perpetual float - different paths for each card */
+@keyframes heroCardFloat1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-6px) rotate(0.5deg); }
+  66% { transform: translateY(-3px) rotate(-0.3deg); }
+}
+@keyframes heroCardFloat2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-0.5deg); }
+  75% { transform: translateY(-7px) rotate(0.4deg); }
+}
+
+/* CTA button shimmer + breathing shadow */
+.hero-cta-glow {
+  position: relative;
+  overflow: hidden;
+  animation: ctaBreatheShadow 4s ease-in-out 1.5s infinite;
+}
+
+/* Shimmer sweep — a diagonal band of light that glides across the button surface */
+.hero-cta-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 65%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  animation: ctaShimmerSweep 4s ease-in-out 1.8s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* The shimmer band travels from left to right across the button */
+@keyframes ctaShimmerSweep {
+  0%   { left: -100%; opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { left: 180%; opacity: 1; }
+  70%  { opacity: 0; }
+  100% { left: 180%; opacity: 0; }
+}
+
+/* Soft breathing shadow — grows and recedes gently behind the button */
+@keyframes ctaBreatheShadow {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(139, 115, 85, 0.10),
+                0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(139, 115, 85, 0.22),
+                0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Nav CTA button shimmer removed — header button is now clean/static */
+
+/* Premium glow behind the hero photo — warm, soft, breathing light */
+.hero-photo-glow {
+  background: radial-gradient(
+    ellipse 80% 70% at 55% 50%,
+    rgba(180, 155, 120, 0.25) 0%,
+    rgba(160, 135, 100, 0.15) 30%,
+    rgba(139, 115, 85, 0.06) 60%,
+    transparent 100%
+  );
+  filter: blur(24px);
+  animation: heroPhotoGlow 6s ease-in-out 1.5s infinite;
+}
+
+@keyframes heroPhotoGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* Layered premium shadow on the photo card */
+.hero-photo-shadow {
+  box-shadow:
+    0 2px 8px rgba(139, 115, 85, 0.08),
+    0 8px 24px rgba(139, 115, 85, 0.12),
+    0 20px 60px -10px rgba(120, 95, 65, 0.20),
+    0 40px 80px -20px rgba(100, 80, 55, 0.15);
+  transition: box-shadow 0.5s ease;
+}
+
+.hero-photo-shadow:hover {
+  box-shadow:
+    0 2px 8px rgba(139, 115, 85, 0.10),
+    0 12px 32px rgba(139, 115, 85, 0.16),
+    0 28px 70px -10px rgba(120, 95, 65, 0.24),
+    0 50px 100px -20px rgba(100, 80, 55, 0.18);
+}
+
+/* Photo warm vignette — a gentle pulsing vignette that adds a premium "living" quality to the hero team photo */
+.hero-photo-warmglow {
+  position: relative;
+}
+
+.hero-photo-warmglow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow:
+    inset 0 0 40px 10px rgba(139, 115, 85, 0.05),
+    inset 0 0 80px 25px rgba(100, 80, 55, 0.03);
+  animation: photoWarmVignette 6s ease-in-out 2.5s infinite;
+}
+
+@keyframes photoWarmVignette {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 40px 10px rgba(139, 115, 85, 0.05),
+      inset 0 0 80px 25px rgba(100, 80, 55, 0.03);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 60px 20px rgba(139, 115, 85, 0.08),
+      inset 0 0 100px 35px rgba(100, 80, 55, 0.04);
+  }
+}
+
+/* Floating dental SVG decoration drifts - diagonal flow: top-right → bottom-left
+   Opacity is controlled entirely via CSS (no Tailwind opacity classes on elements).
+   heroDecoFadeIn handles only opacity; heroDrift handles only transform.
+   This avoids the conflict where two simultaneous animations both set transform. */
+.hero-deco-drift-1,
+.hero-deco-drift-2,
+.hero-deco-drift-3,
+.hero-deco-drift-4,
+.hero-deco-drift-5 {
+  opacity: 0;
+}
+
+.hero-deco-drift-1 {
+  animation:
+    heroDecoFadeIn 1.5s ease-out 0.5s forwards,
+    heroDrift1 10s ease-in-out 2s infinite;
+}
+.hero-deco-drift-2 {
+  animation:
+    heroDecoFadeIn 1.5s ease-out 0.8s forwards,
+    heroDrift2 12s ease-in-out 2.5s infinite;
+}
+.hero-deco-drift-3 {
+  animation:
+    heroDecoFadeIn 1.5s ease-out 1.1s forwards,
+    heroDrift3 14s ease-in-out 3s infinite;
+}
+.hero-deco-drift-4 {
+  animation:
+    heroDecoFadeIn 1.5s ease-out 1.4s forwards,
+    heroDrift4 11s ease-in-out 3.5s infinite;
+}
+.hero-deco-drift-5 {
+  animation:
+    heroDecoFadeIn 1.5s ease-out 1.7s forwards,
+    heroDrift5 16s ease-in-out 4s infinite;
+}
+
+@keyframes heroDecoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.10; }
+}
+
+/* Each drift moves in a different direction to create organic floating.
+   These keyframes only use transform, so they don't conflict with heroDecoFadeIn's opacity. */
+@keyframes heroDrift1 {
+  /* Top-left icon: drifts gently right and down */
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(6px, 5px) rotate(3deg); }
+  50% { transform: translate(10px, 8px) rotate(-2deg); }
+  75% { transform: translate(4px, 3px) rotate(2deg); }
+}
+@keyframes heroDrift2 {
+  /* Top-right icon: drifts gently left and down */
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(-7px, 5px) rotate(-4deg); }
+  60% { transform: translate(-4px, 10px) rotate(3deg); }
+}
+@keyframes heroDrift3 {
+  /* Center icon: circular-ish drift */
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, -6px) rotate(4deg); }
+  50% { transform: translate(-4px, -3px) rotate(-3deg); }
+  75% { transform: translate(-6px, 5px) rotate(2deg); }
+}
+@keyframes heroDrift4 {
+  /* Bottom-right icon: drifts gently up-left */
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-5px, -4px) rotate(-3deg); }
+  50% { transform: translate(-8px, -7px) rotate(4deg); }
+  80% { transform: translate(-3px, -3px) rotate(-2deg); }
+}
+@keyframes heroDrift5 {
+  /* Bottom-left icon: drifts gently right and up */
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(8px, -5px) rotate(3deg); }
+  55% { transform: translate(12px, -10px) rotate(-4deg); }
+  80% { transform: translate(5px, -4px) rotate(2deg); }
+}
+
+/* Legacy float classes (kept for compatibility) */
+.hero-float-1 {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+.hero-float-2 {
+  animation: heroFloat 8s ease-in-out 2s infinite;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Legacy: Hero section background with enhanced gradient */
 .hero-section {
   background:
     linear-gradient(
@@ -1140,4 +1470,39 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-muted-foreground);
+}
+
+
+/* ============================================
+   MARQUEE ANIMATIONS FOR REVIEWS
+   ============================================ */
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 120s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 120s linear infinite;
+}
+
+.animate-paused {
+  animation-play-state: paused;
 }

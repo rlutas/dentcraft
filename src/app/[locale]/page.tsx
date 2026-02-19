@@ -17,13 +17,10 @@ import { BookingButton } from '@/components/ui/BookingButton'
 import googleReviews from '@/data/google-reviews.json'
 import type { Locale } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
-// CONTACT is imported for future use when real video URLs are available
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { CONTACT } from '@/lib/constants/contact'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
 import { urlFor } from '@/lib/sanity/image'
-import { getAllServices, getFeaturedTestimonials, getAllTeamMembers, getFeaturedBeforeAfter } from '@/lib/sanity/queries'
+import { getAllServices, getFeaturedTestimonials, getAllTeamMembers, getFeaturedBeforeAfter, getSettings } from '@/lib/sanity/queries'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -115,6 +112,24 @@ interface BeforeAfterCaseWithUrls extends SanityBeforeAfter {
   afterImageUrl: string
 }
 
+// Type for site settings (hero images)
+interface SanitySettings {
+  heroImages?: {
+    teamPhoto?: {
+      asset?: {
+        url?: string
+      }
+      alt?: string
+    }
+    clinicPhoto?: {
+      asset?: {
+        url?: string
+      }
+      alt?: string
+    }
+  }
+}
+
 export default async function HomePage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)
@@ -122,15 +137,17 @@ export default async function HomePage({ params }: Props) {
   // Fetch data from Sanity (with fallbacks)
   let services: SanityService[] = []
   let testimonials: SanityTestimonial[] = []
+  let settings: SanitySettings | null = null
   let teamMembers: SanityTeamMember[] = []
   let beforeAfterCases: SanityBeforeAfter[] = []
 
   try {
-    [services, testimonials, teamMembers, beforeAfterCases] = await Promise.all([
+    [services, testimonials, teamMembers, beforeAfterCases, settings] = await Promise.all([
       getAllServices(locale as Locale),
       getFeaturedTestimonials(locale as Locale),
       getAllTeamMembers(locale as Locale),
       getFeaturedBeforeAfter(locale as Locale),
+      getSettings(locale as Locale),
     ])
   } catch (error) {
     console.error('Failed to fetch Sanity data:', error)
@@ -147,7 +164,16 @@ export default async function HomePage({ params }: Props) {
       : '',
   }))
 
-  return <HomePageContent services={services} testimonials={testimonials} teamMembers={teamMembers} beforeAfterCases={beforeAfterCasesWithUrls} locale={locale as Locale} />
+  // Get hero image URLs from Sanity settings (pre-compute on server)
+  const heroTeamPhotoUrl = settings?.heroImages?.teamPhoto?.asset
+    ? urlFor(settings.heroImages.teamPhoto).width(800).height(1000).quality(90).url()
+    : null
+
+  const heroClinicPhotoUrl = settings?.heroImages?.clinicPhoto?.asset
+    ? urlFor(settings.heroImages.clinicPhoto).width(1920).height(1080).quality(90).url()
+    : null
+
+  return <HomePageContent services={services} testimonials={testimonials} teamMembers={teamMembers} beforeAfterCases={beforeAfterCasesWithUrls} locale={locale as Locale} _heroTeamPhotoUrl={heroTeamPhotoUrl} _heroClinicPhotoUrl={heroClinicPhotoUrl} />
 }
 
 // Icon mapping for services from Sanity
@@ -165,9 +191,11 @@ interface HomePageContentProps {
   teamMembers: SanityTeamMember[]
   beforeAfterCases: BeforeAfterCaseWithUrls[]
   locale: Locale
+  _heroTeamPhotoUrl: string | null
+  _heroClinicPhotoUrl: string | null
 }
 
-function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases, locale }: HomePageContentProps) {
+function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases, locale, _heroTeamPhotoUrl, _heroClinicPhotoUrl }: HomePageContentProps) {
   const t = useTranslations()
 
   // Check if we have Sanity data
@@ -178,206 +206,173 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="hero-section relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="hero-bg-pattern absolute inset-0 pointer-events-none" />
-        <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[var(--color-accent)] opacity-60 animate-float-slow" />
-        <div className="absolute top-40 left-[15%] w-3 h-3 rounded-full bg-[var(--color-primary)] opacity-20 animate-float-medium" />
-        <div className="absolute bottom-32 left-[8%] w-2 h-2 rounded-full bg-[var(--color-accent-hover)] opacity-50 animate-float-fast" />
+      {/* ========== HERO SECTION ========== */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] via-[#f5efe7] to-[#eee6da]">
+        {/* Animated background glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="hero-bg-glow absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#e8ddd0]/30 blur-[120px]" />
+          <div className="hero-bg-glow absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#ddd0c0]/20 blur-[100px]" />
+        </div>
 
-        {/* Decorative lines */}
-        <svg className="absolute top-32 left-[5%] w-20 h-20 text-[var(--color-accent)] opacity-30" viewBox="0 0 80 80" fill="none">
-          <path d="M10 70 L70 10" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-          <path d="M20 70 L70 20" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-        </svg>
+        {/* Floating dental SVG decorations - subtle dental-themed texture */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
 
-        {/* Floating dental icons from /public/icons - with unique animations */}
-        {/* Smile - top right */}
-        <Image
-          src="/icons/010-smile.svg"
-          alt=""
-          width={40}
-          height={40}
-          className="absolute top-24 right-[12%] w-10 h-10 opacity-20 pointer-events-none hidden md:block animate-[drift_12s_ease-in-out_infinite]"
-        />
+          {/* === MOBILE ICONS (2 icons on a diagonal: top-right to bottom-left) === */}
+          {/* Mobile icon 1: Top-right corner area */}
+          <img src="/icons/032-tooth.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-1 absolute top-[8%] right-[6%] w-10 h-10 lg:hidden" />
+          {/* Mobile icon 2: Bottom-left corner area */}
+          <img src="/icons/010-smile.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-3 absolute bottom-[10%] left-[5%] w-9 h-9 lg:hidden" />
 
-        {/* Tooth - left side */}
-        <Image
-          src="/icons/032-tooth.svg"
-          alt=""
-          width={32}
-          height={32}
-          className="absolute top-36 left-[7%] w-8 h-8 opacity-15 pointer-events-none hidden md:block animate-[drift_15s_ease-in-out_infinite_reverse]"
-        />
+          {/* === DESKTOP ICONS (5 icons spread across hero corners and center) === */}
+          {/* Desktop 1: Top-left corner, above the badge/title text */}
+          <img src="/icons/032-tooth.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-1 absolute top-[6%] left-[8%] w-12 h-12 hidden lg:block" />
+          {/* Desktop 2: Top-right area, above the team photo */}
+          <img src="/icons/010-smile.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-2 absolute top-[8%] right-[6%] w-10 h-10 hidden lg:block" />
+          {/* Desktop 3: Center gap between text and photo columns */}
+          <img src="/icons/008-white-teeth.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-3 absolute top-[42%] left-[44%] w-14 h-14 hidden lg:block" />
+          {/* Desktop 4: Bottom-right, below the team photo */}
+          <img src="/icons/029-dental-care.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-4 absolute bottom-[8%] right-[10%] w-11 h-11 hidden lg:block" />
+          {/* Desktop 5: Bottom-left, below trust indicators */}
+          <img src="/icons/024-dental-implant.svg" alt="" aria-hidden="true"
+            className="hero-deco-drift-5 absolute bottom-[6%] left-[4%] w-16 h-16 hidden lg:block" />
+        </div>
 
-        {/* Dental care - right middle */}
-        <Image
-          src="/icons/029-dental-care.svg"
-          alt=""
-          width={36}
-          height={36}
-          className="absolute top-[45%] right-[5%] w-9 h-9 opacity-15 pointer-events-none hidden lg:block animate-[drift_18s_ease-in-out_infinite]"
-        />
+        {/* Main content */}
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 lg:gap-10 items-center
+            min-h-[calc(100svh-80px)] pt-14 pb-8 lg:pt-0 lg:pb-0">
 
-        {/* White teeth - bottom left */}
-        <Image
-          src="/icons/008-white-teeth.svg"
-          alt=""
-          width={36}
-          height={36}
-          className="absolute bottom-40 left-[10%] w-9 h-9 opacity-15 pointer-events-none hidden lg:block animate-[drift_14s_ease-in-out_infinite_reverse]"
-        />
+            {/* LEFT: Text content */}
+            <div>
+              {/* Badge */}
+              <div className="hero-stagger-1 mb-3 lg:mb-5">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
+                  bg-white/70 text-[#5a4a3a] border border-[#e0d5c8] shadow-[0_2px_12px_rgba(180,160,130,0.12)] backdrop-blur-sm">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  {t('hero.badge')}
+                </span>
+              </div>
 
-        {/* Dental implant - bottom right */}
-        <Image
-          src="/icons/024-dental-implant.svg"
-          alt=""
-          width={28}
-          height={28}
-          className="absolute bottom-16 right-[8%] w-7 h-7 opacity-20 pointer-events-none hidden lg:block animate-[drift_16s_ease-in-out_infinite]"
-        />
-
-        {/* Small tooth - top center-left */}
-        <Image
-          src="/icons/030-tooth-1.svg"
-          alt=""
-          width={24}
-          height={24}
-          className="absolute top-32 left-[32%] w-6 h-6 opacity-15 pointer-events-none hidden lg:block animate-[drift_20s_ease-in-out_infinite_reverse]"
-        />
-
-        <div className="container section relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            {/* Left side - Content */}
-            <div className="max-w-xl">
-              <span className="badge mb-6 hero-badge">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                {t('hero.badge')}
-              </span>
-
-              <h1 className="text-display mb-6">
-                {t('hero.title')}
+              {/* Heading */}
+              <h1 className="hero-stagger-2 text-[#2a2118] mb-3 lg:mb-5"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.08 }}>
+                {t('hero.title').split(',')[0]},
+                <br />
+                <span className="text-[#8b7355]">{t('hero.title').split(',')[1] || 'prioritatea noastra'}</span>
               </h1>
 
-              <p className="text-body-lg text-muted mb-10">
+              {/* Subtitle */}
+              <p className="hero-stagger-3 text-[#7a6b5a] text-lg leading-relaxed mb-6 lg:mb-8 max-w-md">
                 {t('hero.subtitle')}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <BookingButton>
+              {/* CTAs */}
+              <div className="hero-stagger-4 flex flex-row items-center gap-3 lg:gap-4">
+                <BookingButton size="md" className="hero-cta-glow lg:!px-8 lg:!py-4 !text-sm lg:!text-base">
                   {t('hero.cta.primary')}
                 </BookingButton>
-                <Link href="/servicii" className="btn btn-secondary btn-lg">
+                <Link href="/servicii" className="group inline-flex items-center gap-1.5 lg:gap-2 px-4 lg:px-6 py-3 lg:py-3.5 text-sm lg:text-base text-[#5a4a3a] font-semibold
+                  hover:text-[#2a2118] transition-colors duration-300">
                   {t('hero.cta.secondary')}
+                  <svg className="w-3.5 h-3.5 lg:w-4 lg:h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
+              </div>
+
+              {/* Trust indicators */}
+              <div className="hero-stagger-5 mt-6 lg:mt-10 flex flex-wrap items-center gap-3 lg:gap-6">
+                <div className="flex items-center gap-1.5 lg:gap-2">
+                  <div className="flex -space-x-2">
+                    <img src="/images/patient-1.png" alt="" className="w-7 h-7 lg:w-8 lg:h-8 rounded-full border-2 border-white object-cover" />
+                    <img src="/images/patient-2.png" alt="" className="w-7 h-7 lg:w-8 lg:h-8 rounded-full border-2 border-white object-cover" />
+                    <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-[#d4c4b0] border-2 border-white flex items-center justify-center text-xs font-bold text-white">+</div>
+                  </div>
+                  <div className="text-xs lg:text-sm">
+                    <span className="font-bold text-[#2a2118]">500+</span>
+                    <span className="text-[#8b7a68] ml-1">{locale === 'ro' ? 'pacienti fericiti' : locale === 'hu' ? 'boldog páciens' : 'happy patients'}</span>
+                  </div>
+                </div>
+                <div className="w-px h-6 lg:h-8 bg-[#d4c4b0]/40" />
+                <div className="flex items-center gap-1 lg:gap-1.5">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 lg:w-4 lg:h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-xs lg:text-sm font-bold text-[#2a2118]">4.9</span>
+                  <span className="text-xs lg:text-sm text-[#8b7a68]">Google</span>
+                </div>
               </div>
             </div>
 
-            {/* Right side - Visual element */}
-            <div className="relative hidden lg:flex justify-center items-end">
-              {/* Main decorative shape */}
-              <div className="hero-visual relative flex items-end">
-                {/* Decorative blob/circles BEHIND the photo */}
-                <svg className="w-[450px] h-[450px] absolute bottom-20 left-1/2 -translate-x-1/2" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient id="heroGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="var(--color-accent-light)" />
-                      <stop offset="50%" stopColor="var(--color-accent)" />
-                      <stop offset="100%" stopColor="var(--color-accent-hover)" />
-                    </linearGradient>
-                    <linearGradient id="heroGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.1" />
-                      <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0.02" />
-                    </linearGradient>
-                    <filter id="heroShadow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="10" stdDeviation="20" floodColor="rgba(0,0,0,0.1)" />
-                    </filter>
-                  </defs>
-                  {/* Background blob */}
-                  <path
-                    d="M320 200C320 280 260 340 180 340C100 340 40 280 40 200C40 120 100 60 180 60C260 60 320 120 320 200Z"
-                    fill="url(#heroGradient1)"
-                    filter="url(#heroShadow)"
-                    className="animate-morph"
-                  />
-                  {/* Overlay shape */}
-                  <path
-                    d="M340 180C340 260 280 320 200 320C120 320 60 260 60 180C60 100 120 40 200 40C280 40 340 100 340 180Z"
-                    fill="url(#heroGradient2)"
-                    className="animate-morph-reverse"
-                  />
-                  {/* Decorative circles */}
-                  <circle cx="300" cy="100" r="8" fill="var(--color-primary)" opacity="0.15" />
-                  <circle cx="80" cy="280" r="6" fill="var(--color-primary)" opacity="0.1" />
-                  <circle cx="350" cy="250" r="4" fill="var(--color-accent-hover)" opacity="0.4" />
-                </svg>
+            {/* RIGHT: Photo composition */}
+            <div className="relative flex justify-center lg:justify-end pt-4 pb-6 lg:pt-0 lg:pb-0">
+              <div className="relative hero-photo-reveal">
+                {/* Premium soft glow behind the photo */}
+                <div className="hero-photo-glow absolute -inset-6 lg:-inset-10 rounded-[2rem] lg:rounded-[2.5rem] pointer-events-none"
+                  aria-hidden="true"
+                />
 
-                {/* Doctor Photo - larger, aligned to bottom */}
-                <div className="relative z-10 w-[420px] h-[580px] xl:w-[480px] xl:h-[650px]">
+                {/* Main photo with layered premium shadow */}
+                <div className="relative rounded-xl lg:rounded-[1.5rem] overflow-hidden
+                  border-2 border-white/70 hero-photo-warmglow hero-photo-shadow">
                   <Image
-                    src="https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png"
-                    alt="Dr. Razvan Petric - Medic Stomatolog"
-                    width={480}
-                    height={650}
-                    className="w-full h-full object-contain object-bottom"
+                    src="/images/team-clinic.jpg"
+                    alt="Echipa Dentcraft - Clinica Stomatologica Satu Mare"
+                    width={1200}
+                    height={800}
+                    className="w-full lg:w-[400px] xl:w-[560px] 2xl:w-[650px] h-auto block object-cover"
                     priority
                   />
                 </div>
 
-                {/* Floating trust cards */}
-                <div className="absolute -top-4 -right-4 hero-float-card z-10">
-                  <div className="bg-white rounded-xl p-4 shadow-lg border border-[var(--color-border-light)]">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
-                        <Star className="w-5 h-5 text-[var(--color-warning)] fill-current" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-lg">4.9</div>
-                        <div className="text-xs text-muted">Google Rating</div>
-                      </div>
-                    </div>
+                {/* Floating card: Google Rating - top left, compact on mobile */}
+                <div className="absolute left-2 lg:-left-10 -top-3 lg:top-4 z-10
+                  bg-white/95 backdrop-blur-sm rounded-lg lg:rounded-2xl
+                  shadow-[0_4px_20px_rgba(0,0,0,0.06)] lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)]
+                  px-2 lg:px-4 py-1.5 lg:py-3
+                  border border-[#f0ebe4]/80
+                  hero-float-card-1
+                  flex items-center gap-1.5 lg:gap-3">
+                  <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md lg:rounded-xl bg-amber-50 flex items-center justify-center">
+                    <Star className="w-3.5 h-3.5 lg:w-5 lg:h-5 fill-amber-400 text-amber-400" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] lg:text-sm font-bold text-[#2a2118] leading-tight">4.9 / 5.0</div>
+                    <div className="text-[9px] lg:text-xs text-[#8b7a68] leading-tight">Google Reviews</div>
                   </div>
                 </div>
 
-                <div className="absolute -bottom-6 -left-8 hero-float-card-delayed z-10">
-                  <div className="bg-white rounded-xl p-4 shadow-lg border border-[var(--color-border-light)]">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[var(--color-accent-light)] flex items-center justify-center">
-                        <Users className="w-5 h-5 text-[var(--color-primary)]" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-lg">5000+</div>
-                        <div className="text-xs text-muted">{t('common.happyPatients')}</div>
-                      </div>
-                    </div>
+                {/* Floating card: Experience badge - bottom right, compact on mobile */}
+                <div className="absolute right-2 lg:-right-8 xl:-right-12 -bottom-3 lg:bottom-10 z-10
+                  bg-white/95 backdrop-blur-sm rounded-lg lg:rounded-2xl
+                  shadow-[0_4px_20px_rgba(0,0,0,0.06)] lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)]
+                  px-2 lg:px-4 py-1.5 lg:py-3
+                  border border-[#f0ebe4]/80
+                  hero-float-card-2
+                  flex items-center gap-1.5 lg:gap-3">
+                  <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md lg:rounded-xl bg-emerald-50 flex items-center justify-center">
+                    <svg className="w-3.5 h-3.5 lg:w-5 lg:h-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-[11px] lg:text-sm font-bold text-[#2a2118] leading-tight">15+ {locale === 'ro' ? 'ani' : locale === 'hu' ? '\u00e9v' : 'years'}</div>
+                    <div className="text-[9px] lg:text-xs text-[#8b7a68] leading-tight">{locale === 'ro' ? 'experienta' : locale === 'hu' ? 'tapasztalat' : 'experience'}</div>
                   </div>
                 </div>
-
-                <div className="absolute top-1/2 -right-12 hero-float-card-slow z-10">
-                  <div className="bg-white rounded-xl p-3 shadow-lg border border-[var(--color-border-light)]">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-[var(--color-accent-light)] flex items-center justify-center">
-                        <Heart className="w-4 h-4 text-[var(--color-destructive)]" />
-                      </div>
-                      <div className="text-xs font-semibold">15+ {t('common.yearsExperience').split(' ')[0]}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative dots grid */}
-              <div className="absolute -bottom-8 right-0 grid grid-cols-4 gap-3 opacity-30">
-                {[...Array(16)].map((_, i) => (
-                  <div key={i} className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]" />
-                ))}
               </div>
             </div>
+
           </div>
         </div>
-
       </section>
 
       {/* Services Section - Clean, premium design */}
@@ -655,167 +650,98 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         </div>
       </section>
 
-      {/* Team Section - Meet the Team */}
-      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-        {/* Subtle decorative background */}
-        <div className="absolute top-0 left-0 w-80 h-80 bg-[var(--color-accent)]/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
-
-        <div className="container relative z-10">
-          {/* Section header */}
+      {/* Team Section - Clean White Background */}
+      <section className="py-24 md:py-32 bg-white relative">
+        <div className="container">
+          {/* Header */}
           <div className="text-center mb-16">
-            <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
+            <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
+              text-[#8b7355] bg-[#f8f5f0] rounded-full border border-[#e8e0d5]">
               {t('teamPreview.badge')}
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
+
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-5">
               {t('teamPreview.title')}
             </h2>
-            <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto">
               {t('teamPreview.subtitle')}
             </p>
           </div>
 
-          {/* Team Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {hasSanityTeamMembers ? (
-              // Render team members from Sanity CMS
-              teamMembers.map((member, index) => (
+          {/* Team Grid - 4 columns, elegant minimal cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {(() => {
+              const members = hasSanityTeamMembers ? teamMembers : fallbackTeamMembers
+              return members.slice(0, 4).map((member, index) => (
                 <Link
-                  key={member._id}
+                  key={'_id' in member ? member._id : member.key}
                   href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
-                  className="group relative bg-[#faf8f5] rounded-3xl p-6 md:p-8
-                    border border-transparent hover:border-[var(--color-accent)]
-                    transition-all duration-500 ease-out
-                    hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]
-                    hover:-translate-y-2
-                    animate-[fadeInUp_0.6s_ease-out_both]"
+                  className="group block animate-[fadeInUp_0.5s_ease-out_both]"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Photo */}
-                  <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-5 bg-[var(--color-accent-light)]">
-                    {member.photo?.asset?.url ? (
+                  {/* Photo with overlay on hover */}
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4
+                    bg-gradient-to-b from-[#f5f0e8] to-[#e8e0d5]">
+                    {'photo' in member && member.photo && typeof member.photo !== 'string' && member.photo.asset?.url ? (
                       <Image
                         fill
                         alt={member.name}
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        src={urlFor(member.photo).width(400).height(400).quality(80).url()}
+                        className="object-cover object-top"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                        src={urlFor(member.photo).width(400).height(533).quality(85).url()}
+                      />
+                    ) : 'photo' in member && typeof member.photo === 'string' ? (
+                      <Image
+                        fill
+                        alt={member.name}
+                        className="object-cover object-top"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                        src={member.photo}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <User className="w-16 h-16 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
+                        <User className="w-16 h-16 text-[#c9b89a]" strokeWidth={1} />
                       </div>
                     )}
+
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-[#1a1a1a]/0 group-hover:bg-[#1a1a1a]/40
+                      transition-all duration-300 flex items-end justify-center pb-6">
+                      <span className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100
+                        transition-all duration-300 inline-flex items-center gap-2 px-5 py-2.5
+                        bg-white rounded-full text-sm font-semibold text-[#1a1a1a] shadow-lg">
+                        {t('common.learnMore')}
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Name */}
-                  <h3 className="text-lg md:text-xl font-semibold text-[var(--color-primary)] mb-1">
-                    {member.name}
-                  </h3>
-
-                  {/* Role */}
-                  {member.role && (
-                    <p className="text-sm text-[var(--color-secondary)] mb-4">
+                  {/* Name & Role */}
+                  <div className="text-center">
+                    <h3 className="text-lg md:text-xl font-semibold text-[#1a1a1a] mb-1 group-hover:text-[#8b7355] transition-colors">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-[#8b7355] font-medium">
                       {member.role}
                     </p>
-                  )}
-
-                  {/* View Profile Link */}
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-primary)]
-                    group-hover:gap-3 transition-all duration-300">
-                    {t('common.learnMore')}
-                    <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] flex items-center justify-center
-                      group-hover:bg-[var(--color-accent)] transition-colors duration-300">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </span>
-                </Link>
-              ))
-            ) : (
-              // Fallback to static team data
-              fallbackTeamMembers.map((member, index) => (
-                <Link
-                  key={member.key}
-                  href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
-                  className="group relative bg-[#faf8f5] rounded-3xl p-6 md:p-8
-                    border border-transparent hover:border-[var(--color-accent)]
-                    transition-all duration-500 ease-out
-                    hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]
-                    hover:-translate-y-2
-                    animate-[fadeInUp_0.6s_ease-out_both]"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Photo */}
-                  <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-5 bg-[var(--color-accent-light)]">
-                    {member.photo ? (
-                      <Image
-                        src={member.photo}
-                        alt={member.name}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <User className="w-16 h-16 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
-                      </div>
-                    )}
                   </div>
-
-                  {/* Name */}
-                  <h3 className="text-lg md:text-xl font-semibold text-[var(--color-primary)] mb-1">
-                    {member.name}
-                  </h3>
-
-                  {/* Role */}
-                  <p className="text-sm text-[var(--color-secondary)] mb-4">
-                    {member.role}
-                  </p>
-
-                  {/* View Profile Link */}
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-primary)]
-                    group-hover:gap-3 transition-all duration-300">
-                    {t('common.learnMore')}
-                    <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] flex items-center justify-center
-                      group-hover:bg-[var(--color-accent)] transition-colors duration-300">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </span>
                 </Link>
               ))
-            )}
+            })()}
           </div>
 
           {/* View All Button */}
-          <div className="mt-12 text-center">
+          <div className="mt-12 md:mt-16 text-center">
             <Link
               href="/echipa"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white
-                rounded-full font-medium text-lg
-                hover:bg-[var(--color-primary)]/90 hover:shadow-[0_10px_40px_-10px_rgba(26,26,26,0.4)]
-                transition-all duration-300"
+              className="group inline-flex items-center gap-3 px-7 py-3.5
+                border-2 border-[#1a1a1a] text-[#1a1a1a] rounded-full font-semibold
+                hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
             >
               {t('teamPreview.viewAll')}
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>

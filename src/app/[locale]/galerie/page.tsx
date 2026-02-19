@@ -154,7 +154,6 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
       currentFilter={serviceFilter}
       services={services}
       translations={translations}
-      urlForImage={(image) => (image as typeof casesWithUrls[0]['beforeImage']).generatedUrl}
     />
   )
 }

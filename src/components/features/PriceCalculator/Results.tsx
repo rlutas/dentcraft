@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowLeft, Calculator, CalendarCheck, RefreshCw } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
+import { BookingButton } from '@/components/ui/BookingButton'
 import type { CalculatorOptions } from './OptionsForm'
 import type { CalculatorService } from './index'
 
@@ -203,13 +203,12 @@ export function Results({
 
       {/* CTA Button */}
       <div className="mb-6">
-        <Link
-          className="btn btn-primary btn-lg w-full flex items-center justify-center gap-2"
-          href="/contact"
+        <BookingButton
+          className="w-full"
+          icon={<CalendarCheck className="w-5 h-5" strokeWidth={1.5} />}
         >
-          <CalendarCheck className="w-5 h-5" strokeWidth={1.5} />
           {translations.scheduleConsultation}
-        </Link>
+        </BookingButton>
       </div>
 
       {/* Navigation Buttons */}

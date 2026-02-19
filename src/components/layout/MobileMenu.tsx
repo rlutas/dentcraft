@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import type { NavItem } from './Header'
+import { CONTACT } from '@/lib/constants/contact'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 
 type MobileMenuProps = {
@@ -103,9 +104,9 @@ export default function MobileMenu({
                 <Image
                   src="/branding/LOGO_BLACK_FINAL.png"
                   alt="Dentcraft"
-                  width={120}
-                  height={30}
-                  className="h-7 w-auto"
+                  width={360}
+                  height={50}
+                  className="h-6 w-auto"
                 />
               </Link>
               <button
@@ -358,7 +359,7 @@ export default function MobileMenu({
                 animate="open"
                 className="mt-4 text-center text-sm text-secondary"
               >
-                +40 261 XXX XXX
+                {CONTACT.phoneFormatted}
               </motion.p>
             </nav>
           </motion.div>

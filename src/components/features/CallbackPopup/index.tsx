@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Phone, Clock, CheckCircle2, User, ChevronDown, Sparkles } from 'lucide-react'
@@ -86,14 +87,6 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
       newErrors['phone'] = t('errors.phoneInvalid')
     }
 
-    if (!formData.service) {
-      newErrors['service'] = t('errors.serviceRequired')
-    }
-
-    if (!formData.timePreference) {
-      newErrors['timePreference'] = t('errors.timeRequired')
-    }
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -105,17 +98,44 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
 
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch('/api/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service || undefined,
+          timePreference: formData.timePreference || undefined,
+        }),
+      })
 
-    setIsSubmitting(false)
-    setIsSuccess(true)
+      if (!response.ok) {
+        const data = await response.json().catch(() => null)
+        if (data?.errors) {
+          setErrors(data.errors)
+        } else {
+          setErrors({ general: data?.error || 'Something went wrong. Please try again.' })
+        }
+        setIsSubmitting(false)
+        return
+      }
+
+      setIsSubmitting(false)
+      setIsSuccess(true)
+    } catch {
+      setErrors({ general: 'Network error. Please check your connection and try again.' })
+      setIsSubmitting(false)
+    }
   }
 
   const selectedService = mainServices.find(s => s.slug === formData.service)
   const selectedTime = timeOptions.find(t => t.value === formData.timePreference)
 
-  return (
+  // Use portal to render at document body level, escaping any overflow/stacking context issues
+  if (typeof document === 'undefined') return null
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -123,7 +143,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
           onClick={handleBackdropClick}
         >
           {/* Backdrop with blur */}
@@ -141,7 +161,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              'relative w-full max-w-[440px] overflow-hidden rounded-3xl',
+              'relative w-full max-w-[480px] lg:max-w-[520px] max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-3xl',
               'bg-white shadow-[0_25px_80px_-15px_rgba(0,0,0,0.3)]'
             )}
             onClick={(e) => e.stopPropagation()}
@@ -222,32 +242,32 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="p-8"
+                  className="p-4 sm:p-5 lg:p-6"
                 >
                   {/* Header */}
-                  <div className="mb-8 pr-8">
+                  <div className="mb-3 sm:mb-5 pr-8">
                     {/* Badge */}
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#f5f0e8] px-3 py-1.5">
+                    <div className="mb-2 sm:mb-4 inline-flex items-center gap-2 rounded-full bg-[#f5f0e8] px-3 py-1">
                       <Phone className="h-3.5 w-3.5 text-[#8b8b8b]" />
                       <span className="text-xs font-semibold uppercase tracking-wider text-[#6b6b6b]">
                         {t('badge')}
                       </span>
                     </div>
 
-                    <h2 className="mb-2 text-2xl font-semibold text-[#1a1a1a] tracking-tight">
+                    <h2 className="mb-1 sm:mb-2 text-xl sm:text-2xl font-semibold text-[#1a1a1a] tracking-tight">
                       {t('title')}
                     </h2>
 
-                    <p className="text-[15px] text-[#6b6b6b] leading-relaxed">
+                    <p className="text-[13px] sm:text-[15px] text-[#6b6b6b] leading-relaxed">
                       {t('subtitle')}
                     </p>
                   </div>
 
                   {/* Form */}
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-3.5">
                     {/* Name Input */}
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-[#1a1a1a]">
+                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
                         {t('nameLabel')}
                       </label>
                       <div className="relative">
@@ -263,7 +283,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                           }}
                           placeholder={t('namePlaceholder')}
                           className={cn(
-                            'w-full rounded-xl border bg-white py-3.5 pl-11 pr-4 text-[15px]',
+                            'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
                             'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
                             'transition-all duration-200',
                             'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
@@ -278,7 +298,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
 
                     {/* Phone Input */}
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-[#1a1a1a]">
+                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
                         {t('phoneLabel')}
                       </label>
                       <div className="relative">
@@ -294,7 +314,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                           }}
                           placeholder={t('phonePlaceholder')}
                           className={cn(
-                            'w-full rounded-xl border bg-white py-3.5 pl-11 pr-4 text-[15px]',
+                            'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
                             'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
                             'transition-all duration-200',
                             'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
@@ -309,7 +329,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
 
                     {/* Service Dropdown */}
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-[#1a1a1a]">
+                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
                         {t('serviceLabel')}
                       </label>
                       <div className="relative">
@@ -320,7 +340,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                             setIsTimeOpen(false)
                           }}
                           className={cn(
-                            'flex w-full items-center justify-between rounded-xl border bg-white py-3.5 px-4 text-[15px]',
+                            'flex w-full items-center justify-between rounded-xl border bg-white py-2.5 sm:py-3 px-4 text-[14px] sm:text-[15px]',
                             'transition-all duration-200',
                             'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
                             errors['service'] ? 'border-red-400' : 'border-[#e8e8e8]',
@@ -392,7 +412,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
 
                     {/* Time Preference Dropdown */}
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-[#1a1a1a]">
+                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
                         {t('timeLabel')}
                       </label>
                       <div className="relative">
@@ -403,7 +423,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                             setIsServiceOpen(false)
                           }}
                           className={cn(
-                            'flex w-full items-center justify-between rounded-xl border bg-white py-3.5 px-4 text-[15px]',
+                            'flex w-full items-center justify-between rounded-xl border bg-white py-2.5 sm:py-3 px-4 text-[14px] sm:text-[15px]',
                             'transition-all duration-200',
                             'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
                             errors['timePreference'] ? 'border-red-400' : 'border-[#e8e8e8]',
@@ -472,21 +492,28 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                     </div>
 
                     {/* Promise note */}
-                    <div className="flex items-center gap-2.5 rounded-xl bg-[#f5f0e8]/60 px-4 py-3">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0]">
-                        <Phone className="h-3.5 w-3.5 text-white" />
+                    <div className="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-[#f5f0e8]/60 px-3 sm:px-4 py-2 sm:py-3">
+                      <div className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0]">
+                        <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white" />
                       </div>
-                      <p className="text-[13px] text-[#6b6b6b] leading-snug">
+                      <p className="text-[12px] sm:text-[13px] text-[#6b6b6b] leading-snug">
                         {t('promise')}
                       </p>
                     </div>
+
+                    {/* General error message */}
+                    {errors['general'] && (
+                      <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3">
+                        <p className="text-sm text-red-600">{errors['general']}</p>
+                      </div>
+                    )}
 
                     {/* Submit Button */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className={cn(
-                        'relative w-full overflow-hidden rounded-xl py-4 text-[15px] font-semibold',
+                        'relative w-full overflow-hidden rounded-xl py-3 sm:py-4 text-[14px] sm:text-[15px] font-semibold',
                         'bg-[#1a1a1a] text-white',
                         'transition-all duration-300',
                         'hover:bg-[#2a2a2a] hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.3)]',
@@ -524,6 +551,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   )
 }

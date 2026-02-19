@@ -147,8 +147,8 @@ export function Footer() {
                 <Image
                   src="/branding/LOGO_WHITE_FINAL.png"
                   alt="Dentcraft"
-                  width={160}
-                  height={40}
+                  width={480}
+                  height={67}
                   className="h-10 w-auto"
                 />
               </Link>
