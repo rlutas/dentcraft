@@ -11,6 +11,7 @@ import {
   Users,
   Wallet,
 } from 'lucide-react'
+import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
@@ -611,7 +612,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       group-hover:scale-110 transition-transform duration-300">
-                      {t('whyUs.stats.years.number')}
+                      <CountUp end={15} suffix="+" duration={2000} />
                     </div>
                     <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
                       {t('whyUs.stats.years.label')}
@@ -628,7 +629,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       group-hover:scale-110 transition-transform duration-300">
-                      {t('whyUs.stats.patients.number')}
+                      <CountUp end={500} suffix="+" duration={2200} />
                     </div>
                     <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
                       {t('whyUs.stats.patients.label')}
@@ -646,7 +647,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       flex items-center justify-center gap-1
                       group-hover:scale-110 transition-transform duration-300">
-                      {t('whyUs.stats.rating.number')}
+                      <CountUp end={4.8} decimals={1} duration={1800} />
                       <Star className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 fill-[var(--color-warning)] text-[var(--color-warning)]" />
                     </div>
                     <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
@@ -663,7 +664,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   <div className="text-center group">
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       group-hover:scale-110 transition-transform duration-300">
-                      {t('whyUs.stats.guarantee.number')}
+                      <CountUp end={100} suffix="%" duration={2000} />
                     </div>
                     <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
                       {t('whyUs.stats.guarantee.label')}
