@@ -368,7 +368,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     </svg>
                   </div>
                   <div>
-                    <div className="text-[11px] lg:text-sm font-bold text-[#2a2118] leading-tight">15+ {locale === 'ro' ? 'ani' : locale === 'hu' ? '\u00e9v' : 'years'}</div>
+                    <div className="text-[11px] lg:text-sm font-bold text-[#2a2118] leading-tight">5+ {locale === 'ro' ? 'ani' : locale === 'hu' ? '\u00e9v' : 'years'}</div>
                     <div className="text-[9px] lg:text-xs text-[#8b7a68] leading-tight">{locale === 'ro' ? 'experienta' : locale === 'hu' ? 'tapasztalat' : 'experience'}</div>
                   </div>
                 </div>
@@ -613,7 +613,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       group-hover:scale-110 transition-transform duration-300">
-                      <CountUp end={15} suffix="+" duration={2000} />
+                      <CountUp end={5} suffix="+" duration={2000} />
                     </div>
                     <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
                       {t('whyUs.stats.years.label')}
