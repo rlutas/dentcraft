@@ -11,6 +11,7 @@ import {
   Users,
   Wallet,
 } from 'lucide-react'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import { BookingButton } from '@/components/ui/BookingButton'
@@ -383,20 +384,26 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
         <div className="container relative z-10">
-          {/* Section header */}
+          {/* Section header - staggered reveal */}
           <div className="text-center mb-20">
-            <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
-              {t('services.badge')}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-6">
-              {t('services.title')}
-            </h2>
-            <p className="text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
-              {t('services.subtitle')}
-            </p>
+            <ScrollReveal animation="fade-up" duration={500}>
+              <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
+                {t('services.badge')}
+              </span>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={100} duration={600}>
+              <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-6">
+                {t('services.title')}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={200} duration={600}>
+              <p className="text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
+                {t('services.subtitle')}
+              </p>
+            </ScrollReveal>
           </div>
 
-          {/* Clean 3-column grid */}
+          {/* Clean 3-column grid - each card animates in with stagger */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {hasSanityServices ? (
               // Render services from Sanity CMS
@@ -404,10 +411,83 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 const IconComponent = service.icon ? iconMap[service.icon] : Stethoscope
 
                 return (
-                  <Link
+                  <ScrollReveal
                     key={service._id}
+                    animation="fade-up"
+                    delay={index * 100}
+                    duration={600}
+                  >
+                    <Link
+                      href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+                      className="group relative bg-[#faf8f5] rounded-3xl p-8 md:p-10 block h-full
+                        border border-transparent hover:border-[var(--color-accent)]
+                        transition-all duration-500 ease-out
+                        hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]
+                        hover:-translate-y-2"
+                    >
+                      {/* Icon container with gradient background */}
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl mb-8 flex items-center justify-center
+                        bg-gradient-to-br from-[var(--color-accent-light)] via-[var(--color-accent)]/20 to-[var(--color-accent)]/40
+                        group-hover:from-[var(--color-accent)] group-hover:via-[var(--color-accent)] group-hover:to-[var(--color-accent-hover)]
+                        transition-all duration-500 ease-out
+                        shadow-[0_8px_30px_-10px_rgba(212,196,176,0.5)]
+                        group-hover:shadow-[0_12px_40px_-10px_rgba(212,196,176,0.7)]">
+                        {IconComponent && (
+                          <IconComponent
+                            className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-primary)]
+                              group-hover:text-[var(--color-primary)] transition-colors duration-500"
+                            strokeWidth={1.25}
+                          />
+                        )}
+                      </div>
+
+                      {/* Service number - subtle visual interest */}
+                      <span className="absolute top-8 right-8 text-6xl font-bold text-[var(--color-primary)]/[0.03]
+                        group-hover:text-[var(--color-accent)]/20 transition-colors duration-500 select-none">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+
+                      {/* Content */}
+                      <h3 className="text-xl md:text-2xl font-semibold text-[var(--color-primary)] mb-4
+                        group-hover:text-[var(--color-primary)] transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-[var(--color-secondary)] leading-relaxed mb-6">
+                        {service.shortDescription || ''}
+                      </p>
+
+                      {/* Link with arrow */}
+                      <span className="inline-flex items-center gap-3 text-[var(--color-primary)] font-medium
+                        group-hover:gap-4 transition-all duration-300">
+                        {t('common.learnMore')}
+                        <span className="w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center
+                          group-hover:bg-[var(--color-accent)] transition-colors duration-300">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </span>
+                      </span>
+                    </Link>
+                  </ScrollReveal>
+                )
+              })
+            ) : (
+              // Fallback to translation-based content - show all 9 main services
+              getMainFallbackServices().map((service, index) => (
+                <ScrollReveal
+                  key={service.slug}
+                  animation="fade-up"
+                  delay={index * 100}
+                  duration={600}
+                >
+                  <Link
                     href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                    className="group relative bg-[#faf8f5] rounded-3xl p-8 md:p-10
+                    className="group relative bg-[#faf8f5] rounded-3xl p-8 md:p-10 block h-full
                       border border-transparent hover:border-[var(--color-accent)]
                       transition-all duration-500 ease-out
                       hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]
@@ -420,8 +500,16 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                       transition-all duration-500 ease-out
                       shadow-[0_8px_30px_-10px_rgba(212,196,176,0.5)]
                       group-hover:shadow-[0_12px_40px_-10px_rgba(212,196,176,0.7)]">
-                      {IconComponent && (
-                        <IconComponent
+                      {service.iconPath ? (
+                        <Image
+                          src={service.iconPath}
+                          alt=""
+                          width={48}
+                          height={48}
+                          className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                        />
+                      ) : (
+                        <service.Icon
                           className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-primary)]
                             group-hover:text-[var(--color-primary)] transition-colors duration-500"
                           strokeWidth={1.25}
@@ -438,10 +526,10 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     {/* Content */}
                     <h3 className="text-xl md:text-2xl font-semibold text-[var(--color-primary)] mb-4
                       group-hover:text-[var(--color-primary)] transition-colors">
-                      {service.title}
+                      {t(`services.fallback.${service.titleKey}`)}
                     </h3>
                     <p className="text-[var(--color-secondary)] leading-relaxed mb-6">
-                      {service.shortDescription || ''}
+                      {t(`services.fallback.${service.descriptionKey}`)}
                     </p>
 
                     {/* Link with arrow */}
@@ -461,82 +549,13 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                       </span>
                     </span>
                   </Link>
-                )
-              })
-            ) : (
-              // Fallback to translation-based content - show all 9 main services
-              getMainFallbackServices().map((service, index) => (
-                <Link
-                  key={service.slug}
-                  href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                  className="group relative bg-[#faf8f5] rounded-3xl p-8 md:p-10
-                    border border-transparent hover:border-[var(--color-accent)]
-                    transition-all duration-500 ease-out
-                    hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]
-                    hover:-translate-y-2"
-                >
-                  {/* Icon container with gradient background */}
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl mb-8 flex items-center justify-center
-                    bg-gradient-to-br from-[var(--color-accent-light)] via-[var(--color-accent)]/20 to-[var(--color-accent)]/40
-                    group-hover:from-[var(--color-accent)] group-hover:via-[var(--color-accent)] group-hover:to-[var(--color-accent-hover)]
-                    transition-all duration-500 ease-out
-                    shadow-[0_8px_30px_-10px_rgba(212,196,176,0.5)]
-                    group-hover:shadow-[0_12px_40px_-10px_rgba(212,196,176,0.7)]">
-                    {service.iconPath ? (
-                      <Image
-                        src={service.iconPath}
-                        alt=""
-                        width={48}
-                        height={48}
-                        className="w-10 h-10 md:w-12 md:h-12 object-contain"
-                      />
-                    ) : (
-                      <service.Icon
-                        className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-primary)]
-                          group-hover:text-[var(--color-primary)] transition-colors duration-500"
-                        strokeWidth={1.25}
-                      />
-                    )}
-                  </div>
-
-                  {/* Service number - subtle visual interest */}
-                  <span className="absolute top-8 right-8 text-6xl font-bold text-[var(--color-primary)]/[0.03]
-                    group-hover:text-[var(--color-accent)]/20 transition-colors duration-500 select-none">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-
-                  {/* Content */}
-                  <h3 className="text-xl md:text-2xl font-semibold text-[var(--color-primary)] mb-4
-                    group-hover:text-[var(--color-primary)] transition-colors">
-                    {t(`services.fallback.${service.titleKey}`)}
-                  </h3>
-                  <p className="text-[var(--color-secondary)] leading-relaxed mb-6">
-                    {t(`services.fallback.${service.descriptionKey}`)}
-                  </p>
-
-                  {/* Link with arrow */}
-                  <span className="inline-flex items-center gap-3 text-[var(--color-primary)] font-medium
-                    group-hover:gap-4 transition-all duration-300">
-                    {t('common.learnMore')}
-                    <span className="w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center
-                      group-hover:bg-[var(--color-accent)] transition-colors duration-300">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </span>
-                </Link>
+                </ScrollReveal>
               ))
             )}
           </div>
 
           {/* View all button */}
-          <div className="mt-16 text-center">
+          <ScrollReveal animation="fade-up" delay={200} duration={500} className="mt-16 text-center">
             <Link
               href="/servicii"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white
@@ -554,7 +573,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -567,87 +586,98 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="container relative z-10">
           {/* Section header */}
           <div className="text-center mb-12">
-            <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
-              {t('whyUs.badge')}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
-              {t('whyUs.title')}
-            </h2>
-            <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-xl mx-auto leading-relaxed">
-              {t('whyUs.subtitle')}
-            </p>
+            <ScrollReveal animation="fade-up" duration={500}>
+              <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
+                {t('whyUs.badge')}
+              </span>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={100} duration={600}>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
+                {t('whyUs.title')}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={200} duration={600}>
+              <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-xl mx-auto leading-relaxed">
+                {t('whyUs.subtitle')}
+              </p>
+            </ScrollReveal>
           </div>
 
           {/* Stats in elegant card */}
-          <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.06)]
-            animate-[fadeInUp_0.6s_ease-out_both]">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-              {/* Years of Experience */}
-              <div className="text-center relative group
-                animate-[fadeInUp_0.6s_ease-out_0.1s_both]">
-                <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                  group-hover:scale-110 transition-transform duration-300">
-                  {t('whyUs.stats.years.number')}
-                </div>
-                <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                  {t('whyUs.stats.years.label')}
-                </div>
-                <div className="text-[var(--color-secondary)] text-xs">
-                  {t('whyUs.stats.years.sublabel')}
-                </div>
-              </div>
+          <ScrollReveal animation="scale-up" delay={100} duration={700}>
+            <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.06)]">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                {/* Years of Experience */}
+                <ScrollReveal animation="fade-up" delay={150} duration={500}>
+                  <div className="text-center relative group">
+                    <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
+                      group-hover:scale-110 transition-transform duration-300">
+                      {t('whyUs.stats.years.number')}
+                    </div>
+                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
+                      {t('whyUs.stats.years.label')}
+                    </div>
+                    <div className="text-[var(--color-secondary)] text-xs">
+                      {t('whyUs.stats.years.sublabel')}
+                    </div>
+                  </div>
+                </ScrollReveal>
 
-              {/* Happy Patients */}
-              <div className="text-center relative group
-                animate-[fadeInUp_0.6s_ease-out_0.2s_both]">
-                <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                  group-hover:scale-110 transition-transform duration-300">
-                  {t('whyUs.stats.patients.number')}
-                </div>
-                <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                  {t('whyUs.stats.patients.label')}
-                </div>
-                <div className="text-[var(--color-secondary)] text-xs">
-                  {t('whyUs.stats.patients.sublabel')}
-                </div>
-              </div>
+                {/* Happy Patients */}
+                <ScrollReveal animation="fade-up" delay={250} duration={500}>
+                  <div className="text-center relative group">
+                    <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
+                      group-hover:scale-110 transition-transform duration-300">
+                      {t('whyUs.stats.patients.number')}
+                    </div>
+                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
+                      {t('whyUs.stats.patients.label')}
+                    </div>
+                    <div className="text-[var(--color-secondary)] text-xs">
+                      {t('whyUs.stats.patients.sublabel')}
+                    </div>
+                  </div>
+                </ScrollReveal>
 
-              {/* Google Rating */}
-              <div className="text-center relative group
-                animate-[fadeInUp_0.6s_ease-out_0.3s_both]">
-                <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                  flex items-center justify-center gap-1
-                  group-hover:scale-110 transition-transform duration-300">
-                  {t('whyUs.stats.rating.number')}
-                  <Star className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 fill-[var(--color-warning)] text-[var(--color-warning)]" />
-                </div>
-                <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                  {t('whyUs.stats.rating.label')}
-                </div>
-                <div className="text-[var(--color-secondary)] text-xs">
-                  {t('whyUs.stats.rating.sublabel')}
-                </div>
-              </div>
+                {/* Google Rating */}
+                <ScrollReveal animation="fade-up" delay={350} duration={500}>
+                  <div className="text-center relative group">
+                    <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
+                      flex items-center justify-center gap-1
+                      group-hover:scale-110 transition-transform duration-300">
+                      {t('whyUs.stats.rating.number')}
+                      <Star className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 fill-[var(--color-warning)] text-[var(--color-warning)]" />
+                    </div>
+                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
+                      {t('whyUs.stats.rating.label')}
+                    </div>
+                    <div className="text-[var(--color-secondary)] text-xs">
+                      {t('whyUs.stats.rating.sublabel')}
+                    </div>
+                  </div>
+                </ScrollReveal>
 
-              {/* Transparency */}
-              <div className="text-center group
-                animate-[fadeInUp_0.6s_ease-out_0.4s_both]">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                  group-hover:scale-110 transition-transform duration-300">
-                  {t('whyUs.stats.guarantee.number')}
-                </div>
-                <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                  {t('whyUs.stats.guarantee.label')}
-                </div>
-                <div className="text-[var(--color-secondary)] text-xs">
-                  {t('whyUs.stats.guarantee.sublabel')}
-                </div>
+                {/* Transparency */}
+                <ScrollReveal animation="fade-up" delay={450} duration={500}>
+                  <div className="text-center group">
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
+                      group-hover:scale-110 transition-transform duration-300">
+                      {t('whyUs.stats.guarantee.number')}
+                    </div>
+                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
+                      {t('whyUs.stats.guarantee.label')}
+                    </div>
+                    <div className="text-[var(--color-secondary)] text-xs">
+                      {t('whyUs.stats.guarantee.sublabel')}
+                    </div>
+                  </div>
+                </ScrollReveal>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -656,17 +686,23 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="container">
           {/* Header */}
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
-              text-[#8b7355] bg-[#f8f5f0] rounded-full border border-[#e8e0d5]">
-              {t('teamPreview.badge')}
-            </span>
+            <ScrollReveal animation="fade-up" duration={500}>
+              <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
+                text-[#8b7355] bg-[#f8f5f0] rounded-full border border-[#e8e0d5]">
+                {t('teamPreview.badge')}
+              </span>
+            </ScrollReveal>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-5">
-              {t('teamPreview.title')}
-            </h2>
-            <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto">
-              {t('teamPreview.subtitle')}
-            </p>
+            <ScrollReveal animation="fade-up" delay={100} duration={600}>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-5">
+                {t('teamPreview.title')}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={200} duration={600}>
+              <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto">
+                {t('teamPreview.subtitle')}
+              </p>
+            </ScrollReveal>
           </div>
 
           {/* Team Grid - 4 columns, elegant minimal cards */}
@@ -674,11 +710,15 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
             {(() => {
               const members = hasSanityTeamMembers ? teamMembers : fallbackTeamMembers
               return members.slice(0, 4).map((member, index) => (
-                <Link
+                <ScrollReveal
                   key={'_id' in member ? member._id : member.key}
+                  animation="fade-up"
+                  delay={index * 120}
+                  duration={600}
+                >
+                <Link
                   href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
-                  className="group block animate-[fadeInUp_0.5s_ease-out_both]"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="group block"
                 >
                   {/* Photo with overlay on hover */}
                   <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4
@@ -729,12 +769,13 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     </p>
                   </div>
                 </Link>
+                </ScrollReveal>
               ))
             })()}
           </div>
 
           {/* View All Button */}
-          <div className="mt-12 md:mt-16 text-center">
+          <ScrollReveal animation="fade-up" delay={100} duration={500} className="mt-12 md:mt-16 text-center">
             <Link
               href="/echipa"
               className="group inline-flex items-center gap-3 px-7 py-3.5
@@ -746,7 +787,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
