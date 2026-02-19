@@ -813,13 +813,10 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="container relative z-10">
           {/* Section header - Editorial style */}
           <div className="text-center mb-16 lg:mb-20">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#d4c4b0]" />
-              <span className="text-[#d4c4b0] text-sm font-medium tracking-[0.25em] uppercase">
-                {t('featuredTestimonials.badge')}
-              </span>
-              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#d4c4b0]" />
-            </div>
+            <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
+              text-[#d4c4b0] bg-white/5 rounded-full border border-[#d4c4b0]/30">
+              {t('featuredTestimonials.badge')}
+            </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight">
               {t('featuredTestimonials.title')}
             </h2>

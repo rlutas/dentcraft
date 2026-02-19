@@ -407,10 +407,12 @@
     "captions": {
       "reception": "Waiting area",
       "treatment": "Dentcraft Reception",
-      "equipment": "Modern treatment room",
-      "waiting": "Sterilization room",
+      "equipment": "Treatment room",
+      "waiting": "Treatment room",
       "detail": "Waiting room",
-      "treatmentRoom": "Treatment room"
+      "treatmentRoom": "Treatment room",
+      "waitingArea": "Waiting area",
+      "toys": "Kids corner"
     },
     "images": {
       "reception": "Dentcraft clinic waiting area",
@@ -418,7 +420,8 @@
       "treatment": "Modern dental treatment room",
       "detail": "Sterilization room",
       "equipment": "Clinic waiting room",
-      "treatmentRoom": "Dentcraft treatment room"
+      "treatmentRoom": "Dentcraft treatment room",
+      "toys": "Toys with toothbrush at Dentcraft"
     },
     "features": {
       "equipment": {

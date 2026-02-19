@@ -13,6 +13,7 @@ const IMG = {
   sterilization: { src: '/images/clinic/clinic-10.jpg', alt: 'clinic.images.detail' },
   waitingRoom: { src: '/images/clinic/clinic-3.jpg', alt: 'clinic.images.equipment' },
   treatmentRoom: { src: '/images/clinic/clinic-5.jpg', alt: 'clinic.images.treatmentRoom' },
+  toysDetail: { src: '/images/clinic/toys-with-toothbrush.jpg', alt: 'clinic.images.toys' },
 }
 
 const clinicFeatures = [
@@ -107,9 +108,9 @@ export function ClinicSection({ t }: ClinicSectionProps) {
         {/* ====== MOBILE GRID (<md) ====== */}
         <ScrollReveal animation="fade-up" delay={200}>
           <div className="grid grid-cols-2 gap-3 auto-rows-[160px] md:hidden">
-            {/* Waiting room - large hero 2x2 */}
+            {/* Hallway - large hero 2x2 */}
             <div className="col-span-2 row-span-2 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={IMG.waitingRoom.src} alt={t(IMG.waitingRoom.alt)} caption={t('clinic.captions.detail')} sizes="100vw" />
+              <ClinicImage src={IMG.hallway.src} alt={t(IMG.hallway.alt)} caption={t('clinic.captions.waitingArea')} sizes="100vw" />
             </div>
 
             {/* Reception - small */}
@@ -127,9 +128,14 @@ export function ClinicSection({ t }: ClinicSectionProps) {
               <ClinicImage src={IMG.sterilization.src} alt={t(IMG.sterilization.alt)} caption={t('clinic.captions.waiting')} sizes="50vw" />
             </div>
 
-            {/* Treatment room 3 - small */}
+            {/* Treatment room - small */}
             <div className="col-span-1 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
               <ClinicImage src={IMG.treatmentRoom.src} alt={t(IMG.treatmentRoom.alt)} caption={t('clinic.captions.treatmentRoom')} sizes="50vw" />
+            </div>
+
+            {/* Toys with toothbrush - wide bottom */}
+            <div className="col-span-2 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
+              <ClinicImage src={IMG.toysDetail.src} alt={t(IMG.toysDetail.alt)} caption={t('clinic.captions.toys')} sizes="100vw" />
             </div>
           </div>
         </ScrollReveal>

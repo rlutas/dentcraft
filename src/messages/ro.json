@@ -407,10 +407,12 @@
     "captions": {
       "reception": "Sala de asteptare",
       "treatment": "Receptia Dentcraft",
-      "equipment": "Cabinet de tratament modern",
-      "waiting": "Camera de sterilizare",
+      "equipment": "Cabinet tratament",
+      "waiting": "Cabinet tratament",
       "detail": "Sala de asteptare",
-      "treatmentRoom": "Cabinet de tratament"
+      "treatmentRoom": "Cabinet de tratament",
+      "waitingArea": "Sala de asteptare",
+      "toys": "Coltul celor mici"
     },
     "images": {
       "reception": "Sala de asteptare a clinicii Dentcraft",
@@ -418,7 +420,8 @@
       "treatment": "Cabinet de tratament dentar modern",
       "detail": "Camera de sterilizare",
       "equipment": "Sala de asteptare clinica",
-      "treatmentRoom": "Cabinet de tratament Dentcraft"
+      "treatmentRoom": "Cabinet de tratament Dentcraft",
+      "toys": "Jucarii cu periuta de dinti la clinica Dentcraft"
     },
     "features": {
       "equipment": {

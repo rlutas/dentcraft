@@ -407,10 +407,12 @@
     "captions": {
       "reception": "Varoterem",
       "treatment": "Dentcraft recepcio",
-      "equipment": "Modern kezeloszoba",
-      "waiting": "Sterilizalo szoba",
+      "equipment": "Kezeloszoba",
+      "waiting": "Kezeloszoba",
       "detail": "Varoterem",
-      "treatmentRoom": "Kezeloszoba"
+      "treatmentRoom": "Kezeloszoba",
+      "waitingArea": "Varoterem",
+      "toys": "Gyereksarok"
     },
     "images": {
       "reception": "Dentcraft klinika varoterem",
@@ -418,7 +420,8 @@
       "treatment": "Modern fogaszati kezeloszoba",
       "detail": "Sterilizalo szoba",
       "equipment": "Klinika varoterem",
-      "treatmentRoom": "Dentcraft kezeloszoba"
+      "treatmentRoom": "Dentcraft kezeloszoba",
+      "toys": "Jatekok fogkefevel a Dentcraft klinikan"
     },
     "features": {
       "equipment": {
