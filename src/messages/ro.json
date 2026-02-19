@@ -400,6 +400,43 @@
     "subtitle": "Vezi transformarile pacientilor nostri si descopera ce putem face pentru zambetul tau.",
     "viewAll": "Vezi toate cazurile"
   },
+  "clinic": {
+    "badge": "Clinica Noastra",
+    "title": "Un spatiu gandit pentru confortul tau",
+    "subtitle": "Descopera clinica noastra moderna, dotata cu cea mai noua tehnologie dentara intr-un mediu cald si primitor.",
+    "captions": {
+      "reception": "Receptie moderna si zona de primire",
+      "treatment": "Sala de tratament de ultima generatie",
+      "equipment": "Echipamente dentare avansate",
+      "waiting": "Zona de asteptare confortabila",
+      "detail": "Atentie la fiecare detaliu"
+    },
+    "images": {
+      "reception": "Receptia clinicii Dentcraft",
+      "treatment": "Sala de tratament dentar",
+      "equipment": "Echipament dentar modern",
+      "waiting": "Zona de asteptare a clinicii",
+      "detail": "Detaliu interior clinica"
+    },
+    "features": {
+      "equipment": {
+        "title": "Echipamente Moderne",
+        "description": "Tehnologie dentara de ultima generatie pentru diagnostice precise si tratamente eficiente."
+      },
+      "sterile": {
+        "title": "Mediu Steril",
+        "description": "Protocoale riguroase de sterilizare care asigura cele mai inalte standarde de igiena si siguranta."
+      },
+      "comfort": {
+        "title": "Spatiu Confortabil",
+        "description": "O atmosfera calda si relaxanta, creata pentru ca fiecare vizita sa fie o experienta placuta."
+      },
+      "digital": {
+        "title": "Tehnologie Digitala",
+        "description": "Scanare 3D, radiografii digitale si sisteme CAD/CAM pentru rezultate superioare."
+      }
+    }
+  },
   "featuredTestimonials": {
     "badge": "Testimoniale",
     "title": "Povesti de succes",

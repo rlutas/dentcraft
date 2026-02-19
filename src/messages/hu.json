@@ -400,6 +400,43 @@
     "subtitle": "Tekintse meg pacienseink atalakulasait es fedezze fel, mit tehetunk az On mosolyaert.",
     "viewAll": "Osszes eset megtekintese"
   },
+  "clinic": {
+    "badge": "Klinikank",
+    "title": "Az On kenyelmere tervezett ter",
+    "subtitle": "Fedezze fel modern klinikankat, amely a legujabb fogaszati technologiaval van felszerelve, meleg es baratsagos kornyezetben.",
+    "captions": {
+      "reception": "Modern recepcio es fogadoterulet",
+      "treatment": "Legmodernebb kezeloszoba",
+      "equipment": "Fejlett fogaszati berendezesek",
+      "waiting": "Kenyelmes varoterem",
+      "detail": "Figyelem minden reszletre"
+    },
+    "images": {
+      "reception": "A Dentcraft klinika recepcioja",
+      "treatment": "Fogaszati kezeloszoba",
+      "equipment": "Modern fogaszati berendezes",
+      "waiting": "A klinika varoterme",
+      "detail": "Klinika belso reszlete"
+    },
+    "features": {
+      "equipment": {
+        "title": "Modern Berendezesek",
+        "description": "Legujabb generacios fogaszati technologia a pontos diagnozisokhoz es hatekony kezelesekhez."
+      },
+      "sterile": {
+        "title": "Steril Kornyezet",
+        "description": "Szigoru sterilizalasi protokollok, amelyek biztositjak a legmagasabb higieniai es biztonsagi szabvanyokat."
+      },
+      "comfort": {
+        "title": "Kenyelmes Ter",
+        "description": "Meleg, pihenteto legkor, amelyet ugy terveztunk, hogy minden latogatas kellemes elmeny legyen."
+      },
+      "digital": {
+        "title": "Digitalis Technologia",
+        "description": "3D szkenneles, digitalis rontgen es CAD/CAM rendszerek a kimagaslo eredmenyekert."
+      }
+    }
+  },
   "featuredTestimonials": {
     "badge": "Velemenyek",
     "title": "Sikertortenetek",

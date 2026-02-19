@@ -400,6 +400,43 @@
     "subtitle": "See our patients' transformations and discover what we can do for your smile.",
     "viewAll": "View all cases"
   },
+  "clinic": {
+    "badge": "Our Clinic",
+    "title": "A space designed for your comfort",
+    "subtitle": "Discover our modern clinic, equipped with the latest dental technology in a warm and welcoming environment.",
+    "captions": {
+      "reception": "Modern reception & welcoming area",
+      "treatment": "State-of-the-art treatment room",
+      "equipment": "Advanced dental equipment",
+      "waiting": "Comfortable waiting area",
+      "detail": "Attention to every detail"
+    },
+    "images": {
+      "reception": "Dentcraft clinic reception area",
+      "treatment": "Dental treatment room",
+      "equipment": "Modern dental equipment",
+      "waiting": "Clinic waiting area",
+      "detail": "Clinic interior detail"
+    },
+    "features": {
+      "equipment": {
+        "title": "Modern Equipment",
+        "description": "Latest generation dental technology for precise diagnoses and efficient treatments."
+      },
+      "sterile": {
+        "title": "Sterile Environment",
+        "description": "Rigorous sterilization protocols ensuring the highest standards of hygiene and safety."
+      },
+      "comfort": {
+        "title": "Comfortable Space",
+        "description": "A warm, relaxing atmosphere designed to make every visit a pleasant experience."
+      },
+      "digital": {
+        "title": "Digital Technology",
+        "description": "3D scanning, digital X-rays and CAD/CAM systems for superior results."
+      }
+    }
+  },
   "featuredTestimonials": {
     "badge": "Testimonials",
     "title": "Success stories",

@@ -11,6 +11,7 @@ import {
   Users,
   Wallet,
 } from 'lucide-react'
+import { ClinicSection } from '@/components/sections/ClinicSection'
 import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
@@ -788,6 +789,9 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
           </ScrollReveal>
         </div>
       </section>
+
+      {/* ========== OUR CLINIC SECTION ========== */}
+      <ClinicSection t={t} />
 
       {/* Video Reels Testimonials Section - Instagram/TikTok Style */}
       <section className="video-testimonials-section py-24 md:py-32 relative overflow-hidden">
