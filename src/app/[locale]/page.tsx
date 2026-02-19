@@ -386,17 +386,17 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="container relative z-10">
           {/* Section header - staggered reveal */}
           <div className="text-center mb-20">
-            <ScrollReveal animation="fade-up" duration={500}>
+            <ScrollReveal animation="fade-up">
               <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
                 {t('services.badge')}
               </span>
             </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={100} duration={600}>
+            <ScrollReveal animation="fade-up" delay={150}>
               <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-6">
                 {t('services.title')}
               </h2>
             </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={200} duration={600}>
+            <ScrollReveal animation="fade-up" delay={300}>
               <p className="text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
                 {t('services.subtitle')}
               </p>
@@ -414,8 +414,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   <ScrollReveal
                     key={service._id}
                     animation="fade-up"
-                    delay={index * 100}
-                    duration={600}
+                    delay={index * 150}
                   >
                     <Link
                       href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
@@ -482,8 +481,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 <ScrollReveal
                   key={service.slug}
                   animation="fade-up"
-                  delay={index * 100}
-                  duration={600}
+                  delay={index * 150}
                 >
                   <Link
                     href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
@@ -555,7 +553,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
           </div>
 
           {/* View all button */}
-          <ScrollReveal animation="fade-up" delay={200} duration={500} className="mt-16 text-center">
+          <ScrollReveal animation="fade-up" delay={400} className="mt-16 text-center">
             <Link
               href="/servicii"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white
@@ -586,17 +584,17 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="container relative z-10">
           {/* Section header */}
           <div className="text-center mb-12">
-            <ScrollReveal animation="fade-up" duration={500}>
+            <ScrollReveal animation="fade-up">
               <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
                 {t('whyUs.badge')}
               </span>
             </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={100} duration={600}>
+            <ScrollReveal animation="fade-up" delay={200}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
                 {t('whyUs.title')}
               </h2>
             </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={200} duration={600}>
+            <ScrollReveal animation="fade-up" delay={400}>
               <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-xl mx-auto leading-relaxed">
                 {t('whyUs.subtitle')}
               </p>
@@ -604,11 +602,11 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
           </div>
 
           {/* Stats in elegant card */}
-          <ScrollReveal animation="scale-up" delay={100} duration={700}>
+          <ScrollReveal animation="scale-up" delay={300}>
             <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.06)]">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 {/* Years of Experience */}
-                <ScrollReveal animation="fade-up" delay={150} duration={500}>
+                <ScrollReveal animation="fade-up" delay={200}>
                   <div className="text-center relative group">
                     <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
@@ -625,7 +623,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 </ScrollReveal>
 
                 {/* Happy Patients */}
-                <ScrollReveal animation="fade-up" delay={250} duration={500}>
+                <ScrollReveal animation="fade-up" delay={400}>
                   <div className="text-center relative group">
                     <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
@@ -642,7 +640,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 </ScrollReveal>
 
                 {/* Google Rating */}
-                <ScrollReveal animation="fade-up" delay={350} duration={500}>
+                <ScrollReveal animation="fade-up" delay={600}>
                   <div className="text-center relative group">
                     <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
@@ -661,7 +659,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 </ScrollReveal>
 
                 {/* Transparency */}
-                <ScrollReveal animation="fade-up" delay={450} duration={500}>
+                <ScrollReveal animation="fade-up" delay={800}>
                   <div className="text-center group">
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       group-hover:scale-110 transition-transform duration-300">
@@ -686,19 +684,19 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
         <div className="container">
           {/* Header */}
           <div className="text-center mb-16">
-            <ScrollReveal animation="fade-up" duration={500}>
+            <ScrollReveal animation="fade-up">
               <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
                 text-[#8b7355] bg-[#f8f5f0] rounded-full border border-[#e8e0d5]">
                 {t('teamPreview.badge')}
               </span>
             </ScrollReveal>
 
-            <ScrollReveal animation="fade-up" delay={100} duration={600}>
+            <ScrollReveal animation="fade-up" delay={200}>
               <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-5">
                 {t('teamPreview.title')}
               </h2>
             </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={200} duration={600}>
+            <ScrollReveal animation="fade-up" delay={400}>
               <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto">
                 {t('teamPreview.subtitle')}
               </p>
@@ -713,8 +711,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 <ScrollReveal
                   key={'_id' in member ? member._id : member.key}
                   animation="fade-up"
-                  delay={index * 120}
-                  duration={600}
+                  delay={index * 150}
                 >
                 <Link
                   href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
@@ -775,7 +772,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
           </div>
 
           {/* View All Button */}
-          <ScrollReveal animation="fade-up" delay={100} duration={500} className="mt-12 md:mt-16 text-center">
+          <ScrollReveal animation="fade-up" delay={300} className="mt-12 md:mt-16 text-center">
             <Link
               href="/echipa"
               className="group inline-flex items-center gap-3 px-7 py-3.5

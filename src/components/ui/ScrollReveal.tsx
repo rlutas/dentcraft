@@ -24,7 +24,7 @@ export function ScrollReveal({
   children,
   animation = 'fade-up',
   delay = 0,
-  duration = 600,
+  duration = 900,
   threshold = 0.15,
   once = true,
   className = '',
@@ -55,17 +55,17 @@ export function ScrollReveal({
   const baseStyle: React.CSSProperties = {
     transitionProperty: 'opacity, transform',
     transitionDuration: `${duration}ms`,
-    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    transitionTimingFunction: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
     transitionDelay: `${delay}ms`,
   }
 
   const hiddenStyles: Record<Animation, React.CSSProperties> = {
-    'fade-up': { opacity: 0, transform: 'translateY(40px)' },
-    'fade-down': { opacity: 0, transform: 'translateY(-40px)' },
-    'fade-left': { opacity: 0, transform: 'translateX(-40px)' },
-    'fade-right': { opacity: 0, transform: 'translateX(40px)' },
-    'scale-up': { opacity: 0, transform: 'scale(0.92)' },
-    'scale-down': { opacity: 0, transform: 'scale(1.08)' },
+    'fade-up': { opacity: 0, transform: 'translateY(30px)' },
+    'fade-down': { opacity: 0, transform: 'translateY(-30px)' },
+    'fade-left': { opacity: 0, transform: 'translateX(-30px)' },
+    'fade-right': { opacity: 0, transform: 'translateX(30px)' },
+    'scale-up': { opacity: 0, transform: 'scale(0.94)' },
+    'scale-down': { opacity: 0, transform: 'scale(1.06)' },
   }
 
   const visibleStyle: React.CSSProperties = {
