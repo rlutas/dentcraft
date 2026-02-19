@@ -648,7 +648,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
                       flex items-center justify-center gap-1
                       group-hover:scale-110 transition-transform duration-300">
-                      <CountUp end={4.8} decimals={1} duration={1800} />
+                      <CountUp end={4.9} decimals={1} duration={1800} />
                       <Star className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 fill-[var(--color-warning)] text-[var(--color-warning)]" />
                     </div>
                     <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
@@ -1078,13 +1078,23 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
       <section className={`py-16 md:py-24 relative overflow-hidden ${hasSanityTestimonials ? 'bg-white' : 'bg-[#f5f0e8]'}`}>
         <div className="container relative z-10">
           {/* Section header */}
-          <div className="text-center mb-10">
-            <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
-              {t('testimonials.badge')}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)]">
-              {t('testimonials.title')}
-            </h2>
+          <div className="text-center mb-12 md:mb-16">
+            <ScrollReveal animation="fade-up">
+              <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
+                text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
+                {t('testimonials.badge')}
+              </span>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={200}>
+              <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-5">
+                {t('testimonials.title')}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={400}>
+              <p className="text-lg text-[var(--color-secondary)] max-w-2xl mx-auto leading-relaxed">
+                {t('testimonials.subtitle')}
+              </p>
+            </ScrollReveal>
           </div>
 
           {/* Google Reviews Slider - includes overview, carousel, and action buttons */}

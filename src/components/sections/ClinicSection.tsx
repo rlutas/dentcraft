@@ -89,7 +89,7 @@ export function ClinicSection({ t }: ClinicSectionProps) {
 
             {/* Reception - tall 1x2 */}
             <div className="col-span-1 row-span-2 group relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={IMG.reception.src} alt={t(IMG.reception.alt)} caption={t('clinic.captions.treatment')} sizes="25vw" className="object-[30%_center]" />
+              <ClinicImage src={IMG.reception.src} alt={t(IMG.reception.alt)} caption={t('clinic.captions.treatment')} sizes="25vw" className="object-[35%_center]" />
             </div>
 
             {/* Treatment room - small 1x1 */}
