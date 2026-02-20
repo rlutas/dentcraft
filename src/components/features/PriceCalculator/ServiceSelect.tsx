@@ -1,8 +1,6 @@
 'use client'
 
-import * as LucideIcons from 'lucide-react'
-import { ArrowRight, Stethoscope } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 import type { CalculatorService } from './index'
 
@@ -17,17 +15,6 @@ type ServiceSelectProps = {
     subtitle: string
     title: string
   }
-}
-
-// Helper to get Lucide icon by name
-function getIconComponent(iconName: string | null): LucideIcon {
-  if (!iconName) return Stethoscope
-  const icons = LucideIcons as Record<string, LucideIcon | unknown>
-  const icon = icons[iconName]
-  if (typeof icon === 'function') {
-    return icon as LucideIcon
-  }
-  return Stethoscope
 }
 
 export function ServiceSelect({
@@ -48,9 +35,8 @@ export function ServiceSelect({
       </div>
 
       {/* Service Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
         {services.map((service) => {
-          const Icon = getIconComponent(service.icon)
           const isSelected = selectedServiceId === service._id
 
           return (
@@ -58,11 +44,11 @@ export function ServiceSelect({
               key={service._id}
               aria-pressed={isSelected}
               className={`
-                relative p-5 rounded-xl border-2 text-left transition-all duration-200
+                relative p-3 sm:p-5 rounded-xl border-2 text-left transition-all duration-200
                 ${
                   isSelected
-                    ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5 ring-2 ring-[var(--color-primary)]/20'
-                    : 'border-[var(--color-border)] bg-white hover:border-[var(--color-primary)]/50 hover:bg-[var(--color-accent-light)]'
+                    ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5 shadow-md'
+                    : 'border-[var(--color-border)] bg-white hover:border-[var(--color-primary)]/40 hover:bg-[var(--color-accent-light)]'
                 }
               `}
               onClick={() => onSelect(service._id)}
@@ -90,21 +76,25 @@ export function ServiceSelect({
               {/* Icon */}
               <div
                 className={`
-                w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors
+                w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-2 sm:mb-3 transition-all
                 ${
                   isSelected
-                    ? 'bg-[var(--color-primary)] text-white'
-                    : 'bg-[var(--color-accent-light)] text-[var(--color-primary)]'
+                    ? 'bg-[var(--color-primary)]/10'
+                    : 'bg-[var(--color-accent-light)]'
                 }
               `}
               >
-                <Icon className="w-6 h-6" strokeWidth={1.5} />
+                <img
+                  src={service.icon || '/icons/032-tooth.svg'}
+                  alt=""
+                  className={`w-6 h-6 sm:w-7 sm:h-7 transition-opacity ${isSelected ? 'opacity-100' : 'opacity-70'}`}
+                />
               </div>
 
               {/* Title */}
               <h4
                 className={`
-                font-medium transition-colors
+                text-sm sm:text-base font-medium transition-colors
                 ${isSelected ? 'text-[var(--color-primary)]' : 'text-[var(--color-text)]'}
               `}
               >
@@ -123,7 +113,7 @@ export function ServiceSelect({
             ${
               selectedServiceId
                 ? 'btn-primary'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-[#e8ded0]/50 text-[#8b7355]/40 cursor-not-allowed'
             }
           `}
           disabled={!selectedServiceId}

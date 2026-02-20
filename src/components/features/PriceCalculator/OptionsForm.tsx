@@ -115,7 +115,7 @@ export function OptionsForm({
                 ${
                   options.quantity > 1
                     ? 'border-[var(--color-border)] hover:border-[var(--color-primary)] text-[var(--color-text)]'
-                    : 'border-gray-200 text-gray-300 cursor-not-allowed'
+                    : 'border-[#e8ded0] text-[#d4c4b0] cursor-not-allowed'
                 }
               `}
               disabled={options.quantity <= 1}
@@ -140,7 +140,7 @@ export function OptionsForm({
                 ${
                   options.quantity < 32
                     ? 'border-[var(--color-border)] hover:border-[var(--color-primary)] text-[var(--color-text)]'
-                    : 'border-gray-200 text-gray-300 cursor-not-allowed'
+                    : 'border-[#e8ded0] text-[#d4c4b0] cursor-not-allowed'
                 }
               `}
               disabled={options.quantity >= 32}
@@ -288,7 +288,7 @@ export function OptionsForm({
             ${
               canProceed
                 ? 'btn-primary'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-[#e8ded0]/50 text-[#8b7355]/40 cursor-not-allowed'
             }
           `}
           disabled={!canProceed}

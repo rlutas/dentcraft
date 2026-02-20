@@ -1,43 +1,63 @@
 'use client'
 
-import { ArrowLeft, Calculator, CalendarCheck, RefreshCw } from 'lucide-react'
-import { BookingButton } from '@/components/ui/BookingButton'
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
+import { AlertCircle, ArrowLeft, Calculator, CalendarCheck, RefreshCw } from 'lucide-react'
 import type { CalculatorOptions } from './OptionsForm'
 import type { CalculatorService } from './index'
+
+const PriceEstimatePopup = dynamic(() => import('./PriceEstimatePopup'), { ssr: false })
 
 // Base price ranges for services (min/max per unit in RON)
 const servicePriceRanges: Record<
   string,
   { max: number; min: number; premiumMultiplier?: number }
 > = {
-  // Common service slugs (Romanian and English variants)
-  'albire-dentara': { max: 1500, min: 800 },
-  'consultatie-stomatologica': { max: 150, min: 100 },
-  consultation: { max: 150, min: 100 },
-  'coroane-dentare': { max: 2500, min: 1200, premiumMultiplier: 1.8 },
-  crown: { max: 2500, min: 1200, premiumMultiplier: 1.8 },
-  crowns: { max: 2500, min: 1200, premiumMultiplier: 1.8 },
-  detartraj: { max: 400, min: 200 },
-  'endodontie': { max: 1200, min: 600 },
-  'extractie-dentara': { max: 600, min: 200 },
-  extraction: { max: 600, min: 200 },
-  'fatete-dentare': { max: 3500, min: 1800, premiumMultiplier: 1.6 },
-  'implant': { max: 4500, min: 2500, premiumMultiplier: 1.5 },
-  'implanturi-dentare': { max: 4500, min: 2500, premiumMultiplier: 1.5 },
-  implants: { max: 4500, min: 2500, premiumMultiplier: 1.5 },
-  'obturatii-dentare': { max: 450, min: 180 },
-  'ortodontie': { max: 15000, min: 5000 },
-  orthodontics: { max: 15000, min: 5000 },
-  'parodontologie': { max: 1000, min: 300 },
-  'pedodontie': { max: 400, min: 150 },
-  'proteze-dentare': { max: 5000, min: 1500, premiumMultiplier: 1.7 },
-  prosthetics: { max: 5000, min: 1500, premiumMultiplier: 1.7 },
-  'radiografie-dentara': { max: 200, min: 50 },
-  'restaurari-dentare': { max: 600, min: 250 },
-  scaling: { max: 400, min: 200 },
-  veneer: { max: 3500, min: 1800, premiumMultiplier: 1.6 },
-  veneers: { max: 3500, min: 1800, premiumMultiplier: 1.6 },
-  whitening: { max: 1500, min: 800 },
+  // Consultații
+  'consultatii': { max: 300, min: 100 },
+  'consultatie-stomatologica': { max: 300, min: 100 },
+  consultation: { max: 300, min: 100 },
+  // Profilaxie
+  'profilaxie': { max: 1500, min: 100 },
+  detartraj: { max: 1500, min: 100 },
+  scaling: { max: 1500, min: 100 },
+  // Odontoterapie (obturații)
+  'odontoterapie': { max: 400, min: 50 },
+  'obturatii-dentare': { max: 400, min: 50 },
+  'restaurari-dentare': { max: 400, min: 50 },
+  // Endodonție
+  'endodontie': { max: 1000, min: 200 },
+  // Protetică
+  'protetica': { max: 3000, min: 50, premiumMultiplier: 1.7 },
+  'proteze-dentare': { max: 3000, min: 50, premiumMultiplier: 1.7 },
+  prosthetics: { max: 3000, min: 50, premiumMultiplier: 1.7 },
+  'coroane-dentare': { max: 1700, min: 1000, premiumMultiplier: 1.5 },
+  crown: { max: 1700, min: 1000, premiumMultiplier: 1.5 },
+  crowns: { max: 1700, min: 1000, premiumMultiplier: 1.5 },
+  // Chirurgie / Implantologie
+  'chirurgie': { max: 2750, min: 100, premiumMultiplier: 1.5 },
+  'extractie-dentara': { max: 2750, min: 200, premiumMultiplier: 1.5 },
+  extraction: { max: 2750, min: 200, premiumMultiplier: 1.5 },
+  'implanturi-dentare': { max: 2750, min: 2000, premiumMultiplier: 1.3 },
+  'implant': { max: 2750, min: 2000, premiumMultiplier: 1.3 },
+  implants: { max: 2750, min: 2000, premiumMultiplier: 1.3 },
+  // Ortodonție
+  'ortodontie': { max: 15000, min: 50 },
+  orthodontics: { max: 15000, min: 100 },
+  // Estetică dentară
+  'estetica-dentara': { max: 2000, min: 1000, premiumMultiplier: 1.6 },
+  'albire-dentara': { max: 1500, min: 1000 },
+  whitening: { max: 1500, min: 1000 },
+  'fatete-dentare': { max: 2000, min: 1700, premiumMultiplier: 1.3 },
+  veneer: { max: 2000, min: 1700, premiumMultiplier: 1.3 },
+  veneers: { max: 2000, min: 1700, premiumMultiplier: 1.3 },
+  // Stomatologie generală
+  'stomatologie-generala': { max: 400, min: 100 },
+  'pedodontie': { max: 400, min: 100 },
+  'radiografie-dentara': { max: 400, min: 100 },
+  // Urgențe dentare
+  'urgente-dentare': { max: 800, min: 200 },
+  'parodontologie': { max: 800, min: 200 },
 }
 
 // Default price range fallback
@@ -109,6 +129,8 @@ export function Results({
     minPrice = Math.round(minPrice * priceData.premiumMultiplier)
     maxPrice = Math.round(maxPrice * priceData.premiumMultiplier)
   }
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
 
   // Format price in RON
   const formatPrice = (price: number) => {
@@ -195,20 +217,32 @@ export function Results({
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8">
-        <p className="text-sm text-amber-800 text-center">
-          ⚠️ {translations.disclaimer}
+      <div className="bg-[#faf6f1] border border-[#e8e0d5] rounded-xl p-4 mb-8">
+        <p className="text-sm text-[#8b7355] flex items-center justify-center">
+          <AlertCircle className="w-4 h-4 inline mr-1.5 -mt-0.5" strokeWidth={1.5} />
+          {translations.disclaimer}
         </p>
       </div>
 
       {/* CTA Button */}
       <div className="mb-6">
-        <BookingButton
-          className="w-full"
-          icon={<CalendarCheck className="w-5 h-5" strokeWidth={1.5} />}
+        <button
+          type="button"
+          className="w-full btn btn-lg btn-primary flex items-center justify-center gap-2"
+          onClick={() => setIsPopupOpen(true)}
         >
+          <CalendarCheck className="w-5 h-5" strokeWidth={1.5} />
           {translations.scheduleConsultation}
-        </BookingButton>
+        </button>
+
+        <PriceEstimatePopup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+          service={{ title: service.title, slug: service.slug }}
+          options={options}
+          priceRange={{ min: minPrice, max: maxPrice }}
+          locale={locale}
+        />
       </div>
 
       {/* Navigation Buttons */}
