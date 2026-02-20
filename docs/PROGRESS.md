@@ -43,8 +43,8 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 | `/echipa/[slug]` | Done | Individual member detail pages |
 | `/servicii` | Done | Service categories grid (9 services) |
 | `/servicii/[slug]` | Done | Individual service pages |
-| `/galerie` | Done | Before/after comparison viewer with interactive slider |
-| `/blog` | Done | Blog listing page |
+| `/galerie` | Done | Premium redesigned gallery with before/after cards (glassmorphism labels, hover effects), "Clinica Noastra" photo section (masonry grid, lightbox), filter pills |
+| `/blog` | Done | Blog listing with category filters, pagination, dark editorial hero |
 | `/preturi` | Done | Dark editorial hero, Price Calculator (3-step flow), Tabbed price list (7 categories, 81 treatments), PriceEstimatePopup lead form, disclaimer |
 | `/contact` | Done | Premium design with Framer Motion, quick contact cards, Google Maps embed, file upload form (drag-drop, 5 files max) |
 
@@ -69,6 +69,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 | BeforeAfterGallery | `/src/components/features/BeforeAfterGallery/` | ComparisonSlider with touch support, GalleryModal for full-screen view |
 | ContactPageContent | `/src/components/features/ContactPageContent/` | Client component with floating orbs, quick contact cards, two-column layout, file upload form |
 | ScrollReveal | `/src/components/ui/ScrollReveal.tsx` | Reusable scroll-triggered fade-up animation wrapper |
+| GalleryPageClient | `/src/app/[locale]/galerie/GalleryPageClient.tsx` | Premium gallery with before/after cards, clinic photo masonry grid, lightbox modal, staggered animations |
 
 ### API Routes
 
@@ -84,6 +85,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 - **Mobile-responsive** design throughout (tested on all pages)
 - **Sanity CMS** schemas: Services, Team Members, Testimonials, Before/After Cases, Blog Posts, Prices, Settings
 - **Fallback data** for team (`/src/lib/fallback-team.ts`), services (`/src/lib/fallback-services.ts`), and prices (inline in TabbedPriceList) when Sanity has insufficient content
+- **Gallery photos data** (`/src/data/gallery-photos.ts`) — static list of clinic/team photos, user adds images to `/public/images/gallery/` and updates the data file
 
 ---
 
@@ -101,7 +103,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 - [ ] Before/after photos (10-15 cases)
 - [ ] Video testimonials / Instagram Reels clips
-- [ ] Clinic photos (reception, treatment rooms)
+- [x] Clinic photos (reception, treatment rooms) — 12 photos added, folder ready at `/public/images/gallery/` for more
 - [ ] Dr. Petric certifications
 - [ ] Team member bios (extended)
 - [ ] Logo vector (SVG/PNG)
@@ -134,7 +136,8 @@ src/app/[locale]/contact/page.tsx            # Contact page
 src/app/[locale]/echipa/page.tsx             # Team listing
 src/app/[locale]/servicii/page.tsx           # Services listing
 src/app/[locale]/galerie/page.tsx            # Gallery page
-src/app/[locale]/blog/page.tsx               # Blog listing
+src/app/[locale]/blog/page.tsx               # Blog listing (no CTA, footer handles it)
+src/data/gallery-photos.ts                   # Gallery clinic/team photo data
 src/app/api/callback/route.ts               # Callback API with Resend + rate limiting
 src/components/layout/Header.tsx             # Header with services dropdown
 src/components/layout/Footer.tsx             # Footer with i18n routing

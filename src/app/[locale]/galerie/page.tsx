@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllBeforeAfter, getAllServices, type Locale } from '@/lib/sanity/queries'
 import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { galleryPhotos } from '@/data/gallery-photos'
 import { GalleryPageClient, PlaceholderGalleryGrid } from './GalleryPageClient'
 
 // BeforeAfter case type based on Sanity schema
@@ -97,15 +98,12 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
     duration: t('gallery.duration'),
     featured: t('gallery.featured'),
     viewDetails: t('common.learnMore'),
-    bookAppointment: t('common.bookAppointment'),
-    ctaTitle: t('cta.title'),
-    ctaSubtitle: t('cta.subtitle'),
     doctor: t('team.viewAll') === 'Vezi toată echipa' ? 'Medic' : 'Doctor', // Fallback for doctor label
   }
 
   // Helper function to generate image URLs (serializable)
   const createUrlForImage = (image: { asset: { url: string } }) => {
-    return urlFor(image).width(300).height(225).quality(80).url()
+    return urlFor(image).width(800).height(600).quality(85).url()
   }
 
   // If no cases from Sanity, show placeholder
@@ -152,6 +150,7 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
     <GalleryPageClient
       cases={casesWithUrls}
       currentFilter={serviceFilter}
+      galleryPhotos={galleryPhotos}
       services={services}
       translations={translations}
     />

@@ -386,20 +386,6 @@ async function BlogPageContent({
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section bg-[var(--color-accent-light)]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">
-              {t('cta.title')}
-            </h2>
-            <p className="text-body-lg text-muted mb-8">{t('cta.subtitle')}</p>
-            <Link className="btn btn-primary" href="/contact">
-              {t('common.bookAppointment')}
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

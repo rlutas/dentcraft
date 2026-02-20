@@ -117,7 +117,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
                 <Link
                   key={service._id}
                   href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                  className="group relative bg-white rounded-2xl p-6 md:p-8
+                  className="service-grid-card group relative bg-white rounded-2xl p-6 md:p-8
                     border border-[#f0ebe3] hover:border-[#d4c4b0]
                     shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]
                     hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.12)]
@@ -125,12 +125,11 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
                     animate-[fadeInUp_0.5s_ease-out_both]"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#f8f5f0] flex items-center justify-center mb-5
-                    group-hover:bg-[#1a1a1a] transition-colors duration-300">
+                  <div className="service-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
                     {ServiceIcon ? (
-                      <ServiceIcon className="w-7 h-7 text-[#8b7355] group-hover:text-white transition-colors" strokeWidth={1.5} />
+                      <ServiceIcon className="w-7 h-7 text-[#8b7355] transition-colors" strokeWidth={1.5} />
                     ) : (
-                      <div className="w-7 h-7 bg-[#d4c4b0] group-hover:bg-white rounded-lg transition-colors" />
+                      <div className="w-7 h-7 bg-[#d4c4b0] rounded-lg transition-colors" />
                     )}
                   </div>
                   <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3 group-hover:text-[#8b7355] transition-colors">
@@ -211,7 +210,7 @@ async function PlaceholderServicesPage() {
               <Link
                 key={service.slug}
                 href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                className="group relative bg-white rounded-2xl p-6 md:p-8
+                className="service-grid-card group relative bg-white rounded-2xl p-6 md:p-8
                   border border-[#f0ebe3] hover:border-[#d4c4b0]
                   shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]
                   hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.12)]
@@ -219,18 +218,18 @@ async function PlaceholderServicesPage() {
                   animate-[fadeInUp_0.5s_ease-out_both]"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#f8f5f0] flex items-center justify-center mb-5
-                  group-hover:bg-[#1a1a1a] transition-colors duration-300">
+                <div className="service-icon-box w-14 h-14 rounded-2xl bg-[#f8f5f0] flex items-center justify-center mb-5
+                  transition-colors duration-300">
                   {service.iconPath ? (
                     <Image
                       src={service.iconPath}
                       alt=""
                       width={28}
                       height={28}
-                      className="w-7 h-7"
+                      className="w-7 h-7 transition-all duration-300"
                     />
                   ) : (
-                    <service.Icon className="w-7 h-7 text-[#8b7355] group-hover:text-white transition-colors" strokeWidth={1.5} />
+                    <service.Icon className="w-7 h-7 text-[#8b7355] transition-colors" strokeWidth={1.5} />
                   )}
                 </div>
                 <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3 group-hover:text-[#8b7355] transition-colors">

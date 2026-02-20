@@ -1343,6 +1343,33 @@
   border-color: var(--color-accent);
 }
 
+/* Service grid card - icon hover effect */
+.service-icon-box {
+  background-color: #f8f5f0;
+  transition: background-color 0.3s ease;
+}
+
+.service-grid-card:hover .service-icon-box {
+  background-color: #1a1a1a;
+}
+
+.service-icon-box svg {
+  color: #8b7355;
+  transition: color 0.3s ease;
+}
+
+.service-grid-card:hover .service-icon-box svg {
+  color: white;
+}
+
+.service-icon-box img {
+  transition: filter 0.3s ease;
+}
+
+.service-grid-card:hover .service-icon-box img {
+  filter: brightness(0) invert(1);
+}
+
 /* Large icon container with subtle gradient */
 .service-icon {
   width: 88px;

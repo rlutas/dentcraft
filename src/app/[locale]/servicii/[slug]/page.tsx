@@ -1,6 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-  ArrowRight,
   CheckCircle,
   ChevronDown,
   Clock,
@@ -14,7 +13,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getFallbackServiceBySlug, getFallbackServiceSlugs } from '@/lib/fallback-services'
 import type { fallbackServices } from '@/lib/fallback-services'
 import { BookingButton } from '@/components/ui/BookingButton'
-import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getServiceBySlug, getServiceSlugs, getFAQs, type Locale } from '@/lib/sanity/queries'
@@ -313,26 +311,6 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-[var(--color-accent)]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <h2>{t('cta.title')}</h2>
-            <p className="mt-4 text-muted text-body-lg">
-              {t('cta.subtitle')}
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <BookingButton>
-                {t('common.bookAppointment')}
-              </BookingButton>
-              <Link className="btn btn-lg btn-secondary flex items-center gap-2" href="/servicii">
-                {t('common.seeAll')}
-                <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
@@ -522,26 +500,6 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-[var(--color-accent)]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <h2>{t('cta.title')}</h2>
-            <p className="mt-4 text-muted text-body-lg">
-              {t('cta.subtitle')}
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <BookingButton>
-                {t('common.bookAppointment')}
-              </BookingButton>
-              <Link className="btn btn-lg btn-secondary flex items-center gap-2" href="/servicii">
-                {t('common.seeAll')}
-                <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
