@@ -1,6 +1,6 @@
 # Design Standard - Dentcraft.ro
 
-> **Bazat pe implementarea Homepage - 3 Februarie 2026**
+> **Bazat pe implementarea Homepage - Actualizat 19 Februarie 2026**
 > Acest document definește standardele vizuale pentru toate paginile site-ului.
 
 ---
@@ -150,6 +150,20 @@ border-radius: 16px;
 /* Hover: translateY(-6px), accent border */
 ```
 
+**Team/Gallery Card (19 Feb 2026)**
+```css
+background: #ffffff;
+border: 1px solid #e8e0d5;
+border-radius: 16px; /* md:24px */
+overflow: hidden;
+box-shadow: 0 4px 24px -4px rgba(0,0,0,0.08);
+/* Hover: */
+hover-shadow: 0 20px 50px -12px rgba(139,115,85,0.2);
+hover-border: #d4c4b0;
+hover-translate: translateY(-6px);
+transition: all 500ms ease-out;
+```
+
 ### Badge
 ```css
 padding: 0.5rem 1rem;
@@ -177,26 +191,27 @@ Homepage folosește alternarea inteligentă:
 ### Section Header Pattern
 
 ```jsx
-<div className="text-center mb-12">
-  {/* Badge */}
-  <div className="inline-flex items-center gap-3 mb-4">
-    <span className="w-8 h-0.5 bg-accent" />
-    <span className="text-sm font-semibold uppercase tracking-wider text-secondary">
-      Badge Text
-    </span>
-    <span className="w-8 h-0.5 bg-accent" />
-  </div>
+{/* Badge */}
+<ScrollReveal animation="fade-up">
+  <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
+    text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
+    Badge Text
+  </span>
+</ScrollReveal>
 
-  {/* Title */}
-  <h2 className="text-3xl md:text-4xl font-bold mb-4">
+{/* Title */}
+<ScrollReveal animation="fade-up" delay={200}>
+  <h2 className="text-4xl md:text-5xl font-bold text-[#2a2118] mb-5">
     Titlu Secțiune
   </h2>
+</ScrollReveal>
 
-  {/* Subtitle */}
-  <p className="text-lg text-secondary max-w-2xl mx-auto">
+{/* Subtitle */}
+<ScrollReveal animation="fade-up" delay={400}>
+  <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
     Descriere secțiune
   </p>
-</div>
+</ScrollReveal>
 ```
 
 ---
@@ -242,6 +257,13 @@ border-radius: 12px;
 - **Cards**: `transform: translateY(-4px)` cu `transition: all 0.3s ease`
 - **Buttons**: `transform: translateY(-2px)`
 - **Icons**: `transform: scale(1.05)` sau `scale(1.1) rotate(3deg)`
+
+### ScrollReveal Animations (19 Feb 2026)
+- **Component**: `src/components/ui/ScrollReveal.tsx`
+- **Animations**: fade-up, fade-down, fade-left, fade-right, scale-up, scale-down
+- **Default**: `fade-up` with `threshold: 0.15`, `duration: 900ms`
+- **Staggering**: Use `delay` prop (e.g., 0, 150, 200, 300, 400ms)
+- **Pattern**: Wrap section headers and card grids
 
 ### Float Animations (Hero)
 ```css
@@ -318,7 +340,7 @@ background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
 ### Grid-uri
 - **Services**: 1 col → 2 col (sm) → 3 col (lg)
 - **Why Us Stats**: 2 col → 4 col (lg)
-- **Team**: 1 col → 2 col (sm) → 4 col (lg)
+- **Team**: 2 col → 3 col (md)
 - **Footer**: 1 col → 2 col (md) → 4 col (lg)
 
 ### Touch Targets
@@ -413,8 +435,9 @@ Când creezi o pagină nouă, verifică:
 | `src/app/[locale]/page.tsx` | Homepage cu toate secțiunile |
 | `src/lib/fallback-services.ts` | Date servicii |
 | `src/lib/fallback-team.ts` | Date echipă |
+| `src/components/ui/ScrollReveal.tsx` | Animatii scroll-triggered |
 | `src/messages/*.json` | Traduceri |
 
 ---
 
-*Document actualizat: 3 Februarie 2026*
+*Document actualizat: 19 Februarie 2026*

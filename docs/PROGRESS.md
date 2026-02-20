@@ -1,6 +1,61 @@
 # Progres Dezvoltare Dentcraft
 
-## Ultima actualizare: 3 Februarie 2026 (seara) - CONTACT PAGE FINALIZAT
+## Ultima actualizare: 19 Februarie 2026 - LANDING PAGE POLISH COMPLET
+
+---
+
+## Sesiune 19 Februarie 2026 - Landing Page Polish & Team Photos
+
+### Echipa - Poze Reale & Redesign ✅
+**Fișiere**: `src/lib/fallback-team.ts`, `src/app/[locale]/page.tsx`, `src/app/[locale]/echipa/page.tsx`, `public/images/team/`
+
+- ✅ **6 membri echipa cu poze reale** (3 doctori + 3 asistente)
+  - Dr. Petric Razvan-Tudor (Medic Stomatolog Principal) - poza externa URL
+  - Dr. Ghirasim Denisa Stefania (Medic Stomatolog) - PNG transparent
+  - Dr. Tincu Giovana (Medic Stomatolog) - PNG transparent
+  - Gherman Camelia (Asistent Medical) - PNG transparent
+  - Daraban Karla (Asistent Medical) - PNG transparent
+  - Danci Ionela Mikaela (Asistent Medical) - PNG transparent
+- ✅ **Premium card redesign** - stil consistent cu paleta earth-tone
+  - `bg-white border border-[#e8e0d5]` cu hover lift effect
+  - ScrollReveal fade-up animations cu delay stagerat
+  - "Learn More" pill pe hover (desktop)
+  - Grid: `grid-cols-2 md:grid-cols-3` (2 randuri x 3 coloane)
+- ✅ **Transparent PNG backgrounds** - toate pozele au background warm beige uniform
+  - Rezolvat diferenta de culoare intre poza Dr. Petric (extern) si celelalte
+  - Card gradient `from-[#ede6db] via-[#e5ddd2] to-[#d4c4b0]/40` vizibil prin transparenta
+- ✅ **Fallback threshold** - Sanity data folosita doar cand are >= 6 membri
+
+### Recenzii Google - Redesign ✅
+**Fișier**: `src/components/features/GoogleReviewsSlider/index.tsx`
+
+- ✅ **Trust badge compact** - inlocuit 3 blocuri mari (Rating/Recenzii/Clienti) cu pill elegant: `G 4.9 ★★★★★ 40+ recenzii pe Google`
+- ✅ **Filtrat recenzii fara text** - 6 recenzii ascunse (Melissa Lembac, Doriana Pop, Raul Olteanu, Diana, Abrudan Bogdan, Rares Petric), raman 34 cu text
+- ✅ **Paragraf redundant eliminat** - "Pacientii nostri apreciaza..." duplica subtitle-ul sectiunii
+- ✅ **Butoane pe o linie pe mobil** - "Lasa o recenzie" si "Vezi toate recenziile" side-by-side
+  - `text-xs` pe mobil, `md:text-base` pe desktop, `whitespace-nowrap`
+
+### Inainte si Dupa - Redesign ✅
+**Fișiere**: `src/components/features/BeforeAfterGalleryPreview/index.tsx`, `src/app/[locale]/page.tsx`
+
+- ✅ **ScrollReveal animations** - fade-up cu delay stagerat (0, 150ms, 300ms) inlocuieste CSS fadeInUp
+- ✅ **Card styling premium** - matching team section: `bg-white border-[#e8e0d5]`, hover shadow warm
+- ✅ **Edge-to-edge slider** - ComparisonSlider fara padding, imagini pana la marginea cardului
+- ✅ **Service badge overlay** - pozitionat pe slider cu frosted glass (`bg-white/90 backdrop-blur-sm`)
+- ✅ **Durata simplificata** - inline icon + text in loc de box mare cu gradient
+- ✅ **Numere background eliminate** - "01", "02", "03" sterse pentru curatenie vizuala
+- ✅ **Section header** - ScrollReveal + badge stil consistent (`text-[#8b7355] bg-[#faf6f1]`)
+- ✅ **Buton "Vezi toate cazurile"** - stil outlined matching team section
+
+### Fix ComparisonSlider ✅
+**Fișier**: `src/components/features/BeforeAfterGallery/ComparisonSlider.tsx`
+
+- ✅ **Fix touchmove warning** - adaugat `e.cancelable` check inainte de `preventDefault()`
+  - Elimina "[Intervention] Ignored attempt to cancel a touchmove event" din consola
+
+### Commits
+- `423b315` - feat: Add real team photos with transparent PNG backgrounds
+- `22b2926` - feat: Redesign reviews and before/after sections with premium styling
 
 ---
 
@@ -44,16 +99,15 @@
 | 1 | Hero | ✅ Complet | Bej gradient | Doctor photo, floating cards, dental icons |
 | 2 | Servicii | ✅ Complet | Alb | 9 servicii din fallback, 3 coloane |
 | 3 | De ce noi (Why Us) | ✅ Complet | Bej (#f5f0e8) | 4 statistici în card alb |
-| 4 | **Echipa** | ⚠️ Placeholder | Alb | 4 membri placeholder - AȘTEAPTĂ date reale de la client |
-| 5 | Recenzii Google | ✅ Complet | Bej (#f5f0e8) | Slider auto, 40 recenzii, traduceri RO/EN/HU |
-| 6 | Before/After Gallery | ✅ Complet | Alb | 3 cazuri cu ComparisonSlider |
+| 4 | **Echipa** | ✅ Complet | Alb | 6 membri cu poze reale, grid 3 coloane, ScrollReveal |
+| 5 | Recenzii Google | ✅ Complet | Bej (#f5f0e8) | Trust badge compact, 34 recenzii cu text, butoane inline |
+| 6 | Before/After Gallery | ✅ Complet | Alb | 3 cazuri, ScrollReveal, edge-to-edge slider, premium cards |
 | ~~7~~ | ~~CTA~~ | ❌ Eliminat | - | Secțiunea CTA a fost eliminată (design nereușit) |
 
 ### Note Importante
 - Featured Testimonials apare doar când există date în Sanity CMS
 - Background-urile se alternează inteligent în funcție de secțiunile active
 - **Secțiunea CTA a fost eliminată** - design-ul nu arăta bine, pagina se termină acum cu Before/After Gallery → Footer
-- **Echipa necesită date reale** - momentan folosește placeholder data
 
 ---
 
@@ -409,7 +463,7 @@
 1. Hero (bej gradient)
 2. Servicii (alb)
 3. De ce noi - Why Us (bej)
-4. Echipa (alb) - placeholder până la date reale
+4. Echipa (alb) - 6 membri cu poze reale
 5. [Featured Testimonials - doar cu date Sanity] (bej)
 6. Recenzii Google (bej/alb - condiționat)
 7. Before/After Gallery (alb/bej - condiționat)
@@ -596,22 +650,9 @@ src/data/google-reviews.json                           # 40 recenzii, fix ghilim
 
 ## De Făcut (Următoarele Sesiuni)
 
-### PRIORITATE MARE - Blocant pentru Launch
-| Task | Status | Note |
-|------|--------|------|
-| **Date reale echipă de la client** | 🔴 AȘTEAPTĂ | Poze, nume, roluri, specializări pentru fiecare membru |
-
-### Ce trebuie cerut de la client pentru Echipa:
-- Fotografii profesionale ale fiecărui membru
-- Nume complete
-- Rol/Titlu profesional (ex: "Medic Stomatolog", "Ortodont", etc.)
-- Specializări/Certificate (ex: "Implantologie", "Estetică Dentară", etc.)
-- Scurtă biografie (opțional)
-
-### Alte Task-uri (după primirea datelor)
+### Alte Task-uri
 | Secțiune | Prioritate | Note |
 |----------|------------|------|
-| Înlocuire placeholder echipă | High | Odată ce avem datele reale |
 | ESLint warnings fix | Medium | Import order, jsx-sort-props în multe fișiere |
 | Process / Cum Lucrăm | Low | Pași tratament (consultație → plan → tratament → follow-up) |
 | Blog Articles Preview | Low | 3 articole recente din Sanity |
@@ -620,7 +661,7 @@ src/data/google-reviews.json                           # 40 recenzii, fix ghilim
 - ✅ Hero - Complet
 - ✅ Servicii - Complet
 - ✅ De ce Dentcraft (Why Us) - Complet
-- ⚠️ Echipa - Funcțional dar cu date placeholder
+- ✅ Echipa - Complet (6 membri cu poze reale 19 Feb 2026)
 - ✅ Google Reviews - Complet (40 recenzii)
 - ✅ Before/After Gallery - Complet
 - ✅ Video Testimonials - Complet (Video Reels style 3 Feb 2026)
