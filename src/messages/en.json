@@ -721,6 +721,7 @@
     "timeMorning": "Morning",
     "timeAfternoon": "Afternoon",
     "timeEvening": "Evening",
+    "doctorLabel": "Selected doctor",
     "promise": "We'll call you within 24 hours to confirm your appointment.",
     "submit": "Send request",
     "sending": "Sending...",

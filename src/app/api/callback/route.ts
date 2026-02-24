@@ -15,6 +15,7 @@ type CallbackFormData = {
   phone: string
   service?: string
   timePreference?: string
+  doctor?: string
 }
 
 // Time preference labels for email
@@ -106,6 +107,11 @@ function validateFormData(
     result.timePreference = (formData['timePreference'] as string).trim()
   }
 
+  // Doctor is optional (pre-selected from team member profile page)
+  if (formData['doctor'] && typeof formData['doctor'] === 'string' && formData['doctor'].trim()) {
+    result.doctor = (formData['doctor'] as string).trim()
+  }
+
   return { data: result, valid: true }
 }
 
@@ -164,6 +170,7 @@ export async function POST(request: Request) {
         phone: data.phone,
         service: data.service,
         timePreference: data.timePreference,
+        doctor: data.doctor,
         timestamp: new Date().toISOString(),
       })
 
@@ -174,6 +181,13 @@ export async function POST(request: Request) {
     }
 
     // Build email HTML
+    const doctorRow = data.doctor
+      ? `<tr>
+          <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 140px;">Medic preferat:</td>
+          <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #4a4a4a;">${escapeHtml(data.doctor)}</td>
+        </tr>`
+      : ''
+
     const serviceRow = data.service
       ? `<tr>
           <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 140px;">Serviciu:</td>
@@ -206,6 +220,7 @@ export async function POST(request: Request) {
                 <a href="tel:${escapeHtml(data.phone)}" style="color: #1a1a1a; text-decoration: none; font-weight: 600;">${escapeHtml(data.phone)}</a>
               </td>
             </tr>
+            ${doctorRow}
             ${serviceRow}
             ${timeRow}
           </table>

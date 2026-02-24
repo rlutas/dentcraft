@@ -28,7 +28,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Medic Stomatolog Principal',
     photo: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
     specializations: ['Implantologie', 'Estetica Dentara', 'Protetică Dentară'],
-    bio: 'Dr. Razvan Petric este medicul stomatolog principal al clinicii DentCraft, cu peste 15 ani de experiență în domeniul stomatologiei moderne. Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise. Pasiunea sa pentru excelență și dedicarea față de pacienți fac din el un profesionist de încredere pentru tratamente complexe.',
+    bio: 'Dr. Razvan Petric este medicul stomatolog principal al clinicii DentCraft, cu peste 10 ani de experiență în domeniul stomatologiei moderne. Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise. Pasiunea sa pentru excelență și dedicarea față de pacienți fac din el un profesionist de încredere pentru tratamente complexe.',
     education: [
       { institution: 'Universitatea de Medicină și Farmacie "Carol Davila" București', degree: 'Doctor în Medicină Dentară', year: 2008 },
       { institution: 'Universitatea de Medicină și Farmacie Cluj-Napoca', degree: 'Specializare Implantologie', year: 2012 },

@@ -1,6 +1,6 @@
 # Dentcraft.ro - Project Status
 
-**Last updated:** 20 February 2026
+**Last updated:** 24 February 2026
 
 ---
 
@@ -40,7 +40,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 |-------|--------|--------------|
 | `/` (Homepage) | Done | Hero, Services grid, Why Us, Team (6 real photos), Google Reviews (34 with text), Before/After gallery, Video Testimonials, Footer CTA |
 | `/echipa` | Done | Team listing with premium cards, ScrollReveal animations |
-| `/echipa/[slug]` | Done | Individual member detail pages |
+| `/echipa/[slug]` | Done | Redesigned 24 Feb: dark editorial hero, animated photo entrance, breadcrumbs, Video Shorts placeholder, "Parcurs Profesional" timeline, stats row, TeamMemberBookingButton (doctor pre-selection), mobile-first layout |
 | `/servicii` | Done | Service categories grid (9 services) |
 | `/servicii/[slug]` | Done | Individual service pages |
 | `/galerie` | Done | Premium redesigned gallery with before/after cards (glassmorphism labels, hover effects), "Clinica Noastra" photo section (masonry grid, lightbox), filter pills |
@@ -63,7 +63,8 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 | PriceCalculator | `/src/components/features/PriceCalculator/` | 3-step wizard: ServiceSelect -> OptionsForm (quantity, material) -> Results with price range. 6 sub-components. |
 | TabbedPriceList | `/src/components/features/TabbedPriceList/` | Animated tabs with custom dental SVG icons per category. Fetches from Sanity; falls back to 81 hardcoded treatments. |
 | PriceEstimatePopup | Part of PriceCalculator | Lead capture form (name, phone) with price context. Sends via Resend email. Portal-rendered modal. |
-| CallbackPopup | `/src/components/features/CallbackPopup/` | Appointment request modal (name, phone, service dropdown, time preference). Focus trap, ESC close, i18n. Triggered from Header/Mobile CTA buttons. |
+| CallbackPopup | `/src/components/features/CallbackPopup/` | Appointment request modal (name, phone, service dropdown, time preference). Focus trap, ESC close, i18n. Triggered from Header/Mobile CTA buttons. Supports `defaultDoctor` prop for pre-selection. |
+| TeamMemberBookingButton | `/src/app/[locale]/echipa/[slug]/page.tsx` | Context-aware booking button: doctors get popup pre-filled with their name; assistants get general popup. |
 | WhatsAppButton | `/src/components/features/WhatsAppButton/` | Floating button with wrapper for client-side rendering |
 | GoogleReviewsSlider | `/src/components/features/GoogleReviewsSlider/` | Compact trust badge (4.9 rating), 34 text reviews, inline action buttons |
 | BeforeAfterGallery | `/src/components/features/BeforeAfterGallery/` | ComparisonSlider with touch support, GalleryModal for full-screen view |
@@ -89,6 +90,64 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 ---
 
+## Session Log
+
+### 24 February 2026
+
+**Team & Content Updates:**
+- Updated Danci Ionela-Mikaela team photo (replaced edited version over original)
+- Updated years of experience from 5+ to 10+ across the entire site (hero trust bar + Why Us stats)
+- Fixed Dr. Petric bio: changed 15 years to 10 years experience
+- Exported all pricing data to CSV (`/preturi-dentcraft.csv`) - 80 treatments across 7 categories for Dr. Petric to verify
+- Analyzed entire site content gaps using AI agents
+- Prepared WhatsApp message for Dr. Petric listing all content needs
+
+**Team Member Profile Pages (`/echipa/[slug]`) - Complete Redesign:**
+- Dark editorial hero matching team listing page style
+- Fixed mobile photo visibility (was broken, now works)
+- Mobile layout: text first, then photo below
+- Desktop layout: text left, photo right (550px, pushed to right edge)
+- Animated photo entrance (slides in from right) + warm glow pulse behind
+- Expert badge with pop-in animation
+- Name displayed on two lines for long names
+- Breadcrumb navigation added
+- NEW: Video Shorts section (placeholder, ready for YouTube URLs)
+- Redesigned About section with stats row (years experience, patients, specializations) + photo gallery placeholder
+- Combined Education + Certifications into "Parcurs Profesional" timeline
+- Removed duplicate bottom CTA (already in footer)
+
+**TeamMemberBookingButton Component:**
+- For doctors: popup pre-filled with doctor's name
+- For assistants: general popup without doctor pre-selection
+- Added `defaultDoctor` prop to CallbackPopup
+- API route updated to include doctor in email notification
+- Added translations for "Medic selectat" in ro/en/hu
+
+**New CSS Animations:**
+- `team-photo-entrance` - slide-in from right for profile photos
+- `team-photo-glow` - warm glow pulse behind team photos
+- `team-badge-pop` - pop-in animation for expert badge
+
+**Attempted & Reverted:**
+- Hero redesign with AI-generated smile photo + animated circle (reverted - user preference)
+
+### 19 February 2026
+
+- Added real team photos for all 6 members (transparent PNGs)
+- Redesigned Google Reviews section (compact trust badge, filtered 34 text reviews)
+- Redesigned Before/After section (premium cards, ScrollReveal, frosted glass badges)
+- Fixed ComparisonSlider touchmove cancelable warning
+
+### 3 February 2026
+
+- Contact page redesign with Framer Motion
+- Callback request popup component
+- Header services dropdown + mobile accordion
+- Footer i18n routing fix
+- DESIGN-STANDARD.md created
+
+---
+
 ## Known Issues
 
 | Issue | Severity | Notes |
@@ -101,11 +160,16 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 ## Content Needed from Client
 
-- [ ] Before/after photos (10-15 cases)
-- [ ] Video testimonials / Instagram Reels clips
-- [x] Clinic photos (reception, treatment rooms) — 12 photos added, folder ready at `/public/images/gallery/` for more
-- [ ] Dr. Petric certifications
-- [ ] Team member bios (extended)
+See also: `/docs/content-needs-dr-petric.md` for the complete list sent to Dr. Petric.
+
+- [ ] **CV-uri echipa** (all 6 members) - studies, specializations, courses/certifications, experience, years of practice
+- [ ] **Video Reels echipa** - Short videos (30-60s) of each team member, uploaded to YouTube Shorts
+- [ ] **Testimoniale video pacienti** - Short patient testimonial videos (30-60s), YouTube Shorts, with name + treatment text
+- [ ] **Continut blog** - Articles about treatments, dental tips. Text + photos. 3-5 articles to start.
+- [ ] **Poze Before/After** - Pairs (before + after) + description: treatment type, duration, etc. (10-15 cases)
+- [ ] **Lista preturi actualizata** - CSV exported at `/preturi-dentcraft.csv` (80 treatments, 7 categories). Dr. Petric needs to verify and return corrections.
+- [x] Clinic photos (reception, treatment rooms) -- 12 photos added, folder ready at `/public/images/gallery/` for more
+- [x] Team photos (all 6 members with transparent PNGs) -- completed 19 Feb 2026
 - [ ] Logo vector (SVG/PNG)
 - [ ] Google My Business access
 - [ ] Social media links (Instagram, Facebook)
@@ -122,6 +186,8 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 | FAQ page with accordion | Medium | Content needed |
 | Blog individual article pages | Medium | Sanity content needed |
 | Google Analytics (GA4) integration | Medium | Property ID needed |
+| Video Shorts per team member | Medium | Placeholder ready in `/echipa/[slug]`, needs YouTube URLs from client |
+| Gallery photos per team member | Medium | `PhotoGalleryPlaceholder` shows "coming soon", needs per-member photo arrays |
 | Newsletter signup | Low | Form + API route |
 | Process / How We Work section | Low | Treatment steps visual |
 
@@ -130,10 +196,11 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 ## Key File Paths
 
 ```
-src/app/[locale]/page.tsx                    # Homepage
-src/app/[locale]/preturi/page.tsx            # Pricing page (server component)
+src/app/[locale]/page.tsx                    # Homepage with all sections
+src/app/[locale]/preturi/page.tsx            # Pricing page (server component, 80 treatments)
 src/app/[locale]/contact/page.tsx            # Contact page
 src/app/[locale]/echipa/page.tsx             # Team listing
+src/app/[locale]/echipa/[slug]/page.tsx      # Individual team member profiles (redesigned 24 Feb)
 src/app/[locale]/servicii/page.tsx           # Services listing
 src/app/[locale]/galerie/page.tsx            # Gallery page
 src/app/[locale]/blog/page.tsx               # Blog listing (no CTA, footer handles it)
@@ -142,6 +209,7 @@ src/app/api/callback/route.ts               # Callback API with Resend + rate li
 src/components/layout/Header.tsx             # Header with services dropdown
 src/components/layout/Footer.tsx             # Footer with i18n routing
 src/components/layout/MobileMenu.tsx         # Mobile menu with services accordion
+src/components/features/CallbackPopup/       # Booking popup (supports defaultDoctor prop)
 src/lib/fallback-team.ts                     # Team fallback data (6 members)
 src/lib/fallback-services.ts                 # Services fallback data (9 services)
 src/lib/constants/contact.ts                 # Contact info constants
@@ -150,10 +218,13 @@ src/lib/seo.ts                               # SEO metadata generator
 src/messages/ro.json                         # Romanian translations
 src/messages/en.json                         # English translations
 src/messages/hu.json                         # Hungarian translations
-src/styles/globals.css                       # Global styles, CSS variables, @theme
+src/styles/globals.css                       # Global styles, CSS variables, @theme, team animations
+preturi-dentcraft.csv                        # Exported pricing data (80 treatments, 7 categories)
 docs/DESIGN-STANDARD.md                      # Visual design standard
 docs/CHECKLIST.md                            # Master checklist
+docs/content-needs-dr-petric.md              # Content needs list for Dr. Petric
 docs/implementation-plan.md                  # Full implementation plan
+docs/PROGRESS.md                             # Project status & session logs
 ```
 
 ---
@@ -167,10 +238,84 @@ docs/implementation-plan.md                  # Full implementation plan
 
 ---
 
+## Site Status Overview
+
+### COMPLETE:
+- Homepage with all sections (hero, services, why us, team, reviews, before/after preview, video reels placeholder, footer)
+- Team listing page (`/echipa`)
+- Individual team member profiles (`/echipa/[slug]`) - redesigned 24 Feb
+- Pricing page with calculator (`/preturi`) - 80 treatments, 7 categories
+- Gallery page (`/galerie`) - slider component ready, needs real cases
+- Blog infrastructure (`/blog`) - ready, needs content
+- Testimonials page (`/testimoniale`) - ready for video testimonials
+- Contact page with form
+- 3-language support (ro/en/hu)
+- Google Reviews (40 real reviews, 34 with text)
+- Responsive design (mobile + desktop)
+- ScrollReveal animations throughout
+- CallbackPopup with doctor pre-selection
+
+### WAITING FOR CONTENT:
+- Team CVs (for accurate profile data)
+- Video Shorts (team + patient testimonials)
+- Blog articles (text + images)
+- Before/After photos
+- Price verification from Dr. Petric
+- Gallery photos per team member
+
+---
+
+## Technical Instructions for Content Addition
+
+### How to add Video Shorts per team member
+
+Currently `videoShorts` is a global empty array in `/src/app/[locale]/echipa/[slug]/page.tsx` (line ~221). To add real content:
+
+**Option A - Add to fallback-team.ts:**
+```typescript
+// In /src/lib/fallback-team.ts, add to each member:
+videoShorts: [
+  { title: 'Prezentare Dr. Petric', youtubeUrl: 'https://youtube.com/shorts/VIDEO_ID' },
+  { title: 'O zi la cabinet', youtubeUrl: 'https://youtube.com/shorts/VIDEO_ID' },
+]
+```
+
+**Option B - Add to Sanity CMS:**
+Add a `videoShorts` array field to the `teamMember` schema in Sanity.
+
+YouTube Shorts URLs format: `https://youtube.com/shorts/VIDEO_ID`
+Thumbnails are auto-generated from YouTube.
+
+### How to add gallery photos per team member
+
+1. Add photos to `/public/images/team/gallery/`
+2. Naming convention: `{slug}-1.jpg`, `{slug}-2.jpg`, etc. (e.g., `razvan-petric-1.jpg`)
+3. Currently `PhotoGalleryPlaceholder` component shows "coming soon"
+4. Convert to real gallery by adding per-member photo arrays to `fallback-team.ts` or Sanity
+
+### How to add blog posts
+
+1. Create in Sanity CMS using `blogPost` document type
+2. Fields: title, slug, excerpt, content (PortableText), coverImage, category, author, publishedAt
+3. All fields support localization (ro/en/hu)
+
+### How to add before/after cases
+
+1. Create in Sanity CMS using `beforeAfter` document type
+2. Fields: beforeImage, afterImage, title, description, service, doctor, treatmentDuration, featured
+
+### How to update prices
+
+- **Option A:** Edit CSV at `/preturi-dentcraft.csv` and re-import
+- **Option B:** Directly edit placeholder data in `/src/app/[locale]/preturi/page.tsx` (lines ~354-485)
+- **Option C:** Add to Sanity CMS using `price` document type for dynamic management
+
+---
+
 ## Dev Commands
 
 ```bash
-npm run dev                    # Start dev server (Turbopack)
+npm run dev                    # Start dev server (Turbopack, port 3001)
 npm run build                  # Production build
 # Sanity Studio: http://localhost:3000/studio
 SERPAPI_KEY=your_key npm run sync-reviews   # Sync Google reviews

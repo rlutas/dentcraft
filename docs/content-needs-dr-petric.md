@@ -1,6 +1,6 @@
 # Continut Necesar de la Dr. Petric - Dentcraft.ro
 
-**Data:** 20 Februarie 2026
+**Data:** 24 Februarie 2026 (actualizat)
 **Destinatar:** Dr. Razvan Petric
 **Proiect:** Site premium clinica stomatologica Dentcraft, Satu Mare
 
@@ -10,11 +10,77 @@
 
 Site-ul are deja construite toate sectiunile si paginile, dar functioneaza cu date placeholder. Pentru a lansa site-ul cu continut real, avem nevoie de materialele de mai jos. Fiecare categorie este legata direct de o sectiune vizibila pe site.
 
+**IMPORTANT - Actualizare 24 Feb 2026:** S-au adaugat noi sectiuni pe paginile individuale ale echipei (Video Shorts, galerie foto, parcurs profesional). De asemenea, lista de preturi a fost exportata in CSV pentru verificare.
+
 ---
 
-## 1. VIDEO TESTIMONIALE PACIENTI (Prioritate CRITICA)
+## 1. CV-URI ECHIPA - toti 6 membrii (Prioritate CRITICA)
 
-Pe homepage exista o sectiune dedicata cu 3 video-uri verticale (stil Reels/Shorts). Fara video-uri reale, aceasta sectiune ramane cu placeholder-uri.
+Paginile individuale ale echipei (`/echipa/[slug]`) au fost complet redesenate si necesita informatii reale. In acest moment, toate bio-urile si parcursurile profesionale sunt placeholder.
+
+### Ce avem nevoie pentru FIECARE membru (6 persoane):
+
+| Info | Detalii | Exemplu |
+|------|---------|---------|
+| **Studii** | Universitate, facultate, anul absolvirii | UMF Cluj-Napoca, Medicina Dentara, 2016 |
+| **Specializari** | Domenii de expertiza | Implantologie, estetica dentara |
+| **Cursuri / Certificari** | Lista completa cursuri, conferinte | "Curs avansat implantologie - Budapesta 2023" |
+| **Experienta** | Clinici anterioare, ani practica | "10 ani experienta, 3000+ pacienti" |
+| **Ani de practica** | Numar exact | 10 ani |
+| **Descriere personala** | 2-3 propozitii despre abordare / filozofie | "Pasionat de estetica dentara..." |
+
+### Membri echipa:
+
+| # | Nume | Rol | Status CV |
+|---|------|-----|-----------|
+| 1 | Dr. Petric Razvan-Tudor | Medic fondator | Pending |
+| 2 | Dr. Ghirasim Denisa Stefania | Medic | Pending |
+| 3 | Dr. Tincu Giovana | Medic | Pending |
+| 4 | Gherman Camelia | Asistent | Pending |
+| 5 | Daraban Karla | Asistent | Pending |
+| 6 | Danci Ionela Mikaela | Asistent | Pending |
+
+---
+
+## 2. VIDEO REELS ECHIPA (Prioritate CRITICA)
+
+Pe fiecare pagina individuala a echipei exista o sectiune noua "Video Shorts" care poate afisa clipuri scurte ale fiecarui membru. In acest moment, sectiunea asteapta link-uri YouTube Shorts.
+
+### Ce avem nevoie:
+
+- [ ] **Minim 1 video per membru echipa** (ideal 2-3)
+- [ ] Fiecare video = prezentare scurta (30-60 secunde)
+
+### Specificatii tehnice:
+
+| Parametru | Valoare |
+|-----------|---------|
+| **Orientare** | **Vertical (9:16)** - OBLIGATORIU |
+| **Rezolutie** | Minim 1080x1920 (Full HD vertical) |
+| **Format** | Upload pe YouTube Shorts |
+| **Durata** | 30-60 secunde per video |
+| **Audio** | Clar, fara zgomot de fundal |
+
+### Ce sa contina fiecare video:
+
+1. Scurta prezentare personala (nume, rol)
+2. Ce ii place la meseria lor
+3. Abordarea cu pacientii
+4. Optional: un sfat dental
+
+### Format URL necesar:
+
+```
+https://youtube.com/shorts/VIDEO_ID
+```
+
+Dupa upload pe YouTube Shorts, trimiteti link-urile si noi le adaugam pe site.
+
+---
+
+## 3. VIDEO TESTIMONIALE PACIENTI (Prioritate CRITICA)
+
+Pe homepage exista o sectiune dedicata cu 3 video-uri verticale (stil Reels/Shorts). Pe pagina `/testimoniale` exista spatiu pentru mai multe. Fara video-uri reale, aceste sectiuni raman cu placeholder-uri.
 
 ### Ce avem nevoie:
 
@@ -54,7 +120,7 @@ Daca nu exista video-uri proprii, se pot folosi si link-uri YouTube/YouTube Shor
 
 ---
 
-## 2. FOTOGRAFII BEFORE/AFTER (Prioritate CRITICA)
+## 4. FOTOGRAFII BEFORE/AFTER (Prioritate CRITICA)
 
 Site-ul are o galerie interactiva cu slider before/after. Pe homepage apare un preview, iar pagina `/galerie` afiseaza toate cazurile. In acest moment, galeria este goala.
 
@@ -102,7 +168,74 @@ Site-ul are o galerie interactiva cu slider before/after. Pe homepage apare un p
 
 ---
 
-## 3. FOTOGRAFII CLINICA (Prioritate INALTA)
+## 5. CONTINUT BLOG (Prioritate INALTA)
+
+Pagina `/blog` este construita si gata sa primeasca articole. Blog-ul ajuta enorm la SEO (pozitionare in Google). Avem nevoie de minim 3-5 articole pentru lansare.
+
+### Ce avem nevoie:
+
+- [ ] **3-5 articole** pentru lansare (ideal mai multe in timp)
+- [ ] Fiecare articol: titlu + text (500-1000 cuvinte) + 1-3 poze relevante
+
+### Subiecte recomandate:
+
+| # | Subiect | Lungime | Prioritate |
+|---|---------|---------|------------|
+| 1 | Cat costa un implant dentar in 2026? | 800-1000 cuvinte | Inalta |
+| 2 | Ce sunt fatetele dentare si cui se adreseaza? | 800-1000 cuvinte | Inalta |
+| 3 | Prima vizita la stomatolog - ce sa te astepti | 500-700 cuvinte | Medie |
+| 4 | Ingrijirea dintilor copiilor - ghid pentru parinti | 600-800 cuvinte | Medie |
+| 5 | Albirea dentara profesionala vs. produse OTC | 600-800 cuvinte | Medie |
+
+### Format per articol:
+
+```
+1. Titlu articol
+2. Text (500-1000 cuvinte) - poate fi si draft, il finisam noi
+3. 1-3 fotografii relevante (din clinica, tratamente, etc.)
+4. Categoria (ex: Estetica, Implantologie, Sfaturi, Pediatrie)
+```
+
+**Nota:** Articolele pot fi scrise de doctor sau de echipa. Noi le formatam si adaugam pe site in toate cele 3 limbi.
+
+---
+
+## 6. LISTA PRETURI ACTUALIZATA (Prioritate CRITICA)
+
+Am exportat toate preturile curente de pe site intr-un fisier CSV (`/preturi-dentcraft.csv`). Contine **80 de tratamente** in **7 categorii**. Dr. Petric trebuie sa verifice si sa trimita inapoi corectiile.
+
+### Categorii existente:
+
+| # | Categorie | Nr. Tratamente |
+|---|-----------|---------------|
+| 1 | Consultatie si Diagnostic | ~8 |
+| 2 | Stomatologie Generala | ~15 |
+| 3 | Estetica Dentara | ~10 |
+| 4 | Protetica Dentara | ~12 |
+| 5 | Implantologie | ~10 |
+| 6 | Ortodontie | ~10 |
+| 7 | Chirurgie Orala | ~15 |
+
+### Ce trebuie facut:
+
+1. Verifica preturile din CSV (coloana `pret_min` si `pret_max`)
+2. Corecteaza valorile gresite
+3. Adauga tratamente lipsa
+4. Sterge tratamente care nu se aplica
+5. Trimite CSV-ul inapoi modificat
+
+### Format CSV:
+
+```csv
+categorie,tratament,pret_min,pret_max,unitate
+"Consultatie si Diagnostic","Consultatie initiala",0,0,"per vizita"
+"Stomatologie Generala","Obturatie compozit simpla",150,250,"per dinte"
+...
+```
+
+---
+
+## 7. FOTOGRAFII CLINICA (Prioritate INALTA)
 
 Pe homepage exista sectiunea "Clinica Noastra" cu un grid de fotografii. Avem deja 12 poze de clinica, dar daca doriti sa le actualizati sau completati, mai jos sunt recomandarile.
 
@@ -135,7 +268,7 @@ Avem poze de interior in `/public/images/clinic/`. Daca acestea sunt actuale si 
 
 ---
 
-## 4. FOTOGRAFII ECHIPA (Prioritate INALTA)
+## 8. FOTOGRAFII ECHIPA (Prioritate MEDIE - avem deja poze)
 
 Pagina `/echipa` si sectiunea de echipa de pe homepage afiseaza carduri cu fotografie + nume + rol pentru fiecare membru. Avem deja fotografii pentru toti cei 6 membri ai echipei.
 
@@ -169,7 +302,7 @@ Pagina `/echipa` si sectiunea de echipa de pe homepage afiseaza carduri cu fotog
 
 ---
 
-## 5. FOTOGRAFII HERO / POZA PRINCIPALA (Prioritate INALTA)
+## 9. FOTOGRAFII HERO / POZA PRINCIPALA (Prioritate INALTA)
 
 Sectiunea Hero (prima sectiune de pe homepage) afiseaza o fotografie mare a echipei. In acest moment foloseste `/images/team-clinic.jpg`.
 
@@ -199,11 +332,15 @@ Sectiunea Hero (prima sectiune de pe homepage) afiseaza o fotografie mare a echi
 
 | # | Material | Cantitate | Prioritate | Afecteaza |
 |---|----------|-----------|------------|-----------|
-| 1 | Video testimoniale | 3-6 video-uri | CRITICA | Homepage - sectiune video |
-| 2 | Before/After | 3-4 seturi (minim) | CRITICA | Homepage preview + Pagina Galerie |
-| 3 | Poza Hero echipa | 1 poza | INALTA | Homepage - primul lucru vazut |
-| 4 | Fotografii clinica | 0-5 (optional) | MEDIE | Homepage - sectiune clinica |
-| 5 | Fotografii echipa noi | doar daca e cazul | MEDIE | Pagina Echipa |
+| 1 | CV-uri echipa | 6 CV-uri | CRITICA | Pagini individuale echipa (`/echipa/[slug]`) |
+| 2 | Video Reels echipa | 6-18 video-uri (1-3 per persoana) | CRITICA | Pagini individuale echipa - sectiune Video Shorts |
+| 3 | Video testimoniale pacienti | 3-6 video-uri | CRITICA | Homepage + Pagina Testimoniale |
+| 4 | Before/After poze | 3-4 seturi (minim) | CRITICA | Homepage preview + Pagina Galerie |
+| 5 | Continut blog | 3-5 articole | INALTA | Pagina Blog + SEO |
+| 6 | Lista preturi verificata | CSV cu corectii | CRITICA | Pagina Preturi + Calculator |
+| 7 | Fotografii clinica noi | 0-5 (optional) | MEDIE | Homepage - sectiune clinica |
+| 8 | Fotografii echipa noi | doar daca e cazul | MEDIE | Pagina Echipa |
+| 9 | Poza Hero echipa | 1 poza | INALTA | Homepage - primul lucru vazut |
 
 ---
 
@@ -217,8 +354,17 @@ Sectiunea Hero (prima sectiune de pe homepage) afiseaza o fotografie mare a echi
 
 ```
 Dentcraft Content/
+  cv-uri/
+    cv-dr-petric.txt (sau PDF/Word)
+    cv-dr-ghirasim.txt
+    cv-dr-tincu.txt
+    cv-gherman-camelia.txt
+    cv-daraban-karla.txt
+    cv-danci-ionela.txt
+  video-reels-echipa/
+    link-uri-youtube-shorts.txt  (link YouTube Shorts per persoana)
   video-testimoniale/
-    testimonial-1-maria-p.mp4
+    testimonial-1-maria-p.mp4  (sau link YouTube Shorts)
     testimonial-2-andrei-s.mp4
     testimonial-3-ioana-d.mp4
     info-testimoniale.txt  (nume, tratament, rating per video)
@@ -231,6 +377,15 @@ Dentcraft Content/
       before.jpg
       after.jpg
       info.txt
+  blog/
+    articol-1-implant/
+      text.txt (sau Word)
+      poza-1.jpg
+    articol-2-fatete/
+      text.txt
+      poza-1.jpg
+  preturi/
+    preturi-dentcraft-corectat.csv  (CSV-ul verificat si corectat)
   clinica/  (optional, doar poze noi)
   echipa/   (optional, doar poze noi)
   consimtaminte/

@@ -1,6 +1,6 @@
 # Design Standard - Dentcraft.ro
 
-> **Bazat pe implementarea Homepage - Actualizat 19 Februarie 2026**
+> **Bazat pe implementarea Homepage + Team Profiles - Actualizat 24 Februarie 2026**
 > Acest document definește standardele vizuale pentru toate paginile site-ului.
 
 ---
@@ -283,6 +283,67 @@ border-radius: 12px;
 /* Duration: 120s linear infinite */
 ```
 
+### Team Photo Entrance (24 Feb 2026 - Team Profile Pages)
+```css
+@keyframes team-photo-entrance {
+  0% { opacity: 0; transform: translateX(60px) scale(0.95); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+/* Duration: 800ms ease-out, delay: 300ms */
+```
+
+### Team Photo Glow (warm pulse behind team photos)
+```css
+@keyframes team-photo-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+/* Duration: 4s ease-in-out infinite */
+/* Color: warm beige/gold gradient */
+```
+
+### Team Badge Pop (expert badge pop-in)
+```css
+@keyframes team-badge-pop {
+  0% { opacity: 0; transform: scale(0.5); }
+  70% { transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+/* Duration: 500ms ease-out, delay: 800ms */
+```
+
+### Dark Editorial Hero Pattern (24 Feb 2026)
+
+Used on: Team profiles (`/echipa/[slug]`), Pricing page (`/preturi`), Blog page (`/blog`)
+
+```css
+/* Dark background with gradient */
+background: linear-gradient(135deg, #1a1614 0%, #2a2118 50%, #1a1614 100%);
+/* Or: bg-[#1a1614] with gradient overlay */
+
+/* Decorative elements: warm-toned circles */
+/* Top-right: bg-[#8b7355]/10, w-96 h-96, rounded-full, blur-3xl */
+/* Bottom-left: bg-[#d4c4b0]/5, w-80 h-80, rounded-full, blur-3xl */
+
+/* Text: white headings, warm beige/muted descriptions */
+/* Badge: text-[#d4c4b0] bg-[#d4c4b0]/10 border border-[#d4c4b0]/20 */
+/* Breadcrumbs: text-[#a09080] with separators */
+```
+
+### Team Profile Page Layout Pattern
+
+```
+Mobile:
+  [Breadcrumbs]
+  [Badge + Name + Role + Description]
+  [CTA Button]
+  [Photo (full width)]
+
+Desktop:
+  [Left side: Breadcrumbs + Badge + Name + Role + Description + CTA]
+  [Right side: Photo (550px, pushed to right edge) with glow behind]
+```
+
 ---
 
 ## 8. Header
@@ -426,18 +487,20 @@ Când creezi o pagină nouă, verifică:
 
 ## 14. Fișiere Relevante
 
-| Fișier | Conține |
+| Fisier | Contine |
 |--------|---------|
-| `src/styles/globals.css` | Design tokens, componente CSS |
+| `src/styles/globals.css` | Design tokens, componente CSS, team animations |
 | `src/components/layout/Header.tsx` | Header component |
 | `src/components/layout/Footer.tsx` | Footer component |
 | `src/components/layout/MobileMenu.tsx` | Mobile menu |
-| `src/app/[locale]/page.tsx` | Homepage cu toate secțiunile |
+| `src/app/[locale]/page.tsx` | Homepage cu toate sectiunile |
+| `src/app/[locale]/echipa/[slug]/page.tsx` | Team member profile (dark editorial hero, animations) |
 | `src/lib/fallback-services.ts` | Date servicii |
-| `src/lib/fallback-team.ts` | Date echipă |
+| `src/lib/fallback-team.ts` | Date echipa (6 membri) |
 | `src/components/ui/ScrollReveal.tsx` | Animatii scroll-triggered |
+| `src/components/features/CallbackPopup/` | Booking popup (supports defaultDoctor) |
 | `src/messages/*.json` | Traduceri |
 
 ---
 
-*Document actualizat: 19 Februarie 2026*
+*Document actualizat: 24 Februarie 2026*

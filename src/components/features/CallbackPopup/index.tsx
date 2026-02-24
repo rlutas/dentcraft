@@ -11,11 +11,12 @@ import { getMainFallbackServices } from '@/lib/fallback-services'
 interface CallbackPopupProps {
   isOpen: boolean
   onClose: () => void
+  defaultDoctor?: string | undefined
 }
 
 type TimePreference = 'morning' | 'afternoon' | 'evening'
 
-export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
+export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: CallbackPopupProps) {
   const t = useTranslations('callbackPopup')
   const tServices = useTranslations('services')
 
@@ -23,7 +24,8 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
     name: '',
     phone: '',
     service: '',
-    timePreference: '' as TimePreference | ''
+    timePreference: '' as TimePreference | '',
+    doctor: defaultDoctor || ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -58,7 +60,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
-        setFormData({ name: '', phone: '', service: '', timePreference: '' })
+        setFormData({ name: '', phone: '', service: '', timePreference: '', doctor: defaultDoctor || '' })
         setIsSuccess(false)
         setErrors({})
       }, 300)
@@ -107,6 +109,7 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
           phone: formData.phone,
           service: formData.service || undefined,
           timePreference: formData.timePreference || undefined,
+          doctor: formData.doctor || undefined,
         }),
       })
 
@@ -262,6 +265,19 @@ export default function CallbackPopup({ isOpen, onClose }: CallbackPopupProps) {
                       {t('subtitle')}
                     </p>
                   </div>
+
+                  {/* Doctor pre-selection badge */}
+                  {formData.doctor && (
+                    <div className="mb-3 sm:mb-4 flex items-center gap-3 rounded-xl bg-[#f5f0e8]/80 px-4 py-3 border border-[#e8e0d5]">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0]">
+                        <User className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-[#8b8b8b]">{t('doctorLabel')}</p>
+                        <p className="text-sm font-semibold text-[#1a1a1a] truncate">{formData.doctor}</p>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Form */}
                   <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-3.5">

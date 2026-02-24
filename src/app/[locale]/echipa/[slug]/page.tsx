@@ -5,12 +5,19 @@ import {
   ArrowRight,
   Award,
   BookOpen,
+  Camera,
   GraduationCap,
   Phone,
   User,
+  Users,
   Calendar,
   MapPin,
   Sparkles,
+  Play,
+  Video,
+  ChevronRight,
+  TrendingUp,
+  Star,
 } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
@@ -19,6 +26,8 @@ import { urlFor } from '@/lib/sanity/image'
 import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { TeamMemberBookingButton } from '@/components/ui/TeamMemberBookingButton'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -131,276 +140,571 @@ export default async function TeamMemberPage({ params }: Props) {
   return <TeamMemberPageContent member={member} />
 }
 
+// ─── Shared UI Components ────────────────────────────────────────────────────
+
+function HeroBreadcrumb({ name }: { name: string }) {
+  return (
+    <nav className="flex items-center gap-2 text-sm mb-6 -mt-2">
+      <Link href="/" className="text-white/40 hover:text-white/70 transition-colors">
+        Acasa
+      </Link>
+      <ChevronRight className="w-3.5 h-3.5 text-white/20" />
+      <Link href="/echipa" className="text-white/40 hover:text-white/70 transition-colors">
+        Echipa
+      </Link>
+      <ChevronRight className="w-3.5 h-3.5 text-white/20" />
+      <span className="text-[#d4c4b0] font-medium">{name}</span>
+    </nav>
+  )
+}
+
+function HeroBackground() {
+  return (
+    <>
+      {/* Dramatic warm lighting */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
+      <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-[#d4c4b0]/5 rounded-full blur-[80px]" />
+
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+        backgroundSize: '80px 80px'
+      }} />
+    </>
+  )
+}
+
+function SpecBadge({ label }: { label: string }) {
+  return (
+    <span className="px-4 py-2 text-sm bg-white/[0.06] backdrop-blur-sm text-[#d4c4b0] rounded-full border border-white/[0.08] font-medium">
+      {label}
+    </span>
+  )
+}
+
+function HeroInfoRow() {
+  return (
+    <div className="flex flex-wrap justify-center lg:justify-start gap-5 mb-8 text-sm text-white/50">
+      <div className="flex items-center gap-2">
+        <MapPin className="w-4 h-4 text-[#d4c4b0]" />
+        <span>Satu Mare</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <Calendar className="w-4 h-4 text-[#d4c4b0]" />
+        <span>L-V: 10:00 - 18:00</span>
+      </div>
+    </div>
+  )
+}
+
+function HeroCTAButtons({ memberName, memberRole }: { memberName: string; memberRole: string | null }) {
+  return (
+    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+      <TeamMemberBookingButton
+        memberName={memberName}
+        memberRole={memberRole}
+        variant="hero"
+      />
+      <a
+        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white rounded-full font-semibold text-lg border-2 border-white/20 hover:border-[#d4c4b0]/50 hover:bg-white/5 transition-all duration-300"
+        href="tel:+40741199977"
+      >
+        <Phone className="w-5 h-5" strokeWidth={2} />
+        0741 199 977
+      </a>
+    </div>
+  )
+}
+
+// Placeholder for video shorts - will be populated later
+const videoShorts: Array<{ title: string; youtubeUrl: string }> = []
+
+function VideoShortsSection() {
+  return (
+    <section className="py-16 md:py-24 bg-[#faf6f1]">
+      <div className="container">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal animation="fade-up">
+            {/* Section header */}
+            <div className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b7355] bg-white rounded-full border border-[#e8e0d5] mb-6">
+                <Video className="w-4 h-4" />
+                Video
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
+                Videoclipuri scurte
+              </h2>
+              <p className="text-[#8b7355] text-lg max-w-xl mx-auto">
+                Urmareste clipuri informative si educative
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {videoShorts.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {videoShorts.map((video, index) => {
+                // Extract YouTube video ID for thumbnail
+                const videoId = video.youtubeUrl.match(
+                  /(?:youtu\.be\/|youtube\.com\/(?:shorts\/|embed\/|watch\?v=))([^&?/]+)/
+                )?.[1]
+                return (
+                  <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                    <a
+                      href={video.youtubeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block"
+                    >
+                      <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.2)] transition-all duration-300 hover:-translate-y-1.5">
+                        {videoId && (
+                          <Image
+                            src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                            alt={video.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        )}
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
+                        {/* Play button */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <Play className="w-6 h-6 text-[#2a2118] ml-0.5" fill="#2a2118" />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="mt-3 text-sm font-medium text-[#2a2118] line-clamp-2 group-hover:text-[#8b7355] transition-colors">
+                        {video.title}
+                      </p>
+                    </a>
+                  </ScrollReveal>
+                )
+              })}
+            </div>
+          ) : (
+            <ScrollReveal animation="fade-up" delay={150}>
+              <div className="text-center py-12 bg-white rounded-3xl border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)]">
+                <div className="w-16 h-16 rounded-2xl bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center mx-auto mb-5">
+                  <Video className="w-8 h-8 text-[#d4c4b0]" />
+                </div>
+                <p className="text-[#8b7355] text-lg font-medium mb-2">
+                  Videoclipurile vor fi disponibile in curand
+                </p>
+                <p className="text-[#a89880] text-sm">
+                  Revino pentru continut video educativ si informativ
+                </p>
+              </div>
+            </ScrollReveal>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Shared About & Timeline Components ──────────────────────────────────────
+
+type TimelineEntry = {
+  type: 'education' | 'certification'
+  title: string
+  subtitle: string
+  year: number
+}
+
+function StatsRow({
+  isDoctor,
+  yearsExperience,
+  specializationsCount,
+}: {
+  isDoctor: boolean
+  yearsExperience: number
+  specializationsCount: number
+}) {
+  const stats = isDoctor
+    ? [
+        { value: `${yearsExperience}+`, label: 'Ani Experienta', icon: TrendingUp },
+        { value: '2000+', label: 'Pacienti Tratati', icon: Users },
+        { value: `${specializationsCount}`, label: 'Specializari', icon: Star },
+      ]
+    : [
+        { value: `${yearsExperience}+`, label: 'Ani Experienta', icon: TrendingUp },
+        { value: `${specializationsCount}`, label: 'Specializari', icon: Star },
+      ]
+
+  return (
+    <div className="flex flex-wrap gap-3 md:gap-4 mb-8">
+      {stats.map((stat, index) => (
+        <div
+          key={index}
+          className="flex-1 min-w-[120px] bg-white rounded-2xl border border-[#e8e0d5] px-5 py-4 md:px-6 md:py-5 text-center shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_-8px_rgba(139,115,85,0.12)] hover:border-[#d4c4b0] transition-all duration-300"
+        >
+          <div className="flex items-center justify-center gap-2 mb-1.5">
+            <stat.icon className="w-4 h-4 text-[#d4c4b0]" strokeWidth={1.5} />
+            <span className="text-2xl md:text-3xl font-bold text-[#2a2118]">{stat.value}</span>
+          </div>
+          <p className="text-xs md:text-sm font-medium text-[#8b7355]">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function PhotoGalleryPlaceholder() {
+  return (
+    <div className="mt-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div
+            key={index}
+            className="aspect-square rounded-2xl bg-[#f5f0e8] border border-[#e8e0d5] flex flex-col items-center justify-center gap-2 hover:bg-[#efe8dd] transition-colors duration-300"
+          >
+            <Camera className="w-6 h-6 text-[#d4c4b0]" strokeWidth={1.5} />
+          </div>
+        ))}
+      </div>
+      <p className="text-center text-sm text-[#a89880] mt-4 font-medium">
+        Galerie foto in curand
+      </p>
+    </div>
+  )
+}
+
+function AboutSection({
+  firstName,
+  aboutLabel,
+  isDoctor,
+  yearsExperience,
+  specializationsCount,
+  bioContent,
+}: {
+  firstName: string
+  aboutLabel: string
+  isDoctor: boolean
+  yearsExperience: number
+  specializationsCount: number
+  bioContent: React.ReactNode
+}) {
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="container">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal animation="fade-up">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
+                <BookOpen className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
+              </div>
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118]">{aboutLabel}</h2>
+                <p className="text-sm text-[#8b7355]">Despre {firstName}</p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Stats row */}
+          <ScrollReveal animation="fade-up" delay={100}>
+            <StatsRow
+              isDoctor={isDoctor}
+              yearsExperience={yearsExperience}
+              specializationsCount={specializationsCount}
+            />
+          </ScrollReveal>
+
+          {/* Bio content */}
+          <ScrollReveal animation="fade-up" delay={200}>
+            <div className="bg-[#faf8f5] rounded-3xl p-8 md:p-10 border border-[#e8e0d5]">
+              {bioContent}
+            </div>
+          </ScrollReveal>
+
+          {/* Photo gallery placeholder */}
+          <ScrollReveal animation="fade-up" delay={300}>
+            <PhotoGalleryPlaceholder />
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ProfessionalJourneySection({
+  entries,
+}: {
+  entries: TimelineEntry[]
+}) {
+  // Sort by year, newest first
+  const sorted = [...entries].sort((a, b) => b.year - a.year)
+
+  if (sorted.length === 0) return null
+
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-b from-[#faf8f5] to-white">
+      <div className="container">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b7355] bg-white rounded-full border border-[#e8e0d5] mb-6">
+                <GraduationCap className="w-4 h-4" />
+                Educatie & Certificari
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-3">
+                Parcurs Profesional
+              </h2>
+              <p className="text-[#8b7355] text-lg max-w-xl mx-auto">
+                Studii, specializari si certificari profesionale
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Timeline */}
+          <div className="relative">
+            {/* Vertical connecting line */}
+            <div className="absolute left-[39px] md:left-[47px] top-6 bottom-6 w-px bg-[#e8e0d5]" />
+
+            <div className="space-y-5">
+              {sorted.map((entry, index) => {
+                const Icon = entry.type === 'education' ? GraduationCap : Award
+                const typeBadgeLabel = entry.type === 'education' ? 'Studii' : 'Certificare'
+                const typeBadgeBg = entry.type === 'education' ? 'bg-[#f5f0e8]' : 'bg-[#faf6f1]'
+
+                return (
+                  <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                    <div className="flex gap-4 md:gap-6 items-start">
+                      {/* Year pill + timeline dot */}
+                      <div className="flex flex-col items-center shrink-0 z-10">
+                        <span className="rounded-full bg-[#faf6f1] border border-[#e8e0d5] px-3 py-1.5 md:px-4 md:py-2 text-sm font-bold text-[#8b7355] whitespace-nowrap shadow-sm">
+                          {entry.year}
+                        </span>
+                      </div>
+
+                      {/* Entry card */}
+                      <div className="flex-1 group bg-white rounded-2xl border border-[#e8e0d5] p-5 hover:shadow-[0_10px_30px_-8px_rgba(139,115,85,0.12)] hover:border-[#d4c4b0] transition-all duration-300">
+                        <div className="flex items-start gap-4">
+                          {/* Icon */}
+                          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shrink-0">
+                            <Icon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            {/* Type badge */}
+                            <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-[#8b7355] ${typeBadgeBg} rounded-full border border-[#e8e0d5] mb-2.5`}>
+                              <Icon className="w-3 h-3" />
+                              {typeBadgeLabel}
+                            </span>
+
+                            <h4 className="text-base md:text-lg font-semibold text-[#2a2118] mb-1.5 group-hover:text-[#8b7355] transition-colors leading-snug">
+                              {entry.title}
+                            </h4>
+                            <p className="text-sm text-[#8b7355]/80 flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0] shrink-0" />
+                              {entry.subtitle}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Helper to compute years of experience from earliest education year
+function computeYearsExperience(
+  education: Array<{ year: number }> | null,
+  certifications: Array<{ year: number }> | null
+): number {
+  const years: number[] = []
+  if (education) years.push(...education.map((e) => e.year))
+  if (certifications) years.push(...certifications.map((c) => c.year))
+  if (years.length === 0) return 5
+  const earliest = Math.min(...years)
+  return Math.max(1, new Date().getFullYear() - earliest)
+}
+
+// Helper to build timeline entries from education + certifications
+function buildTimelineEntries(
+  education: Array<{ institution: string; degree: string; year: number }> | null,
+  certifications: Array<{ name: string; issuer: string; year: number }> | null
+): TimelineEntry[] {
+  const entries: TimelineEntry[] = []
+  if (education) {
+    for (const edu of education) {
+      entries.push({
+        type: 'education',
+        title: edu.degree,
+        subtitle: edu.institution,
+        year: edu.year,
+      })
+    }
+  }
+  if (certifications) {
+    for (const cert of certifications) {
+      entries.push({
+        type: 'certification',
+        title: cert.name,
+        subtitle: cert.issuer,
+        year: cert.year,
+      })
+    }
+  }
+  return entries
+}
+
+// ─── Sanity Team Member Page ─────────────────────────────────────────────────
+
 async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const t = await getTranslations()
 
+  const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Elegant Split Layout */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf8f5] via-[#f5f0e8] to-[#ebe5db]">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#d4c4b0]/8 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c9b89a]/8 rounded-full blur-[120px] -translate-x-1/3 translate-y-1/3" />
+      {/* ───── HERO SECTION - Dark Editorial ───── */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-28 pb-12 md:pt-32 md:pb-14">
+        <HeroBackground />
 
-        {/* Subtle pattern */}
-        <div className="absolute inset-0 opacity-[0.012]" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #1a1a1a 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
+        <div className="container relative z-10">
+          <HeroBreadcrumb name={member.name} />
 
-        <div className="container relative z-10 py-16 md:py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Photo with elegant frame */}
-            <div className="relative max-w-lg mx-auto lg:mx-0">
-              {/* Decorative frame */}
-              <div className="absolute -inset-4 md:-inset-6 border-2 border-[#e8e0d5]/50 rounded-[40px] -rotate-3" />
-              <div className="absolute -inset-4 md:-inset-6 border-2 border-[#d4c4b0]/30 rounded-[40px] rotate-2" />
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+            {/* Content - on mobile appears FIRST, on desktop on left */}
+            <div className="text-center lg:text-left">
+              <ScrollReveal animation="fade-up" delay={150}>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight leading-[1.15]">
+                  {(() => {
+                    const parts = member.name.split(' ')
+                    if (parts.length <= 2) return member.name
+                    const mid = Math.ceil(parts.length / 2)
+                    return <>{parts.slice(0, mid).join(' ')}<br />{parts.slice(mid).join(' ')}</>
+                  })()}
+                </h1>
 
-              <div className="relative aspect-[3/4] rounded-[32px] overflow-hidden bg-gradient-to-b from-[#f8f5f0] via-[#f0ebe4] to-[#e5ddd2] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)]">
-                {member.photo ? (
-                  <Image
-                    fill
-                    priority
-                    alt={member.photo.alt || member.name}
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    src={urlFor(member.photo).width(600).height(800).auto('format').url()}
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full bg-[#e8e0d5] flex items-center justify-center">
-                      <User className="w-16 h-16 text-[#a89880]" strokeWidth={1.5} />
-                    </div>
+                {member.role && (
+                  <p className="text-xl md:text-2xl font-medium text-[#d4c4b0] mb-6">
+                    {member.role}
+                  </p>
+                )}
+              </ScrollReveal>
+
+              <ScrollReveal animation="fade-up" delay={300}>
+                {/* Specializations */}
+                {member.specializations && member.specializations.length > 0 && (
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+                    {member.specializations.map((spec, index) => (
+                      <SpecBadge key={index} label={spec.name} />
+                    ))}
                   </div>
                 )}
 
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -right-4 md:bottom-8 md:-right-8 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] p-4 md:p-5">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0] flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-white" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1a1a1a]">Expert</p>
-                    <p className="text-xs text-[#6b6b6b]">Verificat</p>
-                  </div>
-                </div>
-              </div>
+                <HeroInfoRow />
+                <HeroCTAButtons memberName={member.name} memberRole={member.role} />
+              </ScrollReveal>
             </div>
 
-            {/* Content */}
-            <div className="text-center lg:text-left">
-              {/* Breadcrumb */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-[#6b6b6b] mb-6">
-                <Link href="/echipa" className="hover:text-[#8b7355] transition-colors">
-                  Echipa
-                </Link>
-                <span>/</span>
-                <span className="text-[#1a1a1a] font-medium">{member.name}</span>
-              </div>
+            {/* Photo - on mobile appears AFTER text, on desktop on right */}
+            <div>
+                <div className="relative max-w-[280px] mx-auto lg:max-w-[550px] lg:ml-auto lg:-mr-10 xl:-mr-16 team-photo-entrance">
+                  {/* Warm glow behind photo */}
+                  <div className="absolute -inset-4 lg:-inset-8 rounded-[2.5rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.25)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-4 tracking-tight">
-                {member.name}
-              </h1>
+                  <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border-2 border-[#d4c4b0]/30 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.2)]">
+                    {member.photo ? (
+                      <Image
+                        fill
+                        priority
+                        alt={member.photo.alt || member.name}
+                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 280px, (max-width: 1024px) 550px, 550px"
+                        src={urlFor(member.photo).width(600).height(800).auto('format').url()}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
+                        <div className="w-28 h-28 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
+                          <User className="w-14 h-14 text-white/30" strokeWidth={1.5} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-              {member.role && (
-                <p className="text-xl md:text-2xl font-medium text-[#8b7355] mb-6">
-                  {member.role}
-                </p>
-              )}
-
-              {/* Specializations */}
-              {member.specializations && member.specializations.length > 0 && (
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
-                  {member.specializations.map((spec, index) => (
-                    <span
-                      key={index}
-                      className="px-4 py-2 text-sm bg-white/80 backdrop-blur-sm text-[#6b5a47] rounded-full border border-[#e8e0d5] font-medium shadow-sm"
-                    >
-                      {spec.name}
-                    </span>
-                  ))}
+                  {/* Floating expert badge */}
+                  <div className="absolute -bottom-4 left-4 sm:-bottom-5 sm:left-6 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] p-3.5 sm:p-4 team-badge-pop">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
+                        <Sparkles className="w-5 h-5 text-white" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-[#1a1a1a]">Expert</p>
+                        <p className="text-xs text-[#8b7355]">Verificat</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              )}
-
-              {/* Quick info */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-10 text-sm text-[#6b6b6b]">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#8b7355]" />
-                  <span>Satu Mare</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-[#8b7355]" />
-                  <span>L-V: 10:00 - 18:00</span>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#1a1a1a] text-white rounded-full font-semibold text-lg hover:bg-[#333] hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-0.5"
-                  href="/contact"
-                >
-                  {t('common.bookAppointment')}
-                </Link>
-                <a
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1a1a1a] rounded-full font-semibold text-lg border-2 border-[#e8e0d5] hover:border-[#d4c4b0] hover:bg-[#faf8f5] transition-all duration-300"
-                  href="tel:+40741199977"
-                >
-                  <Phone className="w-5 h-5" strokeWidth={2} />
-                  0741 199 977
-                </a>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bio Section */}
+      {/* ───── VIDEO SHORTS SECTION ───── */}
+      <VideoShortsSection />
+
+      {/* ───── ABOUT SECTION (Redesigned) ───── */}
       {member.bio && member.bio.length > 0 && (
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              {/* Section header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                  <BookOpen className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{t('team.about')}</h2>
-                  <p className="text-sm text-[#6b6b6b]">Despre {member.name.split(' ')[0]}</p>
-                </div>
-              </div>
-
-              <div className="prose prose-lg prose-neutral max-w-none">
-                <div className="bg-[#faf8f5] rounded-3xl p-8 md:p-10 border border-[#f0ebe3]">
-                  <PortableTextRenderer content={member.bio} />
-                </div>
-              </div>
+        <AboutSection
+          firstName={firstName}
+          aboutLabel={t('team.about')}
+          isDoctor={member.role?.toLowerCase().includes('medic') || member.role?.toLowerCase().includes('doctor') || false}
+          yearsExperience={computeYearsExperience(member.education, member.certifications)}
+          specializationsCount={member.specializations?.length ?? 0}
+          bioContent={
+            <div className="prose prose-lg prose-neutral max-w-none">
+              <PortableTextRenderer content={member.bio} />
             </div>
-          </div>
-        </section>
+          }
+        />
       )}
 
-      {/* Education Section */}
-      {member.education && member.education.length > 0 && (
-        <section className="py-16 md:py-24 bg-gradient-to-b from-[#faf8f5] to-white">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              {/* Section header */}
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                  <GraduationCap className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{t('team.education')}</h2>
-                  <p className="text-sm text-[#6b6b6b]">Studii și formare profesională</p>
-                </div>
-              </div>
+      {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}
+      <ProfessionalJourneySection
+        entries={buildTimelineEntries(member.education, member.certifications)}
+      />
 
-              <div className="space-y-4">
-                {member.education.map((edu, index) => (
-                  <div
-                    key={index}
-                    className="group bg-white rounded-2xl p-6 md:p-8 border border-[#f0ebe3] hover:border-[#d4c4b0] shadow-sm hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <h4 className="text-lg md:text-xl font-semibold text-[#1a1a1a] mb-2 group-hover:text-[#8b7355] transition-colors">
-                          {edu.degree}
-                        </h4>
-                        <p className="text-[#6b6b6b] flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                          {edu.institution}
-                        </p>
-                      </div>
-                      <span className="shrink-0 px-4 py-2 text-sm font-bold text-[#8b7355] bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] rounded-xl">
-                        {edu.year}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Certifications Section */}
-      {member.certifications && member.certifications.length > 0 && (
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              {/* Section header */}
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                  <Award className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{t('team.certifications')}</h2>
-                  <p className="text-sm text-[#6b6b6b]">Certificări și acreditări</p>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {member.certifications.map((cert, index) => (
-                  <div
-                    key={index}
-                    className="group bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl p-6 border border-[#f0ebe3] hover:border-[#d4c4b0] transition-all duration-300 hover:shadow-md"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-[#f5f0e8] flex items-center justify-center shrink-0">
-                        <Award className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#1a1a1a] mb-1 group-hover:text-[#8b7355] transition-colors">
-                          {cert.name}
-                        </h4>
-                        <p className="text-sm text-[#6b6b6b] mb-2">{cert.issuer}</p>
-                        <span className="text-xs font-semibold text-[#8b7355] bg-[#f5f0e8] px-2 py-1 rounded-md">
-                          {cert.year}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Services Section */}
+      {/* ───── SERVICES SECTION ───── */}
       {member.services && member.services.length > 0 && (
-        <section className="py-16 md:py-24 bg-gradient-to-b from-[#faf8f5] to-[#f5f0e8]">
+        <section className="py-16 md:py-24 bg-[#faf6f1]">
           <div className="container">
             <div className="max-w-4xl mx-auto">
-              {/* Section header */}
-              <div className="text-center mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3">{t('team.servicesOffered')}</h2>
-                <p className="text-[#6b6b6b]">Servicii oferite de {member.name.split(' ')[0]}</p>
-              </div>
+              <ScrollReveal animation="fade-up">
+                <div className="text-center mb-12">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b7355] bg-white rounded-full border border-[#e8e0d5] mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Servicii
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-3">{t('team.servicesOffered')}</h2>
+                  <p className="text-[#8b7355]">Servicii oferite de {firstName}</p>
+                </div>
+              </ScrollReveal>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                {member.services.map((service) => (
-                  <Link
-                    key={service._id}
-                    className="group bg-white rounded-2xl p-6 border border-[#f0ebe3] hover:border-[#d4c4b0] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                    href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-semibold text-[#1a1a1a] group-hover:text-[#8b7355] transition-colors">
+                {member.services.map((service, index) => (
+                  <ScrollReveal key={service._id} animation="fade-up" delay={index * 80}>
+                    <Link
+                      className="group bg-white rounded-2xl p-6 border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] hover:border-[#d4c4b0] hover:-translate-y-1 transition-all duration-300 flex items-center justify-between"
+                      href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+                    >
+                      <h4 className="font-semibold text-[#2a2118] group-hover:text-[#8b7355] transition-colors">
                         {service.title}
                       </h4>
-                      <span className="w-10 h-10 rounded-full bg-[#f5f0e8] group-hover:bg-[#1a1a1a] flex items-center justify-center transition-all duration-300">
+                      <span className="w-10 h-10 rounded-full bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#2a2118] group-hover:border-[#2a2118] flex items-center justify-center transition-all duration-300 shrink-0 ml-4">
                         <ArrowRight className="w-5 h-5 text-[#8b7355] group-hover:text-white transition-colors" strokeWidth={2} />
                       </span>
-                    </div>
-                  </Link>
+                    </Link>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
@@ -423,17 +727,17 @@ function PortableTextRenderer({ content }: { content: Array<{ _type: string; [ke
           const text = children?.map((child) => child.text).join('') || ''
 
           if (style === 'h2') {
-            return <h2 key={index} className="!mt-8 text-2xl font-bold text-[#1a1a1a]">{text}</h2>
+            return <h2 key={index} className="!mt-8 text-2xl font-bold text-[#2a2118]">{text}</h2>
           }
           if (style === 'h3') {
-            return <h3 key={index} className="!mt-6 text-xl font-semibold text-[#1a1a1a]">{text}</h3>
+            return <h3 key={index} className="!mt-6 text-xl font-semibold text-[#2a2118]">{text}</h3>
           }
           if (style === 'h4') {
-            return <h4 key={index} className="!mt-4 text-lg font-semibold text-[#1a1a1a]">{text}</h4>
+            return <h4 key={index} className="!mt-4 text-lg font-semibold text-[#2a2118]">{text}</h4>
           }
           if (style === 'blockquote') {
             return (
-              <blockquote key={index} className="border-l-4 border-[#d4c4b0] pl-6 italic text-[#6b6b6b] my-6">
+              <blockquote key={index} className="border-l-4 border-[#d4c4b0] pl-6 italic text-[#8b7355] my-6">
                 {text}
               </blockquote>
             )
@@ -446,227 +750,115 @@ function PortableTextRenderer({ content }: { content: Array<{ _type: string; [ke
   )
 }
 
-// Fallback page content when using placeholder data
+// ─── Fallback Team Member Page ───────────────────────────────────────────────
+
 async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamMember }) {
   const t = await getTranslations()
 
+  const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf8f5] via-[#f5f0e8] to-[#ebe5db]">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#d4c4b0]/8 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c9b89a]/8 rounded-full blur-[120px] -translate-x-1/3 translate-y-1/3" />
+      {/* ───── HERO SECTION - Dark Editorial ───── */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] pt-28 pb-12 md:pt-32 md:pb-14">
+        <HeroBackground />
 
-        <div className="absolute inset-0 opacity-[0.012]" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #1a1a1a 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
+        <div className="container relative z-10">
+          <HeroBreadcrumb name={member.name} />
 
-        <div className="container relative z-10 py-16 md:py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Photo */}
-            <div className="relative max-w-lg mx-auto lg:mx-0">
-              <div className="absolute -inset-4 md:-inset-6 border-2 border-[#e8e0d5]/50 rounded-[40px] -rotate-3" />
-              <div className="absolute -inset-4 md:-inset-6 border-2 border-[#d4c4b0]/30 rounded-[40px] rotate-2" />
-
-              <div className="relative aspect-[3/4] rounded-[32px] overflow-hidden bg-gradient-to-b from-[#f8f5f0] via-[#f0ebe4] to-[#e5ddd2] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)]">
-                {member.photo ? (
-                  <Image
-                    src={member.photo}
-                    alt={member.name}
-                    fill
-                    priority
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full bg-[#e8e0d5] flex items-center justify-center">
-                      <User className="w-16 h-16 text-[#a89880]" strokeWidth={1.5} />
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="absolute -bottom-4 -right-4 md:bottom-8 md:-right-8 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] p-4 md:p-5">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0] flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-white" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1a1a1a]">Expert</p>
-                    <p className="text-xs text-[#6b6b6b]">Verificat</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+            {/* Content - on mobile appears FIRST, on desktop on left */}
             <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-[#6b6b6b] mb-6">
-                <Link href="/echipa" className="hover:text-[#8b7355] transition-colors">
-                  Echipa
-                </Link>
-                <span>/</span>
-                <span className="text-[#1a1a1a] font-medium">{member.name}</span>
-              </div>
+              <ScrollReveal animation="fade-up" delay={150}>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight leading-[1.15]">
+                  {(() => {
+                    const parts = member.name.split(' ')
+                    if (parts.length <= 2) return member.name
+                    const mid = Math.ceil(parts.length / 2)
+                    return <>{parts.slice(0, mid).join(' ')}<br />{parts.slice(mid).join(' ')}</>
+                  })()}
+                </h1>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-4 tracking-tight">
-                {member.name}
-              </h1>
+                <p className="text-xl md:text-2xl font-medium text-[#d4c4b0] mb-6">
+                  {member.role}
+                </p>
+              </ScrollReveal>
 
-              <p className="text-xl md:text-2xl font-medium text-[#8b7355] mb-6">
-                {member.role}
-              </p>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
-                {member.specializations.map((spec, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 text-sm bg-white/80 backdrop-blur-sm text-[#6b5a47] rounded-full border border-[#e8e0d5] font-medium shadow-sm"
-                  >
-                    {spec}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-10 text-sm text-[#6b6b6b]">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#8b7355]" />
-                  <span>Satu Mare</span>
+              <ScrollReveal animation="fade-up" delay={300}>
+                {/* Specializations */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+                  {member.specializations.map((spec, index) => (
+                    <SpecBadge key={index} label={spec} />
+                  ))}
                 </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-[#8b7355]" />
-                  <span>L-V: 10:00 - 18:00</span>
-                </div>
-              </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#1a1a1a] text-white rounded-full font-semibold text-lg hover:bg-[#333] hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-0.5"
-                  href="/contact"
-                >
-                  {t('common.bookAppointment')}
-                </Link>
-                <a
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1a1a1a] rounded-full font-semibold text-lg border-2 border-[#e8e0d5] hover:border-[#d4c4b0] hover:bg-[#faf8f5] transition-all duration-300"
-                  href="tel:+40741199977"
-                >
-                  <Phone className="w-5 h-5" strokeWidth={2} />
-                  0741 199 977
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Bio Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                <BookOpen className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{t('team.about')}</h2>
-                <p className="text-sm text-[#6b6b6b]">Despre {member.name.split(' ')[0]}</p>
-              </div>
+                <HeroInfoRow />
+                <HeroCTAButtons memberName={member.name} memberRole={member.role} />
+              </ScrollReveal>
             </div>
 
-            <div className="bg-[#faf8f5] rounded-3xl p-8 md:p-10 border border-[#f0ebe3]">
-              <p className="text-base md:text-lg text-[#4a4a4a] leading-relaxed">{member.bio}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* Photo - on mobile appears AFTER text, on desktop on right */}
+            <div>
+                <div className="relative max-w-[280px] mx-auto lg:max-w-[550px] lg:ml-auto lg:-mr-10 xl:-mr-16 team-photo-entrance">
+                  {/* Warm glow behind photo */}
+                  <div className="absolute -inset-4 lg:-inset-8 rounded-[2.5rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.25)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
 
-      {/* Education Section */}
-      {member.education.length > 0 && (
-        <section className="py-16 md:py-24 bg-gradient-to-b from-[#faf8f5] to-white">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                  <GraduationCap className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{t('team.education')}</h2>
-                  <p className="text-sm text-[#6b6b6b]">Studii și formare profesională</p>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {member.education.map((edu, index) => (
-                  <div
-                    key={index}
-                    className="group bg-white rounded-2xl p-6 md:p-8 border border-[#f0ebe3] hover:border-[#d4c4b0] shadow-sm hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <h4 className="text-lg md:text-xl font-semibold text-[#1a1a1a] mb-2 group-hover:text-[#8b7355] transition-colors">
-                          {edu.degree}
-                        </h4>
-                        <p className="text-[#6b6b6b] flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                          {edu.institution}
-                        </p>
+                  <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border-2 border-[#d4c4b0]/30 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.2)]">
+                    {member.photo ? (
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        fill
+                        priority
+                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 280px, (max-width: 1024px) 550px, 550px"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
+                        <div className="w-28 h-28 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
+                          <User className="w-14 h-14 text-white/30" strokeWidth={1.5} />
+                        </div>
                       </div>
-                      <span className="shrink-0 px-4 py-2 text-sm font-bold text-[#8b7355] bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] rounded-xl">
-                        {edu.year}
-                      </span>
-                    </div>
+                    )}
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* Certifications Section */}
-      {member.certifications.length > 0 && (
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                  <Award className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{t('team.certifications')}</h2>
-                  <p className="text-sm text-[#6b6b6b]">Certificări și acreditări</p>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {member.certifications.map((cert, index) => (
-                  <div
-                    key={index}
-                    className="group bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl p-6 border border-[#f0ebe3] hover:border-[#d4c4b0] transition-all duration-300 hover:shadow-md"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-[#f5f0e8] flex items-center justify-center shrink-0">
-                        <Award className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                  {/* Floating expert badge */}
+                  <div className="absolute -bottom-4 left-4 sm:-bottom-5 sm:left-6 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] p-3.5 sm:p-4 team-badge-pop">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
+                        <Sparkles className="w-5 h-5 text-white" strokeWidth={1.5} />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-[#1a1a1a] mb-1 group-hover:text-[#8b7355] transition-colors">
-                          {cert.name}
-                        </h4>
-                        <p className="text-sm text-[#6b6b6b] mb-2">{cert.issuer}</p>
-                        <span className="text-xs font-semibold text-[#8b7355] bg-[#f5f0e8] px-2 py-1 rounded-md">
-                          {cert.year}
-                        </span>
+                        <p className="text-sm font-semibold text-[#1a1a1a]">Expert</p>
+                        <p className="text-xs text-[#8b7355]">Verificat</p>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
+
+      {/* ───── VIDEO SHORTS SECTION ───── */}
+      <VideoShortsSection />
+
+      {/* ───── ABOUT SECTION (Redesigned) ───── */}
+      <AboutSection
+        firstName={firstName}
+        aboutLabel={t('team.about')}
+        isDoctor={member.role.toLowerCase().includes('medic') || member.role.toLowerCase().includes('doctor')}
+        yearsExperience={computeYearsExperience(member.education, member.certifications)}
+        specializationsCount={member.specializations.length}
+        bioContent={
+          <p className="text-base md:text-lg text-[#4a4a4a] leading-relaxed">{member.bio}</p>
+        }
+      />
+
+      {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}
+      <ProfessionalJourneySection
+        entries={buildTimelineEntries(member.education, member.certifications)}
+      />
 
     </div>
   )
