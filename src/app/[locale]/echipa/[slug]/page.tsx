@@ -24,7 +24,8 @@ import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sanity/queries'
-import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { generateDynamicPageMetadata, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
 import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { TeamMemberBookingButton } from '@/components/ui/TeamMemberBookingButton'
@@ -144,16 +145,16 @@ export default async function TeamMemberPage({ params }: Props) {
 
 function HeroBreadcrumb({ name }: { name: string }) {
   return (
-    <nav className="flex items-center gap-2 text-sm mb-6 -mt-2">
-      <Link href="/" className="text-white/40 hover:text-white/70 transition-colors">
+    <nav className="flex items-center gap-1.5 text-[13px] mb-8 md:mb-8">
+      <Link href="/" className="text-white/35 hover:text-white/60 transition-colors">
         Acasa
       </Link>
-      <ChevronRight className="w-3.5 h-3.5 text-white/20" />
-      <Link href="/echipa" className="text-white/40 hover:text-white/70 transition-colors">
+      <ChevronRight className="w-3 h-3 text-white/15" />
+      <Link href="/echipa" className="text-white/35 hover:text-white/60 transition-colors">
         Echipa
       </Link>
-      <ChevronRight className="w-3.5 h-3.5 text-white/20" />
-      <span className="text-[#d4c4b0] font-medium">{name}</span>
+      <ChevronRight className="w-3 h-3 text-white/15" />
+      <span className="text-[#d4c4b0]/80">{name}</span>
     </nav>
   )
 }
@@ -562,21 +563,30 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const t = await getTranslations()
 
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
+    { name: member.name, url: `${siteConfig.baseUrl}/echipa/${member.slug}` },
+  ])
 
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ───── HERO SECTION - Dark Editorial ───── */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-28 pb-12 md:pt-32 md:pb-14">
+      <section className="relative bg-[#0d0d0d] pt-5 md:pt-[80px] pb-8">
         <HeroBackground />
 
         <div className="container relative z-10">
           <HeroBreadcrumb name={member.name} />
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
             {/* Content - on mobile appears FIRST, on desktop on left */}
             <div className="text-center lg:text-left">
               <ScrollReveal animation="fade-up" delay={150}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight leading-[1.15]">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight leading-[1.1]">
                   {(() => {
                     const parts = member.name.split(' ')
                     if (parts.length <= 2) return member.name
@@ -586,7 +596,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
                 </h1>
 
                 {member.role && (
-                  <p className="text-xl md:text-2xl font-medium text-[#d4c4b0] mb-6">
+                  <p className="text-lg md:text-xl font-medium text-[#d4c4b0] mb-5">
                     {member.role}
                   </p>
                 )}
@@ -595,7 +605,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
               <ScrollReveal animation="fade-up" delay={300}>
                 {/* Specializations */}
                 {member.specializations && member.specializations.length > 0 && (
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
                     {member.specializations.map((spec, index) => (
                       <SpecBadge key={index} label={spec.name} />
                     ))}
@@ -608,43 +618,43 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
             </div>
 
             {/* Photo - on mobile appears AFTER text, on desktop on right */}
-            <div>
-                <div className="relative max-w-[280px] mx-auto lg:max-w-[550px] lg:ml-auto lg:-mr-10 xl:-mr-16 team-photo-entrance">
-                  {/* Warm glow behind photo */}
-                  <div className="absolute -inset-4 lg:-inset-8 rounded-[2.5rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.25)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-[260px] md:w-[300px] lg:w-[360px] team-photo-entrance">
+                {/* Warm glow behind photo */}
+                <div className="absolute -inset-4 lg:-inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.2)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
 
-                  <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border-2 border-[#d4c4b0]/30 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.2)]">
-                    {member.photo ? (
-                      <Image
-                        fill
-                        priority
-                        alt={member.photo.alt || member.name}
-                        className="object-cover object-top"
-                        sizes="(max-width: 768px) 280px, (max-width: 1024px) 550px, 550px"
-                        src={urlFor(member.photo).width(600).height(800).auto('format').url()}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
-                        <div className="w-28 h-28 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                          <User className="w-14 h-14 text-white/30" strokeWidth={1.5} />
-                        </div>
+                <div className="relative aspect-[3/4] rounded-2xl lg:rounded-3xl overflow-hidden border border-[#d4c4b0]/20 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.15)]">
+                  {member.photo ? (
+                    <Image
+                      fill
+                      priority
+                      alt={member.photo.alt || member.name}
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 260px, (max-width: 1024px) 300px, 420px"
+                      src={urlFor(member.photo).width(600).height(800).auto('format').url()}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
+                      <div className="w-24 h-24 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
+                        <User className="w-12 h-12 text-white/30" strokeWidth={1.5} />
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
+                </div>
 
-                  {/* Floating expert badge */}
-                  <div className="absolute -bottom-4 left-4 sm:-bottom-5 sm:left-6 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] p-3.5 sm:p-4 team-badge-pop">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
-                        <Sparkles className="w-5 h-5 text-white" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-[#1a1a1a]">Expert</p>
-                        <p className="text-xs text-[#8b7355]">Verificat</p>
-                      </div>
+                {/* Floating expert badge */}
+                <div className="absolute -bottom-3 left-3 sm:-bottom-4 sm:left-4 bg-white rounded-xl shadow-[0_8px_30px_-8px_rgba(0,0,0,0.25)] p-3 team-badge-pop">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-white" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#1a1a1a] leading-tight">Expert</p>
+                      <p className="text-[11px] text-[#8b7355]">Verificat</p>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -756,21 +766,30 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
   const t = await getTranslations()
 
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
+    { name: member.name, url: `${siteConfig.baseUrl}/echipa/${member.slug}` },
+  ])
 
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ───── HERO SECTION - Dark Editorial ───── */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-28 pb-12 md:pt-32 md:pb-14">
+      <section className="relative bg-[#0d0d0d] pt-5 md:pt-[80px] pb-8">
         <HeroBackground />
 
         <div className="container relative z-10">
           <HeroBreadcrumb name={member.name} />
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
             {/* Content - on mobile appears FIRST, on desktop on left */}
             <div className="text-center lg:text-left">
               <ScrollReveal animation="fade-up" delay={150}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight leading-[1.15]">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight leading-[1.1]">
                   {(() => {
                     const parts = member.name.split(' ')
                     if (parts.length <= 2) return member.name
@@ -779,14 +798,14 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
                   })()}
                 </h1>
 
-                <p className="text-xl md:text-2xl font-medium text-[#d4c4b0] mb-6">
+                <p className="text-lg md:text-xl font-medium text-[#d4c4b0] mb-5">
                   {member.role}
                 </p>
               </ScrollReveal>
 
               <ScrollReveal animation="fade-up" delay={300}>
                 {/* Specializations */}
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
                   {member.specializations.map((spec, index) => (
                     <SpecBadge key={index} label={spec} />
                   ))}
@@ -798,43 +817,43 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
             </div>
 
             {/* Photo - on mobile appears AFTER text, on desktop on right */}
-            <div>
-                <div className="relative max-w-[280px] mx-auto lg:max-w-[550px] lg:ml-auto lg:-mr-10 xl:-mr-16 team-photo-entrance">
-                  {/* Warm glow behind photo */}
-                  <div className="absolute -inset-4 lg:-inset-8 rounded-[2.5rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.25)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-[260px] md:w-[300px] lg:w-[360px] team-photo-entrance">
+                {/* Warm glow behind photo */}
+                <div className="absolute -inset-4 lg:-inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.2)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
 
-                  <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border-2 border-[#d4c4b0]/30 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.2)]">
-                    {member.photo ? (
-                      <Image
-                        src={member.photo}
-                        alt={member.name}
-                        fill
-                        priority
-                        className="object-cover object-top"
-                        sizes="(max-width: 768px) 280px, (max-width: 1024px) 550px, 550px"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
-                        <div className="w-28 h-28 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                          <User className="w-14 h-14 text-white/30" strokeWidth={1.5} />
-                        </div>
+                <div className="relative aspect-[3/4] rounded-2xl lg:rounded-3xl overflow-hidden border border-[#d4c4b0]/20 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.15)]">
+                  {member.photo ? (
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      priority
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 260px, (max-width: 1024px) 300px, 420px"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
+                      <div className="w-24 h-24 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
+                        <User className="w-12 h-12 text-white/30" strokeWidth={1.5} />
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
+                </div>
 
-                  {/* Floating expert badge */}
-                  <div className="absolute -bottom-4 left-4 sm:-bottom-5 sm:left-6 bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] p-3.5 sm:p-4 team-badge-pop">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
-                        <Sparkles className="w-5 h-5 text-white" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-[#1a1a1a]">Expert</p>
-                        <p className="text-xs text-[#8b7355]">Verificat</p>
-                      </div>
+                {/* Floating expert badge */}
+                <div className="absolute -bottom-3 left-3 sm:-bottom-4 sm:left-4 bg-white rounded-xl shadow-[0_8px_30px_-8px_rgba(0,0,0,0.25)] p-3 team-badge-pop">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-white" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#1a1a1a] leading-tight">Expert</p>
+                      <p className="text-[11px] text-[#8b7355]">Verificat</p>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>

@@ -9,25 +9,25 @@ export const siteConfig = {
   name: 'Dentcraft',
   siteName: 'Dentcraft Satu Mare',
   baseUrl: 'https://dentcraft.ro',
-  defaultOgImage: '/images/og-default.jpg',
+  defaultOgImage: '/images/team-clinic.jpg',
 }
 
 /**
  * Locale-specific site titles
  */
 const localeTitles: Record<Locale, string> = {
-  ro: 'Dentcraft - Clinica Stomatologica Satu Mare',
-  en: 'Dentcraft - Dental Clinic Satu Mare',
-  hu: 'Dentcraft - Fogaszati Klinika Szatmarnemeti',
+  ro: 'Dentist Satu Mare | Clinica Stomatologica DentCraft',
+  en: 'Dentist Satu Mare | DentCraft Dental Clinic',
+  hu: 'Fogorvos Szatmárnémeti | DentCraft Fogászati Klinika',
 }
 
 /**
  * Locale-specific site descriptions
  */
 const localeDescriptions: Record<Locale, string> = {
-  ro: 'Clinica stomatologica moderna in Satu Mare. Servicii complete de stomatologie: implanturi, estetica dentara, ortodontie. Programeaza-te acum!',
-  en: 'Modern dental clinic in Satu Mare. Complete dental services: implants, cosmetic dentistry, orthodontics. Book your appointment now!',
-  hu: 'Modern fogaszati klinika Szatmarneметiben. Teljes koru fogaszati szolgaltatasok: implantatum, esztetikai fogaszat, fogszabalyozas. Foglaljon idopontot most!',
+  ro: 'Clinica stomatologica in Satu Mare cu 10+ ani experienta. Implanturi, ortodontie, fatete, albire dentara. Echipa de 6 specialisti. Programeaza consultatie!',
+  en: 'Dental clinic in Satu Mare with 10+ years experience. Implants, orthodontics, veneers, teeth whitening. Team of 6 specialists. Book a consultation!',
+  hu: 'Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal. Implantátum, fogszabályozás, héjak, fehérítés. 6 fős szakértői csapat. Foglaljon időpontot!',
 }
 
 /**

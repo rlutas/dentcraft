@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const t = await getTranslations({ locale })
 
   return generatePageMetadata({
-    title: t('prices.title'),
-    description: t('prices.subtitle'),
+    title: t('prices.metaTitle'),
+    description: t('prices.metaDescription'),
     locale: locale as SEOLocale,
     path: '/preturi',
   })

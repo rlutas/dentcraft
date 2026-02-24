@@ -16,7 +16,8 @@ import { BookingButton } from '@/components/ui/BookingButton'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getServiceBySlug, getServiceSlugs, getFAQs, type Locale } from '@/lib/sanity/queries'
-import { generateDynamicPageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { generateDynamicPageMetadata, type Locale as SEOLocale, siteConfig } from '@/lib/seo'
+import { getServiceSchema, getBreadcrumbSchema } from '@/lib/schema'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -157,8 +158,31 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
   const t = await getTranslations()
   const ServiceIcon = getIconByName(service.icon)
 
+  const serviceSchemaOptions: Parameters<typeof getServiceSchema>[0] = {
+    serviceName: service.title,
+    serviceDescription: service.shortDescription || service.title,
+    serviceUrl: `${siteConfig.baseUrl}/servicii/${service.slug}`,
+  }
+  if (service.priceRange) {
+    serviceSchemaOptions.priceRange = `${service.priceRange.min}-${service.priceRange.max} RON`
+  }
+  const serviceSchema = getServiceSchema(serviceSchemaOptions)
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: t('navigation.services'), url: `${siteConfig.baseUrl}/servicii` },
+    { name: service.title, url: `${siteConfig.baseUrl}/servicii/${service.slug}` },
+  ])
+
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="gradient-hero">
         <div className="container section">
@@ -377,8 +401,29 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
   const t = await getTranslations()
   const ServiceIcon = fallbackService.Icon
 
+  const serviceName = t(`services.fallback.${fallbackService.titleKey}`)
+  const serviceDescription = t(`services.fallback.${fallbackService.descriptionKey}`)
+  const serviceSchema = getServiceSchema({
+    serviceName,
+    serviceDescription,
+    serviceUrl: `${siteConfig.baseUrl}/servicii/${fallbackService.slug}`,
+  })
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: t('navigation.services'), url: `${siteConfig.baseUrl}/servicii` },
+    { name: serviceName, url: `${siteConfig.baseUrl}/servicii/${fallbackService.slug}` },
+  ])
+
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="gradient-hero">
         <div className="container section">

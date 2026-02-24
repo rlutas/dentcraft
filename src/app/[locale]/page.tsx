@@ -271,7 +271,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
               </h1>
 
               {/* Subtitle */}
-              <p className="hero-stagger-3 text-[#7a6b5a] text-lg leading-relaxed mb-6 lg:mb-8 max-w-md">
+              <p className="hero-stagger-3 text-[#7a6b5a] text-lg leading-relaxed mb-6 lg:mb-8">
                 {t('hero.subtitle')}
               </p>
 
@@ -316,7 +316,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
             </div>
 
             {/* RIGHT: Photo composition */}
-            <div className="relative flex justify-center lg:justify-end pt-4 pb-6 lg:pt-0 lg:pb-0">
+            <div className="relative flex justify-center lg:justify-end pt-4 pb-6 lg:pt-0 lg:pb-0 lg:-mr-4 xl:-mr-6">
               <div className="relative hero-photo-reveal">
                 {/* Premium soft glow behind the photo */}
                 <div className="hero-photo-glow absolute -inset-6 lg:-inset-10 rounded-[2rem] lg:rounded-[2.5rem] pointer-events-none"

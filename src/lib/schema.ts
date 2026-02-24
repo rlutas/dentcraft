@@ -23,6 +23,15 @@ export function getOrganizationSchema() {
     },
     openingHours: 'Mo-Fr 10:00-18:00',
     priceRange: '$$',
+    sameAs: [
+      'https://facebook.com/dentcraft.ro',
+      'https://instagram.com/dentcraft.ro',
+    ],
+    areaServed: [
+      { '@type': 'City', name: 'Satu Mare' },
+      { '@type': 'State', name: 'Județul Satu Mare' },
+    ],
+    availableLanguage: ['Romanian', 'English', 'Hungarian'],
   }
 }
 
@@ -53,6 +62,39 @@ export function getFAQSchema(faqs: { question: string; answer: string }[]) {
         text: faq.answer,
       },
     })),
+  }
+}
+
+// Service schema for individual service pages
+export function getServiceSchema(options: {
+  serviceName: string
+  serviceDescription: string
+  serviceUrl: string
+  priceRange?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['Service', 'MedicalProcedure'],
+    name: options.serviceName,
+    description: options.serviceDescription,
+    url: options.serviceUrl,
+    provider: {
+      '@type': 'Dentist',
+      name: 'Dentcraft',
+      url: 'https://dentcraft.ro',
+      telephone: CONTACT.phone,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Str. Barbu Ștefănescu Delavrancea nr.3',
+        addressLocality: 'Satu Mare',
+        addressCountry: 'RO',
+      },
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Satu Mare',
+    },
+    ...(options.priceRange ? { priceRange: options.priceRange } : {}),
   }
 }
 

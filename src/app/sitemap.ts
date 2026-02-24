@@ -72,7 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: buildUrl(locale, `servicii/${slug}`),
         lastModified: now,
         changeFrequency: 'monthly' as const,
-        priority: 0.6,
+        priority: 0.9,
       }))
   )
 
@@ -92,7 +92,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: buildUrl(locale, `blog/${slug}`),
       lastModified: now,
       changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      priority: 0.7,
     }))
   )
 

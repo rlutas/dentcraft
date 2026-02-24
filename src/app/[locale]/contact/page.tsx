@@ -46,8 +46,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const t = await getTranslations({ locale })
 
   return generatePageMetadata({
-    title: t('contact.title'),
-    description: t('contact.subtitle'),
+    title: t('contact.metaTitle'),
+    description: t('contact.metaDescription'),
     locale: locale as SEOLocale,
     path: '/contact',
   })
