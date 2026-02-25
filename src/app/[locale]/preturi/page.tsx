@@ -6,7 +6,8 @@ import { TabbedPriceList, TabbedPriceListPlaceholder } from '@/components/featur
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Link } from '@/i18n/navigation'
 import { getAllServices, getPricesGroupedByService, type Locale } from '@/lib/sanity/queries'
-import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
+import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 
 // Price type based on Sanity schema
 type SanityPrice = {
@@ -67,6 +68,7 @@ function formatPrice(price: number): string {
 export default async function PricesPage({ params }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations({ locale })
 
   // Fetch prices grouped by service and all services for calculator from Sanity
   const [servicesWithPrices, allServices] = await Promise.all([
@@ -87,13 +89,25 @@ export default async function PricesPage({ params }: PageProps) {
     title: s.title,
   }))
 
+  const loc = locale as SEOLocale
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: t('breadcrumbs.home'), url: `${siteConfig.baseUrl}${localizedPathnames['/']?.[loc] ?? '/'}` },
+    { name: t('breadcrumbs.prices'), url: `${siteConfig.baseUrl}${localizedPathnames['/preturi']?.[loc] ?? '/preturi'}` },
+  ])
+
   return (
-    <PricesPageContent
-      calculatorServices={calculatorServices}
-      hasAnyPrices={filteredServices.length > 0}
-      locale={locale}
-      servicesWithPrices={filteredServices}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <PricesPageContent
+        calculatorServices={calculatorServices}
+        hasAnyPrices={filteredServices.length > 0}
+        locale={locale}
+        servicesWithPrices={filteredServices}
+      />
+    </>
   )
 }
 
@@ -159,15 +173,15 @@ async function PricesPageContent({
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasă
+              {t('breadcrumbs.home')}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Prețuri</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.prices')}</span>
           </div>
 
           <div className="max-w-4xl">
             <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Tarife transparente
+              {t('prices.heroLabel')}
             </span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
@@ -225,17 +239,17 @@ async function PricesPageContent({
           <div className="text-center mb-12">
             <ScrollReveal animation="fade-up">
               <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-                Tarife
+                {t('prices.sectionBadge')}
               </span>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={200}>
               <h2 className="text-4xl md:text-5xl font-bold text-[#2a2118] mb-5">
-                Lista completă de prețuri
+                {t('prices.sectionTitle')}
               </h2>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={400}>
               <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
-                Toate serviciile noastre cu prețuri transparente
+                {t('prices.sectionSubtitle')}
               </p>
             </ScrollReveal>
           </div>
@@ -250,8 +264,7 @@ async function PricesPageContent({
           <ScrollReveal animation="fade-up" delay={600}>
             <div className="mt-8 bg-[#faf6f1] border border-[#e8e0d5] rounded-2xl p-5 md:p-6">
               <p className="text-sm text-[#8b7355] leading-relaxed text-center">
-                *Prețurile indicate sunt orientative și nu reprezintă obligație contractuală.
-                Pot exista tarife suplimentare în funcție de complexitatea cazului.
+                {t('prices.disclaimer')}
               </p>
             </div>
           </ScrollReveal>
@@ -502,15 +515,15 @@ async function PlaceholderPricesPage({
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasă
+              {t('breadcrumbs.home')}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Prețuri</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.prices')}</span>
           </div>
 
           <div className="max-w-4xl">
             <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Tarife transparente
+              {t('prices.heroLabel')}
             </span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
@@ -562,17 +575,17 @@ async function PlaceholderPricesPage({
           <div className="text-center mb-12">
             <ScrollReveal animation="fade-up">
               <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-                Tarife
+                {t('prices.sectionBadge')}
               </span>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={200}>
               <h2 className="text-4xl md:text-5xl font-bold text-[#2a2118] mb-5">
-                Lista completă de prețuri
+                {t('prices.sectionTitle')}
               </h2>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={400}>
               <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
-                Toate serviciile noastre cu prețuri transparente
+                {t('prices.sectionSubtitle')}
               </p>
             </ScrollReveal>
           </div>
@@ -584,8 +597,7 @@ async function PlaceholderPricesPage({
           <ScrollReveal animation="fade-up" delay={600}>
             <div className="mt-8 bg-[#faf6f1] border border-[#e8e0d5] rounded-2xl p-5 md:p-6">
               <p className="text-sm text-[#8b7355] leading-relaxed text-center">
-                *Prețurile indicate sunt orientative și nu reprezintă obligație contractuală.
-                Pot exista tarife suplimentare în funcție de complexitatea cazului.
+                {t('prices.disclaimer')}
               </p>
             </div>
           </ScrollReveal>

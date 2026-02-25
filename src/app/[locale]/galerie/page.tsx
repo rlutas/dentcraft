@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllBeforeAfter, getAllServices, type Locale } from '@/lib/sanity/queries'
-import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
+import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { galleryPhotos } from '@/data/gallery-photos'
 import { GalleryPageClient, PlaceholderGalleryGrid } from './GalleryPageClient'
 
@@ -88,23 +89,39 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
 
   // Build translations object for client component
   const translations = {
-    title: t('gallery.title'),
-    subtitle: t('gallery.subtitle'),
-    filterBy: t('gallery.filterBy'),
-    allTreatments: t('gallery.allTreatments'),
-    noCases: t('gallery.noCases'),
-    before: t('gallery.before'),
     after: t('gallery.after'),
+    allTreatments: t('gallery.allTreatments'),
+    before: t('gallery.before'),
+    breadcrumbHome: t('breadcrumbs.home'),
+    breadcrumbGallery: t('breadcrumbs.gallery'),
+    casesCount: t('gallery.casesCount'),
+    clinicBadge: t('gallery.clinicBadge'),
+    clinicSubtitle: t('gallery.clinicSubtitle'),
+    clinicTitle: t('gallery.clinicTitle'),
+    doctor: t('team.viewAll') === 'Vezi toată echipa' ? 'Medic' : 'Doctor', // Fallback for doctor label
     duration: t('gallery.duration'),
     featured: t('gallery.featured'),
+    filterBy: t('gallery.filterBy'),
+    heroLabel: t('gallery.heroLabel'),
+    noCases: t('gallery.noCases'),
+    sectionBadge: t('gallery.sectionBadge'),
+    sectionSubtitle: t('gallery.sectionSubtitle'),
+    sectionTitle: t('gallery.sectionTitle'),
+    subtitle: t('gallery.subtitle'),
+    title: t('gallery.title'),
     viewDetails: t('common.learnMore'),
-    doctor: t('team.viewAll') === 'Vezi toată echipa' ? 'Medic' : 'Doctor', // Fallback for doctor label
   }
 
   // Helper function to generate image URLs (serializable)
   const createUrlForImage = (image: { asset: { url: string } }) => {
     return urlFor(image).width(800).height(600).quality(85).url()
   }
+
+  const loc = locale as SEOLocale
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: t('breadcrumbs.home'), url: `${siteConfig.baseUrl}${localizedPathnames['/']?.[loc] ?? '/'}` },
+    { name: t('breadcrumbs.gallery'), url: `${siteConfig.baseUrl}${localizedPathnames['/galerie']?.[loc] ?? '/galerie'}` },
+  ])
 
   // If no cases from Sanity, show placeholder
   if (!cases || cases.length === 0) {
@@ -130,7 +147,15 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
       },
     }
 
-    return <PlaceholderGalleryGrid translations={placeholderTranslations} />
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <PlaceholderGalleryGrid translations={placeholderTranslations} />
+      </>
+    )
   }
 
   // Transform cases to include pre-generated image URLs for client component
@@ -147,12 +172,18 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
   }))
 
   return (
-    <GalleryPageClient
-      cases={casesWithUrls}
-      currentFilter={serviceFilter}
-      galleryPhotos={galleryPhotos}
-      services={services}
-      translations={translations}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <GalleryPageClient
+        cases={casesWithUrls}
+        currentFilter={serviceFilter}
+        galleryPhotos={galleryPhotos}
+        services={services}
+        translations={translations}
+      />
+    </>
   )
 }

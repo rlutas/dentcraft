@@ -27,11 +27,21 @@ type GalleryPageClientProps = {
     after: string
     allTreatments: string
     before: string
+    breadcrumbHome: string
+    breadcrumbGallery: string
+    casesCount: string
+    clinicBadge: string
+    clinicSubtitle: string
+    clinicTitle: string
     doctor: string
     duration: string
     featured: string
     filterBy: string
+    heroLabel: string
     noCases: string
+    sectionBadge: string
+    sectionSubtitle: string
+    sectionTitle: string
     subtitle: string
     title: string
     viewDetails: string
@@ -80,15 +90,15 @@ export function GalleryPageClient({
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasa
+              {t.breadcrumbHome}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Galerie</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t.breadcrumbGallery}</span>
           </div>
 
           <div className="max-w-4xl">
             <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Transformari reale
+              {t.heroLabel}
             </span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
@@ -103,7 +113,7 @@ export function GalleryPageClient({
           {/* Decorative line */}
           <div className="mt-16 flex items-center gap-6">
             <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{cases.length} cazuri documentate</span>
+            <span className="text-white/30 text-sm">{t.casesCount.replace('{count}', String(cases.length))}</span>
           </div>
         </div>
       </section>
@@ -155,13 +165,13 @@ export function GalleryPageClient({
           <div className="text-center mb-14">
             <span className="inline-block px-4 py-2 mb-5 text-sm font-semibold tracking-wider uppercase
               text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-              Inainte & Dupa
+              {t.sectionBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-              Transformari reale ale pacientilor
+              {t.sectionTitle}
             </h2>
             <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
-              Fiecare caz demonstreaza rezultatele tratamentelor noastre profesionale
+              {t.sectionSubtitle}
             </p>
           </div>
 
@@ -209,13 +219,13 @@ export function GalleryPageClient({
               <span className="inline-block px-4 py-2 mb-5 text-sm font-semibold tracking-wider uppercase
                 text-[#8b7355] bg-white rounded-full border border-[#e8e0d5]">
                 <Camera className="w-4 h-4 inline mr-2 -mt-0.5" />
-                Clinica Noastra
+                {t.clinicBadge}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-                Descopera Clinica Dentcraft
+                {t.clinicTitle}
               </h2>
               <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
-                Echipamente moderne, spatii confortabile si o echipa dedicata zambetului tau
+                {t.clinicSubtitle}
               </p>
             </div>
 
@@ -593,13 +603,13 @@ export function PlaceholderGalleryGrid({
         }} />
         <div className="container relative z-10">
           <div className="flex items-center gap-3 mb-12">
-            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">Acasa</Link>
+            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">{t.breadcrumbHome}</Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Galerie</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t.breadcrumbGallery}</span>
           </div>
           <div className="max-w-4xl">
             <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Transformari reale
+              {t.heroLabel}
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
               {t.title}
@@ -619,10 +629,10 @@ export function PlaceholderGalleryGrid({
           <div className="text-center mb-14">
             <span className="inline-block px-4 py-2 mb-5 text-sm font-semibold tracking-wider uppercase
               text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-              Inainte & Dupa
+              {t.sectionBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-              Transformari reale ale pacientilor
+              {t.sectionTitle}
             </h2>
           </div>
 

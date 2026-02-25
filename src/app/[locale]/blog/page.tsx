@@ -11,7 +11,8 @@ import {
   getBlogPostsCount,
   type Locale,
 } from '@/lib/sanity/queries'
-import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
+import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 
 const POSTS_PER_PAGE = 10
 
@@ -73,6 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function BlogPage({ params, searchParams }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations({ locale })
 
   const resolvedSearchParams = await searchParams
   const categorySlug = resolvedSearchParams.category
@@ -96,15 +98,27 @@ export default async function BlogPage({ params, searchParams }: PageProps) {
 
   const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE)
 
+  const loc = locale as SEOLocale
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: t('breadcrumbs.home'), url: `${siteConfig.baseUrl}${localizedPathnames['/']?.[loc] ?? '/'}` },
+    { name: t('breadcrumbs.blog'), url: `${siteConfig.baseUrl}${localizedPathnames['/blog']?.[loc] ?? '/blog'}` },
+  ])
+
   return (
-    <BlogPageContent
-      categories={categories as BlogCategory[]}
-      categorySlug={categorySlug}
-      currentPage={currentPage}
-      locale={locale}
-      posts={posts as BlogPost[]}
-      totalPages={totalPages}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <BlogPageContent
+        categories={categories as BlogCategory[]}
+        categorySlug={categorySlug}
+        currentPage={currentPage}
+        locale={locale}
+        posts={posts as BlogPost[]}
+        totalPages={totalPages}
+      />
+    </>
   )
 }
 
@@ -161,10 +175,10 @@ async function BlogPageContent({
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasă
+              {t('breadcrumbs.home')}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Blog</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.blog')}</span>
           </div>
 
           <ScrollReveal animation="fade-up">

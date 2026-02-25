@@ -1,4 +1,7 @@
 import { CONTACT } from './constants/contact'
+import { siteConfig } from './seo'
+
+const SITE_URL = siteConfig.baseUrl // https://www.dentcraft.ro
 
 // LocalBusiness + MedicalBusiness schema for the clinic
 export function getOrganizationSchema() {
@@ -7,13 +10,19 @@ export function getOrganizationSchema() {
     '@type': ['LocalBusiness', 'MedicalBusiness', 'Dentist'],
     name: 'Dentcraft',
     description: 'Clinica stomatologica moderna in Satu Mare',
-    url: 'https://dentcraft.ro',
+    url: SITE_URL,
     telephone: CONTACT.phone,
     email: CONTACT.email,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/branding/LOGO_BLACK_FINAL.png`,
+    },
+    image: `${SITE_URL}/images/team-clinic.jpg`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Str. Barbu Ștefănescu Delavrancea nr.3',
       addressLocality: 'Satu Mare',
+      postalCode: '440187',
       addressCountry: 'RO',
     },
     geo: {
@@ -21,11 +30,13 @@ export function getOrganizationSchema() {
       latitude: CONTACT.coordinates.lat,
       longitude: CONTACT.coordinates.lng,
     },
+    hasMap: 'https://www.google.com/maps/place/DENTCRAFT/',
     openingHours: 'Mo-Fr 10:00-18:00',
     priceRange: '$$',
     sameAs: [
       'https://facebook.com/dentcraft.ro',
       'https://instagram.com/dentcraft.ro',
+      'https://www.google.com/maps/place/DENTCRAFT/',
     ],
     areaServed: [
       { '@type': 'City', name: 'Satu Mare' },
@@ -38,6 +49,24 @@ export function getOrganizationSchema() {
       reviewCount: '40',
       bestRating: '5',
       worstRating: '1',
+    },
+  }
+}
+
+// WebSite schema with SearchAction for sitelinks searchbox
+export function getWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Dentcraft',
+    url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/blog?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
     },
   }
 }
@@ -88,12 +117,13 @@ export function getServiceSchema(options: {
     provider: {
       '@type': 'Dentist',
       name: 'Dentcraft',
-      url: 'https://dentcraft.ro',
+      url: SITE_URL,
       telephone: CONTACT.phone,
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Str. Barbu Ștefănescu Delavrancea nr.3',
         addressLocality: 'Satu Mare',
+        postalCode: '440187',
         addressCountry: 'RO',
       },
     },
@@ -119,7 +149,7 @@ export function getPersonSchema(person: {
 }) {
   return {
     '@context': 'https://schema.org',
-    '@type': ['Person', 'Dentist'],
+    '@type': 'Person',
     name: person.name,
     url: person.url,
     jobTitle: person.jobTitle,
@@ -128,7 +158,7 @@ export function getPersonSchema(person: {
     worksFor: {
       '@type': 'Dentist',
       name: person.worksFor || 'Dentcraft',
-      url: 'https://dentcraft.ro',
+      url: SITE_URL,
     },
     ...(person.alumniOf ? {
       alumniOf: person.alumniOf.map((school) => ({
@@ -174,10 +204,10 @@ export function getArticleSchema(article: {
     publisher: {
       '@type': 'Organization',
       name: 'Dentcraft',
-      url: 'https://dentcraft.ro',
+      url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://dentcraft.ro/images/logo.png',
+        url: `${SITE_URL}/branding/LOGO_BLACK_FINAL.png`,
       },
     },
     image: article.image,

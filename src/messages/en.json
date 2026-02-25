@@ -47,9 +47,22 @@
       "secondary": "Discover services"
     }
   },
+  "breadcrumbs": {
+    "home": "Home",
+    "services": "Services",
+    "team": "Team",
+    "prices": "Prices",
+    "blog": "Blog",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "testimonials": "Testimonials"
+  },
   "services": {
     "badge": "Dental Services",
-    "title": "Our services",
+    "title": "Dental Services in Satu Mare",
+    "heroLabel": "Dental treatments",
+    "availableCount": "{count} services available",
     "subtitle": "We offer a complete range of dental services, from prevention to complex treatments.",
     "metaTitle": "Dental Services Satu Mare | Implants, Orthodontics, Veneers",
     "metaDescription": "Complete dental services in Satu Mare: implants, orthodontics, veneers, whitening, pediatric dentistry. DentCraft clinic - team of 6 specialists.",
@@ -369,7 +382,15 @@
     }
   },
   "gallery": {
-    "title": "Before & After Gallery",
+    "title": "Before & After Gallery — Real Results",
+    "heroLabel": "Real transformations",
+    "casesCount": "{count} documented cases",
+    "sectionBadge": "Before & After",
+    "sectionTitle": "Real patient transformations",
+    "sectionSubtitle": "Each case demonstrates the results of our professional treatments",
+    "clinicBadge": "Our Clinic",
+    "clinicTitle": "Discover Dentcraft Clinic",
+    "clinicSubtitle": "Modern equipment, comfortable spaces, and a team dedicated to your smile",
     "subtitle": "See our patients' transformations. Real results, real smiles.",
     "metaTitle": "Before & After Gallery | Real Results",
     "metaDescription": "Before and after photos of dental treatments: implants, veneers, whitening, orthodontics. Real results from DentCraft clinic Satu Mare.",
@@ -495,7 +516,8 @@
     "getDirections": "Get directions"
   },
   "team": {
-    "title": "Our team",
+    "title": "Our Dental Team",
+    "specialistsCount": "{count} specialists",
     "subtitle": "Dedicated specialists with extensive experience in modern dentistry.",
     "metaTitle": "Dentists in Satu Mare | Team of 6 Specialists",
     "metaDescription": "Meet the DentCraft dental team in Satu Mare. Dr. Petric, Dr. Ghirasim, Dr. Tincu and our assistants - 10+ years of experience.",
@@ -512,8 +534,12 @@
     "viewAll": "View all team"
   },
   "prices": {
-    "title": "Price List",
+    "title": "Dental Prices Satu Mare 2026",
     "subtitle": "Transparent prices for all our dental services.",
+    "heroLabel": "Transparent pricing",
+    "sectionBadge": "Prices",
+    "sectionTitle": "Full price list",
+    "sectionSubtitle": "All our services with transparent pricing",
     "metaTitle": "Dental Prices Satu Mare 2026 | Implant, Braces & Veneers Costs",
     "metaDescription": "Full dental price list at DentCraft Satu Mare. Transparent costs for implants, braces, veneers, whitening, crowns. Free consultation!",
     "disclaimer": "* Prices shown are indicative and may vary depending on the complexity of the case. The final price will be determined after consultation.",
@@ -569,7 +595,8 @@
   },
   "contact": {
     "badge": "Contact",
-    "title": "Contact us",
+    "title": "Contact & Appointments",
+    "locationLabel": "Satu Mare, Romania",
     "subtitle": "We're here for you. Book a consultation or send us a message.",
     "metaTitle": "Contact | Book Appointment - 0741 199 977",
     "metaDescription": "Contact DentCraft dental clinic Satu Mare. Appointments: 0741 199 977. Address: Str. Barbu Stefanescu Delavrancea nr.3. Mon-Fri 10:00-18:00.",
@@ -595,7 +622,7 @@
     "followUs": "Follow us"
   },
   "blog": {
-    "title": "Blog",
+    "title": "Dental Blog",
     "badge": "Tips and information",
     "subtitle": "Articles and tips for your dental health.",
     "metaTitle": "Dental Blog | Oral Health Tips & News",
@@ -710,6 +737,12 @@
     "ctaTitle": "Book a consultation",
     "ctaSubtitle": "We are here for your perfect smile",
     "bookAppointment": "Book now"
+  },
+  "legal": {
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms & Conditions",
+    "lastUpdated": "Last updated"
   },
   "errors": {
     "404": {

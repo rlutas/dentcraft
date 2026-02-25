@@ -44,6 +44,9 @@ export const localizedPathnames: Record<string, Record<Locale, string>> = {
   '/preturi': { ro: '/preturi', en: '/en/prices', hu: '/hu/arak' },
   '/blog': { ro: '/blog', en: '/en/blog', hu: '/hu/blog' },
   '/faq': { ro: '/faq', en: '/en/faq', hu: '/hu/gyik' },
+  '/politica-confidentialitate': { ro: '/politica-confidentialitate', en: '/en/privacy-policy', hu: '/hu/adatvedelmi-iranyelvek' },
+  '/politica-cookies': { ro: '/politica-cookies', en: '/en/cookie-policy', hu: '/hu/sutik-szabalyzata' },
+  '/termeni-conditii': { ro: '/termeni-conditii', en: '/en/terms-conditions', hu: '/hu/felhasznalasi-feltetelek' },
 }
 
 /**
@@ -390,6 +393,20 @@ export function generateRootMetadata(locale: Locale): Metadata {
       type: 'website',
       locale: locale === 'ro' ? 'ro_RO' : locale === 'hu' ? 'hu_HU' : 'en_US',
       siteName: siteConfig.siteName,
+      images: [
+        {
+          url: `${siteConfig.baseUrl}${siteConfig.defaultOgImage}`,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.siteName,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: localeTitles[locale] || localeTitles['ro'],
+      description: localeDescriptions[locale] || localeDescriptions['ro'],
+      images: [`${siteConfig.baseUrl}${siteConfig.defaultOgImage}`],
     },
     robots: {
       index: true,

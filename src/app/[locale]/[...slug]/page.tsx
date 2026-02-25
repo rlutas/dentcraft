@@ -2,50 +2,31 @@ import { Calendar, FileText } from 'lucide-react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import {
+  getLegalPageContent,
+  SLUG_TO_PAGE_ID,
+  PAGE_ID_TO_PATH,
+  type LegalPageData,
+} from '@/data/legal-content'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
-import { getLegalPageBySlug, getLegalPageSlugs, type Locale } from '@/lib/sanity/queries'
 import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
-import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
 
-// List of valid legal page slugs
-const LEGAL_PAGE_SLUGS = [
-  'politica-confidentialitate',
-  'politica-cookies',
-  'termeni-conditii',
-  'privacy-policy',
-  'cookie-policy',
-  'terms-conditions',
-]
-
-type LegalPage = {
-  _id: string
-  content: Array<{
-    _key: string
-    _type: string
-    children?: Array<{
-      _key: string
-      _type: string
-      marks?: string[]
-      text?: string
-    }>
-    style?: string
-    [key: string]: unknown
-  }>
-  lastUpdated: string | null
-  slug: string
-  title: string
-}
+/**
+ * All valid legal page slugs across all locales.
+ * These come from the pathnames config in i18n/config.ts.
+ */
+const ALL_LEGAL_SLUGS = Object.keys(SLUG_TO_PAGE_ID)
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string[] }>
 }
 
 export async function generateStaticParams() {
-  const slugs = await getLegalPageSlugs()
   const params: Array<{ locale: string; slug: string[] }> = []
 
-  for (const { slug } of slugs) {
+  // Generate params for all legal page slugs across all locales
+  for (const slug of ALL_LEGAL_SLUGS) {
     for (const locale of routing.locales) {
       params.push({ locale, slug: [slug] })
     }
@@ -59,13 +40,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageSlug = slug.join('/')
 
   // Check if this is a valid legal page slug
-  if (!LEGAL_PAGE_SLUGS.includes(pageSlug)) {
+  if (!ALL_LEGAL_SLUGS.includes(pageSlug)) {
     return {
       title: 'Page Not Found',
     }
   }
 
-  const page = await getLegalPageBySlug(pageSlug, locale as Locale) as LegalPage | null
+  // Get hardcoded legal content
+  const page = getLegalPageContent(pageSlug, locale)
 
   if (!page) {
     return {
@@ -73,20 +55,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  // Map slug to path for SEO helper
-  const pathMap: Record<string, string> = {
-    'politica-confidentialitate': '/politica-confidentialitate',
-    'privacy-policy': '/politica-confidentialitate',
-    'politica-cookies': '/politica-cookies',
-    'cookie-policy': '/politica-cookies',
-    'termeni-conditii': '/termeni-conditii',
-    'terms-conditions': '/termeni-conditii',
-  }
+  const pageId = SLUG_TO_PAGE_ID[pageSlug]
+  const canonicalPath = pageId ? PAGE_ID_TO_PATH[pageId] : `/${pageSlug}`
 
   return generatePageMetadata({
     title: page.title,
     locale: locale as SEOLocale,
-    path: pathMap[pageSlug] || `/${pageSlug}`,
+    path: canonicalPath,
     noIndex: true, // Legal pages typically don't need indexing
   })
 }
@@ -98,32 +73,50 @@ export default async function LegalPage({ params }: PageProps) {
   const pageSlug = slug.join('/')
 
   // Check if this is a valid legal page slug
-  if (!LEGAL_PAGE_SLUGS.includes(pageSlug)) {
+  if (!ALL_LEGAL_SLUGS.includes(pageSlug)) {
     notFound()
   }
 
-  const page = await getLegalPageBySlug(pageSlug, locale as Locale) as LegalPage | null
+  // Get hardcoded legal content
+  const page = getLegalPageContent(pageSlug, locale)
 
   if (!page) {
     notFound()
   }
 
-  return <LegalPageContent page={page} />
+  return <LegalPageContent locale={locale} page={page} />
 }
 
-async function LegalPageContent({ page }: { page: LegalPage }) {
+async function LegalPageContent({
+  page,
+  locale,
+}: {
+  page: LegalPageData
+  locale: string
+}) {
   const t = await getTranslations()
 
-  const formatDate = (dateStr: string | null) => {
-    if (!dateStr) return null
-    return new Date(dateStr).toLocaleDateString('ro-RO', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
+  const formatDate = (dateStr: string) => {
+    const dateLocaleMap: Record<string, string> = {
+      ro: 'ro-RO',
+      en: 'en-GB',
+      hu: 'hu-HU',
+    }
+    return new Date(dateStr).toLocaleDateString(
+      dateLocaleMap[locale] || 'ro-RO',
+      {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }
+    )
   }
 
-  const lastUpdatedDate = formatDate(page.lastUpdated)
+  const lastUpdatedLabel: Record<string, string> = {
+    ro: 'Ultima actualizare',
+    en: 'Last updated',
+    hu: 'Utolso frissites',
+  }
 
   return (
     <div className="flex flex-col">
@@ -132,13 +125,17 @@ async function LegalPageContent({ page }: { page: LegalPage }) {
         <div className="container section">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
-              <FileText className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
+              <FileText
+                className="w-8 h-8 text-[var(--color-primary)]"
+                strokeWidth={1.5}
+              />
             </div>
             <h1 className="mb-6">{page.title}</h1>
-            {lastUpdatedDate && (
+            {page.lastUpdated && (
               <p className="inline-flex items-center gap-2 text-body text-muted">
                 <Calendar className="w-4 h-4" strokeWidth={1.5} />
-                {t('footer.copyright').split('.')[0]} {lastUpdatedDate}
+                {lastUpdatedLabel[locale] || lastUpdatedLabel['ro']}:{' '}
+                {formatDate(page.lastUpdated)}
               </p>
             )}
           </div>
@@ -150,16 +147,10 @@ async function LegalPageContent({ page }: { page: LegalPage }) {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <div className="card p-8 md:p-12">
-              {page.content ? (
-                <PortableTextRenderer
-                  className="text-[var(--color-text)]"
-                  value={page.content}
-                />
-              ) : (
-                <p className="text-muted text-center py-8">
-                  {t('common.loading')}
-                </p>
-              )}
+              <div
+                className="legal-content prose prose-neutral max-w-none"
+                dangerouslySetInnerHTML={{ __html: page.content }}
+              />
             </div>
           </div>
         </div>

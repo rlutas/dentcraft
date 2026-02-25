@@ -47,9 +47,22 @@
       "secondary": "Szolgaltatasok felfedezese"
     }
   },
+  "breadcrumbs": {
+    "home": "Főoldal",
+    "services": "Szolgáltatások",
+    "team": "Csapat",
+    "prices": "Árak",
+    "blog": "Blog",
+    "gallery": "Galéria",
+    "contact": "Kapcsolat",
+    "faq": "GYIK",
+    "testimonials": "Vélemények"
+  },
   "services": {
     "badge": "Fogászati Szolgáltatások",
-    "title": "Szolgaltatasaink",
+    "title": "Fogászati Szolgáltatások Szatmárnémetiben",
+    "heroLabel": "Fogászati kezelések",
+    "availableCount": "{count} elérhető szolgáltatás",
     "subtitle": "Teljes koru fogaszati szolgaltatasokat kinalunk, a megelozestol a komplex kezelesekig.",
     "metaTitle": "Fogaszati Szolgaltatasok Szatmarnemeti | Implantatum, Fogszabalyozas",
     "metaDescription": "Teljes koru fogaszati szolgaltatasok Szatmarnemetiben: implantatum, fogszabalyozas, hejak, feherites, gyermekfogaszat. DentCraft klinika - 6 szakember.",
@@ -369,7 +382,15 @@
     }
   },
   "gallery": {
-    "title": "Elotte es Utana Galeria",
+    "title": "Előtte és Utána Galéria — Valós Eredmények",
+    "heroLabel": "Valós átalakulások",
+    "casesCount": "{count} dokumentált eset",
+    "sectionBadge": "Előtte & Utána",
+    "sectionTitle": "Valós átalakulások",
+    "sectionSubtitle": "Minden eset a professzionális kezeléseink eredményeit mutatja",
+    "clinicBadge": "Klinikánk",
+    "clinicTitle": "Fedezze Fel a Dentcraft Klinikát",
+    "clinicSubtitle": "Modern felszerelés, kényelmes terek és az Ön mosolyának elkötelezett csapat",
     "subtitle": "Tekintse meg pacienseink atalakulasat. Valos eredmenyek, valos mosolyok.",
     "metaTitle": "Elotte es Utana Galeria | Valos Eredmenyek",
     "metaDescription": "Elotte es utana fotok fogaszati kezelesekrol: implantatum, hejak, feherites, fogszabalyozas. Valos eredmenyek a DentCraft klinikarol.",
@@ -495,7 +516,8 @@
     "getDirections": "Utvonaltervezes"
   },
   "team": {
-    "title": "Csapatunk",
+    "title": "Fogorvosi Csapatunk Szatmárnémetiben",
+    "specialistsCount": "{count} szakember",
     "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban.",
     "metaTitle": "Fogorvosok Szatmarnemetiben | Csapat - 6 Szakember",
     "metaDescription": "Ismerje meg a DentCraft fogaszati csapatat Szatmarnemetiben. Dr. Petric, Dr. Ghirasim, Dr. Tincu es asszisztenseink - 10+ ev tapasztalat.",
@@ -512,8 +534,12 @@
     "viewAll": "Teljes csapat megtekintese"
   },
   "prices": {
-    "title": "Arlista",
+    "title": "Fogászati Árak Szatmárnémeti 2026",
     "subtitle": "Atlathato arak minden fogaszati szolgaltatasunkra.",
+    "heroLabel": "Átlátható árak",
+    "sectionBadge": "Árak",
+    "sectionTitle": "Teljes árlista",
+    "sectionSubtitle": "Minden szolgáltatásunk átlátható árakkal",
     "metaTitle": "Fogaszati Arak Szatmarnemeti 2026 | Implantatum, Fogszabalyozo Arak",
     "metaDescription": "Teljes fogaszati arlista a DentCraft Szatmarnemetiben. Atlathato arak: implantatum, fogszabalyozo, hejak, feherites, koronak. Ingyenes konzultacio!",
     "disclaimer": "* A feltuntetett arak tajekoztatoak es az eset osszettetsegétől fuggoen valtozhatnak. A vegleges arat a konzultacio utan allapitjuk meg.",
@@ -569,7 +595,8 @@
   },
   "contact": {
     "badge": "Kapcsolat",
-    "title": "Kapcsolat",
+    "title": "Kapcsolat és Időpontfoglalás",
+    "locationLabel": "Szatmárnémeti, Románia",
     "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet.",
     "metaTitle": "Kapcsolat | Idopontfoglalas - 0741 199 977",
     "metaDescription": "Lepjen kapcsolatba a DentCraft fogaszati klinikaval Szatmarnemetiben. Idopontok: 0741 199 977. Cim: Str. Barbu Stefanescu Delavrancea nr.3. H-P 10:00-18:00.",
@@ -595,7 +622,7 @@
     "followUs": "Kovessen minket"
   },
   "blog": {
-    "title": "Blog",
+    "title": "Fogászati Blog",
     "badge": "Tippek es informaciok",
     "subtitle": "Cikkek es tanacsok a fogaszati egeszsegehez.",
     "metaTitle": "Fogaszati Blog | Szajhigieniai Tanacsok",
@@ -710,6 +737,12 @@
     "ctaTitle": "Foglaljon idopontot",
     "ctaSubtitle": "Itt vagyunk a tokeletes mosolyaert",
     "bookAppointment": "Foglaljon most"
+  },
+  "legal": {
+    "privacy": "Adatvedelmi Szabalyzat",
+    "cookies": "Suti Szabalyzat",
+    "terms": "Felhasznalasi Feltetelek",
+    "lastUpdated": "Utolso frissites"
   },
   "errors": {
     "404": {

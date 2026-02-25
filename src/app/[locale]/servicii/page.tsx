@@ -6,7 +6,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { fallbackServices } from '@/lib/fallback-services'
 import { Link } from '@/i18n/navigation'
 import { getAllServices, type Locale } from '@/lib/sanity/queries'
-import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
+import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import type { LocalePageProps } from '@/types'
 
 // Service type based on Sanity schema
@@ -46,10 +47,25 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
 export default async function ServicesPage({ params }: LocalePageProps) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations({ locale })
 
   const services = await getAllServices(locale as Locale) as SanityService[]
 
-  return <ServicesPageContent services={services} />
+  const loc = locale as SEOLocale
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: t('breadcrumbs.home'), url: `${siteConfig.baseUrl}${localizedPathnames['/']?.[loc] ?? '/'}` },
+    { name: t('breadcrumbs.services'), url: `${siteConfig.baseUrl}${localizedPathnames['/servicii']?.[loc] ?? '/servicii'}` },
+  ])
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <ServicesPageContent services={services} />
+    </>
+  )
 }
 
 async function ServicesPageContent({ services }: { services: SanityService[] }) {
@@ -78,15 +94,15 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasă
+              {t('breadcrumbs.home')}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Servicii</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.services')}</span>
           </div>
 
           <div className="max-w-4xl">
             <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Tratamente stomatologice
+              {t('services.heroLabel')}
             </span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
@@ -101,7 +117,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
           {/* Decorative line */}
           <div className="mt-16 flex items-center gap-6">
             <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{services.length} servicii disponibile</span>
+            <span className="text-white/30 text-sm">{t('services.availableCount', { count: services.length })}</span>
           </div>
         </div>
       </section>
@@ -109,6 +125,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
       {/* Services Grid */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container">
+          <h2 className="sr-only">{t('services.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => {
               const ServiceIcon = getIconByName(service.icon)
@@ -175,15 +192,15 @@ async function PlaceholderServicesPage() {
         <div className="container relative z-10">
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasă
+              {t('breadcrumbs.home')}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Servicii</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.services')}</span>
           </div>
 
           <div className="max-w-4xl">
             <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Tratamente stomatologice
+              {t('services.heroLabel')}
             </span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
@@ -197,7 +214,7 @@ async function PlaceholderServicesPage() {
 
           <div className="mt-16 flex items-center gap-6">
             <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{fallbackServices.length} servicii disponibile</span>
+            <span className="text-white/30 text-sm">{t('services.availableCount', { count: fallbackServices.length })}</span>
           </div>
         </div>
       </section>

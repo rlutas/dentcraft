@@ -5,7 +5,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllTeamMembers, type Locale } from '@/lib/sanity/queries'
-import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
+import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
 import type { LocalePageProps } from '@/types'
 
@@ -42,10 +43,25 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
 export default async function TeamPage({ params }: LocalePageProps) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations({ locale })
 
   const teamMembers = await getAllTeamMembers(locale as Locale) as SanityTeamMember[]
 
-  return <TeamPageContent teamMembers={teamMembers} />
+  const loc = locale as SEOLocale
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: t('breadcrumbs.home'), url: `${siteConfig.baseUrl}${localizedPathnames['/']?.[loc] ?? '/'}` },
+    { name: t('breadcrumbs.team'), url: `${siteConfig.baseUrl}${localizedPathnames['/echipa']?.[loc] ?? '/echipa'}` },
+  ])
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <TeamPageContent teamMembers={teamMembers} />
+    </>
+  )
 }
 
 async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[] }) {
@@ -72,10 +88,10 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Acasă
+              {t('breadcrumbs.home')}
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">Echipa</span>
+            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.team')}</span>
           </div>
 
           <div className="max-w-4xl">
@@ -96,7 +112,7 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
           {/* Decorative line */}
           <div className="mt-16 flex items-center gap-6">
             <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{hasMembers ? teamMembers.length : fallbackTeamMembers.length} specialiști</span>
+            <span className="text-white/30 text-sm">{t('team.specialistsCount', { count: hasMembers ? teamMembers.length : fallbackTeamMembers.length })}</span>
           </div>
         </div>
       </section>
@@ -110,6 +126,7 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
         }} />
 
         <div className="container relative z-10">
+          <h2 className="sr-only">{t('team.title')}</h2>
           {/* Grid with varying card sizes */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {(hasMembers ? teamMembers : fallbackTeamMembers).map((member, index) => {

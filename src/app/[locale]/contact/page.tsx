@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import ContactPageContent from '@/components/features/ContactPageContent'
 import { getSettings, type Locale } from '@/lib/sanity/queries'
-import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
+import { getBreadcrumbSchema } from '@/lib/schema'
+import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 
 // Settings type based on Sanity schema
 type SanitySettings = {
@@ -60,7 +61,7 @@ export default async function ContactPage({ params }: PageProps) {
   // Fetch settings from Sanity
   const settings = (await getSettings(locale as Locale)) as SanitySettings | null
 
-  // Get translations for fallback values
+  // Get translations for fallback values and breadcrumbs
   const t = await getTranslations()
 
   // Prepare data for client component
@@ -80,12 +81,24 @@ export default async function ContactPage({ params }: PageProps) {
   const socialLinks = settings?.socialLinks || null
   const googleMapsEmbed = settings?.googleMapsEmbed || null
 
+  const loc = locale as SEOLocale
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: t('breadcrumbs.home'), url: `${siteConfig.baseUrl}${localizedPathnames['/']?.[loc] ?? '/'}` },
+    { name: t('breadcrumbs.contact'), url: `${siteConfig.baseUrl}${localizedPathnames['/contact']?.[loc] ?? '/contact'}` },
+  ])
+
   return (
-    <ContactPageContent
-      contactInfo={contactInfo}
-      workingHours={workingHours}
-      socialLinks={socialLinks}
-      googleMapsEmbed={googleMapsEmbed}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <ContactPageContent
+        contactInfo={contactInfo}
+        workingHours={workingHours}
+        socialLinks={socialLinks}
+        googleMapsEmbed={googleMapsEmbed}
+      />
+    </>
   )
 }

@@ -6,7 +6,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import { Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { generateRootMetadata, type Locale } from '@/lib/seo'
-import { getOrganizationSchema } from '@/lib/schema'
+import { getOrganizationSchema, getWebSiteSchema } from '@/lib/schema'
 import { Header, Footer } from '@/components/layout'
 import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
 import '@/styles/globals.css'
@@ -78,6 +78,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteSchema()) }}
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="relative flex min-h-screen flex-col">

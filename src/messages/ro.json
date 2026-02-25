@@ -47,9 +47,22 @@
       "secondary": "Descopera serviciile"
     }
   },
+  "breadcrumbs": {
+    "home": "Acasă",
+    "services": "Servicii",
+    "team": "Echipa",
+    "prices": "Prețuri",
+    "blog": "Blog",
+    "gallery": "Galerie",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "testimonials": "Testimoniale"
+  },
   "services": {
     "badge": "Servicii Stomatologice",
-    "title": "Serviciile noastre",
+    "title": "Servicii Stomatologice Satu Mare",
+    "heroLabel": "Tratamente stomatologice",
+    "availableCount": "{count} servicii disponibile",
     "subtitle": "Oferim o gama completa de servicii stomatologice, de la preventie pana la tratamente complexe.",
     "metaTitle": "Servicii Stomatologice Satu Mare | Implanturi, Ortodontie, Estetica Dentara",
     "metaDescription": "Servicii stomatologice complete in Satu Mare: implanturi dentare, ortodontie, fatete, albire, pedodontie. Clinica DentCraft - echipa de 6 specialisti.",
@@ -369,7 +382,15 @@
     }
   },
   "gallery": {
-    "title": "Galerie Inainte si Dupa",
+    "title": "Galerie Rezultate — Inainte si Dupa",
+    "heroLabel": "Transformări reale",
+    "casesCount": "{count} cazuri documentate",
+    "sectionBadge": "Inainte & Dupa",
+    "sectionTitle": "Transformări reale ale pacienților",
+    "sectionSubtitle": "Fiecare caz demonstrează rezultatele tratamentelor noastre profesionale",
+    "clinicBadge": "Clinica Noastră",
+    "clinicTitle": "Descoperă Clinica Dentcraft",
+    "clinicSubtitle": "Echipamente moderne, spații confortabile și o echipă dedicată zâmbetului tău",
     "subtitle": "Vezi transformarile pacientilor nostri. Rezultate reale, zambete reale.",
     "metaTitle": "Galerie Inainte si Dupa | Rezultate Reale",
     "metaDescription": "Galerie foto inainte si dupa tratamente stomatologice: implanturi, fatete, albire dentara, ortodontie. Rezultate reale de la clinica DentCraft Satu Mare.",
@@ -495,7 +516,8 @@
     "getDirections": "Obtine indicatii"
   },
   "team": {
-    "title": "Echipa noastra",
+    "title": "Echipa de Medici Stomatologi",
+    "specialistsCount": "{count} specialiști",
     "subtitle": "Specialisti dedicati cu experienta vasta in stomatologie moderna.",
     "metaTitle": "Medici Stomatologi Satu Mare | Echipa de 6 Specialisti",
     "metaDescription": "Cunoaste echipa de 6 medici stomatologi DentCraft Satu Mare. Dr. Petric, Dr. Ghirasim, Dr. Tincu si asistentele noastre - 10+ ani experienta.",
@@ -507,13 +529,17 @@
   },
   "teamPreview": {
     "badge": "Echipa Noastra",
-    "title": "Cunoaste-ne echipa",
+    "title": "Cunoaște-ne echipa",
     "subtitle": "Profesionisti dedicati, cu experienta si pasiune pentru sanatatea zambetului tau.",
     "viewAll": "Vezi toata echipa"
   },
   "prices": {
-    "title": "Lista de preturi",
-    "subtitle": "Preturi transparente pentru toate serviciile noastre stomatologice.",
+    "title": "Prețuri Stomatologie Satu Mare 2026",
+    "subtitle": "Prețuri transparente pentru toate serviciile noastre stomatologice.",
+    "heroLabel": "Tarife transparente",
+    "sectionBadge": "Tarife",
+    "sectionTitle": "Lista completă de prețuri",
+    "sectionSubtitle": "Toate serviciile noastre cu prețuri transparente",
     "metaTitle": "Preturi Stomatologie Satu Mare 2026 | Tarife Implant, Aparat Dentar, Fatete",
     "metaDescription": "Lista completa preturi stomatologie DentCraft Satu Mare. Tarife transparente: implant dentar, aparat dentar, fatete, albire, coroane. Consultatie gratuita!",
     "disclaimer": "* Preturile afisate sunt orientative si pot varia in functie de complexitatea cazului. Pretul final va fi stabilit dupa consultatie.",
@@ -569,7 +595,8 @@
   },
   "contact": {
     "badge": "Contact",
-    "title": "Contacteaza-ne",
+    "title": "Contact și Programări",
+    "locationLabel": "Satu Mare, România",
     "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj.",
     "metaTitle": "Contact | Programare Stomatolog - 0741 199 977",
     "metaDescription": "Contacteaza clinica stomatologica DentCraft Satu Mare. Programari: 0741 199 977. Adresa: Str. Barbu Stefanescu Delavrancea nr.3. Luni-Vineri 10:00-18:00.",
@@ -595,7 +622,7 @@
     "followUs": "Urmareste-ne"
   },
   "blog": {
-    "title": "Blog",
+    "title": "Blog Stomatologie",
     "badge": "Sfaturi si informatii",
     "subtitle": "Articole si sfaturi pentru sanatatea ta dentara.",
     "metaTitle": "Blog Stomatologie | Sfaturi Dentare si Noutati",
@@ -710,6 +737,12 @@
     "ctaTitle": "Programeaza o consultatie",
     "ctaSubtitle": "Suntem aici pentru zambetul tau perfect",
     "bookAppointment": "Programeaza acum"
+  },
+  "legal": {
+    "privacy": "Politica de Confidentialitate",
+    "cookies": "Politica de Cookie-uri",
+    "terms": "Termeni si Conditii",
+    "lastUpdated": "Ultima actualizare"
   },
   "errors": {
     "404": {

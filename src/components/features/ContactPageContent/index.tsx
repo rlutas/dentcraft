@@ -97,9 +97,9 @@ export default function ContactPageContent({
           >
             {/* Breadcrumb */}
             <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-12">
-              <span className="text-white/40 text-sm">Acasă</span>
+              <span className="text-white/40 text-sm">{t('breadcrumbs.home')}</span>
               <span className="text-white/20">/</span>
-              <span className="text-[#d4c4b0] text-sm font-medium">Contact</span>
+              <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.contact')}</span>
             </motion.div>
 
             {/* Badge */}
@@ -129,7 +129,7 @@ export default function ContactPageContent({
             {/* Decorative line */}
             <motion.div variants={fadeInUp} className="mt-16 flex items-center gap-6">
               <div className="w-24 h-px bg-[#d4c4b0]" />
-              <span className="text-white/30 text-sm">Satu Mare, România</span>
+              <span className="text-white/30 text-sm">{t('contact.locationLabel')}</span>
             </motion.div>
           </motion.div>
         </div>
@@ -138,6 +138,7 @@ export default function ContactPageContent({
       {/* Main Content Section */}
       <section className="bg-white py-16 lg:py-24">
         <div className="container">
+          <h2 className="sr-only">{t('contact.title')}</h2>
           {/* Quick Contact Cards - Top Row */}
           <motion.div
             className="mb-16 grid gap-6 md:grid-cols-3"
