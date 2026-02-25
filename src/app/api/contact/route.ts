@@ -1,6 +1,7 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { contactAdminEmail, contactConfirmationEmail } from '@/lib/email-templates'
 
 // Rate limiting store (in-memory, resets on server restart)
 // For production, use Redis or similar persistent store
@@ -196,48 +197,24 @@ export async function POST(request: Request) {
       })
     }
 
-    // Send email using Resend
+    // Send emails using Resend
     const resend = new Resend(resendApiKey)
+    const subjectLabel = subjectLabels[data.subject] || data.subject
 
+    // Send admin notification
     const { error } = await resend.emails.send({
       from: 'Dentcraft Website <noreply@dentcraft.ro>',
-      html: `
-        <h2>Nou mesaj din formularul de contact</h2>
-        <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Nume:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(data.name)}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Email:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td>
-          </tr>
-          ${
-            data.phone
-              ? `
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Telefon:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;"><a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></td>
-          </tr>
-          `
-              : ''
-          }
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Subiect:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(subjectLabels[data.subject] || data.subject)}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Mesaj:</td>
-            <td style="padding: 10px; border: 1px solid #ddd; white-space: pre-wrap;">${escapeHtml(data.message)}</td>
-          </tr>
-        </table>
-        <p style="margin-top: 20px; color: #666; font-size: 12px;">
-          Acest mesaj a fost trimis prin formularul de contact de pe site-ul dentcraft.ro<br>
-          Acordul GDPR a fost oferit la: ${new Date().toISOString()}
-        </p>
-      `,
+      html: contactAdminEmail({
+        name: data.name,
+        email: data.email,
+        ...(data.phone ? { phone: data.phone } : {}),
+        subject: data.subject,
+        subjectLabel,
+        message: data.message,
+        gdprDate: new Date().toISOString(),
+      }),
       replyTo: data.email,
-      subject: `[Dentcraft Contact] ${subjectLabels[data.subject] || data.subject} - ${data.name}`,
+      subject: `[Dentcraft Contact] ${subjectLabel} - ${data.name}`,
       to: recipientEmail,
     })
 
@@ -245,6 +222,19 @@ export async function POST(request: Request) {
       console.error('Failed to send email:', error)
       return NextResponse.json({ error: 'Failed to send email. Please try again later.' }, { status: 500 })
     }
+
+    // Send confirmation email to client (non-blocking)
+    resend.emails.send({
+      from: 'Dentcraft <noreply@dentcraft.ro>',
+      html: contactConfirmationEmail({
+        name: data.name,
+        subjectLabel,
+      }),
+      subject: 'Am primit mesajul tau - Dentcraft',
+      to: data.email,
+    }).catch((err) => {
+      console.error('Failed to send confirmation email:', err)
+    })
 
     return NextResponse.json({
       message: 'Your message has been sent successfully!',
@@ -256,14 +246,3 @@ export async function POST(request: Request) {
   }
 }
 
-// HTML escaping to prevent XSS in email
-function escapeHtml(text: string): string {
-  const htmlEntities: Record<string, string> = {
-    '"': '&quot;',
-    '&': '&amp;',
-    "'": '&#39;',
-    '<': '&lt;',
-    '>': '&gt;',
-  }
-  return text.replace(/[&<>"']/g, (char) => htmlEntities[char] || char)
-}

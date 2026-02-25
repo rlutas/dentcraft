@@ -1,6 +1,7 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { priceEstimateAdminEmail } from '@/lib/email-templates'
 
 // Rate limiting store (in-memory, resets on server restart)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
@@ -107,26 +108,6 @@ function validateFormData(
   return { data: result, valid: true }
 }
 
-// HTML escaping to prevent XSS in email
-function escapeHtml(text: string): string {
-  const htmlEntities: Record<string, string> = {
-    '"': '&quot;',
-    '&': '&amp;',
-    "'": '&#39;',
-    '<': '&lt;',
-    '>': '&gt;',
-  }
-  return text.replace(/[&<>"']/g, (char) => htmlEntities[char] || char)
-}
-
-// Format price for email
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('ro-RO', {
-    style: 'decimal',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(price)
-}
 
 export async function POST(request: Request) {
   try {
@@ -184,68 +165,20 @@ export async function POST(request: Request) {
       })
     }
 
-    // Build material type row
-    const materialRow = data.materialType
-      ? `<tr>
-          <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 160px;">Material:</td>
-          <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #4a4a4a;">${escapeHtml(data.materialType === 'premium' ? 'Premium' : 'Standard')}</td>
-        </tr>`
-      : ''
-
-    // Build email HTML
-    const emailHtml = `
-      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 32px 24px; border-radius: 12px 12px 0 0;">
-          <h2 style="margin: 0; color: #ffffff; font-size: 20px; font-weight: 600;">Noua estimare de pret</h2>
-          <p style="margin: 8px 0 0; color: #d4c4b0; font-size: 14px;">Un client a solicitat o estimare de pret prin calculator</p>
-        </div>
-        <div style="background: #ffffff; padding: 24px; border: 1px solid #f0ebe3; border-top: none;">
-          <h3 style="margin: 0 0 16px; color: #1a1a1a; font-size: 16px; font-weight: 600;">Date client</h3>
-          <table style="border-collapse: collapse; width: 100%; margin-bottom: 24px;">
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 160px;">Nume:</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #4a4a4a;">${escapeHtml(data.name)}</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 160px;">Telefon:</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #4a4a4a;">
-                <a href="tel:${escapeHtml(data.phone)}" style="color: #1a1a1a; text-decoration: none; font-weight: 600;">${escapeHtml(data.phone)}</a>
-              </td>
-            </tr>
-          </table>
-
-          <h3 style="margin: 0 0 16px; color: #1a1a1a; font-size: 16px; font-weight: 600;">Detalii estimare</h3>
-          <table style="border-collapse: collapse; width: 100%;">
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 160px;">Serviciu:</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #4a4a4a;">${escapeHtml(data.service)}</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 160px;">Cantitate:</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #4a4a4a;">${data.quantity} ${data.quantity > 1 ? 'unitati' : 'unitate'}</td>
-            </tr>
-            ${materialRow}
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; font-weight: 600; color: #1a1a1a; width: 160px;">Pret estimat:</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #f0ebe3; color: #1a1a1a; font-weight: 700; font-size: 16px;">${formatPrice(data.priceMin)} - ${formatPrice(data.priceMax)} RON</td>
-            </tr>
-          </table>
-        </div>
-        <div style="background: #f9f6f1; padding: 16px 24px; border-radius: 0 0 12px 12px; border: 1px solid #f0ebe3; border-top: none;">
-          <p style="margin: 0; color: #8b8b8b; font-size: 12px;">
-            Aceasta cerere a fost trimisa prin calculatorul de preturi de pe site-ul dentcraft.ro<br>
-            Data: ${new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' })}
-          </p>
-        </div>
-      </div>
-    `
-
     // Send email using Resend
     const resend = new Resend(resendApiKey)
 
     const { error } = await resend.emails.send({
       from: 'Dentcraft Website <noreply@dentcraft.ro>',
-      html: emailHtml,
+      html: priceEstimateAdminEmail({
+        name: data.name,
+        phone: data.phone,
+        service: data.service,
+        quantity: data.quantity,
+        materialType: data.materialType,
+        priceMin: data.priceMin,
+        priceMax: data.priceMax,
+      }),
       subject: `[Dentcraft] Estimare pret - ${data.service} - ${data.name}`,
       to: recipientEmail,
     })

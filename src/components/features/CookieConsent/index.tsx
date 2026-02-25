@@ -191,89 +191,94 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
   const modalVisible = showModal && !isModalAnimatingOut
 
   return (
-    <div
-      ref={bannerRef}
-      aria-describedby="cookie-consent-description"
-      aria-labelledby="cookie-consent-title"
-      className={`fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6 transition-all duration-300 ease-out ${
-        bannerVisible
-          ? 'translate-y-0 opacity-100'
-          : 'translate-y-full opacity-0'
-      }`}
-      role="dialog"
-    >
-      <div className="mx-auto max-w-4xl">
-        <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-xl">
-          {/* Close button */}
-          <button
-            aria-label="Close"
-            className="absolute top-3 right-3 rounded-full p-1.5 text-[var(--color-secondary)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]"
-            onClick={handleClose}
-            type="button"
-          >
-            <X className="h-5 w-5" />
-          </button>
+    <>
+      {/* Cookie Banner */}
+      {!showModal && (
+        <div
+          ref={bannerRef}
+          aria-describedby="cookie-consent-description"
+          aria-labelledby="cookie-consent-title"
+          className={`fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6 transition-all duration-300 ease-out ${
+            bannerVisible
+              ? 'translate-y-0 opacity-100'
+              : 'translate-y-full opacity-0'
+          }`}
+          role="dialog"
+        >
+          <div className="mx-auto max-w-4xl">
+            <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-xl">
+              {/* Close button */}
+              <button
+                aria-label="Close"
+                className="absolute top-3 right-3 rounded-full p-1.5 text-[var(--color-secondary)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]"
+                onClick={handleClose}
+                type="button"
+              >
+                <X className="h-5 w-5" />
+              </button>
 
-          <div className="p-5 sm:p-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-              {/* Icon */}
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Cookie className="h-6 w-6" />
-              </div>
+              <div className="p-5 sm:p-6">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+                  {/* Icon */}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Cookie className="h-6 w-6" />
+                  </div>
 
-              {/* Content */}
-              <div className="flex-1">
-                <h2
-                  className="text-lg font-semibold text-[var(--color-foreground)]"
-                  id="cookie-consent-title"
-                >
-                  {translations.title}
-                </h2>
-                <p
-                  className="mt-1 text-sm text-[var(--color-secondary)]"
-                  id="cookie-consent-description"
-                >
-                  {translations.description}{' '}
-                  <Link
-                    className="text-primary underline hover:no-underline"
-                    href={cookiePolicyPath as '/politica-cookies'}
-                  >
-                    {translations.cookiePolicy}
-                  </Link>
-                  .
-                </p>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h2
+                      className="text-lg font-semibold text-[var(--color-foreground)]"
+                      id="cookie-consent-title"
+                    >
+                      {translations.title}
+                    </h2>
+                    <p
+                      className="mt-1 text-sm text-[var(--color-secondary)]"
+                      id="cookie-consent-description"
+                    >
+                      {translations.description}{' '}
+                      <Link
+                        className="text-primary underline hover:no-underline"
+                        href={cookiePolicyPath as '/politica-cookies'}
+                      >
+                        {translations.cookiePolicy}
+                      </Link>
+                      .
+                    </p>
 
-                {/* Buttons */}
-                <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-3">
-                  <button
-                    className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-                    onClick={handleAcceptAll}
-                    type="button"
-                  >
-                    {translations.acceptAll}
-                  </button>
-                  <button
-                    className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-                    onClick={handleEssentialOnly}
-                    type="button"
-                  >
-                    {translations.onlyEssential}
-                  </button>
-                  <button
-                    className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-                    onClick={handleCustomize}
-                    type="button"
-                  >
-                    {translations.customize}
-                  </button>
+                    {/* Buttons */}
+                    <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-3">
+                      <button
+                        className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                        onClick={handleAcceptAll}
+                        type="button"
+                      >
+                        {translations.acceptAll}
+                      </button>
+                      <button
+                        className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                        onClick={handleEssentialOnly}
+                        type="button"
+                      >
+                        {translations.onlyEssential}
+                      </button>
+                      <button
+                        className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-muted)] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                        onClick={handleCustomize}
+                        type="button"
+                      >
+                        {translations.customize}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Preferences Modal */}
+      {/* Preferences Modal — rendered outside banner to avoid stacking context issues */}
       {showModal && (
         <div
           aria-modal="true"
@@ -422,7 +427,7 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 
