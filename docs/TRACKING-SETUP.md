@@ -122,7 +122,35 @@ Tracked via GTM trigger (Click - Just Links, URL contains `tel:`). No custom dat
 
 ---
 
-## Testing
+## Status
+
+**Tested and verified on February 25, 2026.**
+
+All events confirmed working in GTM Preview mode:
+- GA4 Config fires on page load
+- `generate_lead` fires on form submission
+- `click_whatsapp` fires on WhatsApp button click
+- `click_phone` fires on phone link click
+- Consent Mode blocks tags when cookies not accepted
+- GTM container published
+
+---
+
+## Future / Optional
+
+These are not set up yet — add when needed:
+
+| Item | When to add |
+|------|-------------|
+| **Google Ads Conversion Tag** | When creating Google Ads campaigns. Go to Google Ads > Goals > Conversions > create "Submit lead form" > copy Conversion ID + Label > add tag in GTM with trigger `generate_lead` |
+| **Google Ads Remarketing Tag** | When setting up remarketing audiences in Google Ads |
+| **Enhanced Conversions** | When you want better attribution — add user data (email/phone) to conversion tags |
+| **Scroll Depth Tracking** | If you want to track how far users scroll on blog posts |
+| **Video Engagement** | If you add embedded videos and want to track play/pause/completion |
+
+---
+
+## Testing (for future changes)
 
 1. Open GTM Preview mode
 2. Visit site — verify GA4 Config fires (or is blocked without consent)
