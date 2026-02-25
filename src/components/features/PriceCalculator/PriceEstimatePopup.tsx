@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Phone, User, CheckCircle2, Calculator, ArrowRight } from 'lucide-react'
+import { X, Phone, User, Mail, CheckCircle2, Calculator, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { trackFormSubmission } from '@/lib/gtm'
 
@@ -32,7 +32,7 @@ export default function PriceEstimatePopup({
   priceRange,
   locale: _locale,
 }: PriceEstimatePopupProps) {
-  const [formData, setFormData] = useState({ name: '', phone: '' })
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -56,7 +56,7 @@ export default function PriceEstimatePopup({
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
-        setFormData({ name: '', phone: '' })
+        setFormData({ name: '', phone: '', email: '' })
         setIsSuccess(false)
         setErrors({})
       }, 300)
@@ -88,6 +88,10 @@ export default function PriceEstimatePopup({
       newErrors['phone'] = 'Numarul de telefon nu este valid'
     }
 
+    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors['email'] = 'Adresa de email nu este valida'
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -106,6 +110,7 @@ export default function PriceEstimatePopup({
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
+          ...(formData.email.trim() ? { email: formData.email.trim() } : {}),
           service: service.title,
           serviceSlug: service.slug,
           quantity: options.quantity,
@@ -351,6 +356,37 @@ export default function PriceEstimatePopup({
                       </div>
                       {errors['phone'] && (
                         <p className="mt-1.5 text-xs text-red-500">{errors['phone']}</p>
+                      )}
+                    </div>
+
+                    {/* Email Input (Optional) */}
+                    <div>
+                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
+                        Email <span className="font-normal text-[#a0a0a0]">(optional)</span>
+                      </label>
+                      <div className="relative">
+                        <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
+                          <Mail className="h-4 w-4 text-[#a0a0a0]" />
+                        </div>
+                        <input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => {
+                            setFormData((prev) => ({ ...prev, email: e.target.value }))
+                            if (errors['email']) setErrors((prev) => ({ ...prev, email: '' }))
+                          }}
+                          placeholder="email@exemplu.ro (optional)"
+                          className={cn(
+                            'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
+                            'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
+                            'transition-all duration-200',
+                            'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
+                            errors['email'] ? 'border-red-400' : 'border-[#e8e8e8]'
+                          )}
+                        />
+                      </div>
+                      {errors['email'] && (
+                        <p className="mt-1.5 text-xs text-red-500">{errors['email']}</p>
                       )}
                     </div>
 

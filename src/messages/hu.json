@@ -731,6 +731,8 @@
     "namePlaceholder": "pl. Kovács János",
     "phoneLabel": "Telefonszám",
     "phonePlaceholder": "pl. 0741 234 567",
+    "emailLabel": "Email (opcionális)",
+    "emailPlaceholder": "pl. janos@email.com",
     "serviceLabel": "Kívánt szolgáltatás",
     "servicePlaceholder": "Válasszon szolgáltatást",
     "timeLabel": "Mikor hívjuk vissza?",
@@ -750,6 +752,7 @@
       "nameTooShort": "A névnek legalább 2 karakter hosszúnak kell lennie",
       "phoneRequired": "Kérjük, adja meg a telefonszámát",
       "phoneInvalid": "A telefonszám nem érvényes",
+      "emailInvalid": "Az e-mail cím nem érvényes",
       "serviceRequired": "Kérjük, válasszon szolgáltatást",
       "timeRequired": "Kérjük, válasszon idősávot"
     }

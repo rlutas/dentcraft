@@ -1,7 +1,7 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { callbackAdminEmail } from '@/lib/email-templates'
+import { callbackAdminEmail, callbackConfirmationEmail } from '@/lib/email-templates'
 
 // Rate limiting store (in-memory, resets on server restart)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
@@ -14,6 +14,7 @@ const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute window
 type CallbackFormData = {
   name: string
   phone: string
+  email?: string
   service?: string
   timePreference?: string
   doctor?: string
@@ -89,6 +90,14 @@ function validateFormData(
     }
   }
 
+  // Email is optional, but if provided must be valid
+  if (formData['email'] && typeof formData['email'] === 'string' && formData['email'].trim()) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData['email'].trim())) {
+      errors['email'] = 'Email address is not valid'
+    }
+  }
+
   if (Object.keys(errors).length > 0) {
     return { errors, valid: false }
   }
@@ -96,6 +105,11 @@ function validateFormData(
   const result: CallbackFormData = {
     name: (formData['name'] as string).trim(),
     phone: (formData['phone'] as string).trim(),
+  }
+
+  // Email is optional
+  if (formData['email'] && typeof formData['email'] === 'string' && formData['email'].trim()) {
+    result.email = (formData['email'] as string).trim()
   }
 
   // Service is optional
@@ -158,6 +172,7 @@ export async function POST(request: Request) {
       console.log('Callback form submission (no RESEND_API_KEY configured):', {
         name: data.name,
         phone: data.phone,
+        email: data.email,
         service: data.service,
         timePreference: data.timePreference,
         doctor: data.doctor,
@@ -183,6 +198,7 @@ export async function POST(request: Request) {
       html: callbackAdminEmail({
         name: data.name,
         phone: data.phone,
+        ...(data.email ? { email: data.email } : {}),
         ...(data.service ? { service: data.service } : {}),
         ...(timeLabel ? { timePreference: timeLabel } : {}),
         ...(data.doctor ? { doctor: data.doctor } : {}),
@@ -197,6 +213,20 @@ export async function POST(request: Request) {
         { error: 'Failed to send email. Please try again later.' },
         { status: 500 }
       )
+    }
+
+    // Send confirmation email to client if email was provided (non-blocking)
+    if (data.email) {
+      resend.emails.send({
+        from: 'Dentcraft <noreply@dentcraft.ro>',
+        html: callbackConfirmationEmail({
+          name: data.name,
+        }),
+        subject: 'Am primit cererea ta de programare - Dentcraft',
+        to: data.email,
+      }).catch((err) => {
+        console.error('Failed to send callback confirmation email:', err)
+      })
     }
 
     return NextResponse.json({

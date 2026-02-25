@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Phone, Clock, CheckCircle2, User, ChevronDown, Sparkles } from 'lucide-react'
+import { X, Phone, Clock, CheckCircle2, User, ChevronDown, Sparkles, Mail } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { trackFormSubmission } from '@/lib/gtm'
 import { getMainFallbackServices } from '@/lib/fallback-services'
@@ -24,6 +24,7 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    email: '',
     service: '',
     timePreference: '' as TimePreference | '',
     doctor: defaultDoctor || ''
@@ -61,7 +62,7 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
-        setFormData({ name: '', phone: '', service: '', timePreference: '', doctor: defaultDoctor || '' })
+        setFormData({ name: '', phone: '', email: '', service: '', timePreference: '', doctor: defaultDoctor || '' })
         setIsSuccess(false)
         setErrors({})
       }, 300)
@@ -90,6 +91,11 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
       newErrors['phone'] = t('errors.phoneInvalid')
     }
 
+    // Email is optional, but if provided must be valid
+    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors['email'] = t('errors.emailInvalid')
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -108,6 +114,7 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
+          email: formData.email || undefined,
           service: formData.service || undefined,
           timePreference: formData.timePreference || undefined,
           doctor: formData.doctor || undefined,
@@ -345,6 +352,37 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
                       </div>
                       {errors['phone'] && (
                         <p className="mt-1.5 text-xs text-red-500">{errors['phone']}</p>
+                      )}
+                    </div>
+
+                    {/* Email Input (optional) */}
+                    <div>
+                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
+                        {t('emailLabel')}
+                      </label>
+                      <div className="relative">
+                        <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
+                          <Mail className="h-4 w-4 text-[#a0a0a0]" />
+                        </div>
+                        <input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => {
+                            setFormData(prev => ({ ...prev, email: e.target.value }))
+                            if (errors['email']) setErrors(prev => ({ ...prev, email: '' }))
+                          }}
+                          placeholder={t('emailPlaceholder')}
+                          className={cn(
+                            'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
+                            'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
+                            'transition-all duration-200',
+                            'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
+                            errors['email'] ? 'border-red-400' : 'border-[#e8e8e8]'
+                          )}
+                        />
+                      </div>
+                      {errors['email'] && (
+                        <p className="mt-1.5 text-xs text-red-500">{errors['email']}</p>
                       )}
                     </div>
 

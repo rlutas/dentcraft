@@ -13,19 +13,25 @@ function esc(text: string): string {
   return text.replace(/[&<>"']/g, (c) => entities[c] || c)
 }
 
-const LOGO_URL = 'https://dentcraft.ro/branding/LOGO_BLACK_FINAL.png'
+const LOGO_URL = 'https://dentcraft.ro/branding/LOGO_WHITE_FINAL.png'
 const BRAND_COLOR = '#1a1a1a'
 const ACCENT_COLOR = '#d4c4b0'
 const BG_COLOR = '#f9f6f1'
 const BORDER_COLOR = '#f0ebe3'
 
-// Reusable email wrapper with logo header and footer
-export function emailWrapper(content: string, options?: { footerNote?: string }) {
+// Reusable email wrapper with dark gradient header and footer
+export function emailWrapper(content: string, options?: {
+  footerNote?: string
+  headerTitle?: string
+  headerSubtitle?: string
+}) {
   return `
-    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
-      <!-- Header with Logo -->
-      <div style="padding: 32px 24px 24px; text-align: center; border-bottom: 2px solid ${ACCENT_COLOR};">
-        <img src="${LOGO_URL}" alt="Dentcraft" width="180" height="25" style="height: 25px; width: auto;" />
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid ${BORDER_COLOR}; border-radius: 12px; overflow: hidden;">
+      <!-- Header with Dark Gradient + Logo -->
+      <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 32px 24px; text-align: center; border-radius: 12px 12px 0 0;">
+        <img src="${LOGO_URL}" alt="Dentcraft" width="180" height="25" style="height: 28px; width: auto;" />
+        ${options?.headerTitle ? `<h1 style="margin: 20px 0 0; color: #ffffff; font-size: 20px; font-weight: 600; letter-spacing: -0.3px;">${options.headerTitle}</h1>` : ''}
+        ${options?.headerSubtitle ? `<p style="margin: 8px 0 0; color: ${ACCENT_COLOR}; font-size: 14px; font-weight: 400;">${options.headerSubtitle}</p>` : ''}
       </div>
       <!-- Content -->
       ${content}
@@ -54,7 +60,6 @@ export function contactAdminEmail(data: {
 }) {
   const content = `
     <div style="padding: 24px;">
-      <h2 style="margin: 0 0 20px; color: ${BRAND_COLOR}; font-size: 18px; font-weight: 600;">Mesaj nou din formularul de contact</h2>
       <table style="border-collapse: collapse; width: 100%;">
         <tr>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 120px;">Nume:</td>
@@ -81,6 +86,7 @@ export function contactAdminEmail(data: {
   `
   return emailWrapper(content, {
     footerNote: `Trimis prin formularul de contact &middot; Acord GDPR: ${data.gdprDate}`,
+    headerTitle: 'Mesaj nou din formularul de contact',
   })
 }
 
@@ -92,7 +98,6 @@ export function contactConfirmationEmail(data: {
   const firstName = esc(data.name.split(' ')[0] || data.name)
   const content = `
     <div style="padding: 32px 24px;">
-      <h2 style="margin: 0 0 16px; color: ${BRAND_COLOR}; font-size: 20px; font-weight: 600;">Multumim, ${firstName}!</h2>
       <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
         Am primit mesajul tau referitor la <strong>${esc(data.subjectLabel.toLowerCase())}</strong> si te vom contacta in cel mai scurt timp posibil.
       </p>
@@ -106,13 +111,17 @@ export function contactConfirmationEmail(data: {
       </div>
     </div>
   `
-  return emailWrapper(content)
+  return emailWrapper(content, {
+    headerTitle: `Multumim, ${firstName}!`,
+    headerSubtitle: 'Am primit mesajul tau',
+  })
 }
 
 // Admin notification: Callback request
 export function callbackAdminEmail(data: {
   name: string
   phone: string
+  email?: string
   service?: string
   timePreference?: string
   doctor?: string
@@ -127,6 +136,13 @@ export function callbackAdminEmail(data: {
       <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;"><a href="tel:${esc(data.phone)}" style="color: ${BRAND_COLOR}; text-decoration: none; font-weight: 600;">${esc(data.phone)}</a></td>
     </tr>`,
   ]
+
+  if (data.email) {
+    rows.push(`<tr>
+      <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 140px;">Email:</td>
+      <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;"><a href="mailto:${esc(data.email)}" style="color: ${BRAND_COLOR};">${esc(data.email)}</a></td>
+    </tr>`)
+  }
 
   if (data.doctor) {
     rows.push(`<tr>
@@ -151,8 +167,6 @@ export function callbackAdminEmail(data: {
 
   const content = `
     <div style="padding: 24px;">
-      <h2 style="margin: 0 0 20px; color: ${BRAND_COLOR}; font-size: 18px; font-weight: 600;">Cerere noua de programare</h2>
-      <p style="margin: 0 0 16px; color: #8b8b8b; font-size: 14px;">Un client doreste sa fie contactat telefonic</p>
       <table style="border-collapse: collapse; width: 100%;">
         ${rows.join('')}
       </table>
@@ -160,6 +174,34 @@ export function callbackAdminEmail(data: {
   `
   return emailWrapper(content, {
     footerNote: `Trimis prin formularul de programare &middot; ${new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' })}`,
+    headerTitle: 'Cerere noua de programare',
+    headerSubtitle: 'Un client doreste sa fie contactat telefonic',
+  })
+}
+
+// Client confirmation: Callback request
+export function callbackConfirmationEmail(data: {
+  name: string
+}) {
+  const firstName = esc(data.name.split(' ')[0] || data.name)
+  const content = `
+    <div style="padding: 32px 24px;">
+      <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
+        Am primit cererea ta de programare si te vom contacta telefonic in cel mai scurt timp posibil.
+      </p>
+      <p style="margin: 0 0 24px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
+        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Daca ai trimis cererea in afara programului, te vom contacta in prima zi lucratoare.
+      </p>
+      <div style="text-align: center; padding: 20px 0;">
+        <a href="tel:+40741199977" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;">
+          Suna-ne: 0741 199 977
+        </a>
+      </div>
+    </div>
+  `
+  return emailWrapper(content, {
+    headerTitle: `Multumim, ${firstName}!`,
+    headerSubtitle: 'Am primit cererea ta de programare',
   })
 }
 
@@ -167,6 +209,7 @@ export function callbackAdminEmail(data: {
 export function priceEstimateAdminEmail(data: {
   name: string
   phone: string
+  email?: string
   service: string
   quantity: number
   materialType?: string | null
@@ -182,9 +225,6 @@ export function priceEstimateAdminEmail(data: {
 
   const content = `
     <div style="padding: 24px;">
-      <h2 style="margin: 0 0 20px; color: ${BRAND_COLOR}; font-size: 18px; font-weight: 600;">Noua estimare de pret</h2>
-      <p style="margin: 0 0 16px; color: #8b8b8b; font-size: 14px;">Un client a solicitat o estimare de pret prin calculator</p>
-
       <h3 style="margin: 0 0 12px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Date client</h3>
       <table style="border-collapse: collapse; width: 100%; margin-bottom: 24px;">
         <tr>
@@ -195,6 +235,10 @@ export function priceEstimateAdminEmail(data: {
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Telefon:</td>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;"><a href="tel:${esc(data.phone)}" style="color: ${BRAND_COLOR}; text-decoration: none; font-weight: 600;">${esc(data.phone)}</a></td>
         </tr>
+        ${data.email ? `<tr>
+          <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Email:</td>
+          <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;"><a href="mailto:${esc(data.email)}" style="color: ${BRAND_COLOR};">${esc(data.email)}</a></td>
+        </tr>` : ''}
       </table>
 
       <h3 style="margin: 0 0 12px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Detalii estimare</h3>
@@ -220,5 +264,41 @@ export function priceEstimateAdminEmail(data: {
   `
   return emailWrapper(content, {
     footerNote: `Trimis prin calculatorul de preturi &middot; ${new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' })}`,
+    headerTitle: 'Noua estimare de pret',
+    headerSubtitle: 'Un client a solicitat o estimare de pret prin calculator',
+  })
+}
+
+// Client confirmation: Price estimate
+export function priceEstimateConfirmationEmail(data: {
+  name: string
+  service: string
+  priceMin: number
+  priceMax: number
+}) {
+  const firstName = esc(data.name.split(' ')[0] || data.name)
+  const formatPrice = (n: number) => n.toLocaleString('ro-RO')
+
+  const content = `
+    <div style="padding: 32px 24px;">
+      <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
+        Estimarea ta de pret pentru <strong>${esc(data.service)}</strong> este intre <strong>${formatPrice(data.priceMin)} - ${formatPrice(data.priceMax)} RON</strong>.
+      </p>
+      <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
+        Aceasta este o estimare orientativa. Pretul final va fi stabilit dupa consultatie, in functie de complexitatea tratamentului si necesitatile specifice.
+      </p>
+      <p style="margin: 0 0 24px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
+        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Te vom contacta in cel mai scurt timp pentru a stabili o consultatie.
+      </p>
+      <div style="text-align: center; padding: 20px 0;">
+        <a href="tel:+40741199977" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;">
+          Suna-ne: 0741 199 977
+        </a>
+      </div>
+    </div>
+  `
+  return emailWrapper(content, {
+    headerTitle: `Multumim, ${firstName}!`,
+    headerSubtitle: 'Estimarea ta de pret',
   })
 }
