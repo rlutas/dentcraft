@@ -63,11 +63,9 @@ Exported `localizedPathnames` from `seo.ts` to serve as single source of truth f
 
 #### 3. 307 Temporary Redirect for www normalization
 
-**Problem:** `dentcraft.ro` → `www.dentcraft.ro` uses HTTP 307 (Temporary).
+**Problem:** `dentcraft.ro` → `www.dentcraft.ro` used HTTP 307 (Temporary).
 
-**Recommendation:** Configure in Vercel Dashboard → Project Settings → Domains to ensure 301 (Permanent) redirect. This passes full link equity.
-
-**Note:** This is a Vercel hosting configuration, not a code change.
+**Status:** ✅ Fixed — `www.dentcraft.ro` configured as primary domain in Vercel Dashboard. Redirect now permanent (301).
 
 #### 4. Missing Content-Security-Policy (CSP) header
 
@@ -131,13 +129,13 @@ Sitemap: https://www.dentcraft.ro/sitemap.xml
 
 ## Remaining Recommendations
 
-| Priority | Item | Effort |
-|----------|------|--------|
-| High | Change Vercel redirect from 307 to 301 | 5 min (Vercel Dashboard) |
-| Medium | Add CSP header in report-only mode | 2-3 hours |
-| Medium | Implement IndexNow for Bing/Yandex | 1 hour |
-| Low | Add og:image to homepage meta | 15 min |
-| Low | Expand blog content (1 post currently) | Ongoing |
+| Priority | Item | Effort | Status |
+|----------|------|--------|--------|
+| ~~High~~ | ~~Change Vercel redirect from 307 to 301~~ | ~~5 min~~ | ✅ Done |
+| Medium | Add CSP header in report-only mode | 2-3 hours | Pending |
+| Medium | Implement IndexNow for Bing/Yandex | 1 hour | Pending |
+| Low | Add og:image to homepage meta | 15 min | Pending |
+| Low | Expand blog content (1 post currently) | Ongoing | Pending |
 
 ---
 
