@@ -5,12 +5,12 @@
 > pedodontie. Comunicam in romana, engleza si maghiara.
 
 ## Servicii principale
-- [Implantologie](https://dentcraft.ro/servicii/implantologie): Implanturi dentare premium cu garantie
-- [Ortodontie](https://dentcraft.ro/servicii/ortodontie): Aparate dentare fixe si mobile
-- [Estetica Dentara](https://dentcraft.ro/servicii/estetica-dentara): Fatete dentare, albire profesionala, bonding dentar
-- [Pedodontie](https://dentcraft.ro/servicii/pedodontie): Stomatologie pentru copii
-- [Stomatologie Generala](https://dentcraft.ro/servicii/stomatologie-generala): Tratamente complete, obturatii, detartraj
-- [Protetica Dentara](https://dentcraft.ro/servicii/protetica): Coroane, punti, proteze dentare
+- [Implantologie](https://www.dentcraft.ro/servicii/implantologie): Implanturi dentare premium cu garantie
+- [Ortodontie](https://www.dentcraft.ro/servicii/ortodontie): Aparate dentare fixe si mobile
+- [Estetica Dentara](https://www.dentcraft.ro/servicii/estetica-dentara): Fatete dentare, albire profesionala, bonding dentar
+- [Pedodontie](https://www.dentcraft.ro/servicii/pedodontie): Stomatologie pentru copii
+- [Stomatologie Generala](https://www.dentcraft.ro/servicii/stomatologie-generala): Tratamente complete, obturatii, detartraj
+- [Protetica Dentara](https://www.dentcraft.ro/servicii/protetica): Coroane, punti, proteze dentare
 
 ## Echipa medicala
 - Dr. Razvan Petric - Medic Stomatolog Principal, 10+ ani experienta, specializat in implantologie si estetica dentara
@@ -18,7 +18,7 @@
 - Dr. Tincu Sebastian-Mihai - Medic Stomatolog, specializat in pedodontie
 
 ## Blog
-- [Cat costa un implant dentar in Satu Mare?](https://dentcraft.ro/blog/cat-costa-implant-dentar-satu-mare): Ghid complet de preturi 2026
+- [Cat costa un implant dentar in Satu Mare?](https://www.dentcraft.ro/blog/cat-costa-implant-dentar-satu-mare): Ghid complet de preturi 2026
 
 ## Contact
 - Adresa: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania
@@ -26,7 +26,7 @@
 - Email: dentcraftsm@gmail.com
 - Program: Luni-Vineri 10:00-18:00
 - Limbi: Romana, Engleza, Maghiara
-- Website: https://dentcraft.ro
+- Website: https://www.dentcraft.ro
 
 ## Preturi orientative (2026)
 - Implant dentar (fara coroana): 2.500-4.500 lei

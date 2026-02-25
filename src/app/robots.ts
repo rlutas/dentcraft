@@ -14,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
     ],
-    sitemap: 'https://dentcraft.ro/sitemap.xml',
+    sitemap: 'https://www.dentcraft.ro/sitemap.xml',
   }
 }

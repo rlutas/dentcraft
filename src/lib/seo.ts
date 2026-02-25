@@ -8,7 +8,7 @@ export type Locale = 'ro' | 'en' | 'hu'
 export const siteConfig = {
   name: 'Dentcraft',
   siteName: 'Dentcraft Satu Mare',
-  baseUrl: 'https://dentcraft.ro',
+  baseUrl: 'https://www.dentcraft.ro',
   defaultOgImage: '/images/team-clinic.jpg',
 }
 
@@ -34,7 +34,7 @@ const localeDescriptions: Record<Locale, string> = {
  * Localized pathname mapping for generating alternate URLs
  * Maps internal route patterns to localized paths
  */
-const localizedPathnames: Record<string, Record<Locale, string>> = {
+export const localizedPathnames: Record<string, Record<Locale, string>> = {
   '/': { ro: '/', en: '/en', hu: '/hu' },
   '/servicii': { ro: '/servicii', en: '/en/services', hu: '/hu/szolgaltatasok' },
   '/echipa': { ro: '/echipa', en: '/en/team', hu: '/hu/csapat' },
