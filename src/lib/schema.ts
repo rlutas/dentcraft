@@ -32,6 +32,13 @@ export function getOrganizationSchema() {
       { '@type': 'State', name: 'Județul Satu Mare' },
     ],
     availableLanguage: ['Romanian', 'English', 'Hungarian'],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '40',
+      bestRating: '5',
+      worstRating: '1',
+    },
   }
 }
 
@@ -95,6 +102,42 @@ export function getServiceSchema(options: {
       name: 'Satu Mare',
     },
     ...(options.priceRange ? { priceRange: options.priceRange } : {}),
+  }
+}
+
+// Person schema for team member pages (E-E-A-T + GEO)
+export function getPersonSchema(person: {
+  name: string
+  url: string
+  jobTitle: string
+  description?: string
+  image?: string
+  worksFor?: string
+  alumniOf?: string[]
+  knowsAbout?: string[]
+  sameAs?: string[]
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['Person', 'Dentist'],
+    name: person.name,
+    url: person.url,
+    jobTitle: person.jobTitle,
+    ...(person.description ? { description: person.description } : {}),
+    ...(person.image ? { image: person.image } : {}),
+    worksFor: {
+      '@type': 'Dentist',
+      name: person.worksFor || 'Dentcraft',
+      url: 'https://dentcraft.ro',
+    },
+    ...(person.alumniOf ? {
+      alumniOf: person.alumniOf.map((school) => ({
+        '@type': 'EducationalOrganization',
+        name: school,
+      })),
+    } : {}),
+    ...(person.knowsAbout ? { knowsAbout: person.knowsAbout } : {}),
+    ...(person.sameAs ? { sameAs: person.sameAs } : {}),
   }
 }
 

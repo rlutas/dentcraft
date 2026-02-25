@@ -25,7 +25,7 @@ import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
-import { getBreadcrumbSchema } from '@/lib/schema'
+import { getBreadcrumbSchema, getPersonSchema } from '@/lib/schema'
 import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { TeamMemberBookingButton } from '@/components/ui/TeamMemberBookingButton'
@@ -563,17 +563,31 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const t = await getTranslations()
 
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
+  const memberUrl = `${siteConfig.baseUrl}/echipa/${member.slug}`
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: 'Dentcraft', url: siteConfig.baseUrl },
     { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
-    { name: member.name, url: `${siteConfig.baseUrl}/echipa/${member.slug}` },
+    { name: member.name, url: memberUrl },
   ])
+  const photoUrl = member.photo?.asset ? urlFor(member.photo).width(400).height(400).url() : undefined
+  const personSchema = getPersonSchema({
+    name: member.name,
+    url: memberUrl,
+    jobTitle: member.role || 'Medic Stomatolog',
+    ...(photoUrl ? { image: photoUrl } : {}),
+    ...(member.specializations ? { knowsAbout: member.specializations.map((s) => s.name) } : {}),
+    ...(member.education ? { alumniOf: member.education.map((e) => e.institution) } : {}),
+  })
 
   return (
     <div className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
       {/* ───── HERO SECTION - Dark Editorial ───── */}
       <section className="relative bg-[#0d0d0d] pt-5 md:pt-[80px] pb-8">
@@ -766,17 +780,32 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
   const t = await getTranslations()
 
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
+  const memberUrl = `${siteConfig.baseUrl}/echipa/${member.slug}`
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: 'Dentcraft', url: siteConfig.baseUrl },
     { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
-    { name: member.name, url: `${siteConfig.baseUrl}/echipa/${member.slug}` },
+    { name: member.name, url: memberUrl },
   ])
+  const fallbackPhotoUrl = member.photo ? (member.photo.startsWith('http') ? member.photo : `${siteConfig.baseUrl}${member.photo}`) : undefined
+  const personSchema = getPersonSchema({
+    name: member.name,
+    url: memberUrl,
+    jobTitle: member.role,
+    description: member.bio,
+    ...(fallbackPhotoUrl ? { image: fallbackPhotoUrl } : {}),
+    knowsAbout: member.specializations,
+    alumniOf: member.education.map((e) => e.institution),
+  })
 
   return (
     <div className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
       {/* ───── HERO SECTION - Dark Editorial ───── */}
       <section className="relative bg-[#0d0d0d] pt-5 md:pt-[80px] pb-8">

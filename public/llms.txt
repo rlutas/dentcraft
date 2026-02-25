@@ -1,0 +1,36 @@
+# DentCraft - Clinica Stomatologica Satu Mare
+
+> Clinica stomatologica moderna in Satu Mare, Romania. 6 specialisti,
+> peste 10 ani experienta. Implantologie, ortodontie, estetica dentara,
+> pedodontie. Comunicam in romana, engleza si maghiara.
+
+## Servicii principale
+- [Implantologie](https://dentcraft.ro/servicii/implantologie): Implanturi dentare premium cu garantie
+- [Ortodontie](https://dentcraft.ro/servicii/ortodontie): Aparate dentare fixe si mobile
+- [Estetica Dentara](https://dentcraft.ro/servicii/estetica-dentara): Fatete dentare, albire profesionala, bonding dentar
+- [Pedodontie](https://dentcraft.ro/servicii/pedodontie): Stomatologie pentru copii
+- [Stomatologie Generala](https://dentcraft.ro/servicii/stomatologie-generala): Tratamente complete, obturatii, detartraj
+- [Protetica Dentara](https://dentcraft.ro/servicii/protetica): Coroane, punti, proteze dentare
+
+## Echipa medicala
+- Dr. Razvan Petric - Medic Stomatolog Principal, 10+ ani experienta, specializat in implantologie si estetica dentara
+- Dr. Ghirasim Alina-Cristina - Medic Stomatolog, UMF Cluj-Napoca
+- Dr. Tincu Sebastian-Mihai - Medic Stomatolog, specializat in pedodontie
+
+## Blog
+- [Cat costa un implant dentar in Satu Mare?](https://dentcraft.ro/blog/cat-costa-implant-dentar-satu-mare): Ghid complet de preturi 2026
+
+## Contact
+- Adresa: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania
+- Telefon: +40 741 199 977
+- Email: dentcraftsm@gmail.com
+- Program: Luni-Vineri 10:00-18:00
+- Limbi: Romana, Engleza, Maghiara
+- Website: https://dentcraft.ro
+
+## Preturi orientative (2026)
+- Implant dentar (fara coroana): 2.500-4.500 lei
+- Coroana pe implant (zirconiu): 1.500-2.500 lei
+- Coroana pe implant (metalo-ceramica): 1.000-1.800 lei
+- Augmentare osoasa: 800-2.500 lei
+- Consultatie + radiografie 3D: Gratuit
