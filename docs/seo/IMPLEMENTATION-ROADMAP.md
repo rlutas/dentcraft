@@ -67,12 +67,16 @@
 - [ ] Each page: unique H1, 800+ words, internal links, FAQ section
 
 ### Week 8-12: Blog Launch
-- [ ] Publish first 4 blog posts (1/week):
-  1. "Cat costa un implant dentar in Satu Mare? Ghid preturi 2026"
-  2. "Cum alegi cea mai buna clinica stomatologica in Satu Mare?"
-  3. "Aparat dentar in Satu Mare: tipuri, preturi si ce sa astepti"
-  4. "Urgente stomatologice: ce faci cand te doare masea noaptea?"
-- [ ] Each post: 1,000+ words, 1 target keyword, internal links to service pages
+- [x] Blog content calendar created (20 articles, prioritized P1-P4, see CONTENT-CALENDAR.md)
+- [x] Blog writing skill created (`dentcraft-blog-writer`) — human-like, SEO-optimized, anti-AI-detection
+- [x] Competitor blog analysis done (Sala Diagnostics = main threat, 3-4 topics each)
+- [x] Keyword research complete (long-tail clusters for all 20 topics)
+- [ ] Publish first 4 blog posts P1 (1/week):
+  1. "Cat costa un implant dentar in Satu Mare? Ghid complet preturi 2026"
+  2. "Urgente stomatologice in Satu Mare: ce faci cand te doare masea noaptea"
+  3. "Stomatolog copii in Satu Mare: cand si cum pregatesti prima vizita"
+  4. "Aparat dentar in Satu Mare: tipuri, preturi si tot ce trebuie sa stii"
+- [ ] Each post: 1,500-2,500 words, SEO-optimized, FAQ schema, internal links
 - [x] Blog in main navigation
 
 ---
@@ -157,7 +161,10 @@ Remaining blog topics from keyword data:
 | Google Search Console | Not started | |
 | Google Analytics 4 | Not started | |
 | Directory listings (NAP) | Not started | |
-| Blog posts | Not started | Structure exists, no content yet |
+| Blog content strategy | Done | 20 articles planned, keyword research, competitor analysis |
+| Blog writing skill | Done | Anti-AI-detection, SEO-optimized, 3 languages |
+| GMB optimization | Done | Categories, description, 12 posts + image prompts |
+| Blog posts | Not started | P1 articles ready to write (use dentcraft-blog-writer skill) |
 | Children's dentistry content | Partial | Page exists, needs expansion |
 | Article schema (blog) | Not done | Function exists, not injected |
 | Person schema (team) | Not done | |

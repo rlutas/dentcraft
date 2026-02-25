@@ -2,6 +2,7 @@ import { BookOpen, Calendar, ChevronLeft, ChevronRight, Tag, User } from 'lucide
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import {
@@ -100,6 +101,7 @@ export default async function BlogPage({ params, searchParams }: PageProps) {
       categories={categories as BlogCategory[]}
       categorySlug={categorySlug}
       currentPage={currentPage}
+      locale={locale}
       posts={posts as BlogPost[]}
       totalPages={totalPages}
     />
@@ -110,20 +112,23 @@ async function BlogPageContent({
   categories,
   categorySlug,
   currentPage,
+  locale,
   posts,
   totalPages,
 }: {
   categories: BlogCategory[]
   categorySlug: string | undefined
   currentPage: number
+  locale: string
   posts: BlogPost[]
   totalPages: number
 }) {
   const t = await getTranslations()
 
+  const localeMap: Record<string, string> = { ro: 'ro-RO', en: 'en-US', hu: 'hu-HU' }
   const formatDate = (dateStr: string | null) => {
     if (!dateStr) return t('blog.noDate')
-    return new Date(dateStr).toLocaleDateString('ro-RO', {
+    return new Date(dateStr).toLocaleDateString(localeMap[locale] || 'ro-RO', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
@@ -162,25 +167,29 @@ async function BlogPageContent({
             <span className="text-[#d4c4b0] text-sm font-medium">Blog</span>
           </div>
 
-          <div className="max-w-4xl">
-            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              Sfaturi și informații
-            </span>
+          <ScrollReveal animation="fade-up">
+            <div className="max-w-4xl">
+              <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
+                {t('blog.badge')}
+              </span>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              {t('blog.title')}
-            </h1>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+                {t('blog.title')}
+              </h1>
 
-            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
-              {t('blog.subtitle')}
-            </p>
-          </div>
+              <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+                {t('blog.subtitle')}
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Decorative line */}
-          <div className="mt-16 flex items-center gap-6">
-            <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">Articole pentru sănătatea ta dentară</span>
-          </div>
+          <ScrollReveal animation="fade-up" delay={200}>
+            <div className="mt-16 flex items-center gap-6">
+              <div className="w-24 h-px bg-[#d4c4b0]" />
+              <span className="text-white/30 text-sm">{t('blog.subtitle')}</span>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -189,12 +198,12 @@ async function BlogPageContent({
         <section className="py-6 bg-white border-b border-[var(--color-border)]">
           <div className="container">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm font-medium text-muted">{t('blog.filterBy')}:</span>
+              <span className="text-sm font-medium text-[var(--color-muted-foreground)]">{t('blog.filterBy')}:</span>
               <Link
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
                   !categorySlug
-                    ? 'bg-[var(--color-primary)] text-white'
-                    : 'bg-[var(--color-accent-light)] text-[var(--color-text)] hover:bg-[var(--color-accent)]'
+                    ? 'bg-[#2a2118] text-white border-[#2a2118]'
+                    : 'text-[#8b7355] bg-[#faf6f1] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                 }`}
                 href="/blog"
               >
@@ -203,10 +212,10 @@ async function BlogPageContent({
               {categories.map((category) => (
                 <Link
                   key={category._id}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
                     categorySlug === category.slug
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'bg-[var(--color-accent-light)] text-[var(--color-text)] hover:bg-[var(--color-accent)]'
+                      ? 'bg-[#2a2118] text-white border-[#2a2118]'
+                      : 'text-[#8b7355] bg-[#faf6f1] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                   }`}
                   href={`/blog?category=${category.slug}` as '/blog'}
                 >
@@ -219,125 +228,128 @@ async function BlogPageContent({
       )}
 
       {/* Blog Posts */}
-      <section className="section bg-white">
+      <section className="section" style={{ backgroundColor: '#ffffff' }}>
         <div className="container">
           {posts.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {posts.map((post) => (
-                  <article key={post._id} className="card overflow-hidden group">
-                    {/* Cover Image */}
-                    <Link
-                      href={{ params: { slug: post.slug }, pathname: '/blog/[slug]' }}
-                    >
-                      <div className="aspect-[16/10] relative overflow-hidden bg-[var(--color-accent-light)]">
-                        {post.coverImage?.asset ? (
-                          <Image
-                            fill
-                            alt={post.coverImage.alt || post.title}
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            src={urlFor(post.coverImage).width(600).height(375).url()}
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <BookOpen
-                              className="w-16 h-16 text-[var(--color-muted)]"
-                              strokeWidth={1}
-                            />
-                          </div>
-                        )}
-                        {/* Category Badge */}
-                        {post.category && (
-                          <span className="absolute top-4 left-4 px-3 py-1 bg-[var(--color-primary)] text-white text-xs font-medium rounded-full">
-                            {post.category.title}
-                          </span>
-                        )}
-                      </div>
-                    </Link>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      {/* Meta */}
-                      <div className="flex items-center gap-4 text-sm text-muted mb-3">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" strokeWidth={1.5} />
-                          {formatDate(post.publishedAt)}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <BookOpen className="w-4 h-4" strokeWidth={1.5} />
-                          {estimateReadingTime(post.excerpt)} {t('blog.minRead')}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h2 className="text-xl font-semibold text-[var(--color-text)] mb-3 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors">
-                        <Link
-                          href={{ params: { slug: post.slug }, pathname: '/blog/[slug]' }}
-                        >
-                          {post.title}
-                        </Link>
-                      </h2>
-
-                      {/* Excerpt */}
-                      {post.excerpt && (
-                        <p className="text-body text-muted line-clamp-3 mb-4">{post.excerpt}</p>
-                      )}
-
-                      {/* Author */}
-                      {post.author && (
-                        <div className="flex items-center gap-3 pt-4 border-t border-[var(--color-border)]">
-                          {post.author.photo?.asset ? (
+                {posts.map((post, index) => (
+                  <ScrollReveal key={post._id} animation="fade-up" delay={index * 100}>
+                    <article className="bg-white border border-[#e8e0d5] rounded-2xl md:rounded-3xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.2)] hover:border-[#d4c4b0] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                      {/* Cover Image */}
+                      <Link
+                        href={{ params: { slug: post.slug }, pathname: '/blog/[slug]' }}
+                      >
+                        <div className="aspect-[16/10] relative overflow-hidden bg-[#f5f0e8]">
+                          {post.coverImage?.asset ? (
                             <Image
-                              alt={post.author.name}
-                              className="rounded-full"
-                              height={36}
-                              src={urlFor(post.author.photo).width(72).height(72).url()}
-                              width={36}
+                              fill
+                              alt={post.coverImage.alt || post.title}
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              src={post.coverImage.asset.url.startsWith('/') ? post.coverImage.asset.url : urlFor(post.coverImage).width(600).height(375).url()}
                             />
                           ) : (
-                            <div className="w-9 h-9 rounded-full bg-[var(--color-accent-light)] flex items-center justify-center">
-                              <User className="w-4 h-4 text-[var(--color-muted)]" strokeWidth={1.5} />
+                            <div className="w-full h-full flex items-center justify-center">
+                              <BookOpen
+                                className="w-16 h-16 text-[#8b7355]/40"
+                                strokeWidth={1}
+                              />
                             </div>
                           )}
-                          <span className="text-sm font-medium text-[var(--color-text)]">
-                            {post.author.name}
+                          {/* Category Badge */}
+                          {post.category && (
+                            <span className="absolute top-4 left-4 px-3 py-1.5 text-[#8b7355] bg-white/90 backdrop-blur-sm text-xs font-semibold rounded-full border border-[#e8e0d5]">
+                              {post.category.title}
+                            </span>
+                          )}
+                        </div>
+                      </Link>
+
+                      {/* Content */}
+                      <div className="p-6 flex flex-col flex-1">
+                        {/* Meta */}
+                        <div className="flex items-center gap-4 text-sm text-[var(--color-muted-foreground)] mb-3">
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5" strokeWidth={1.5} />
+                            {formatDate(post.publishedAt)}
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <BookOpen className="w-3.5 h-3.5" strokeWidth={1.5} />
+                            {estimateReadingTime(post.excerpt)} {t('blog.minRead')}
                           </span>
                         </div>
-                      )}
-                    </div>
-                  </article>
+
+                        {/* Title */}
+                        <h2 className="text-lg font-semibold text-[var(--color-foreground)] mb-3 line-clamp-2 group-hover:text-[#8b7355] transition-colors">
+                          <Link
+                            href={{ params: { slug: post.slug }, pathname: '/blog/[slug]' }}
+                          >
+                            {post.title}
+                          </Link>
+                        </h2>
+
+                        {/* Excerpt */}
+                        {post.excerpt && (
+                          <p className="text-[var(--color-muted-foreground)] text-sm leading-relaxed line-clamp-3 mb-4">{post.excerpt}</p>
+                        )}
+
+                        {/* Author */}
+                        {post.author && (
+                          <div className="flex items-center gap-3 pt-4 mt-auto border-t border-[#e8e0d5]">
+                            {post.author.photo?.asset ? (
+                              <div className="w-9 h-9 rounded-full ring-2 ring-[#e8e0d5] overflow-hidden flex-shrink-0 relative">
+                                <Image
+                                  fill
+                                  alt={post.author.name}
+                                  className="object-cover object-top scale-[1.8] origin-top"
+                                  src={post.author.photo.asset.url.startsWith('/') || post.author.photo.asset.url.startsWith('http') ? post.author.photo.asset.url : urlFor(post.author.photo).width(72).height(72).url()}
+                                />
+                              </div>
+                            ) : (
+                              <div className="w-9 h-9 rounded-full bg-[#faf6f1] flex items-center justify-center border border-[#e8e0d5]">
+                                <User className="w-4 h-4 text-[#8b7355]" strokeWidth={1.5} />
+                              </div>
+                            )}
+                            <span className="text-sm font-medium text-[var(--color-foreground)]">
+                              {post.author.name}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  </ScrollReveal>
                 ))}
               </div>
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-12">
+                <div className="flex items-center justify-center gap-2 mt-16">
                   {/* Previous Page */}
                   {currentPage > 1 ? (
                     <Link
-                      className="p-2 rounded-lg bg-[var(--color-accent-light)] hover:bg-[var(--color-accent)] transition-colors"
+                      className="p-2.5 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0] transition-all duration-200"
                       href={
                         `${categorySlug ? `/blog?category=${categorySlug}&page=${currentPage - 1}` : `/blog?page=${currentPage - 1}`}` as '/blog'
                       }
                     >
-                      <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
+                      <ChevronLeft className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
                     </Link>
                   ) : (
-                    <span className="p-2 rounded-lg bg-[var(--color-accent-light)] opacity-50 cursor-not-allowed">
+                    <span className="p-2.5 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] opacity-40 cursor-not-allowed">
                       <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
                     </span>
                   )}
 
                   {/* Page Numbers */}
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                       <Link
                         key={pageNum}
-                        className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-colors ${
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-medium transition-all duration-200 border ${
                           pageNum === currentPage
-                            ? 'bg-[var(--color-primary)] text-white'
-                            : 'bg-[var(--color-accent-light)] text-[var(--color-text)] hover:bg-[var(--color-accent)]'
+                            ? 'bg-[#2a2118] text-white border-[#2a2118]'
+                            : 'bg-[#faf6f1] text-[#8b7355] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                         }`}
                         href={
                           `${categorySlug ? `/blog?category=${categorySlug}&page=${pageNum}` : `/blog?page=${pageNum}`}` as '/blog'
@@ -351,15 +363,15 @@ async function BlogPageContent({
                   {/* Next Page */}
                   {currentPage < totalPages ? (
                     <Link
-                      className="p-2 rounded-lg bg-[var(--color-accent-light)] hover:bg-[var(--color-accent)] transition-colors"
+                      className="p-2.5 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0] transition-all duration-200"
                       href={
                         `${categorySlug ? `/blog?category=${categorySlug}&page=${currentPage + 1}` : `/blog?page=${currentPage + 1}`}` as '/blog'
                       }
                     >
-                      <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
+                      <ChevronRight className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
                     </Link>
                   ) : (
-                    <span className="p-2 rounded-lg bg-[var(--color-accent-light)] opacity-50 cursor-not-allowed">
+                    <span className="p-2.5 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] opacity-40 cursor-not-allowed">
                       <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
                     </span>
                   )}
@@ -368,20 +380,25 @@ async function BlogPageContent({
             </>
           ) : (
             /* Empty State */
-            <div className="text-center py-16">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-accent-light)] mb-6">
-                <Tag className="w-8 h-8 text-[var(--color-muted)]" strokeWidth={1.5} />
+            <ScrollReveal animation="fade-up">
+              <div className="max-w-md mx-auto text-center py-20">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-[#faf6f1] border border-[#e8e0d5] mb-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)]">
+                  <Tag className="w-9 h-9 text-[#8b7355]" strokeWidth={1.5} />
+                </div>
+                <h2 className="text-2xl font-semibold text-[var(--color-foreground)] mb-3">
+                  {t('blog.noPosts')}
+                </h2>
+                <p className="text-[var(--color-muted-foreground)] leading-relaxed mb-8">{t('blog.noPostsDescription')}</p>
+                {categorySlug && (
+                  <Link
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-sm border-2 border-[#2a2118] text-[#2a2118] rounded-xl hover:bg-[#2a2118] hover:text-white transition-all duration-300"
+                    href="/blog"
+                  >
+                    {t('blog.viewAllPosts')}
+                  </Link>
+                )}
               </div>
-              <h2 className="text-2xl font-semibold text-[var(--color-text)] mb-2">
-                {t('blog.noPosts')}
-              </h2>
-              <p className="text-body text-muted mb-6">{t('blog.noPostsDescription')}</p>
-              {categorySlug && (
-                <Link className="btn btn-secondary" href="/blog">
-                  {t('blog.viewAllPosts')}
-                </Link>
-              )}
-            </div>
+            </ScrollReveal>
           )}
         </div>
       </section>

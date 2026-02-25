@@ -1,3 +1,10 @@
+import {
+  getFallbackBlogCategories,
+  getFallbackBlogPostBySlug,
+  getFallbackBlogPosts,
+  getFallbackBlogPostSlugs,
+  getFallbackBlogPostsCount,
+} from '../fallback-blog'
 import { client } from './client'
 
 // Type for supported locales
@@ -405,7 +412,14 @@ export async function getBlogPosts(
     }
   }`
 
-  return client.fetch(query, { categorySlug, featured })
+  const posts = await client.fetch(query, { categorySlug, featured })
+  if (posts && posts.length > 0) return posts
+  // Fallback to static data
+  const fallbackOptions: { limit: number; offset: number; categorySlug?: string } = { limit, offset }
+  if (categorySlug) {
+    fallbackOptions.categorySlug = categorySlug
+  }
+  return getFallbackBlogPosts(locale, fallbackOptions)
 }
 
 export async function getBlogPostBySlug(slug: string, locale: Locale) {
@@ -444,12 +458,18 @@ export async function getBlogPostBySlug(slug: string, locale: Locale) {
     }
   }`
 
-  return client.fetch(query, { slug })
+  const post = await client.fetch(query, { slug })
+  if (post) return post
+  // Fallback to static data
+  return getFallbackBlogPostBySlug(slug, locale)
 }
 
 export async function getBlogPostSlugs() {
   const query = `*[_type == "blogPost"] { "slug": slug.current }`
-  return client.fetch<Array<{ slug: string }>>(query)
+  const slugs = await client.fetch<Array<{ slug: string }>>(query)
+  if (slugs && slugs.length > 0) return slugs
+  // Fallback to static data
+  return getFallbackBlogPostSlugs()
 }
 
 export async function getBlogCategories(locale: Locale) {
@@ -459,7 +479,10 @@ export async function getBlogCategories(locale: Locale) {
     "slug": slug.current
   }`
 
-  return client.fetch(query)
+  const categories = await client.fetch(query)
+  if (categories && categories.length > 0) return categories
+  // Fallback to static data
+  return getFallbackBlogCategories(locale)
 }
 
 export async function getBlogPostsCount(categorySlug?: string) {
@@ -469,7 +492,10 @@ export async function getBlogPostsCount(categorySlug?: string) {
   }
 
   const query = `count(*[${filter}])`
-  return client.fetch<number>(query, { categorySlug })
+  const count = await client.fetch<number>(query, { categorySlug })
+  if (count > 0) return count
+  // Fallback to static data
+  return getFallbackBlogPostsCount(categorySlug)
 }
 
 // ============================================

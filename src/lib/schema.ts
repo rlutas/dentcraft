@@ -106,25 +106,40 @@ export function getArticleSchema(article: {
   datePublished: string
   dateModified?: string
   author?: string
+  authorUrl?: string
+  authorJobTitle?: string
   image?: string
+  wordCount?: number
+  articleSection?: string
+  inLanguage?: string
 }) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: article.title,
     description: article.description,
     url: article.url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': article.url },
     datePublished: article.datePublished,
     dateModified: article.dateModified || article.datePublished,
     author: {
       '@type': 'Person',
       name: article.author || 'Dentcraft',
+      ...(article.authorUrl ? { url: article.authorUrl } : {}),
+      ...(article.authorJobTitle ? { jobTitle: article.authorJobTitle } : {}),
     },
     publisher: {
       '@type': 'Organization',
       name: 'Dentcraft',
       url: 'https://dentcraft.ro',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://dentcraft.ro/images/logo.png',
+      },
     },
     image: article.image,
+    ...(article.wordCount ? { wordCount: article.wordCount } : {}),
+    ...(article.articleSection ? { articleSection: article.articleSection } : {}),
+    ...(article.inLanguage ? { inLanguage: article.inLanguage } : {}),
   }
 }

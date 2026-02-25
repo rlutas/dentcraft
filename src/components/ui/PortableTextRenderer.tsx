@@ -55,7 +55,7 @@ export function PortableTextRenderer({ className = '', value }: PortableTextRend
     if (linkDef?.href) {
       return (
         <a
-          className="text-[var(--color-primary)] hover:underline"
+          className="text-[#8b7355] hover:text-[#6b5a40] underline decoration-[#d4c4b0] hover:decoration-[#8b7355] transition-colors"
           href={linkDef.href}
           rel="noopener noreferrer"
           target={linkDef.href.startsWith('http') ? '_blank' : undefined}
@@ -172,14 +172,14 @@ export function PortableTextRenderer({ className = '', value }: PortableTextRend
     // Handle list items
     if (block.listItem === 'bullet') {
       return (
-        <li key={block._key || index} className="ml-4">
+        <li key={block._key || index}>
           {content}
         </li>
       )
     }
     if (block.listItem === 'number') {
       return (
-        <li key={block._key || index} className="ml-4">
+        <li key={block._key || index}>
           {content}
         </li>
       )
@@ -191,7 +191,7 @@ export function PortableTextRenderer({ className = '', value }: PortableTextRend
         return (
           <h2
             key={block._key || index}
-            className="text-2xl font-bold text-[var(--color-text)] mt-8 mb-4"
+            className="text-2xl font-bold text-[var(--color-foreground)] mt-8 mb-4"
           >
             {content}
           </h2>
@@ -200,7 +200,7 @@ export function PortableTextRenderer({ className = '', value }: PortableTextRend
         return (
           <h3
             key={block._key || index}
-            className="text-xl font-semibold text-[var(--color-text)] mt-6 mb-3"
+            className="text-xl font-semibold text-[var(--color-foreground)] mt-6 mb-3"
           >
             {content}
           </h3>
@@ -209,7 +209,7 @@ export function PortableTextRenderer({ className = '', value }: PortableTextRend
         return (
           <h4
             key={block._key || index}
-            className="text-lg font-semibold text-[var(--color-text)] mt-4 mb-2"
+            className="text-lg font-semibold text-[var(--color-foreground)] mt-4 mb-2"
           >
             {content}
           </h4>
@@ -263,7 +263,7 @@ export function PortableTextRenderer({ className = '', value }: PortableTextRend
   }
 
   return (
-    <div className={`prose prose-lg max-w-none ${className}`}>
+    <div className={`max-w-none ${className}`}>
       {groupedBlocks.map((item, index) => {
         if (Array.isArray(item)) {
           // Render list

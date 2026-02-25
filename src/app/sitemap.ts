@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next'
 import {
   getServiceSlugs,
   getTeamMemberSlugs,
-  getBlogPostSlugs,
 } from '@/lib/sanity/queries'
+import { client } from '@/lib/sanity/client'
 
 const baseUrl = 'https://dentcraft.ro'
 
@@ -30,6 +30,12 @@ function buildUrl(locale: string, path: string): string {
     return path ? `${baseUrl}/${path}` : baseUrl
   }
   return path ? `${baseUrl}/${locale}/${path}` : `${baseUrl}/${locale}`
+}
+
+// Fetch blog post slugs with publishedAt dates for accurate sitemap timestamps
+async function getBlogPostSlugsWithDates() {
+  const query = `*[_type == "blogPost"] { "slug": slug.current, publishedAt }`
+  return client.fetch<Array<{ slug: string; publishedAt: string | null }>>(query)
 }
 
 // Helper to safely fetch slugs with error handling
@@ -62,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [serviceSlugs, teamSlugs, blogSlugs] = await Promise.all([
     safeFetch(getServiceSlugs, []),
     safeFetch(getTeamMemberSlugs, []),
-    safeFetch(getBlogPostSlugs, []),
+    safeFetch(getBlogPostSlugsWithDates, []),
   ])
 
   // Build service page entries
@@ -86,14 +92,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  // Build blog post page entries
-  const blogEntries: MetadataRoute.Sitemap = blogSlugs.flatMap(({ slug }) =>
-    locales.map((locale) => ({
-      url: buildUrl(locale, `blog/${slug}`),
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }))
+  // Build blog post page entries with actual publish dates
+  const blogEntries: MetadataRoute.Sitemap = blogSlugs.flatMap(
+    ({ slug, publishedAt }) =>
+      locales.map((locale) => ({
+        url: buildUrl(locale, `blog/${slug}`),
+        lastModified: publishedAt ? new Date(publishedAt) : now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      }))
   )
 
   return [...staticEntries, ...serviceEntries, ...teamEntries, ...blogEntries]

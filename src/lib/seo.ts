@@ -66,6 +66,12 @@ export type PageMetadataOptions = {
   noIndex?: boolean
   /** Additional keywords for SEO */
   keywords?: string[]
+  /** OpenGraph type - defaults to 'website', use 'article' for blog posts */
+  ogType?: 'website' | 'article'
+  /** ISO 8601 date string for article published time (only used when ogType is 'article') */
+  publishedTime?: string
+  /** ISO 8601 date string for article modified time (only used when ogType is 'article') */
+  modifiedTime?: string
 }
 
 /**
@@ -96,6 +102,8 @@ function generateAlternateUrls(
     }
 
     const canonical = languages['ro'] || path
+    // x-default points to Romanian (default language) for search engines
+    languages['x-default'] = canonical
     return {
       canonical,
       languages,
@@ -113,6 +121,8 @@ function generateAlternateUrls(
   }
 
   const canonical = languages['ro'] || path
+  // x-default points to Romanian (default language) for search engines
+  languages['x-default'] = canonical
   return {
     canonical,
     languages,
@@ -147,12 +157,14 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     slug,
     noIndex = false,
     keywords,
+    ogType = 'website',
+    publishedTime,
+    modifiedTime,
   } = options
 
-  // Format title: "Page Title | Dentcraft Satu Mare" or default locale title
-  const formattedTitle = title
-    ? `${title} | ${siteConfig.siteName}`
-    : localeTitles[locale] || localeTitles['ro']
+  // Use provided title directly (root layout template will append site name via '%s | Dentcraft Satu Mare')
+  // When no title is provided, use the locale default as the full title
+  const formattedTitle = title || (localeTitles[locale] || localeTitles['ro'])
 
   // Use provided description or default locale description
   const metaDescription = description || localeDescriptions[locale] || localeDescriptions['ro']
@@ -190,10 +202,14 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     openGraph: {
       title: formattedTitle,
       description: metaDescription,
-      type: 'website',
+      type: ogType,
       locale: locale === 'ro' ? 'ro_RO' : locale === 'hu' ? 'hu_HU' : 'en_US',
       siteName: siteConfig.siteName,
       images: ogImages,
+      ...(ogType === 'article' && {
+        publishedTime,
+        modifiedTime,
+      }),
     },
     twitter: {
       card: 'summary_large_image',
@@ -245,6 +261,12 @@ export type DynamicPageMetadataOptions = {
   fallbackImage?: string
   /** Image URL builder function (for Sanity images) */
   imageUrlBuilder?: (image: { asset: { _ref: string } }) => string
+  /** OpenGraph type - defaults to 'website', use 'article' for blog posts */
+  ogType?: 'website' | 'article'
+  /** ISO 8601 date string for article published time */
+  publishedTime?: string
+  /** ISO 8601 date string for article modified time */
+  modifiedTime?: string
 }
 
 /**
@@ -315,6 +337,17 @@ export function generateDynamicPageMetadata(
     metadataOptions.ogImage = ogImage
   }
 
+  // Pass through article metadata if provided
+  if (options.ogType) {
+    metadataOptions.ogType = options.ogType
+  }
+  if (options.publishedTime) {
+    metadataOptions.publishedTime = options.publishedTime
+  }
+  if (options.modifiedTime) {
+    metadataOptions.modifiedTime = options.modifiedTime
+  }
+
   return generatePageMetadata(metadataOptions)
 }
 
@@ -335,6 +368,7 @@ export function generateRootMetadata(locale: Locale): Metadata {
         ro: '/',
         en: '/en',
         hu: '/hu',
+        'x-default': '/',
       },
     },
     icons: {
