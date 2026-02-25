@@ -2,6 +2,7 @@
 
 import { MessageCircle } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { trackWhatsAppClick } from '@/lib/gtm'
 
 type WhatsAppButtonProps = {
   phoneNumber: string
@@ -136,6 +137,7 @@ export function WhatsAppButton({
           ${isPulsing ? 'animate-pulse-whatsapp' : ''}
         `}
         href={whatsappUrl}
+        onClick={trackWhatsAppClick}
         rel="noopener noreferrer"
         target="_blank"
       >

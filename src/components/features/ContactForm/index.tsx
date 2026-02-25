@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Loader2, Send, Upload, X, FileText, Image as ImageIcon, File } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useCallback, useState, useRef } from 'react'
+import { trackFormSubmission } from '@/lib/gtm'
 
 type FormData = {
   email: string
@@ -257,6 +258,7 @@ export function ContactForm() {
         }
 
         setSubmitStatus('success')
+        trackFormSubmission('contact', formData.subject ? { service: formData.subject } : {})
         setFormData(initialFormData)
 
         // Cleanup file previews

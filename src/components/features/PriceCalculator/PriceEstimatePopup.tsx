@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Phone, User, CheckCircle2, Calculator, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { trackFormSubmission } from '@/lib/gtm'
 
 interface PriceEstimatePopupProps {
   isOpen: boolean
@@ -127,6 +128,7 @@ export default function PriceEstimatePopup({
 
       setIsSubmitting(false)
       setIsSuccess(true)
+      trackFormSubmission('price_estimate', { service: service.title })
     } catch {
       setErrors({ general: 'Eroare de retea. Verificati conexiunea si incercati din nou.' })
       setIsSubmitting(false)

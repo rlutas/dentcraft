@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Cookie, Lock, X } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
+import { updateGoogleConsent } from '@/lib/gtm'
 
 export type CookieConsentValue = 'all' | 'essential' | 'custom' | null
 
@@ -51,7 +52,7 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
   const [marketingEnabled, setMarketingEnabled] = useState(false)
   const bannerRef = useRef<HTMLDivElement>(null)
 
-  // Check localStorage on mount
+  // Check localStorage on mount and restore consent for returning visitors
   useEffect(() => {
     setIsMounted(true)
     try {
@@ -66,6 +67,12 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
           })
         }, 800)
         return () => clearTimeout(timer)
+      }
+      // Returning visitor — restore Google Consent Mode from saved preferences
+      const prefs = localStorage.getItem(PREFERENCES_KEY)
+      if (prefs) {
+        const parsed = JSON.parse(prefs) as CookiePreferences
+        updateGoogleConsent(parsed.analytics, parsed.marketing)
       }
     } catch {
       // localStorage unavailable (private browsing, etc.)
@@ -105,6 +112,8 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
       localStorage.setItem(STORAGE_KEY, value ?? '')
       if (preferences) {
         localStorage.setItem(PREFERENCES_KEY, JSON.stringify(preferences))
+        // Update Google Consent Mode v2
+        updateGoogleConsent(preferences.analytics, preferences.marketing)
       }
     } catch {
       // localStorage unavailable - consent won't persist but UX continues

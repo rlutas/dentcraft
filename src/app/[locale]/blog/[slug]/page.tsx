@@ -294,7 +294,7 @@ async function BlogPostContent({
       )}
 
       {/* Hero Section */}
-      <section className="gradient-hero pt-32 pb-16 md:pt-40 md:pb-20">
+      <section className="gradient-hero pt-28 pb-10 md:pt-36 md:pb-14">
         <div className="container">
           <ScrollReveal animation="fade-up">
             <div className="max-w-4xl mx-auto">
@@ -391,7 +391,7 @@ async function BlogPostContent({
       )}
 
       {/* Content */}
-      <article className="section" style={{ backgroundColor: '#ffffff' }}>
+      <article className="pt-10 pb-16 md:pt-14 md:pb-20" style={{ backgroundColor: '#ffffff' }}>
         <div className="container">
           <div className="max-w-[740px] mx-auto">
             {/* Excerpt */}

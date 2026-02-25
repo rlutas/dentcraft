@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Phone, Clock, CheckCircle2, User, ChevronDown, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { trackFormSubmission } from '@/lib/gtm'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 
 interface CallbackPopupProps {
@@ -126,6 +127,10 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
 
       setIsSubmitting(false)
       setIsSuccess(true)
+      trackFormSubmission('callback', {
+        ...(formData.service ? { service: formData.service } : {}),
+        ...(formData.doctor ? { doctor: formData.doctor } : {}),
+      })
     } catch {
       setErrors({ general: 'Network error. Please check your connection and try again.' })
       setIsSubmitting(false)
