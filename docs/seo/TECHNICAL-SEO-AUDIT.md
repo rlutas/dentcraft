@@ -10,7 +10,7 @@
 | Category | Before | After | Key Fix |
 |----------|--------|-------|---------|
 | Crawlability | 65 | 95 | Sitemap localized paths, www consistency |
-| Indexability | 55 | 95 | Canonical/hreflang www mismatch resolved |
+| Indexability | 55 | 95 | Canonical/hreflang www mismatch + per-locale canonical fixed |
 | Security | 85 | 85 | HSTS, X-Frame, X-Content-Type, Referrer-Policy present |
 | URL Structure | 70 | 90 | Sitemap final URLs, consistent www |
 | Mobile | 90 | 90 | Responsive, viewport meta, SSR |
@@ -43,6 +43,19 @@
 - `.env.local` — `NEXT_PUBLIC_SITE_URL`
 
 Now all signals are consistent: canonical, hreflang, sitemap, robots.txt, and HTTP headers all use `www.dentcraft.ro`.
+
+#### 1b. Canonical tags pointed to RO version for all locales
+
+**Problem:** EN and HU pages had canonical tags pointing to their RO equivalent:
+- `/en` → canonical: `https://www.dentcraft.ro` (should be `/en`)
+- `/en/services` → canonical: `https://www.dentcraft.ro/servicii` (should be `/en/services`)
+- `/hu` → canonical: `https://www.dentcraft.ro` (should be `/hu`)
+
+This told Google that EN/HU pages were duplicates of RO, completely undermining the hreflang implementation.
+
+**Root cause:** `generateAlternateUrls()` in `seo.ts` always set `canonical = languages['ro']` regardless of the current locale. Also `generateRootMetadata()` hardcoded `canonical: '/'` for all locales.
+
+**Fix:** Updated `generateAlternateUrls()` to accept `locale` parameter and set canonical to the current locale's URL. Updated `generateRootMetadata()` to use locale-specific canonical (`/` for RO, `/en` for EN, `/hu` for HU).
 
 #### 2. Sitemap submitted redirect URLs for EN/HU locales
 
@@ -143,7 +156,7 @@ Sitemap: https://www.dentcraft.ro/sitemap.xml
 
 | File | Change |
 |------|--------|
-| `src/lib/seo.ts` | `baseUrl` → `www.dentcraft.ro`, exported `localizedPathnames` |
+| `src/lib/seo.ts` | `baseUrl` → `www.dentcraft.ro`, exported `localizedPathnames`, locale-aware canonical |
 | `src/app/sitemap.ts` | Rewritten to use localized pathnames from seo.ts |
 | `src/app/robots.ts` | Sitemap URL → `www.dentcraft.ro` |
 | `public/llms.txt` | All URLs → `www.dentcraft.ro` |

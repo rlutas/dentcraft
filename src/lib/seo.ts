@@ -76,8 +76,10 @@ export type PageMetadataOptions = {
 
 /**
  * Generate alternate URLs for hreflang tags
+ * Canonical is set to the current locale's URL (not always RO)
  */
 function generateAlternateUrls(
+  locale: Locale,
   path: string,
   slug?: string
 ): { canonical: string; languages: Record<string, string> } {
@@ -93,17 +95,18 @@ function generateAlternateUrls(
     }
 
     if (slug) {
-      Object.keys(languages).forEach((locale) => {
-        const currentLang = languages[locale]
+      Object.keys(languages).forEach((lang) => {
+        const currentLang = languages[lang]
         if (currentLang) {
-          languages[locale] = currentLang.replace('[slug]', slug)
+          languages[lang] = currentLang.replace('[slug]', slug)
         }
       })
     }
 
-    const canonical = languages['ro'] || path
     // x-default points to Romanian (default language) for search engines
-    languages['x-default'] = canonical
+    languages['x-default'] = languages['ro'] || path
+    // Canonical must match the current locale's URL
+    const canonical = languages[locale] || languages['ro'] || path
     return {
       canonical,
       languages,
@@ -112,17 +115,18 @@ function generateAlternateUrls(
 
   const languages: Record<string, string> = {}
 
-  for (const [locale, localePath] of Object.entries(localePaths)) {
+  for (const [lang, localePath] of Object.entries(localePaths)) {
     let fullPath = localePath
     if (slug && path.includes('[slug]')) {
       fullPath = `${localePath}/${slug}`
     }
-    languages[locale] = fullPath
+    languages[lang] = fullPath
   }
 
-  const canonical = languages['ro'] || path
   // x-default points to Romanian (default language) for search engines
-  languages['x-default'] = canonical
+  languages['x-default'] = languages['ro'] || path
+  // Canonical must match the current locale's URL
+  const canonical = languages[locale] || languages['ro'] || path
   return {
     canonical,
     languages,
@@ -169,8 +173,8 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
   // Use provided description or default locale description
   const metaDescription = description || localeDescriptions[locale] || localeDescriptions['ro']
 
-  // Generate alternate URLs for hreflang
-  const alternates = generateAlternateUrls(path, slug)
+  // Generate alternate URLs for hreflang (canonical matches current locale)
+  const alternates = generateAlternateUrls(locale, path, slug)
 
   // Build OpenGraph images array
   const ogImages: { url: string; width?: number; height?: number; alt?: string }[] = []
@@ -363,7 +367,7 @@ export function generateRootMetadata(locale: Locale): Metadata {
     description: localeDescriptions[locale] || localeDescriptions['ro'],
     metadataBase: new URL(siteConfig.baseUrl),
     alternates: {
-      canonical: '/',
+      canonical: locale === 'ro' ? '/' : `/${locale}`,
       languages: {
         ro: '/',
         en: '/en',
