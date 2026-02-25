@@ -62,24 +62,27 @@ Sitemap: https://www.dentcraft.ro/sitemap.xml
 
 Source: `/Users/raul/Projects/dentcraft/src/app/robots.ts`
 
-### sitemap.xml -- PASS (minor note)
+### sitemap.xml -- FIXED
 
-Live sitemap at `https://www.dentcraft.ro/sitemap.xml` contains **30 URLs** across 3 locales.
+Live sitemap at `https://www.dentcraft.ro/sitemap.xml` now contains **84 URLs** across 3 locales (was 30 — fixed Feb 25, 2026).
+
+**What was fixed:**
+- [FIXED] Added 45 missing service page URLs (15 fallback services × 3 locales) — sitemap now merges Sanity + fallback slugs, matching `generateStaticParams` logic
+- [FIXED] Added 9 legal page URLs (privacy, cookies, terms × 3 locales)
 
 **Findings:**
 - [PASS] All URLs use `https://www.dentcraft.ro` (correct www prefix)
 - [PASS] All localized URLs are final destination URLs (no redirects)
-- [PASS] Priorities are reasonable: homepage=1.0, main pages=0.8, team members=0.6
-- [PASS] Dynamic content (services, team, blog) fetched from Sanity CMS
+- [PASS] Priorities are reasonable: homepage=1.0, main pages=0.8, services=0.9, legal=0.3
+- [PASS] Dynamic content (services, team, blog) fetched from Sanity CMS + fallback data
 - [PASS] Blog posts use actual `publishedAt` dates from Sanity
 - [NOTE] All `lastmod` dates are set to current server time for static pages (not a real "last modified" date). Consider using git commit dates or manual dates for more accuracy.
 - [NOTE] `changefreq` is deprecated by Google but harmless to include.
-- [NOTE] Legal pages (privacy, cookies, terms) are NOT in sitemap -- correct since they have `noIndex: true`.
 
 **URL count by locale:**
-- Romanian: 10 static pages + dynamic
-- English: 10 static pages + dynamic
-- Hungarian: 10 static pages + dynamic
+- Romanian: 12 static pages + 15 services + dynamic (team/blog)
+- English: 12 static pages + 15 services + dynamic (team/blog)
+- Hungarian: 12 static pages + 15 services + dynamic (team/blog)
 
 Source: `/Users/raul/Projects/dentcraft/src/app/sitemap.ts`
 

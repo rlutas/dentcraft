@@ -5,6 +5,7 @@ import {
 } from '@/lib/sanity/queries'
 import { client } from '@/lib/sanity/client'
 import { localizedPathnames, siteConfig } from '@/lib/seo'
+import { getFallbackServiceSlugs } from '@/lib/fallback-services'
 
 const baseUrl = siteConfig.baseUrl
 
@@ -23,6 +24,9 @@ const staticPages = [
   { key: '/contact', changeFrequency: 'weekly' as const, priority: 0.8 },
   { key: '/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
   { key: '/galerie', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { key: '/politica-confidentialitate', changeFrequency: 'yearly' as const, priority: 0.3 },
+  { key: '/politica-cookies', changeFrequency: 'yearly' as const, priority: 0.3 },
+  { key: '/termeni-conditii', changeFrequency: 'yearly' as const, priority: 0.3 },
 ]
 
 // Build full URL from a localized path
@@ -87,9 +91,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     safeFetch(getBlogPostSlugsWithDates, []),
   ])
 
+  // Merge Sanity slugs with fallback slugs (dedupe in case they overlap)
+  const fallbackSlugs = getFallbackServiceSlugs()
+  const allServiceSlugs = [
+    ...new Set([...serviceSlugs.map((s) => s.slug), ...fallbackSlugs]),
+  ]
+
   // Build service page entries with localized paths
-  const serviceEntries: MetadataRoute.Sitemap = serviceSlugs.flatMap(
-    ({ slug }) =>
+  const serviceEntries: MetadataRoute.Sitemap = allServiceSlugs.flatMap(
+    (slug) =>
       locales.map((locale) => ({
         url: buildDynamicUrl('/servicii', slug, locale),
         lastModified: now,
