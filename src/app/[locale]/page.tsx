@@ -299,7 +299,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   </div>
                   <div className="text-xs lg:text-sm">
                     <span className="font-bold text-[#2a2118]">500+</span>
-                    <span className="text-[#8b7a68] ml-1">{locale === 'ro' ? 'pacienti fericiti' : locale === 'hu' ? 'boldog páciens' : 'happy patients'}</span>
+                    <span className="text-[#6b5a48] ml-1">{locale === 'ro' ? 'pacienti fericiti' : locale === 'hu' ? 'boldog páciens' : 'happy patients'}</span>
                   </div>
                 </div>
                 <div className="w-px h-6 lg:h-8 bg-[#d4c4b0]/40" />
@@ -310,7 +310,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                     ))}
                   </div>
                   <span className="text-xs lg:text-sm font-bold text-[#2a2118]">4.9</span>
-                  <span className="text-xs lg:text-sm text-[#8b7a68]">Google</span>
+                  <span className="text-xs lg:text-sm text-[#6b5a48]">Google</span>
                 </div>
               </div>
             </div>
@@ -350,7 +350,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   </div>
                   <div>
                     <div className="text-[11px] lg:text-sm font-bold text-[#2a2118] leading-tight">4.9 / 5.0</div>
-                    <div className="text-[9px] lg:text-xs text-[#8b7a68] leading-tight">Google Reviews</div>
+                    <div className="text-[9px] lg:text-xs text-[#6b5a48] leading-tight">Google Reviews</div>
                   </div>
                 </div>
 
@@ -369,7 +369,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   </div>
                   <div>
                     <div className="text-[11px] lg:text-sm font-bold text-[#2a2118] leading-tight">10+ {locale === 'ro' ? 'ani' : locale === 'hu' ? '\u00e9v' : 'years'}</div>
-                    <div className="text-[9px] lg:text-xs text-[#8b7a68] leading-tight">{locale === 'ro' ? 'experienta' : locale === 'hu' ? 'tapasztalat' : 'experience'}</div>
+                    <div className="text-[9px] lg:text-xs text-[#6b5a48] leading-tight">{locale === 'ro' ? 'experienta' : locale === 'hu' ? 'tapasztalat' : 'experience'}</div>
                   </div>
                 </div>
               </div>
@@ -869,6 +869,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   href="https://youtube.com/shorts/example1"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Vezi video testimonial implant dentar pe YouTube"
                   className="absolute inset-0 flex items-center justify-center z-10"
                 >
                   <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center
@@ -948,6 +949,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   href="https://youtube.com/shorts/example2"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Vezi video testimonial fatete dentare pe YouTube"
                   className="absolute inset-0 flex items-center justify-center z-10"
                 >
                   <div className="w-24 h-24 rounded-full bg-[#d4c4b0]/20 backdrop-blur-md flex items-center justify-center
@@ -1018,6 +1020,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                   href="https://youtube.com/shorts/example3"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Vezi video testimonial albire dentara pe YouTube"
                   className="absolute inset-0 flex items-center justify-center z-10"
                 >
                   <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center

@@ -133,7 +133,7 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
             </div>
 
             {/* Label */}
-            <span className="text-sm text-[#8b7355]">{totalReviews}+ recenzii pe Google</span>
+            <span className="text-sm text-[#6b5a40]">{totalReviews}+ recenzii pe Google</span>
           </div>
         </div>
       )}

@@ -536,42 +536,39 @@
   }
 }
 
-/* Floating cards - pop in with bounce + then float forever */
+/* Floating cards - pop in with bounce then float (single animation per card for GPU compositing) */
 .hero-float-card-1 {
-  animation:
-    heroCardPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both,
-    heroCardFloat1 5s ease-in-out 1.6s infinite;
+  animation: heroCardPopFloat1 5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both;
+  will-change: transform, opacity;
 }
 .hero-float-card-2 {
-  animation:
-    heroCardPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.15s both,
-    heroCardFloat2 6s ease-in-out 1.85s infinite;
+  animation: heroCardPopFloat2 6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.15s both;
+  will-change: transform, opacity;
 }
 
-@keyframes heroCardPop {
-  from {
-    opacity: 0;
-    transform: scale(0.5) translateY(16px);
-  }
-  70% {
-    transform: scale(1.05) translateY(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+/* Card 1: pop in (0-14%) then float forever */
+@keyframes heroCardPopFloat1 {
+  0% { opacity: 0; transform: scale(0.5) translateY(16px); }
+  10% { transform: scale(1.05) translateY(-2px); }
+  14% { opacity: 1; transform: scale(1) translateY(0); }
+  /* Float cycle repeats within remaining keyframes */
+  30% { transform: translateY(-6px) rotate(0.5deg); }
+  50% { transform: translateY(-3px) rotate(-0.3deg); }
+  70% { transform: translateY(-6px) rotate(0.5deg); }
+  90% { transform: translateY(-3px) rotate(-0.3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
-/* Subtle perpetual float - different paths for each card */
-@keyframes heroCardFloat1 {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33% { transform: translateY(-6px) rotate(0.5deg); }
-  66% { transform: translateY(-3px) rotate(-0.3deg); }
-}
-@keyframes heroCardFloat2 {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-4px) rotate(-0.5deg); }
-  75% { transform: translateY(-7px) rotate(0.4deg); }
+/* Card 2: pop in (0-12%) then float forever */
+@keyframes heroCardPopFloat2 {
+  0% { opacity: 0; transform: scale(0.5) translateY(16px); }
+  8% { transform: scale(1.05) translateY(-2px); }
+  12% { opacity: 1; transform: scale(1) translateY(0); }
+  /* Float cycle */
+  30% { transform: translateY(-4px) rotate(-0.5deg); }
+  55% { transform: translateY(-7px) rotate(0.4deg); }
+  80% { transform: translateY(-4px) rotate(-0.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
 /* CTA button shimmer + breathing shadow */
@@ -579,6 +576,7 @@
   position: relative;
   overflow: hidden;
   animation: ctaBreatheShadow 4s ease-in-out 1.5s infinite;
+  will-change: filter;
 }
 
 /* Shimmer sweep — a diagonal band of light that glides across the button surface */
@@ -586,7 +584,7 @@
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 60%;
   height: 100%;
   background: linear-gradient(
@@ -599,30 +597,31 @@
     transparent 65%,
     transparent 100%
   );
-  transform: skewX(-18deg);
+  transform: translateX(-200%) skewX(-18deg);
   animation: ctaShimmerSweep 4s ease-in-out 1.8s infinite;
   pointer-events: none;
   z-index: 1;
+  will-change: transform, opacity;
 }
 
-/* The shimmer band travels from left to right across the button */
+/* The shimmer band travels from left to right across the button (GPU-composited) */
 @keyframes ctaShimmerSweep {
-  0%   { left: -100%; opacity: 0; }
+  0%   { transform: translateX(-200%) skewX(-18deg); opacity: 0; }
   10%  { opacity: 1; }
-  60%  { left: 180%; opacity: 1; }
+  60%  { transform: translateX(350%) skewX(-18deg); opacity: 1; }
   70%  { opacity: 0; }
-  100% { left: 180%; opacity: 0; }
+  100% { transform: translateX(350%) skewX(-18deg); opacity: 0; }
 }
 
-/* Soft breathing shadow — grows and recedes gently behind the button */
+/* Soft breathing shadow — uses filter for GPU compositing */
 @keyframes ctaBreatheShadow {
   0%, 100% {
-    box-shadow: 0 4px 16px rgba(139, 115, 85, 0.10),
-                0 1px 3px rgba(0, 0, 0, 0.06);
+    filter: drop-shadow(0 4px 16px rgba(139, 115, 85, 0.10))
+            drop-shadow(0 1px 3px rgba(0, 0, 0, 0.06));
   }
   50% {
-    box-shadow: 0 8px 32px rgba(139, 115, 85, 0.22),
-                0 2px 8px rgba(0, 0, 0, 0.08);
+    filter: drop-shadow(0 8px 32px rgba(139, 115, 85, 0.22))
+            drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
   }
 }
 
@@ -682,23 +681,19 @@
   border-radius: inherit;
   pointer-events: none;
   z-index: 2;
-  box-shadow:
-    inset 0 0 40px 10px rgba(139, 115, 85, 0.05),
-    inset 0 0 80px 25px rgba(100, 80, 55, 0.03);
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(139, 115, 85, 0.06) 80%,
+    rgba(100, 80, 55, 0.04) 100%
+  );
   animation: photoWarmVignette 6s ease-in-out 2.5s infinite;
+  will-change: opacity;
 }
 
 @keyframes photoWarmVignette {
-  0%, 100% {
-    box-shadow:
-      inset 0 0 40px 10px rgba(139, 115, 85, 0.05),
-      inset 0 0 80px 25px rgba(100, 80, 55, 0.03);
-  }
-  50% {
-    box-shadow:
-      inset 0 0 60px 20px rgba(139, 115, 85, 0.08),
-      inset 0 0 100px 35px rgba(100, 80, 55, 0.04);
-  }
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* Floating dental SVG decoration drifts - diagonal flow: top-right → bottom-left
