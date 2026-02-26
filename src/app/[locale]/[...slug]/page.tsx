@@ -1,4 +1,4 @@
-import { Calendar, FileText } from 'lucide-react'
+import { ArrowRight, Calendar, Cookie, FileText, Home, Shield } from 'lucide-react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -157,36 +157,39 @@ async function LegalPageContent({
       </section>
 
       {/* Navigation */}
-      <section className="section bg-[var(--color-accent-light)]">
+      <section className="py-16 md:py-20 bg-[#faf6f1]">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-xl font-semibold text-[var(--color-text)] mb-6">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-center text-sm font-medium text-[#8b7355] tracking-wider uppercase mb-8">
               {t('footer.quickLinks')}
-            </h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                className="text-[var(--color-primary)] hover:underline"
-                href="/politica-confidentialitate"
-              >
-                {t('footer.privacy')}
-              </Link>
-              <span className="text-muted">|</span>
-              <Link
-                className="text-[var(--color-primary)] hover:underline"
-                href="/politica-cookies"
-              >
-                {t('footer.cookies')}
-              </Link>
-              <span className="text-muted">|</span>
-              <Link
-                className="text-[var(--color-primary)] hover:underline"
-                href="/termeni-conditii"
-              >
-                {t('footer.terms')}
-              </Link>
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {[
+                { href: '/politica-confidentialitate' as const, icon: Shield, label: t('footer.privacy') },
+                { href: '/politica-cookies' as const, icon: Cookie, label: t('footer.cookies') },
+                { href: '/termeni-conditii' as const, icon: FileText, label: t('footer.terms') },
+              ].map((item) => (
+                <Link
+                  className="group flex items-center gap-3 px-5 py-4 bg-white rounded-xl border border-[#e8e0d5]
+                    hover:border-[#d4c4b0] hover:shadow-[0_4px_16px_-4px_rgba(139,115,85,0.12)]
+                    hover:-translate-y-0.5 transition-all duration-200"
+                  href={item.href}
+                  key={item.href}
+                >
+                  <item.icon className="w-4.5 h-4.5 text-[#8b7355] shrink-0" strokeWidth={1.5} />
+                  <span className="text-sm font-medium text-[#2a2118] group-hover:text-[#8b7355] transition-colors">
+                    {item.label}
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#d4c4b0] ml-auto group-hover:text-[#8b7355] group-hover:translate-x-0.5 transition-all" strokeWidth={2} />
+                </Link>
+              ))}
             </div>
-            <div className="mt-8">
-              <Link className="btn btn-secondary" href="/">
+            <div className="mt-6 text-center">
+              <Link
+                className="inline-flex items-center gap-2 text-sm text-[#8b7355] hover:text-[#2a2118] font-medium transition-colors"
+                href="/"
+              >
+                <Home className="w-4 h-4" strokeWidth={1.5} />
                 {t('errors.404.backHome')}
               </Link>
             </div>

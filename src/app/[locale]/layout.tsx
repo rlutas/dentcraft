@@ -94,9 +94,9 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Footer />
             <LazyClientComponents />
           </div>
-          <SpeedInsights />
-          <Analytics />
         </NextIntlClientProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
