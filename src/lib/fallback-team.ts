@@ -113,6 +113,21 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { name: 'Certificat Radiologie Dentara', issuer: 'Colegiul Medicilor Stomatologi', year: 2022 },
     ],
   },
+  {
+    key: 'assistant4',
+    name: 'Calugher Ionela',
+    slug: 'ionela-calugher',
+    role: 'Asistent Medical',
+    photo: '/images/team/asistent-calugher-ionela.png',
+    specializations: ['Asistenta Stomatologica', 'Igiena Orala', 'Relatii Pacienti'],
+    bio: 'Ionela Calugher este asistent medical la clinica DentCraft, dedicata ingrijirii pacientilor cu profesionalism si empatie. Cu o atitudine prietenoasa si atenta la detalii, Ionela asigura o experienta placuta pentru fiecare pacient.',
+    education: [
+      { institution: 'Scoala Postliceala Sanitara', degree: 'Asistent Medical Generalist', year: 2022 },
+    ],
+    certifications: [
+      { name: 'Certificat Asistenta Stomatologica', issuer: 'Colegiul Medicilor Stomatologi', year: 2023 },
+    ],
+  },
 ]
 
 // Get fallback team member by slug
