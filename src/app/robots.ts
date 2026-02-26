@@ -15,5 +15,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://www.dentcraft.ro/sitemap.xml',
+    host: 'https://www.dentcraft.ro',
   }
 }

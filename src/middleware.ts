@@ -1,21 +1,29 @@
 import createMiddleware from 'next-intl/middleware'
+import { NextRequest, NextResponse } from 'next/server'
 import { routing } from './i18n/routing'
 
+const intlMiddleware = createMiddleware(routing)
+
 /**
- * Internationalization Middleware
+ * Middleware
  *
- * Handles:
- * - Locale detection from Accept-Language header
- * - URL rewriting for localized pathnames
- * - Locale prefix management (as-needed strategy)
- *
- * URL Examples:
- * - /servicii -> Romanian (default, no redirect)
- * - /en/services -> English
- * - /hu/szolgaltatasok -> Hungarian
- * - /ro/servicii -> Redirects to /servicii (removes unnecessary prefix)
+ * 1. Redirects non-canonical domains (vercel.app, etc.) to www.dentcraft.ro
+ * 2. Handles locale detection and URL rewriting via next-intl
  */
-export default createMiddleware(routing)
+export default function middleware(request: NextRequest) {
+  const hostname = request.headers.get('host') || ''
+
+  // Redirect non-canonical domains to www.dentcraft.ro (301 permanent)
+  if (hostname.includes('vercel.app') || hostname.includes('vercel.sh')) {
+    const url = new URL(request.url)
+    url.hostname = 'www.dentcraft.ro'
+    url.port = ''
+    url.protocol = 'https:'
+    return NextResponse.redirect(url.toString(), 301)
+  }
+
+  return intlMiddleware(request)
+}
 
 export const config = {
   // Match all pathnames except for:
