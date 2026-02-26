@@ -11,7 +11,12 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
 import { Header, Footer } from '@/components/layout'
 import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
+import { MaintenancePage } from '@/components/MaintenancePage'
 import '@/styles/globals.css'
+
+// TEMPORARY: Set to true to show under construction page
+// TODO: Remove when site is ready for launch (search "under construction")
+const isMaintenanceMode = process.env['NEXT_PUBLIC_MAINTENANCE_MODE'] === 'true'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -85,18 +90,26 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteSchema()) }}
         />
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <LazyClientComponents />
-          </div>
-        </NextIntlClientProvider>
-        <SpeedInsights />
-        <Analytics />
+        {/* TEMPORARY: Show maintenance page when NEXT_PUBLIC_MAINTENANCE_MODE=true */}
+        {/* TODO: Remove this conditional when site is ready for launch (search "under construction") */}
+        {isMaintenanceMode ? (
+          <MaintenancePage />
+        ) : (
+          <>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <div className="relative flex min-h-screen flex-col">
+                <Header />
+                <main id="main-content" className="flex-1">
+                  {children}
+                </main>
+                <Footer />
+                <LazyClientComponents />
+              </div>
+            </NextIntlClientProvider>
+            <SpeedInsights />
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   )

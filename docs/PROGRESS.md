@@ -105,6 +105,21 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 ### 26 February 2026
 
+**IMPORTANT: Site Blocked from Indexing — Under Construction Mode (26 Feb 2026)**
+
+The site was found to already be indexed by Google while content is not ready. To prevent Google from showing incomplete pages, the following changes were made:
+
+1. `src/app/robots.ts` — Changed to `Disallow: /` for all crawlers (was: `Allow: /`)
+2. `src/lib/seo.ts` — Added `noindex, nofollow` to ALL pages globally (both `generateRootMetadata` and `generatePageMetadata`)
+3. Added a maintenance/under construction page that blocks public access
+4. Controlled via `NEXT_PUBLIC_MAINTENANCE_MODE` env variable
+
+**To revert when ready for launch:** Search the codebase for "under construction" — all changes are marked with TODO comments. Specifically:
+1. `src/app/robots.ts` — Restore `Allow: /` and re-add sitemap/host directives
+2. `src/lib/seo.ts` — Restore `index: true, follow: true` in `generateRootMetadata`, restore conditional `noIndex` check in `generatePageMetadata` (rename `_noIndex` back to `noIndex`)
+3. Remove or set `NEXT_PUBLIC_MAINTENANCE_MODE=false` in Vercel env vars
+4. Request re-indexing in Google Search Console after reverting
+
 **Team Updates:**
 - Added 7th team member: Calugher Ionela (4th assistant) — photo + fallback data in `/src/lib/fallback-team.ts`
 
@@ -219,6 +234,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
+| **SITE IN NOINDEX / UNDER CONSTRUCTION MODE** | **Critical** | **robots.ts disallows all crawlers, all pages have noindex/nofollow, maintenance page blocks public access. Controlled via `NEXT_PUBLIC_MAINTENANCE_MODE` env var. Search codebase for "under construction" to find all TODO-marked changes. MUST revert before launch.** |
 | Turbopack cache corruption | Low | Workaround: `rm -rf .next` and restart dev server |
 | GA4 property not configured | Medium | GTM integration exists but no GA4 property ID set |
 | Facebook Pixel not set up | Low | Not implemented yet |

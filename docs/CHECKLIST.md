@@ -3,6 +3,28 @@
 > **Status:** 🟢 In lucru - SEO optimized, PageSpeed optimized (94/93/100/100), email marketing setup, analytics installed
 > **Ultima actualizare:** 26 Februarie 2026
 
+---
+
+## *** IMPORTANT: SITE BLOCKED FROM INDEXING — UNDER CONSTRUCTION MODE (26 Feb 2026) ***
+
+The site was found to already be indexed by Google while content is not ready. To prevent Google from showing incomplete pages, the following changes were made:
+
+1. **`src/app/robots.ts`** — Changed to `Disallow: /` for all crawlers (was: `Allow: /`)
+2. **`src/lib/seo.ts`** — Added `noindex, nofollow` to ALL pages globally (both `generateRootMetadata` and `generatePageMetadata`)
+3. **Added a maintenance/under construction page** that blocks public access
+4. **Controlled via `NEXT_PUBLIC_MAINTENANCE_MODE` env variable**
+
+### TO REVERT WHEN READY FOR LAUNCH:
+
+Search the codebase for "under construction" — all changes are marked with TODO comments. Specifically:
+
+1. **`src/app/robots.ts`** — Restore `Allow: /` and re-add sitemap/host directives
+2. **`src/lib/seo.ts`** — Restore `index: true, follow: true` in `generateRootMetadata`, restore conditional `noIndex` check in `generatePageMetadata` (rename `_noIndex` back to `noIndex`)
+3. **Remove or set `NEXT_PUBLIC_MAINTENANCE_MODE=false`** in Vercel env vars
+4. **Request re-indexing** in Google Search Console after reverting
+
+---
+
 ## ACTUALIZARE 26 FEBRUARIE 2026 - SEO + ANALYTICS + EMAIL MARKETING
 
 ### Team
