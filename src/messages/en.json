@@ -764,7 +764,7 @@
     "namePlaceholder": "e.g. John Smith",
     "phoneLabel": "Phone number",
     "phonePlaceholder": "e.g. 0741 234 567",
-    "emailLabel": "Email (optional)",
+    "emailLabel": "Email",
     "emailPlaceholder": "e.g. john@email.com",
     "serviceLabel": "Desired service",
     "servicePlaceholder": "Select a service",
@@ -785,6 +785,7 @@
       "nameTooShort": "Name must be at least 2 characters",
       "phoneRequired": "Please enter your phone number",
       "phoneInvalid": "Phone number is not valid",
+      "emailRequired": "Please enter your email address",
       "emailInvalid": "Email address is not valid",
       "serviceRequired": "Please select a service",
       "timeRequired": "Please select a time slot"

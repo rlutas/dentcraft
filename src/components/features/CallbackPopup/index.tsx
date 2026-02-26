@@ -91,8 +91,10 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
       newErrors['phone'] = t('errors.phoneInvalid')
     }
 
-    // Email is optional, but if provided must be valid
-    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+    // Email is required
+    if (!formData.email.trim()) {
+      newErrors['email'] = t('errors.emailRequired')
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors['email'] = t('errors.emailInvalid')
     }
 
@@ -114,7 +116,7 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
-          email: formData.email || undefined,
+          email: formData.email,
           service: formData.service || undefined,
           timePreference: formData.timePreference || undefined,
           doctor: formData.doctor || undefined,

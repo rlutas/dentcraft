@@ -764,7 +764,7 @@
     "namePlaceholder": "ex: Maria Popescu",
     "phoneLabel": "Numar de telefon",
     "phonePlaceholder": "ex: 0741 234 567",
-    "emailLabel": "Email (optional)",
+    "emailLabel": "Email",
     "emailPlaceholder": "ex: maria@email.com",
     "serviceLabel": "Serviciul dorit",
     "servicePlaceholder": "Selecteaza serviciul",
@@ -785,6 +785,7 @@
       "nameTooShort": "Numele trebuie sa aiba cel putin 2 caractere",
       "phoneRequired": "Te rugam sa introduci numarul de telefon",
       "phoneInvalid": "Numarul de telefon nu este valid",
+      "emailRequired": "Te rugam sa introduci adresa de email",
       "emailInvalid": "Adresa de email nu este valida",
       "serviceRequired": "Te rugam sa selectezi un serviciu",
       "timeRequired": "Te rugam sa selectezi un interval orar"

@@ -2,6 +2,7 @@ import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { priceEstimateAdminEmail, priceEstimateConfirmationEmail } from '@/lib/email-templates'
+import { addContactToResend } from '@/lib/resend-contacts'
 
 // Rate limiting store (in-memory, resets on server restart)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
@@ -14,7 +15,7 @@ const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute window
 type PriceEstimateFormData = {
   name: string
   phone: string
-  email?: string
+  email: string
   service: string
   serviceSlug: string
   quantity: number
@@ -86,8 +87,10 @@ function validateFormData(
     }
   }
 
-  // Email validation (optional, but must be valid if provided)
-  if (formData['email'] && typeof formData['email'] === 'string' && formData['email'].trim()) {
+  // Email validation (required)
+  if (!formData['email'] || typeof formData['email'] !== 'string' || !formData['email'].trim()) {
+    errors['email'] = 'Email address is required'
+  } else {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData['email'].trim())) {
       errors['email'] = 'Email address is not valid'
@@ -106,7 +109,7 @@ function validateFormData(
   const result: PriceEstimateFormData = {
     name: (formData['name'] as string).trim(),
     phone: (formData['phone'] as string).trim(),
-    ...(typeof formData['email'] === 'string' && formData['email'].trim() ? { email: formData['email'].trim() } : {}),
+    email: (formData['email'] as string).trim(),
     service: (formData['service'] as string).trim(),
     serviceSlug: typeof formData['serviceSlug'] === 'string' ? formData['serviceSlug'].trim() : '',
     quantity: typeof formData['quantity'] === 'number' ? formData['quantity'] : 1,
@@ -184,7 +187,7 @@ export async function POST(request: Request) {
       html: priceEstimateAdminEmail({
         name: data.name,
         phone: data.phone,
-        ...(data.email ? { email: data.email } : {}),
+        email: data.email,
         service: data.service,
         quantity: data.quantity,
         materialType: data.materialType,
@@ -203,22 +206,23 @@ export async function POST(request: Request) {
       )
     }
 
-    // Send confirmation email to client if email was provided (non-blocking)
-    if (data.email) {
-      resend.emails.send({
-        from: 'Dentcraft <noreply@dentcraft.ro>',
-        html: priceEstimateConfirmationEmail({
-          name: data.name,
-          service: data.service,
-          priceMin: data.priceMin,
-          priceMax: data.priceMax,
-        }),
-        subject: `Estimare pret - ${data.service} | Dentcraft`,
-        to: data.email,
-      }).catch((err) => {
-        console.error('Failed to send price estimate confirmation email:', err)
-      })
-    }
+    // Send confirmation email to client (non-blocking)
+    resend.emails.send({
+      from: 'Dentcraft <noreply@dentcraft.ro>',
+      html: priceEstimateConfirmationEmail({
+        name: data.name,
+        service: data.service,
+        priceMin: data.priceMin,
+        priceMax: data.priceMax,
+      }),
+      subject: `Estimare pret - ${data.service} | Dentcraft`,
+      to: data.email,
+    }).catch((err) => {
+      console.error('Failed to send price estimate confirmation email:', err)
+    })
+
+    // Add contact to Resend for marketing (non-blocking)
+    addContactToResend(data.email, data.name, 'price-estimate').catch(() => {})
 
     return NextResponse.json({
       message: 'Price estimate request sent successfully!',

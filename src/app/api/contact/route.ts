@@ -2,6 +2,7 @@ import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { contactAdminEmail, contactConfirmationEmail } from '@/lib/email-templates'
+import { addContactToResend } from '@/lib/resend-contacts'
 
 // Rate limiting store (in-memory, resets on server restart)
 // For production, use Redis or similar persistent store
@@ -235,6 +236,9 @@ export async function POST(request: Request) {
     }).catch((err) => {
       console.error('Failed to send confirmation email:', err)
     })
+
+    // Add contact to Resend for marketing (non-blocking)
+    addContactToResend(data.email, data.name, 'contact').catch(() => {})
 
     return NextResponse.json({
       message: 'Your message has been sent successfully!',

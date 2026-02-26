@@ -88,7 +88,9 @@ export default function PriceEstimatePopup({
       newErrors['phone'] = 'Numarul de telefon nu este valid'
     }
 
-    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+    if (!formData.email.trim()) {
+      newErrors['email'] = 'Adresa de email este obligatorie'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors['email'] = 'Adresa de email nu este valida'
     }
 
@@ -110,7 +112,7 @@ export default function PriceEstimatePopup({
         body: JSON.stringify({
           name: formData.name,
           phone: formData.phone,
-          ...(formData.email.trim() ? { email: formData.email.trim() } : {}),
+          email: formData.email.trim(),
           service: service.title,
           serviceSlug: service.slug,
           quantity: options.quantity,
@@ -362,7 +364,7 @@ export default function PriceEstimatePopup({
                     {/* Email Input (Optional) */}
                     <div>
                       <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
-                        Email <span className="font-normal text-[#a0a0a0]">(optional)</span>
+                        Email
                       </label>
                       <div className="relative">
                         <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
@@ -375,7 +377,7 @@ export default function PriceEstimatePopup({
                             setFormData((prev) => ({ ...prev, email: e.target.value }))
                             if (errors['email']) setErrors((prev) => ({ ...prev, email: '' }))
                           }}
-                          placeholder="email@exemplu.ro (optional)"
+                          placeholder="email@exemplu.ro"
                           className={cn(
                             'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
                             'placeholder:text-[#b0b0b0] text-[#1a1a1a]',

@@ -2,6 +2,7 @@ import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { callbackAdminEmail, callbackConfirmationEmail } from '@/lib/email-templates'
+import { addContactToResend } from '@/lib/resend-contacts'
 
 // Rate limiting store (in-memory, resets on server restart)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
@@ -14,7 +15,7 @@ const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute window
 type CallbackFormData = {
   name: string
   phone: string
-  email?: string
+  email: string
   service?: string
   timePreference?: string
   doctor?: string
@@ -90,8 +91,10 @@ function validateFormData(
     }
   }
 
-  // Email is optional, but if provided must be valid
-  if (formData['email'] && typeof formData['email'] === 'string' && formData['email'].trim()) {
+  // Email validation (required)
+  if (!formData['email'] || typeof formData['email'] !== 'string' || !formData['email'].trim()) {
+    errors['email'] = 'Email address is required'
+  } else {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData['email'].trim())) {
       errors['email'] = 'Email address is not valid'
@@ -105,11 +108,7 @@ function validateFormData(
   const result: CallbackFormData = {
     name: (formData['name'] as string).trim(),
     phone: (formData['phone'] as string).trim(),
-  }
-
-  // Email is optional
-  if (formData['email'] && typeof formData['email'] === 'string' && formData['email'].trim()) {
-    result.email = (formData['email'] as string).trim()
+    email: (formData['email'] as string).trim(),
   }
 
   // Service is optional
@@ -215,19 +214,20 @@ export async function POST(request: Request) {
       )
     }
 
-    // Send confirmation email to client if email was provided (non-blocking)
-    if (data.email) {
-      resend.emails.send({
-        from: 'Dentcraft <noreply@dentcraft.ro>',
-        html: callbackConfirmationEmail({
-          name: data.name,
-        }),
-        subject: 'Am primit cererea ta de programare - Dentcraft',
-        to: data.email,
-      }).catch((err) => {
-        console.error('Failed to send callback confirmation email:', err)
-      })
-    }
+    // Send confirmation email to client (non-blocking)
+    resend.emails.send({
+      from: 'Dentcraft <noreply@dentcraft.ro>',
+      html: callbackConfirmationEmail({
+        name: data.name,
+      }),
+      subject: 'Am primit cererea ta de programare - Dentcraft',
+      to: data.email,
+    }).catch((err) => {
+      console.error('Failed to send callback confirmation email:', err)
+    })
+
+    // Add contact to Resend for marketing (non-blocking)
+    addContactToResend(data.email, data.name, 'callback').catch(() => {})
 
     return NextResponse.json({
       message: 'Callback request sent successfully!',
