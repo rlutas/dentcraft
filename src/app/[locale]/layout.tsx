@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing'
 import { generateRootMetadata, type Locale } from '@/lib/seo'
 import { getOrganizationSchema, getWebSiteSchema } from '@/lib/schema'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 import { Header, Footer } from '@/components/layout'
 import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
 import '@/styles/globals.css'
@@ -94,6 +95,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <LazyClientComponents />
           </div>
           <SpeedInsights />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>

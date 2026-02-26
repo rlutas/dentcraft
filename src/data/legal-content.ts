@@ -53,7 +53,7 @@ export const legalContent: LegalContent = {
     privacy: {
       id: 'privacy',
       title: 'Politica de Confidentialitate',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Introducere</h2>
 <p>DentCraft SRL, cu sediul in Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania (denumita in continuare "Clinica", "noi"), se angajeaza sa protejeze confidentialitatea datelor dumneavoastra personale in conformitate cu Regulamentul General privind Protectia Datelor (GDPR - Regulamentul UE 2016/679) si legislatia nationala in vigoare.</p>
@@ -116,6 +116,8 @@ export const legalContent: LegalContent = {
 <li><strong>Furnizori de servicii IT:</strong> hosting, mentenanta site, servicii email (cu acorduri de prelucrare a datelor)</li>
 <li><strong>Autoritati publice:</strong> cand legea impune acest lucru</li>
 <li><strong>Google Analytics:</strong> date anonimizate despre utilizarea site-ului</li>
+<li><strong>Vercel Analytics:</strong> date anonimizate privind vizitele pe site (numar de vizitatori, pagini vizitate, tara de origine). Nu utilizeaza cookie-uri si nu colecteaza date personale identificabile.</li>
+<li><strong>Vercel Speed Insights:</strong> masurarea performantei reale a site-ului (Core Web Vitals). Nu utilizeaza cookie-uri si nu colecteaza date personale.</li>
 </ul>
 
 <h2>8. Drepturile dumneavoastra</h2>
@@ -163,7 +165,7 @@ export const legalContent: LegalContent = {
     cookies: {
       id: 'cookies',
       title: 'Politica de Cookie-uri',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Ce sunt cookie-urile?</h2>
 <p>Cookie-urile sunt fisiere mici de text stocate pe dispozitivul dumneavoastra (computer, telefon, tableta) atunci cand vizitati site-ul nostru web. Acestea ne ajuta sa va oferim o experienta mai buna de navigare si sa intelegem cum este utilizat site-ul.</p>
@@ -238,7 +240,7 @@ export const legalContent: LegalContent = {
 <li><strong>Google Tag Manager:</strong> gestionarea scripturilor de tracking</li>
 <li><strong>Google Analytics 4:</strong> analiza traficului site-ului</li>
 <li><strong>Google Maps:</strong> afisarea hartii cu locatia clinicii pe pagina de contact</li>
-<li><strong>Vercel:</strong> hosting si analiza performantei</li>
+<li><strong>Vercel:</strong> hosting, Vercel Analytics (date anonimizate privind vizitele) si Vercel Speed Insights (masurarea performantei). Aceste servicii nu utilizeaza cookie-uri si nu colecteaza date personale identificabile.</li>
 </ul>
 
 <h2>5. Transferul datelor</h2>
@@ -259,7 +261,7 @@ export const legalContent: LegalContent = {
     terms: {
       id: 'terms',
       title: 'Termeni si Conditii',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Informatii generale</h2>
 <p>Prezentii Termeni si Conditii reglementeaza utilizarea site-ului web www.dentcraft.ro si furnizarea serviciilor stomatologice de catre DentCraft SRL, cu sediul in Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania.</p>
@@ -369,7 +371,7 @@ export const legalContent: LegalContent = {
     privacy: {
       id: 'privacy',
       title: 'Privacy Policy',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Introduction</h2>
 <p>DentCraft SRL, located at Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania (hereinafter "the Clinic", "we"), is committed to protecting the privacy of your personal data in accordance with the General Data Protection Regulation (GDPR - EU Regulation 2016/679) and applicable national legislation.</p>
@@ -432,6 +434,8 @@ export const legalContent: LegalContent = {
 <li><strong>IT service providers:</strong> hosting, website maintenance, email services (with data processing agreements)</li>
 <li><strong>Public authorities:</strong> when required by law</li>
 <li><strong>Google Analytics:</strong> anonymized data about website usage</li>
+<li><strong>Vercel Analytics:</strong> anonymized data about site visits (visitor count, pages visited, country of origin). Does not use cookies and does not collect personally identifiable data.</li>
+<li><strong>Vercel Speed Insights:</strong> real-world site performance measurement (Core Web Vitals). Does not use cookies and does not collect personal data.</li>
 </ul>
 
 <h2>8. Your Rights</h2>
@@ -479,7 +483,7 @@ export const legalContent: LegalContent = {
     cookies: {
       id: 'cookies',
       title: 'Cookie Policy',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. What Are Cookies?</h2>
 <p>Cookies are small text files stored on your device (computer, phone, tablet) when you visit our website. They help us provide a better browsing experience and understand how the site is used.</p>
@@ -554,7 +558,7 @@ export const legalContent: LegalContent = {
 <li><strong>Google Tag Manager:</strong> management of tracking scripts</li>
 <li><strong>Google Analytics 4:</strong> website traffic analysis</li>
 <li><strong>Google Maps:</strong> displaying the clinic location map on the contact page</li>
-<li><strong>Vercel:</strong> hosting and performance analytics</li>
+<li><strong>Vercel:</strong> hosting, Vercel Analytics (anonymized visit data) and Vercel Speed Insights (performance measurement). These services do not use cookies and do not collect personally identifiable data.</li>
 </ul>
 
 <h2>5. Data Transfers</h2>
@@ -575,7 +579,7 @@ export const legalContent: LegalContent = {
     terms: {
       id: 'terms',
       title: 'Terms & Conditions',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. General Information</h2>
 <p>These Terms and Conditions govern the use of the website www.dentcraft.ro and the provision of dental services by DentCraft SRL, located at Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania.</p>
@@ -685,7 +689,7 @@ export const legalContent: LegalContent = {
     privacy: {
       id: 'privacy',
       title: 'Adatvedelmi Szabalyzat',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Bevezetes</h2>
 <p>A DentCraft SRL (szekhely: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania, a tovabbiakban "Klinika", "mi") elkotelezett az On szemelyes adatainak vedelme irant az Altalanos Adatvedelmi Rendelettel (GDPR - EU 2016/679 rendelet) es a hatalyos nemzeti jogszabalyokkal osszhangban.</p>
@@ -748,6 +752,8 @@ export const legalContent: LegalContent = {
 <li><strong>IT-szolgaltatok:</strong> tarhelykezeles, weboldal-karbantartas, email-szolgaltatasok (adatkezelesi megallaodasokkal)</li>
 <li><strong>Hatosagok:</strong> amikor a torveny ezt eloirja</li>
 <li><strong>Google Analytics:</strong> anonimizalt adatok a weboldal hasznalatarol</li>
+<li><strong>Vercel Analytics:</strong> anonimizalt adatok a weboldal latogatasairol (latogatoszam, megtekintett oldalak, szarmazasi orszag). Nem hasznal sutiket es nem gyujt szemelyazonositasra alkalmas adatokat.</li>
+<li><strong>Vercel Speed Insights:</strong> a weboldal valos teljesitmenyenek merese (Core Web Vitals). Nem hasznal sutiket es nem gyujt szemelyes adatokat.</li>
 </ul>
 
 <h2>8. Az On jogai</h2>
@@ -795,7 +801,7 @@ export const legalContent: LegalContent = {
     cookies: {
       id: 'cookies',
       title: 'Suti Szabalyzat',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Mik azok a sutik?</h2>
 <p>A sutik kis szoveges fajlok, amelyeket az On eszkozén (szamitogep, telefon, tablet) tarolunk, amikor meglátogatja weboldalunkat. Segitenek jobb böngeszesi elmenyt nyujtani es megerteni, hogyan hasznaljak a webhelyet.</p>
@@ -870,7 +876,7 @@ export const legalContent: LegalContent = {
 <li><strong>Google Tag Manager:</strong> kovetesi parancsfajlok kezelese</li>
 <li><strong>Google Analytics 4:</strong> weboldal forgalmi elemzes</li>
 <li><strong>Google Maps:</strong> a klinika helyszinenek megjelenítese a kapcsolat oldalon</li>
-<li><strong>Vercel:</strong> tarhelykezeles es teljesitmeny elemzes</li>
+<li><strong>Vercel:</strong> tarhelykezeles, Vercel Analytics (anonimizalt latogatasi adatok) es Vercel Speed Insights (teljesitmenymeres). Ezek a szolgaltatasok nem hasznalnak sutiket es nem gyujtenek szemelyazonositasra alkalmas adatokat.</li>
 </ul>
 
 <h2>5. Adattovabbitas</h2>
@@ -891,7 +897,7 @@ export const legalContent: LegalContent = {
     terms: {
       id: 'terms',
       title: 'Felhasznalasi Feltetelek',
-      lastUpdated: '2025-01-15',
+      lastUpdated: '2026-02-26',
       content: `
 <h2>1. Altalanos informaciok</h2>
 <p>Jelen Felhasznalasi Feltételek a www.dentcraft.ro weboldal hasznalatat es a DentCraft SRL (szekhely: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania) altal nyujtott fogaszati szolgaltatasok felteteleit szabalyozzak.</p>
