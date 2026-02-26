@@ -14,7 +14,11 @@ export async function addContactToResend(
   source: 'callback' | 'contact' | 'price-estimate'
 ): Promise<void> {
   const resendApiKey = process.env['RESEND_API_KEY']
-  if (!resendApiKey) return
+  const audienceId = process.env['RESEND_AUDIENCE_ID']
+  if (!resendApiKey || !audienceId) {
+    console.warn('Resend contact not added: missing RESEND_API_KEY or RESEND_AUDIENCE_ID')
+    return
+  }
 
   try {
     const resend = new Resend(resendApiKey)
@@ -24,18 +28,20 @@ export async function addContactToResend(
     const firstName = nameParts[0] || ''
     const lastName = nameParts.slice(1).join(' ') || undefined
 
-    await resend.contacts.create({
+    const { data, error } = await resend.contacts.create({
+      audienceId,
       email,
       firstName,
       ...(lastName ? { lastName } : {}),
       unsubscribed: false,
-      properties: {
-        source,
-        addedAt: new Date().toISOString(),
-      },
     })
+
+    if (error) {
+      console.error('Resend contacts.create error:', error)
+    } else {
+      console.warn('Contact added to Resend:', data?.id, email, source)
+    }
   } catch (error) {
-    // Don't let contact creation failure affect form submission
     console.error('Failed to add contact to Resend:', error)
   }
 }
