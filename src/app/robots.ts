@@ -1,20 +1,15 @@
 import type { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+  // TEMPORARY: Block all crawlers while site is under construction
+  // TODO: Revert to allow '/' when site is ready for launch
   return {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/studio/', '/api/'],
-      },
-      // Block AI training crawlers (not search crawlers)
-      {
-        userAgent: ['CCBot', 'Bytespider', 'cohere-ai'],
         disallow: '/',
       },
     ],
-    sitemap: 'https://www.dentcraft.ro/sitemap.xml',
-    host: 'https://www.dentcraft.ro',
+    // Sitemap and host removed while under construction
   }
 }

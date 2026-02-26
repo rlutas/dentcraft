@@ -162,7 +162,7 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     locale,
     path = '/',
     slug,
-    noIndex = false,
+    noIndex: _noIndex = false, // TEMPORARY: renamed while all pages are noindex
     keywords,
     ogType = 'website',
     publishedTime,
@@ -231,12 +231,13 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     metadata.keywords = keywords
   }
 
-  // Add robots directive if noIndex
-  if (noIndex) {
-    metadata.robots = {
-      index: false,
-      follow: false,
-    }
+  // TEMPORARY: noindex ALL pages while site is under construction
+  // TODO: Revert to conditional noIndex check when site is ready for launch
+  // Original code:
+  // if (noIndex) { metadata.robots = { index: false, follow: false } }
+  metadata.robots = {
+    index: false,
+    follow: false,
   }
 
   return metadata
@@ -408,9 +409,11 @@ export function generateRootMetadata(locale: Locale): Metadata {
       description: localeDescriptions[locale] || localeDescriptions['ro'],
       images: [`${siteConfig.baseUrl}${siteConfig.defaultOgImage}`],
     },
+    // TEMPORARY: noindex while site is under construction
+    // TODO: Revert to index: true, follow: true when site is ready for launch
     robots: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
     },
   }
 }
