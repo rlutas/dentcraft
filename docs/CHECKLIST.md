@@ -1,6 +1,6 @@
 # CHECKLIST MASTER - Dentcraft.ro
 
-> **Status:** 🟢 In lucru - SEO optimized, email marketing setup, analytics installed
+> **Status:** 🟢 In lucru - SEO optimized, PageSpeed optimized (94/93/100/100), email marketing setup, analytics installed
 > **Ultima actualizare:** 26 Februarie 2026
 
 ## ACTUALIZARE 26 FEBRUARIE 2026 - SEO + ANALYTICS + EMAIL MARKETING
@@ -13,6 +13,16 @@
 - [x] Added aria-labels to YouTube video reel links
 - [x] Converted non-composited animations to GPU-composited (transform, filter, opacity)
 - [x] Accessibility score: 93 → 100
+- [x] Full PSI mobile analysis via Playwright (Perf 94, A11y 93, BP 100, SEO 100)
+- [x] Fixed `.btn` CSS non-composited animation: `transition: all` → specific compositable properties
+- [x] Updated BookingButton component transitions (removed `transition-all`)
+- [x] Added browserslist to `package.json` (last 2 versions of modern browsers) to reduce legacy polyfills
+- [x] Confirmed deployed accessibility fixes (contrast 6.6:1 WCAG AA, aria-labels, GPU animations)
+- **Known limitations (3rd party / framework — cannot fix):**
+  - Unused JS from GTM (118+60 KiB) — 3rd party
+  - Render-blocking CSS (23+2.4 KiB) — Next.js default
+  - Legacy JS polyfills (12 KiB) — from dependencies
+  - CLS 0.065 — under "Good" threshold, caused by font swap
 
 ### Vercel Domain & Analytics
 - [x] Middleware 301 redirect: dentcraft.vercel.app → www.dentcraft.ro
@@ -491,6 +501,12 @@
 | 24 Feb | Content gap analysis completed, WhatsApp message sent to Dr. Petric | ✅ |
 | 24 Feb | New CSS animations: team-photo-entrance, team-photo-glow, team-badge-pop | ✅ |
 | 24 Feb | Hero redesign attempted with AI photo + animated circle (reverted) | -- |
+| 26 Feb | **PageSpeed Part 2**: Full PSI analysis (Perf 94, A11y 93, BP 100, SEO 100) | ✅ |
+| 26 Feb | Fixed `.btn` non-composited animation (specific transition properties) | ✅ |
+| 26 Feb | Updated BookingButton transitions (removed `transition-all`) | ✅ |
+| 26 Feb | Added browserslist config to `package.json` (modern browsers only) | ✅ |
+| 26 Feb | Confirmed deployed a11y fixes: contrast 6.6:1, aria-labels, GPU animations | ✅ |
+| 26 Feb | Identified unfixable PSI items: GTM unused JS, Next.js CSS, polyfills, CLS | -- |
 | 3 Feb | **Contact Page Redesign** - Premium redesign complet | ✅ |
 | 3 Feb | → Hero section cu floating orbs și animații decorative | ✅ |
 | 3 Feb | → Quick contact cards (Phone, Email, WhatsApp) cu hover effects și apeluri directe | ✅ |
@@ -537,10 +553,11 @@ FAZA 3 [########__]  80% -- Sanity CMS (schemas done, studio configured)
 FAZA 4 [##########] 100% -- Pagini
        +-- Homepage, Contact, Team listing/profiles, Pricing, Gallery, Blog, Services, Testimonials
        +-- Legal pages (privacy, cookies, terms) in 3 languages ✅
-FAZA 5 [########__]  85% -- Functionalitati avansate
-       +-- SEO (sitemap, schema, hreflang, PageSpeed optimized)
+FAZA 5 [#########_]  90% -- Functionalitati avansate
+       +-- SEO (sitemap, schema, hreflang, PageSpeed fully optimized: P94/A93/BP100/SEO100)
        +-- Analytics (Vercel Analytics + Speed Insights)
        +-- Email marketing (Resend Audiences contact collection)
+       +-- PageSpeed: transitions + browserslist optimized, unfixable items documented
        +-- Remaining: GA4 property, Facebook Pixel, blog search
 ```
 

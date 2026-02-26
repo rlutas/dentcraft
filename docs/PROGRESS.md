@@ -108,11 +108,26 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 **Team Updates:**
 - Added 7th team member: Calugher Ionela (4th assistant) — photo + fallback data in `/src/lib/fallback-team.ts`
 
-**PageSpeed Insights Optimizations:**
+**PageSpeed Insights Optimizations (Part 1):**
 - Fixed WCAG contrast ratios on hero floating cards (`#8b7a68` → `#6b5a48`)
 - Added aria-labels to 3 YouTube video reel links
 - Converted non-composited animations to GPU-friendly properties: `left` → `transform: translateX()`, `box-shadow` → `filter: drop-shadow()`, merged heroCardPop + heroCardFloat keyframes
 - Result: Accessibility 93 → 100, non-composited animations 5 → 1
+
+**PageSpeed Insights Optimization (Part 2 — continued):**
+- Full PSI mobile analysis via Playwright browser automation
+- Scores: Performance 94, Accessibility 93, Best Practices 100, SEO 100
+- Fixed non-composited animation on `.btn` class: changed `transition: all 0.3s ease` to specific compositable properties (`background-color, border-color, color, transform, filter`)
+- Updated BookingButton component to use specific transition properties instead of `transition-all`
+- Added modern browserslist config to `package.json` — targets last 2 versions of Chrome, Firefox, Safari, Edge to reduce legacy polyfills
+- Confirmed already-deployed fixes: accessibility contrast (#6b5a48 on white = 6.6:1 WCAG AA), video reel aria-labels, GPU-composited animations (from commit `b55000a`)
+- **Limitations identified (3rd party / framework, can't fix):**
+  - Unused JS from GTM (118+60 KiB) — 3rd party script
+  - Render-blocking CSS (23+2.4 KiB) — Next.js default behavior
+  - Legacy JS polyfills (12 KiB) — from dependencies
+  - CLS 0.065 — under "Good" threshold (0.1), caused by font swap
+
+**Key commits (PageSpeed):** `b55000a` (accessibility+animations), `2de5d3c` (transitions+browserslist)
 
 **Vercel Domain & Analytics:**
 - Configured middleware 301 redirect: dentcraft.vercel.app → www.dentcraft.ro
@@ -317,7 +332,7 @@ docs/PROGRESS.md                             # Project status & session logs
 - Email required in all forms + Resend Audiences marketing collection
 - Vercel Analytics + Speed Insights (cookieless)
 - Domain redirect (vercel.app → www.dentcraft.ro)
-- SEO: sitemap (54+ URLs), schema markup, security headers, PageSpeed optimized
+- SEO: sitemap (54+ URLs), schema markup, security headers, PageSpeed optimized (Mobile: Perf 94, A11y 93, BP 100, SEO 100)
 - Resend email notifications for all 3 forms + user confirmations
 
 ### WAITING FOR CONTENT:
