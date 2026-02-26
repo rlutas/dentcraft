@@ -1,6 +1,6 @@
 # Dentcraft.ro - Project Status
 
-**Last updated:** 24 February 2026
+**Last updated:** 26 February 2026
 
 ---
 
@@ -14,7 +14,8 @@
 | CMS | Sanity v3 (project `4w5dvd6h`, dataset `production`) |
 | Animation | Framer Motion |
 | i18n | next-intl (ro, en, hu) |
-| Email | Resend (domain: dentcraft.ro) |
+| Email | Resend v6.7.0 (domain: dentcraft.ro) |
+| Analytics | Vercel Analytics + Vercel Speed Insights |
 | Icons | Lucide React + 110 custom dental SVGs in `/public/icons/` |
 
 ---
@@ -38,7 +39,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 | Route | Status | Key Features |
 |-------|--------|--------------|
-| `/` (Homepage) | Done | Hero, Services grid, Why Us, Team (6 real photos), Google Reviews (34 with text), Before/After gallery, Video Testimonials, Footer CTA |
+| `/` (Homepage) | Done | Hero, Services grid, Why Us, Team (7 real photos), Google Reviews (34 with text), Before/After gallery, Video Testimonials, Footer CTA |
 | `/echipa` | Done | Team listing with premium cards, ScrollReveal animations |
 | `/echipa/[slug]` | Done | Redesigned 24 Feb: dark editorial hero, animated photo entrance, breadcrumbs, Video Shorts placeholder, "Parcurs Profesional" timeline, stats row, TeamMemberBookingButton (doctor pre-selection), mobile-first layout |
 | `/servicii` | Done | Service categories grid (9 services) |
@@ -62,8 +63,8 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 |-----------|----------|---------|
 | PriceCalculator | `/src/components/features/PriceCalculator/` | 3-step wizard: ServiceSelect -> OptionsForm (quantity, material) -> Results with price range. 6 sub-components. |
 | TabbedPriceList | `/src/components/features/TabbedPriceList/` | Animated tabs with custom dental SVG icons per category. Fetches from Sanity; falls back to 81 hardcoded treatments. |
-| PriceEstimatePopup | Part of PriceCalculator | Lead capture form (name, phone) with price context. Sends via Resend email. Portal-rendered modal. |
-| CallbackPopup | `/src/components/features/CallbackPopup/` | Appointment request modal (name, phone, service dropdown, time preference). Focus trap, ESC close, i18n. Triggered from Header/Mobile CTA buttons. Supports `defaultDoctor` prop for pre-selection. |
+| PriceEstimatePopup | Part of PriceCalculator | Lead capture form (name, phone, email — all required). Sends via Resend email + adds to Resend Audiences. Portal-rendered modal. |
+| CallbackPopup | `/src/components/features/CallbackPopup/` | Appointment request modal (name, phone, email — all required, service dropdown, time preference). Focus trap, ESC close, i18n. Triggered from Header/Mobile CTA buttons. Supports `defaultDoctor` prop for pre-selection. |
 | TeamMemberBookingButton | `/src/app/[locale]/echipa/[slug]/page.tsx` | Context-aware booking button: doctors get popup pre-filled with their name; assistants get general popup. |
 | WhatsAppButton | `/src/components/features/WhatsAppButton/` | Floating button with wrapper for client-side rendering |
 | GoogleReviewsSlider | `/src/components/features/GoogleReviewsSlider/` | Compact trust badge (4.9 rating), 34 text reviews, inline action buttons |
@@ -76,7 +77,9 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 | Route | Purpose |
 |-------|---------|
-| `/api/callback` | Callback request form submission with rate limiting (5 req/min) and Resend email |
+| `/api/callback` | Callback request form submission with rate limiting (5 req/min), Resend email + Resend Audiences contact collection |
+| `/api/contact` | Contact form submission with file attachments, rate limiting, Resend email + Resend Audiences |
+| `/api/price-estimate` | Price estimate lead form, rate limiting, Resend email + Resend Audiences |
 
 ### Cross-Cutting
 
@@ -85,12 +88,61 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 - **ScrollReveal animations** on all homepage sections with staggered delays
 - **Mobile-responsive** design throughout (tested on all pages)
 - **Sanity CMS** schemas: Services, Team Members, Testimonials, Before/After Cases, Blog Posts, Prices, Settings
-- **Fallback data** for team (`/src/lib/fallback-team.ts`), services (`/src/lib/fallback-services.ts`), and prices (inline in TabbedPriceList) when Sanity has insufficient content
+- **Fallback data** for team (`/src/lib/fallback-team.ts` — 7 members), services (`/src/lib/fallback-services.ts`), and prices (inline in TabbedPriceList) when Sanity has insufficient content
+- **Email marketing** — all form submissions auto-add contacts to Resend Audiences (via `/src/lib/resend-contacts.ts`)
+- **Legal pages** — Privacy Policy, Cookie Policy, Terms & Conditions in 3 languages with card-style quick links
+- **Cookie consent** — GDPR-compliant banner with Accept All / Essential Only / Customize
+- **Vercel Analytics + Speed Insights** — cookieless, placed outside NextIntlClientProvider
+- **Domain redirect** — dentcraft.vercel.app → www.dentcraft.ro (301 via middleware)
+- **Security headers** — configured in next.config.ts
+- **Hreflang** — locale-aware canonical tags for all pages
+- **Sitemap** — 54+ URLs including all service pages and legal pages
 - **Gallery photos data** (`/src/data/gallery-photos.ts`) — static list of clinic/team photos, user adds images to `/public/images/gallery/` and updates the data file
 
 ---
 
 ## Session Log
+
+### 26 February 2026
+
+**Team Updates:**
+- Added 7th team member: Calugher Ionela (4th assistant) — photo + fallback data in `/src/lib/fallback-team.ts`
+
+**PageSpeed Insights Optimizations:**
+- Fixed WCAG contrast ratios on hero floating cards (`#8b7a68` → `#6b5a48`)
+- Added aria-labels to 3 YouTube video reel links
+- Converted non-composited animations to GPU-friendly properties: `left` → `transform: translateX()`, `box-shadow` → `filter: drop-shadow()`, merged heroCardPop + heroCardFloat keyframes
+- Result: Accessibility 93 → 100, non-composited animations 5 → 1
+
+**Vercel Domain & Analytics:**
+- Configured middleware 301 redirect: dentcraft.vercel.app → www.dentcraft.ro
+- Added `host` directive to robots.ts
+- Installed `@vercel/speed-insights` v1.3.1 + `<SpeedInsights />` in layout
+- Installed `@vercel/analytics` v1.6.1 + `<Analytics />` in layout
+- Moved both components outside `NextIntlClientProvider` for proper mobile data collection
+
+**Legal & Privacy Updates:**
+- Updated Privacy Policy in all 3 languages (ro/en/hu) to mention Vercel Analytics and Speed Insights as cookieless services
+- Updated Cookie Policy in all 3 languages with Vercel service descriptions
+- Updated `lastUpdated` dates to 2026-02-26 across all legal pages
+- Redesigned legal page quick links section: card-style links with Shield/Cookie/FileText icons, hover effects, "Inapoi acasa" link
+
+**ESLint Fixes (deployment was failing):**
+- Fixed `NextRequest` type import in middleware.ts (`@typescript-eslint/consistent-type-imports`)
+- Fixed import order violations across 5 files
+- Fixed `jsx-sort-props` warnings (callbacks after other props)
+
+**Email Marketing & Forms:**
+- Made email field **required** in CallbackPopup and PriceEstimatePopup (was optional)
+- Created `/src/lib/resend-contacts.ts` — shared utility for Resend Audiences integration
+- All 3 API routes (callback, contact, price-estimate) now auto-add contacts to Resend Audience
+- Requires `RESEND_AUDIENCE_ID` env variable (set on Vercel)
+- Updated translations in ro/en/hu: removed "(optional)" from email labels, added `emailRequired` error messages
+
+**SEO (from previous sessions, now tracked):**
+- Comprehensive SEO audit fixes: security headers, schemas, i18n, legal pages
+- Added 54 missing URLs to sitemap (services + legal pages)
+- Hreflang canonical tags made locale-aware (critical SEO fix)
 
 ### 24 February 2026
 
@@ -152,9 +204,9 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| Resend email domain (dentcraft.ro) not verified | Medium | Emails fail in dev; needs DNS verification for production |
-| ESLint warnings | Low | Import order, jsx-sort-props in several files |
 | Turbopack cache corruption | Low | Workaround: `rm -rf .next` and restart dev server |
+| GA4 property not configured | Medium | GTM integration exists but no GA4 property ID set |
+| Facebook Pixel not set up | Low | Not implemented yet |
 
 ---
 
@@ -162,14 +214,14 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 See also: `/docs/content-needs-dr-petric.md` for the complete list sent to Dr. Petric.
 
-- [ ] **CV-uri echipa** (all 6 members) - studies, specializations, courses/certifications, experience, years of practice
+- [ ] **CV-uri echipa** (all 7 members) - studies, specializations, courses/certifications, experience, years of practice
 - [ ] **Video Reels echipa** - Short videos (30-60s) of each team member, uploaded to YouTube Shorts
 - [ ] **Testimoniale video pacienti** - Short patient testimonial videos (30-60s), YouTube Shorts, with name + treatment text
 - [ ] **Continut blog** - Articles about treatments, dental tips. Text + photos. 3-5 articles to start.
 - [ ] **Poze Before/After** - Pairs (before + after) + description: treatment type, duration, etc. (10-15 cases)
 - [ ] **Lista preturi actualizata** - CSV exported at `/preturi-dentcraft.csv` (80 treatments, 7 categories). Dr. Petric needs to verify and return corrections.
 - [x] Clinic photos (reception, treatment rooms) -- 12 photos added, folder ready at `/public/images/gallery/` for more
-- [x] Team photos (all 6 members with transparent PNGs) -- completed 19 Feb 2026
+- [x] Team photos (all 7 members with transparent PNGs) -- completed 19 Feb 2026, Calugher Ionela added 26 Feb
 - [ ] Logo vector (SVG/PNG)
 - [ ] Google My Business access
 - [ ] Social media links (Instagram, Facebook)
@@ -180,16 +232,21 @@ See also: `/docs/content-needs-dr-petric.md` for the complete list sent to Dr. P
 
 | Feature | Priority | Notes |
 |---------|----------|-------|
-| Vercel deployment | High | Environment variables, preview deployments |
-| Cookie consent banner | High | GDPR compliance |
-| Legal pages (privacy, cookies, terms) | High | Content needed |
-| FAQ page with accordion | Medium | Content needed |
-| Blog individual article pages | Medium | Sanity content needed |
-| Google Analytics (GA4) integration | Medium | Property ID needed |
+| Google Analytics (GA4) integration | Medium | GTM exists, needs GA4 property ID |
+| Facebook Pixel | Low | Not implemented |
+| Blog search | Low | Blog listing works, search not built |
+| Blog social share buttons | Low | Not implemented |
 | Video Shorts per team member | Medium | Placeholder ready in `/echipa/[slug]`, needs YouTube URLs from client |
 | Gallery photos per team member | Medium | `PhotoGalleryPlaceholder` shows "coming soon", needs per-member photo arrays |
-| Newsletter signup | Low | Form + API route |
-| Process / How We Work section | Low | Treatment steps visual |
+| Newsletter signup | Low | Form + API route (Resend Audiences ready) |
+| Error monitoring (Sentry) | Low | Not set up |
+
+### Already Completed (previously listed as TODO)
+- ~~Vercel deployment~~ — DONE (deployed, env vars configured)
+- ~~Cookie consent banner~~ — DONE (CookieConsent component with 3 options)
+- ~~Legal pages~~ — DONE (privacy, cookies, terms in 3 languages)
+- ~~Blog individual article pages~~ — DONE (Sanity PortableText renderer)
+- ~~FAQ page with accordion~~ — DONE (FAQ accordion in service pages)
 
 ---
 
@@ -210,7 +267,8 @@ src/components/layout/Header.tsx             # Header with services dropdown
 src/components/layout/Footer.tsx             # Footer with i18n routing
 src/components/layout/MobileMenu.tsx         # Mobile menu with services accordion
 src/components/features/CallbackPopup/       # Booking popup (supports defaultDoctor prop)
-src/lib/fallback-team.ts                     # Team fallback data (6 members)
+src/lib/fallback-team.ts                     # Team fallback data (7 members)
+src/lib/resend-contacts.ts                   # Resend Audiences contact collection utility
 src/lib/fallback-services.ts                 # Services fallback data (9 services)
 src/lib/constants/contact.ts                 # Contact info constants
 src/lib/sanity/queries.ts                    # All Sanity GROQ queries
@@ -242,18 +300,25 @@ docs/PROGRESS.md                             # Project status & session logs
 
 ### COMPLETE:
 - Homepage with all sections (hero, services, why us, team, reviews, before/after preview, video reels placeholder, footer)
-- Team listing page (`/echipa`)
+- Team listing page (`/echipa`) — 7 members with real photos
 - Individual team member profiles (`/echipa/[slug]`) - redesigned 24 Feb
-- Pricing page with calculator (`/preturi`) - 80 treatments, 7 categories
+- Pricing page with calculator (`/preturi`) - 81 treatments, 7 categories
 - Gallery page (`/galerie`) - slider component ready, needs real cases
 - Blog infrastructure (`/blog`) - ready, needs content
 - Testimonials page (`/testimoniale`) - ready for video testimonials
-- Contact page with form
-- 3-language support (ro/en/hu)
+- Contact page with form + file upload
+- Legal pages (privacy, cookies, terms) in 3 languages — redesigned quick links
+- Cookie consent banner (GDPR: Accept All / Essential Only / Customize)
+- 3-language support (ro/en/hu) with hreflang tags
 - Google Reviews (40 real reviews, 34 with text)
 - Responsive design (mobile + desktop)
 - ScrollReveal animations throughout
 - CallbackPopup with doctor pre-selection
+- Email required in all forms + Resend Audiences marketing collection
+- Vercel Analytics + Speed Insights (cookieless)
+- Domain redirect (vercel.app → www.dentcraft.ro)
+- SEO: sitemap (54+ URLs), schema markup, security headers, PageSpeed optimized
+- Resend email notifications for all 3 forms + user confirmations
 
 ### WAITING FOR CONTENT:
 - Team CVs (for accurate profile data)

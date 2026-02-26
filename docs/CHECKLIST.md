@@ -1,7 +1,51 @@
 # CHECKLIST MASTER - Dentcraft.ro
 
-> **Status:** 🟢 In lucru - Team profile pages redesigned, pricing CSV exported, content gaps analyzed
-> **Ultima actualizare:** 24 Februarie 2026
+> **Status:** 🟢 In lucru - SEO optimized, email marketing setup, analytics installed
+> **Ultima actualizare:** 26 Februarie 2026
+
+## ACTUALIZARE 26 FEBRUARIE 2026 - SEO + ANALYTICS + EMAIL MARKETING
+
+### Team
+- [x] Added 7th team member: Calugher Ionela (4th assistant) — photo + fallback data
+
+### PageSpeed Insights Optimizations
+- [x] Fixed WCAG contrast ratios on hero floating cards
+- [x] Added aria-labels to YouTube video reel links
+- [x] Converted non-composited animations to GPU-composited (transform, filter, opacity)
+- [x] Accessibility score: 93 → 100
+
+### Vercel Domain & Analytics
+- [x] Middleware 301 redirect: dentcraft.vercel.app → www.dentcraft.ro
+- [x] `host` directive in robots.ts
+- [x] Installed `@vercel/speed-insights` v1.3.1
+- [x] Installed `@vercel/analytics` v1.6.1
+- [x] Moved SpeedInsights/Analytics outside NextIntlClientProvider for proper mobile tracking
+
+### Legal & Privacy
+- [x] Updated Privacy Policy (ro/en/hu) — added Vercel Analytics + Speed Insights as cookieless services
+- [x] Updated Cookie Policy (ro/en/hu) — added Vercel service descriptions
+- [x] Updated lastUpdated dates to 2026-02-26
+- [x] Redesigned legal page quick links: card-style with icons (Shield, Cookie, FileText), hover effects
+
+### ESLint Fixes (deployment was failing)
+- [x] Fixed `NextRequest` type import in middleware.ts
+- [x] Fixed import order violations (5 files)
+- [x] Fixed `jsx-sort-props` warnings
+
+### Email Marketing & Forms
+- [x] Made email **required** in CallbackPopup (was optional)
+- [x] Made email **required** in PriceEstimatePopup (was optional)
+- [x] Created `/src/lib/resend-contacts.ts` — Resend Audiences integration
+- [x] All 3 API routes add contacts to Resend Audience automatically
+- [x] `RESEND_AUDIENCE_ID` env var configured on Vercel
+- [x] Updated translations (ro/en/hu): removed "(optional)", added emailRequired errors
+
+### SEO (tracked from previous sessions)
+- [x] Comprehensive SEO audit: security headers, schemas, i18n, legal pages
+- [x] Added 54 missing URLs to sitemap
+- [x] Hreflang canonical tags made locale-aware
+
+---
 
 ## ACTUALIZARE 24 FEBRUARIE 2026 - TEAM PROFILES + CONTENT PREP
 
@@ -137,8 +181,8 @@
 - [ ] Logo vector (SVG/PNG)
 - [x] Lista preturi (placeholder) -- exportat CSV 24 Feb 2026, asteptam verificare
 - [x] Poze clinica -- 12 poze adaugate
-- [x] Poze echipa -- 19 Feb 2026 - 6 membri cu transparent PNGs
-- [ ] CV-uri echipa (studii, specializari, cursuri, experienta) - toate 6 persoane
+- [x] Poze echipa -- 19 Feb 2026 - 7 membri cu transparent PNGs (Calugher Ionela added 26 Feb)
+- [ ] CV-uri echipa (studii, specializari, cursuri, experienta) - toate 7 persoane
 - [ ] Before/After (10-15 cazuri)
 - [ ] Video testimoniale pacienti
 - [ ] Video Reels echipa (YouTube Shorts)
@@ -237,7 +281,7 @@
 - [x] Features grid (ServicesGrid)
 
 ### 2.4 Feature Components 🟡
-- [x] Callback request popup (form: name, phone, service, time) ✅ 3 Feb 2026
+- [x] Callback request popup (form: name, phone, email, service, time) ✅ 3 Feb 2026, email made required 26 Feb
   - [x] Form validation (client-side)
   - [x] Success state cu auto-close
   - [x] i18n support (RO/EN/HU)
@@ -248,7 +292,7 @@
   - [x] Integrated în Header CTA
   - [x] Integrated în Mobile Menu CTA
 - [x] WhatsApp floating button -- implementat
-- [ ] Cookie consent banner
+- [x] Cookie consent banner ✅ (CookieConsent component: Accept All / Essential Only / Customize)
 - [x] Google Reviews slider (40 reviews, marquee animation) -- implementat
 - [ ] Social share buttons
 - [x] Language switcher (dropdown cu flags RO/EN/HU)
@@ -364,10 +408,11 @@
 - [x] Traduceri complete RO/EN/HU (incluzând file upload keys)
 - [ ] Consultație Online section (optional - future)
 
-### 4.10 Legal Pages
-- [ ] /politica-confidentialitate
-- [ ] /politica-cookies
-- [ ] /termeni-conditii
+### 4.10 Legal Pages ✅
+- [x] /politica-confidentialitate — Privacy Policy in 3 languages
+- [x] /politica-cookies — Cookie Policy in 3 languages
+- [x] /termeni-conditii — Terms & Conditions in 3 languages
+- [x] Quick links redesigned with card-style icons (26 Feb)
 
 ---
 
@@ -486,11 +531,17 @@ FAZA 2 [##########] 100% -- Layout & UI Components
        +-- Header: Services dropdown + CTA popup
        +-- Footer: i18n routing fix
        +-- Mobile Menu: Services section + CTA popup
-       +-- Callback Popup: Form complet cu validation + defaultDoctor
-FAZA 3 [__________]   0% -- Sanity CMS
-FAZA 4 [########__]  80% -- Pagini
-       +-- Homepage, Contact, Team listing, Team profiles, Pricing, Gallery, Blog, Services, Testimonials
-       +-- Remaining: Legal pages, FAQ
+       +-- Callback Popup: Form complet cu validation + defaultDoctor + email required
+       +-- Cookie Consent: Accept All / Essential Only / Customize
+FAZA 3 [########__]  80% -- Sanity CMS (schemas done, studio configured)
+FAZA 4 [##########] 100% -- Pagini
+       +-- Homepage, Contact, Team listing/profiles, Pricing, Gallery, Blog, Services, Testimonials
+       +-- Legal pages (privacy, cookies, terms) in 3 languages ✅
+FAZA 5 [########__]  85% -- Functionalitati avansate
+       +-- SEO (sitemap, schema, hreflang, PageSpeed optimized)
+       +-- Analytics (Vercel Analytics + Speed Insights)
+       +-- Email marketing (Resend Audiences contact collection)
+       +-- Remaining: GA4 property, Facebook Pixel, blog search
 ```
 
 ## REZUMAT SESIUNE 3 FEBRUARIE 2026 - COMPLET
