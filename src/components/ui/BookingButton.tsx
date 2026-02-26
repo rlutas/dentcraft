@@ -49,7 +49,7 @@ export function BookingButton({
   const buttonText = children || t('bookAppointment')
 
   // Base button styles
-  const baseStyles = 'inline-flex items-center justify-center gap-3 font-semibold transition-all duration-300'
+  const baseStyles = 'inline-flex items-center justify-center gap-3 font-semibold transition-[background-color,border-color,color,transform,filter] duration-300'
 
   // Variant styles
   const variantStyles = {
