@@ -16,8 +16,8 @@ function AccordionItem({ title, isOpen, onToggle, children }: AccordionItemProps
       <button
         aria-expanded={isOpen}
         className="w-full flex items-center justify-between py-5 text-left text-body-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors"
-        onClick={onToggle}
         type="button"
+        onClick={onToggle}
       >
         <span>{title}</span>
         <ChevronDown
@@ -78,10 +78,10 @@ export function Accordion({ items, allowMultiple = false, defaultOpenIndex }: Ac
     <div className="divide-y-0">
       {items.map((item, index) => (
         <AccordionItem
-          key={item.id}
           isOpen={openIndexes.has(index)}
-          onToggle={() => handleToggle(index)}
+          key={item.id}
           title={item.title}
+          onToggle={() => handleToggle(index)}
         >
           {item.content}
         </AccordionItem>

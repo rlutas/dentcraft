@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import CallbackPopup from '@/components/features/CallbackPopup'
 
 interface TeamMemberBookingButtonProps {
@@ -40,18 +40,18 @@ export function TeamMemberBookingButton({
   return (
     <>
       <button
+        className={className || baseClassName}
         type="button"
         onClick={() => setIsPopupOpen(true)}
-        className={className || baseClassName}
       >
         {t('bookAppointment')}
         <ArrowRight className="w-5 h-5" />
       </button>
 
       <CallbackPopup
+        defaultDoctor={defaultDoctor}
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
-        defaultDoctor={defaultDoctor}
       />
     </>
   )

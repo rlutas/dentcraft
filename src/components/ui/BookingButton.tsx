@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import CallbackPopup from '@/components/features/CallbackPopup'
 import { cn } from '@/lib/utils'
 
@@ -76,10 +76,10 @@ export function BookingButton({
   return (
     <>
       <button
+        aria-label={ariaLabel || t('bookAppointment')}
+        className={buttonClassName}
         type="button"
         onClick={() => setIsPopupOpen(true)}
-        className={buttonClassName}
-        aria-label={ariaLabel || t('bookAppointment')}
       >
         {icon}
         {buttonText}
