@@ -41,7 +41,12 @@
   "hero": {
     "badge": "#1 Clinic in Satu Mare",
     "title": "Dental Clinic in Satu Mare, you can count on",
-    "subtitle": "Modern dental clinic with a team of 6 specialists. Implants, veneers, orthodontics and general dentistry.",
+    "subtitle": "Modern dentistry, dedicated team. We take care of your dental health.",
+    "titleBold": "Healthy Teeth",
+    "titleItalic": "bright smile",
+    "trustLabel": "Happy Patients",
+    "ctaPrimary": "Book now",
+    "ctaSecondary": "View services",
     "cta": {
       "primary": "Book appointment",
       "secondary": "Discover services"

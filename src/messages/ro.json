@@ -41,7 +41,12 @@
   "hero": {
     "badge": "Clinica #1 in Satu Mare",
     "title": "Clinica stomatologica in Satu Mare, pe care te poti baza",
-    "subtitle": "Clinica stomatologica moderna cu echipa de 6 specialisti. Implanturi, fatete, ortodontie si stomatologie generala.",
+    "subtitle": "Stomatologie moderna, echipa dedicata. Ne ocupam cu grija de sanatatea ta dentara.",
+    "titleBold": "Dinti sanatosi",
+    "titleItalic": "zambet luminos",
+    "trustLabel": "Pacienti multumiti",
+    "ctaPrimary": "Programeaza acum",
+    "ctaSecondary": "Vezi serviciile",
     "cta": {
       "primary": "Programeaza consultatie",
       "secondary": "Descopera serviciile"
