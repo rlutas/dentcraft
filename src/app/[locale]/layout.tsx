@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
@@ -48,6 +49,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale)
   const messages = await getMessages()
 
+  // Maintenance bypass: authorized users (Dr. Petric) can view the real site
+  // by visiting /api/preview?key=<PREVIEW_ACCESS_TOKEN> which sets this cookie.
+  const cookieStore = await cookies()
+  const hasPreviewCookie = cookieStore.get('dentcraft_preview')?.value === '1'
+  const showMaintenance = isMaintenanceMode && !hasPreviewCookie
+
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <head>
@@ -91,8 +98,9 @@ export default async function LocaleLayout({ children, params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteSchema()) }}
         />
         {/* TEMPORARY: Show maintenance page when NEXT_PUBLIC_MAINTENANCE_MODE=true */}
+        {/* Authorized preview: cookie set via /api/preview?key=... bypasses the gate */}
         {/* TODO: Remove this conditional when site is ready for launch (search "under construction") */}
-        {isMaintenanceMode ? (
+        {showMaintenance ? (
           <MaintenancePage />
         ) : (
           <>
