@@ -7,68 +7,68 @@ import type { GalleryPhoto } from '@/app/[locale]/galerie/GalleryPageClient'
 export const galleryPhotos: GalleryPhoto[] = [
   // Clinic interior photos
   {
-    src: '/images/clinic/clinic-1.jpg',
+    src: '/images/clinic/clinic-1.webp',
     alt: 'Receptie Clinica Dentcraft',
     category: 'clinic',
   },
   {
-    src: '/images/clinic/clinic-2.jpg',
+    src: '/images/clinic/clinic-2.webp',
     alt: 'Sala de tratament moderna',
     category: 'equipment',
   },
   {
-    src: '/images/clinic/clinic-3.jpg',
+    src: '/images/clinic/clinic-3.webp',
     alt: 'Cabinet stomatologic echipat',
     category: 'equipment',
   },
   {
-    src: '/images/clinic/clinic-4.jpg',
+    src: '/images/clinic/clinic-4.webp',
     alt: 'Interior clinica Dentcraft',
     category: 'clinic',
   },
   {
-    src: '/images/clinic/clinic-5.jpg',
+    src: '/images/clinic/clinic-5.webp',
     alt: 'Spatiu de asteptare confortabil',
     category: 'clinic',
   },
   {
-    src: '/images/clinic/clinic-6.jpg',
+    src: '/images/clinic/clinic-6.webp',
     alt: 'Echipament dentar de ultima generatie',
     category: 'equipment',
   },
   {
-    src: '/images/clinic/clinic-7.jpg',
+    src: '/images/clinic/clinic-7.webp',
     alt: 'Sala de consultatie',
     category: 'clinic',
   },
   {
-    src: '/images/clinic/clinic-8.jpg',
+    src: '/images/clinic/clinic-8.webp',
     alt: 'Cabinet stomatologic Dentcraft',
     category: 'equipment',
   },
   {
-    src: '/images/clinic/clinic-9.jpg',
+    src: '/images/clinic/clinic-9.webp',
     alt: 'Zona de sterilizare',
     category: 'equipment',
   },
   {
-    src: '/images/clinic/clinic-10.jpg',
+    src: '/images/clinic/clinic-10.webp',
     alt: 'Sala de radiologie dentara',
     category: 'equipment',
   },
   {
-    src: '/images/clinic/clinic-11.jpg',
+    src: '/images/clinic/clinic-11.webp',
     alt: 'Hol clinica Dentcraft',
     category: 'clinic',
   },
   {
-    src: '/images/clinic/toys-with-toothbrush.jpg',
+    src: '/images/clinic/toys-with-toothbrush.webp',
     alt: 'Zona copii - periuta de dinti',
     category: 'clinic',
   },
   // Team photos
   {
-    src: '/images/team-clinic.jpg',
+    src: '/images/team-clinic.webp',
     alt: 'Echipa Dentcraft',
     category: 'team',
   },

@@ -113,7 +113,7 @@ export function GalleryPageClient({
           {/* Decorative line */}
           <div className="mt-16 flex items-center gap-6">
             <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{t.casesCount.replace('{count}', String(cases.length))}</span>
+            <span className="text-white/30 text-sm">{t.casesCount}</span>
           </div>
         </div>
       </section>

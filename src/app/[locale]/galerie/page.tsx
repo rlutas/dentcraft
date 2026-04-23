@@ -94,7 +94,7 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
     before: t('gallery.before'),
     breadcrumbHome: t('breadcrumbs.home'),
     breadcrumbGallery: t('breadcrumbs.gallery'),
-    casesCount: t('gallery.casesCount'),
+    casesCount: t('gallery.casesCount', { count: cases.length }),
     clinicBadge: t('gallery.clinicBadge'),
     clinicSubtitle: t('gallery.clinicSubtitle'),
     clinicTitle: t('gallery.clinicTitle'),

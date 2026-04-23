@@ -7,13 +7,13 @@ interface ClinicSectionProps {
 }
 
 const IMG = {
-  hallway: { src: '/images/clinic/clinic-11.jpg', alt: 'clinic.images.reception' },
-  reception: { src: '/images/clinic/clinic-1.jpg', alt: 'clinic.images.waiting' },
-  treatmentMarble: { src: '/images/clinic/clinic-6.jpg', alt: 'clinic.images.treatment' },
-  sterilization: { src: '/images/clinic/clinic-10.jpg', alt: 'clinic.images.detail' },
-  waitingRoom: { src: '/images/clinic/clinic-3.jpg', alt: 'clinic.images.equipment' },
-  treatmentRoom: { src: '/images/clinic/clinic-5.jpg', alt: 'clinic.images.treatmentRoom' },
-  toysDetail: { src: '/images/clinic/toys-with-toothbrush.jpg', alt: 'clinic.images.toys' },
+  hallway: { src: '/images/clinic/clinic-11.webp', alt: 'clinic.images.reception' },
+  reception: { src: '/images/clinic/clinic-1.webp', alt: 'clinic.images.waiting' },
+  treatmentMarble: { src: '/images/clinic/clinic-6.webp', alt: 'clinic.images.treatment' },
+  sterilization: { src: '/images/clinic/clinic-10.webp', alt: 'clinic.images.detail' },
+  waitingRoom: { src: '/images/clinic/clinic-3.webp', alt: 'clinic.images.equipment' },
+  treatmentRoom: { src: '/images/clinic/clinic-5.webp', alt: 'clinic.images.treatmentRoom' },
+  toysDetail: { src: '/images/clinic/toys-with-toothbrush.webp', alt: 'clinic.images.toys' },
 }
 
 const clinicFeatures = [

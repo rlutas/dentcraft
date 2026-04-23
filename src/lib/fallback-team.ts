@@ -17,6 +17,15 @@ export type FallbackTeamMember = {
     issuer: string
     year: number
   }>
+  gallery?: Array<{
+    src: string
+    alt: string
+    position?: 'top' | 'center' | 'bottom'
+  }>
+  stats?: {
+    yearsExperience?: number
+    patientsCount?: number
+  }
 }
 
 // Fallback team members data - used when Sanity has no data
@@ -37,43 +46,77 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { name: 'Certificat Implantologie Avansată', issuer: 'Nobel Biocare Academy', year: 2015 },
       { name: 'Certificat Estetică Dentară', issuer: 'ESCD European Society', year: 2018 },
     ],
+    gallery: [
+      { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-1.webp', alt: 'Dr. Petric Razvan-Tudor - medic stomatolog principal DentCraft Satu Mare specializat in implantologie' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-estetica-dentara-1.webp', alt: 'Dr. Petric Razvan in cabinetul DentCraft Satu Mare - proceduri de estetica dentara' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-1.webp', alt: 'Dr. Petric Razvan-Tudor - tratamente de protetica dentara la clinica DentCraft Satu Mare' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-2.webp', alt: 'Dr. Petric Razvan - interventie de implantologie dentara la clinica DentCraft' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-estetica-dentara-2.webp', alt: 'Dr. Petric Razvan-Tudor - tratamente de estetica dentara si fatete la DentCraft Satu Mare' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-2.webp', alt: 'Dr. Petric Razvan in cabinetul DentCraft - lucrari de protetica dentara si coroane' },
+    ],
+    stats: {
+      yearsExperience: 15,
+      patientsCount: 4800,
+    },
   },
   {
     key: 'doctor2',
-    name: 'Dr. Ghirasim Denisa Stefania',
+    name: 'Dr. Ghirasim Denisa-Stefania',
     slug: 'denisa-ghirasim',
     role: 'Medic Stomatolog',
-    photo: '/images/team/dr-ghirasim-denisa-stefania.png',
-    specializations: ['Stomatologie Generala', 'Estetica Dentara', 'Endodontie'],
-    bio: 'Dr. Ghirasim Denisa Stefania este medic stomatolog la clinica DentCraft, dedicata tratamentelor de calitate si confortului pacientilor. Cu o abordare atenta si profesionista, Dr. Ghirasim ofera servicii complete de stomatologie generala si estetica dentara.',
+    photo: '/images/team/dr-ghirasim-denisa-stefania.webp',
+    specializations: ['Stomatologie Pediatrica', 'Stomatologie Generala', 'Endodontie'],
+    bio: 'Dr. Ghirasim Denisa-Stefania este medic stomatolog la clinica DentCraft, cu o pasiune deosebita pentru lucrul cu copiii. Empatica, rabdatoare si dedicata, isi propune sa transforme vizita la cabinet intr-o experienta pozitiva si lipsita de teama pentru cei mici. Cu o abordare calma, blandete si o comunicare adaptata varstei, asigura un mediu de incredere atat pentru pacienti, cat si pentru parinti. Ofera tratamente de inalta calitate si diagnosticare precisa, sustinute de experienta clinica, de finalizarea rezidentiatului in Stomatologie Generala si a programului de formare psihopedagogica.',
     education: [
-      { institution: 'Universitatea de Medicina si Farmacie Cluj-Napoca', degree: 'Doctor in Medicina Dentara', year: 2020 },
+      { institution: 'Universitatea din Oradea, Facultatea de Medicina si Farmacie', degree: 'Diploma de Licenta si Master – Doctor Medic Stomatolog (Medicina Dentara)', year: 2020 },
+      { institution: 'Universitatea din Oradea', degree: 'Program de Formare Psihopedagogica (Modul 1 si Modul 2)', year: 2018 },
     ],
     certifications: [
-      { name: 'Certificat Stomatologie Estetica', issuer: 'Colegiul Medicilor Stomatologi', year: 2022 },
+      { name: 'Rezidentiat Stomatologie Generala', issuer: 'Ministerul Sanatatii', year: 2025 },
+      { name: 'Certificat Formare Psihopedagogica (Modul 1 si Modul 2)', issuer: 'Universitatea din Oradea', year: 2018 },
     ],
+    gallery: [
+      { src: '/images/gallery/ghirasim-denisa/ghirasim-denisa-stomatologie-pediatrica-1.webp', alt: 'Dr. Ghirasim Denisa-Stefania - medic stomatolog specializata in stomatologie pediatrica la DentCraft Satu Mare', position: 'top' },
+      { src: '/images/gallery/ghirasim-denisa/ghirasim-denisa-stomatologie-pediatrica-2.webp', alt: 'Dr. Ghirasim Denisa-Stefania in cabinetul DentCraft - tratamente stomatologice pentru copii' },
+    ],
+    stats: {
+      yearsExperience: 5,
+      patientsCount: 1350,
+    },
   },
   {
     key: 'doctor3',
-    name: 'Dr. Tincu Giovana',
+    name: 'Dr. Tincu Giovana-Nicoleta',
     slug: 'giovana-tincu',
-    role: 'Medic Stomatolog',
-    photo: '/images/team/dr-tincu-giovana.png',
-    specializations: ['Stomatologie Generala', 'Ortodontie', 'Pedodontie'],
-    bio: 'Dr. Tincu Giovana este medic stomatolog la clinica DentCraft, specializata in tratamente pentru pacienti de toate varstele. Cu o personalitate calda si rabdatoare, Dr. Tincu creeaza o atmosfera relaxanta pentru fiecare pacient.',
+    role: 'Medic Stomatolog, Specialist Parodontolog',
+    photo: '/images/team/dr-tincu-giovana.webp',
+    specializations: ['Parodontologie', 'Stomatologie Pediatrica', 'Estetica Dentara'],
+    bio: 'Dr. Tincu Giovana-Nicoleta este medic stomatolog specialist parodontolog la clinica DentCraft, cu experienta dobandita in cadrul clinicilor Antalka Comfort Dent (Sfantu Gheorghe) si A Dental Clinic (Botosani). Motivata si dedicata, Dr. Tincu este pasionata de perfectionare continua si de oferirea celor mai bune solutii pentru sanatatea parodontala si estetica zambetului. Abordarea ei este centrata pe pacient, combinand empatia si comunicarea clara cu expertiza clinica si utilizarea tehnologiilor moderne. Vorbeste romana, maghiara, engleza si spaniola.',
     education: [
-      { institution: 'Universitatea de Medicina si Farmacie Oradea', degree: 'Doctor in Medicina Dentara', year: 2021 },
+      { institution: 'Ministerul Sanatatii, Iasi', degree: 'Medic Specialist Parodontolog', year: 2017 },
+      { institution: 'Universitatea de Medicina si Farmacie "Iuliu Hatieganu" Cluj-Napoca', degree: 'Licentiat in Medicina Dentara (media 9.69)', year: 2013 },
     ],
     certifications: [
-      { name: 'Certificat Pedodontie', issuer: 'Colegiul Medicilor Stomatologi', year: 2023 },
+      { name: 'Congresul International de Medicina Dentara DENTIS', issuer: 'UMF "Iuliu Hatieganu" Cluj-Napoca', year: 2025 },
+      { name: 'Workshop PRF in Practica Stomatologica', issuer: 'Colegiul Medicilor Stomatologi Romania', year: 2025 },
+      { name: 'Tehnici de Sutura Parodontala in Cabinetul de Medicina Dentara', issuer: 'UMF "Iuliu Hatieganu" Cluj-Napoca', year: 2016 },
+      { name: 'Rezidentiat Parodontologie', issuer: 'Spitalul Clinic de Urgenta "Sfantul Spiridon" Iasi', year: 2017 },
     ],
+    gallery: [
+      { src: '/images/gallery/giovana-tincu/tincu-giovana-parodontologie-1.webp', alt: 'Dr. Tincu Giovana-Nicoleta - medic specialist parodontolog la DentCraft Satu Mare' },
+      { src: '/images/gallery/giovana-tincu/tincu-giovana-parodontologie-2.webp', alt: 'Dr. Tincu Giovana-Nicoleta in cabinetul DentCraft - consultatie parodontologie' },
+    ],
+    stats: {
+      yearsExperience: 12,
+      patientsCount: 3200,
+    },
   },
   {
     key: 'assistant1',
     name: 'Gherman Camelia',
     slug: 'camelia-gherman',
     role: 'Asistent Medical',
-    photo: '/images/team/asistent-gherman-camelia.png',
+    photo: '/images/team/asistent-gherman-camelia.webp',
     specializations: ['Asistenta Stomatologica', 'Igiena Orala', 'Relatii Pacienti'],
     bio: 'Camelia Gherman este asistent medical la clinica DentCraft, cu experienta in asistenta stomatologica profesionala. Cu o atitudine calda si atenta, Camelia asigura confortul pacientilor pe parcursul tratamentelor.',
     education: [
@@ -87,23 +130,19 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     key: 'assistant2',
     name: 'Daraban Karla',
     slug: 'karla-daraban',
-    role: 'Asistent Medical',
-    photo: '/images/team/asistent-daraban-carla.png',
-    specializations: ['Asistenta Stomatologica', 'Sterilizare', 'Managementul Cabinetului'],
-    bio: 'Karla Daraban este asistent medical la clinica DentCraft, dedicata asigurarii unui mediu curat si sigur pentru pacienti. Profesionalismul si atentia la detalii fac din Karla un membru esential al echipei noastre.',
-    education: [
-      { institution: 'Scoala Postliceala Sanitara', degree: 'Asistent Medical Generalist', year: 2020 },
-    ],
-    certifications: [
-      { name: 'Certificat Igiena si Sterilizare', issuer: 'Colegiul Medicilor Stomatologi', year: 2021 },
-    ],
+    role: 'Receptionist',
+    photo: '/images/team/asistent-daraban-carla.webp',
+    specializations: ['Relatii Pacienti', 'Programari si Coordonare', 'Managementul Receptiei'],
+    bio: 'Karla Daraban este receptionista clinicii DentCraft si prima persoana care intampina pacientii. Cu o atitudine prietenoasa si profesionista, Karla se ocupa de programari, coordonarea fluxului de pacienti si asigurarea unei experiente placute inca de la primul contact cu clinica. Atentia la detalii si comunicarea clara fac din ea un membru esential al echipei.',
+    education: [],
+    certifications: [],
   },
   {
     key: 'assistant3',
     name: 'Danci Ionela Mikaela',
     slug: 'ionela-danci',
     role: 'Asistent Medical',
-    photo: '/images/team/asistent-danci-ionela-mikaela.png',
+    photo: '/images/team/asistent-danci-ionela-mikaela.webp',
     specializations: ['Asistenta Stomatologica', 'Radiologie Dentara', 'Relatii Pacienti'],
     bio: 'Ionela Mikaela Danci este asistent medical la clinica DentCraft, cu experienta in asistenta stomatologica si radiologie dentara. Cu o abordare prietenoasa si profesionista, Ionela contribuie la experienta pozitiva a fiecarui pacient.',
     education: [
@@ -118,7 +157,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     name: 'Calugher Ionela',
     slug: 'ionela-calugher',
     role: 'Asistent Medical',
-    photo: '/images/team/asistent-calugher-ionela.png',
+    photo: '/images/team/asistent-calugher-ionela.webp',
     specializations: ['Asistenta Stomatologica', 'Igiena Orala', 'Relatii Pacienti'],
     bio: 'Ionela Calugher este asistent medical la clinica DentCraft, dedicata ingrijirii pacientilor cu profesionalism si empatie. Cu o atitudine prietenoasa si atenta la detalii, Ionela asigura o experienta placuta pentru fiecare pacient.',
     education: [

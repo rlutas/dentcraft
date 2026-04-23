@@ -327,7 +327,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                 <div className="relative rounded-xl lg:rounded-[1.5rem] overflow-hidden
                   border-2 border-white/70 hero-photo-warmglow hero-photo-shadow">
                   <Image
-                    src="/images/team-clinic.jpg"
+                    src="/images/team-clinic.webp"
                     alt="Echipa Dentcraft - Clinica Stomatologica Satu Mare"
                     width={1200}
                     height={800}

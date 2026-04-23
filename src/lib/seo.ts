@@ -9,7 +9,7 @@ export const siteConfig = {
   name: 'Dentcraft',
   siteName: 'Dentcraft Satu Mare',
   baseUrl: 'https://www.dentcraft.ro',
-  defaultOgImage: '/images/team-clinic.jpg',
+  defaultOgImage: '/images/team-clinic.webp',
 }
 
 /**

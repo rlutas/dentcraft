@@ -9,15 +9,12 @@ import {
   GraduationCap,
   Phone,
   User,
-  Users,
   Calendar,
   MapPin,
   Sparkles,
   Play,
   Video,
   ChevronRight,
-  TrendingUp,
-  Star,
 } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
@@ -28,6 +25,7 @@ import { generateDynamicPageMetadata, siteConfig, type Locale as SEOLocale } fro
 import { getBreadcrumbSchema, getPersonSchema } from '@/lib/schema'
 import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { CountUp } from '@/components/ui/CountUp'
 import { TeamMemberBookingButton } from '@/components/ui/TeamMemberBookingButton'
 
 type Props = {
@@ -317,34 +315,80 @@ function StatsRow({
   isDoctor,
   yearsExperience,
   specializationsCount,
+  patientsCount,
 }: {
   isDoctor: boolean
   yearsExperience: number
   specializationsCount: number
+  patientsCount?: number
 }) {
   const stats = isDoctor
     ? [
-        { value: `${yearsExperience}+`, label: 'Ani Experienta', icon: TrendingUp },
-        { value: '2000+', label: 'Pacienti Tratati', icon: Users },
-        { value: `${specializationsCount}`, label: 'Specializari', icon: Star },
+        { end: yearsExperience, suffix: '+', label: 'Ani Experienta', iconSrc: '/icons/097-calendar.svg' },
+        { end: patientsCount ?? 2000, suffix: '+', label: 'Pacienti Tratati', iconSrc: '/icons/010-smile.svg' },
+        { end: specializationsCount, suffix: '', label: 'Specializari', iconSrc: '/icons/090-book.svg' },
       ]
     : [
-        { value: `${yearsExperience}+`, label: 'Ani Experienta', icon: TrendingUp },
-        { value: `${specializationsCount}`, label: 'Specializari', icon: Star },
+        { end: yearsExperience, suffix: '+', label: 'Ani Experienta', iconSrc: '/icons/097-calendar.svg' },
+        { end: specializationsCount, suffix: '', label: 'Specializari', iconSrc: '/icons/090-book.svg' },
       ]
 
+  const gridColsClass = isDoctor ? 'grid-cols-3' : 'grid-cols-2'
+
   return (
-    <div className="flex flex-wrap gap-3 md:gap-4 mb-8">
+    <div className={`grid ${gridColsClass} gap-3 md:gap-4 mb-8`}>
       {stats.map((stat, index) => (
         <div
           key={index}
-          className="flex-1 min-w-[120px] bg-white rounded-2xl border border-[#e8e0d5] px-5 py-4 md:px-6 md:py-5 text-center shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_-8px_rgba(139,115,85,0.12)] hover:border-[#d4c4b0] transition-all duration-300"
+          className="group relative bg-white rounded-2xl md:rounded-3xl border border-[#e8e0d5] px-3 py-5 md:px-6 md:py-7 text-center overflow-hidden shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:border-[#d4c4b0] hover:-translate-y-1.5 transition-all duration-500"
         >
-          <div className="flex items-center justify-center gap-2 mb-1.5">
-            <stat.icon className="w-4 h-4 text-[#d4c4b0]" strokeWidth={1.5} />
-            <span className="text-2xl md:text-3xl font-bold text-[#2a2118]">{stat.value}</span>
+          {/* Warm radial glow — fades in on hover */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#faf6f1] blur-3xl opacity-0 group-hover:opacity-80 transition-opacity duration-700"
+          />
+          {/* Subtle grid pattern — barely visible, adds depth */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.015] group-hover:opacity-[0.03] transition-opacity duration-500"
+            style={{
+              backgroundImage: `linear-gradient(rgba(139,115,85,1) 1px, transparent 1px), linear-gradient(90deg, rgba(139,115,85,1) 1px, transparent 1px)`,
+              backgroundSize: '24px 24px',
+            }}
+          />
+
+          <div className="relative">
+            {/* Icon chip with gradient bg */}
+            <div className="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] mb-3 md:mb-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] group-hover:scale-110 group-hover:rotate-[-3deg] transition-transform duration-500 ease-out">
+              <span
+                aria-hidden="true"
+                className="block w-5 h-5 md:w-6 md:h-6 bg-[#8b7355]"
+                style={{
+                  maskImage: `url(${stat.iconSrc})`,
+                  WebkitMaskImage: `url(${stat.iconSrc})`,
+                  maskSize: 'contain',
+                  WebkitMaskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
+            </div>
+
+            {/* Animated number */}
+            <div className="text-3xl md:text-5xl font-bold text-[#2a2118] leading-none mb-1.5 md:mb-2 tracking-tight tabular-nums">
+              <CountUp end={stat.end} suffix={stat.suffix} duration={2000 + index * 200} />
+            </div>
+
+            {/* Label */}
+            <p className="text-[11px] md:text-xs font-semibold text-[#8b7355] uppercase tracking-[0.06em] md:tracking-[0.12em] leading-tight">
+              {stat.label}
+            </p>
+
+            {/* Accent bar — grows on hover */}
+            <div className="mx-auto mt-3 md:mt-4 h-0.5 w-8 bg-gradient-to-r from-transparent via-[#d4c4b0] to-transparent group-hover:w-16 md:group-hover:w-20 transition-all duration-500 ease-out" />
           </div>
-          <p className="text-xs md:text-sm font-medium text-[#8b7355]">{stat.label}</p>
         </div>
       ))}
     </div>
@@ -371,20 +415,59 @@ function PhotoGalleryPlaceholder() {
   )
 }
 
+function PhotoGallery({ images }: { images: Array<{ src: string; alt: string; position?: 'top' | 'center' | 'bottom' }> }) {
+  const gridCols = images.length === 1
+    ? 'grid-cols-1'
+    : images.length === 2
+      ? 'grid-cols-1 sm:grid-cols-2'
+      : 'grid-cols-2 md:grid-cols-3'
+  return (
+    <div className="mt-8">
+      <div className={`grid ${gridCols} gap-4`}>
+        {images.map((image, index) => {
+          const positionClass = image.position === 'top'
+            ? 'object-top'
+            : image.position === 'bottom'
+              ? 'object-bottom'
+              : 'object-center'
+          return (
+            <div
+              key={index}
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#e8e0d5] bg-[#f5f0e8] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.2)] hover:border-[#d4c4b0] hover:-translate-y-1 transition-all duration-300"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={`object-cover ${positionClass} group-hover:scale-105 transition-transform duration-500`}
+              />
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 function AboutSection({
   firstName,
   aboutLabel,
   isDoctor,
   yearsExperience,
   specializationsCount,
+  patientsCount,
   bioContent,
+  gallery,
 }: {
   firstName: string
   aboutLabel: string
   isDoctor: boolean
   yearsExperience: number
   specializationsCount: number
+  patientsCount?: number
   bioContent: React.ReactNode
+  gallery?: Array<{ src: string; alt: string }>
 }) {
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -408,6 +491,7 @@ function AboutSection({
               isDoctor={isDoctor}
               yearsExperience={yearsExperience}
               specializationsCount={specializationsCount}
+              {...(patientsCount !== undefined ? { patientsCount } : {})}
             />
           </ScrollReveal>
 
@@ -418,9 +502,13 @@ function AboutSection({
             </div>
           </ScrollReveal>
 
-          {/* Photo gallery placeholder */}
+          {/* Photo gallery */}
           <ScrollReveal animation="fade-up" delay={300}>
-            <PhotoGalleryPlaceholder />
+            {gallery && gallery.length > 0 ? (
+              <PhotoGallery images={gallery} />
+            ) : (
+              <PhotoGalleryPlaceholder />
+            )}
           </ScrollReveal>
         </div>
       </div>
@@ -896,11 +984,13 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
         firstName={firstName}
         aboutLabel={t('team.about')}
         isDoctor={member.role.toLowerCase().includes('medic') || member.role.toLowerCase().includes('doctor')}
-        yearsExperience={computeYearsExperience(member.education, member.certifications)}
+        yearsExperience={member.stats?.yearsExperience ?? computeYearsExperience(member.education, member.certifications)}
         specializationsCount={member.specializations.length}
         bioContent={
           <p className="text-base md:text-lg text-[#4a4a4a] leading-relaxed">{member.bio}</p>
         }
+        {...(member.stats?.patientsCount !== undefined ? { patientsCount: member.stats.patientsCount } : {})}
+        {...(member.gallery && member.gallery.length > 0 ? { gallery: member.gallery } : {})}
       />
 
       {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}

@@ -622,7 +622,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       content: contentRo,
       coverImage: {
         alt: 'Medic dentist prezentand un model de implant dentar intr-un cabinet stomatologic modern - DentCraft Satu Mare',
-        asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.png' },
+        asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryRo,
       author,
@@ -645,7 +645,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       content: contentEn,
       coverImage: {
         alt: 'Dentist presenting a dental implant model in a modern dental office - DentCraft Satu Mare',
-        asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.png' },
+        asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryEn,
       author,
@@ -668,7 +668,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       content: contentHu,
       coverImage: {
         alt: 'Fogorvos bemutat egy fogimplantatum modelljét egy modern rendelőben - DentCraft Szatmárnémeti',
-        asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.png' },
+        asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryHu,
       author,
