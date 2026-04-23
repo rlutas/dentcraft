@@ -1,13 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import { Menu, Phone, Star } from 'lucide-react'
-import { useState } from 'react'
+import { ChevronDown, Menu, Phone, Star, ArrowRight } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
+import { getMainFallbackServices } from '@/lib/fallback-services'
 
 const navItems = [
-  { href: '/servicii', key: 'services' },
   { href: '/echipa', key: 'team' },
   { href: '/preturi', key: 'prices' },
   { href: '/galerie', key: 'gallery' },
@@ -20,10 +21,19 @@ function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
   const t = useTranslations('navigation')
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-[100] md:hidden">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
+    <div className="fixed inset-0 z-[200] md:hidden">
+      <div aria-hidden="true" className="absolute inset-0 bg-black/50" onClick={onClose} />
       <nav className="absolute top-4 left-4 right-4 bg-white rounded-3xl p-6 shadow-2xl">
         <ul className="flex flex-col gap-2">
+          <li>
+            <Link
+              href="/servicii"
+              onClick={onClose}
+              className="block px-4 py-3 rounded-xl text-[#2a2118] font-medium hover:bg-[#faf6f1] transition-colors"
+            >
+              {t('services')}
+            </Link>
+          </li>
           {navItems.map((item) => (
             <li key={item.key}>
               <Link
@@ -44,7 +54,30 @@ function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
 export function FramedHero() {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
+  const tServices = useTranslations('services')
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const mainServices = getMainFallbackServices()
+
+  // Scroll detection for nav transform
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Small delay close for dropdown so moving mouse doesn't flicker
+  const openServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setIsServicesOpen(true)
+  }
+  const closeServices = () => {
+    closeTimer.current = setTimeout(() => setIsServicesOpen(false), 150)
+  }
 
   return (
     <section className="relative overflow-hidden min-h-[88svh] md:min-h-[92vh]">
@@ -74,65 +107,6 @@ export function FramedHero() {
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/25 to-transparent"
         />
-
-        {/* Floating pill navbar */}
-        <nav className="absolute top-3 left-3 right-3 md:top-6 md:left-8 md:right-8 lg:left-12 lg:right-12 z-30">
-          <div className="flex items-center justify-between gap-4 bg-white/95 backdrop-blur-md rounded-full pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-3 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)] border border-white/60">
-            {/* Logo */}
-            <Link href="/" className="flex items-center shrink-0 group">
-              <Image
-                src="/branding/LOGO_BLACK_FINAL.png"
-                alt="DentCraft"
-                width={420}
-                height={59}
-                priority
-                className="h-5 md:h-6 w-auto transition-opacity group-hover:opacity-80"
-              />
-            </Link>
-
-            {/* Desktop nav links */}
-            <ul className="hidden lg:flex items-center gap-1 text-sm">
-              {navItems.map((item) => (
-                <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    className="px-4 py-2 rounded-full text-[#2a2118]/70 font-medium hover:text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
-                  >
-                    {t(item.key)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Right: phone (desktop) + CTA pill */}
-            <div className="flex items-center gap-2 shrink-0">
-              <a
-                href="tel:+40741199977"
-                className="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#2a2118]/70 hover:text-[#2a2118] transition-colors"
-              >
-                <Phone className="w-4 h-4" strokeWidth={2} />
-                <span className="hidden lg:inline">0741 199 977</span>
-              </a>
-              <Link
-                href="/contact"
-                className="hidden sm:inline-flex items-center px-5 md:px-6 py-2.5 md:py-3 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
-              >
-                {tHero('ctaPrimary')}
-              </Link>
-              {/* Mobile hamburger */}
-              <button
-                type="button"
-                onClick={() => setMobileOpen(true)}
-                className="lg:hidden p-2.5 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
-                aria-label="Deschide meniul"
-              >
-                <Menu className="w-5 h-5" strokeWidth={2} />
-              </button>
-            </div>
-          </div>
-        </nav>
-
-        <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
 
         {/* Content overlay — bottom of hero */}
         <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-10 md:px-12 md:pb-14 lg:px-16 lg:pb-20">
@@ -206,6 +180,161 @@ export function FramedHero() {
           </div>
         </div>
       </div>
+
+      {/* Floating pill navbar — always fixed, morphs on scroll */}
+      <nav
+        className={cn(
+          'fixed z-[150] transition-all duration-500 ease-out',
+          isScrolled
+            ? 'top-2 left-2 right-2 md:top-3 md:left-4 md:right-4 lg:left-6 lg:right-6'
+            : 'top-3 left-3 right-3 md:top-6 md:left-8 md:right-8 lg:left-12 lg:right-12'
+        )}
+      >
+        <div
+          className={cn(
+            'flex items-center justify-between gap-4 rounded-full border transition-all duration-500 ease-out',
+            isScrolled
+              ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-2 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]'
+              : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-3 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]'
+          )}
+        >
+          {/* Logo */}
+          <Link href="/" className="flex items-center shrink-0 group">
+            <Image
+              src="/branding/LOGO_BLACK_FINAL.png"
+              alt="DentCraft"
+              width={420}
+              height={59}
+              priority
+              className={cn(
+                'w-auto transition-all duration-500 group-hover:opacity-80',
+                isScrolled ? 'h-5' : 'h-5 md:h-6'
+              )}
+            />
+          </Link>
+
+          {/* Desktop nav links */}
+          <ul className="hidden lg:flex items-center gap-1 text-sm">
+            {/* Services with dropdown */}
+            <li
+              className="relative"
+              onMouseEnter={openServices}
+              onMouseLeave={closeServices}
+            >
+              <button
+                type="button"
+                onClick={() => setIsServicesOpen((prev) => !prev)}
+                className={cn(
+                  'flex items-center gap-1 px-4 py-2 rounded-full font-medium transition-colors',
+                  isServicesOpen
+                    ? 'text-[#2a2118] bg-[#faf6f1]'
+                    : 'text-[#2a2118]/70 hover:text-[#2a2118] hover:bg-[#faf6f1]'
+                )}
+                aria-expanded={isServicesOpen}
+                aria-haspopup="true"
+              >
+                {t('services')}
+                <ChevronDown
+                  className={cn(
+                    'w-3.5 h-3.5 transition-transform duration-300',
+                    isServicesOpen && 'rotate-180'
+                  )}
+                />
+              </button>
+
+              {/* Dropdown */}
+              <div
+                className={cn(
+                  'absolute left-1/2 top-full -translate-x-1/2 mt-3 w-[380px] origin-top',
+                  'transition-all duration-200',
+                  isServicesOpen
+                    ? 'opacity-100 scale-100 pointer-events-auto'
+                    : 'opacity-0 scale-95 pointer-events-none'
+                )}
+              >
+                <div className="relative rounded-3xl bg-white shadow-[0_20px_60px_-10px_rgba(42,33,24,0.3)] border border-[#e8e0d5] p-3 overflow-hidden">
+                  {/* Top accent */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4c4b0] to-transparent"
+                  />
+
+                  <div className="grid gap-1 pt-1">
+                    {mainServices.map((service) => (
+                      <Link
+                        key={service.slug}
+                        href={`/servicii/${service.slug}` as '/servicii'}
+                        className="group flex items-center gap-3 rounded-2xl px-3 py-2.5 hover:bg-[#faf6f1] transition-colors"
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center shrink-0 group-hover:bg-[#d4c4b0]/40 group-hover:border-[#d4c4b0] transition-colors">
+                          <service.Icon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-[#2a2118] text-sm leading-tight">
+                            {tServices(service.titleKey)}
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-[#d4c4b0] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* View all services CTA */}
+                  <Link
+                    href="/servicii"
+                    onClick={() => setIsServicesOpen(false)}
+                    className="mt-2 flex items-center justify-between rounded-2xl bg-[#2a2118] text-white px-4 py-3 text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
+                  >
+                    <span>Toate serviciile</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+
+            {/* Other nav items */}
+            {navItems.map((item) => (
+              <li key={item.key}>
+                <Link
+                  href={item.href}
+                  className="px-4 py-2 rounded-full text-[#2a2118]/70 font-medium hover:text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
+                >
+                  {t(item.key)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Right: phone (desktop) + CTA pill */}
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href="tel:+40741199977"
+              className="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#2a2118]/70 hover:text-[#2a2118] transition-colors"
+            >
+              <Phone className="w-4 h-4" strokeWidth={2} />
+              <span className="hidden xl:inline">0741 199 977</span>
+            </a>
+            <Link
+              href="/contact"
+              className="hidden sm:inline-flex items-center px-5 md:px-6 py-2.5 md:py-3 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
+            >
+              {tHero('ctaPrimary')}
+            </Link>
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="lg:hidden p-2.5 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
+              aria-label="Deschide meniul"
+            >
+              <Menu className="w-5 h-5" strokeWidth={2} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </section>
   )
 }
