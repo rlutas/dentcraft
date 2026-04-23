@@ -3,9 +3,8 @@
 import Image from 'next/image'
 import { Menu, Phone, Star } from 'lucide-react'
 import { useState } from 'react'
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
-import { type Locale } from '@/i18n/config'
 
 const navItems = [
   { href: '/servicii', key: 'services' },
@@ -45,7 +44,6 @@ function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
 export function FramedHero() {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
-  const locale = useLocale() as Locale
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
