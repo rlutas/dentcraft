@@ -9,7 +9,16 @@ import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname, useRouter } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { getMainFallbackServices } from '@/lib/fallback-services'
-import { locales, localeFlags, type Locale } from '@/i18n/config'
+import { locales, type Locale } from '@/i18n/config'
+import RO from 'country-flag-icons/react/3x2/RO'
+import GB from 'country-flag-icons/react/3x2/GB'
+import HU from 'country-flag-icons/react/3x2/HU'
+
+const LOCALE_FLAGS: Record<Locale, React.ComponentType<{ className?: string; title?: string }>> = {
+  ro: RO,
+  en: GB,
+  hu: HU,
+}
 
 const CallbackPopup = dynamic(() => import('@/components/features/CallbackPopup'), {
   ssr: false,
@@ -115,25 +124,28 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
             Limbă
           </p>
           <div className="flex gap-2 px-2">
-            {locales.map((loc) => (
-              <button
-                key={loc}
-                type="button"
-                onClick={() => {
-                  switchLocale(loc)
-                  onClose()
-                }}
-                className={cn(
-                  'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
-                  currentLocale === loc
-                    ? 'bg-[#2a2118] text-white'
-                    : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
-                )}
-              >
-                <span className="text-base">{localeFlags[loc]}</span>
-                <span className="uppercase tracking-wide">{loc}</span>
-              </button>
-            ))}
+            {locales.map((loc) => {
+              const Flag = LOCALE_FLAGS[loc]
+              return (
+                <button
+                  key={loc}
+                  type="button"
+                  onClick={() => {
+                    switchLocale(loc)
+                    onClose()
+                  }}
+                  className={cn(
+                    'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
+                    currentLocale === loc
+                      ? 'bg-[#2a2118] text-white'
+                      : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
+                  )}
+                >
+                  <Flag className="w-5 h-auto rounded-sm overflow-hidden ring-1 ring-black/10" />
+                  <span className="uppercase tracking-wide">{loc}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
 
