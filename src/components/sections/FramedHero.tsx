@@ -402,8 +402,9 @@ export function FramedHero() {
               <p className="text-white/90 text-sm md:text-lg leading-relaxed mb-3 sm:mb-5 md:mb-6 max-w-md md:ml-auto">
                 {tHero('subtitle')}
               </p>
-              {/* Single primary CTA — "Programeaza acum". Calculator gets its
-                  own dedicated section further down the page. */}
+              {/* Primary CTA — solid dark with subtle vertical gradient for depth,
+                  brand-beige inset highlight, deep warm shadow. Pairs against the
+                  white-glass trust chip with clear hierarchy. */}
               <div className="flex md:justify-end">
                 <motion.button
                   type="button"
@@ -417,16 +418,31 @@ export function FramedHero() {
                     damping: 18,
                     mass: 0.9,
                   }}
-                  whileHover={{ y: -3, scale: 1.02 }}
+                  whileHover={{ y: -4, scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative inline-flex items-center justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-white overflow-hidden bg-white/20 backdrop-blur-2xl border border-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_-6px_rgba(0,0,0,0.35)] hover:bg-white/25 hover:border-white/45 transition-[background-color,border-color,box-shadow] duration-300"
+                  className="group relative inline-flex items-center justify-center gap-3 pl-7 pr-5 sm:pl-8 sm:pr-6 py-3.5 sm:py-4 rounded-full font-semibold text-white overflow-hidden border border-[#d4c4b0]/30 shadow-[inset_0_1px_0_rgba(212,196,176,0.45),inset_0_-1px_0_rgba(0,0,0,0.3),0_16px_40px_-12px_rgba(0,0,0,0.55)] hover:shadow-[inset_0_1px_0_rgba(212,196,176,0.55),inset_0_-1px_0_rgba(0,0,0,0.3),0_22px_50px_-12px_rgba(0,0,0,0.6),0_0_0_4px_rgba(212,196,176,0.12)] transition-[box-shadow] duration-500"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(180deg, #3a2f24 0%, #2a2118 45%, #1a1410 100%)',
+                  }}
                 >
+                  {/* Top sheen — soft reflection along the upper curve */}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-[900ms] ease-out"
+                    className="absolute inset-x-2 top-0 h-1/2 rounded-t-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none"
                   />
-                  <span className="relative drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
-                    {tHero('ctaPrimary')}
+                  {/* Hover shine sweep */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[450%] transition-transform duration-[1100ms] ease-out"
+                  />
+                  <span className="relative tracking-wide">{tHero('ctaPrimary')}</span>
+                  {/* Arrow capsule — separates the action verb from the affordance */}
+                  <span className="relative flex items-center justify-center w-8 h-8 rounded-full bg-[#d4c4b0]/15 ring-1 ring-[#d4c4b0]/30 group-hover:bg-[#d4c4b0]/25 group-hover:ring-[#d4c4b0]/50 transition-all duration-300">
+                    <ArrowRight
+                      className="w-4 h-4 text-[#d4c4b0] transition-transform duration-300 group-hover:translate-x-0.5"
+                      strokeWidth={2.25}
+                    />
                   </span>
                 </motion.button>
               </div>
