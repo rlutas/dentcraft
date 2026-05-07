@@ -1,6 +1,6 @@
 # Dentcraft.ro - Project Status
 
-**Last updated:** 26 February 2026
+**Last updated:** 24 April 2026
 
 ---
 
@@ -102,6 +102,26 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 ---
 
 ## Session Log
+
+### 23 April 2026
+
+**Hero Redesign — Dentix-Style Framed Hero with Sticky Nav:**
+- New `src/components/sections/FramedHero.tsx` — full-bleed framed layout with AI-generated patient imagery (`hero-patient-landscape.webp`, `hero-patient-portrait.webp`)
+- Sticky morphing pill navbar that compacts on scroll, with services dropdown (uses `getMainFallbackServices`) and mobile drawer
+- Global `Header` component conditionally hidden on homepage to prevent navbar conflict
+- i18n strings (ro/en/hu) updated for hero copy and CTAs
+
+**Team & Profile Enhancements:**
+- Photo galleries with `PhotoGallery` component, WebP-optimized, dynamic image positioning
+- Animated stats (CountUp + ScrollReveal) for Dr. Petric, Dr. Ghirasim, Dr. Tincu
+- Extended `FallbackTeamMember` type with optional `gallery` and `stats` fields
+
+**Maintenance Mode:**
+- Preview bypass via `/api/preview?key=<token>` — sets cookie to view real site while `NEXT_PUBLIC_MAINTENANCE_MODE=true`
+- `/api/preview/clear` to remove cookie
+- `PREVIEW_ACCESS_TOKEN` env var required on Vercel
+
+**Key commits:** `1aa62d7` (team+stats), `bd84c08` (preview bypass), `dc29a19` (framed hero), `46521d1` (sticky pill nav)
 
 ### 26 February 2026
 
