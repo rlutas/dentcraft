@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { CalendarCheck, FileText, Mail, Smile, Sparkles, Stethoscope } from 'lucide-react'
 import { CountUp } from '@/components/ui/CountUp'
 import type { Estimate as EstimateType } from './calculations'
@@ -27,6 +27,7 @@ const DOCTOR_PHOTO_URL = 'https://drpetric.ro/wp-content/uploads/2024/11/stomato
 export function Estimate({ locale, estimate, scenarioTitle, translations }: Props) {
   const [popupOpen, setPopupOpen] = useState(false)
   const [saveMode, setSaveMode] = useState(false)
+  const reduce = useReducedMotion()
 
   const formatLocale = locale === 'hu' ? 'hu-HU' : 'ro-RO'
   const formatPrice = (n: number) =>
@@ -55,9 +56,9 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
     <div className="space-y-6">
       {/* Total range hero */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
+        initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+        animate={reduce ? {} : { opacity: 1, scale: 1 }}
+        transition={reduce ? { duration: 0 } : { duration: 0.4 }}
         className="rounded-3xl bg-gradient-to-br from-[#faf6f1] via-white to-[#f5f0e8] border border-[#e8e0d5] p-6 md:p-8 text-center"
       >
         <div className="inline-flex items-center gap-2 text-xs font-medium text-[#8b7355] bg-white border border-[#e8e0d5] rounded-full px-3 py-1 mb-4">
@@ -95,9 +96,9 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
           {estimate.lineItems.map((li, i) => (
             <motion.div
               key={`${li.label}-${i}`}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.15 + i * 0.05 }}
+              initial={reduce ? false : { opacity: 0, x: -8 }}
+              animate={reduce ? {} : { opacity: 1, x: 0 }}
+              transition={reduce ? { duration: 0 } : { delay: 0.15 + i * 0.05 }}
               className="flex items-center justify-between py-3 gap-3"
             >
               <div className="flex-1 min-w-0">
@@ -122,9 +123,9 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
       {/* Doctor's note with avatar */}
       {estimate.notes.length > 0 && (
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={reduce ? { duration: 0 } : { delay: 0.4 }}
           className="rounded-2xl bg-[#2a2118] text-white p-5 md:p-6"
         >
           <div className="flex items-start gap-4">
@@ -156,9 +157,9 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
 
       {/* What happens next — timeline with connecting line */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        initial={reduce ? false : { opacity: 0, y: 12 }}
+        animate={reduce ? {} : { opacity: 1, y: 0 }}
+        transition={reduce ? { duration: 0 } : { delay: 0.5 }}
         className="rounded-2xl border border-[#e8e0d5] p-5 md:p-6 bg-white"
       >
         <h4 className="text-xs font-semibold uppercase tracking-wider text-[#8b7355] mb-5">

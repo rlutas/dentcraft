@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Minus, Plus } from 'lucide-react'
 import type { Scenario, ScenarioAnswer } from '@/data/calculator-scenarios'
 import type { Locale } from '@/data/treatments'
@@ -14,6 +14,7 @@ type Props = {
 }
 
 export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
+  const reduce = useReducedMotion()
   const formatLocale = locale === 'hu' ? 'hu-HU' : 'ro-RO'
   const formatPrice = (n: number) =>
     new Intl.NumberFormat(formatLocale, { maximumFractionDigits: 0 }).format(n)
@@ -29,9 +30,9 @@ export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
         return (
           <motion.div
             key={q.id}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.08, duration: 0.35 }}
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={reduce ? { duration: 0 } : { delay: idx * 0.08, duration: 0.35 }}
           >
             <h3 className="text-base md:text-lg font-semibold text-[#2a2118] mb-3 text-center">
               {q.labels[locale]}
