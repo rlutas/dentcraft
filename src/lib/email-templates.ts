@@ -15,7 +15,8 @@ function esc(text: string): string {
 
 // Use www. canonical — apex domain 307-redirects and most email clients
 // (Yahoo, Outlook) refuse to follow redirects on <img>, leaving the header blank.
-const LOGO_URL = 'https://www.dentcraft.ro/branding/LOGO_WHITE_FINAL.png'
+const LOGO_WHITE_URL = 'https://www.dentcraft.ro/branding/LOGO_WHITE_FINAL.png'
+const LOGO_DARK_URL = 'https://www.dentcraft.ro/branding/LOGO_BLACK_FINAL.png'
 const BRAND_COLOR = '#1a1a1a'
 const ACCENT_COLOR = '#d4c4b0'
 const BG_COLOR = '#f9f6f1'
@@ -29,23 +30,32 @@ export function emailWrapper(content: string, options?: {
 }) {
   return `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid ${BORDER_COLOR}; border-radius: 12px; overflow: hidden;">
-      <!-- Header with Dark Gradient + Logo -->
-      <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 32px 24px; text-align: center; border-radius: 12px 12px 0 0;">
-        <img src="${LOGO_URL}" alt="Dentcraft" width="180" height="25" style="height: 28px; width: auto;" />
-        ${options?.headerTitle ? `<h1 style="margin: 20px 0 0; color: #ffffff; font-size: 20px; font-weight: 600; letter-spacing: -0.3px;">${options.headerTitle}</h1>` : ''}
-        ${options?.headerSubtitle ? `<p style="margin: 8px 0 0; color: ${ACCENT_COLOR}; font-size: 14px; font-weight: 400;">${options.headerSubtitle}</p>` : ''}
-      </div>
+      <!-- Header (solid dark bg + gradient layered for clients that support it) -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #1a1a1a; background-image: linear-gradient(135deg, #1a1a1a, #2a2a2a); border-radius: 12px 12px 0 0;">
+        <tr>
+          <td style="padding: 32px 24px; text-align: center;">
+            <img src="${LOGO_WHITE_URL}" alt="Dentcraft" width="180" height="28" style="display: inline-block; height: 28px; width: auto; max-width: 180px;" />
+            ${options?.headerTitle ? `<h1 style="margin: 20px 0 0; color: #ffffff; font-size: 20px; font-weight: 600; letter-spacing: -0.3px;">${options.headerTitle}</h1>` : ''}
+            ${options?.headerSubtitle ? `<p style="margin: 8px 0 0; color: ${ACCENT_COLOR}; font-size: 14px; font-weight: 400;">${options.headerSubtitle}</p>` : ''}
+          </td>
+        </tr>
+      </table>
       <!-- Content -->
       ${content}
-      <!-- Footer -->
-      <div style="background: ${BG_COLOR}; padding: 20px 24px; border-top: 1px solid ${BORDER_COLOR}; text-align: center;">
-        ${options?.footerNote ? `<p style="margin: 0 0 12px; color: #8b8b8b; font-size: 12px;">${options.footerNote}</p>` : ''}
-        <p style="margin: 0; color: #8b8b8b; font-size: 11px;">
-          Dentcraft &middot; Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare<br>
-          Tel: <a href="tel:+40741199977" style="color: #8b8b8b;">0741 199 977</a> &middot;
-          <a href="https://dentcraft.ro" style="color: #8b8b8b;">dentcraft.ro</a>
-        </p>
-      </div>
+      <!-- Footer with dark logo on light bg -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: ${BG_COLOR}; border-top: 1px solid ${BORDER_COLOR};">
+        <tr>
+          <td style="padding: 24px; text-align: center;">
+            <img src="${LOGO_DARK_URL}" alt="Dentcraft" width="140" height="22" style="display: inline-block; height: 22px; width: auto; max-width: 140px; opacity: 0.85; margin-bottom: 12px;" />
+            ${options?.footerNote ? `<p style="margin: 0 0 12px; color: #8b8b8b; font-size: 12px;">${options.footerNote}</p>` : ''}
+            <p style="margin: 0; color: #8b8b8b; font-size: 11px; line-height: 1.6;">
+              Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare<br>
+              Tel: <a href="tel:+40741199977" style="color: #8b8b8b;">0741 199 977</a> &middot;
+              <a href="https://www.dentcraft.ro" style="color: #8b8b8b;">dentcraft.ro</a>
+            </p>
+          </td>
+        </tr>
+      </table>
     </div>
   `
 }
