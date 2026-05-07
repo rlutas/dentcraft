@@ -233,7 +233,12 @@ export function FramedHero() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isLangOpen, setIsLangOpen] = useState(false)
   const [bookingOpen, setBookingOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
+  const currentLocale = useLocale() as Locale
+  const langCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const mainServices = getMainFallbackServices()
@@ -550,27 +555,123 @@ export function FramedHero() {
               </div>
             </li>
 
-            {/* Other nav items */}
+            {/* Other nav items — refined hover with underline-grow accent */}
             {navItems.map((item) => (
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="px-4 py-2 rounded-full text-[#2a2118]/70 font-medium hover:text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
+                  className="group relative px-4 py-2 rounded-full text-[#2a2118]/75 font-medium tracking-wide hover:text-[#2a2118] transition-colors"
                 >
-                  {t(item.key)}
+                  <span className="relative">
+                    {t(item.key)}
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-1/2 -bottom-0.5 h-[2px] w-0 -translate-x-1/2 bg-[#d4c4b0] rounded-full transition-[width] duration-300 group-hover:w-3/4"
+                    />
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Right: phone (desktop) + CTA pill */}
+          {/* Right: language + phone + CTA */}
           <div className="flex items-center gap-2 shrink-0">
+            {/* Language switcher (desktop) */}
+            <div
+              className="hidden lg:block relative"
+              onMouseEnter={() => {
+                if (langCloseTimer.current) clearTimeout(langCloseTimer.current)
+                setIsLangOpen(true)
+              }}
+              onMouseLeave={() => {
+                langCloseTimer.current = setTimeout(() => setIsLangOpen(false), 150)
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setIsLangOpen((v) => !v)}
+                className={cn(
+                  'inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium uppercase tracking-wide transition-colors',
+                  isLangOpen
+                    ? 'text-[#2a2118] bg-[#faf6f1]'
+                    : 'text-[#2a2118]/75 hover:text-[#2a2118] hover:bg-[#faf6f1]'
+                )}
+                aria-expanded={isLangOpen}
+                aria-haspopup="true"
+              >
+                {(() => {
+                  const Flag = LOCALE_FLAGS[currentLocale]
+                  return (
+                    <span className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-black/10 bg-white shrink-0">
+                      <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
+                    </span>
+                  )
+                })()}
+                <span>{currentLocale}</span>
+                <ChevronDown
+                  className={cn(
+                    'w-3 h-3 transition-transform duration-300',
+                    isLangOpen && 'rotate-180'
+                  )}
+                />
+              </button>
+
+              {/* Language dropdown */}
+              <div
+                className={cn(
+                  'absolute right-0 top-full mt-3 w-44 origin-top-right transition-all duration-200',
+                  isLangOpen
+                    ? 'opacity-100 scale-100 pointer-events-auto'
+                    : 'opacity-0 scale-95 pointer-events-none'
+                )}
+              >
+                <div className="relative rounded-2xl bg-white shadow-[0_20px_60px_-10px_rgba(42,33,24,0.3)] border border-[#e8e0d5] p-2 overflow-hidden">
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4c4b0] to-transparent"
+                  />
+                  <div className="grid gap-1 pt-1">
+                    {locales.map((loc) => {
+                      const Flag = LOCALE_FLAGS[loc]
+                      const isActive = currentLocale === loc
+                      return (
+                        <button
+                          key={loc}
+                          type="button"
+                          onClick={() => {
+                            router.replace(pathname as '/', { locale: loc })
+                            setIsLangOpen(false)
+                          }}
+                          className={cn(
+                            'flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
+                            isActive
+                              ? 'bg-[#2a2118] text-white'
+                              : 'text-[#2a2118] hover:bg-[#faf6f1]'
+                          )}
+                        >
+                          <span className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-black/10 bg-white shrink-0">
+                            <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
+                          </span>
+                          <span className="uppercase tracking-wide">{loc}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Phone — refined pill with subtle border + icon capsule */}
             <a
               href="tel:+40741199977"
-              className="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#2a2118]/70 hover:text-[#2a2118] transition-colors"
+              className="hidden md:inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full border border-[#e8e0d5] hover:border-[#d4c4b0] bg-white/60 hover:bg-[#faf6f1] transition-colors group"
             >
-              <Phone className="w-4 h-4" strokeWidth={2} />
-              <span className="hidden xl:inline">0741 199 977</span>
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#2a2118] group-hover:bg-[#4a3d30] transition-colors">
+                <Phone className="w-3.5 h-3.5 text-white" strokeWidth={2.25} />
+              </span>
+              <span className="hidden xl:inline text-sm font-semibold text-[#2a2118] tabular-nums tracking-wide">
+                0741 199 977
+              </span>
             </a>
             <button
               type="button"
