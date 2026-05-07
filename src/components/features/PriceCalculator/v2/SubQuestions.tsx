@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Minus, Plus } from 'lucide-react'
 import type { Scenario, ScenarioAnswer } from '@/data/calculator-scenarios'
 import type { Locale } from '@/data/treatments'
+import { computeEstimate } from './calculations'
 
 type Props = {
   locale: Locale
@@ -13,6 +14,13 @@ type Props = {
 }
 
 export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
+  const formatLocale = locale === 'hu' ? 'hu-HU' : 'ro-RO'
+  const formatPrice = (n: number) =>
+    new Intl.NumberFormat(formatLocale, { maximumFractionDigits: 0 }).format(n)
+
+  const fromPrefix =
+    locale === 'ro' ? 'de la ' : locale === 'hu' ? '-tól ' : 'from '
+
   return (
     <div className="space-y-8">
       {scenario.questions.map((q, idx) => {
@@ -42,6 +50,21 @@ export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {q.options.map((opt) => {
                   const selected = currentValue === opt.value
+
+                  // Compute "what-if" price preview for this option.
+                  // computeEstimate is pure; calling once per option is fine.
+                  let pricePreview: string | null = null
+                  try {
+                    const whatIf: ScenarioAnswer = { ...answers, [q.id]: opt.value }
+                    const e = computeEstimate(scenario.id, whatIf, locale)
+                    pricePreview =
+                      e.totalMin === e.totalMax
+                        ? `${formatPrice(e.totalMin)} RON`
+                        : `${formatPrice(e.totalMin)}-${formatPrice(e.totalMax)} RON`
+                  } catch {
+                    pricePreview = null
+                  }
+
                   return (
                     <button
                       key={opt.value}
@@ -59,6 +82,12 @@ export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
                       {opt.hint?.[locale] && (
                         <div className="text-xs text-[#8b7355] mt-1 leading-snug">
                           {opt.hint[locale]}
+                        </div>
+                      )}
+                      {pricePreview && (
+                        <div className="text-sm font-semibold text-[#2a2118] mt-2 tabular-nums">
+                          {fromPrefix}
+                          {pricePreview}
                         </div>
                       )}
                     </button>
@@ -96,7 +125,7 @@ function CountInput({
         <Minus className="w-5 h-5" />
       </button>
       <div className="w-20 text-center">
-        <span className="text-4xl md:text-5xl font-semibold text-[#2a2118]">{value}</span>
+        <span className="text-4xl md:text-5xl font-semibold text-[#2a2118] tabular-nums">{value}</span>
       </div>
       <button
         type="button"
