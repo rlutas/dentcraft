@@ -272,15 +272,25 @@ export function FramedHero() {
                 </div>
               </motion.div>
 
-              {/* Headline — split into two lines with subtle stagger reveal */}
+              {/* Headline — kicker inside h1 for SEO ("DentCraft Satu Mare"),
+                  bold + italic lines with word stagger. Removed overflow-hidden
+                  so descenders (g, y) and Hungarian diacritics aren't clipped. */}
               <h1 className="font-bold text-white leading-[0.95] tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
                 <motion.span
-                  className="block overflow-hidden"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05, duration: 0.4 }}
+                  className="block text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.28em] uppercase text-[#d4c4b0]/90 mb-3 sm:mb-4 md:mb-5"
+                >
+                  DentCraft · Stomatologie Satu Mare
+                </motion.span>
+                <motion.span
+                  className="block"
                   initial="hidden"
                   animate="visible"
                   variants={{
                     hidden: {},
-                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
                   }}
                 >
                   {tHero('titleBold').split(' ').map((word, i) => (
@@ -288,7 +298,7 @@ export function FramedHero() {
                       key={i}
                       className="inline-block mr-[0.25em] last:mr-0"
                       variants={{
-                        hidden: { y: '100%', opacity: 0 },
+                        hidden: { y: 24, opacity: 0 },
                         visible: {
                           y: 0,
                           opacity: 1,
@@ -301,12 +311,12 @@ export function FramedHero() {
                   ))}
                 </motion.span>
                 <motion.span
-                  className="font-serif italic font-medium text-[#d4c4b0] block overflow-hidden"
+                  className="font-serif italic font-medium text-[#d4c4b0] block pb-1"
                   initial="hidden"
                   animate="visible"
                   variants={{
                     hidden: {},
-                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.45 } },
+                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } },
                   }}
                 >
                   {tHero('titleItalic').split(' ').map((word, i) => (
@@ -314,7 +324,7 @@ export function FramedHero() {
                       key={i}
                       className="inline-block mr-[0.25em] last:mr-0"
                       variants={{
-                        hidden: { y: '100%', opacity: 0 },
+                        hidden: { y: 24, opacity: 0 },
                         visible: {
                           y: 0,
                           opacity: 1,
