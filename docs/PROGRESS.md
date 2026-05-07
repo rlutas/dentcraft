@@ -103,6 +103,45 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 
 ## Session Log
 
+### 7 May 2026
+
+**Price Calculator v2 — Scenario-Based Estimator with Real Catalog:**
+- Replaced generic 3-step calculator + flat TabbedPriceList with patient-facing scenario picker (8 scenarios)
+- Pricing data sourced from Dr. Petric's Stomawin export (159 treatments, 12 categories, 3 languages)
+- Generator script: `scripts/generate-treatments.mjs` — re-run on catalog updates (raw JSON stays out of repo)
+- Catalog committed as `src/data/treatments.ts` — 145 priced treatments with ro/en/hu labels
+- Scenario→treatment mappings in `src/data/calculator-scenarios.ts` — 8 scenarios with sub-question schemas and resolve functions
+- Pure pricing logic in `src/components/features/PriceCalculator/v2/calculations.ts` with 16 Vitest tests
+- Vitest installed for the first time + `npm test` script wired
+- New v2 components: `ScenarioPicker`, `SubQuestions`, `Estimate`, `index` (orchestrator)
+- `/preturi` page rebuilt — flat list removed, calculator only + closing CTA + "What happens next" timeline
+- `PriceEstimatePopup` extended with optional itemized line items; admin email renders treatment table
+- `i18n` strings added under `prices.calculator.*` in ro/en/hu (15 keys × 3 languages)
+- v1 calculator components deleted (kept `PriceEstimatePopup` since v2 reuses it)
+
+**Wow features in v2:**
+- 8 illustrated scenario cards (uses 146 dental SVGs already in `/public/icons/`)
+- Animated CountUp for total range
+- Doctor's tip card (dark, with stethoscope icon, contextual copy per scenario)
+- "What happens next" 3-step timeline (Booking → Plan → Treatment)
+- Smooth Framer Motion transitions between steps
+- Mobile-responsive (2-col cards on mobile, 4-col on desktop)
+- Auto-skip questions step for scenarios with zero questions (emergency, consultation-only)
+
+**Privacy invariant:** Stomawin export never enters the repo. Generated treatments.ts is the only committed derivative.
+
+**Key commits:**
+- `0cdf82e` generate treatments catalog
+- `8086bb7` 8 scenarios with treatment mappings
+- `2f7be04` pure pricing logic + vitest
+- `142753a` scenario picker
+- `7fb1861` sub-questions
+- `5cd0528` estimate result
+- `d64977d` orchestrator
+- `abf4759` /preturi page rewrite
+- `8ee47e8` i18n strings
+- `f5c3022` itemized email payload
+
 ### 23 April 2026
 
 **Hero Redesign — Dentix-Style Framed Hero with Sticky Nav:**
