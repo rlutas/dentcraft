@@ -562,6 +562,23 @@
       "veneers": "Dental veneers",
       "implant": "Dental implant",
       "crown": "Dental crown"
+    },
+    "calculator": {
+      "back": "Back",
+      "reset": "Restart",
+      "next": "Continue",
+      "scenarioTitle": "What brings you here?",
+      "scenarioSubtitle": "Pick the scenario that fits best. The doctor confirms everything at consultation.",
+      "questionsTitle": "A few details",
+      "questionsSubtitle": "Your answers help us give you a more accurate estimate.",
+      "estimateTitle": "Your estimate",
+      "totalRange": "Estimated total in RON",
+      "perTreatment": "Per treatment",
+      "bookConsultation": "Book consultation",
+      "doctorTip": "Doctor's note",
+      "disclaimer": "Indicative estimate. The exact plan and final price are set at consultation, after clinical and radiological evaluation.",
+      "yourEstimate": "Your estimate",
+      "whatHappensNext": "What's next"
     }
   },
   "faq": {

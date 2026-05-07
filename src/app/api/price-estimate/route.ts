@@ -1,8 +1,15 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { priceEstimateAdminEmail, priceEstimateConfirmationEmail } from '@/lib/email-templates'
+import {
+  priceEstimateAdminEmail,
+  priceEstimateConfirmationEmail,
+  type LeadLineItem,
+} from '@/lib/email-templates'
 import { addContactToResend } from '@/lib/resend-contacts'
+
+// Cap line items at 10 to prevent abuse
+const MAX_LINE_ITEMS = 10
 
 // Rate limiting store (in-memory, resets on server restart)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
@@ -22,6 +29,27 @@ type PriceEstimateFormData = {
   materialType: string | null
   priceMin: number
   priceMax: number
+  lineItems?: LeadLineItem[]
+}
+
+// Validate a single line item; returns null if malformed.
+function parseLineItem(raw: unknown): LeadLineItem | null {
+  if (!raw || typeof raw !== 'object') return null
+  const item = raw as Record<string, unknown>
+
+  if (typeof item['label'] !== 'string' || item['label'].trim().length === 0) return null
+  if (typeof item['qty'] !== 'number' || !Number.isFinite(item['qty']) || item['qty'] < 0) return null
+  if (typeof item['unitPrice'] !== 'number' || !Number.isFinite(item['unitPrice']) || item['unitPrice'] < 0) return null
+  if (typeof item['total'] !== 'number' || !Number.isFinite(item['total']) || item['total'] < 0) return null
+  if (item['priceType'] !== 'fixed' && item['priceType'] !== 'from') return null
+
+  return {
+    label: (item['label'] as string).trim().slice(0, 200),
+    qty: item['qty'] as number,
+    unitPrice: item['unitPrice'] as number,
+    total: item['total'] as number,
+    priceType: item['priceType'] as 'fixed' | 'from',
+  }
 }
 
 // Get client IP from headers
@@ -102,6 +130,33 @@ function validateFormData(
     errors['service'] = 'Service is required'
   }
 
+  // Line items validation (optional). If present, the whole field must be valid:
+  // - must be an array
+  // - max 10 items
+  // - every item must parse successfully (reject the whole field if any item is malformed)
+  let parsedLineItems: LeadLineItem[] | undefined
+  if (formData['lineItems'] !== undefined) {
+    const raw = formData['lineItems']
+    if (!Array.isArray(raw)) {
+      errors['lineItems'] = 'lineItems must be an array'
+    } else if (raw.length > MAX_LINE_ITEMS) {
+      errors['lineItems'] = `lineItems exceeds maximum of ${MAX_LINE_ITEMS}`
+    } else {
+      const parsed: LeadLineItem[] = []
+      for (const entry of raw) {
+        const li = parseLineItem(entry)
+        if (!li) {
+          errors['lineItems'] = 'lineItems contains invalid entries'
+          break
+        }
+        parsed.push(li)
+      }
+      if (!errors['lineItems']) {
+        parsedLineItems = parsed
+      }
+    }
+  }
+
   if (Object.keys(errors).length > 0) {
     return { errors, valid: false }
   }
@@ -116,6 +171,7 @@ function validateFormData(
     materialType: typeof formData['materialType'] === 'string' ? formData['materialType'] : null,
     priceMin: typeof formData['priceMin'] === 'number' ? formData['priceMin'] : 0,
     priceMax: typeof formData['priceMax'] === 'number' ? formData['priceMax'] : 0,
+    ...(parsedLineItems && parsedLineItems.length > 0 ? { lineItems: parsedLineItems } : {}),
   }
 
   return { data: result, valid: true }
@@ -170,6 +226,7 @@ export async function POST(request: Request) {
         materialType: data.materialType,
         priceMin: data.priceMin,
         priceMax: data.priceMax,
+        ...(data.lineItems ? { lineItems: data.lineItems } : {}),
         timestamp: new Date().toISOString(),
       })
 
@@ -193,6 +250,7 @@ export async function POST(request: Request) {
         materialType: data.materialType,
         priceMin: data.priceMin,
         priceMax: data.priceMax,
+        ...(data.lineItems ? { lineItems: data.lineItems } : {}),
       }),
       subject: `[Dentcraft] Estimare pret - ${data.service} - ${data.name}`,
       to: recipientEmail,

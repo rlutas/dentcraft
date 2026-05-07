@@ -205,6 +205,15 @@ export function callbackConfirmationEmail(data: {
   })
 }
 
+// Line item shape that survives the network boundary (calculator -> API -> email)
+export type LeadLineItem = {
+  label: string         // localized treatment label as the user saw it
+  qty: number
+  unitPrice: number     // RON, integer
+  total: number         // RON, integer (== unitPrice * qty)
+  priceType: 'fixed' | 'from'
+}
+
 // Admin notification: Price estimate
 export function priceEstimateAdminEmail(data: {
   name: string
@@ -215,6 +224,7 @@ export function priceEstimateAdminEmail(data: {
   materialType?: string | null
   priceMin: number
   priceMax: number
+  lineItems?: LeadLineItem[]
 }) {
   const formatPrice = (n: number) => n.toLocaleString('ro-RO')
 
@@ -222,6 +232,39 @@ export function priceEstimateAdminEmail(data: {
     premium: 'Premium',
     standard: 'Standard',
   }
+
+  const hasLineItems = Array.isArray(data.lineItems) && data.lineItems.length > 0
+
+  const lineItemsSection = hasLineItems
+    ? `
+      <h3 style="margin: 24px 0 8px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Detaliu tratamente</h3>
+      <p style="margin: 0 0 12px; color: #6b6b6b; font-size: 13px; line-height: 1.5;">Detaliile sunt cele afisate clientului in calculator.</p>
+      <table style="border-collapse: collapse; width: 100%; border: 1px solid ${BORDER_COLOR};">
+        <thead>
+          <tr style="background: ${BG_COLOR};">
+            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: left; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Tratament</th>
+            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: center; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Cant.</th>
+            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: right; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Pret unitar</th>
+            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: right; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Total</th>
+            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: center; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Tip</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${data.lineItems!.map((li) => `
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a; font-size: 14px;">${esc(li.label)}</td>
+              <td style="padding: 12px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a; font-size: 14px; text-align: center;">${li.qty}</td>
+              <td style="padding: 12px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a; font-size: 14px; text-align: right;">${formatPrice(li.unitPrice)} RON</td>
+              <td style="padding: 12px; border-bottom: 1px solid ${BORDER_COLOR}; color: ${BRAND_COLOR}; font-size: 14px; text-align: right; font-weight: 600;">${formatPrice(li.total)} RON</td>
+              <td style="padding: 12px; border-bottom: 1px solid ${BORDER_COLOR}; color: #6b6b6b; font-size: 12px; text-align: center;">
+                <span style="display: inline-block; padding: 3px 8px; border-radius: 12px; background: ${li.priceType === 'from' ? '#fff4e6' : '#e8f5e9'}; color: ${li.priceType === 'from' ? '#a36a00' : '#2e7d32'}; font-weight: 600;">${li.priceType === 'from' ? 'de la' : 'fix'}</span>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `
+    : ''
 
   const content = `
     <div style="padding: 24px;">
@@ -260,6 +303,7 @@ export function priceEstimateAdminEmail(data: {
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: ${BRAND_COLOR}; font-weight: 700; font-size: 16px;">${formatPrice(data.priceMin)} - ${formatPrice(data.priceMax)} RON</td>
         </tr>
       </table>
+      ${lineItemsSection}
     </div>
   `
   return emailWrapper(content, {
