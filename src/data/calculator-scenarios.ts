@@ -59,10 +59,30 @@ const toNumber = (v: string | number | undefined, fallback: number): number => {
   return fallback
 }
 
-const toString = (v: string | number | undefined, fallback: string): string => {
+const coerceToString = (v: string | number | undefined, fallback: string): string => {
   if (typeof v === 'string') return v
   if (typeof v === 'number') return String(v)
   return fallback
+}
+
+// ---------- shared notes ----------
+
+const BRACES_NOTE_CLEAR_CORRECT: Record<Locale, string> = {
+  ro: 'Tratamentul durează 12-24 luni. Clear Correct include toate seturile de aligneri.',
+  en: 'Treatment lasts 12-24 months. Clear Correct includes all aligner sets.',
+  hu: 'A kezelés 12-24 hónapig tart. A Clear Correct minden sín készletet tartalmaz.',
+}
+
+const BRACES_NOTE_FIXED: Record<Locale, string> = {
+  ro: 'Aparatele fixe necesită activări lunare (cca 200 RON/activare). Tratamentul durează 12-24 luni.',
+  en: 'Fixed braces require monthly activations (~200 RON each). Treatment lasts 12-24 months.',
+  hu: 'A fix készülékek havi aktiválást igényelnek (kb. 200 RON / aktiválás). A kezelés 12-24 hónapig tart.',
+}
+
+const VENEER_NOTE: Record<Locale, string> = {
+  ro: 'Fațetele E-Max sunt cele mai estetice și durabile pentru zona frontală. Albirea se face de obicei înainte de fațete pentru a stabili nuanța de referință.',
+  en: 'E-Max veneers are the most esthetic and durable choice for the front zone. Whitening is usually done before veneers to set the reference shade.',
+  hu: 'Az E-Max héjak a legesztétikusabb és legtartósabb választás az elülső területre. A fehérítés általában a héjak előtt történik a referencia árnyalat megállapításához.',
 }
 
 // ---------- scenarios ----------
@@ -154,8 +174,11 @@ export const scenarios: Scenario[] = [
     ],
     resolve: (a) => {
       const count = Math.max(1, Math.min(3, toNumber(a['count'], 1)))
-      const tier = toString(a['tier'], 'doctor') as Tier
+      const tier = coerceToString(a['tier'], 'doctor') as Tier
 
+      // 'doctor' tier resolves to economic items as the floor; the UI displays
+      // the full tier range separately via doctor-tier handling in calculations
+      // or copy.
       const implantByTier: Record<Tier, string> = {
         economic: 'implant-dentar-ino',
         mediu: 'implant-dentar-megagen',
@@ -274,8 +297,8 @@ export const scenarios: Scenario[] = [
       },
     ],
     resolve: (a) => {
-      const arcades = toString(a['arcades'], 'one')
-      const tier = toString(a['tier'], 'mediu') as Exclude<Tier, 'doctor'>
+      const arcades = coerceToString(a['arcades'], 'one')
+      const tier = coerceToString(a['tier'], 'mediu') as Exclude<Tier, 'doctor'>
       const arcadeCount = arcades === 'both' ? 2 : 1
 
       const treatmentByTier: Record<Exclude<Tier, 'doctor'>, string> = {
@@ -371,7 +394,7 @@ export const scenarios: Scenario[] = [
       },
     ],
     resolve: (a) => {
-      const pkg = toString(a['package'], 'whitening')
+      const pkg = coerceToString(a['package'], 'whitening')
       const count = Math.max(4, Math.min(10, toNumber(a['count'], 6)))
 
       const items: LineItem[] = []
@@ -395,16 +418,14 @@ export const scenarios: Scenario[] = [
         })
       }
 
-      return {
-        items,
-        notes: [
-          {
-            ro: 'Fațetele E-Max sunt cele mai estetice și durabile pentru zona frontală. Albirea se face de obicei înainte de fațete pentru a stabili nuanța de referință.',
-            en: 'E-Max veneers are the most esthetic and durable choice for the front zone. Whitening is usually done before veneers to set the reference shade.',
-            hu: 'Az E-Max héjak a legesztétikusabb és legtartósabb választás az elülső területre. A fehérítés általában a héjak előtt történik a referencia árnyalat megállapításához.',
-          },
-        ],
+      if (pkg !== 'whitening') {
+        return {
+          items,
+          notes: [VENEER_NOTE],
+        }
       }
+
+      return { items }
     },
   },
 
@@ -459,7 +480,7 @@ export const scenarios: Scenario[] = [
       },
     ],
     resolve: (a) => {
-      const pkg = toString(a['package'], 'basic')
+      const pkg = coerceToString(a['package'], 'basic')
 
       if (pkg === 'complete') {
         return {
@@ -569,7 +590,7 @@ export const scenarios: Scenario[] = [
       },
     ],
     resolve: (a) => {
-      const pkg = toString(a['package'], 'checkup')
+      const pkg = coerceToString(a['package'], 'checkup')
 
       const baseConsult: LineItem = {
         treatmentRef: ref('pedodontie', 'consult-primar-pedodontic'),
@@ -719,8 +740,8 @@ export const scenarios: Scenario[] = [
       },
     ],
     resolve: (a) => {
-      const tier = toString(a['tier'], 'mediu') as Exclude<Tier, 'doctor'>
-      const arcades = toString(a['arcades'], 'both')
+      const tier = coerceToString(a['tier'], 'mediu') as Exclude<Tier, 'doctor'>
+      const arcades = coerceToString(a['arcades'], 'both')
       const arcadeCount = arcades === 'both' ? 2 : 1
 
       if (tier === 'premium') {
@@ -731,13 +752,7 @@ export const scenarios: Scenario[] = [
               qty: 1,
             },
           ],
-          notes: [
-            {
-              ro: 'Aparatele fixe necesită activări lunare (cca 200 RON/activare). Tratamentul durează 12-24 luni. Clear Correct include toate seturile de aligneri.',
-              en: 'Fixed braces require monthly activations (~200 RON each). Treatment lasts 12-24 months. Clear Correct includes all aligner sets.',
-              hu: 'A fix készülékek havi aktiválást igényelnek (kb. 200 RON / aktiválás). A kezelés 12-24 hónapig tart. A Clear Correct minden sín készletet tartalmaz.',
-            },
-          ],
+          notes: [BRACES_NOTE_CLEAR_CORRECT],
         }
       }
 
@@ -753,13 +768,7 @@ export const scenarios: Scenario[] = [
             qty: arcadeCount,
           },
         ],
-        notes: [
-          {
-            ro: 'Aparatele fixe necesită activări lunare (cca 200 RON/activare). Tratamentul durează 12-24 luni. Clear Correct include toate seturile de aligneri.',
-            en: 'Fixed braces require monthly activations (~200 RON each). Treatment lasts 12-24 months. Clear Correct includes all aligner sets.',
-            hu: 'A fix készülékek havi aktiválást igényelnek (kb. 200 RON / aktiválás). A kezelés 12-24 hónapig tart. A Clear Correct minden sín készletet tartalmaz.',
-          },
-        ],
+        notes: [BRACES_NOTE_FIXED],
       }
     },
   },
