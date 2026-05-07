@@ -408,36 +408,30 @@ export function FramedHero() {
                 transition={{ delay: 1.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end"
               >
+                {/* Primary — brighter liquid glass, matches the trust chip
+                    aesthetic with extra emphasis */}
                 <button
                   type="button"
                   onClick={() => setBookingOpen(true)}
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white shadow-[0_12px_32px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
-                  style={{
-                    background:
-                      'linear-gradient(135deg, rgba(42,33,24,0.92), rgba(42,33,24,0.78))',
-                    backdropFilter: 'blur(20px)',
-                    boxShadow:
-                      'inset 0 1px 0 rgba(255,255,255,0.18), 0 12px 32px -10px rgba(0,0,0,0.5)',
-                  }}
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 overflow-hidden bg-white/20 backdrop-blur-2xl border border-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_-6px_rgba(0,0,0,0.35)] hover:bg-white/25 hover:border-white/45"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/12 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
+                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
                   />
-                  <span className="relative">{tHero('ctaPrimary')}</span>
+                  <span className="relative drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+                    {tHero('ctaPrimary')}
+                  </span>
                 </button>
+
+                {/* Secondary — softer liquid glass, twin of the trust chip */}
                 <Link
                   href="/preturi"
-                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-[#2a2118] transition-all duration-300 hover:-translate-y-0.5"
-                  style={{
-                    background: 'rgba(255,255,255,0.78)',
-                    backdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(255,255,255,0.5)',
-                    boxShadow:
-                      'inset 0 1px 0 rgba(255,255,255,0.6), 0 12px 32px -10px rgba(42,33,24,0.25)',
-                  }}
+                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)] hover:bg-white/15 hover:border-white/35"
                 >
-                  {tHero('ctaSecondary')}
+                  <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+                    {tHero('ctaSecondary')}
+                  </span>
                 </Link>
               </motion.div>
             </div>
