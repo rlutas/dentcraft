@@ -580,7 +580,7 @@ export function FramedHero() {
           </Link>
 
           {/* Desktop nav links — centered to viewport via grid 1fr-auto-1fr */}
-          <ul className="hidden lg:flex items-center justify-center gap-1 text-[13px] font-semibold uppercase tracking-[0.16em]">
+          <ul className="hidden lg:flex items-center justify-center gap-1 text-[15px] font-bold uppercase tracking-[0.14em]">
             {/* Services with dropdown */}
             <li
               className="relative"
@@ -591,7 +591,7 @@ export function FramedHero() {
                 type="button"
                 onClick={() => setIsServicesOpen((prev) => !prev)}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold uppercase tracking-[0.16em] transition-colors',
+                  'flex items-center gap-1.5 px-3 py-2 rounded-full text-[15px] font-bold uppercase tracking-[0.14em] transition-colors',
                   isServicesOpen
                     ? 'text-[#2a2118] bg-[#faf6f1]'
                     : 'text-[#2a2118]/70 hover:text-[#2a2118] hover:bg-[#faf6f1]'
