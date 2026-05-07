@@ -695,7 +695,7 @@ export function FramedHero() {
                 type="button"
                 onClick={() => setIsLangOpen((v) => !v)}
                 className={cn(
-                  'inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium uppercase tracking-wide transition-colors',
+                  'inline-flex items-center gap-2 px-4 py-3 rounded-full text-base font-medium uppercase tracking-wide transition-colors',
                   isLangOpen
                     ? 'text-[#2a2118] bg-[#faf6f1]'
                     : 'text-[#2a2118]/75 hover:text-[#2a2118] hover:bg-[#faf6f1]'
@@ -706,7 +706,7 @@ export function FramedHero() {
                 {(() => {
                   const Flag = LOCALE_FLAGS[currentLocale]
                   return (
-                    <span className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-black/10 bg-white shrink-0">
+                    <span className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-black/10 bg-white shrink-0">
                       <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
                     </span>
                   )
@@ -714,7 +714,7 @@ export function FramedHero() {
                 <span>{currentLocale}</span>
                 <ChevronDown
                   className={cn(
-                    'w-3 h-3 transition-transform duration-300',
+                    'w-3.5 h-3.5 transition-transform duration-300',
                     isLangOpen && 'rotate-180'
                   )}
                 />
