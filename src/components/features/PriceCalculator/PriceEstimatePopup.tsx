@@ -27,6 +27,25 @@ interface PriceEstimatePopupProps {
   saveModeButton?: string
 }
 
+// Common dial codes for Romanian patients + diaspora.
+// Romania first (default), then top destinations for Romanian expats.
+const DIAL_CODES = [
+  { iso: 'RO', flag: '🇷🇴', dial: '+40' },
+  { iso: 'IT', flag: '🇮🇹', dial: '+39' },
+  { iso: 'ES', flag: '🇪🇸', dial: '+34' },
+  { iso: 'DE', flag: '🇩🇪', dial: '+49' },
+  { iso: 'GB', flag: '🇬🇧', dial: '+44' },
+  { iso: 'FR', flag: '🇫🇷', dial: '+33' },
+  { iso: 'AT', flag: '🇦🇹', dial: '+43' },
+  { iso: 'BE', flag: '🇧🇪', dial: '+32' },
+  { iso: 'NL', flag: '🇳🇱', dial: '+31' },
+  { iso: 'IE', flag: '🇮🇪', dial: '+353' },
+  { iso: 'HU', flag: '🇭🇺', dial: '+36' },
+  { iso: 'MD', flag: '🇲🇩', dial: '+373' },
+  { iso: 'US', flag: '🇺🇸', dial: '+1' },
+  { iso: 'CA', flag: '🇨🇦', dial: '+1' },
+] as const
+
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('ro-RO', {
     style: 'decimal',
@@ -50,6 +69,7 @@ export default function PriceEstimatePopup({
   saveModeButton,
 }: PriceEstimatePopupProps) {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '' })
+  const [dialCode, setDialCode] = useState('+40')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -74,6 +94,7 @@ export default function PriceEstimatePopup({
     if (!isOpen) {
       setTimeout(() => {
         setFormData({ name: '', phone: '', email: '' })
+        setDialCode('+40')
         setIsSuccess(false)
         setErrors({})
       }, 300)
@@ -126,12 +147,17 @@ export default function PriceEstimatePopup({
     setIsSubmitting(true)
 
     try {
+      // Combine dial code + national number for the phone field sent to the backend.
+      // Strips any leading 0 from the local part (Romanian convention: 0712… without country code).
+      const localNumber = formData.phone.replace(/[^\d]/g, '').replace(/^0+/, '')
+      const fullPhone = saveMode ? '' : (localNumber ? `${dialCode} ${localNumber}` : formData.phone)
+
       const response = await fetch('/api/price-estimate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
-          phone: saveMode ? '' : formData.phone,
+          phone: fullPhone,
           email: formData.email.trim(),
           service: service.title,
           serviceSlug: service.slug,
@@ -384,26 +410,51 @@ export default function PriceEstimatePopup({
                         <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
                           Numar de telefon
                         </label>
-                        <div className="relative">
-                          <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
-                            <Phone className="h-4 w-4 text-[#a0a0a0]" />
-                          </div>
-                          <input
-                            type="tel"
-                            value={formData.phone}
-                            onChange={(e) => {
-                              setFormData((prev) => ({ ...prev, phone: e.target.value }))
-                              if (errors['phone']) setErrors((prev) => ({ ...prev, phone: '' }))
-                            }}
-                            placeholder="07XX XXX XXX"
+                        <div className="flex gap-2">
+                          {/* Country dial code selector */}
+                          <select
+                            value={dialCode}
+                            onChange={(e) => setDialCode(e.target.value)}
+                            aria-label="Cod tara"
                             className={cn(
-                              'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
-                              'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
+                              'rounded-xl border bg-white py-2.5 sm:py-3 px-3 text-[14px] sm:text-[15px]',
+                              'text-[#1a1a1a] cursor-pointer appearance-none',
                               'transition-all duration-200',
                               'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
                               errors['phone'] ? 'border-red-400' : 'border-[#e8e8e8]'
                             )}
-                          />
+                          >
+                            {DIAL_CODES.map((c) => (
+                              <option key={`${c.iso}-${c.dial}`} value={c.dial}>
+                                {c.flag} {c.dial}
+                              </option>
+                            ))}
+                          </select>
+
+                          {/* Phone number */}
+                          <div className="relative flex-1">
+                            <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
+                              <Phone className="h-4 w-4 text-[#a0a0a0]" />
+                            </div>
+                            <input
+                              type="tel"
+                              inputMode="tel"
+                              autoComplete="tel-national"
+                              value={formData.phone}
+                              onChange={(e) => {
+                                setFormData((prev) => ({ ...prev, phone: e.target.value }))
+                                if (errors['phone']) setErrors((prev) => ({ ...prev, phone: '' }))
+                              }}
+                              placeholder={dialCode === '+40' ? '07XX XXX XXX' : '7XX XXX XXX'}
+                              className={cn(
+                                'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
+                                'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
+                                'transition-all duration-200',
+                                'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
+                                errors['phone'] ? 'border-red-400' : 'border-[#e8e8e8]'
+                              )}
+                            />
+                          </div>
                         </div>
                         {errors['phone'] && (
                           <p className="mt-1.5 text-xs text-red-500">{errors['phone']}</p>
