@@ -138,7 +138,7 @@ export function FramedHero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[calc(50%+20px)_center] md:object-center"
+            className="object-cover object-[30%_center] md:object-center"
           />
         </picture>
 
