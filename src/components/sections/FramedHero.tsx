@@ -402,10 +402,9 @@ export function FramedHero() {
               <p className="text-white/90 text-sm md:text-lg leading-relaxed mb-3 sm:mb-5 md:mb-6 max-w-md md:ml-auto">
                 {tHero('subtitle')}
               </p>
-              {/* CTAs — staggered entrance with spring settle (no synchronous pop).
-                  Each button enters independently with its own delay + spring
-                  physics so they cascade in like droplets settling. */}
-              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end">
+              {/* Single primary CTA — "Programeaza acum". Calculator gets its
+                  own dedicated section further down the page. */}
+              <div className="flex md:justify-end">
                 <motion.button
                   type="button"
                   onClick={() => setBookingOpen(true)}
@@ -420,7 +419,7 @@ export function FramedHero() {
                   }}
                   whileHover={{ y: -3, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white overflow-hidden bg-white/20 backdrop-blur-2xl border border-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_-6px_rgba(0,0,0,0.35)] hover:bg-white/25 hover:border-white/45 transition-[background-color,border-color,box-shadow] duration-300"
+                  className="group relative inline-flex items-center justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-white overflow-hidden bg-white/20 backdrop-blur-2xl border border-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_-6px_rgba(0,0,0,0.35)] hover:bg-white/25 hover:border-white/45 transition-[background-color,border-color,box-shadow] duration-300"
                 >
                   <span
                     aria-hidden="true"
@@ -430,29 +429,6 @@ export function FramedHero() {
                     {tHero('ctaPrimary')}
                   </span>
                 </motion.button>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 24, scale: 0.92, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-                  transition={{
-                    delay: 1.55,
-                    type: 'spring',
-                    stiffness: 240,
-                    damping: 18,
-                    mass: 0.9,
-                  }}
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link
-                    href="/preturi"
-                    className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)] hover:bg-white/15 hover:border-white/35 transition-[background-color,border-color,box-shadow] duration-300"
-                  >
-                    <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
-                      {tHero('ctaSecondary')}
-                    </span>
-                  </Link>
-                </motion.div>
               </div>
             </div>
           </div>
