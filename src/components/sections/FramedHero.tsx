@@ -331,8 +331,10 @@ export function FramedHero() {
   return (
     <section className="relative overflow-hidden min-h-[100svh] md:min-h-[92vh]">
       <div className="relative w-full h-full min-h-[100svh] md:min-h-[92vh]">
-        {/* Responsive hero image — portrait on mobile, landscape on desktop */}
-        <picture>
+        {/* Responsive hero image — portrait on mobile, landscape on desktop.
+            <picture> wrapped in absolute container so Next.js Image fill works
+            (it requires a positioned parent). */}
+        <picture className="absolute inset-0 block">
           <source
             media="(min-width: 768px)"
             srcSet="/images/hero/hero-patient-landscape.webp"
@@ -482,8 +484,8 @@ export function FramedHero() {
                 <motion.button
                   type="button"
                   onClick={() => setBookingOpen(true)}
-                  initial={{ opacity: 0, y: 24, scale: 0.92, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                  initial={{ opacity: 0, y: 24, scale: 0.92 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{
                     delay: 1.45,
                     type: 'spring',
