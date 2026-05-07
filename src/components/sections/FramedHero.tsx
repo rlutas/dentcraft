@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ChevronDown, Menu, Phone, Star, ArrowRight } from 'lucide-react'
+import { ChevronDown, Menu, Phone, Star, ArrowRight, X } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
@@ -19,12 +19,36 @@ type MobileMenuOpenProps = { open: boolean; onClose: () => void }
 
 function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
   const t = useTranslations('navigation')
+  const tHero = useTranslations('hero')
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open])
+
   if (!open) return null
   return (
     <div className="fixed inset-0 z-[200] md:hidden">
       <div aria-hidden="true" className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <nav className="absolute top-4 left-4 right-4 bg-white rounded-3xl p-6 shadow-2xl">
-        <ul className="flex flex-col gap-2">
+      <nav className="absolute top-4 left-4 right-4 bg-white rounded-3xl p-5 shadow-2xl">
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#8b7355]">
+            {t('menuTitle') || 'Meniu'}
+          </span>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Închide meniul"
+            className="w-10 h-10 rounded-full bg-[#faf6f1] hover:bg-[#f5f0e8] flex items-center justify-center transition-colors"
+          >
+            <X className="w-5 h-5 text-[#2a2118]" strokeWidth={2} />
+          </button>
+        </div>
+        <ul className="flex flex-col gap-1">
           <li>
             <Link
               href="/servicii"
@@ -46,6 +70,15 @@ function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
             </li>
           ))}
         </ul>
+        <div className="mt-4 pt-4 border-t border-[#f5f0e8]">
+          <Link
+            href="/contact"
+            onClick={onClose}
+            className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#2a2118] text-white rounded-xl font-semibold hover:bg-[#4a3d30] transition-colors"
+          >
+            {tHero('ctaPrimary')}
+          </Link>
+        </div>
       </nav>
     </div>
   )
@@ -108,47 +141,50 @@ export function FramedHero() {
           className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/25 to-transparent"
         />
 
-        {/* Content overlay — bottom of hero */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-10 md:px-12 md:pb-14 lg:px-16 lg:pb-20">
-          <div className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
+        {/* Content overlay — bottom of hero. Mobile: tight stack so the
+            chip sits just above the title near the bottom edge, not over
+            the patient's face. */}
+        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 sm:px-6 sm:pb-8 md:px-12 md:pb-14 lg:px-16 lg:pb-20">
+          <div className="grid gap-4 sm:gap-6 md:gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
             {/* LEFT: social proof + headline */}
             <div className="text-white">
               {/* Social proof chip */}
-              <div className="inline-flex items-center gap-3 mb-6 md:mb-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-3 py-2 pr-4">
+              <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 sm:py-2 pr-3 sm:pr-4">
                 <div className="flex -space-x-2">
                   <Image
                     src="/images/patient-1.png"
                     alt=""
                     width={32}
                     height={32}
-                    className="w-7 h-7 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
+                    className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
                   />
                   <Image
                     src="/images/patient-2.png"
                     alt=""
                     width={32}
                     height={32}
-                    className="w-7 h-7 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
+                    className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
                   />
-                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[10px] md:text-xs font-bold text-white">
+                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[9px] md:text-xs font-bold text-white">
                     +
                   </div>
                 </div>
                 <div className="leading-tight">
-                  <div className="text-sm md:text-base font-bold">2000+</div>
-                  <div className="text-[10px] md:text-xs text-white/80 uppercase tracking-wider">
+                  <div className="text-xs sm:text-sm md:text-base font-bold">2000+</div>
+                  <div className="text-[9px] sm:text-[10px] md:text-xs text-white/80 uppercase tracking-wider">
                     {tHero('trustLabel')}
                   </div>
                 </div>
-                <div className="h-6 w-px bg-white/25 mx-1" />
+                <div className="h-5 sm:h-6 w-px bg-white/25 mx-0.5 sm:mx-1" />
                 <div className="flex items-center gap-1">
-                  <Star className="w-3.5 h-3.5 md:w-4 md:h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
-                  <span className="text-sm md:text-base font-bold">4.9</span>
+                  <Star className="w-3 h-3 md:w-4 md:h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
+                  <span className="text-xs sm:text-sm md:text-base font-bold">4.9</span>
                 </div>
               </div>
 
-              {/* Headline with mixed typography */}
-              <h1 className="font-bold text-white leading-[0.95] tracking-tight text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
+              {/* Headline — smaller on mobile to keep the whole stack low,
+                  away from the patient's face above */}
+              <h1 className="font-bold text-white leading-[0.95] tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
                 {tHero('titleBold')}
                 <br />
                 <span className="font-serif italic font-medium text-[#d4c4b0]">
@@ -159,19 +195,19 @@ export function FramedHero() {
 
             {/* RIGHT: description + CTAs */}
             <div className="md:text-right md:pb-2">
-              <p className="text-white/90 text-base md:text-lg leading-relaxed mb-6 max-w-md md:ml-auto">
+              <p className="text-white/90 text-sm md:text-lg leading-relaxed mb-3 sm:mb-5 md:mb-6 max-w-md md:ml-auto">
                 {tHero('subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 md:justify-end">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-7 py-3.5 bg-[#2a2118] text-white rounded-full font-semibold hover:bg-[#4a3d30] transition-colors shadow-lg"
+                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-[#2a2118] text-white rounded-full font-semibold hover:bg-[#4a3d30] transition-colors shadow-lg"
                 >
                   {tHero('ctaPrimary')}
                 </Link>
                 <Link
                   href="/servicii"
-                  className="inline-flex items-center justify-center px-7 py-3.5 bg-white/95 backdrop-blur-sm text-[#2a2118] rounded-full font-semibold hover:bg-white transition-colors shadow-lg"
+                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-white/95 backdrop-blur-sm text-[#2a2118] rounded-full font-semibold hover:bg-white transition-colors shadow-lg"
                 >
                   {tHero('ctaSecondary')}
                 </Link>
