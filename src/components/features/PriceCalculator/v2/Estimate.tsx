@@ -173,6 +173,13 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
         options={{ materialType: null, quantity: 1 }}
         priceRange={{ min: estimate.totalMin, max: estimate.totalMax }}
         locale={locale}
+        lineItems={estimate.lineItems.map((li) => ({
+          label: li.label,
+          qty: li.qty,
+          unitPrice: li.unitPrice,
+          total: li.total,
+          priceType: li.priceType,
+        }))}
       />
     </div>
   )

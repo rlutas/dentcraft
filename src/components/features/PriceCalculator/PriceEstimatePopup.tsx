@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, Phone, User, Mail, CheckCircle2, Calculator, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { trackFormSubmission } from '@/lib/gtm'
+import type { LeadLineItem } from '@/lib/email-templates'
 
 interface PriceEstimatePopupProps {
   isOpen: boolean
@@ -14,6 +15,7 @@ interface PriceEstimatePopupProps {
   options: { quantity: number; materialType: string | null }
   priceRange: { min: number; max: number }
   locale: string
+  lineItems?: LeadLineItem[]
 }
 
 const formatPrice = (price: number) => {
@@ -31,6 +33,7 @@ export default function PriceEstimatePopup({
   options,
   priceRange,
   locale: _locale,
+  lineItems,
 }: PriceEstimatePopupProps) {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -119,6 +122,7 @@ export default function PriceEstimatePopup({
           materialType: options.materialType,
           priceMin: priceRange.min,
           priceMax: priceRange.max,
+          ...(lineItems && lineItems.length > 0 ? { lineItems } : {}),
         }),
       })
 
@@ -289,6 +293,21 @@ export default function PriceEstimatePopup({
                         </p>
                       </div>
                     </div>
+                    {lineItems && lineItems.length > 0 && (
+                      <div className="bg-white rounded-lg px-4 py-2.5 mb-2">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-[#6b6b6b] mb-1.5">
+                          Include
+                        </p>
+                        <ul className="space-y-0.5">
+                          {lineItems.map((li, i) => (
+                            <li key={i} className="text-xs text-[#4a4a4a] flex justify-between gap-2">
+                              <span className="truncate">{li.label}</span>
+                              <span className="text-[#6b6b6b] flex-shrink-0">\u00D7 {li.qty}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                     <div className="flex items-center justify-between bg-white rounded-lg px-4 py-2.5">
                       <span className="text-sm text-[#6b6b6b]">Pret estimat</span>
                       <span className="font-bold text-[#1a1a1a]">
