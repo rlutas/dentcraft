@@ -270,14 +270,14 @@ export function FramedHero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[calc(30%-20px)_center] md:object-center"
+            className="object-cover object-[calc(30%-20px)_30%] md:object-center"
           />
         </picture>
 
         {/* Gradient overlays — strong at bottom for text readability, subtle at top for navbar */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/70 via-[#2a2118]/10 to-[#2a2118]/20"
+          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-15% via-50% to-100%"
         />
         <div
           aria-hidden="true"
