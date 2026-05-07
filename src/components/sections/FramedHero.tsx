@@ -141,7 +141,9 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
                       : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
                   )}
                 >
-                  <Flag className="w-5 h-auto rounded-sm overflow-hidden ring-1 ring-black/10" />
+                  <span className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-black/10 flex items-center justify-center bg-white shrink-0">
+                    <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
+                  </span>
                   <span className="uppercase tracking-wide">{loc}</span>
                 </button>
               )
@@ -231,8 +233,13 @@ export function FramedHero() {
           <div className="grid gap-4 sm:gap-6 md:gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
             {/* LEFT: social proof + headline */}
             <div className="text-white">
-              {/* Social proof chip */}
-              <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 sm:py-2 pr-3 sm:pr-4">
+              {/* Social proof chip — appears after the H1 stagger finishes */}
+              <motion.div
+                initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.05, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 sm:py-2 pr-3 sm:pr-4"
+              >
                 <div className="flex -space-x-2">
                   <Image
                     src="/images/patient-1.png"
@@ -263,7 +270,7 @@ export function FramedHero() {
                   <Star className="w-3 h-3 md:w-4 md:h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
                   <span className="text-xs sm:text-sm md:text-base font-bold">4.9</span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Headline — split into two lines with subtle stagger reveal */}
               <h1 className="font-bold text-white leading-[0.95] tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
