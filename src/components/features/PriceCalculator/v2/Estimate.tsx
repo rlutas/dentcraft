@@ -305,6 +305,7 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
           total: li.total,
           priceType: li.priceType,
         }))}
+        notes={estimate.notes}
       />
     </div>
   )

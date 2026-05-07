@@ -16,6 +16,7 @@ interface PriceEstimatePopupProps {
   priceRange: { min: number; max: number }
   locale: string
   lineItems?: LeadLineItem[]
+  notes?: string[]
   // When true, this is a "send by email" save-for-later flow:
   // - phone is not required
   // - admin email is suppressed (no booking lead, just a record + audience add)
@@ -42,6 +43,7 @@ export default function PriceEstimatePopup({
   priceRange,
   locale: _locale,
   lineItems,
+  notes,
   saveMode = false,
   saveModeTitle,
   saveModeContext,
@@ -138,6 +140,7 @@ export default function PriceEstimatePopup({
           priceMin: priceRange.min,
           priceMax: priceRange.max,
           ...(lineItems && lineItems.length > 0 ? { lineItems } : {}),
+          ...(notes && notes.length > 0 ? { notes } : {}),
           ...(saveMode ? { saveOnly: true } : {}),
         }),
       })

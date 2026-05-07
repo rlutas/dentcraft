@@ -13,7 +13,9 @@ function esc(text: string): string {
   return text.replace(/[&<>"']/g, (c) => entities[c] || c)
 }
 
-const LOGO_URL = 'https://dentcraft.ro/branding/LOGO_WHITE_FINAL.png'
+// Use www. canonical — apex domain 307-redirects and most email clients
+// (Yahoo, Outlook) refuse to follow redirects on <img>, leaving the header blank.
+const LOGO_URL = 'https://www.dentcraft.ro/branding/LOGO_WHITE_FINAL.png'
 const BRAND_COLOR = '#1a1a1a'
 const ACCENT_COLOR = '#d4c4b0'
 const BG_COLOR = '#f9f6f1'
@@ -225,6 +227,7 @@ export function priceEstimateAdminEmail(data: {
   priceMin: number
   priceMax: number
   lineItems?: LeadLineItem[]
+  notes?: string[]
 }) {
   const formatPrice = (n: number) => n.toLocaleString('ro-RO')
 
@@ -304,6 +307,13 @@ export function priceEstimateAdminEmail(data: {
         </tr>
       </table>
       ${lineItemsSection}
+      ${Array.isArray(data.notes) && data.notes.length > 0 ? `
+        <h3 style="margin: 24px 0 8px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Nota afisata clientului</h3>
+        <p style="margin: 0 0 12px; color: #6b6b6b; font-size: 13px; line-height: 1.5;">Acest text a fost afisat in calculator ca "Nota de la doctor".</p>
+        <div style="background: linear-gradient(135deg, #2a2118, #1a1410); border-radius: 8px; padding: 16px;">
+          ${data.notes.map((n) => `<p style="margin: 0 0 6px; color: #ffffff; font-size: 14px; line-height: 1.6;">${esc(n)}</p>`).join('')}
+        </div>
+      ` : ''}
     </div>
   `
   return emailWrapper(content, {
@@ -314,35 +324,105 @@ export function priceEstimateAdminEmail(data: {
 }
 
 // Client confirmation: Price estimate
+// Mirrors what the client saw on the website: total range, line items, doctor's note.
 export function priceEstimateConfirmationEmail(data: {
   name: string
   service: string
   priceMin: number
   priceMax: number
+  lineItems?: LeadLineItem[]
+  notes?: string[]
 }) {
   const firstName = esc(data.name.split(' ')[0] || data.name)
   const formatPrice = (n: number) => n.toLocaleString('ro-RO')
+  const hasLineItems = Array.isArray(data.lineItems) && data.lineItems.length > 0
+  const hasNotes = Array.isArray(data.notes) && data.notes.length > 0
+  const isRange = data.priceMin !== data.priceMax
 
-  const content = `
-    <div style="padding: 32px 24px;">
-      <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Estimarea ta de pret pentru <strong>${esc(data.service)}</strong> este intre <strong>${formatPrice(data.priceMin)} - ${formatPrice(data.priceMax)} RON</strong>.
+  // Total hero — large centered number, matches the website estimate block
+  const totalHero = `
+    <div style="padding: 32px 24px 16px; text-align: center;">
+      <p style="margin: 0 0 8px; color: #8b7355; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;">Investiția estimată</p>
+      <p style="margin: 0; color: ${BRAND_COLOR}; font-size: 36px; font-weight: 700; line-height: 1.1;">
+        ${formatPrice(data.priceMin)}${isRange ? ` <span style="color: #8b7355; font-weight: 300;">–</span> ${formatPrice(data.priceMax)}` : ''}
+        <span style="font-size: 18px; font-weight: 500; color: ${BRAND_COLOR}; margin-left: 6px;">RON</span>
       </p>
-      <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Aceasta este o estimare orientativa. Pretul final va fi stabilit dupa consultatie, in functie de complexitatea tratamentului si necesitatile specifice.
+      <p style="margin: 12px 0 0; color: #8b7355; font-size: 13px;">pentru <strong style="color: ${BRAND_COLOR};">${esc(data.service)}</strong></p>
+    </div>
+  `
+
+  const lineItemsSection = hasLineItems
+    ? `
+      <div style="padding: 8px 24px 24px;">
+        <h3 style="margin: 0 0 12px; color: #8b7355; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Pe tratamente</h3>
+        <table style="border-collapse: collapse; width: 100%; border: 1px solid ${BORDER_COLOR}; border-radius: 8px; overflow: hidden;">
+          <tbody>
+            ${data.lineItems!.map((li, i) => `
+              <tr${i > 0 ? ` style="border-top: 1px solid ${BORDER_COLOR};"` : ''}>
+                <td style="padding: 12px 16px; color: #4a4a4a; font-size: 14px;">
+                  ${esc(li.label)}
+                  ${li.qty > 1 ? `<div style="color: #8b7355; font-size: 12px; margin-top: 2px;">${li.qty} × ${formatPrice(li.unitPrice)} RON</div>` : ''}
+                </td>
+                <td style="padding: 12px 16px; color: ${BRAND_COLOR}; font-size: 14px; text-align: right; font-weight: 600; white-space: nowrap;">
+                  ${li.priceType === 'from' ? `<span style="font-size: 11px; font-weight: 500; color: #8b7355; background: ${BG_COLOR}; padding: 2px 8px; border-radius: 10px; margin-right: 6px;">de la</span>` : ''}
+                  ${formatPrice(li.total)} RON
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `
+    : ''
+
+  const doctorSection = hasNotes
+    ? `
+      <div style="padding: 0 24px 24px;">
+        <div style="background: linear-gradient(135deg, #2a2118, #1a1410); border-radius: 12px; padding: 20px;">
+          <p style="margin: 0 0 8px; color: ${ACCENT_COLOR}; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Notă de la doctor</p>
+          ${data.notes!.map((n) => `
+            <p style="margin: 0 0 8px; color: #ffffff; font-size: 14px; line-height: 1.6;">${esc(n)}</p>
+          `).join('')}
+          <p style="margin: 12px 0 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.12); color: ${ACCENT_COLOR}; font-size: 12px; font-weight: 600;">
+            Dr. Petric Răzvan-Tudor
+            <span style="display: block; color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 400; margin-top: 2px;">DentCraft Satu Mare</span>
+          </p>
+        </div>
+      </div>
+    `
+    : ''
+
+  const reassurance = `
+    <div style="padding: 0 24px 8px;">
+      <p style="margin: 0 0 12px; color: #4a4a4a; font-size: 14px; line-height: 1.6;">
+        Bună, <strong>${firstName}</strong>! Aceasta e estimarea pe care ai văzut-o în calculator. Am salvat-o pentru tine ca să o poți consulta mai târziu sau să o discuți cu cineva apropiat.
       </p>
-      <p style="margin: 0 0 24px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Te vom contacta in cel mai scurt timp pentru a stabili o consultatie.
+      <p style="margin: 0 0 12px; color: #4a4a4a; font-size: 14px; line-height: 1.6;">
+        E o estimare orientativă — prețul final se stabilește la consultație, după evaluare clinică și radiologică.
       </p>
-      <div style="text-align: center; padding: 20px 0;">
-        <a href="tel:+40741199977" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;">
-          Suna-ne: 0741 199 977
+      <p style="margin: 0; color: #4a4a4a; font-size: 14px; line-height: 1.6;">
+        Programul nostru: <strong>Luni - Vineri, 10:00 - 18:00</strong>. Te așteptăm.
+      </p>
+    </div>
+  `
+
+  const cta = `
+    <div style="padding: 16px 24px 32px; text-align: center;">
+      <a href="tel:+40741199977" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;">
+        Sună-ne: 0741 199 977
+      </a>
+      <div style="margin-top: 12px;">
+        <a href="https://www.dentcraft.ro/contact" style="color: #8b7355; font-size: 13px; text-decoration: underline;">
+          sau trimite-ne un mesaj
         </a>
       </div>
     </div>
   `
+
+  const content = totalHero + lineItemsSection + doctorSection + reassurance + cta
+
   return emailWrapper(content, {
-    headerTitle: `Multumim, ${firstName}!`,
-    headerSubtitle: 'Estimarea ta de pret',
+    headerTitle: `Mulțumim, ${firstName}!`,
+    headerSubtitle: 'Estimarea ta de preț',
   })
 }

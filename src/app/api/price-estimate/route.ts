@@ -30,6 +30,7 @@ type PriceEstimateFormData = {
   priceMin: number
   priceMax: number
   lineItems?: LeadLineItem[]
+  notes?: string[]
   saveOnly?: boolean
 }
 
@@ -163,6 +164,28 @@ function validateFormData(
     }
   }
 
+  // Notes validation (optional). Up to 5 short strings of doctor's note text.
+  let parsedNotes: string[] | undefined
+  if (formData['notes'] !== undefined) {
+    const raw = formData['notes']
+    if (!Array.isArray(raw)) {
+      errors['notes'] = 'notes must be an array'
+    } else if (raw.length > 5) {
+      errors['notes'] = 'notes exceeds maximum of 5'
+    } else {
+      const cleaned: string[] = []
+      for (const n of raw) {
+        if (typeof n !== 'string') {
+          errors['notes'] = 'notes contains non-string entries'
+          break
+        }
+        const t = n.trim().slice(0, 1000)
+        if (t) cleaned.push(t)
+      }
+      if (!errors['notes']) parsedNotes = cleaned
+    }
+  }
+
   if (Object.keys(errors).length > 0) {
     return { errors, valid: false }
   }
@@ -178,6 +201,7 @@ function validateFormData(
     priceMin: typeof formData['priceMin'] === 'number' ? formData['priceMin'] : 0,
     priceMax: typeof formData['priceMax'] === 'number' ? formData['priceMax'] : 0,
     ...(parsedLineItems && parsedLineItems.length > 0 ? { lineItems: parsedLineItems } : {}),
+    ...(parsedNotes && parsedNotes.length > 0 ? { notes: parsedNotes } : {}),
     ...(saveOnly ? { saveOnly: true } : {}),
   }
 
@@ -262,6 +286,7 @@ export async function POST(request: Request) {
           priceMin: data.priceMin,
           priceMax: data.priceMax,
           ...(data.lineItems ? { lineItems: data.lineItems } : {}),
+          ...(data.notes ? { notes: data.notes } : {}),
         }),
         subject: `[Dentcraft] Estimare pret - ${data.service} - ${data.name}`,
         to: recipientEmail,
@@ -284,6 +309,8 @@ export async function POST(request: Request) {
         service: data.service,
         priceMin: data.priceMin,
         priceMax: data.priceMax,
+        ...(data.lineItems ? { lineItems: data.lineItems } : {}),
+        ...(data.notes ? { notes: data.notes } : {}),
       }),
       subject: `Estimare pret - ${data.service} | Dentcraft`,
       to: data.email,
