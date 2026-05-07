@@ -1,4 +1,4 @@
-import { Calculator, MessageCircle, Phone } from 'lucide-react'
+import { Calculator } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { PriceCalculatorV2 } from '@/components/features/PriceCalculator/v2'
@@ -12,9 +12,6 @@ import {
   siteConfig,
   type Locale as SEOLocale,
 } from '@/lib/seo'
-
-const PHONE_DISPLAY = '0741 199 977'
-const PHONE_TEL = '+40741199977'
 
 type PageProps = {
   params: Promise<{ locale: string }>
@@ -65,6 +62,20 @@ export default async function PricesPage({ params }: PageProps) {
     disclaimer: t('prices.calculator.disclaimer'),
     yourEstimate: t('prices.calculator.yourEstimate'),
     whatHappensNext: t('prices.calculator.whatHappensNext'),
+    stepLabelScenario: t('prices.calculator.stepLabelScenario'),
+    stepLabelQuestions: t('prices.calculator.stepLabelQuestions'),
+    stepLabelResult: t('prices.calculator.stepLabelResult'),
+    nextStepBooking: t('prices.calculator.nextStepBooking'),
+    nextStepBookingTime: t('prices.calculator.nextStepBookingTime'),
+    nextStepPlan: t('prices.calculator.nextStepPlan'),
+    nextStepPlanTime: t('prices.calculator.nextStepPlanTime'),
+    nextStepTreatment: t('prices.calculator.nextStepTreatment'),
+    nextStepTreatmentTime: t('prices.calculator.nextStepTreatmentTime'),
+    sendByEmail: t('prices.calculator.sendByEmail'),
+    sendByEmailTitle: t('prices.calculator.sendByEmailTitle'),
+    sendByEmailButton: t('prices.calculator.sendByEmailButton'),
+    sendByEmailContext: t('prices.calculator.sendByEmailContext'),
+    doctorName: t('prices.calculator.doctorName'),
   }
 
   return (
@@ -144,35 +155,6 @@ export default async function PricesPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Closing CTA */}
-        <section className="section bg-[var(--color-accent-light)]">
-          <div className="container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-                {t('prices.ctaTitle')}
-              </h2>
-              <p className="text-lg text-[#6b6b6b] mb-8 leading-relaxed">
-                {t('prices.ctaSubtitle')}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/contact"
-                  className="btn btn-lg btn-primary inline-flex items-center justify-center gap-2"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  {t('breadcrumbs.contact')}
-                </Link>
-                <a
-                  href={`tel:${PHONE_TEL}`}
-                  className="btn btn-lg inline-flex items-center justify-center gap-2 bg-white border-2 border-[#e8e0d5] text-[#2a2118] hover:bg-[#faf6f1]"
-                >
-                  <Phone className="w-5 h-5" />
-                  {PHONE_DISPLAY}
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </>
   )

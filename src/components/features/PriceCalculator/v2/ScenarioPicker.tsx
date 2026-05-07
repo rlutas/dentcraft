@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { scenarios } from '@/data/calculator-scenarios'
 import type { Locale } from '@/data/treatments'
 
@@ -11,25 +11,32 @@ type ScenarioPickerProps = {
   onSelect: (id: string) => void
 }
 
+// "Major" scenarios get a slightly warmer card background so the grid has
+// visual rhythm instead of 8 identical white tiles.
+const MAJOR_SCENARIOS = new Set(['lost-tooth', 'full-rehab', 'bright-smile', 'braces'])
+
 export function ScenarioPicker({ locale, selectedId, onSelect }: ScenarioPickerProps) {
+  const reduce = useReducedMotion()
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
       {scenarios.map((s, idx) => {
         const isSelected = selectedId === s.id
+        const isMajor = MAJOR_SCENARIOS.has(s.id)
         return (
           <motion.button
             key={s.id}
             type="button"
             onClick={() => onSelect(s.id)}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.04, duration: 0.3 }}
-            whileHover={{ y: -4 }}
-            whileTap={{ scale: 0.98 }}
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={reduce ? { duration: 0 } : { delay: idx * 0.04, duration: 0.3 }}
+            {...(reduce ? {} : { whileHover: { y: -4 }, whileTap: { scale: 0.98 } })}
             className={[
               'group relative flex flex-col items-start gap-3 p-4 md:p-5 rounded-2xl border-2 text-left transition-all',
               isSelected
                 ? 'border-[#2a2118] bg-[#faf6f1] shadow-[0_12px_30px_-8px_rgba(42,33,24,0.25)]'
+                : isMajor
+                ? 'border-[#e8e0d5] bg-[#fdfaf6] hover:border-[#d4c4b0] hover:shadow-[0_8px_24px_-8px_rgba(139,115,85,0.18)]'
                 : 'border-[#e8e0d5] bg-white hover:border-[#d4c4b0] hover:shadow-[0_8px_24px_-8px_rgba(139,115,85,0.18)]',
             ].join(' ')}
             aria-pressed={isSelected}

@@ -578,7 +578,21 @@
       "doctorTip": "Doktori megjegyzés",
       "disclaimer": "Tájékoztató becslés. A pontos terv és végső ár a konzultáción, klinikai és radiológiai értékelés után kerül meghatározásra.",
       "yourEstimate": "A becslésed",
-      "whatHappensNext": "Mi következik"
+      "whatHappensNext": "Mi következik",
+      "stepLabelScenario": "Eset",
+      "stepLabelQuestions": "Részletek",
+      "stepLabelResult": "Becslés",
+      "nextStepBooking": "Időpont",
+      "nextStepBookingTime": "24 órán belül",
+      "nextStepPlan": "Egyéni terv",
+      "nextStepPlanTime": "az első látogatáson",
+      "nextStepTreatment": "Kezelés",
+      "nextStepTreatmentTime": "1-3 ülés",
+      "sendByEmail": "Becslés emailben",
+      "sendByEmailTitle": "Becslés küldése emailben",
+      "sendByEmailButton": "Becslés küldése",
+      "sendByEmailContext": "Elküldjük a becslést emailben, hogy később át tudd nézni vagy meg tudd beszélni a családdal.",
+      "doctorName": "Dr. Petric Razvan-Tudor"
     }
   },
   "faq": {

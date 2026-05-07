@@ -16,6 +16,14 @@ interface PriceEstimatePopupProps {
   priceRange: { min: number; max: number }
   locale: string
   lineItems?: LeadLineItem[]
+  // When true, this is a "send by email" save-for-later flow:
+  // - phone is not required
+  // - admin email is suppressed (no booking lead, just a record + audience add)
+  // - heading/context/CTA labels are overridden
+  saveMode?: boolean
+  saveModeTitle?: string
+  saveModeContext?: string
+  saveModeButton?: string
 }
 
 const formatPrice = (price: number) => {
@@ -34,6 +42,10 @@ export default function PriceEstimatePopup({
   priceRange,
   locale: _locale,
   lineItems,
+  saveMode = false,
+  saveModeTitle,
+  saveModeContext,
+  saveModeButton,
 }: PriceEstimatePopupProps) {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -85,10 +97,13 @@ export default function PriceEstimatePopup({
       newErrors['name'] = 'Numele trebuie sa aiba cel putin 2 caractere'
     }
 
-    if (!formData.phone.trim()) {
-      newErrors['phone'] = 'Numarul de telefon este obligatoriu'
-    } else if (!/^[\d\s\-+()]{8,}$/.test(formData.phone)) {
-      newErrors['phone'] = 'Numarul de telefon nu este valid'
+    // Phone is not required in saveMode (we only email the estimate, no callback)
+    if (!saveMode) {
+      if (!formData.phone.trim()) {
+        newErrors['phone'] = 'Numarul de telefon este obligatoriu'
+      } else if (!/^[\d\s\-+()]{8,}$/.test(formData.phone)) {
+        newErrors['phone'] = 'Numarul de telefon nu este valid'
+      }
     }
 
     if (!formData.email.trim()) {
@@ -114,7 +129,7 @@ export default function PriceEstimatePopup({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
-          phone: formData.phone,
+          phone: saveMode ? '' : formData.phone,
           email: formData.email.trim(),
           service: service.title,
           serviceSlug: service.slug,
@@ -123,6 +138,7 @@ export default function PriceEstimatePopup({
           priceMin: priceRange.min,
           priceMax: priceRange.max,
           ...(lineItems && lineItems.length > 0 ? { lineItems } : {}),
+          ...(saveMode ? { saveOnly: true } : {}),
         }),
       })
 
@@ -269,11 +285,13 @@ export default function PriceEstimatePopup({
                     </div>
 
                     <h2 className="mb-1 sm:mb-2 text-xl sm:text-2xl font-semibold text-[#1a1a1a] tracking-tight">
-                      Programeaza consultatie
+                      {saveMode && saveModeTitle ? saveModeTitle : 'Programeaza consultatie'}
                     </h2>
 
                     <p className="text-[13px] sm:text-[15px] text-[#6b6b6b] leading-relaxed">
-                      Completeaza datele de contact si te vom suna pentru programare.
+                      {saveMode && saveModeContext
+                        ? saveModeContext
+                        : 'Completeaza datele de contact si te vom suna pentru programare.'}
                     </p>
                   </div>
 
@@ -302,7 +320,7 @@ export default function PriceEstimatePopup({
                           {lineItems.map((li, i) => (
                             <li key={i} className="text-xs text-[#4a4a4a] flex justify-between gap-2">
                               <span className="truncate">{li.label}</span>
-                              <span className="text-[#6b6b6b] flex-shrink-0">\u00D7 {li.qty}</span>
+                              <span className="text-[#6b6b6b] flex-shrink-0">{"\u00D7"} {li.qty}</span>
                             </li>
                           ))}
                         </ul>
@@ -349,36 +367,38 @@ export default function PriceEstimatePopup({
                       )}
                     </div>
 
-                    {/* Phone Input */}
-                    <div>
-                      <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
-                        Numar de telefon
-                      </label>
-                      <div className="relative">
-                        <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
-                          <Phone className="h-4 w-4 text-[#a0a0a0]" />
+                    {/* Phone Input — hidden in saveMode (no callback) */}
+                    {!saveMode && (
+                      <div>
+                        <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
+                          Numar de telefon
+                        </label>
+                        <div className="relative">
+                          <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
+                            <Phone className="h-4 w-4 text-[#a0a0a0]" />
+                          </div>
+                          <input
+                            type="tel"
+                            value={formData.phone}
+                            onChange={(e) => {
+                              setFormData((prev) => ({ ...prev, phone: e.target.value }))
+                              if (errors['phone']) setErrors((prev) => ({ ...prev, phone: '' }))
+                            }}
+                            placeholder="07XX XXX XXX"
+                            className={cn(
+                              'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
+                              'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
+                              'transition-all duration-200',
+                              'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
+                              errors['phone'] ? 'border-red-400' : 'border-[#e8e8e8]'
+                            )}
+                          />
                         </div>
-                        <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => {
-                            setFormData((prev) => ({ ...prev, phone: e.target.value }))
-                            if (errors['phone']) setErrors((prev) => ({ ...prev, phone: '' }))
-                          }}
-                          placeholder="07XX XXX XXX"
-                          className={cn(
-                            'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
-                            'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
-                            'transition-all duration-200',
-                            'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
-                            errors['phone'] ? 'border-red-400' : 'border-[#e8e8e8]'
-                          )}
-                        />
+                        {errors['phone'] && (
+                          <p className="mt-1.5 text-xs text-red-500">{errors['phone']}</p>
+                        )}
                       </div>
-                      {errors['phone'] && (
-                        <p className="mt-1.5 text-xs text-red-500">{errors['phone']}</p>
-                      )}
-                    </div>
+                    )}
 
                     {/* Email Input (Optional) */}
                     <div>
@@ -411,15 +431,17 @@ export default function PriceEstimatePopup({
                       )}
                     </div>
 
-                    {/* Promise note */}
-                    <div className="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-[#f5f0e8]/60 px-3 sm:px-4 py-2 sm:py-3">
-                      <div className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0]">
-                        <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white" />
+                    {/* Promise note — only show in booking mode */}
+                    {!saveMode && (
+                      <div className="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-[#f5f0e8]/60 px-3 sm:px-4 py-2 sm:py-3">
+                        <div className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#c4b4a0]">
+                          <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white" />
+                        </div>
+                        <p className="text-[12px] sm:text-[13px] text-[#6b6b6b] leading-snug">
+                          Va vom contacta in maximum 30 de minute in programul de lucru.
+                        </p>
                       </div>
-                      <p className="text-[12px] sm:text-[13px] text-[#6b6b6b] leading-snug">
-                        Va vom contacta in maximum 30 de minute in programul de lucru.
-                      </p>
-                    </div>
+                    )}
 
                     {/* General error message */}
                     {errors['general'] && (
@@ -463,7 +485,7 @@ export default function PriceEstimatePopup({
                         </span>
                       ) : (
                         <>
-                          Trimite cererea
+                          {saveMode && saveModeButton ? saveModeButton : 'Trimite cererea'}
                           <ArrowRight className="h-4 w-4" strokeWidth={2} />
                         </>
                       )}

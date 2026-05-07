@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useReducer } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, RefreshCw } from 'lucide-react'
 import { ScenarioPicker } from './ScenarioPicker'
 import { SubQuestions } from './SubQuestions'
@@ -77,6 +77,13 @@ const stepVariants = {
 export function PriceCalculatorV2({ locale, translations }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const scenario = state.scenarioId ? getScenario(state.scenarioId) : null
+  const reduce = useReducedMotion()
+
+  // Animation discipline: spring physics for natural step transitions.
+  // Reduced motion: collapse to instant changes.
+  const stepEnterTransition = reduce
+    ? { duration: 0 }
+    : { type: 'spring' as const, stiffness: 280, damping: 28 }
 
   const estimate = useMemo(() => {
     if (state.step !== 'result' || !state.scenarioId) return null
@@ -85,26 +92,56 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
 
   const stepIdx = STEPS.indexOf(state.step)
 
+  const stepBgClass =
+    state.step === 'scenario'
+      ? 'bg-white'
+      : state.step === 'questions'
+      ? 'bg-gradient-to-b from-white via-[#fdfaf6] to-[#faf6f1]'
+      : 'bg-gradient-to-br from-[#faf6f1] via-white to-[#f5f0e8]'
+
   return (
-    <div className="rounded-3xl bg-white border border-[#e8e0d5] shadow-[0_8px_32px_-8px_rgba(42,33,24,0.08)] p-5 md:p-8">
+    <div
+      className={[
+        'rounded-3xl border border-[#e8e0d5] shadow-[0_8px_32px_-8px_rgba(42,33,24,0.08)] p-5 md:p-8 transition-colors duration-500',
+        stepBgClass,
+      ].join(' ')}
+    >
       {/* Step indicator */}
-      <div className="flex items-center justify-center gap-1 mb-6 md:mb-8">
-        {STEPS.map((_, i) => {
+      <div className="flex items-start justify-center gap-1 mb-6 md:mb-8">
+        {STEPS.map((stepKey, i) => {
+          const isCurrent = stepIdx === i
           const active = stepIdx >= i
+          const stepLabel =
+            stepKey === 'scenario'
+              ? translations.stepLabelScenario
+              : stepKey === 'questions'
+              ? translations.stepLabelQuestions
+              : translations.stepLabelResult
           return (
-            <div key={i} className="flex items-center">
-              <div
-                className={[
-                  'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-colors',
-                  active ? 'bg-[#2a2118] text-white' : 'bg-[#f5f0e8] text-[#8b7355]',
-                ].join(' ')}
-              >
-                {i + 1}
+            <div key={stepKey} className="flex items-start">
+              <div className="flex flex-col items-center">
+                <div
+                  className={[
+                    'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all',
+                    active ? 'bg-[#2a2118] text-white' : 'bg-[#f5f0e8] text-[#8b7355]',
+                    isCurrent ? 'shadow-[0_0_0_4px_rgba(42,33,24,0.08)]' : '',
+                  ].join(' ')}
+                >
+                  {i + 1}
+                </div>
+                <span
+                  className={[
+                    'hidden md:block mt-2 text-[11px] font-medium tracking-wide transition-colors whitespace-nowrap',
+                    active ? 'text-[#2a2118]' : 'text-[#8b7355]',
+                  ].join(' ')}
+                >
+                  {stepLabel}
+                </span>
               </div>
               {i < STEPS.length - 1 && (
                 <div
                   className={[
-                    'w-8 md:w-12 h-px mx-1 transition-colors',
+                    'w-8 md:w-12 h-px mx-1 mt-4 transition-colors',
                     stepIdx > i ? 'bg-[#2a2118]' : 'bg-[#e8e0d5]',
                   ].join(' ')}
                 />
@@ -121,10 +158,10 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
             <motion.div
               key="scenario"
               variants={stepVariants}
-              initial="enter"
+              initial={reduce ? false : 'enter'}
               animate="center"
               exit="exit"
-              transition={{ duration: 0.25 }}
+              transition={stepEnterTransition}
             >
               <h2 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 text-center">
                 {translations.scenarioTitle}
@@ -144,10 +181,10 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
             <motion.div
               key="questions"
               variants={stepVariants}
-              initial="enter"
+              initial={reduce ? false : 'enter'}
               animate="center"
               exit="exit"
-              transition={{ duration: 0.25 }}
+              transition={stepEnterTransition}
             >
               <h2 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 text-center">
                 {translations.questionsTitle}
@@ -168,10 +205,10 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
             <motion.div
               key="result"
               variants={stepVariants}
-              initial="enter"
+              initial={reduce ? false : 'enter'}
               animate="center"
               exit="exit"
-              transition={{ duration: 0.25 }}
+              transition={stepEnterTransition}
             >
               <Estimate
                 locale={locale}

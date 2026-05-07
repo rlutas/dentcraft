@@ -32,6 +32,24 @@ export type CalcTranslations = {
   disclaimer: string
   yourEstimate: string
   whatHappensNext: string
+  // step indicator labels (desktop only)
+  stepLabelScenario: string
+  stepLabelQuestions: string
+  stepLabelResult: string
+  // "what happens next" timeline
+  nextStepBooking: string
+  nextStepBookingTime: string
+  nextStepPlan: string
+  nextStepPlanTime: string
+  nextStepTreatment: string
+  nextStepTreatmentTime: string
+  // save-by-email CTA
+  sendByEmail: string
+  sendByEmailTitle: string
+  sendByEmailButton: string
+  sendByEmailContext: string
+  // doctor card
+  doctorName: string
 }
 
 export type { Locale }

@@ -578,7 +578,21 @@
       "doctorTip": "Doctor's note",
       "disclaimer": "Indicative estimate. The exact plan and final price are set at consultation, after clinical and radiological evaluation.",
       "yourEstimate": "Your estimate",
-      "whatHappensNext": "What's next"
+      "whatHappensNext": "What's next",
+      "stepLabelScenario": "Scenario",
+      "stepLabelQuestions": "Details",
+      "stepLabelResult": "Estimate",
+      "nextStepBooking": "Booking",
+      "nextStepBookingTime": "within 24h",
+      "nextStepPlan": "Custom plan",
+      "nextStepPlanTime": "at first visit",
+      "nextStepTreatment": "Treatment",
+      "nextStepTreatmentTime": "1-3 sessions",
+      "sendByEmail": "Email me the estimate",
+      "sendByEmailTitle": "Email me the estimate",
+      "sendByEmailButton": "Send estimate",
+      "sendByEmailContext": "We'll send the estimate to your inbox so you can review it later or discuss with family.",
+      "doctorName": "Dr. Petric Razvan-Tudor"
     }
   },
   "faq": {

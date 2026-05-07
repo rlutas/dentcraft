@@ -30,6 +30,7 @@ type PriceEstimateFormData = {
   priceMin: number
   priceMax: number
   lineItems?: LeadLineItem[]
+  saveOnly?: boolean
 }
 
 // Validate a single line item; returns null if malformed.
@@ -105,13 +106,18 @@ function validateFormData(
     errors['name'] = 'Name must be at least 2 characters'
   }
 
-  // Phone validation (required, 8+ digits)
-  if (!formData['phone'] || typeof formData['phone'] !== 'string') {
-    errors['phone'] = 'Phone number is required'
-  } else {
-    const digitsOnly = formData['phone'].replace(/\D/g, '')
-    if (digitsOnly.length < 8) {
-      errors['phone'] = 'Phone number must have at least 8 digits'
+  // saveOnly flag: when true, this is "send by email" — phone is not required.
+  const saveOnly = formData['saveOnly'] === true
+
+  // Phone validation (required unless saveOnly)
+  if (!saveOnly) {
+    if (!formData['phone'] || typeof formData['phone'] !== 'string') {
+      errors['phone'] = 'Phone number is required'
+    } else {
+      const digitsOnly = formData['phone'].replace(/\D/g, '')
+      if (digitsOnly.length < 8) {
+        errors['phone'] = 'Phone number must have at least 8 digits'
+      }
     }
   }
 
@@ -163,7 +169,7 @@ function validateFormData(
 
   const result: PriceEstimateFormData = {
     name: (formData['name'] as string).trim(),
-    phone: (formData['phone'] as string).trim(),
+    phone: typeof formData['phone'] === 'string' ? formData['phone'].trim() : '',
     email: (formData['email'] as string).trim(),
     service: (formData['service'] as string).trim(),
     serviceSlug: typeof formData['serviceSlug'] === 'string' ? formData['serviceSlug'].trim() : '',
@@ -172,6 +178,7 @@ function validateFormData(
     priceMin: typeof formData['priceMin'] === 'number' ? formData['priceMin'] : 0,
     priceMax: typeof formData['priceMax'] === 'number' ? formData['priceMax'] : 0,
     ...(parsedLineItems && parsedLineItems.length > 0 ? { lineItems: parsedLineItems } : {}),
+    ...(saveOnly ? { saveOnly: true } : {}),
   }
 
   return { data: result, valid: true }
@@ -239,29 +246,34 @@ export async function POST(request: Request) {
     // Send email using Resend
     const resend = new Resend(resendApiKey)
 
-    const { error } = await resend.emails.send({
-      from: 'Dentcraft Website <noreply@dentcraft.ro>',
-      html: priceEstimateAdminEmail({
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        service: data.service,
-        quantity: data.quantity,
-        materialType: data.materialType,
-        priceMin: data.priceMin,
-        priceMax: data.priceMax,
-        ...(data.lineItems ? { lineItems: data.lineItems } : {}),
-      }),
-      subject: `[Dentcraft] Estimare pret - ${data.service} - ${data.name}`,
-      to: recipientEmail,
-    })
+    // In saveOnly mode (patient asked for estimate by email, not booking)
+    // skip the admin notification — Dr. Petric doesn't need a callback lead
+    // for someone who just wants to think it over.
+    if (!data.saveOnly) {
+      const { error } = await resend.emails.send({
+        from: 'Dentcraft Website <noreply@dentcraft.ro>',
+        html: priceEstimateAdminEmail({
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          service: data.service,
+          quantity: data.quantity,
+          materialType: data.materialType,
+          priceMin: data.priceMin,
+          priceMax: data.priceMax,
+          ...(data.lineItems ? { lineItems: data.lineItems } : {}),
+        }),
+        subject: `[Dentcraft] Estimare pret - ${data.service} - ${data.name}`,
+        to: recipientEmail,
+      })
 
-    if (error) {
-      console.error('Failed to send price estimate email:', error)
-      return NextResponse.json(
-        { error: 'Failed to send email. Please try again later.' },
-        { status: 500 }
-      )
+      if (error) {
+        console.error('Failed to send price estimate email:', error)
+        return NextResponse.json(
+          { error: 'Failed to send email. Please try again later.' },
+          { status: 500 }
+        )
+      }
     }
 
     // Send confirmation email to client (non-blocking)

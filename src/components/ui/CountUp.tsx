@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useReducedMotion } from 'framer-motion'
 
 interface CountUpProps {
   end: number
@@ -20,10 +21,15 @@ export function CountUp({
   className = '',
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const [value, setValue] = useState(0)
+  const reduce = useReducedMotion()
+  const [value, setValue] = useState(reduce ? end : 0)
   const [hasStarted, setHasStarted] = useState(false)
 
   useEffect(() => {
+    if (reduce) {
+      setValue(end)
+      return
+    }
     const el = ref.current
     if (!el) return
 
@@ -39,10 +45,10 @@ export function CountUp({
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [hasStarted])
+  }, [hasStarted, reduce, end])
 
   useEffect(() => {
-    if (!hasStarted) return
+    if (reduce || !hasStarted) return
 
     const startTime = performance.now()
     let raf: number
@@ -65,7 +71,7 @@ export function CountUp({
 
     raf = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(raf)
-  }, [hasStarted, end, duration])
+  }, [hasStarted, end, duration, reduce])
 
   const display = decimals > 0
     ? value.toFixed(decimals)

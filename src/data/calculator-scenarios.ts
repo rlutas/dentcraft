@@ -68,21 +68,21 @@ const coerceToString = (v: string | number | undefined, fallback: string): strin
 // ---------- shared notes ----------
 
 const BRACES_NOTE_CLEAR_CORRECT: Record<Locale, string> = {
-  ro: 'Tratamentul durează 12-24 luni. Clear Correct include toate seturile de aligneri.',
-  en: 'Treatment lasts 12-24 months. Clear Correct includes all aligner sets.',
-  hu: 'A kezelés 12-24 hónapig tart. A Clear Correct minden sín készletet tartalmaz.',
+  ro: 'Clear Correct e o variantă invizibilă completă — pachetul include toate seturile de aligneri. Tratamentul durează între 12 și 24 luni, în funcție de complexitate.',
+  en: 'Clear Correct is a fully invisible option — the package includes all aligner sets. Treatment usually lasts 12-24 months, depending on complexity.',
+  hu: 'A Clear Correct teljesen láthatatlan megoldás — a csomag minden sín készletet tartalmaz. A kezelés 12-24 hónapig tart, a komplexitástól függően.',
 }
 
 const BRACES_NOTE_FIXED: Record<Locale, string> = {
-  ro: 'Aparatele fixe necesită activări lunare (cca 200 RON/activare). Tratamentul durează 12-24 luni.',
-  en: 'Fixed braces require monthly activations (~200 RON each). Treatment lasts 12-24 months.',
-  hu: 'A fix készülékek havi aktiválást igényelnek (kb. 200 RON / aktiválás). A kezelés 12-24 hónapig tart.',
+  ro: 'Aparatul fix necesită activări lunare (cca 200 RON/ședință). În medie tratamentul durează 12-24 luni — ne vedem o dată pe lună.',
+  en: 'Fixed braces need monthly activations (~200 RON each visit). On average the treatment lasts 12-24 months with a check-up every month.',
+  hu: 'A fix készülék havi aktiválást igényel (kb. 200 RON / alkalom). A kezelés átlagosan 12-24 hónapig tart, havi kontrollal.',
 }
 
 const VENEER_NOTE: Record<Locale, string> = {
-  ro: 'Fațetele E-Max sunt cele mai estetice și durabile pentru zona frontală. Albirea se face de obicei înainte de fațete pentru a stabili nuanța de referință.',
-  en: 'E-Max veneers are the most esthetic and durable choice for the front zone. Whitening is usually done before veneers to set the reference shade.',
-  hu: 'Az E-Max héjak a legesztétikusabb és legtartósabb választás az elülső területre. A fehérítés általában a héjak előtt történik a referencia árnyalat megállapításához.',
+  ro: 'Pentru zona frontală recomand fațete E-Max — sunt cele mai estetice și durabile. Albirea o facem înainte de fațete ca să stabilim nuanța de referință.',
+  en: 'For the front zone I recommend E-Max veneers — most esthetic and durable. We do whitening before veneers to set the reference shade.',
+  hu: 'Az elülső fogaknál E-Max héjakat ajánlok — a legesztétikusabb és legtartósabb. A fehérítést a héjak előtt csináljuk, hogy beállítsuk a referencia árnyalatot.',
 }
 
 // ---------- scenarios ----------
@@ -200,9 +200,9 @@ export const scenarios: Scenario[] = [
         ],
         notes: [
           {
-            ro: 'Estimarea include implant + bont + coroană. Dacă lipsește os în zona implantului, se poate adăuga augmentare osoasă (+3000 RON).',
-            en: 'Estimate includes implant + abutment + crown. If bone is missing, augmentation may be added (+3000 RON).',
-            hu: 'A becslés tartalmazza az implantátumot + felépítményt + koronát. Ha hiányzik a csont, csontpótlás szükséges (+3000 RON).',
+            ro: 'Iată ce vreau să știi: estimarea include implant + bont + coroană. Dacă în zona implantului lipsește os, voi recomanda augmentare osoasă (+3000 RON).',
+            en: 'Here is what I want you to know: the estimate includes implant + abutment + crown. If bone is missing in that area, I will recommend bone augmentation (+3000 RON).',
+            hu: 'Amit fontos tudni: a becslés tartalmazza az implantátumot, a felépítményt és a koronát. Ha hiányzik a csont, csontpótlást javaslok (+3000 RON).',
           },
         ],
       }
@@ -316,9 +316,9 @@ export const scenarios: Scenario[] = [
         ],
         notes: [
           {
-            ro: 'Pachetul include implanți, lucrare protetică finală și provizoriu. Numărul exact de implanți (4 sau 6) și materialul se decid la consult, în funcție de cantitatea de os disponibilă.',
-            en: 'Package includes implants, final prosthesis, and temporary. The exact number of implants (4 or 6) and the material are decided at consultation, based on available bone.',
-            hu: 'A csomag tartalmazza az implantátumokat, a végleges protézist és az ideiglenest. Az implantátumok pontos száma (4 vagy 6) és az anyag a konzultáción dől el, a rendelkezésre álló csont alapján.',
+            ro: 'În cazul tău, numărul exact de implanți (4 sau 6) și materialul îl decid la consultație, după evaluarea cantității de os disponibilă. Pachetul include implanții, lucrarea finală și provizoriul.',
+            en: 'In your case, the exact number of implants (4 or 6) and the material I will decide at consultation, after evaluating the available bone. The package includes the implants, the final prosthesis, and the temporary.',
+            hu: 'Az Ön esetében az implantátumok pontos számát (4 vagy 6) és az anyagot a konzultáción határozom meg, a rendelkezésre álló csont alapján. A csomag tartalmazza az implantátumokat, a végleges protézist és az ideiglenest.',
           },
         ],
       }
@@ -635,9 +635,9 @@ export const scenarios: Scenario[] = [
           ],
           notes: [
             {
-              ro: 'Sigilarea molarilor permanenți (de obicei 4 dinți) protejează șanțurile de carii și e recomandată în primii ani după erupție.',
-              en: 'Sealing permanent molars (usually 4 teeth) protects fissures from cavities and is recommended in the first years after eruption.',
-              hu: 'Az állandó molárisok (általában 4 fog) barázdazárása megvédi a barázdákat a kariesztől, és az kitörés utáni első években ajánlott.',
+              ro: 'Pentru molarii permanenți, sigilarea șanțurilor (de obicei 4 dinți) e cea mai bună prevenție în primii ani după erupție — îi protejează de carii.',
+              en: 'For permanent molars, sealing the fissures (usually 4 teeth) is the best prevention in the first years after eruption — it protects them from cavities.',
+              hu: 'Az állandó molárisoknál a barázdazárás (általában 4 fog) a legjobb megelőzés az első években a kitörés után — megvédi a fogakat a kariesztől.',
             },
           ],
         }
@@ -801,9 +801,9 @@ export const scenarios: Scenario[] = [
       ],
       notes: [
         {
-          ro: 'Tratamentul exact se decide după examen — în funcție de cauză, intervenția poate include tratament endodontic (800-1000 RON), extracție (250-500 RON) sau drenaj de abces (250 RON). Range total estimativ: 200-1500 RON.',
-          en: 'Exact treatment is decided after exam — depending on cause, it may include endodontic treatment (800-1000 RON), extraction (250-500 RON) or abscess drainage (250 RON). Total estimated range: 200-1500 RON.',
-          hu: 'A pontos kezelés a vizsgálat után dől el — az októl függően lehet endodontiai kezelés (800-1000 RON), foghúzás (250-500 RON) vagy tályogdrenázs (250 RON). Becsült tartomány: 200-1500 RON.',
+          ro: 'După examen voi decide tratamentul exact. În funcție de cauză poate fi nevoie de tratament endodontic (800-1000 RON), extracție (250-500 RON) sau drenaj de abces (250 RON). Range total: 200-1500 RON.',
+          en: 'After the exam I will decide the exact treatment. Depending on the cause it may need endodontic treatment (800-1000 RON), extraction (250-500 RON), or abscess drainage (250 RON). Total range: 200-1500 RON.',
+          hu: 'A vizsgálat után határozom meg a pontos kezelést. Az októl függően szükség lehet endodontiai kezelésre (800-1000 RON), foghúzásra (250-500 RON) vagy tályogdrenázsra (250 RON). Tartomány: 200-1500 RON.',
         },
       ],
     }),
@@ -837,9 +837,9 @@ export const scenarios: Scenario[] = [
       ],
       notes: [
         {
-          ro: 'Consultația include discuție, examen clinic, fotografii și scanare. Pentru cazuri complexe (reabilitare, ortodonție), poate fi nevoie de documentare extinsă (500 RON).',
-          en: 'Consultation includes conversation, clinical exam, photographs, and scanning. Complex cases (rehab, ortho) may need extended documentation (500 RON).',
-          hu: 'A konzultáció tartalmazza a beszélgetést, klinikai vizsgálatot, fotókat és szkennelést. Komplex esetek (rehabilitáció, ortodoncia) kiterjedtebb dokumentációt igényelhetnek (500 RON).',
+          ro: 'La prima vizită facem discuție, examen clinic, fotografii și scanare. Pentru cazuri complexe (reabilitare, ortodonție) pot avea nevoie de documentare extinsă (500 RON).',
+          en: 'On your first visit we do a conversation, clinical exam, photographs, and scanning. For complex cases (rehab, ortho) I may need extended documentation (500 RON).',
+          hu: 'Az első látogatáson beszélgetünk, klinikai vizsgálatot végzek, fotózunk és szkennelünk. Komplex esetekben (rehabilitáció, ortodoncia) kiterjedtebb dokumentációra lehet szükség (500 RON).',
         },
       ],
     }),

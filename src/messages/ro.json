@@ -578,7 +578,21 @@
       "doctorTip": "Notă de la doctor",
       "disclaimer": "Estimare orientativă. Planul exact și prețul final se stabilesc la consultație, după evaluare clinică și radiologică.",
       "yourEstimate": "Estimarea ta",
-      "whatHappensNext": "Ce urmează"
+      "whatHappensNext": "Ce urmează",
+      "stepLabelScenario": "Scenariu",
+      "stepLabelQuestions": "Detalii",
+      "stepLabelResult": "Estimare",
+      "nextStepBooking": "Programare",
+      "nextStepBookingTime": "în 24h",
+      "nextStepPlan": "Plan personalizat",
+      "nextStepPlanTime": "la prima vizită",
+      "nextStepTreatment": "Tratament",
+      "nextStepTreatmentTime": "1-3 ședințe",
+      "sendByEmail": "Trimite estimarea pe email",
+      "sendByEmailTitle": "Trimite estimarea pe email",
+      "sendByEmailButton": "Trimite estimarea",
+      "sendByEmailContext": "Îți trimitem estimarea pe email să o consulți mai târziu sau să o discuți cu familia.",
+      "doctorName": "Dr. Petric Răzvan-Tudor"
     }
   },
   "faq": {
