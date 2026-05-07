@@ -2,16 +2,41 @@
 
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import { ChevronDown, Menu, Phone, Star, ArrowRight, X } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ChevronDown, Phone, Star, ArrowRight, X } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/navigation'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link, usePathname, useRouter } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { getMainFallbackServices } from '@/lib/fallback-services'
+import { locales, localeFlags, type Locale } from '@/i18n/config'
 
 const CallbackPopup = dynamic(() => import('@/components/features/CallbackPopup'), {
   ssr: false,
 })
+
+// Asymmetric "designer" hamburger — three lines with the bottom one shorter.
+// Gives the icon a bit of personality vs the default Lucide Menu (3 equal lines).
+function HamburgerIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="4" y1="7" x2="20" y2="7" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <line x1="4" y1="17" x2="14" y2="17" />
+    </svg>
+  )
+}
 
 const navItems = [
   { href: '/echipa', key: 'team' },
@@ -27,6 +52,13 @@ type MobileDrawerProps = MobileMenuOpenProps & { onBookingOpen: () => void }
 function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
+  const router = useRouter()
+  const pathname = usePathname()
+  const currentLocale = useLocale() as Locale
+
+  const switchLocale = (loc: Locale) => {
+    router.replace(pathname as '/', { locale: loc })
+  }
   // Lock body scroll when drawer is open
   useEffect(() => {
     if (!open) return
@@ -77,7 +109,35 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
             </li>
           ))}
         </ul>
+        {/* Language switcher */}
         <div className="mt-4 pt-4 border-t border-[#f5f0e8]">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8b7355] mb-2 px-2">
+            Limbă
+          </p>
+          <div className="flex gap-2 px-2">
+            {locales.map((loc) => (
+              <button
+                key={loc}
+                type="button"
+                onClick={() => {
+                  switchLocale(loc)
+                  onClose()
+                }}
+                className={cn(
+                  'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
+                  currentLocale === loc
+                    ? 'bg-[#2a2118] text-white'
+                    : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
+                )}
+              >
+                <span className="text-base">{localeFlags[loc]}</span>
+                <span className="uppercase tracking-wide">{loc}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4">
           <button
             type="button"
             onClick={() => {
@@ -193,14 +253,60 @@ export function FramedHero() {
                 </div>
               </div>
 
-              {/* Headline — smaller on mobile to keep the whole stack low,
-                  away from the patient's face above */}
+              {/* Headline — split into two lines with subtle stagger reveal */}
               <h1 className="font-bold text-white leading-[0.95] tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
-                {tHero('titleBold')}
-                <br />
-                <span className="font-serif italic font-medium text-[#d4c4b0]">
-                  {tHero('titleItalic')}
-                </span>
+                <motion.span
+                  className="block overflow-hidden"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+                  }}
+                >
+                  {tHero('titleBold').split(' ').map((word, i) => (
+                    <motion.span
+                      key={i}
+                      className="inline-block mr-[0.25em] last:mr-0"
+                      variants={{
+                        hidden: { y: '100%', opacity: 0 },
+                        visible: {
+                          y: 0,
+                          opacity: 1,
+                          transition: { type: 'spring', stiffness: 220, damping: 22 },
+                        },
+                      }}
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </motion.span>
+                <motion.span
+                  className="font-serif italic font-medium text-[#d4c4b0] block overflow-hidden"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.45 } },
+                  }}
+                >
+                  {tHero('titleItalic').split(' ').map((word, i) => (
+                    <motion.span
+                      key={i}
+                      className="inline-block mr-[0.25em] last:mr-0"
+                      variants={{
+                        hidden: { y: '100%', opacity: 0 },
+                        visible: {
+                          y: 0,
+                          opacity: 1,
+                          transition: { type: 'spring', stiffness: 220, damping: 22 },
+                        },
+                      }}
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </motion.span>
               </h1>
             </div>
 
@@ -377,7 +483,7 @@ export function FramedHero() {
               className="lg:hidden p-2.5 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
               aria-label="Deschide meniul"
             >
-              <Menu className="w-5 h-5" strokeWidth={2} />
+              <HamburgerIcon className="w-5 h-5" />
             </button>
           </div>
         </div>
