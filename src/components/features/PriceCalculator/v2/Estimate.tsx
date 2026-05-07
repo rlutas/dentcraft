@@ -133,12 +133,12 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
               <Image
                 src={DOCTOR_PHOTO_URL}
                 alt={translations.doctorName}
-                width={56}
-                height={56}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover ring-2 ring-[#d4c4b0]"
+                width={80}
+                height={80}
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover object-top ring-2 ring-[#d4c4b0]"
               />
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#d4c4b0] flex items-center justify-center ring-2 ring-[#2a2118]">
-                <Stethoscope className="w-3 h-3 text-[#2a2118]" />
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#d4c4b0] flex items-center justify-center ring-2 ring-[#2a2118]">
+                <Stethoscope className="w-3.5 h-3.5 text-[#2a2118]" />
               </div>
             </div>
             <div className="flex-1 min-w-0 space-y-2">
