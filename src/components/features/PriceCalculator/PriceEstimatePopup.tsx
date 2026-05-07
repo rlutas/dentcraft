@@ -303,12 +303,20 @@ export default function PriceEstimatePopup({
                       </div>
                       <div>
                         <p className="font-semibold text-[#1a1a1a] text-sm">{service.title}</p>
-                        <p className="text-xs text-[#6b6b6b]">
-                          {options.quantity} {options.quantity > 1 ? 'unitati' : 'unitate'}
-                          {options.materialType
-                            ? ` \u00B7 ${options.materialType === 'premium' ? 'Premium' : 'Standard'}`
-                            : ''}
-                        </p>
+                        {lineItems && lineItems.length > 0 ? (
+                          <p className="text-xs text-[#6b6b6b]">
+                            {lineItems.length}{' '}
+                            {lineItems.length === 1 ? 'tratament' : 'tratamente'}
+                          </p>
+                        ) : (
+                          <p className="text-xs text-[#6b6b6b]">
+                            {options.quantity}{' '}
+                            {options.quantity > 1 ? 'unitati' : 'unitate'}
+                            {options.materialType
+                              ? ` \u00B7 ${options.materialType === 'premium' ? 'Premium' : 'Standard'}`
+                              : ''}
+                          </p>
+                        )}
                       </div>
                     </div>
                     {lineItems && lineItems.length > 0 && (

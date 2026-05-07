@@ -287,13 +287,13 @@ export function priceEstimateAdminEmail(data: {
       <h3 style="margin: 0 0 12px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Detalii estimare</h3>
       <table style="border-collapse: collapse; width: 100%;">
         <tr>
-          <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Serviciu:</td>
+          <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">${hasLineItems ? 'Scenariu:' : 'Serviciu:'}</td>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;">${esc(data.service)}</td>
         </tr>
-        <tr>
+        ${!hasLineItems ? `<tr>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Cantitate:</td>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;">${data.quantity} ${data.quantity > 1 ? 'unitati' : 'unitate'}</td>
-        </tr>
+        </tr>` : ''}
         ${data.materialType ? `<tr>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Material:</td>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;">${materialLabels[data.materialType] || data.materialType}</td>
