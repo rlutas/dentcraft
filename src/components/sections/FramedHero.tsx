@@ -770,9 +770,9 @@ export function FramedHero() {
               href="tel:+40741199977"
               aria-label="Sună-ne: 0741 199 977"
               title="0741 199 977"
-              className="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#2a2118] hover:bg-[#4a3d30] transition-colors group"
+              className="hidden md:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#2a2118] hover:bg-[#4a3d30] transition-colors group"
             >
-              <Phone className="w-4 h-4 text-white" strokeWidth={2.25} />
+              <Phone className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
             </a>
             <button
               type="button"
