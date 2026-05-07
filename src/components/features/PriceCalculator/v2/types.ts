@@ -50,6 +50,13 @@ export type CalcTranslations = {
   sendByEmailContext: string
   // doctor card
   doctorName: string
+  // result-step polish
+  investmentLabel: string
+  freeConsult: string
+  trustPlanLabel: string
+  trustMaterialsLabel: string
+  trustWarrantyLabel: string
+  treatmentsIncluded: string
 }
 
 export type { Locale }

@@ -592,7 +592,13 @@
       "sendByEmailTitle": "Trimite estimarea pe email",
       "sendByEmailButton": "Trimite estimarea",
       "sendByEmailContext": "Îți trimitem estimarea pe email să o consulți mai târziu sau să o discuți cu familia.",
-      "doctorName": "Dr. Petric Răzvan-Tudor"
+      "doctorName": "Dr. Petric Răzvan-Tudor",
+      "investmentLabel": "Investiția estimată",
+      "freeConsult": "Consultul de evaluare e gratuit, fără obligații",
+      "trustPlanLabel": "Plan personalizat",
+      "trustMaterialsLabel": "Materiale premium",
+      "trustWarrantyLabel": "Garanție pe lucrări",
+      "treatmentsIncluded": "tratamente incluse"
     }
   },
   "faq": {

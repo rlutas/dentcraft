@@ -592,7 +592,13 @@
       "sendByEmailTitle": "Becslés küldése emailben",
       "sendByEmailButton": "Becslés küldése",
       "sendByEmailContext": "Elküldjük a becslést emailben, hogy később át tudd nézni vagy meg tudd beszélni a családdal.",
-      "doctorName": "Dr. Petric Razvan-Tudor"
+      "doctorName": "Dr. Petric Razvan-Tudor",
+      "investmentLabel": "Becsült befektetés",
+      "freeConsult": "Az értékelő konzultáció ingyenes, kötelezettség nélkül",
+      "trustPlanLabel": "Egyéni terv",
+      "trustMaterialsLabel": "Prémium anyagok",
+      "trustWarrantyLabel": "Garancia a kezelésekre",
+      "treatmentsIncluded": "kezelés szerepel"
     }
   },
   "faq": {

@@ -592,7 +592,13 @@
       "sendByEmailTitle": "Email me the estimate",
       "sendByEmailButton": "Send estimate",
       "sendByEmailContext": "We'll send the estimate to your inbox so you can review it later or discuss with family.",
-      "doctorName": "Dr. Petric Razvan-Tudor"
+      "doctorName": "Dr. Petric Razvan-Tudor",
+      "investmentLabel": "Estimated investment",
+      "freeConsult": "The evaluation consult is free, no commitment",
+      "trustPlanLabel": "Custom plan",
+      "trustMaterialsLabel": "Premium materials",
+      "trustWarrantyLabel": "Treatment warranty",
+      "treatmentsIncluded": "treatments included"
     }
   },
   "faq": {

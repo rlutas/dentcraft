@@ -76,6 +76,12 @@ export default async function PricesPage({ params }: PageProps) {
     sendByEmailButton: t('prices.calculator.sendByEmailButton'),
     sendByEmailContext: t('prices.calculator.sendByEmailContext'),
     doctorName: t('prices.calculator.doctorName'),
+    investmentLabel: t('prices.calculator.investmentLabel'),
+    freeConsult: t('prices.calculator.freeConsult'),
+    trustPlanLabel: t('prices.calculator.trustPlanLabel'),
+    trustMaterialsLabel: t('prices.calculator.trustMaterialsLabel'),
+    trustWarrantyLabel: t('prices.calculator.trustWarrantyLabel'),
+    treatmentsIncluded: t('prices.calculator.treatmentsIncluded'),
   }
 
   return (
