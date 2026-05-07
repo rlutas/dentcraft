@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Phone, Star, ArrowRight, X } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
@@ -24,9 +24,22 @@ const CallbackPopup = dynamic(() => import('@/components/features/CallbackPopup'
   ssr: false,
 })
 
-// Asymmetric "designer" hamburger — three lines with the bottom one shorter.
-// Gives the icon a bit of personality vs the default Lucide Menu (3 equal lines).
-function HamburgerIcon({ className }: { className?: string }) {
+// Animated hamburger — three asymmetric lines that morph to an X when open.
+function HamburgerIcon({ className, open }: { className?: string; open: boolean }) {
+  // Variant set: closed = 3 horizontal lines, open = X (top crosses bottom, middle fades)
+  const top = {
+    closed: { x1: 4, y1: 7, x2: 20, y2: 7, opacity: 1 },
+    open: { x1: 5, y1: 19, x2: 19, y2: 5, opacity: 1 },
+  }
+  const middle = {
+    closed: { opacity: 1, x1: 4, y1: 12, x2: 20, y2: 12 },
+    open: { opacity: 0, x1: 12, y1: 12, x2: 12, y2: 12 },
+  }
+  const bottom = {
+    closed: { x1: 4, y1: 17, x2: 14, y2: 17, opacity: 1 },
+    open: { x1: 5, y1: 5, x2: 19, y2: 19, opacity: 1 },
+  }
+  const transition = { type: 'spring' as const, stiffness: 280, damping: 24 }
   return (
     <svg
       className={className}
@@ -40,9 +53,12 @@ function HamburgerIcon({ className }: { className?: string }) {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <line x1="4" y1="7" x2="20" y2="7" />
-      <line x1="4" y1="12" x2="20" y2="12" />
-      <line x1="4" y1="17" x2="14" y2="17" />
+      <motion.line animate={open ? top.open : top.closed} transition={transition} />
+      <motion.line
+        animate={open ? middle.open : middle.closed}
+        transition={{ ...transition, duration: 0.18 }}
+      />
+      <motion.line animate={open ? bottom.open : bottom.closed} transition={transition} />
     </svg>
   )
 }
@@ -78,93 +94,135 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
     }
   }, [open])
 
-  if (!open) return null
+  // Stagger items inside the drawer
+  const itemVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: 0.12 + i * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    }),
+  }
+
   return (
-    <div className="fixed inset-0 z-[200] md:hidden">
-      <div aria-hidden="true" className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <nav className="absolute top-4 left-4 right-4 bg-white rounded-3xl p-5 shadow-2xl">
-        <div className="flex items-center justify-between mb-4">
+    <AnimatePresence>
+      {open && (
+        <div className="fixed inset-0 z-[200] md:hidden">
+          <motion.div
+            aria-hidden="true"
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(8px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.35 }}
+            className="absolute inset-0 bg-[#2a2118]/50"
+            onClick={onClose}
+          />
+          <motion.nav
+            initial={{ opacity: 0, y: -20, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.96, transition: { duration: 0.2, ease: 'easeIn' } }}
+            transition={{ type: 'spring', stiffness: 320, damping: 30, mass: 0.8 }}
+            className="absolute top-4 left-4 right-4 bg-white/95 backdrop-blur-xl rounded-3xl p-5 shadow-[0_30px_80px_-20px_rgba(42,33,24,0.45)] ring-1 ring-black/5 origin-top"
+          >
+            <motion.div
+              custom={0}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex items-center justify-between mb-4"
+            >
           <span className="text-xs font-semibold uppercase tracking-wider text-[#8b7355]">
             Meniu
           </span>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Închide meniul"
-            className="w-10 h-10 rounded-full bg-[#faf6f1] hover:bg-[#f5f0e8] flex items-center justify-center transition-colors"
-          >
-            <X className="w-5 h-5 text-[#2a2118]" strokeWidth={2} />
-          </button>
-        </div>
-        <ul className="flex flex-col gap-1">
-          <li>
-            <Link
-              href="/servicii"
-              onClick={onClose}
-              className="block px-4 py-3 rounded-xl text-[#2a2118] font-medium hover:bg-[#faf6f1] transition-colors"
-            >
-              {t('services')}
-            </Link>
-          </li>
-          {navItems.map((item) => (
-            <li key={item.key}>
-              <Link
-                href={item.href}
+              <button
+                type="button"
                 onClick={onClose}
-                className="block px-4 py-3 rounded-xl text-[#2a2118] font-medium hover:bg-[#faf6f1] transition-colors"
+                aria-label="Închide meniul"
+                className="w-10 h-10 rounded-full bg-[#faf6f1] hover:bg-[#f5f0e8] flex items-center justify-center transition-colors"
               >
-                {t(item.key)}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {/* Language switcher */}
-        <div className="mt-4 pt-4 border-t border-[#f5f0e8]">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8b7355] mb-2 px-2">
-            Limbă
-          </p>
-          <div className="flex gap-2 px-2">
-            {locales.map((loc) => {
-              const Flag = LOCALE_FLAGS[loc]
-              return (
-                <button
-                  key={loc}
-                  type="button"
-                  onClick={() => {
-                    switchLocale(loc)
-                    onClose()
-                  }}
-                  className={cn(
-                    'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
-                    currentLocale === loc
-                      ? 'bg-[#2a2118] text-white'
-                      : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
-                  )}
+                <X className="w-5 h-5 text-[#2a2118]" strokeWidth={2} />
+              </button>
+            </motion.div>
+            <ul className="flex flex-col gap-1">
+              {([{ href: '/servicii' as const, key: 'services' as const }, ...navItems] as const).map((item, idx) => (
+                <motion.li
+                  key={item.key}
+                  custom={idx + 1}
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
                 >
-                  <span className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-black/10 flex items-center justify-center bg-white shrink-0">
-                    <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
-                  </span>
-                  <span className="uppercase tracking-wide">{loc}</span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className="block px-4 py-3 rounded-xl text-[#2a2118] font-medium hover:bg-[#faf6f1] transition-colors"
+                  >
+                    {t(item.key)}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+            {/* Language switcher */}
+            <motion.div
+              custom={navItems.length + 2}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-4 pt-4 border-t border-[#f5f0e8]"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8b7355] mb-2 px-2">
+                Limbă
+              </p>
+              <div className="flex gap-2 px-2">
+                {locales.map((loc) => {
+                  const Flag = LOCALE_FLAGS[loc]
+                  return (
+                    <button
+                      key={loc}
+                      type="button"
+                      onClick={() => {
+                        switchLocale(loc)
+                        onClose()
+                      }}
+                      className={cn(
+                        'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
+                        currentLocale === loc
+                          ? 'bg-[#2a2118] text-white'
+                          : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
+                      )}
+                    >
+                      <span className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-black/10 flex items-center justify-center bg-white shrink-0">
+                        <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
+                      </span>
+                      <span className="uppercase tracking-wide">{loc}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            </motion.div>
 
-        <div className="mt-4">
-          <button
-            type="button"
-            onClick={() => {
-              onClose()
-              onBookingOpen()
-            }}
-            className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#2a2118] text-white rounded-xl font-semibold hover:bg-[#4a3d30] transition-colors"
-          >
-            {tHero('ctaPrimary')}
-          </button>
+            <motion.div
+              custom={navItems.length + 3}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-4"
+            >
+              <button
+                type="button"
+                onClick={() => {
+                  onClose()
+                  onBookingOpen()
+                }}
+                className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#2a2118] text-white rounded-xl font-semibold hover:bg-[#4a3d30] transition-colors"
+              >
+                {tHero('ctaPrimary')}
+              </button>
+            </motion.div>
+          </motion.nav>
         </div>
-      </nav>
-    </div>
+      )}
+    </AnimatePresence>
   )
 }
 
@@ -233,12 +291,12 @@ export function FramedHero() {
           <div className="grid gap-4 sm:gap-6 md:gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
             {/* LEFT: social proof + headline */}
             <div className="text-white">
-              {/* Social proof chip — appears after the H1 stagger finishes */}
+              {/* Social proof chip — heavier glass, appears after H1 stagger */}
               <motion.div
-                initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                initial={{ opacity: 0, y: 12, scale: 0.92 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 1.05, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 sm:py-2 pr-3 sm:pr-4"
+                transition={{ delay: 1.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/15 backdrop-blur-2xl border border-white/30 px-2.5 sm:px-3 py-1.5 sm:py-2 pr-3 sm:pr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)]"
               >
                 <div className="flex -space-x-2">
                   <Image
@@ -282,7 +340,7 @@ export function FramedHero() {
                   transition={{ delay: 0.05, duration: 0.4 }}
                   className="block text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.28em] uppercase text-[#d4c4b0]/90 mb-3 sm:mb-4 md:mb-5"
                 >
-                  DentCraft · Stomatologie Satu Mare
+                  {tHero('kicker')}
                 </motion.span>
                 <motion.span
                   className="block"
@@ -344,21 +402,44 @@ export function FramedHero() {
               <p className="text-white/90 text-sm md:text-lg leading-relaxed mb-3 sm:mb-5 md:mb-6 max-w-md md:ml-auto">
                 {tHero('subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end"
+              >
                 <button
                   type="button"
                   onClick={() => setBookingOpen(true)}
-                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-[#2a2118] text-white rounded-full font-semibold hover:bg-[#4a3d30] transition-colors shadow-lg"
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white shadow-[0_12px_32px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
+                  style={{
+                    background:
+                      'linear-gradient(135deg, rgba(42,33,24,0.92), rgba(42,33,24,0.78))',
+                    backdropFilter: 'blur(20px)',
+                    boxShadow:
+                      'inset 0 1px 0 rgba(255,255,255,0.18), 0 12px 32px -10px rgba(0,0,0,0.5)',
+                  }}
                 >
-                  {tHero('ctaPrimary')}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/12 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
+                  />
+                  <span className="relative">{tHero('ctaPrimary')}</span>
                 </button>
                 <Link
                   href="/preturi"
-                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-white/95 backdrop-blur-sm text-[#2a2118] rounded-full font-semibold hover:bg-white transition-colors shadow-lg"
+                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-[#2a2118] transition-all duration-300 hover:-translate-y-0.5"
+                  style={{
+                    background: 'rgba(255,255,255,0.78)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.5)',
+                    boxShadow:
+                      'inset 0 1px 0 rgba(255,255,255,0.6), 0 12px 32px -10px rgba(42,33,24,0.25)',
+                  }}
                 >
                   {tHero('ctaSecondary')}
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -512,7 +593,7 @@ export function FramedHero() {
               className="lg:hidden p-2.5 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
               aria-label="Deschide meniul"
             >
-              <HamburgerIcon className="w-5 h-5" />
+              <HamburgerIcon className="w-5 h-5" open={mobileOpen} />
             </button>
           </div>
         </div>
