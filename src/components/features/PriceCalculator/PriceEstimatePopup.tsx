@@ -357,19 +357,21 @@ export default function PriceEstimatePopup({
 
                   {/* Summary Card */}
                   <div className="bg-[#f5f0e8] rounded-xl p-4 mb-4">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-[#1a1a1a] flex items-center justify-center flex-shrink-0">
                         <Calculator className="w-5 h-5 text-white" strokeWidth={1.5} />
                       </div>
-                      <div>
-                        <p className="font-semibold text-[#1a1a1a] text-sm">{service.title}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-[#1a1a1a] text-sm leading-snug break-words">
+                          {service.title}
+                        </p>
                         {lineItems && lineItems.length > 0 ? (
-                          <p className="text-xs text-[#6b6b6b]">
+                          <p className="text-xs text-[#6b6b6b] mt-0.5">
                             {lineItems.length}{' '}
-                            {lineItems.length === 1 ? 'tratament' : 'tratamente'}
+                            {lineItems.length === 1 ? 'tratament inclus' : 'tratamente incluse'}
                           </p>
                         ) : (
-                          <p className="text-xs text-[#6b6b6b]">
+                          <p className="text-xs text-[#6b6b6b] mt-0.5">
                             {options.quantity}{' '}
                             {options.quantity > 1 ? 'unitati' : 'unitate'}
                             {options.materialType
@@ -384,11 +386,13 @@ export default function PriceEstimatePopup({
                         <p className="text-xs font-semibold uppercase tracking-wider text-[#6b6b6b] mb-1.5">
                           Include
                         </p>
-                        <ul className="space-y-0.5">
+                        <ul className="space-y-1">
                           {lineItems.map((li, i) => (
-                            <li key={i} className="text-xs text-[#4a4a4a] flex justify-between gap-2">
-                              <span className="truncate">{li.label}</span>
-                              <span className="text-[#6b6b6b] flex-shrink-0">{"\u00D7"} {li.qty}</span>
+                            <li key={i} className="text-xs text-[#4a4a4a] flex justify-between gap-2 leading-snug">
+                              <span className="break-words flex-1 min-w-0">{li.label}</span>
+                              <span className="text-[#6b6b6b] flex-shrink-0 tabular-nums">
+                                {"\u00D7"} {li.qty}
+                              </span>
                             </li>
                           ))}
                         </ul>
@@ -457,7 +461,7 @@ export default function PriceEstimatePopup({
                           >
                             {DIAL_CODES.map((c) => (
                               <option key={`${c.iso}-${c.dial}`} value={c.dial}>
-                                {c.flag} {c.dial} {c.name}
+                                {c.flag} {c.dial}
                               </option>
                             ))}
                           </select>
