@@ -420,13 +420,17 @@ export function FramedHero() {
                   }}
                   whileHover={{ y: -3, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-[#1a1410] font-semibold tracking-wide shadow-[0_10px_30px_-8px_rgba(0,0,0,0.35)] hover:shadow-[0_18px_42px_-10px_rgba(0,0,0,0.45)] transition-[box-shadow] duration-300"
+                  className="group inline-flex items-center justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-[#1a1410] font-semibold tracking-wide shadow-[0_10px_30px_-8px_rgba(0,0,0,0.35)] hover:shadow-[0_18px_42px_-10px_rgba(0,0,0,0.45)] transition-[box-shadow] duration-300"
                 >
                   <span>{tHero('ctaPrimary')}</span>
-                  <ArrowRight
-                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                    strokeWidth={2.25}
-                  />
+                  {/* Arrow reveals on hover: collapsed (max-w-0, opacity-0,
+                      slid 8px left), then expands + fades + slides into place. */}
+                  <span
+                    aria-hidden="true"
+                    className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-2 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  >
+                    <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+                  </span>
                 </motion.button>
               </div>
             </div>
