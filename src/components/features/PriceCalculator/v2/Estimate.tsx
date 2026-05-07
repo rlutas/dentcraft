@@ -9,7 +9,6 @@ import {
   CalendarCheck,
   CheckCircle2,
   FileText,
-  Mail,
   ShieldCheck,
   Smile,
   Sparkles,
@@ -36,7 +35,6 @@ const DOCTOR_PHOTO_URL = 'https://drpetric.ro/wp-content/uploads/2024/11/stomato
 
 export function Estimate({ locale, estimate, scenarioTitle, translations }: Props) {
   const [popupOpen, setPopupOpen] = useState(false)
-  const [saveMode, setSaveMode] = useState(false)
   const reduce = useReducedMotion()
 
   const formatLocale = locale === 'hu' ? 'hu-HU' : 'ro-RO'
@@ -57,15 +55,7 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
     { icon: Smile, label: translations.nextStepTreatment, time: translations.nextStepTreatmentTime },
   ]
 
-  const openBooking = () => {
-    setSaveMode(false)
-    setPopupOpen(true)
-  }
-
-  const openSaveByEmail = () => {
-    setSaveMode(true)
-    setPopupOpen(true)
-  }
+  const openBooking = () => setPopupOpen(true)
 
   return (
     <div className="space-y-6">
@@ -250,30 +240,19 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
         {translations.disclaimer}
       </p>
 
-      {/* CTAs — primary booking + outlined save-by-email */}
-      <div className="space-y-3">
-        <button
-          type="button"
-          onClick={openBooking}
-          className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#2a2118] to-[#1a1410] text-white font-semibold text-base py-4 px-6 transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(42,33,24,0.4)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5"
-        >
-          {/* Shine sweep on hover */}
-          <span
-            aria-hidden="true"
-            className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
-          />
-          <CalendarCheck className="w-5 h-5 relative" strokeWidth={2} />
-          <span className="relative">{translations.bookConsultation}</span>
-        </button>
-        <button
-          type="button"
-          onClick={openSaveByEmail}
-          className="w-full rounded-2xl border-2 border-[#e8e0d5] bg-white text-[#2a2118] font-medium text-sm py-3.5 px-6 transition-all duration-300 hover:border-[#d4c4b0] hover:bg-[#faf6f1] flex items-center justify-center gap-2"
-        >
-          <Mail className="w-4 h-4" strokeWidth={1.75} />
-          {translations.sendByEmail}
-        </button>
-      </div>
+      {/* CTA — booking (client gets confirmation email automatically) */}
+      <button
+        type="button"
+        onClick={openBooking}
+        className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#2a2118] to-[#1a1410] text-white font-semibold text-base py-4 px-6 transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(42,33,24,0.4)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5"
+      >
+        <span
+          aria-hidden="true"
+          className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
+        />
+        <CalendarCheck className="w-5 h-5 relative" strokeWidth={2} />
+        <span className="relative">{translations.bookConsultation}</span>
+      </button>
 
       <PriceEstimatePopup
         isOpen={popupOpen}
@@ -282,10 +261,6 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
         options={{ materialType: null, quantity: 1 }}
         priceRange={{ min: estimate.totalMin, max: estimate.totalMax }}
         locale={locale}
-        saveMode={saveMode}
-        saveModeTitle={translations.sendByEmailTitle}
-        saveModeContext={translations.sendByEmailContext}
-        saveModeButton={translations.sendByEmailButton}
         lineItems={estimate.lineItems.map((li) => ({
           label: li.label,
           qty: li.qty,
