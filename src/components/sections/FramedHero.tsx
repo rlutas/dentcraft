@@ -1,12 +1,17 @@
 'use client'
 
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { ChevronDown, Menu, Phone, Star, ArrowRight, X } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { getMainFallbackServices } from '@/lib/fallback-services'
+
+const CallbackPopup = dynamic(() => import('@/components/features/CallbackPopup'), {
+  ssr: false,
+})
 
 const navItems = [
   { href: '/echipa', key: 'team' },
@@ -17,7 +22,9 @@ const navItems = [
 
 type MobileMenuOpenProps = { open: boolean; onClose: () => void }
 
-function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
+type MobileDrawerProps = MobileMenuOpenProps & { onBookingOpen: () => void }
+
+function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
   // Lock body scroll when drawer is open
@@ -37,7 +44,7 @@ function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
       <nav className="absolute top-4 left-4 right-4 bg-white rounded-3xl p-5 shadow-2xl">
         <div className="flex items-center justify-between mb-4">
           <span className="text-xs font-semibold uppercase tracking-wider text-[#8b7355]">
-            {t('menuTitle') || 'Meniu'}
+            Meniu
           </span>
           <button
             type="button"
@@ -71,13 +78,16 @@ function MobileDrawer({ open, onClose }: MobileMenuOpenProps) {
           ))}
         </ul>
         <div className="mt-4 pt-4 border-t border-[#f5f0e8]">
-          <Link
-            href="/contact"
-            onClick={onClose}
+          <button
+            type="button"
+            onClick={() => {
+              onClose()
+              onBookingOpen()
+            }}
             className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#2a2118] text-white rounded-xl font-semibold hover:bg-[#4a3d30] transition-colors"
           >
             {tHero('ctaPrimary')}
-          </Link>
+          </button>
         </div>
       </nav>
     </div>
@@ -91,6 +101,7 @@ export function FramedHero() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [bookingOpen, setBookingOpen] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const mainServices = getMainFallbackServices()
@@ -199,14 +210,15 @@ export function FramedHero() {
                 {tHero('subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end">
-                <Link
-                  href="/contact"
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
                   className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-[#2a2118] text-white rounded-full font-semibold hover:bg-[#4a3d30] transition-colors shadow-lg"
                 >
                   {tHero('ctaPrimary')}
-                </Link>
+                </button>
                 <Link
-                  href="/servicii"
+                  href="/preturi"
                   className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-white/95 backdrop-blur-sm text-[#2a2118] rounded-full font-semibold hover:bg-white transition-colors shadow-lg"
                 >
                   {tHero('ctaSecondary')}
@@ -351,12 +363,13 @@ export function FramedHero() {
               <Phone className="w-4 h-4" strokeWidth={2} />
               <span className="hidden xl:inline">0741 199 977</span>
             </a>
-            <Link
-              href="/contact"
+            <button
+              type="button"
+              onClick={() => setBookingOpen(true)}
               className="hidden sm:inline-flex items-center px-5 md:px-6 py-2.5 md:py-3 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
             >
               {tHero('ctaPrimary')}
-            </Link>
+            </button>
             {/* Mobile hamburger */}
             <button
               type="button"
@@ -370,7 +383,13 @@ export function FramedHero() {
         </div>
       </nav>
 
-      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileDrawer
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        onBookingOpen={() => setBookingOpen(true)}
+      />
+
+      <CallbackPopup isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
     </section>
   )
 }
