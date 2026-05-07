@@ -11,17 +11,12 @@ type ScenarioPickerProps = {
   onSelect: (id: string) => void
 }
 
-// "Major" scenarios get a slightly warmer card background so the grid has
-// visual rhythm instead of 8 identical white tiles.
-const MAJOR_SCENARIOS = new Set(['lost-tooth', 'full-rehab', 'bright-smile', 'braces'])
-
 export function ScenarioPicker({ locale, selectedId, onSelect }: ScenarioPickerProps) {
   const reduce = useReducedMotion()
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
       {scenarios.map((s, idx) => {
         const isSelected = selectedId === s.id
-        const isMajor = MAJOR_SCENARIOS.has(s.id)
         return (
           <motion.button
             key={s.id}
@@ -35,8 +30,6 @@ export function ScenarioPicker({ locale, selectedId, onSelect }: ScenarioPickerP
               'group relative flex flex-col items-start gap-3 p-4 md:p-5 rounded-2xl border-2 text-left transition-all',
               isSelected
                 ? 'border-[#2a2118] bg-[#faf6f1] shadow-[0_12px_30px_-8px_rgba(42,33,24,0.25)]'
-                : isMajor
-                ? 'border-[#e8e0d5] bg-[#fdfaf6] hover:border-[#d4c4b0] hover:shadow-[0_8px_24px_-8px_rgba(139,115,85,0.18)]'
                 : 'border-[#e8e0d5] bg-white hover:border-[#d4c4b0] hover:shadow-[0_8px_24px_-8px_rgba(139,115,85,0.18)]',
             ].join(' ')}
             aria-pressed={isSelected}
