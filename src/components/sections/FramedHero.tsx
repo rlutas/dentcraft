@@ -637,7 +637,7 @@ export function FramedHero() {
                           <service.Icon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-[#2a2118] text-sm leading-tight">
+                          <div className="font-semibold text-[#2a2118] text-[13px] leading-tight">
                             {tServices(service.titleKey)}
                           </div>
                         </div>
@@ -650,7 +650,7 @@ export function FramedHero() {
                   <Link
                     href="/servicii"
                     onClick={() => setIsServicesOpen(false)}
-                    className="mt-2 flex items-center justify-between rounded-2xl bg-[#2a2118] text-white px-4 py-3 text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
+                    className="mt-2 flex items-center justify-between rounded-2xl bg-[#2a2118] text-white px-4 py-3 text-[13px] font-semibold hover:bg-[#4a3d30] transition-colors"
                   >
                     <span>Toate serviciile</span>
                     <ArrowRight className="w-4 h-4" />
