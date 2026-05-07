@@ -302,7 +302,7 @@ export default function PriceEstimatePopup({
                           {lineItems.map((li, i) => (
                             <li key={i} className="text-xs text-[#4a4a4a] flex justify-between gap-2">
                               <span className="truncate">{li.label}</span>
-                              <span className="text-[#6b6b6b] flex-shrink-0">\u00D7 {li.qty}</span>
+                              <span className="text-[#6b6b6b] flex-shrink-0">{"\u00D7"} {li.qty}</span>
                             </li>
                           ))}
                         </ul>
