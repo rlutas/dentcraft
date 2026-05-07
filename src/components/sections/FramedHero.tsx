@@ -185,10 +185,10 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
                         onClose()
                       }}
                       className={cn(
-                        'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
+                        'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium border transition-all duration-200',
                         currentLocale === loc
-                          ? 'bg-[#2a2118] text-white'
-                          : 'bg-[#faf6f1] text-[#2a2118] hover:bg-[#f5f0e8]'
+                          ? 'bg-[#2a2118] text-white border-[#d4c4b0]/40'
+                          : 'bg-[#faf6f1] text-[#2a2118] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                       )}
                     >
                       <span className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-black/10 flex items-center justify-center bg-white shrink-0">
