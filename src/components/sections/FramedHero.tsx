@@ -558,7 +558,7 @@ export function FramedHero() {
       >
         <div
           className={cn(
-            'flex items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] mx-auto max-w-[1440px] rounded-full border transition-all duration-500 ease-out',
+            'flex items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] mx-auto max-w-[1600px] rounded-full border transition-all duration-500 ease-out',
             isScrolled
               ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-2 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]'
               : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-3 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]'
