@@ -115,6 +115,11 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
+  // On homepage, the FramedHero has its own floating pill navbar.
+  // Skip rendering the global header entirely (no spacer, no fixed bar).
+  const isHomepage = pathname === '/'
+  if (isHomepage) return null
+
   return (
     <>
       <header

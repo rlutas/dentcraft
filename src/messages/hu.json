@@ -41,7 +41,12 @@
   "hero": {
     "badge": "#1 Klinika Szatmarban",
     "title": "Fogászati klinika Szatmárnémetiben, akiben megbízhat",
-    "subtitle": "Modern fogászati klinika 6 fős szakértői csapattal. Implantátum, héjak, fogszabályozás és általános fogászat.",
+    "subtitle": "Modern fogászat, elkötelezett csapat. Gondoskodunk a fogainak egészségéről.",
+    "titleBold": "Egészséges fogak",
+    "titleItalic": "ragyogó mosoly",
+    "trustLabel": "Elégedett páciens",
+    "ctaPrimary": "Foglalás most",
+    "ctaSecondary": "Szolgáltatások",
     "cta": {
       "primary": "Idopont foglalas",
       "secondary": "Szolgaltatasok felfedezese"
