@@ -57,6 +57,7 @@ export type CalcTranslations = {
   trustMaterialsLabel: string
   trustWarrantyLabel: string
   treatmentsIncluded: string
+  treatmentIncludedSingular: string
 }
 
 export type { Locale }

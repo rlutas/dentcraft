@@ -598,7 +598,8 @@
       "trustPlanLabel": "Custom plan",
       "trustMaterialsLabel": "Premium materials",
       "trustWarrantyLabel": "Treatment warranty",
-      "treatmentsIncluded": "treatments included"
+      "treatmentsIncluded": "treatments included",
+      "treatmentIncludedSingular": "treatment included"
     }
   },
   "faq": {

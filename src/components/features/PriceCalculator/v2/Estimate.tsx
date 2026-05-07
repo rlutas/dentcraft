@@ -129,7 +129,10 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
             {translations.perTreatment}
           </h4>
           <span className="text-xs text-[#8b7355] tabular-nums">
-            {estimate.lineItems.length} {translations.treatmentsIncluded}
+            {estimate.lineItems.length}{' '}
+            {estimate.lineItems.length === 1
+              ? translations.treatmentIncludedSingular
+              : translations.treatmentsIncluded}
           </span>
         </div>
         <div className="divide-y divide-[#f5f0e8]">
@@ -142,7 +145,9 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
               className="flex items-center justify-between py-3 gap-3"
             >
               <div className="flex-1 min-w-0">
-                <div className="text-sm md:text-base text-[#2a2118] truncate">{li.label}</div>
+                <div className="text-sm md:text-base text-[#2a2118] leading-snug break-words">
+                  {li.label}
+                </div>
                 {li.qty > 1 && (
                   <div className="text-xs text-[#8b7355] mt-0.5 tabular-nums">
                     {li.qty} × {formatPrice(li.unitPrice)} RON

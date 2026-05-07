@@ -598,7 +598,8 @@
       "trustPlanLabel": "Egyéni terv",
       "trustMaterialsLabel": "Prémium anyagok",
       "trustWarrantyLabel": "Garancia a kezelésekre",
-      "treatmentsIncluded": "kezelés szerepel"
+      "treatmentsIncluded": "kezelés szerepel",
+      "treatmentIncludedSingular": "kezelés szerepel"
     }
   },
   "faq": {

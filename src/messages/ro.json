@@ -598,7 +598,8 @@
       "trustPlanLabel": "Plan personalizat",
       "trustMaterialsLabel": "Materiale premium",
       "trustWarrantyLabel": "Garanție pe lucrări",
-      "treatmentsIncluded": "tratamente incluse"
+      "treatmentsIncluded": "tratamente incluse",
+      "treatmentIncludedSingular": "tratament inclus"
     }
   },
   "faq": {
