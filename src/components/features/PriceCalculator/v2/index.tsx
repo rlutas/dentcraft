@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useReducer } from 'react'
+import { useEffect, useMemo, useReducer, useRef } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, RefreshCw } from 'lucide-react'
 import { ScenarioPicker } from './ScenarioPicker'
@@ -78,6 +78,27 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const scenario = state.scenarioId ? getScenario(state.scenarioId) : null
   const reduce = useReducedMotion()
+  const cardRef = useRef<HTMLDivElement>(null)
+  const isInitialMount = useRef(true)
+
+  // Auto-scroll to the top of the calculator card when the step changes.
+  // Critical on mobile where the card is taller than the viewport — without
+  // this, the user clicks "Continuă" and stays staring at the bottom of the
+  // previous step's content while step 2/3 has already loaded above.
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+    if (typeof window === 'undefined' || !cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    // 96px headroom for the fixed site header + a touch of breathing room.
+    const target = rect.top + window.scrollY - 96
+    window.scrollTo({
+      top: Math.max(target, 0),
+      behavior: reduce ? 'auto' : 'smooth',
+    })
+  }, [state.step, reduce])
 
   // Animation discipline: spring physics for natural step transitions.
   // Reduced motion: collapse to instant changes.
@@ -101,8 +122,10 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
 
   return (
     <div
+      ref={cardRef}
       className={[
         'rounded-3xl border border-[#e8e0d5] shadow-[0_8px_32px_-8px_rgba(42,33,24,0.08)] p-5 md:p-8 transition-colors duration-500',
+        'scroll-mt-24',
         stepBgClass,
       ].join(' ')}
     >

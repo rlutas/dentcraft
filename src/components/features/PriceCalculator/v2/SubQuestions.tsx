@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Minus, Plus } from 'lucide-react'
 import type { Scenario, ScenarioAnswer } from '@/data/calculator-scenarios'
 import type { Locale } from '@/data/treatments'
-import { computeEstimate } from './calculations'
 
 type Props = {
   locale: Locale
@@ -15,12 +14,6 @@ type Props = {
 
 export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
   const reduce = useReducedMotion()
-  const formatLocale = locale === 'hu' ? 'hu-HU' : 'ro-RO'
-  const formatPrice = (n: number) =>
-    new Intl.NumberFormat(formatLocale, { maximumFractionDigits: 0 }).format(n)
-
-  const fromPrefix =
-    locale === 'ro' ? 'de la ' : locale === 'hu' ? '-tól ' : 'from '
 
   return (
     <div className="space-y-8">
@@ -52,20 +45,6 @@ export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
                 {q.options.map((opt) => {
                   const selected = currentValue === opt.value
 
-                  // Compute "what-if" price preview for this option.
-                  // computeEstimate is pure; calling once per option is fine.
-                  let pricePreview: string | null = null
-                  try {
-                    const whatIf: ScenarioAnswer = { ...answers, [q.id]: opt.value }
-                    const e = computeEstimate(scenario.id, whatIf, locale)
-                    pricePreview =
-                      e.totalMin === e.totalMax
-                        ? `${formatPrice(e.totalMin)} RON`
-                        : `${formatPrice(e.totalMin)}-${formatPrice(e.totalMax)} RON`
-                  } catch {
-                    pricePreview = null
-                  }
-
                   return (
                     <button
                       key={opt.value}
@@ -83,12 +62,6 @@ export function SubQuestions({ locale, scenario, answers, onChange }: Props) {
                       {opt.hint?.[locale] && (
                         <div className="text-xs text-[#8b7355] mt-1 leading-snug">
                           {opt.hint[locale]}
-                        </div>
-                      )}
-                      {pricePreview && (
-                        <div className="text-sm font-semibold text-[#2a2118] mt-2 tabular-nums">
-                          {fromPrefix}
-                          {pricePreview}
                         </div>
                       )}
                     </button>
