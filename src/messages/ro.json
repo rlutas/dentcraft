@@ -562,6 +562,23 @@
       "veneers": "Fatete dentare",
       "implant": "Implant dentar",
       "crown": "Coroana dentara"
+    },
+    "calculator": {
+      "back": "Înapoi",
+      "reset": "Reia",
+      "next": "Continuă",
+      "scenarioTitle": "Ce te aduce la noi?",
+      "scenarioSubtitle": "Alege scenariul care se potrivește cel mai bine. Doctorul confirmă tot la consultație.",
+      "questionsTitle": "Câteva detalii",
+      "questionsSubtitle": "Răspunsurile ne ajută să-ți dăm o estimare mai exactă.",
+      "estimateTitle": "Estimarea ta",
+      "totalRange": "Total estimativ în RON",
+      "perTreatment": "Pe tratamente",
+      "bookConsultation": "Programează consultația",
+      "doctorTip": "Notă de la doctor",
+      "disclaimer": "Estimare orientativă. Planul exact și prețul final se stabilesc la consultație, după evaluare clinică și radiologică.",
+      "yourEstimate": "Estimarea ta",
+      "whatHappensNext": "Ce urmează"
     }
   },
   "faq": {

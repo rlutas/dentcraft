@@ -562,6 +562,23 @@
       "veneers": "Foghejak",
       "implant": "Fogimplantatum",
       "crown": "Fogkorona"
+    },
+    "calculator": {
+      "back": "Vissza",
+      "reset": "Újrakezdés",
+      "next": "Tovább",
+      "scenarioTitle": "Mi a problémád?",
+      "scenarioSubtitle": "Válaszd ki a legjobban illő esetet. A doktor mindent megerősít a konzultáción.",
+      "questionsTitle": "Néhány részlet",
+      "questionsSubtitle": "A válaszaid segítenek pontosabb becslést adni.",
+      "estimateTitle": "A becslésed",
+      "totalRange": "Becsült összeg RON-ban",
+      "perTreatment": "Kezelésenként",
+      "bookConsultation": "Konzultáció foglalása",
+      "doctorTip": "Doktori megjegyzés",
+      "disclaimer": "Tájékoztató becslés. A pontos terv és végső ár a konzultáción, klinikai és radiológiai értékelés után kerül meghatározásra.",
+      "yourEstimate": "A becslésed",
+      "whatHappensNext": "Mi következik"
     }
   },
   "faq": {
