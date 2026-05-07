@@ -357,12 +357,11 @@ export function FramedHero() {
           className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/25 to-transparent"
         />
 
-        {/* Content overlay — bottom of hero. Mobile: tight stack so the
-            chip sits just above the title near the bottom edge, not over
-            the patient's face. */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 sm:px-6 sm:pb-8 md:px-12 md:pb-14 lg:px-16 lg:pb-20">
-          <div className="grid gap-4 sm:gap-6 md:gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
-            {/* LEFT: social proof + headline */}
+        {/* Content overlay — single stack on left, all hierarchy in one column:
+            chip → kicker → title → subtitle → CTA. */}
+        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 sm:px-6 sm:pb-8 md:px-12 md:pb-16 lg:px-16 lg:pb-24">
+          <div className="max-w-3xl">
+            {/* Single stack — social proof + headline + subtitle + CTA */}
             <div className="text-white">
               {/* Social proof chip — heavier glass, appears after H1 stagger */}
               <motion.div
@@ -468,47 +467,64 @@ export function FramedHero() {
                   ))}
                 </motion.span>
               </h1>
-            </div>
 
-            {/* RIGHT: description + CTAs */}
-            <div className="md:text-right md:pb-2">
-              <p className="text-white/90 text-sm md:text-lg leading-relaxed mb-3 sm:mb-5 md:mb-6 max-w-md md:ml-auto">
+              {/* Subtitle */}
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed mt-5 md:mt-7 max-w-2xl"
+              >
                 {tHero('subtitle')}
-              </p>
-              {/* Primary CTA — clean white pill, dark warm text, no clutter.
-                  High contrast against the dark hero, reads as the obvious
-                  primary action. Hover lifts and deepens shadow. */}
-              <div className="flex md:justify-end">
-                <motion.button
-                  type="button"
-                  onClick={() => setBookingOpen(true)}
-                  initial={{ opacity: 0, y: 24, scale: 0.92 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{
-                    delay: 1.45,
-                    type: 'spring',
-                    stiffness: 240,
-                    damping: 18,
-                    mass: 0.9,
-                  }}
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group inline-flex items-center justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-[#1a1410] font-semibold tracking-wide shadow-[0_10px_30px_-8px_rgba(0,0,0,0.35)] hover:shadow-[0_18px_42px_-10px_rgba(0,0,0,0.45)] transition-[box-shadow] duration-300"
+              </motion.p>
+
+              {/* Primary CTA — under the title, with arrow reveal */}
+              <motion.button
+                type="button"
+                onClick={() => setBookingOpen(true)}
+                initial={{ opacity: 0, y: 24, scale: 0.92 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  delay: 1.45,
+                  type: 'spring',
+                  stiffness: 240,
+                  damping: 18,
+                  mass: 0.9,
+                }}
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group inline-flex items-center justify-center mt-6 md:mt-8 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-[#1a1410] font-semibold tracking-wide shadow-[0_10px_30px_-8px_rgba(0,0,0,0.35)] hover:shadow-[0_18px_42px_-10px_rgba(0,0,0,0.45)] transition-[box-shadow] duration-300"
+              >
+                <span>{tHero('ctaPrimary')}</span>
+                {/* Arrow visible on mobile, hover-revealed on desktop */}
+                <span
+                  aria-hidden="true"
+                  className="inline-flex items-center overflow-hidden ml-2 max-w-5 opacity-100 translate-x-0 md:ml-0 md:max-w-0 md:opacity-0 md:-translate-x-2 md:group-hover:ml-2 md:group-hover:max-w-5 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 >
-                  <span>{tHero('ctaPrimary')}</span>
-                  {/* Arrow reveals on hover: collapsed (max-w-0, opacity-0,
-                      slid 8px left), then expands + fades + slides into place. */}
-                  <span
-                    aria-hidden="true"
-                    className="inline-flex items-center overflow-hidden ml-2 max-w-5 opacity-100 translate-x-0 md:ml-0 md:max-w-0 md:opacity-0 md:-translate-x-2 md:group-hover:ml-2 md:group-hover:max-w-5 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                  >
-                    <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
-                  </span>
-                </motion.button>
-              </div>
+                  <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+                </span>
+              </motion.button>
             </div>
           </div>
         </div>
+
+        {/* Scroll indicator — bottom center, subtle hint to scroll */}
+        <motion.div
+          aria-hidden="true"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 0.8 }}
+          className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1.5 pointer-events-none"
+        >
+          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60">
+            Scroll
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-px h-8 bg-gradient-to-b from-white/0 via-white/40 to-white/0"
+          />
+        </motion.div>
       </div>
 
       {/* Floating pill navbar — always fixed, morphs on scroll */}
