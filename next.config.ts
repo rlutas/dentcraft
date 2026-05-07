@@ -35,18 +35,18 @@ const nextConfig: NextConfig = {
     // Content Security Policy directives
     const cspDirectives = [
       "default-src 'self'",
-      // Scripts: self + inline (Next.js, consent mode) + eval (GTM custom tags) + GTM/GA
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com",
-      // Styles: self + inline (Next.js injects inline styles)
-      "style-src 'self' 'unsafe-inline'",
+      // Scripts: self + inline (Next.js, consent mode) + eval (GTM custom tags) + GTM/GA + Vercel
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com https://vercel.live",
+      // Styles: self + inline (Next.js injects inline styles) + Google Fonts CSS
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       // Images: self + data URIs + Sanity CDN + external photo sources + analytics pixels
       "img-src 'self' data: blob: https://cdn.sanity.io https://drpetric.ro https://lh3.googleusercontent.com https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.ro",
-      // Fonts: self only (Next.js self-hosts Google Fonts via next/font)
-      "font-src 'self'",
-      // Frames: Google Maps + YouTube + Vimeo + GTM noscript
-      "frame-src https://www.google.com https://www.youtube.com https://player.vimeo.com https://www.googletagmanager.com",
-      // XHR/fetch/WebSocket: self + GTM + GA + Sanity + Vercel
-      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://cdn.sanity.io https://*.vercel-insights.com https://*.vercel-analytics.com",
+      // Fonts: self + Google Fonts (some 3rd-party widgets load gstatic fonts directly)
+      "font-src 'self' https://fonts.gstatic.com data:",
+      // Frames: Google Maps + YouTube + Vimeo + GTM noscript + Vercel preview comments
+      "frame-src https://www.google.com https://www.youtube.com https://player.vimeo.com https://www.googletagmanager.com https://vercel.live",
+      // XHR/fetch/WebSocket: self + GTM + GA (incl. region1 collect endpoint) + Sanity + Vercel + Resend
+      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://cdn.sanity.io https://*.vercel-insights.com https://*.vercel-analytics.com https://va.vercel-scripts.com https://vercel.live wss://ws-us3.pusher.com",
       // Disallow plugins (Flash, Java, etc.)
       "object-src 'none'",
       // Restrict base URI to prevent base tag hijacking
