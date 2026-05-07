@@ -744,9 +744,15 @@ export function FramedHero() {
             <button
               type="button"
               onClick={() => setBookingOpen(true)}
-              className="hidden sm:inline-flex items-center px-5 md:px-6 py-2.5 md:py-3 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
+              className="group hidden sm:inline-flex items-center px-5 md:px-6 py-2.5 md:py-3 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
-              {tHero('ctaPrimary')}
+              <span>{tHero('ctaPrimary')}</span>
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-2 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              >
+                <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+              </span>
             </button>
             {/* Mobile hamburger */}
             <button
