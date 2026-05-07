@@ -227,28 +227,41 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
           <button
             type="button"
             onClick={() => dispatch({ type: 'back' })}
-            className="btn btn-lg flex items-center gap-2 bg-white border-2 border-[#e8e0d5] text-[#2a2118] hover:bg-[#faf6f1]"
+            className="group inline-flex items-center gap-2 rounded-full border border-[#e8e0d5] bg-white px-5 py-2.5 text-sm font-medium text-[#2a2118] transition-all duration-300 hover:border-[#d4c4b0] hover:bg-[#faf6f1]"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft
+              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-0.5"
+              strokeWidth={2}
+            />
             {translations.back}
           </button>
           {state.step === 'questions' && (
             <button
               type="button"
               onClick={() => dispatch({ type: 'next' })}
-              className="btn btn-lg btn-primary flex items-center gap-2"
+              className="group relative overflow-hidden inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-[#2a2118] to-[#1a1410] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-[0_12px_30px_-10px_rgba(42,33,24,0.45)] hover:-translate-y-0.5"
             >
-              {translations.next}
-              <ArrowRight className="w-5 h-5" />
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
+              />
+              <span className="relative">{translations.next}</span>
+              <ArrowRight
+                className="w-4 h-4 relative transition-transform duration-300 group-hover:translate-x-0.5"
+                strokeWidth={2}
+              />
             </button>
           )}
           {state.step === 'result' && (
             <button
               type="button"
               onClick={() => dispatch({ type: 'reset' })}
-              className="btn btn-lg flex items-center gap-2 bg-white border-2 border-[#e8e0d5] text-[#2a2118] hover:bg-[#faf6f1]"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#e8e0d5] bg-white px-5 py-2.5 text-sm font-medium text-[#2a2118] transition-all duration-300 hover:border-[#d4c4b0] hover:bg-[#faf6f1]"
             >
-              <RefreshCw className="w-5 h-5" />
+              <RefreshCw
+                className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180"
+                strokeWidth={2}
+              />
               {translations.reset}
             </button>
           )}

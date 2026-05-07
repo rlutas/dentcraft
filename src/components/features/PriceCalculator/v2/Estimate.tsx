@@ -70,17 +70,17 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
 
   return (
     <div className="space-y-6">
-      {/* Total range hero — focal point with soft glow */}
+      {/* Total range hero — focal point with soft glow, consistent white card */}
       <motion.div
         initial={reduce ? false : { opacity: 0, scale: 0.96 }}
         animate={reduce ? {} : { opacity: 1, scale: 1 }}
         transition={reduce ? { duration: 0 } : { duration: 0.4 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#faf6f1] via-white to-[#f5f0e8] border border-[#e8e0d5] p-6 md:p-10 text-center"
+        className="relative overflow-hidden rounded-2xl bg-white border border-[#e8e0d5] p-6 md:p-10 text-center"
       >
         {/* Soft radial halo behind the number */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-40 rounded-full bg-[#d4c4b0]/30 blur-3xl"
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-48 rounded-full bg-[#d4c4b0]/25 blur-3xl"
         />
 
         <div className="relative">
@@ -262,22 +262,27 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
         {translations.disclaimer}
       </p>
 
-      {/* CTAs */}
-      <div className="space-y-2">
+      {/* CTAs — primary booking + outlined save-by-email */}
+      <div className="space-y-3">
         <button
           type="button"
           onClick={openBooking}
-          className="w-full btn btn-lg btn-primary flex items-center justify-center gap-2"
+          className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#2a2118] to-[#1a1410] text-white font-semibold text-base py-4 px-6 transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(42,33,24,0.4)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5"
         >
-          <CalendarCheck className="w-5 h-5" />
-          {translations.bookConsultation}
+          {/* Shine sweep on hover */}
+          <span
+            aria-hidden="true"
+            className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
+          />
+          <CalendarCheck className="w-5 h-5 relative" strokeWidth={2} />
+          <span className="relative">{translations.bookConsultation}</span>
         </button>
         <button
           type="button"
           onClick={openSaveByEmail}
-          className="w-full text-sm text-[#8b7355] hover:text-[#2a2118] transition-colors flex items-center justify-center gap-2 py-2"
+          className="w-full rounded-2xl border-2 border-[#e8e0d5] bg-white text-[#2a2118] font-medium text-sm py-3.5 px-6 transition-all duration-300 hover:border-[#d4c4b0] hover:bg-[#faf6f1] flex items-center justify-center gap-2"
         >
-          <Mail className="w-4 h-4" />
+          <Mail className="w-4 h-4" strokeWidth={1.75} />
           {translations.sendByEmail}
         </button>
       </div>
