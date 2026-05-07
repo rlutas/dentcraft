@@ -402,38 +402,58 @@ export function FramedHero() {
               <p className="text-white/90 text-sm md:text-lg leading-relaxed mb-3 sm:mb-5 md:mb-6 max-w-md md:ml-auto">
                 {tHero('subtitle')}
               </p>
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end"
-              >
-                {/* Primary — brighter liquid glass, matches the trust chip
-                    aesthetic with extra emphasis */}
-                <button
+              {/* CTAs — staggered entrance with spring settle (no synchronous pop).
+                  Each button enters independently with its own delay + spring
+                  physics so they cascade in like droplets settling. */}
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:justify-end">
+                <motion.button
                   type="button"
                   onClick={() => setBookingOpen(true)}
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 overflow-hidden bg-white/20 backdrop-blur-2xl border border-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_-6px_rgba(0,0,0,0.35)] hover:bg-white/25 hover:border-white/45"
+                  initial={{ opacity: 0, y: 24, scale: 0.92, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                  transition={{
+                    delay: 1.45,
+                    type: 'spring',
+                    stiffness: 240,
+                    damping: 18,
+                    mass: 0.9,
+                  }}
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white overflow-hidden bg-white/20 backdrop-blur-2xl border border-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_32px_-6px_rgba(0,0,0,0.35)] hover:bg-white/25 hover:border-white/45 transition-[background-color,border-color,box-shadow] duration-300"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-out"
+                    className="absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-[900ms] ease-out"
                   />
                   <span className="relative drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                     {tHero('ctaPrimary')}
                   </span>
-                </button>
+                </motion.button>
 
-                {/* Secondary — softer liquid glass, twin of the trust chip */}
-                <Link
-                  href="/preturi"
-                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)] hover:bg-white/15 hover:border-white/35"
+                <motion.div
+                  initial={{ opacity: 0, y: 24, scale: 0.92, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                  transition={{
+                    delay: 1.55,
+                    type: 'spring',
+                    stiffness: 240,
+                    damping: 18,
+                    mass: 0.9,
+                  }}
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
-                    {tHero('ctaSecondary')}
-                  </span>
-                </Link>
-              </motion.div>
+                  <Link
+                    href="/preturi"
+                    className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-white bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)] hover:bg-white/15 hover:border-white/35 transition-[background-color,border-color,box-shadow] duration-300"
+                  >
+                    <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+                      {tHero('ctaSecondary')}
+                    </span>
+                  </Link>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
