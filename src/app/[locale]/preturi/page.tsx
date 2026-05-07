@@ -65,6 +65,20 @@ export default async function PricesPage({ params }: PageProps) {
     disclaimer: t('prices.calculator.disclaimer'),
     yourEstimate: t('prices.calculator.yourEstimate'),
     whatHappensNext: t('prices.calculator.whatHappensNext'),
+    stepLabelScenario: t('prices.calculator.stepLabelScenario'),
+    stepLabelQuestions: t('prices.calculator.stepLabelQuestions'),
+    stepLabelResult: t('prices.calculator.stepLabelResult'),
+    nextStepBooking: t('prices.calculator.nextStepBooking'),
+    nextStepBookingTime: t('prices.calculator.nextStepBookingTime'),
+    nextStepPlan: t('prices.calculator.nextStepPlan'),
+    nextStepPlanTime: t('prices.calculator.nextStepPlanTime'),
+    nextStepTreatment: t('prices.calculator.nextStepTreatment'),
+    nextStepTreatmentTime: t('prices.calculator.nextStepTreatmentTime'),
+    sendByEmail: t('prices.calculator.sendByEmail'),
+    sendByEmailTitle: t('prices.calculator.sendByEmailTitle'),
+    sendByEmailButton: t('prices.calculator.sendByEmailButton'),
+    sendByEmailContext: t('prices.calculator.sendByEmailContext'),
+    doctorName: t('prices.calculator.doctorName'),
   }
 
   return (
