@@ -327,8 +327,8 @@ export function FramedHero() {
   }
 
   return (
-    <section className="relative overflow-hidden min-h-[100svh] md:min-h-[92vh]">
-      <div className="relative w-full h-full min-h-[100svh] md:min-h-[92vh]">
+    <section className="relative overflow-hidden min-h-[100svh]">
+      <div className="relative w-full h-full min-h-[100svh]">
         {/* Responsive hero image — portrait on mobile, landscape on desktop.
             <picture> wrapped in absolute container so Next.js Image fill works
             (it requires a positioned parent). */}
@@ -558,7 +558,7 @@ export function FramedHero() {
       >
         <div
           className={cn(
-            'flex items-center justify-between gap-4 rounded-full border transition-all duration-500 ease-out',
+            'grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border transition-all duration-500 ease-out',
             isScrolled
               ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-2 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]'
               : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-3 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]'
@@ -579,8 +579,8 @@ export function FramedHero() {
             />
           </Link>
 
-          {/* Desktop nav links */}
-          <ul className="hidden lg:flex items-center gap-1 text-sm">
+          {/* Desktop nav links — centered between logo and right group via grid */}
+          <ul className="hidden lg:flex items-center justify-center gap-1 text-[12px] font-semibold uppercase tracking-[0.14em]">
             {/* Services with dropdown */}
             <li
               className="relative"
@@ -664,7 +664,7 @@ export function FramedHero() {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="group relative px-4 py-2 rounded-full text-[#2a2118]/75 font-medium tracking-wide hover:text-[#2a2118] transition-colors"
+                  className="group relative px-3 py-2 rounded-full text-[#2a2118]/75 hover:text-[#2a2118] transition-colors"
                 >
                   <span className="relative">
                     {t(item.key)}
