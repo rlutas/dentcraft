@@ -4,6 +4,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Phone, Star, ArrowRight, X } from 'lucide-react'
+// (getMainFallbackServices imported below from same line as other lib imports)
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname, useRouter } from '@/i18n/navigation'
@@ -77,9 +78,12 @@ type MobileDrawerProps = MobileMenuOpenProps & { onBookingOpen: () => void }
 function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
+  const tServices = useTranslations('services')
   const router = useRouter()
   const pathname = usePathname()
   const currentLocale = useLocale() as Locale
+  const [servicesExpanded, setServicesExpanded] = useState(false)
+  const mainServices = getMainFallbackServices()
 
   const switchLocale = (loc: Locale) => {
     router.replace(pathname as '/', { locale: loc })
@@ -144,10 +148,74 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
               </button>
             </motion.div>
             <ul className="flex flex-col gap-1">
-              {([{ href: '/servicii' as const, key: 'services' as const }, ...navItems] as const).map((item, idx) => (
+              {/* Services — expandable with 6 service shortcuts */}
+              <motion.li
+                custom={1}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <button
+                  type="button"
+                  onClick={() => setServicesExpanded((v) => !v)}
+                  aria-expanded={servicesExpanded}
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-[#2a2118] font-medium hover:bg-[#faf6f1] transition-colors"
+                >
+                  <span>{t('services')}</span>
+                  <ChevronDown
+                    className={cn(
+                      'w-4 h-4 text-[#8b7355] transition-transform duration-300',
+                      servicesExpanded && 'rotate-180'
+                    )}
+                    strokeWidth={2.25}
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {servicesExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid gap-1 pt-1 pb-2 pl-2">
+                        {mainServices.map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={`/servicii/${service.slug}` as '/servicii'}
+                            onClick={onClose}
+                            className="group flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-[#faf6f1] transition-colors"
+                          >
+                            <div className="w-9 h-9 rounded-lg bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center shrink-0 group-hover:bg-[#d4c4b0]/40 group-hover:border-[#d4c4b0] transition-colors">
+                              <service.Icon
+                                className="w-4 h-4 text-[#8b7355]"
+                                strokeWidth={1.5}
+                              />
+                            </div>
+                            <span className="flex-1 min-w-0 text-sm font-medium text-[#2a2118] leading-tight">
+                              {tServices(service.titleKey)}
+                            </span>
+                          </Link>
+                        ))}
+                        <Link
+                          href="/servicii"
+                          onClick={onClose}
+                          className="mt-1 flex items-center justify-between rounded-xl bg-[#2a2118] text-white px-4 py-2.5 text-sm font-semibold hover:bg-[#4a3d30] transition-colors"
+                        >
+                          <span>{t('services')}</span>
+                          <ArrowRight className="w-4 h-4" strokeWidth={2.25} />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.li>
+
+              {navItems.map((item, idx) => (
                 <motion.li
                   key={item.key}
-                  custom={idx + 1}
+                  custom={idx + 2}
                   variants={itemVariants}
                   initial="hidden"
                   animate="visible"
