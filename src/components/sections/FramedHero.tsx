@@ -508,23 +508,43 @@ export function FramedHero() {
           </div>
         </div>
 
-        {/* Scroll indicator — bottom center, subtle hint to scroll */}
-        <motion.div
-          aria-hidden="true"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8 }}
-          className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1.5 pointer-events-none"
+        {/* Scroll indicator — clickable button that scrolls past the hero */}
+        <motion.button
+          type="button"
+          onClick={() => {
+            window.scrollTo({
+              top: window.innerHeight,
+              behavior: 'smooth',
+            })
+          }}
+          aria-label="Derulează în jos"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="group hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-full p-2 -m-2"
         >
-          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70 group-hover:text-white transition-colors">
             Scroll
           </span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-px h-8 bg-gradient-to-b from-white/0 via-white/40 to-white/0"
-          />
-        </motion.div>
+          {/* Animated capsule with downward "drop" line + chevron */}
+          <span className="relative flex flex-col items-center">
+            <span className="relative w-[1.5px] h-10 overflow-hidden rounded-full bg-white/15">
+              <motion.span
+                aria-hidden="true"
+                animate={{ y: ['-100%', '100%'] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/0 via-white/80 to-white/0"
+              />
+            </span>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              className="mt-1 text-white/70 group-hover:text-white transition-colors"
+            >
+              <ChevronDown className="w-4 h-4" strokeWidth={2.5} />
+            </motion.span>
+          </span>
+        </motion.button>
       </div>
 
       {/* Floating pill navbar — always fixed, morphs on scroll */}
