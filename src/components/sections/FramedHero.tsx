@@ -124,8 +124,8 @@ export function FramedHero() {
   }
 
   return (
-    <section className="relative overflow-hidden min-h-[88svh] md:min-h-[92vh]">
-      <div className="relative w-full h-full min-h-[88svh] md:min-h-[92vh]">
+    <section className="relative overflow-hidden min-h-[100svh] md:min-h-[92vh]">
+      <div className="relative w-full h-full min-h-[100svh] md:min-h-[92vh]">
         {/* Responsive hero image — portrait on mobile, landscape on desktop */}
         <picture>
           <source
