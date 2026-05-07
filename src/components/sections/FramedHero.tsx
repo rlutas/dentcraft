@@ -591,7 +591,7 @@ export function FramedHero() {
                 type="button"
                 onClick={() => setIsServicesOpen((prev) => !prev)}
                 className={cn(
-                  'flex items-center gap-1 px-4 py-2 rounded-full font-medium transition-colors',
+                  'flex items-center gap-1.5 px-3 py-2 rounded-full transition-colors',
                   isServicesOpen
                     ? 'text-[#2a2118] bg-[#faf6f1]'
                     : 'text-[#2a2118]/70 hover:text-[#2a2118] hover:bg-[#faf6f1]'
