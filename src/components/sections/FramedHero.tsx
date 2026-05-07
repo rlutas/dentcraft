@@ -558,14 +558,14 @@ export function FramedHero() {
       >
         <div
           className={cn(
-            'grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border transition-all duration-500 ease-out',
+            'grid grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-full border transition-all duration-500 ease-out',
             isScrolled
               ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-2 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]'
               : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-3 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]'
           )}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0 group">
+          <Link href="/" className="flex items-center shrink-0 group justify-self-start">
             <Image
               src="/branding/LOGO_BLACK_FINAL.png"
               alt="DentCraft"
@@ -579,8 +579,8 @@ export function FramedHero() {
             />
           </Link>
 
-          {/* Desktop nav links — centered between logo and right group via grid */}
-          <ul className="hidden lg:flex items-center justify-center gap-1 text-[12px] font-semibold uppercase tracking-[0.14em]">
+          {/* Desktop nav links — centered to viewport via grid 1fr-auto-1fr */}
+          <ul className="hidden lg:flex items-center justify-center gap-1 text-[13px] font-semibold uppercase tracking-[0.16em]">
             {/* Services with dropdown */}
             <li
               className="relative"
@@ -679,7 +679,7 @@ export function FramedHero() {
           </ul>
 
           {/* Right: language + phone + CTA */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 justify-self-end">
             {/* Language switcher (desktop) */}
             <div
               className="hidden lg:block relative"
@@ -765,17 +765,14 @@ export function FramedHero() {
               </div>
             </div>
 
-            {/* Phone — refined pill with subtle border + icon capsule */}
+            {/* Phone — icon-only round button (number revealed on hover via tooltip) */}
             <a
               href="tel:+40741199977"
-              className="hidden md:inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full border border-[#e8e0d5] hover:border-[#d4c4b0] bg-white/60 hover:bg-[#faf6f1] transition-colors group"
+              aria-label="Sună-ne: 0741 199 977"
+              title="0741 199 977"
+              className="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#2a2118] hover:bg-[#4a3d30] transition-colors group"
             >
-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#2a2118] group-hover:bg-[#4a3d30] transition-colors">
-                <Phone className="w-3.5 h-3.5 text-white" strokeWidth={2.25} />
-              </span>
-              <span className="hidden xl:inline text-sm font-semibold text-[#2a2118] tabular-nums tracking-wide">
-                0741 199 977
-              </span>
+              <Phone className="w-4 h-4 text-white" strokeWidth={2.25} />
             </a>
             <button
               type="button"
