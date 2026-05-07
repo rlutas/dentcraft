@@ -27,23 +27,54 @@ interface PriceEstimatePopupProps {
   saveModeButton?: string
 }
 
-// Common dial codes for Romanian patients + diaspora.
-// Romania first (default), then top destinations for Romanian expats.
+// Dial codes: Romania default, then top diaspora destinations,
+// then alphabetical EU + worldwide common destinations.
 const DIAL_CODES = [
-  { iso: 'RO', flag: '🇷🇴', dial: '+40' },
-  { iso: 'IT', flag: '🇮🇹', dial: '+39' },
-  { iso: 'ES', flag: '🇪🇸', dial: '+34' },
-  { iso: 'DE', flag: '🇩🇪', dial: '+49' },
-  { iso: 'GB', flag: '🇬🇧', dial: '+44' },
-  { iso: 'FR', flag: '🇫🇷', dial: '+33' },
-  { iso: 'AT', flag: '🇦🇹', dial: '+43' },
-  { iso: 'BE', flag: '🇧🇪', dial: '+32' },
-  { iso: 'NL', flag: '🇳🇱', dial: '+31' },
-  { iso: 'IE', flag: '🇮🇪', dial: '+353' },
-  { iso: 'HU', flag: '🇭🇺', dial: '+36' },
-  { iso: 'MD', flag: '🇲🇩', dial: '+373' },
-  { iso: 'US', flag: '🇺🇸', dial: '+1' },
-  { iso: 'CA', flag: '🇨🇦', dial: '+1' },
+  // Default
+  { iso: 'RO', flag: '🇷🇴', dial: '+40', name: 'România' },
+  // Top diaspora (most Romanian expats)
+  { iso: 'IT', flag: '🇮🇹', dial: '+39', name: 'Italia' },
+  { iso: 'ES', flag: '🇪🇸', dial: '+34', name: 'Spania' },
+  { iso: 'DE', flag: '🇩🇪', dial: '+49', name: 'Germania' },
+  { iso: 'GB', flag: '🇬🇧', dial: '+44', name: 'Marea Britanie' },
+  { iso: 'FR', flag: '🇫🇷', dial: '+33', name: 'Franța' },
+  // Rest alphabetical
+  { iso: 'AT', flag: '🇦🇹', dial: '+43', name: 'Austria' },
+  { iso: 'BE', flag: '🇧🇪', dial: '+32', name: 'Belgia' },
+  { iso: 'BG', flag: '🇧🇬', dial: '+359', name: 'Bulgaria' },
+  { iso: 'CY', flag: '🇨🇾', dial: '+357', name: 'Cipru' },
+  { iso: 'CZ', flag: '🇨🇿', dial: '+420', name: 'Cehia' },
+  { iso: 'DK', flag: '🇩🇰', dial: '+45', name: 'Danemarca' },
+  { iso: 'EE', flag: '🇪🇪', dial: '+372', name: 'Estonia' },
+  { iso: 'FI', flag: '🇫🇮', dial: '+358', name: 'Finlanda' },
+  { iso: 'GR', flag: '🇬🇷', dial: '+30', name: 'Grecia' },
+  { iso: 'HR', flag: '🇭🇷', dial: '+385', name: 'Croația' },
+  { iso: 'HU', flag: '🇭🇺', dial: '+36', name: 'Ungaria' },
+  { iso: 'IE', flag: '🇮🇪', dial: '+353', name: 'Irlanda' },
+  { iso: 'IS', flag: '🇮🇸', dial: '+354', name: 'Islanda' },
+  { iso: 'LT', flag: '🇱🇹', dial: '+370', name: 'Lituania' },
+  { iso: 'LU', flag: '🇱🇺', dial: '+352', name: 'Luxemburg' },
+  { iso: 'LV', flag: '🇱🇻', dial: '+371', name: 'Letonia' },
+  { iso: 'MD', flag: '🇲🇩', dial: '+373', name: 'Moldova' },
+  { iso: 'MT', flag: '🇲🇹', dial: '+356', name: 'Malta' },
+  { iso: 'NL', flag: '🇳🇱', dial: '+31', name: 'Olanda' },
+  { iso: 'NO', flag: '🇳🇴', dial: '+47', name: 'Norvegia' },
+  { iso: 'PL', flag: '🇵🇱', dial: '+48', name: 'Polonia' },
+  { iso: 'PT', flag: '🇵🇹', dial: '+351', name: 'Portugalia' },
+  { iso: 'RS', flag: '🇷🇸', dial: '+381', name: 'Serbia' },
+  { iso: 'SE', flag: '🇸🇪', dial: '+46', name: 'Suedia' },
+  { iso: 'SI', flag: '🇸🇮', dial: '+386', name: 'Slovenia' },
+  { iso: 'SK', flag: '🇸🇰', dial: '+421', name: 'Slovacia' },
+  { iso: 'CH', flag: '🇨🇭', dial: '+41', name: 'Elveția' },
+  { iso: 'TR', flag: '🇹🇷', dial: '+90', name: 'Turcia' },
+  { iso: 'UA', flag: '🇺🇦', dial: '+380', name: 'Ucraina' },
+  // Outside EU but common diaspora destinations
+  { iso: 'US', flag: '🇺🇸', dial: '+1', name: 'SUA' },
+  { iso: 'CA', flag: '🇨🇦', dial: '+1', name: 'Canada' },
+  { iso: 'AU', flag: '🇦🇺', dial: '+61', name: 'Australia' },
+  { iso: 'NZ', flag: '🇳🇿', dial: '+64', name: 'Noua Zeelandă' },
+  { iso: 'IL', flag: '🇮🇱', dial: '+972', name: 'Israel' },
+  { iso: 'AE', flag: '🇦🇪', dial: '+971', name: 'Emiratele Arabe Unite' },
 ] as const
 
 const formatPrice = (price: number) => {
@@ -426,7 +457,7 @@ export default function PriceEstimatePopup({
                           >
                             {DIAL_CODES.map((c) => (
                               <option key={`${c.iso}-${c.dial}`} value={c.dial}>
-                                {c.flag} {c.dial}
+                                {c.flag} {c.dial} {c.name}
                               </option>
                             ))}
                           </select>

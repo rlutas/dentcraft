@@ -320,9 +320,13 @@ export function priceEstimateAdminEmail(data: {
       ${Array.isArray(data.notes) && data.notes.length > 0 ? `
         <h3 style="margin: 24px 0 8px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Nota afisata clientului</h3>
         <p style="margin: 0 0 12px; color: #6b6b6b; font-size: 13px; line-height: 1.5;">Acest text a fost afisat in calculator ca "Nota de la doctor".</p>
-        <div style="background: linear-gradient(135deg, #2a2118, #1a1410); border-radius: 8px; padding: 16px;">
-          ${data.notes.map((n) => `<p style="margin: 0 0 6px; color: #ffffff; font-size: 14px; line-height: 1.6;">${esc(n)}</p>`).join('')}
-        </div>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #2a2118; background-image: linear-gradient(135deg, #2a2118, #1a1410); border-radius: 8px;">
+          <tr>
+            <td style="padding: 16px;">
+              ${data.notes.map((n) => `<p style="margin: 0 0 6px; color: #ffffff; font-size: 14px; line-height: 1.6;">${esc(n)}</p>`).join('')}
+            </td>
+          </tr>
+        </table>
       ` : ''}
     </div>
   `
@@ -385,20 +389,31 @@ export function priceEstimateConfirmationEmail(data: {
     `
     : ''
 
+  // Doctor section as a <table> with solid background-color. Email clients
+  // (Yahoo, Outlook desktop) strip linear-gradient on <div>, leaving white
+  // text on white. Solid bg is the reliable floor; gradient layers on top.
   const doctorSection = hasNotes
     ? `
-      <div style="padding: 0 24px 24px;">
-        <div style="background: linear-gradient(135deg, #2a2118, #1a1410); border-radius: 12px; padding: 20px;">
-          <p style="margin: 0 0 8px; color: ${ACCENT_COLOR}; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Notă de la doctor</p>
-          ${data.notes!.map((n) => `
-            <p style="margin: 0 0 8px; color: #ffffff; font-size: 14px; line-height: 1.6;">${esc(n)}</p>
-          `).join('')}
-          <p style="margin: 12px 0 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.12); color: ${ACCENT_COLOR}; font-size: 12px; font-weight: 600;">
-            Dr. Petric Răzvan-Tudor
-            <span style="display: block; color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 400; margin-top: 2px;">DentCraft Satu Mare</span>
-          </p>
-        </div>
-      </div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0 0 24px; padding: 0 24px;">
+        <tr>
+          <td>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #2a2118; background-image: linear-gradient(135deg, #2a2118, #1a1410); border-radius: 12px;">
+              <tr>
+                <td style="padding: 20px;">
+                  <p style="margin: 0 0 8px; color: ${ACCENT_COLOR}; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Notă de la doctor</p>
+                  ${data.notes!.map((n) => `
+                    <p style="margin: 0 0 8px; color: #ffffff; font-size: 14px; line-height: 1.6;">${esc(n)}</p>
+                  `).join('')}
+                  <p style="margin: 12px 0 0; padding-top: 12px; border-top: 1px solid #3a2f24; color: ${ACCENT_COLOR}; font-size: 12px; font-weight: 600;">
+                    Dr. Petric Răzvan-Tudor
+                    <span style="display: block; color: #b8a890; font-size: 11px; font-weight: 400; margin-top: 2px;">DentCraft Satu Mare</span>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
     `
     : ''
 
