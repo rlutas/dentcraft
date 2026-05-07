@@ -44,7 +44,6 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
     new Intl.NumberFormat(formatLocale, { maximumFractionDigits: 0 }).format(n)
 
   const showRange = estimate.totalMax > estimate.totalMin
-  const fromPrefix = locale === 'ro' ? 'de la' : locale === 'hu' ? '-tól' : 'from'
 
   const trustBadges = [
     { icon: FileText, label: translations.trustPlanLabel },
@@ -167,11 +166,6 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
                 )}
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
-                {li.priceType === 'from' && (
-                  <span className="text-[10px] font-medium uppercase tracking-wider text-[#8b7355] bg-[#faf6f1] border border-[#e8e0d5] rounded-full px-2 py-0.5">
-                    {fromPrefix}
-                  </span>
-                )}
                 <span className="text-sm md:text-base font-semibold text-[#2a2118] tabular-nums">
                   {formatPrice(li.total)} RON
                 </span>
