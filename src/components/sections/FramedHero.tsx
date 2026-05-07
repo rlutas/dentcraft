@@ -44,8 +44,6 @@ function HamburgerIcon({ className, open }: { className?: string; open: boolean 
   return (
     <svg
       className={className}
-      width="22"
-      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -502,7 +500,7 @@ export function FramedHero() {
                       slid 8px left), then expands + fades + slides into place. */}
                   <span
                     aria-hidden="true"
-                    className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-2 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="inline-flex items-center overflow-hidden ml-2 max-w-5 opacity-100 translate-x-0 md:ml-0 md:max-w-0 md:opacity-0 md:-translate-x-2 md:group-hover:ml-2 md:group-hover:max-w-5 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   >
                     <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
                   </span>
@@ -751,7 +749,7 @@ export function FramedHero() {
               <span>{tHero('ctaPrimary')}</span>
               <span
                 aria-hidden="true"
-                className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-2 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="inline-flex items-center overflow-hidden ml-2 max-w-5 opacity-100 translate-x-0 md:ml-0 md:max-w-0 md:opacity-0 md:-translate-x-2 md:group-hover:ml-2 md:group-hover:max-w-5 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
               >
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
               </span>
@@ -760,10 +758,10 @@ export function FramedHero() {
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden p-2.5 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
+              className="lg:hidden p-2.5 sm:p-3 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors"
               aria-label="Deschide meniul"
             >
-              <HamburgerIcon className="w-5 h-5" open={mobileOpen} />
+              <HamburgerIcon className="w-7 h-7 sm:w-8 sm:h-8" open={mobileOpen} />
             </button>
           </div>
         </div>
