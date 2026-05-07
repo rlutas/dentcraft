@@ -4,6 +4,7 @@
     "description": "Clinica stomatologica in Satu Mare cu 10+ ani experienta. Implanturi, ortodontie, fatete, albire dentara. Echipa de 6 specialisti. Programeaza consultatie!"
   },
   "navigation": {
+    "menuTitle": "Meniu",
     "home": "Acasa",
     "services": "Servicii",
     "team": "Echipa",

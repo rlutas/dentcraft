@@ -4,6 +4,7 @@
     "description": "Dental clinic in Satu Mare with 10+ years experience. Implants, orthodontics, veneers, teeth whitening. Team of 6 specialists. Book a consultation!"
   },
   "navigation": {
+    "menuTitle": "Menu",
     "home": "Home",
     "services": "Services",
     "team": "Team",

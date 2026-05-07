@@ -4,6 +4,7 @@
     "description": "Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal. Implantátum, fogszabályozás, héjak, fehérítés. 6 fős szakértői csapat. Foglaljon időpontot!"
   },
   "navigation": {
+    "menuTitle": "Menü",
     "home": "Fooldal",
     "services": "Szolgaltatasok",
     "team": "Csapat",
