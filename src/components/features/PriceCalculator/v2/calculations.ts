@@ -18,7 +18,7 @@ export type Estimate = {
   hasFromPrice: boolean
 }
 
-const FROM_PRICE_MARKUP = 1.3
+export const FROM_PRICE_MARKUP = 1.3
 
 export function computeEstimate(
   scenarioId: string,
