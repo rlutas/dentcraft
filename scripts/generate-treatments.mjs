@@ -9,6 +9,13 @@ const inputPath = process.argv[2] || `${process.env.HOME}/Downloads/Petric Razva
 const outputPath = resolve('src/data/treatments.ts')
 
 const raw = JSON.parse(readFileSync(inputPath, 'utf8'))
+
+if (!raw.cli_user_interventions || !Array.isArray(raw.cli_user_interventions)) {
+  throw new Error(
+    `Expected .cli_user_interventions array in JSON — is this a Stomawin export? Got top-level keys: ${Object.keys(raw).join(', ')}`
+  )
+}
+
 const ui = raw.cli_user_interventions
 
 // Build category map
@@ -34,29 +41,51 @@ function slugify(s) {
 const categories = parents
   .sort((a, b) => Number(a.rankx) - Number(b.rankx))
   .map((p) => {
+    // Track emitted output IDs per category to avoid second-order collisions
+    // (e.g. a natural "foo-2" colliding with a deduped "foo" → "foo-2")
+    const emitted = new Set()
+    function uniqueId(slug) {
+      if (!emitted.has(slug)) {
+        emitted.add(slug)
+        return slug
+      }
+      let n = 2
+      while (emitted.has(`${slug}-${n}`)) n++
+      const id = `${slug}-${n}`
+      emitted.add(id)
+      return id
+    }
+
     const kids = (childrenByParent.get(p.id) || [])
       .filter((k) => Number(k.price) > 0)
       .sort((a, b) => Number(a.rankx) - Number(b.rankx))
-      .map((k) => ({
-        id: slugify(k.user_text1.trim()),
-        labels: {
-          ro: k.user_text1.trim(),
-          en: k.user_text0.trim(),
-          hu: k.user_text2.trim(),
-        },
-        price: Number(k.price),
-        priceType: k.price_type === '1' ? 'from' : 'fixed',
-      }))
+      .map((k) => {
+        const slug = slugify(k.user_text1.trim())
+        if (!slug) {
+          throw new Error(`Empty slug produced for label: "${k.user_text1}" (id ${k.id})`)
+        }
 
-    // Detect duplicate slugs within a category and disambiguate with a numeric suffix
-    const seen = new Map()
-    for (const t of kids) {
-      const count = seen.get(t.id) || 0
-      seen.set(t.id, count + 1)
-      if (count > 0) {
-        t.id = `${t.id}-${count + 1}`
-      }
-    }
+        let priceType
+        if (k.price_type === '1') priceType = 'from'
+        else if (k.price_type === '0') priceType = 'fixed'
+        else {
+          console.warn(
+            `Unknown price_type "${k.price_type}" for treatment "${k.user_text1}" (id ${k.id}); defaulting to 'fixed'`
+          )
+          priceType = 'fixed'
+        }
+
+        return {
+          id: uniqueId(slug),
+          labels: {
+            ro: k.user_text1.trim(),
+            en: k.user_text0.trim(),
+            hu: k.user_text2.trim(),
+          },
+          price: Number(k.price),
+          priceType,
+        }
+      })
 
     return {
       id: slugify(p.user_text1.trim()),
@@ -69,6 +98,25 @@ const categories = parents
     }
   })
   .filter((c) => c.treatments.length > 0)
+
+// Warn about treatment slugs that collide across multiple categories.
+// findTreatment(categoryId, treatmentId) is unaffected, but flat
+// treatmentId-only lookups would be ambiguous.
+const slugCategoryMap = new Map() // slug -> Set<categoryId>
+for (const c of categories) {
+  for (const t of c.treatments) {
+    if (!slugCategoryMap.has(t.id)) slugCategoryMap.set(t.id, new Set())
+    slugCategoryMap.get(t.id).add(c.id)
+  }
+}
+const crossDupes = [...slugCategoryMap.entries()].filter(([, cats]) => cats.size > 1)
+if (crossDupes.length > 0) {
+  console.warn('\nTreatments with the same slug across multiple categories:')
+  for (const [slug, cats] of crossDupes) {
+    console.warn(`  - ${slug} → ${[...cats].join(', ')}`)
+  }
+  console.warn('  (findTreatment(categoryId, treatmentId) is unaffected; flat treatmentId-only lookups would be ambiguous.)\n')
+}
 
 const header = `// AUTO-GENERATED from Stomawin export by scripts/generate-treatments.mjs
 // Do not edit by hand. Re-run the script to refresh.

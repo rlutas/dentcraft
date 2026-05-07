@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "sync-reviews": "tsx scripts/sync-google-reviews.ts"
+    "sync-reviews": "tsx scripts/sync-google-reviews.ts",
+    "generate-treatments": "node scripts/generate-treatments.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
