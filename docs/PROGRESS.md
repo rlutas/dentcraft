@@ -1,6 +1,6 @@
 # Dentcraft.ro - Project Status
 
-**Last updated:** 24 April 2026
+**Last updated:** 7 May 2026
 
 ---
 
@@ -102,6 +102,49 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 ---
 
 ## Session Log
+
+### 7 May 2026 (evening) — Hero + Navigation Redesign (homepage only)
+
+**Status:** Live on homepage `/`. **Awaiting Dr. Petric's approval** before rolling out to the rest of the site (`/servicii`, `/echipa`, `/preturi`, `/contact`, `/blog`, etc.).
+
+**Hero — Dentix-style framed redesign:**
+- Full-screen hero `min-h-[100svh]` (was constrained on mobile)
+- Patient portrait sitting in a rounded frame, warm earth-tone gradient backdrop
+- Headline: word-stagger reveal animation, kicker line above + italic serif second line ("zambet luminos")
+- SEO-optimized H1+subtitle: "Implant dentar, ortodontie, fatete si reabilitari complete in Satu Mare"
+- Trust chip with avatar stack ("2000+ pacienti multumiti · 4.9 ⭐") — animated entrance
+- White pill CTA "Programeaza acum" with hover arrow-reveal
+- Interactive scroll indicator at bottom — clickable button with pulsing gradient + ChevronDown that smooth-scrolls to next section
+- Removed clipping on descenders (g/y in EN/HU translations)
+
+**Navigation — luxury pill-style top bar:**
+- Sticky pill nav: morphs from translucent to white-blur on scroll
+- Layout: `flex justify-between` on mobile, `grid [1fr_auto_1fr]` on desktop for true center alignment of nav links
+- Center links: `text-[15px] font-bold uppercase tracking-[0.14em]` with center-growing underline accent on hover
+- Services dropdown: 6 service shortcuts with icons + "Toate serviciile" CTA (text-[13px])
+- Language switcher with circular SVG flags (country-flag-icons), dropdown matches services style
+- Phone: collapsed to round icon-only button (w-12 h-12) on desktop
+- Booking CTA: dark pill (`px-9 py-4 text-base`) with arrow-reveal hover
+- Pill width capped at full safe area (no max-width cap currently; spans `lg:left-12 lg:right-12`)
+- Padding tuned: `md:py-2` idle, `md:py-1.5` scrolled — keeps booking button "filling" the pill (small white gap)
+
+**Mobile drawer:**
+- Animated hamburger that morphs to X (custom asymmetric SVG)
+- Body scroll lock when open
+- Expandable services accordion with icons
+- Language switcher with circular flags (24×24 with object-cover scale-1.6)
+- Booking CTA matches header style
+
+**Backup:** Pre-redesign hero state tagged at `hero-v1-saved` (commit `602636a`) for safe rollback.
+
+**Key files:** `src/components/sections/FramedHero.tsx` (~770 lines, contains MobileDrawer, HamburgerIcon, FramedHero export)
+
+**Pending approval:**
+- [ ] Dr. Petric reviews homepage hero + nav
+- [ ] If approved → roll out same nav (pill, services dropdown, lang switcher, mobile drawer) to all other pages currently using the old `Header` component
+- [ ] Apply hero treatment patterns where appropriate (e.g. service detail pages, doctor profile pages)
+
+---
 
 ### 7 May 2026
 
