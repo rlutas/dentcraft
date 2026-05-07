@@ -560,8 +560,8 @@ export function FramedHero() {
           className={cn(
             'flex items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] mx-auto rounded-full border transition-all duration-500 ease-out',
             isScrolled
-              ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-2 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]'
-              : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-3 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]'
+              ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-1.5 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]'
+              : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-2 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]'
           )}
         >
           {/* Logo */}
@@ -777,7 +777,7 @@ export function FramedHero() {
             <button
               type="button"
               onClick={() => setBookingOpen(true)}
-              className="group hidden sm:inline-flex items-center px-5 md:px-6 py-2.5 md:py-3 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+              className="group hidden sm:inline-flex items-center px-5 md:px-7 py-2.5 md:py-3.5 bg-[#2a2118] text-white rounded-full text-sm font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
               <span>{tHero('ctaPrimary')}</span>
               <span
