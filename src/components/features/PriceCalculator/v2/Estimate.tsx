@@ -69,21 +69,15 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
 
   return (
     <div className="space-y-6">
-      {/* Total range hero — focal point with soft glow, consistent white card */}
+      {/* Total range hero — same white card as line items + timeline */}
       <motion.div
         initial={reduce ? false : { opacity: 0, scale: 0.96 }}
         animate={reduce ? {} : { opacity: 1, scale: 1 }}
         transition={reduce ? { duration: 0 } : { duration: 0.4 }}
-        className="relative overflow-hidden rounded-2xl bg-white border border-[#e8e0d5] p-6 md:p-10 text-center"
+        className="rounded-2xl bg-white border border-[#e8e0d5] p-6 md:p-8 text-center"
       >
-        {/* Soft radial halo behind the number */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-48 rounded-full bg-[#d4c4b0]/25 blur-3xl"
-        />
-
-        <div className="relative">
-          <div className="inline-flex items-center gap-2 text-xs font-medium text-[#8b7355] bg-white border border-[#e8e0d5] rounded-full px-3 py-1 mb-3">
+        <div>
+          <div className="inline-flex items-center gap-2 text-xs font-medium text-[#8b7355] bg-[#faf6f1] border border-[#e8e0d5] rounded-full px-3 py-1 mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             {translations.yourEstimate}
           </div>
