@@ -13,6 +13,7 @@ import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { cn } from '@/lib/utils'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { DoctorVideoCard } from '@/components/sections/DoctorVideoCard'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import googleReviews from '@/data/google-reviews.json'
@@ -598,110 +599,23 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
           </div>
 
           {/* Video Reels Grid - 2 doctor videos centered */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto">            {/* Video 1 - Dr. Petric */}
-            <a
-              href="https://youtube.com/shorts/ZQnkXaijIXs"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Vezi videoul cu Dr. Petric Razvan-Tudor pe YouTube Shorts"
-              className="group relative block animate-[fadeInUp_0.6s_ease-out_both]"
-              style={{ animationDelay: '0.1s' }}
-            >
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-[#f5f0e8]
-                border border-[#e8e0d5] group-hover:border-[#d4c4b0] transition-all duration-500
-                shadow-[0_20px_50px_-15px_rgba(42,33,24,0.18)] group-hover:shadow-[0_30px_70px_-15px_rgba(139,115,85,0.25)]
-                group-hover:-translate-y-1.5">
-                {/* Doctor photo as background */}
-                <Image
-                  src="https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png"
-                  alt="Dr. Petric Razvan-Tudor"
-                  fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover object-top"
-                />
-
-                {/* Dark gradient bottom for text legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/85 via-[#2a2118]/30 to-transparent" />
-
-                {/* YouTube badge top-right */}
-                <div className="absolute top-4 right-4 z-10">
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-black/55 backdrop-blur-sm rounded-full">
-                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                    <span className="text-[10px] font-semibold text-white uppercase tracking-wider">Shorts</span>
-                  </div>
-                </div>
-
-                {/* Play button - centered */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center
-                    border border-white/30 group-hover:scale-110 group-hover:bg-white/30
-                    transition-all duration-500">
-                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
-                      shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
-                      <Play className="w-6 h-6 text-[#2a2118] ml-0.5" fill="currentColor" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Doctor info bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-                  <p className="text-white font-bold text-base md:text-lg leading-tight">Dr. Petric Razvan-Tudor</p>
-                  <p className="text-white/80 text-xs md:text-sm mt-1">Medic Stomatolog Coordonator</p>
-                </div>
-              </div>
-            </a>
-
-            {/* Video 2 - Dr. Ghirasim */}
-            <a
-              href="https://youtube.com/shorts/KuxT2zKlrao"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Vezi videoul cu Dr. Ghirasim Denisa-Stefania pe YouTube Shorts"
-              className="group relative block animate-[fadeInUp_0.6s_ease-out_both]"
-              style={{ animationDelay: '0.2s' }}
-            >
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-[#f5f0e8]
-                border border-[#e8e0d5] group-hover:border-[#d4c4b0] transition-all duration-500
-                shadow-[0_20px_50px_-15px_rgba(42,33,24,0.18)] group-hover:shadow-[0_30px_70px_-15px_rgba(139,115,85,0.25)]
-                group-hover:-translate-y-1.5">
-                <Image
-                  src="/images/team/dr-ghirasim-denisa-stefania.webp"
-                  alt="Dr. Ghirasim Denisa-Stefania"
-                  fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover object-top"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/85 via-[#2a2118]/30 to-transparent" />
-
-                <div className="absolute top-4 right-4 z-10">
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-black/55 backdrop-blur-sm rounded-full">
-                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                    <span className="text-[10px] font-semibold text-white uppercase tracking-wider">Shorts</span>
-                  </div>
-                </div>
-
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center
-                    border border-white/30 group-hover:scale-110 group-hover:bg-white/30
-                    transition-all duration-500">
-                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
-                      shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
-                      <Play className="w-6 h-6 text-[#2a2118] ml-0.5" fill="currentColor" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-                  <p className="text-white font-bold text-base md:text-lg leading-tight">Dr. Ghirasim Denisa</p>
-                  <p className="text-white/80 text-xs md:text-sm mt-1">Medic Stomatolog · Pediatrie</p>
-                </div>
-              </div>
-            </a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto">
+            <DoctorVideoCard
+              videoId="ZQnkXaijIXs"
+              posterSrc="https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png"
+              posterAlt="Dr. Petric Razvan-Tudor"
+              doctorName="Dr. Petric Razvan-Tudor"
+              doctorRole="Medic Stomatolog Coordonator"
+              delay="0.1s"
+            />
+            <DoctorVideoCard
+              videoId="KuxT2zKlrao"
+              posterSrc="/images/team/dr-ghirasim-denisa-stefania.webp"
+              posterAlt="Dr. Ghirasim Denisa-Stefania"
+              doctorName="Dr. Ghirasim Denisa"
+              doctorRole="Medic Stomatolog · Pediatrie"
+              delay="0.2s"
+            />
           </div>
 
           {/* Bottom CTA - matches hero/services arrow-reveal pattern */}
