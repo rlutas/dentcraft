@@ -54,8 +54,8 @@ export function AnimatedServiceHeading({ bold, italic }: Props) {
           hidden: {},
           visible: {
             transition: {
-              staggerChildren: 0.04,
-              delayChildren: 0.35,
+              staggerChildren: 0.07,
+              delayChildren: 0.45,
             },
           },
         }}
@@ -65,11 +65,11 @@ export function AnimatedServiceHeading({ bold, italic }: Props) {
           <motion.span
             key={i}
             variants={{
-              hidden: { opacity: 0, x: -20 },
+              hidden: { opacity: 0, x: -24 },
               visible: {
                 opacity: 1,
                 x: 0,
-                transition: { type: 'spring', stiffness: 220, damping: 22 },
+                transition: { type: 'spring', stiffness: 140, damping: 20 },
               },
             }}
             className="inline-block"
