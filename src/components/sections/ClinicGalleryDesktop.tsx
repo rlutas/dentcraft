@@ -13,15 +13,17 @@ type Props = {
   images: ClinicImage[]
 }
 
-// 4 cols × 3 rows = 12 cells. Primary 3×2 (left) + 2 thumbs right + 4 thumbs bottom row = 7 photos.
+// Responsive slots:
+//  - Mobile (default, 3 cols × 4 rows): primary (3×2 top) + 6 thumbs in 3×2 below
+//  - Desktop (md+, 4 cols × 3 rows): primary (3×2 left) + 2 thumbs right + 4 thumbs bottom
 const SLOT_CLASSES: Record<number, string> = {
-  0: 'col-start-1 col-span-3 row-start-1 row-span-2', // primary 3×2
-  1: 'col-start-4 col-span-1 row-start-1 row-span-1', // right top
-  2: 'col-start-4 col-span-1 row-start-2 row-span-1', // right bottom
-  3: 'col-start-1 col-span-1 row-start-3 row-span-1', // bottom 1
-  4: 'col-start-2 col-span-1 row-start-3 row-span-1', // bottom 2
-  5: 'col-start-3 col-span-1 row-start-3 row-span-1', // bottom 3
-  6: 'col-start-4 col-span-1 row-start-3 row-span-1', // bottom 4
+  0: 'col-start-1 col-span-3 row-start-1 row-span-2 md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-2',
+  1: 'col-start-1 col-span-1 row-start-3 row-span-1 md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-1',
+  2: 'col-start-2 col-span-1 row-start-3 row-span-1 md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1',
+  3: 'col-start-3 col-span-1 row-start-3 row-span-1 md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1',
+  4: 'col-start-1 col-span-1 row-start-4 row-span-1 md:col-start-2 md:col-span-1 md:row-start-3 md:row-span-1',
+  5: 'col-start-2 col-span-1 row-start-4 row-span-1 md:col-start-3 md:col-span-1 md:row-start-3 md:row-span-1',
+  6: 'col-start-3 col-span-1 row-start-4 row-span-1 md:col-start-4 md:col-span-1 md:row-start-3 md:row-span-1',
 }
 
 const SLOT_COUNT = 7
@@ -29,15 +31,12 @@ const ROTATE_MS = 5500
 const HOVER_DEBOUNCE_MS = 200
 
 export function ClinicGalleryDesktop({ images }: Props) {
-  // layout[slot] = image index. Default: image i is in slot i.
   const [layout, setLayout] = useState<number[]>(() =>
     images.slice(0, SLOT_COUNT).map((_, i) => i)
   )
   const [paused, setPaused] = useState(false)
   const prefersReduced = useReducedMotion()
-  // Cycle: which thumb gets promoted next during auto-rotate
   const cycleRef = useRef(1)
-  // Debounce hover so rapid mouse movement across thumbs doesn't trigger jerky swaps
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   const swapPrimary = (clickedSlot: number) => {
@@ -60,8 +59,6 @@ export function ClinicGalleryDesktop({ images }: Props) {
     if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
   }
 
-  // Auto-rotate: swap primary (slot 0) with next thumb (slots 1, 2, 3, ..., 6, 1, 2, ...)
-  // Thumbs stay put; only the photo at slot 0 changes each tick (the previous primary lands at the swapped thumb slot).
   useEffect(() => {
     if (paused || prefersReduced) return
     const id = setInterval(() => {
@@ -81,7 +78,7 @@ export function ClinicGalleryDesktop({ images }: Props) {
   return (
     <LayoutGroup id="clinic-gallery">
       <div
-        className="hidden md:grid grid-cols-4 grid-rows-3 gap-3 lg:gap-4 h-[480px] lg:h-[580px]"
+        className="grid grid-cols-3 grid-rows-4 md:grid-cols-4 md:grid-rows-3 gap-2.5 md:gap-3 lg:gap-4 h-[480px] md:h-[480px] lg:h-[580px]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -98,7 +95,7 @@ export function ClinicGalleryDesktop({ images }: Props) {
               onClick={() => swapPrimary(slotIdx)}
               onFocus={() => swapPrimary(slotIdx)}
               aria-label={img.caption}
-              className={`relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-3xl ${SLOT_CLASSES[slotIdx]}`}
+              className={`relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-2xl md:rounded-3xl ${SLOT_CLASSES[slotIdx]}`}
             >
               <motion.div
                 layoutId={`clinic-photo-${imageIdx}`}
@@ -110,9 +107,8 @@ export function ClinicGalleryDesktop({ images }: Props) {
                     mass: 1.6,
                   },
                 }}
-                className="absolute inset-0 rounded-3xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0] shadow-[0_10px_30px_-10px_rgba(42,33,24,0.22)]"
+                className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0] shadow-[0_10px_30px_-10px_rgba(42,33,24,0.22)]"
               >
-                {/* Photo with subtle scale-bloom when arriving as primary */}
                 <motion.div
                   key={isPrimary ? `primary-${imageIdx}` : `thumb-${imageIdx}`}
                   initial={isPrimary ? { scale: 1.04, opacity: 0.9 } : false}
@@ -124,7 +120,7 @@ export function ClinicGalleryDesktop({ images }: Props) {
                     src={img.src}
                     alt={img.caption}
                     fill
-                    sizes={isPrimary ? '60vw' : '20vw'}
+                    sizes={isPrimary ? '(max-width: 768px) 100vw, 60vw' : '(max-width: 768px) 33vw, 20vw'}
                     className="object-cover"
                   />
                 </motion.div>
@@ -135,8 +131,8 @@ export function ClinicGalleryDesktop({ images }: Props) {
                       : 'from-[#2a2118]/40 via-transparent to-transparent'
                   } transition-opacity duration-500`}
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-left pointer-events-none">
-                  <span className="text-white font-medium text-[11px] md:text-xs lg:text-sm">
+                <div className="absolute bottom-0 left-0 right-0 p-2.5 md:p-4 text-left pointer-events-none">
+                  <span className="text-white font-medium text-[10px] md:text-xs lg:text-sm">
                     {img.caption}
                   </span>
                 </div>

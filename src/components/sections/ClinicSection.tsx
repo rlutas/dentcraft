@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Monitor, Shield, Armchair, Cpu } from 'lucide-react'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
@@ -19,15 +18,6 @@ function buildClinicImages(t: ClinicSectionProps['t']) {
     { src: '/images/clinic/clinic-5.webp', caption: t('clinic.captions.treatmentRoom') },
     { src: '/images/clinic/clinic-7.webp', caption: t('clinic.captions.detail') },
   ]
-}
-
-const MOBILE_IMG = {
-  hallway: { src: '/images/clinic/clinic-11.webp', alt: 'clinic.images.reception' },
-  reception: { src: '/images/clinic/clinic-1.webp', alt: 'clinic.images.waiting' },
-  treatmentMarble: { src: '/images/clinic/clinic-6.webp', alt: 'clinic.images.treatment' },
-  sterilization: { src: '/images/clinic/clinic-10.webp', alt: 'clinic.images.detail' },
-  treatmentRoom: { src: '/images/clinic/clinic-5.webp', alt: 'clinic.images.treatmentRoom' },
-  toysDetail: { src: '/images/clinic/toys-with-toothbrush.webp', alt: 'clinic.images.toys' },
 }
 
 const clinicFeatures = [
@@ -57,31 +47,6 @@ const clinicFeatures = [
   },
 ]
 
-function ClinicImage({ src, alt, caption, sizes, className = '' }: {
-  src: string; alt: string; caption: string; sizes: string; className?: string
-}) {
-  return (
-    <>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${className}`}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/60 via-transparent to-transparent
-        md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4
-        md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100
-        transition-all duration-500">
-        <span className="text-white font-medium text-xs md:text-sm">
-          {caption}
-        </span>
-      </div>
-    </>
-  )
-}
-
 export function ClinicSection({ t }: ClinicSectionProps) {
   const desktopImages = buildClinicImages(t)
 
@@ -101,62 +66,39 @@ export function ClinicSection({ t }: ClinicSectionProps) {
           </ScrollReveal>
         </div>
 
-        {/* DESKTOP: photo-swap gallery — hover thumbnail to promote it as primary */}
+        {/* Photo-swap gallery — same on mobile + desktop, responsive grid */}
         <ScrollReveal animation="fade-up" delay={200}>
           <ClinicGalleryDesktop images={desktopImages} />
         </ScrollReveal>
 
-        {/* MOBILE: classic grid */}
-        <ScrollReveal animation="fade-up" delay={200}>
-          <div className="grid grid-cols-2 gap-3 auto-rows-[160px] md:hidden">
-            <div className="col-span-2 row-span-2 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={MOBILE_IMG.hallway.src} alt={t(MOBILE_IMG.hallway.alt)} caption={t('clinic.captions.waitingArea')} sizes="100vw" />
-            </div>
-            <div className="col-span-1 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={MOBILE_IMG.reception.src} alt={t(MOBILE_IMG.reception.alt)} caption={t('clinic.captions.treatment')} sizes="50vw" className="object-[30%_center]" />
-            </div>
-            <div className="col-span-1 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={MOBILE_IMG.treatmentMarble.src} alt={t(MOBILE_IMG.treatmentMarble.alt)} caption={t('clinic.captions.equipment')} sizes="50vw" />
-            </div>
-            <div className="col-span-1 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={MOBILE_IMG.sterilization.src} alt={t(MOBILE_IMG.sterilization.alt)} caption={t('clinic.captions.waiting')} sizes="50vw" />
-            </div>
-            <div className="col-span-1 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={MOBILE_IMG.treatmentRoom.src} alt={t(MOBILE_IMG.treatmentRoom.alt)} caption={t('clinic.captions.treatmentRoom')} sizes="50vw" />
-            </div>
-            <div className="col-span-2 row-span-1 group relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0]">
-              <ClinicImage src={MOBILE_IMG.toysDetail.src} alt={t(MOBILE_IMG.toysDetail.alt)} caption={t('clinic.captions.toys')} sizes="100vw" />
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Feature highlights — unique hover animation per icon */}
-        <div className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 md:gap-6 lg:gap-8">
+        {/* Feature highlights — premium card style with unique icon hover animation */}
+        <div className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-6">
           {clinicFeatures.map((feature, index) => (
             <ScrollReveal
               key={feature.titleKey}
               animation="fade-up"
-              delay={index * 150}
+              delay={index * 100}
             >
-              <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl mb-3 md:mb-4
-                  bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)]
-                  group-hover:shadow-[0_8px_30px_rgba(139,115,85,0.18)]
-                  group-hover:-translate-y-1
-                  transition-all duration-500 ease-out">
+              <div className="group flex items-start gap-4 md:flex-col md:items-center md:text-center bg-white border border-[#e8e0d5] rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-7 h-full shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(139,115,85,0.18)] hover:border-[#d4c4b0] hover:-translate-y-1 transition-all duration-500 ease-out">
+                <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] rounded-2xl shrink-0
+                  bg-[#faf6f1] border border-[#e8e0d5]
+                  group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0]
+                  transition-colors duration-500 ease-out">
                   <feature.icon
-                    className={`w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-[#8b7355] transition-transform duration-500 ease-out ${feature.iconHover}`}
+                    className={`w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-[#8b7355] transition-transform duration-500 ease-out ${feature.iconHover}`}
                     strokeWidth={1.5}
                   />
                 </div>
 
-                <h3 className="text-sm md:text-base lg:text-lg font-semibold text-[#2a2118] mb-1 md:mb-2 group-hover:text-[#8b7355] transition-colors duration-300">
-                  {t(feature.titleKey)}
-                </h3>
+                <div className="flex-1 min-w-0 md:flex-none md:mt-4">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-[#2a2118] mb-1.5 md:mb-2 group-hover:text-[#8b7355] transition-colors duration-300 leading-tight">
+                    {t(feature.titleKey)}
+                  </h3>
 
-                <p className="text-xs md:text-sm text-[#7a6b5a] leading-relaxed px-1">
-                  {t(feature.descKey)}
-                </p>
+                  <p className="text-sm text-[#7a6b5a] leading-relaxed">
+                    {t(feature.descKey)}
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           ))}
