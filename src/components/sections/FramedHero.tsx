@@ -81,7 +81,10 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   const pathname = usePathname()
   const currentLocale = useLocale() as Locale
   const [servicesExpanded, setServicesExpanded] = useState(false)
-  const mainServices = getMainFallbackServices()
+  // Top 6 services for nav (same selection as homepage section); "Vezi toate" CTA links to /servicii for the rest
+  const NAV_SLUGS = ['implantologie', 'estetica-dentara', 'ortodontie', 'protetica', 'stomatologie-generala', 'pedodontie']
+  const allMain = getMainFallbackServices()
+  const mainServices = NAV_SLUGS.map((slug) => allMain.find((s) => s.slug === slug)).filter((s): s is NonNullable<typeof s> => Boolean(s))
 
   const switchLocale = (loc: Locale) => {
     router.replace(pathname as '/', { locale: loc })
@@ -317,7 +320,11 @@ export function FramedHero() {
   const langCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const mainServices = getMainFallbackServices()
+  // Top 6 services for nav (same selection as homepage section); "Vezi toate" CTA links to /servicii for the rest
+  const NAV_SLUGS = ['implantologie', 'estetica-dentara', 'ortodontie', 'protetica', 'stomatologie-generala', 'pedodontie']
+  const allMain = getMainFallbackServices()
+  const mainServices = NAV_SLUGS.map((slug) => allMain.find((s) => s.slug === slug)).filter((s): s is NonNullable<typeof s> => Boolean(s))
+
 
   // Scroll detection for nav transform
   useEffect(() => {
