@@ -758,7 +758,7 @@ export function FramedHero() {
               {/* Language dropdown */}
               <div
                 className={cn(
-                  'absolute right-0 top-full mt-3 w-44 origin-top-right transition-all duration-200',
+                  'absolute right-0 top-full mt-6 w-44 origin-top-right transition-all duration-200',
                   isLangOpen
                     ? 'opacity-100 scale-100 pointer-events-auto'
                     : 'opacity-0 scale-95 pointer-events-none'
