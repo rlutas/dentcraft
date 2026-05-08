@@ -461,25 +461,27 @@ export function FramedHero() {
                   className="font-serif italic font-medium text-[#d4c4b0] block pb-1"
                   initial="hidden"
                   animate="visible"
+                  aria-label={tHero('titleItalic')}
                   variants={{
                     hidden: {},
-                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } },
+                    visible: { transition: { staggerChildren: 0.07, delayChildren: 0.55 } },
                   }}
                 >
-                  {tHero('titleItalic').split(' ').map((word, i) => (
+                  {Array.from(tHero('titleItalic')).map((char, i) => (
                     <motion.span
                       key={i}
-                      className="inline-block mr-[0.25em] last:mr-0"
+                      className="inline-block"
+                      aria-hidden="true"
                       variants={{
-                        hidden: { y: 24, opacity: 0 },
+                        hidden: { x: -24, opacity: 0 },
                         visible: {
-                          y: 0,
+                          x: 0,
                           opacity: 1,
-                          transition: { type: 'spring', stiffness: 220, damping: 22 },
+                          transition: { type: 'spring', stiffness: 140, damping: 20 },
                         },
                       }}
                     >
-                      {word}
+                      {char === ' ' ? ' ' : char}
                     </motion.span>
                   ))}
                 </motion.span>
