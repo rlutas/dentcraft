@@ -114,13 +114,13 @@ export function Footer() {
                   {t('ctaSubtitle')}
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-row items-center gap-3">
                 <BookingButton
                   variant="custom"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#d4c4b0] text-[#1a1a1a]
-                    rounded-full font-semibold text-base hover:bg-white
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3.5 sm:py-4 bg-[#d4c4b0] text-[#1a1a1a]
+                    rounded-full font-semibold text-sm sm:text-base hover:bg-white
                     transition-all duration-300 hover:shadow-[0_8px_32px_rgba(212,196,176,0.3)]
-                    group"
+                    group whitespace-nowrap"
                   icon={
                     <svg
                       className="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -134,9 +134,19 @@ export function Footer() {
                 >
                   {t('bookAppointment')}
                 </BookingButton>
+                {/* Mobile: phone icon-only round button. Tablet+: full pill with number */}
+                <a
+                  aria-label={`Sună-ne: ${CONTACT.phoneFormatted}`}
+                  href={`tel:${CONTACT.phoneFormatted.replace(/\s/g, '')}`}
+                  className="sm:hidden inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 shrink-0"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </a>
                 <a
                   href={`tel:${CONTACT.phoneFormatted.replace(/\s/g, '')}`}
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white
+                  className="hidden sm:inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white
                     rounded-full font-medium text-base hover:bg-white hover:text-[#1a1a1a]
                     transition-all duration-300"
                 >
