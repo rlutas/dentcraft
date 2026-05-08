@@ -118,8 +118,8 @@ export function Footer() {
                 <BookingButton
                   variant="custom"
                   className="flex-1 sm:flex-initial !inline-flex items-center justify-center px-5 sm:px-8 py-3.5 sm:py-4 bg-[#d4c4b0] text-[#1a1a1a]
-                    rounded-full font-semibold text-sm sm:text-base hover:bg-[#1a1a1a] hover:text-white
-                    transition-colors duration-300
+                    rounded-full font-semibold text-sm sm:text-base hover:shadow-[0_10px_30px_-8px_rgba(212,196,176,0.5)]
+                    transition-shadow duration-300
                     whitespace-nowrap"
                   icon={
                     <svg
