@@ -35,7 +35,6 @@ type Props = {
   // Controlled mode — when provided, parent owns play state (used to enforce only-one-playing)
   isPlaying?: boolean
   onPlay?: () => void
-  onStop?: () => void
 }
 
 export function DoctorVideoCard({
@@ -47,7 +46,6 @@ export function DoctorVideoCard({
   delay = '0s',
   isPlaying,
   onPlay,
-  onStop,
 }: Props) {
   // If parent controls (isPlaying defined), use it; otherwise self-managed.
   const isControlled = typeof isPlaying === 'boolean'

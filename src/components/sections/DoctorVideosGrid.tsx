@@ -27,7 +27,6 @@ export function DoctorVideosGrid({ videos }: Props) {
           {...v}
           isPlaying={activeId === v.videoId}
           onPlay={() => setActiveId(v.videoId)}
-          onStop={() => setActiveId(null)}
         />
       ))}
     </div>
