@@ -90,22 +90,22 @@ export function BeforeAfterGalleryPreview({
               </div>
 
               {/* Text content */}
-              <div className="px-4 py-4 md:px-5 md:py-5">
-                <h3 className="text-xl md:text-2xl font-bold text-[var(--color-primary)] leading-tight">
+              <div className="px-5 py-5 md:px-6 md:py-6">
+                <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] leading-tight group-hover:text-[#8b7355] transition-colors duration-300">
                   {caseItem.title}
                 </h3>
 
                 {caseItem.description && (
-                  <p className="text-[var(--color-secondary)] text-sm leading-relaxed line-clamp-2 mt-2">
+                  <p className="text-[#5a5048] text-sm leading-relaxed line-clamp-2 mt-2">
                     {caseItem.description}
                   </p>
                 )}
 
                 {caseItem.treatmentDuration && (
-                  <div className="flex items-center gap-2 mt-3">
+                  <div className="flex items-center gap-2 mt-4 pt-4 border-t border-[#f0ebe3]">
                     <Clock className="w-4 h-4 text-[#8b7355]" strokeWidth={1.5} />
-                    <span className="text-sm text-[#8b7355]">
-                      {durationLabel}: <span className="font-semibold text-[#2a2118]">{caseItem.treatmentDuration}</span>
+                    <span className="text-xs uppercase tracking-[0.14em] text-[#8b7355] font-semibold">
+                      {durationLabel}: <span className="text-[#2a2118] font-bold normal-case tracking-normal">{caseItem.treatmentDuration}</span>
                     </span>
                   </div>
                 )}

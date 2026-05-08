@@ -663,63 +663,23 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         </div>
       </section>
 
-      {/* Before/After Gallery Preview Section - Background alternates based on testimonials */}
+      {/* Before/After Gallery Section - editorial redesign */}
       {hasSanityBeforeAfter && (
-        <section className={`py-20 md:py-28 relative overflow-hidden ${hasSanityTestimonials ? 'bg-[#f5f0e8]' : 'bg-white'}`}>
-          {/* Decorative background elements - similar to Hero section */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--color-accent)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--color-accent)]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
-          {/* Floating dots */}
-          <div className="absolute top-24 right-[15%] w-2 h-2 rounded-full bg-[var(--color-accent)] opacity-60 animate-float-slow" />
-          <div className="absolute top-40 left-[12%] w-3 h-3 rounded-full bg-[var(--color-primary)] opacity-20 animate-float-medium" />
-          <div className="absolute bottom-32 right-[8%] w-2 h-2 rounded-full bg-[var(--color-accent-hover)] opacity-50 animate-float-fast" />
-
-          {/* Decorative lines */}
-          <svg className="absolute top-20 right-[10%] w-20 h-20 text-[var(--color-accent)] opacity-20" viewBox="0 0 80 80" fill="none">
-            <path d="M10 70 L70 10" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-            <path d="M20 70 L70 20" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-          </svg>
-
-          {/* Floating dental icons */}
-          <Image
-            src="/icons/010-smile.svg"
-            alt=""
-            width={36}
-            height={36}
-            className="absolute top-28 left-[8%] w-9 h-9 opacity-15 pointer-events-none hidden lg:block animate-[drift_14s_ease-in-out_infinite]"
-          />
-          <Image
-            src="/icons/029-dental-care.svg"
-            alt=""
-            width={32}
-            height={32}
-            className="absolute bottom-40 right-[12%] w-8 h-8 opacity-15 pointer-events-none hidden lg:block animate-[drift_16s_ease-in-out_infinite_reverse]"
-          />
+        <section className={`py-24 md:py-32 relative overflow-hidden ${hasSanityTestimonials ? 'bg-[#f5f0e8]' : 'bg-white'}`}>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
           <div className="container relative z-10">
-            {/* Section header */}
-            <div className="text-center mb-16 lg:mb-20">
-              <ScrollReveal animation="fade-up">
-                <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
-                  text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-                  {t('galleryPreview.badge')}
-                </span>
-              </ScrollReveal>
-
-              <ScrollReveal animation="fade-up" delay={200}>
-                <h2 className="text-4xl md:text-5xl font-bold text-[#2a2118] mb-5">
-                  {t('galleryPreview.title')}
-                </h2>
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={400}>
-                <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
-                  {t('galleryPreview.subtitle')}
+            {/* Editorial header — bold + serif italic accent (matches hero/services/team/clinic/reviews) */}
+            <div className="text-center mb-14 md:mb-20">
+              <AnimatedServiceHeading bold="Rezultate" italic="reale" />
+              <ScrollReveal animation="fade-up" delay={500}>
+                <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
+                  Cazuri reale, fotografiate la clinica DentCraft. Trage de slider să vezi cum un tratament profesional schimbă vizibil zambetul fiecărui pacient.
                 </p>
               </ScrollReveal>
             </div>
 
-            {/* Before/After Gallery Grid */}
             <BeforeAfterGalleryPreview
               afterLabel={t('gallery.after')}
               beforeLabel={t('gallery.before')}
@@ -727,18 +687,19 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               durationLabel={t('gallery.duration')}
             />
 
-            {/* View All Button */}
-            <ScrollReveal animation="fade-up" delay={300} className="mt-12 md:mt-16 text-center">
+            {/* View All — matches hero CTA arrow-reveal pattern */}
+            <ScrollReveal animation="fade-up" delay={300} className="mt-14 md:mt-16 text-center">
               <Link
                 href="/galerie"
-                className="group inline-flex items-center gap-3 px-7 py-3.5
-                  border-2 border-[#2a2118] text-[#2a2118] rounded-full font-semibold
-                  hover:bg-[#2a2118] hover:text-white transition-all duration-300"
+                className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
               >
-                {t('galleryPreview.viewAll')}
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span>{t('galleryPreview.viewAll')}</span>
+                <span
+                  aria-hidden="true"
+                  className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                >
+                  <ArrowRight className="w-5 h-5 shrink-0" strokeWidth={2.25} />
+                </span>
               </Link>
             </ScrollReveal>
           </div>
