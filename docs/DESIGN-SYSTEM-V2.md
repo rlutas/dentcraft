@@ -376,5 +376,33 @@ Standard Tailwind:
 - `AnimatedServiceHeading.tsx` — only owner of letter animation logic
 - `ScrollReveal.tsx` — only owner of fade-up entrance
 - `BookingButton.tsx` — central booking CTA, all popups go through here
+- `FramedNav.tsx` — single global pill nav (rendered by layout, not per-page) — owns the services dropdown, language switcher, mobile drawer, callback popup
 - `service-photos.ts` — single source of truth for which services have a 3D photo
 - `contact.ts` — single source of truth for phone/social/whatsapp URLs
+
+---
+
+## 14. Page audit log
+
+Track every page that's been brought in line with this system.
+
+| Page | Status | Notes |
+|---|---|---|
+| `/` (homepage) | ✅ Done | Reference page — every pattern in this doc derives from here |
+| `/servicii` (listing) | ✅ Done (8 May) | Hero swapped from dark editorial → light warm with AnimatedServiceHeading; breadcrumb now subtle warm; pill `availableCount` chip; FramedNav active globally |
+| `/servicii/[slug]` (individual) | ✅ Done (earlier) | Light editorial hero with photo on right + breadcrumb + arrow-reveal CTAs |
+| `/echipa` | ⏳ Pending audit | |
+| `/echipa/[slug]` | ⏳ Pending audit | |
+| `/preturi` | ⏳ Pending audit | Was redesigned during the calculator-v2 work — needs verification against this doc |
+| `/galerie` | ⏳ Pending audit | |
+| `/contact` | ⏳ Pending audit | |
+| `/blog` (listing + posts) | ⏳ Pending audit | |
+| Legal pages (politica/termeni) | ⏳ Pending audit | Static text — minimal changes likely |
+
+**Process for each page audit:**
+1. Replace any `<Header />` reference if present (now centralized in layout via `<FramedNav />`)
+2. Hero/header: AnimatedServiceHeading + warm cream bg + breadcrumb subtle
+3. CTAs: 3 archetypes only, arrow-reveal pattern
+4. Cards: standard editorial pattern (border #e8e0d5, hover lift 1.5px)
+5. Background rhythm: alternate white / cream / cream-deep across sections
+6. Update this audit table when complete

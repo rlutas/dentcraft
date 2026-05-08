@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 import { Link } from '@/i18n/navigation'
+import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { getAllServices, type Locale } from '@/lib/sanity/queries'
 import { getBreadcrumbSchema } from '@/lib/schema'
 import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
@@ -80,46 +81,29 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Dark Editorial */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
-        {/* Dramatic lighting */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Hero — light editorial matching landing rhythm */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-3 mb-12">
-            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              {t('breadcrumbs.home')}
-            </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.services')}</span>
-          </div>
+          <nav className="flex items-center gap-2 mb-10 text-sm" aria-label="Breadcrumb">
+            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">{t('breadcrumbs.home')}</Link>
+            <span className="text-[#8b7355]/40">/</span>
+            <span className="text-[#2a2118] font-medium">{t('breadcrumbs.services')}</span>
+          </nav>
 
-          <div className="max-w-4xl">
-            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              {t('services.heroLabel')}
-            </span>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              {t('services.title')}
-            </h1>
-
-            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+          <div className="text-center max-w-3xl mx-auto">
+            <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
+            <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t('services.subtitle')}
             </p>
-          </div>
-
-          {/* Decorative line */}
-          <div className="mt-16 flex items-center gap-6">
-            <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{t('services.availableCount', { count: services.length })}</span>
+            <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                {t('services.availableCount', { count: services.length })}
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -200,42 +184,28 @@ async function PlaceholderServicesPage() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Dark Editorial */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
-
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Hero — light editorial matching landing rhythm */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
-          <div className="flex items-center gap-3 mb-12">
-            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              {t('breadcrumbs.home')}
-            </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.services')}</span>
-          </div>
+          <nav className="flex items-center gap-2 mb-10 text-sm" aria-label="Breadcrumb">
+            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">{t('breadcrumbs.home')}</Link>
+            <span className="text-[#8b7355]/40">/</span>
+            <span className="text-[#2a2118] font-medium">{t('breadcrumbs.services')}</span>
+          </nav>
 
-          <div className="max-w-4xl">
-            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              {t('services.heroLabel')}
-            </span>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              {t('services.title')}
-            </h1>
-
-            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+          <div className="text-center max-w-3xl mx-auto">
+            <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
+            <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t('services.subtitle')}
             </p>
-          </div>
-
-          <div className="mt-16 flex items-center gap-6">
-            <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{t('services.availableCount', { count: getMainFallbackServices().length })}</span>
+            <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                {t('services.availableCount', { count: getMainFallbackServices().length })}
+              </span>
+            </div>
           </div>
         </div>
       </section>

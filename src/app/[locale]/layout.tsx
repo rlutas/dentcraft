@@ -10,7 +10,8 @@ import { generateRootMetadata, type Locale } from '@/lib/seo'
 import { getOrganizationSchema, getWebSiteSchema } from '@/lib/schema'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
-import { Header, Footer } from '@/components/layout'
+import { Footer } from '@/components/layout'
+import { FramedNav } from '@/components/layout/FramedNav'
 import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
 import { MaintenancePage } from '@/components/MaintenancePage'
 import '@/styles/globals.css'
@@ -106,7 +107,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <>
             <NextIntlClientProvider locale={locale} messages={messages}>
               <div className="relative flex min-h-screen flex-col">
-                <Header />
+                <FramedNav />
                 <main id="main-content" className="flex-1">
                   {children}
                 </main>
