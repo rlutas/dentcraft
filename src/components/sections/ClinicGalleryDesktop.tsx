@@ -13,18 +13,20 @@ type Props = {
   images: ClinicImage[]
 }
 
-// Fixed grid slots in 4-col × 2-row layout. Slot 0 = primary (2×2 left), slots 1-4 = thumbs (right).
+// Fixed grid slots in 5-col × 2-row layout. Slot 0 = primary (2×2 left), slots 1-6 = thumbs in 3×2 right grid.
 const SLOT_CLASSES: Record<number, string> = {
   0: 'col-start-1 col-span-2 row-start-1 row-span-2',
   1: 'col-start-3 col-span-1 row-start-1 row-span-1',
   2: 'col-start-4 col-span-1 row-start-1 row-span-1',
-  3: 'col-start-3 col-span-1 row-start-2 row-span-1',
-  4: 'col-start-4 col-span-1 row-start-2 row-span-1',
+  3: 'col-start-5 col-span-1 row-start-1 row-span-1',
+  4: 'col-start-3 col-span-1 row-start-2 row-span-1',
+  5: 'col-start-4 col-span-1 row-start-2 row-span-1',
+  6: 'col-start-5 col-span-1 row-start-2 row-span-1',
 }
 
 export function ClinicGalleryDesktop({ images }: Props) {
   // layout[slot] = image index. Default: image i is in slot i.
-  const [layout, setLayout] = useState<number[]>(() => images.slice(0, 5).map((_, i) => i))
+  const [layout, setLayout] = useState<number[]>(() => images.slice(0, 7).map((_, i) => i))
 
   const promoteToprimary = (clickedSlot: number) => {
     if (clickedSlot === 0) return // already primary
@@ -39,8 +41,8 @@ export function ClinicGalleryDesktop({ images }: Props) {
 
   return (
     <LayoutGroup id="clinic-gallery">
-      <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-4 h-[460px] lg:h-[540px]">
-        {layout.slice(0, 5).map((imageIdx, slotIdx) => {
+      <div className="hidden md:grid grid-cols-5 grid-rows-2 gap-3 lg:gap-4 h-[400px] lg:h-[500px]">
+        {layout.slice(0, 7).map((imageIdx, slotIdx) => {
           const img = images[imageIdx]
           if (!img) return null
           const isPrimary = slotIdx === 0
