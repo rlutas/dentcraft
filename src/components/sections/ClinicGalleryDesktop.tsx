@@ -25,7 +25,8 @@ const SLOT_CLASSES: Record<number, string> = {
 }
 
 const SLOT_COUNT = 7
-const ROTATE_MS = 4000
+const ROTATE_MS = 5500
+const HOVER_DEBOUNCE_MS = 200
 
 export function ClinicGalleryDesktop({ images }: Props) {
   // layout[slot] = image index. Default: image i is in slot i.
@@ -36,6 +37,8 @@ export function ClinicGalleryDesktop({ images }: Props) {
   const prefersReduced = useReducedMotion()
   // Cycle: which thumb gets promoted next during auto-rotate
   const cycleRef = useRef(1)
+  // Debounce hover so rapid mouse movement across thumbs doesn't trigger jerky swaps
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   const swapPrimary = (clickedSlot: number) => {
     if (clickedSlot === 0) return
@@ -46,6 +49,15 @@ export function ClinicGalleryDesktop({ images }: Props) {
       next[clickedSlot] = tmp
       return next
     })
+  }
+
+  const handleHover = (slotIdx: number) => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
+    hoverTimerRef.current = setTimeout(() => swapPrimary(slotIdx), HOVER_DEBOUNCE_MS)
+  }
+
+  const cancelHover = () => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
   }
 
   // Auto-rotate: swap primary (slot 0) with next thumb (slots 1, 2, 3, ..., 6, 1, 2, ...)
@@ -81,7 +93,8 @@ export function ClinicGalleryDesktop({ images }: Props) {
             <button
               key={`slot-${slotIdx}`}
               type="button"
-              onMouseEnter={() => swapPrimary(slotIdx)}
+              onMouseEnter={() => handleHover(slotIdx)}
+              onMouseLeave={cancelHover}
               onClick={() => swapPrimary(slotIdx)}
               onFocus={() => swapPrimary(slotIdx)}
               aria-label={img.caption}
@@ -92,9 +105,9 @@ export function ClinicGalleryDesktop({ images }: Props) {
                 transition={{
                   layout: {
                     type: 'spring',
-                    stiffness: 110,
-                    damping: 24,
-                    mass: 1.4,
+                    stiffness: 80,
+                    damping: 22,
+                    mass: 1.6,
                   },
                 }}
                 className="absolute inset-0 rounded-3xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0] shadow-[0_10px_30px_-10px_rgba(42,33,24,0.22)]"
@@ -102,9 +115,9 @@ export function ClinicGalleryDesktop({ images }: Props) {
                 {/* Photo with subtle scale-bloom when arriving as primary */}
                 <motion.div
                   key={isPrimary ? `primary-${imageIdx}` : `thumb-${imageIdx}`}
-                  initial={isPrimary ? { scale: 1.08, opacity: 0.85 } : false}
+                  initial={isPrimary ? { scale: 1.04, opacity: 0.9 } : false}
                   animate={isPrimary ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0"
                 >
                   <Image
