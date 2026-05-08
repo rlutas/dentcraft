@@ -1,17 +1,20 @@
 import type { LucideIcon } from 'lucide-react'
 import {
+  ArrowRight,
   CheckCircle,
   ChevronDown,
   Clock,
   Phone,
+  Star,
 } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { getFallbackServiceBySlug, getFallbackServiceSlugs } from '@/lib/fallback-services'
+import { getFallbackServiceBySlug, getFallbackServiceSlugs, getMainFallbackServices } from '@/lib/fallback-services'
 import type { fallbackServices } from '@/lib/fallback-services'
+import { fallbackTeamMembers } from '@/lib/fallback-team'
 import { BookingButton } from '@/components/ui/BookingButton'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
@@ -21,6 +24,7 @@ import { generateDynamicPageMetadata, type Locale as SEOLocale, siteConfig } fro
 import { getServiceSchema, getBreadcrumbSchema, getFAQSchema as getFAQSchema } from '@/lib/schema'
 import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -317,15 +321,17 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
               {service.benefits.map((benefit, index) => (
-                <div key={index} className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
-                  <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500">
-                    <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
+                <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                  <div className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out h-full">
+                    <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500 group-hover:scale-110">
+                      <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-sm text-[#5a5048] leading-relaxed">{benefit.description}</p>
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-[#5a5048] leading-relaxed">{benefit.description}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -346,19 +352,21 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
                   {service.process
                     .sort((a, b) => a.stepNumber - b.stepNumber)
                     .map((step, index) => (
-                      <div key={index} className="relative flex gap-5 md:gap-6">
-                        <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white">
-                          {step.stepNumber}
-                        </div>
-                        <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)]">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
-                            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">Pasul {step.stepNumber}</span>
+                      <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                        <div className="group relative flex gap-5 md:gap-6">
+                          <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
+                            {step.stepNumber}
                           </div>
-                          <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight">{step.title}</h3>
-                          <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
+                          <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
+                            <div className="flex items-center gap-2 mb-2">
+                              <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
+                              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">Pasul {step.stepNumber}</span>
+                            </div>
+                            <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">{step.title}</h3>
+                            <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
+                          </div>
                         </div>
-                      </div>
+                      </ScrollReveal>
                     ))}
                 </div>
               </div>
@@ -376,13 +384,24 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
               <AnimatedServiceHeading bold="Întrebări" italic="frecvente" />
             </div>
             <div className="max-w-3xl mx-auto space-y-3">
-              {faqs.map((faq) => (
-                <FAQAccordionItem key={faq._id} answer={faq.answer} question={faq.question} />
+              {faqs.map((faq, idx) => (
+                <ScrollReveal key={faq._id} animation="fade-up" delay={idx * 60}>
+                  <FAQAccordionItem answer={faq.answer} question={faq.question} />
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
       )}
+
+      {/* Doctor profile — E-E-A-T + internal linking */}
+      <DoctorProfileSection />
+
+      {/* Servicii conexe */}
+      <RelatedServicesSection currentSlug={service.slug} />
+
+      {/* Final CTA banner — dark dramatic */}
+      <FinalCTABanner serviceName={service.title} />
 
     </div>
   )
@@ -581,15 +600,17 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
               {fallbackService.benefits.map((benefit, index) => (
-                <div key={index} className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
-                  <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500">
-                    <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
+                <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                  <div className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out h-full">
+                    <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500 group-hover:scale-110">
+                      <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                      {t(`services.fallback.${benefit.titleKey}`)}
+                    </h3>
+                    <p className="text-sm text-[#5a5048] leading-relaxed">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
-                    {t(`services.fallback.${benefit.titleKey}`)}
-                  </h3>
-                  <p className="text-sm text-[#5a5048] leading-relaxed">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -608,19 +629,21 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
                 <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#e8e0d5]" aria-hidden="true" />
                 <div className="space-y-6 md:space-y-8">
                   {fallbackService.process.map((step, index) => (
-                    <div key={index} className="relative flex gap-5 md:gap-6">
-                      <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white">
-                        {step.stepNumber}
-                      </div>
-                      <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)]">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
-                          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
+                    <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                      <div className="group relative flex gap-5 md:gap-6">
+                        <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
+                          {step.stepNumber}
                         </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight">{t(`services.fallback.${step.titleKey}`)}</h3>
-                        <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{t(`services.fallback.${step.descriptionKey}`)}</p>
+                        <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
+                            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
+                          </div>
+                          <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">{t(`services.fallback.${step.titleKey}`)}</h3>
+                          <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{t(`services.fallback.${step.descriptionKey}`)}</p>
+                        </div>
                       </div>
-                    </div>
+                    </ScrollReveal>
                   ))}
                 </div>
               </div>
@@ -629,6 +652,238 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
         </section>
       )}
 
+      {/* Doctor profile — E-E-A-T + internal linking */}
+      <DoctorProfileSection />
+
+      {/* Servicii conexe */}
+      <RelatedServicesSection currentSlug={fallbackService.slug} />
+
+      {/* Final CTA banner */}
+      <FinalCTABanner serviceName={serviceName} />
+
     </div>
+  )
+}
+
+// ===== Shared section components for /servicii/[slug] =====
+
+// Doctor profile — show Dr. Petric (coordinator) by default for trust + E-E-A-T
+function DoctorProfileSection() {
+  const doctor = fallbackTeamMembers.find((m) => m.slug === 'razvan-petric')
+  if (!doctor) return null
+
+  return (
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <ScrollReveal animation="fade-up">
+          <div className="text-center mb-14 md:mb-16">
+            <AnimatedServiceHeading bold="Realizat de" italic="specialiști" />
+          </div>
+        </ScrollReveal>
+
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal animation="fade-up" delay={150}>
+            <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
+              {/* Doctor photo */}
+              <div className="relative">
+                <div className="absolute -top-4 -left-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
+                <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[#f5f0e8] border border-[#e8e0d5] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)]">
+                  {doctor.photo && (
+                    <Image
+                      src={doctor.photo}
+                      alt={`${doctor.name} - ${doctor.role} la clinica Dentcraft Satu Mare`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="object-cover object-top"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Doctor info */}
+              <div>
+                <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">
+                  {doctor.role}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4 leading-tight tracking-tight">
+                  {doctor.name}
+                </h3>
+                <p className="text-base md:text-lg text-[#5a5048] leading-relaxed mb-6">
+                  {doctor.bio}
+                </p>
+
+                {doctor.specializations && doctor.specializations.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {doctor.specializations.map((spec) => (
+                      <span key={spec} className="px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#8b7355] bg-[#faf6f1] border border-[#e8e0d5] rounded-full">
+                        {spec}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Quick stats */}
+                {doctor.stats && (
+                  <div className="flex items-center gap-6 mb-7 pb-6 border-b border-[#e8e0d5]">
+                    {doctor.stats.yearsExperience && (
+                      <div>
+                        <div className="text-2xl font-bold text-[#2a2118] leading-none">
+                          {doctor.stats.yearsExperience}+
+                        </div>
+                        <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
+                          ani experiență
+                        </div>
+                      </div>
+                    )}
+                    {doctor.stats.patientsCount && (
+                      <div>
+                        <div className="text-2xl font-bold text-[#2a2118] leading-none">
+                          {doctor.stats.patientsCount}+
+                        </div>
+                        <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
+                          pacienți tratați
+                        </div>
+                      </div>
+                    )}
+                    <div>
+                      <div className="text-2xl font-bold text-[#2a2118] leading-none flex items-baseline gap-1">
+                        4.9
+                        <Star className="w-4 h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
+                      </div>
+                      <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
+                        Google
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <Link
+                  href={{ pathname: '/echipa/[slug]', params: { slug: doctor.slug } }}
+                  className="group inline-flex items-center px-7 py-3.5 bg-[#2a2118] text-white rounded-full text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+                >
+                  <span>Vezi profilul complet</span>
+                  <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Servicii conexe — pull 3 other main services (excluding current) with the photo card pattern
+async function RelatedServicesSection({ currentSlug }: { currentSlug: string }) {
+  const t = await getTranslations()
+  const all = getMainFallbackServices().filter((s) => s.slug !== currentSlug).slice(0, 3)
+  if (all.length === 0) return null
+
+  return (
+    <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#d4c4b0]/12 rounded-full blur-3xl translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <ScrollReveal animation="fade-up">
+          <div className="text-center mb-14 md:mb-16">
+            <AnimatedServiceHeading bold="Servicii" italic="conexe" />
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+          {all.map((service, index) => {
+            const hasPhoto = hasServicePhoto(service.slug)
+            const photoPath = getServicePhotoPath(service.slug) ?? ''
+            return (
+              <ScrollReveal key={service.slug} animation="fade-up" delay={index * 100}>
+                <Link
+                  href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+                  className="group relative block h-full overflow-hidden rounded-3xl bg-white border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col"
+                >
+                  <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
+                    {hasPhoto ? (
+                      <Image src={photoPath} alt={`${t(`services.fallback.${service.titleKey}`)} - clinica stomatologica Dentcraft Satu Mare`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                        {service.iconPath ? (
+                          <Image src={service.iconPath} alt="" width={80} height={80} className="w-20 h-20 opacity-30 group-hover:opacity-50 transition-opacity" />
+                        ) : (
+                          <service.Icon className="w-20 h-20 text-[#8b7355]/30" strokeWidth={1.25} />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6 md:p-7 flex flex-col flex-1">
+                    <h3 className="text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                      {t(`services.fallback.${service.titleKey}`)}
+                    </h3>
+                    <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
+                      {t(`services.fallback.${service.descriptionKey}`)}
+                    </p>
+                    <span className="inline-flex items-center text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:text-[#2a2118] transition-colors">
+                      <span>{t('common.learnMore')}</span>
+                      <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+                      </span>
+                    </span>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Final CTA banner — dramatic dark, mirrors footer cta pattern
+function FinalCTABanner({ serviceName }: { serviceName: string }) {
+  return (
+    <section className="relative overflow-hidden bg-[#1a1410] py-20 md:py-28">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-[#d4c4b0]/15 to-transparent blur-[120px]" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[100px]" aria-hidden="true" />
+
+      <div className="container relative z-10">
+        <ScrollReveal animation="fade-up">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-[0.28em] text-[#d4c4b0]/90 mb-5">
+              {serviceName}
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 tracking-tight leading-[1.05]">
+              Pregătit pentru un{' '}
+              <span className="font-serif italic font-medium text-[#d4c4b0]">zâmbet nou</span>?
+            </h2>
+            <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
+              Programează o consultație gratuită — discutăm planul de tratament, costuri și pași clari, fără presiune.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <BookingButton
+                variant="custom"
+                className="!inline-flex items-center justify-center px-7 py-3.5 sm:px-8 sm:py-4 bg-[#d4c4b0] text-[#1a1410] rounded-full font-semibold text-sm sm:text-base hover:shadow-[0_10px_30px_-8px_rgba(212,196,176,0.5)] transition-shadow duration-300 whitespace-nowrap"
+                icon={
+                  <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.25}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                }
+              >
+                Programează consultație
+              </BookingButton>
+              <a
+                href="tel:+40741199977"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 border border-white/20 text-white rounded-full font-medium text-sm sm:text-base hover:bg-white/10 hover:border-white/40 transition-colors duration-300"
+              >
+                <Phone className="w-5 h-5" strokeWidth={1.75} />
+                0741 199 977
+              </a>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
   )
 }
