@@ -330,107 +330,111 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         </div>
       </section>
 
-      {/* Why Dentcraft Section - Elegant Stats */}
-      <section className="py-20 md:py-28 bg-[#f5f0e8] relative overflow-hidden">
-        {/* Subtle decorative background */}
-        <div className="absolute top-0 right-0 w-72 h-72 bg-[var(--color-accent)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      {/* Why Dentcraft - Editorial split-screen with photo + 4 reasons */}
+      <section className="py-24 md:py-32 bg-[#faf6f1] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
-          {/* Section header */}
-          <div className="text-center mb-12">
-            <ScrollReveal animation="fade-up">
-              <span className="inline-block text-sm font-semibold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-accent-light)] px-4 py-2 rounded-full mb-6">
-                {t('whyUs.badge')}
-              </span>
-            </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={200}>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-4">
-                {t('whyUs.title')}
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={400}>
-              <p className="text-base md:text-lg text-[var(--color-secondary)] max-w-xl mx-auto leading-relaxed">
-                {t('whyUs.subtitle')}
+          {/* Centered editorial header */}
+          <div className="text-center mb-14 md:mb-20">
+            <AnimatedServiceHeading bold="De ce" italic="DentCraft" />
+            <ScrollReveal animation="fade-up" delay={500}>
+              <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
+                Stomatologie modernă în Satu Mare, cu accent pe rezultate vizibile, comunicare clară și pacienți care revin cu zâmbetul.
               </p>
             </ScrollReveal>
           </div>
 
-          {/* Stats in elegant card */}
-          <ScrollReveal animation="scale-up" delay={300}>
-            <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.06)]">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                {/* Years of Experience */}
-                <ScrollReveal animation="fade-up" delay={200}>
-                  <div className="text-center relative group">
-                    <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
-                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                      group-hover:scale-110 transition-transform duration-300">
-                      <CountUp end={10} suffix="+" duration={2000} />
-                    </div>
-                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                      {t('whyUs.stats.years.label')}
-                    </div>
-                    <div className="text-[var(--color-secondary)] text-xs">
-                      {t('whyUs.stats.years.sublabel')}
-                    </div>
-                  </div>
-                </ScrollReveal>
+          {/* Split screen — photo + reasons */}
+          <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
+            {/* LEFT: clinic photo with overlay stat card */}
+            <ScrollReveal animation="fade-up">
+              <div className="relative">
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
+                  <Image
+                    src="/images/clinic/clinic-1.webp"
+                    alt="Cabinet Dentcraft"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="object-cover"
+                  />
+                </div>
 
-                {/* Happy Patients */}
-                <ScrollReveal animation="fade-up" delay={400}>
-                  <div className="text-center relative group">
-                    <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
-                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                      group-hover:scale-110 transition-transform duration-300">
-                      <CountUp end={500} suffix="+" duration={2200} />
-                    </div>
-                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                      {t('whyUs.stats.patients.label')}
-                    </div>
-                    <div className="text-[var(--color-secondary)] text-xs">
-                      {t('whyUs.stats.patients.sublabel')}
-                    </div>
-                  </div>
-                </ScrollReveal>
-
-                {/* Google Rating */}
-                <ScrollReveal animation="fade-up" delay={600}>
-                  <div className="text-center relative group">
-                    <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--color-border)]" />
-                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                      flex items-center justify-center gap-1
-                      group-hover:scale-110 transition-transform duration-300">
-                      <CountUp end={4.9} decimals={1} duration={1800} />
-                      <Star className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 fill-[var(--color-warning)] text-[var(--color-warning)]" />
-                    </div>
-                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                      {t('whyUs.stats.rating.label')}
-                    </div>
-                    <div className="text-[var(--color-secondary)] text-xs">
-                      {t('whyUs.stats.rating.sublabel')}
+                {/* Floating overlay card with stats */}
+                <div className="absolute -bottom-6 -right-4 md:bottom-8 md:-right-8 lg:-right-10 z-10">
+                  <div className="bg-white rounded-2xl shadow-[0_20px_50px_-15px_rgba(42,33,24,0.25)] border border-[#e8e0d5] px-5 py-4 md:px-7 md:py-5">
+                    <div className="flex items-center gap-5 md:gap-7">
+                      <div>
+                        <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1">
+                          <CountUp end={10} suffix="+" duration={2000} />
+                        </div>
+                        <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
+                          ani experiență
+                        </div>
+                      </div>
+                      <div className="h-10 w-px bg-[#e8e0d5]" />
+                      <div>
+                        <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1 flex items-baseline gap-1">
+                          <CountUp end={4.9} decimals={1} duration={1800} />
+                          <Star className="w-4 h-4 md:w-5 md:h-5 fill-[#d4c4b0] text-[#d4c4b0]" />
+                        </div>
+                        <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
+                          Google · 200+
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </ScrollReveal>
-
-                {/* Transparency */}
-                <ScrollReveal animation="fade-up" delay={800}>
-                  <div className="text-center group">
-                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-2
-                      group-hover:scale-110 transition-transform duration-300">
-                      <CountUp end={100} suffix="%" duration={2000} />
-                    </div>
-                    <div className="text-[var(--color-primary)] font-medium text-sm mb-0.5">
-                      {t('whyUs.stats.guarantee.label')}
-                    </div>
-                    <div className="text-[var(--color-secondary)] text-xs">
-                      {t('whyUs.stats.guarantee.sublabel')}
-                    </div>
-                  </div>
-                </ScrollReveal>
+                </div>
               </div>
+            </ScrollReveal>
+
+            {/* RIGHT: editorial numbered reasons */}
+            <div className="lg:pl-4">
+              {[
+                {
+                  num: '01',
+                  title: 'Echipă cu peste 10 ani de experiență',
+                  desc: 'Dr. Petric și echipa au tratat peste 2000 de pacienți, cu rezultate documentate prin cazuri reale.',
+                },
+                {
+                  num: '02',
+                  title: 'Tehnologie modernă, planuri exacte',
+                  desc: 'Scanner 3D digital, radiologie low-dose și planificare computerizată — fără surprize în timpul tratamentului.',
+                },
+                {
+                  num: '03',
+                  title: 'Confort și anestezie blândă',
+                  desc: 'Ambient relaxant, anestezie nedureroasă și comunicare clară la fiecare pas. Frica de stomatolog rămâne afară.',
+                },
+                {
+                  num: '04',
+                  title: 'Prețuri transparente, garanție',
+                  desc: 'Calculator de preț online, plan de tratament scris înainte de a începe și garanție pentru lucrări.',
+                },
+              ].map((reason, i) => (
+                <ScrollReveal
+                  key={reason.num}
+                  animation="fade-up"
+                  delay={150 + i * 100}
+                >
+                  <div className={`group flex items-start gap-5 md:gap-7 py-5 md:py-6 ${i !== 0 ? 'border-t border-[#e8e0d5]' : ''}`}>
+                    <span className="font-serif italic text-3xl md:text-4xl text-[#8b7355] shrink-0 leading-none pt-1 group-hover:text-[#2a2118] transition-colors duration-300">
+                      {reason.num}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] leading-tight mb-2 group-hover:text-[#8b7355] transition-colors duration-300">
+                        {reason.title}
+                      </h3>
+                      <p className="text-[#5a5048] text-sm md:text-base leading-relaxed">
+                        {reason.desc}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
