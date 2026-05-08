@@ -115,7 +115,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     key: 'assistant1',
     name: 'Gherman Camelia',
     slug: 'camelia-gherman',
-    role: 'Asistent Medical',
+    role: 'Asistent Medical Coordonator',
     photo: '/images/team/asistent-gherman-camelia.webp',
     specializations: ['Asistenta Stomatologica', 'Igiena Orala', 'Relatii Pacienti'],
     bio: 'Camelia Gherman este asistent medical la clinica DentCraft, cu experienta in asistenta stomatologica profesionala. Cu o atitudine calda si atenta, Camelia asigura confortul pacientilor pe parcursul tratamentelor.',

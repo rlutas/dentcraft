@@ -473,6 +473,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                   key={'_id' in member ? member._id : member.key}
                   className={cn(
                     'md:col-span-2',
+                    index === 0 && 'col-span-2 md:col-span-2',
                     index === 3 && 'md:col-start-2',
                     index === 4 && 'md:col-start-4'
                   )}
