@@ -581,284 +581,146 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
       {/* ========== OUR CLINIC SECTION ========== */}
       <ClinicSection t={t} />
 
-      {/* Video Reels Testimonials Section - Instagram/TikTok Style */}
-      <section className="video-testimonials-section py-24 md:py-32 relative overflow-hidden">
-        {/* Dramatic gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] via-[#1a1816] to-[#0a0a0a]" />
-
-        {/* Animated gradient mesh */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-[#d4c4b0]/10 blur-[120px] animate-float-slow" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#8b7355]/10 blur-[100px] animate-float-medium" />
-        </div>
-
-        {/* Decorative grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
+      {/* Doctor Videos Section - Instagram/TikTok Shorts style with doctor photos */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
-          {/* Section header - Editorial style */}
-          <div className="text-center mb-16 lg:mb-20">
-            <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wider uppercase
-              text-[#d4c4b0] bg-white/5 rounded-full border border-[#d4c4b0]/30">
-              {t('featuredTestimonials.badge')}
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight">
-              {t('featuredTestimonials.title')}
-            </h2>
-            <p className="text-lg text-white/50 leading-relaxed max-w-2xl mx-auto">
-              {t('featuredTestimonials.subtitle')}
-            </p>
+          {/* Section header - editorial typography matching the rest */}
+          <div className="text-center mb-14 md:mb-20">
+            <AnimatedServiceHeading bold="Sfaturi de la" italic="doctorii nostri" />
+            <ScrollReveal animation="fade-up" delay={500}>
+              <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
+                Doctorii Dentcraft iti raspund la cele mai frecvente intrebari despre tratamente, igiena si rezultate.
+              </p>
+            </ScrollReveal>
           </div>
 
-          {/* Video Reels Grid - 3 Vertical Videos */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            {/* Video Reel 1 - Implant Story */}
-            <div className="group relative animate-[fadeInUp_0.6s_ease-out_both]" style={{ animationDelay: '0.1s' }}>
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]
-                border border-white/10 group-hover:border-[#d4c4b0]/40 transition-all duration-500
-                shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)] group-hover:shadow-[0_30px_80px_-20px_rgba(212,196,176,0.15)]">
-                {/* Video placeholder gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
-
-                {/* Decorative patient image or gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2a2520] via-[#1a1816] to-[#0f0f0f]" />
-
-                {/* Play button - centered */}
-                <a
-                  href="https://youtube.com/shorts/example1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Vezi video testimonial implant dentar pe YouTube"
-                  className="absolute inset-0 flex items-center justify-center z-10"
-                >
-                  <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center
-                    border border-white/20 group-hover:scale-110 group-hover:bg-white/20
-                    transition-all duration-500 cursor-pointer">
-                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
-                      shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-                      <Play className="w-6 h-6 text-[#1a1a1a] ml-0.5" fill="currentColor" />
-                    </div>
-                  </div>
-                </a>
-
-                {/* Top badge */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="px-3 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-xs font-medium text-white/90
-                    border border-white/10">
-                    Implant Dentar
-                  </span>
-                  <div className="flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-sm rounded-full">
-                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                    <span className="text-xs text-white/80">YouTube</span>
-                  </div>
-                </div>
-
-                {/* Bottom content */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-[#d4c4b0] fill-[#d4c4b0]" strokeWidth={1.5} />
-                    ))}
-                  </div>
-                  {/* Quote */}
-                  <p className="text-white/90 text-sm leading-relaxed mb-4 line-clamp-3">
-                    &ldquo;Implantul a schimbat totul. Acum pot manca orice si ma simt incredibil de bine!&rdquo;
-                  </p>
-                  {/* Patient */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#d4c4b0]/20 flex items-center justify-center border border-white/10">
-                      <span className="text-sm font-medium text-white">M</span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-white text-sm">Maria P.</p>
-                      <p className="text-white/50 text-xs">Implantologie</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#d4c4b0]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            </div>
-
-            {/* Video Reel 2 - Smile Makeover - Featured/Larger */}
-            <div className="group relative animate-[fadeInUp_0.6s_ease-out_both] md:-mt-8 md:mb-8" style={{ animationDelay: '0.2s' }}>
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]
-                border border-white/10 group-hover:border-[#d4c4b0]/40 transition-all duration-500
-                shadow-[0_25px_80px_-20px_rgba(0,0,0,0.6)] group-hover:shadow-[0_35px_100px_-20px_rgba(212,196,176,0.2)]
-                ring-1 ring-[#d4c4b0]/20">
-                {/* Video placeholder gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
-
-                {/* Decorative gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2d2825] via-[#1f1c1a] to-[#0f0e0d]" />
-
-                {/* Featured badge */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
-                  <span className="px-4 py-1.5 bg-[#d4c4b0] rounded-full text-xs font-semibold text-[#1a1a1a] uppercase tracking-wider">
-                    Popular
-                  </span>
-                </div>
-
-                {/* Play button - centered */}
-                <a
-                  href="https://youtube.com/shorts/example2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Vezi video testimonial fatete dentare pe YouTube"
-                  className="absolute inset-0 flex items-center justify-center z-10"
-                >
-                  <div className="w-24 h-24 rounded-full bg-[#d4c4b0]/20 backdrop-blur-md flex items-center justify-center
-                    border border-[#d4c4b0]/30 group-hover:scale-110 group-hover:bg-[#d4c4b0]/30
-                    transition-all duration-500 cursor-pointer">
-                    <div className="w-16 h-16 rounded-full bg-[#d4c4b0] flex items-center justify-center
-                      shadow-[0_8px_32px_rgba(212,196,176,0.4)]">
-                      <Play className="w-7 h-7 text-[#1a1a1a] ml-0.5" fill="currentColor" />
-                    </div>
-                  </div>
-                </a>
-
-                {/* Top right - YouTube badge */}
-                <div className="absolute top-4 right-4 z-10">
-                  <div className="flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-sm rounded-full">
-                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                    <span className="text-xs text-white/80">YouTube</span>
-                  </div>
-                </div>
-
-                {/* Bottom content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 border border-white/10">
-                    Fatete Dentare
-                  </span>
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-[#d4c4b0] fill-[#d4c4b0]" strokeWidth={1.5} />
-                    ))}
-                  </div>
-                  {/* Quote */}
-                  <p className="text-white text-base leading-relaxed mb-4 line-clamp-3">
-                    &ldquo;Zambetul meu s-a transformat complet! Fatetele arata incredibil de natural.&rdquo;
-                  </p>
-                  {/* Patient */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-[#d4c4b0]/30 flex items-center justify-center border border-[#d4c4b0]/20">
-                      <span className="text-base font-medium text-white">A</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white">Andreea S.</p>
-                      <p className="text-white/50 text-sm">Estetica Dentara</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#d4c4b0]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            </div>
-
-            {/* Video Reel 3 - Whitening */}
-            <div className="group relative animate-[fadeInUp_0.6s_ease-out_both]" style={{ animationDelay: '0.3s' }}>
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]
-                border border-white/10 group-hover:border-[#d4c4b0]/40 transition-all duration-500
-                shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)] group-hover:shadow-[0_30px_80px_-20px_rgba(212,196,176,0.15)]">
-                {/* Video placeholder gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
-
-                {/* Decorative gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#252220] via-[#1a1816] to-[#0f0f0f]" />
-
-                {/* Play button - centered */}
-                <a
-                  href="https://youtube.com/shorts/example3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Vezi video testimonial albire dentara pe YouTube"
-                  className="absolute inset-0 flex items-center justify-center z-10"
-                >
-                  <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center
-                    border border-white/20 group-hover:scale-110 group-hover:bg-white/20
-                    transition-all duration-500 cursor-pointer">
-                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
-                      shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-                      <Play className="w-6 h-6 text-[#1a1a1a] ml-0.5" fill="currentColor" />
-                    </div>
-                  </div>
-                </a>
-
-                {/* Top badge */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="px-3 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-xs font-medium text-white/90
-                    border border-white/10">
-                    Albire Dentara
-                  </span>
-                  <div className="flex items-center gap-1 px-2.5 py-1 bg-black/40 backdrop-blur-sm rounded-full">
-                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                    <span className="text-xs text-white/80">YouTube</span>
-                  </div>
-                </div>
-
-                {/* Bottom content */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-[#d4c4b0] fill-[#d4c4b0]" strokeWidth={1.5} />
-                    ))}
-                  </div>
-                  {/* Quote */}
-                  <p className="text-white/90 text-sm leading-relaxed mb-4 line-clamp-3">
-                    &ldquo;Rezultat uimitor dupa o singura sedinta! Dintii mei arata stralucitor.&rdquo;
-                  </p>
-                  {/* Patient */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#d4c4b0]/20 flex items-center justify-center border border-white/10">
-                      <span className="text-sm font-medium text-white">I</span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-white text-sm">Ioana D.</p>
-                      <p className="text-white/50 text-xs">Albire Profesionala</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#d4c4b0]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="mt-16 text-center">
-            <Link
-              href="/testimoniale"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#d4c4b0] text-[#1a1a1a]
-                rounded-full font-semibold text-base hover:bg-white
-                transition-all duration-300 hover:shadow-[0_8px_30px_rgba(212,196,176,0.3)]
-                group"
+          {/* Video Reels Grid - 2 doctor videos centered */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto">            {/* Video 1 - Dr. Petric */}
+            <a
+              href="https://youtube.com/shorts/ZQnkXaijIXs"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Vezi videoul cu Dr. Petric Razvan-Tudor pe YouTube Shorts"
+              className="group relative block animate-[fadeInUp_0.6s_ease-out_both]"
+              style={{ animationDelay: '0.1s' }}
             >
-              {t('featuredTestimonials.viewAll')}
-              <svg
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-[#f5f0e8]
+                border border-[#e8e0d5] group-hover:border-[#d4c4b0] transition-all duration-500
+                shadow-[0_20px_50px_-15px_rgba(42,33,24,0.18)] group-hover:shadow-[0_30px_70px_-15px_rgba(139,115,85,0.25)]
+                group-hover:-translate-y-1.5">
+                {/* Doctor photo as background */}
+                <Image
+                  src="https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png"
+                  alt="Dr. Petric Razvan-Tudor"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover object-top"
+                />
+
+                {/* Dark gradient bottom for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/85 via-[#2a2118]/30 to-transparent" />
+
+                {/* YouTube badge top-right */}
+                <div className="absolute top-4 right-4 z-10">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-black/55 backdrop-blur-sm rounded-full">
+                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span className="text-[10px] font-semibold text-white uppercase tracking-wider">Shorts</span>
+                  </div>
+                </div>
+
+                {/* Play button - centered */}
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center
+                    border border-white/30 group-hover:scale-110 group-hover:bg-white/30
+                    transition-all duration-500">
+                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
+                      shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
+                      <Play className="w-6 h-6 text-[#2a2118] ml-0.5" fill="currentColor" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Doctor info bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+                  <p className="text-white font-bold text-base md:text-lg leading-tight">Dr. Petric Razvan-Tudor</p>
+                  <p className="text-white/80 text-xs md:text-sm mt-1">Medic Stomatolog Coordonator</p>
+                </div>
+              </div>
+            </a>
+
+            {/* Video 2 - Dr. Ghirasim */}
+            <a
+              href="https://youtube.com/shorts/KuxT2zKlrao"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Vezi videoul cu Dr. Ghirasim Denisa-Stefania pe YouTube Shorts"
+              className="group relative block animate-[fadeInUp_0.6s_ease-out_both]"
+              style={{ animationDelay: '0.2s' }}
+            >
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-[#f5f0e8]
+                border border-[#e8e0d5] group-hover:border-[#d4c4b0] transition-all duration-500
+                shadow-[0_20px_50px_-15px_rgba(42,33,24,0.18)] group-hover:shadow-[0_30px_70px_-15px_rgba(139,115,85,0.25)]
+                group-hover:-translate-y-1.5">
+                <Image
+                  src="/images/team/dr-ghirasim-denisa-stefania.webp"
+                  alt="Dr. Ghirasim Denisa-Stefania"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover object-top"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/85 via-[#2a2118]/30 to-transparent" />
+
+                <div className="absolute top-4 right-4 z-10">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-black/55 backdrop-blur-sm rounded-full">
+                    <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span className="text-[10px] font-semibold text-white uppercase tracking-wider">Shorts</span>
+                  </div>
+                </div>
+
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center
+                    border border-white/30 group-hover:scale-110 group-hover:bg-white/30
+                    transition-all duration-500">
+                    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center
+                      shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
+                      <Play className="w-6 h-6 text-[#2a2118] ml-0.5" fill="currentColor" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+                  <p className="text-white font-bold text-base md:text-lg leading-tight">Dr. Ghirasim Denisa</p>
+                  <p className="text-white/80 text-xs md:text-sm mt-1">Medic Stomatolog · Pediatrie</p>
+                </div>
+              </div>
+            </a>
           </div>
+
+          {/* Bottom CTA - matches hero/services arrow-reveal pattern */}
+          <ScrollReveal animation="fade-up" delay={300} className="mt-14 md:mt-16 text-center">
+            <a
+              href="https://www.youtube.com/@dentcraftsatumare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+            >
+              <span>Vezi toate videourile pe YouTube</span>
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              >
+                <ArrowRight className="w-5 h-5 shrink-0" strokeWidth={2.25} />
+              </span>
+            </a>
+          </ScrollReveal>
         </div>
       </section>
 
