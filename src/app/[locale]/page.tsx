@@ -11,6 +11,7 @@ import { ClinicSection } from '@/components/sections/ClinicSection'
 import { FramedHero } from '@/components/sections/FramedHero'
 import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import googleReviews from '@/data/google-reviews.json'
@@ -207,15 +208,10 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
         <div className="container relative z-10">
-          {/* Section header - mirrors hero typography (bold + serif italic) */}
+          {/* Section header - mirrors hero typography (bold + animated serif italic) */}
           <div className="text-center mb-16 md:mb-20">
-            <ScrollReveal animation="fade-up">
-              <h2 className="font-bold text-[#2a2118] leading-[0.95] tracking-tight text-4xl md:text-5xl lg:text-6xl mb-6">
-                Servicii
-                <span className="font-serif italic font-medium text-[#8b7355] block pb-1 mt-1">stomatologice</span>
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={300}>
+            <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
+            <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
                 {t('services.subtitle')}
               </p>
