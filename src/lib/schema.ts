@@ -107,6 +107,7 @@ export function getServiceSchema(options: {
   serviceDescription: string
   serviceUrl: string
   priceRange?: string
+  serviceType?: string
 }) {
   return {
     '@context': 'https://schema.org',
@@ -114,6 +115,8 @@ export function getServiceSchema(options: {
     name: options.serviceName,
     description: options.serviceDescription,
     url: options.serviceUrl,
+    serviceType: options.serviceType ?? 'Dental Service',
+    medicalSpecialty: 'Dentistry',
     provider: {
       '@type': 'Dentist',
       name: 'Dentcraft',

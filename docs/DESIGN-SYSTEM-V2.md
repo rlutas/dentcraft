@@ -390,7 +390,7 @@ Track every page that's been brought in line with this system.
 |---|---|---|
 | `/` (homepage) | ✅ Done | Reference page — every pattern in this doc derives from here |
 | `/servicii` (listing) | ✅ Done (8 May) | Hero swapped from dark editorial → light warm with AnimatedServiceHeading; breadcrumb now subtle warm; pill `availableCount` chip; FramedNav active globally |
-| `/servicii/[slug]` (individual) | ✅ Done (earlier) | Light editorial hero with photo on right + breadcrumb + arrow-reveal CTAs |
+| `/servicii/[slug]` (individual) | ✅ Done (8 May v2) | Hero photo-driven (already aligned earlier) + Benefits/Process/FAQ sections fully redesigned: AnimatedServiceHeading on each, editorial cards with hover lift, h3 hierarchy (was h4 — fixed), section bg alternation (cream/white/cream), FAQ schema JSON-LD added (P0 SEO), Service schema enriched with `medicalSpecialty: 'Dentistry'`, hardcoded Romanian headings replaced with `t()`, diacritics fixed ("Întrebări frecvente"), accordion FAQs use editorial card pattern, breadcrumb name uses `breadcrumbs.home` (was hardcoded 'Dentcraft') |
 | `/echipa` | ⏳ Pending audit | |
 | `/echipa/[slug]` | ⏳ Pending audit | |
 | `/preturi` | ⏳ Pending audit | Was redesigned during the calculator-v2 work — needs verification against this doc |

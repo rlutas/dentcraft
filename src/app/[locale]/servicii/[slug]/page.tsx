@@ -18,8 +18,9 @@ import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getServiceBySlug, getServiceSlugs, getFAQs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, type Locale as SEOLocale, siteConfig } from '@/lib/seo'
-import { getServiceSchema, getBreadcrumbSchema } from '@/lib/schema'
+import { getServiceSchema, getBreadcrumbSchema, getFAQSchema as getFAQSchema } from '@/lib/schema'
 import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
+import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -174,21 +175,32 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
   }
   const serviceSchema = getServiceSchema(serviceSchemaOptions)
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: t('breadcrumbs.home'), url: siteConfig.baseUrl },
     { name: t('navigation.services'), url: `${siteConfig.baseUrl}/servicii` },
     { name: service.title, url: `${siteConfig.baseUrl}/servicii/${service.slug}` },
   ])
 
+  // FAQ schema — emit only when there are FAQs (huge SEO win for AI/rich snippets)
+  const faqSchema = faqs.length > 0
+    ? getFAQSchema(faqs.map((f) => ({
+        question: f.question,
+        answer: f.answer
+          .filter((b) => b._type === 'block')
+          .map((b) => {
+            const children = b['children'] as Array<{ text: string }> | undefined
+            return children?.map((c) => c.text).join('') || ''
+          })
+          .join(' '),
+      })))
+    : null
+
   return (
     <div className="flex flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
       {/* Hero Section - photo driven */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] pt-28 pb-16 md:pt-36 md:pb-24">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
@@ -286,7 +298,7 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
 
       {/* Description Section */}
       {service.description && service.description.length > 0 && (
-        <section className="section bg-white">
+        <section className="py-20 md:py-28 bg-white">
           <div className="container">
             <div className="max-w-3xl mx-auto prose prose-lg">
               <PortableTextRenderer content={service.description} />
@@ -295,22 +307,24 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
         </section>
       )}
 
-      {/* Benefits Section */}
+      {/* Benefits Section — editorial */}
       {service.benefits && service.benefits.length > 0 && (
-        <section className="section">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2>Beneficii</h2>
+        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+          <div className="container relative z-10">
+            <div className="text-center mb-14 md:mb-16">
+              <AnimatedServiceHeading bold="Beneficii" italic="reale" />
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
               {service.benefits.map((benefit, index) => (
-                <div key={index} className="card">
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center mb-4">
-                    <CheckCircle className="w-6 h-6 text-[var(--color-success)]" strokeWidth={1.5} />
+                <div key={index} className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+                  <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500">
+                    <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
                   </div>
-                  <h4 className="mb-3">{benefit.title}</h4>
-                  <p className="text-body-sm text-muted">{benefit.description}</p>
+                  <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm text-[#5a5048] leading-relaxed">{benefit.description}</p>
                 </div>
               ))}
             </div>
@@ -318,38 +332,31 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
         </section>
       )}
 
-      {/* Process Section */}
+      {/* Process Section — editorial timeline */}
       {service.process && service.process.length > 0 && (
-        <section className="section bg-white">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2>Procesul de tratament</h2>
+        <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+          <div className="container relative z-10">
+            <div className="text-center mb-14 md:mb-16">
+              <AnimatedServiceHeading bold="Procesul" italic="tratamentului" />
             </div>
-
             <div className="max-w-4xl mx-auto">
               <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[var(--color-border)]" />
-
-                {/* Steps */}
-                <div className="space-y-8">
+                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#e8e0d5]" aria-hidden="true" />
+                <div className="space-y-6 md:space-y-8">
                   {service.process
                     .sort((a, b) => a.stepNumber - b.stepNumber)
                     .map((step, index) => (
-                      <div key={index} className="relative flex gap-6">
-                        {/* Step number */}
-                        <div className="relative z-10 w-12 h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white font-bold shrink-0">
+                      <div key={index} className="relative flex gap-5 md:gap-6">
+                        <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white">
                           {step.stepNumber}
                         </div>
-
-                        {/* Step content */}
-                        <div className="card flex-1 !py-5">
-                          <div className="flex items-center gap-3 mb-2">
-                            <Clock className="w-4 h-4 text-[var(--color-secondary)]" strokeWidth={1.5} />
-                            <span className="text-body-sm text-muted">Pasul {step.stepNumber}</span>
+                        <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)]">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
+                            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">Pasul {step.stepNumber}</span>
                           </div>
-                          <h4 className="mb-2">{step.title}</h4>
-                          <p className="text-body-sm text-muted">{step.description}</p>
+                          <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight">{step.title}</h3>
+                          <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
                         </div>
                       </div>
                     ))}
@@ -360,15 +367,15 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
         </section>
       )}
 
-      {/* FAQ Section */}
+      {/* FAQ Section — editorial */}
       {faqs.length > 0 && (
-        <section className="section">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2>Intrebari frecvente</h2>
+        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+          <div className="container relative z-10">
+            <div className="text-center mb-14 md:mb-16">
+              <AnimatedServiceHeading bold="Întrebări" italic="frecvente" />
             </div>
-
-            <div className="max-w-3xl mx-auto space-y-4">
+            <div className="max-w-3xl mx-auto space-y-3">
               {faqs.map((faq) => (
                 <FAQAccordionItem key={faq._id} answer={faq.answer} question={faq.question} />
               ))}
@@ -428,12 +435,12 @@ function FAQAccordionItem({ question, answer }: { question: string; answer: Arra
     .join(' ')
 
   return (
-    <details className="card group">
-      <summary className="flex items-center justify-between cursor-pointer list-none">
-        <h4 className="pr-4">{question}</h4>
-        <ChevronDown className="w-5 h-5 text-[var(--color-secondary)] transition-transform group-open:rotate-180" strokeWidth={1.5} />
+    <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-5 hover:border-[#d4c4b0] transition-colors duration-300">
+      <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
+        <h3 className="text-base md:text-lg font-semibold text-[#2a2118] pr-2 leading-tight group-hover:text-[#8b7355] transition-colors">{question}</h3>
+        <ChevronDown className="w-5 h-5 text-[#8b7355] transition-transform duration-300 group-open:rotate-180 shrink-0" strokeWidth={2} />
       </summary>
-      <p className="mt-4 text-muted">{answerText}</p>
+      <p className="mt-4 text-sm md:text-base text-[#5a5048] leading-relaxed">{answerText}</p>
     </details>
   )
 }
@@ -454,7 +461,7 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
     serviceUrl: `${siteConfig.baseUrl}/servicii/${fallbackService.slug}`,
   })
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: t('breadcrumbs.home'), url: siteConfig.baseUrl },
     { name: t('navigation.services'), url: `${siteConfig.baseUrl}/servicii` },
     { name: serviceName, url: `${siteConfig.baseUrl}/servicii/${fallbackService.slug}` },
   ])
@@ -564,22 +571,24 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section — editorial */}
       {fallbackService.benefits && fallbackService.benefits.length > 0 && (
-        <section className="section">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2>{t('services.benefits')}</h2>
+        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+          <div className="container relative z-10">
+            <div className="text-center mb-14 md:mb-16">
+              <AnimatedServiceHeading bold="Beneficii" italic="reale" />
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
               {fallbackService.benefits.map((benefit, index) => (
-                <div key={index} className="card">
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-accent-light)] flex items-center justify-center mb-4">
-                    <CheckCircle className="w-6 h-6 text-[var(--color-success)]" strokeWidth={1.5} />
+                <div key={index} className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+                  <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500">
+                    <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
                   </div>
-                  <h4 className="mb-3">{t(`services.fallback.${benefit.titleKey}`)}</h4>
-                  <p className="text-body-sm text-muted">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
+                  <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                    {t(`services.fallback.${benefit.titleKey}`)}
+                  </h3>
+                  <p className="text-sm text-[#5a5048] leading-relaxed">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
                 </div>
               ))}
             </div>
@@ -587,36 +596,29 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
         </section>
       )}
 
-      {/* Process Section */}
+      {/* Process Section — editorial timeline */}
       {fallbackService.process && fallbackService.process.length > 0 && (
-        <section className="section bg-white">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2>{t('services.process')}</h2>
+        <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+          <div className="container relative z-10">
+            <div className="text-center mb-14 md:mb-16">
+              <AnimatedServiceHeading bold="Procesul" italic="tratamentului" />
             </div>
-
             <div className="max-w-4xl mx-auto">
               <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[var(--color-border)]" />
-
-                {/* Steps */}
-                <div className="space-y-8">
+                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#e8e0d5]" aria-hidden="true" />
+                <div className="space-y-6 md:space-y-8">
                   {fallbackService.process.map((step, index) => (
-                    <div key={index} className="relative flex gap-6">
-                      {/* Step number */}
-                      <div className="relative z-10 w-12 h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white font-bold shrink-0">
+                    <div key={index} className="relative flex gap-5 md:gap-6">
+                      <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white">
                         {step.stepNumber}
                       </div>
-
-                      {/* Step content */}
-                      <div className="card flex-1 !py-5">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Clock className="w-4 h-4 text-[var(--color-secondary)]" strokeWidth={1.5} />
-                          <span className="text-body-sm text-muted">{t('services.step')} {step.stepNumber}</span>
+                      <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
+                          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
                         </div>
-                        <h4 className="mb-2">{t(`services.fallback.${step.titleKey}`)}</h4>
-                        <p className="text-body-sm text-muted">{t(`services.fallback.${step.descriptionKey}`)}</p>
+                        <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight">{t(`services.fallback.${step.titleKey}`)}</h3>
+                        <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{t(`services.fallback.${step.descriptionKey}`)}</p>
                       </div>
                     </div>
                   ))}
