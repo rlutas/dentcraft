@@ -8,7 +8,7 @@ interface ClinicSectionProps {
   t: (key: string) => string
 }
 
-// 9 photos for desktop swap gallery (primary + 8 thumbs in 4×3 grid)
+// 7 photos for desktop swap gallery: 1 primary (3×2) + 2 thumbs right + 4 thumbs bottom
 function buildClinicImages(t: ClinicSectionProps['t']) {
   return [
     { src: '/images/clinic/clinic-11.webp', caption: t('clinic.captions.reception') },
@@ -18,8 +18,6 @@ function buildClinicImages(t: ClinicSectionProps['t']) {
     { src: '/images/clinic/clinic-3.webp', caption: t('clinic.captions.waitingArea') },
     { src: '/images/clinic/clinic-5.webp', caption: t('clinic.captions.treatmentRoom') },
     { src: '/images/clinic/clinic-7.webp', caption: t('clinic.captions.detail') },
-    { src: '/images/clinic/clinic-2.webp', caption: t('clinic.captions.detail') },
-    { src: '/images/clinic/clinic-8.webp', caption: t('clinic.captions.detail') },
   ]
 }
 
