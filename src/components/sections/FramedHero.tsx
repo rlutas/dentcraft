@@ -618,50 +618,60 @@ export function FramedHero() {
                 />
               </button>
 
-              {/* Dropdown */}
+              {/* Mega dropdown — 3 cols x 3 rows */}
               <div
                 className={cn(
-                  'absolute left-1/2 top-full -translate-x-1/2 mt-3 w-[380px] origin-top',
+                  'absolute left-1/2 top-full -translate-x-1/2 mt-3 w-[min(960px,calc(100vw-2rem))] origin-top',
                   'transition-all duration-200',
                   isServicesOpen
                     ? 'opacity-100 scale-100 pointer-events-auto'
                     : 'opacity-0 scale-95 pointer-events-none'
                 )}
               >
-                <div className="relative rounded-3xl bg-white shadow-[0_20px_60px_-10px_rgba(42,33,24,0.3)] border border-[#e8e0d5] p-3 overflow-hidden">
+                <div className="relative rounded-3xl bg-white shadow-[0_20px_60px_-10px_rgba(42,33,24,0.3)] border border-[#e8e0d5] p-6 overflow-hidden">
                   {/* Top accent */}
                   <div
                     aria-hidden="true"
                     className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4c4b0]/40 to-transparent"
                   />
 
-                  <div className="grid gap-1 pt-1">
+                  {/* Section label */}
+                  <div className="px-2 pb-3 mb-3 border-b border-[#f0ebe3]">
+                    <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                      {t('services')}
+                    </span>
+                  </div>
+
+                  {/* 3-col grid */}
+                  <div className="grid grid-cols-3 gap-x-2 gap-y-1">
                     {mainServices.map((service) => (
                       <Link
                         key={service.slug}
                         href={`/servicii/${service.slug}` as '/servicii'}
-                        className="group flex items-center gap-3 rounded-2xl px-3 py-2.5 hover:bg-[#faf6f1] transition-colors"
+                        className="group flex items-start gap-3 rounded-2xl px-3 py-3 hover:bg-[#faf6f1] transition-colors"
                         onClick={() => setIsServicesOpen(false)}
                       >
-                        <div className="w-10 h-10 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center shrink-0 group-hover:bg-[#d4c4b0]/40 group-hover:border-[#d4c4b0] transition-colors">
+                        <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center shrink-0 group-hover:bg-[#d4c4b0]/40 group-hover:border-[#d4c4b0] transition-colors">
                           {service.iconPath ? (
                             <Image
                               src={service.iconPath}
                               alt=""
-                              width={24}
-                              height={24}
-                              className="w-6 h-6"
+                              width={28}
+                              height={28}
+                              className="w-7 h-7"
                             />
                           ) : (
-                            <service.Icon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                            <service.Icon className="w-6 h-6 text-[#8b7355]" strokeWidth={1.5} />
                           )}
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-[#2a2118] text-[13px] leading-tight">
+                        <div className="flex-1 min-w-0 pt-0.5">
+                          <div className="font-semibold text-[#2a2118] text-[14px] leading-tight mb-1 group-hover:text-[#8b7355] transition-colors">
                             {tServices(service.titleKey)}
                           </div>
+                          <div className="text-[12px] text-[#5a5048] leading-snug line-clamp-2">
+                            {tServices(service.descriptionKey)}
+                          </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#d4c4b0] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                       </Link>
                     ))}
                   </div>
@@ -670,9 +680,9 @@ export function FramedHero() {
                   <Link
                     href="/servicii"
                     onClick={() => setIsServicesOpen(false)}
-                    className="mt-2 flex items-center justify-between rounded-2xl bg-[#2a2118] text-white px-4 py-3 text-[13px] font-semibold hover:bg-[#4a3d30] transition-colors"
+                    className="mt-4 flex items-center justify-between rounded-2xl bg-[#2a2118] text-white px-5 py-3.5 text-[13px] font-semibold hover:bg-[#4a3d30] transition-colors"
                   >
-                    <span>Toate serviciile</span>
+                    <span>Vezi toate serviciile si tratamentele</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
