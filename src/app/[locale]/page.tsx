@@ -294,9 +294,14 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                           <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
                             {t(`services.fallback.${service.descriptionKey}`)}
                           </p>
-                          <span className="inline-flex items-center gap-2 text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:gap-3 group-hover:text-[#2a2118] transition-all duration-300">
-                            {t('common.learnMore')}
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.25} />
+                          <span className="inline-flex items-center text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:text-[#2a2118] transition-colors duration-300">
+                            <span>{t('common.learnMore')}</span>
+                            <span
+                              aria-hidden="true"
+                              className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                            >
+                              <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+                            </span>
                           </span>
                         </div>
                       </Link>
@@ -307,24 +312,19 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             )
           })()}
 
-          {/* View all button */}
+          {/* View all button - matches hero CTA pattern (arrow reveals on hover) */}
           <ScrollReveal animation="fade-up" delay={400} className="mt-16 text-center">
             <Link
               href="/servicii"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-white
-                rounded-full font-medium text-lg
-                hover:bg-[var(--color-primary)]/90 hover:shadow-[0_10px_40px_-10px_rgba(26,26,26,0.4)]
-                transition-all duration-300"
+              className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
-              {t('common.seeAll')}
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <span>{t('common.seeAll')}</span>
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+                <ArrowRight className="w-5 h-5 shrink-0" strokeWidth={2.25} />
+              </span>
             </Link>
           </ScrollReveal>
         </div>
@@ -351,18 +351,22 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             {/* LEFT: clinic photo with overlay stat card */}
             <ScrollReveal animation="fade-up">
               <div className="relative">
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
+                {/* Subtle background decorative elements */}
+                <div className="absolute -top-8 -left-8 w-24 h-24 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
+                <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
+
+                <div className="relative aspect-[4/3] md:aspect-[5/4] lg:aspect-[4/3] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
                   <Image
                     src="/images/clinic/clinic-1.webp"
                     alt="Cabinet Dentcraft"
                     fill
                     sizes="(max-width: 1024px) 100vw, 55vw"
-                    className="object-cover"
+                    className="object-cover object-[30%_center] md:object-center"
                   />
                 </div>
 
                 {/* Floating overlay card with stats */}
-                <div className="absolute -bottom-6 -right-4 md:bottom-8 md:-right-8 lg:-right-10 z-10">
+                <div className="absolute -bottom-6 right-4 md:bottom-6 md:-right-6 lg:-right-8 z-10">
                   <div className="bg-white rounded-2xl shadow-[0_20px_50px_-15px_rgba(42,33,24,0.25)] border border-[#e8e0d5] px-5 py-4 md:px-7 md:py-5">
                     <div className="flex items-center gap-5 md:gap-7">
                       <div>
@@ -380,7 +384,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                           <Star className="w-4 h-4 md:w-5 md:h-5 fill-[#d4c4b0] text-[#d4c4b0]" />
                         </div>
                         <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          Google · 200+
+                          Google · 50+
                         </div>
                       </div>
                     </div>
