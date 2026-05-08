@@ -88,12 +88,6 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
 
         <div className="container relative z-10">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 mb-10 text-sm" aria-label="Breadcrumb">
-            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">{t('breadcrumbs.home')}</Link>
-            <span className="text-[#8b7355]/40">/</span>
-            <span className="text-[#2a2118] font-medium">{t('breadcrumbs.services')}</span>
-          </nav>
-
           <div className="text-center max-w-3xl mx-auto">
             <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
             <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
@@ -190,12 +184,6 @@ async function PlaceholderServicesPage() {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
-          <nav className="flex items-center gap-2 mb-10 text-sm" aria-label="Breadcrumb">
-            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">{t('breadcrumbs.home')}</Link>
-            <span className="text-[#8b7355]/40">/</span>
-            <span className="text-[#2a2118] font-medium">{t('breadcrumbs.services')}</span>
-          </nav>
-
           <div className="text-center max-w-3xl mx-auto">
             <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
             <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
