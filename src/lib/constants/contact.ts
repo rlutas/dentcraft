@@ -10,8 +10,9 @@ export const CONTACT = {
   workingHours: 'Luni - Vineri: 10:00 - 18:00',
   workingHoursShort: 'L-V: 10:00 - 18:00',
   // Social Media
-  facebook: 'https://facebook.com/dentcraft.ro',
-  instagram: 'https://instagram.com/dentcraft.ro',
+  facebook: 'https://www.facebook.com/Dr.PetricRazvan',
+  instagram: 'https://www.instagram.com/dentcraft.sm',
+  youtube: 'https://www.youtube.com/@DENTCRAFTSM/shorts',
   // Google Maps
   coordinates: {
     lat: 47.789,

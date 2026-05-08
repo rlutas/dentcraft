@@ -622,12 +622,12 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
           {/* Bottom CTA - matches hero/services arrow-reveal pattern */}
           <ScrollReveal animation="fade-up" delay={300} className="mt-14 md:mt-16 text-center">
             <a
-              href="https://www.youtube.com/@dentcraftsatumare"
+              href="https://www.instagram.com/dentcraft.sm"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
-              <span>Vezi toate videourile pe YouTube</span>
+              <span>Vezi mai multe pe Instagram</span>
               <span
                 aria-hidden="true"
                 className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
