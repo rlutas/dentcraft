@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import {
+  ArrowRight,
   Heart,
   Microscope,
   Play,
@@ -213,7 +214,7 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
       <FramedHero />
 
 
-      {/* Services Section - Clean, premium design */}
+      {/* Services Section - Premium photo cards (top 6) */}
       <section className="py-24 md:py-32 bg-white relative overflow-hidden">
         {/* Subtle decorative background */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-accent)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
@@ -239,154 +240,95 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
             </ScrollReveal>
           </div>
 
-          {/* Clean 3-column grid - each card animates in with stagger */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-            {hasSanityServices ? (
-              // Render services from Sanity CMS
-              services.slice(0, 6).map((service, index) => {
-                const IconComponent = service.icon ? iconMap[service.icon] : Stethoscope
+          {/* Top 6 services - photo cards in 3x2 grid */}
+          {(() => {
+            // Top 6 services in priority order (Implantologie first - has photo + hero SEO)
+            const topSlugs = [
+              'implantologie',
+              'estetica-dentara',
+              'ortodontie',
+              'protetica',
+              'stomatologie-generala',
+              'pedodontie',
+            ]
+            const fallback = getMainFallbackServices()
+            const top6 = topSlugs
+              .map((slug) => fallback.find((s) => s.slug === slug))
+              .filter((s): s is NonNullable<typeof s> => Boolean(s))
 
-                return (
-                  <ScrollReveal
-                    key={service._id}
-                    animation="fade-up"
-                    delay={index * 150}
-                  >
-                    <Link
-                      href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                      className="group relative bg-[#faf8f5] rounded-3xl p-8 md:p-10 block h-full
-                        border border-transparent hover:border-[var(--color-accent)]
-                        transition-all duration-500 ease-out
-                        hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]
-                        hover:-translate-y-2"
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {top6.map((service, index) => {
+                  const photoPath = `/images/services/${service.slug}.png`
+                  // Only implantologie has a photo right now — others use placeholder
+                  const hasPhoto = service.slug === 'implantologie'
+
+                  return (
+                    <ScrollReveal
+                      key={service.slug}
+                      animation="fade-up"
+                      delay={index * 100}
                     >
-                      {/* Icon container with gradient background */}
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl mb-8 flex items-center justify-center
-                        bg-gradient-to-br from-[var(--color-accent-light)] via-[var(--color-accent)]/20 to-[var(--color-accent)]/40
-                        group-hover:from-[var(--color-accent)] group-hover:via-[var(--color-accent)] group-hover:to-[var(--color-accent-hover)]
-                        transition-all duration-500 ease-out
-                        shadow-[0_8px_30px_-10px_rgba(212,196,176,0.5)]
-                        group-hover:shadow-[0_12px_40px_-10px_rgba(212,196,176,0.7)]">
-                        {IconComponent && (
-                          <IconComponent
-                            className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-primary)]
-                              group-hover:text-[var(--color-primary)] transition-colors duration-500"
-                            strokeWidth={1.25}
-                          />
-                        )}
-                      </div>
+                      <Link
+                        href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+                        className="group relative block h-full overflow-hidden rounded-3xl
+                          bg-white border border-[#e8e0d5]
+                          shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]
+                          hover:border-[#d4c4b0]
+                          hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
+                          hover:-translate-y-1.5
+                          transition-all duration-500 ease-out flex flex-col"
+                      >
+                        {/* Photo or placeholder */}
+                        <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
+                          {hasPhoto ? (
+                            <Image
+                              src={photoPath}
+                              alt={t(`services.fallback.${service.titleKey}`)}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                              {service.iconPath ? (
+                                <Image
+                                  src={service.iconPath}
+                                  alt=""
+                                  width={80}
+                                  height={80}
+                                  className="w-20 h-20 opacity-30 group-hover:opacity-50 transition-opacity"
+                                />
+                              ) : (
+                                <service.Icon className="w-20 h-20 text-[#8b7355]/30 group-hover:text-[#8b7355]/50 transition-colors" strokeWidth={1.25} />
+                              )}
+                              <span className="absolute bottom-3 right-3 text-[10px] uppercase tracking-wider text-[#8b7355]/50 font-semibold">
+                                Foto in curs
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                      {/* Service number - subtle visual interest */}
-                      <span className="absolute top-8 right-8 text-6xl font-bold text-[var(--color-primary)]/[0.03]
-                        group-hover:text-[var(--color-accent)]/20 transition-colors duration-500 select-none">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-
-                      {/* Content */}
-                      <h3 className="text-xl md:text-2xl font-semibold text-[var(--color-primary)] mb-4
-                        group-hover:text-[var(--color-primary)] transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-[var(--color-secondary)] leading-relaxed mb-6">
-                        {service.shortDescription || ''}
-                      </p>
-
-                      {/* Link with arrow */}
-                      <span className="inline-flex items-center gap-3 text-[var(--color-primary)] font-medium
-                        group-hover:gap-4 transition-all duration-300">
-                        {t('common.learnMore')}
-                        <span className="w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center
-                          group-hover:bg-[var(--color-accent)] transition-colors duration-300">
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </span>
-                      </span>
-                    </Link>
-                  </ScrollReveal>
-                )
-              })
-            ) : (
-              // Fallback to translation-based content - show all 9 main services
-              getMainFallbackServices().map((service, index) => (
-                <ScrollReveal
-                  key={service.slug}
-                  animation="fade-up"
-                  delay={index * 150}
-                >
-                  <Link
-                    href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                    className="group relative bg-[#faf8f5] rounded-3xl p-8 md:p-10 block h-full
-                      border border-transparent hover:border-[var(--color-accent)]
-                      transition-all duration-500 ease-out
-                      hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]
-                      hover:-translate-y-2"
-                  >
-                    {/* Icon container with gradient background */}
-                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl mb-8 flex items-center justify-center
-                      bg-gradient-to-br from-[var(--color-accent-light)] via-[var(--color-accent)]/20 to-[var(--color-accent)]/40
-                      group-hover:from-[var(--color-accent)] group-hover:via-[var(--color-accent)] group-hover:to-[var(--color-accent-hover)]
-                      transition-all duration-500 ease-out
-                      shadow-[0_8px_30px_-10px_rgba(212,196,176,0.5)]
-                      group-hover:shadow-[0_12px_40px_-10px_rgba(212,196,176,0.7)]">
-                      {service.iconPath ? (
-                        <Image
-                          src={service.iconPath}
-                          alt=""
-                          width={48}
-                          height={48}
-                          className="w-10 h-10 md:w-12 md:h-12 object-contain"
-                        />
-                      ) : (
-                        <service.Icon
-                          className="w-10 h-10 md:w-12 md:h-12 text-[var(--color-primary)]
-                            group-hover:text-[var(--color-primary)] transition-colors duration-500"
-                          strokeWidth={1.25}
-                        />
-                      )}
-                    </div>
-
-                    {/* Service number - subtle visual interest */}
-                    <span className="absolute top-8 right-8 text-6xl font-bold text-[var(--color-primary)]/[0.03]
-                      group-hover:text-[var(--color-accent)]/20 transition-colors duration-500 select-none">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-
-                    {/* Content */}
-                    <h3 className="text-xl md:text-2xl font-semibold text-[var(--color-primary)] mb-4
-                      group-hover:text-[var(--color-primary)] transition-colors">
-                      {t(`services.fallback.${service.titleKey}`)}
-                    </h3>
-                    <p className="text-[var(--color-secondary)] leading-relaxed mb-6">
-                      {t(`services.fallback.${service.descriptionKey}`)}
-                    </p>
-
-                    {/* Link with arrow */}
-                    <span className="inline-flex items-center gap-3 text-[var(--color-primary)] font-medium
-                      group-hover:gap-4 transition-all duration-300">
-                      {t('common.learnMore')}
-                      <span className="w-8 h-8 rounded-full bg-[var(--color-primary)] flex items-center justify-center
-                        group-hover:bg-[var(--color-accent)] transition-colors duration-300">
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </span>
-                    </span>
-                  </Link>
-                </ScrollReveal>
-              ))
-            )}
-          </div>
+                        {/* Content */}
+                        <div className="p-6 md:p-7 flex flex-col flex-1">
+                          <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight">
+                            {t(`services.fallback.${service.titleKey}`)}
+                          </h3>
+                          <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
+                            {t(`services.fallback.${service.descriptionKey}`)}
+                          </p>
+                          <span className="inline-flex items-center gap-2 text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:gap-3 group-hover:text-[#2a2118] transition-all duration-300">
+                            {t('common.learnMore')}
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.25} />
+                          </span>
+                        </div>
+                      </Link>
+                    </ScrollReveal>
+                  )
+                })}
+              </div>
+            )
+          })()}
 
           {/* View all button */}
           <ScrollReveal animation="fade-up" delay={400} className="mt-16 text-center">
