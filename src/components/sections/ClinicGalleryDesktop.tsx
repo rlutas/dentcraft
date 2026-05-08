@@ -35,9 +35,17 @@ export function ClinicGalleryDesktop({ images }: Props) {
     images.slice(0, SLOT_COUNT).map((_, i) => i)
   )
   const [paused, setPaused] = useState(false)
+  // Detect hover capability — touch devices won't get hover-based pause/swap
+  const [canHover, setCanHover] = useState(true)
   const prefersReduced = useReducedMotion()
   const cycleRef = useRef(1)
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const tapPauseTimerRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setCanHover(window.matchMedia('(hover: hover)').matches)
+  }, [])
 
   const swapPrimary = (clickedSlot: number) => {
     if (clickedSlot === 0) return
@@ -51,12 +59,25 @@ export function ClinicGalleryDesktop({ images }: Props) {
   }
 
   const handleHover = (slotIdx: number) => {
+    if (!canHover) return
     if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
     hoverTimerRef.current = setTimeout(() => swapPrimary(slotIdx), HOVER_DEBOUNCE_MS)
   }
 
   const cancelHover = () => {
     if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
+  }
+
+  const handleTap = (slotIdx: number) => {
+    // Cancel any pending hover-debounced swap and run immediately
+    cancelHover()
+    swapPrimary(slotIdx)
+    // On touch devices, briefly pause auto-rotate so user can see their pick
+    if (!canHover) {
+      setPaused(true)
+      if (tapPauseTimerRef.current) clearTimeout(tapPauseTimerRef.current)
+      tapPauseTimerRef.current = setTimeout(() => setPaused(false), 6000)
+    }
   }
 
   useEffect(() => {
@@ -79,8 +100,8 @@ export function ClinicGalleryDesktop({ images }: Props) {
     <LayoutGroup id="clinic-gallery">
       <div
         className="grid grid-cols-3 grid-rows-4 md:grid-cols-4 md:grid-rows-3 gap-2.5 md:gap-3 lg:gap-4 h-[480px] md:h-[480px] lg:h-[580px]"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
+        onMouseEnter={canHover ? () => setPaused(true) : undefined}
+        onMouseLeave={canHover ? () => setPaused(false) : undefined}
       >
         {layout.slice(0, SLOT_COUNT).map((imageIdx, slotIdx) => {
           const img = images[imageIdx]
@@ -90,9 +111,9 @@ export function ClinicGalleryDesktop({ images }: Props) {
             <button
               key={`slot-${slotIdx}`}
               type="button"
-              onMouseEnter={() => handleHover(slotIdx)}
-              onMouseLeave={cancelHover}
-              onClick={() => swapPrimary(slotIdx)}
+              onMouseEnter={canHover ? () => handleHover(slotIdx) : undefined}
+              onMouseLeave={canHover ? cancelHover : undefined}
+              onClick={() => handleTap(slotIdx)}
               onFocus={() => swapPrimary(slotIdx)}
               aria-label={img.caption}
               className={`relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-2xl md:rounded-3xl ${SLOT_CLASSES[slotIdx]}`}
