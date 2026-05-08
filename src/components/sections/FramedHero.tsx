@@ -360,7 +360,7 @@ export function FramedHero() {
         {/* Gradient overlays — strong at bottom for text readability, subtle at top for navbar */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-15% via-50% to-100%"
+          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-15% via-50% to-100% md:from-[#1a1410]/75 md:via-[#2a2118]/25 md:to-transparent md:from-5% md:via-40% md:to-90%"
         />
         <div
           aria-hidden="true"
@@ -618,15 +618,16 @@ export function FramedHero() {
                 />
               </button>
 
-              {/* Mega dropdown — 3 cols x 3 rows */}
+              {/* Mega dropdown — 3 cols x 3 rows, centered to viewport */}
               <div
                 className={cn(
-                  'absolute left-1/2 top-full -translate-x-1/2 mt-3 w-[min(960px,calc(100vw-2rem))] origin-top',
+                  'fixed left-1/2 -translate-x-1/2 mt-6 w-[min(1080px,calc(100vw-3rem))] origin-top z-[200]',
                   'transition-all duration-200',
                   isServicesOpen
                     ? 'opacity-100 scale-100 pointer-events-auto'
                     : 'opacity-0 scale-95 pointer-events-none'
                 )}
+                style={{ top: 'calc(env(safe-area-inset-top) + 80px)' }}
               >
                 <div className="relative rounded-3xl bg-white shadow-[0_20px_60px_-10px_rgba(42,33,24,0.3)] border border-[#e8e0d5] p-6 overflow-hidden">
                   {/* Top accent */}
@@ -666,10 +667,10 @@ export function FramedHero() {
                         </div>
                         <div className="flex-1 min-w-0 pt-0.5">
                           <div className="font-semibold text-[#2a2118] text-[14px] leading-tight mb-1 group-hover:text-[#8b7355] transition-colors">
-                            {tServices(service.titleKey)}
+                            {tServices(`fallback.${service.titleKey}`)}
                           </div>
                           <div className="text-[12px] text-[#5a5048] leading-snug line-clamp-2">
-                            {tServices(service.descriptionKey)}
+                            {tServices(`fallback.${service.descriptionKey}`)}
                           </div>
                         </div>
                       </Link>
