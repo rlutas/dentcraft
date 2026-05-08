@@ -372,7 +372,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                     <div className="flex items-center gap-5 md:gap-7">
                       <div>
                         <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1">
-                          <CountUp end={10} suffix="+" duration={2000} />
+                          <CountUp end={15} suffix="+" duration={2000} />
                         </div>
                         <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
                           ani experiență
@@ -399,7 +399,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               {[
                 {
                   num: '01',
-                  title: 'Echipă cu peste 10 ani de experiență',
+                  title: 'Echipă cu peste 15 ani de experiență',
                   desc: 'Dr. Petric și echipa au tratat peste 2000 de pacienți, cu rezultate documentate prin cazuri reale.',
                 },
                 {

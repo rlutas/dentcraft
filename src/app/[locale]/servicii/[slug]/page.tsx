@@ -4,7 +4,6 @@ import {
   CheckCircle,
   ChevronDown,
   Clock,
-  Phone,
   Star,
 } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
@@ -15,7 +14,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getFallbackServiceBySlug, getFallbackServiceSlugs, getMainFallbackServices } from '@/lib/fallback-services'
 import type { fallbackServices } from '@/lib/fallback-services'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
-import { BookingButton } from '@/components/ui/BookingButton'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
@@ -25,6 +23,9 @@ import { getServiceSchema, getBreadcrumbSchema, getFAQSchema as getFAQSchema } f
 import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
+import googleReviewsData from '@/data/google-reviews.json'
+import { ServiceHero } from '@/components/sections/ServiceHero'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -142,12 +143,12 @@ export default async function ServicePage({ params }: Props) {
   if (!service) {
     const fallbackService = getFallbackServiceBySlug(slug)
     if (fallbackService) {
-      return <FallbackServicePageContent fallbackService={fallbackService} />
+      return <FallbackServicePageContent fallbackService={fallbackService} locale={locale as Locale} />
     }
     notFound()
   }
 
-  return <ServicePageContent faqs={faqs} service={service} />
+  return <ServicePageContent faqs={faqs} service={service} locale={locale as Locale} />
 }
 
 // Get Lucide icon by name
@@ -161,7 +162,7 @@ function getIconByName(iconName: string | null): LucideIcon | null {
   return null
 }
 
-async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Service }) {
+async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; service: Service; locale: Locale }) {
   const t = await getTranslations()
   const ServiceIcon = getIconByName(service.icon)
 
@@ -205,127 +206,25 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
-      {/* Hero — photo-driven editorial with floating stat card + trust pills */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] pt-28 pb-20 md:pt-36 md:pb-28">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
-        <div className="absolute top-32 left-[10%] w-2 h-2 rounded-full bg-[#d4c4b0]/60 hidden lg:block" aria-hidden="true" />
-        <div className="absolute bottom-40 right-[12%] w-3 h-3 rounded-full bg-[#8b7355]/40 hidden lg:block" aria-hidden="true" />
+      <ServiceHero
+        breadcrumbs={[
+          { label: t('breadcrumbs.home'), href: '/' },
+          { label: t('breadcrumbs.services'), href: '/servicii' },
+          { label: service.title },
+        ]}
+        title={service.title}
+        italicAccent="Satu Mare"
+        subtitle={service.shortDescription ?? null}
+        badgeLabel={t('services.heroLabel')}
+        badgeIcon={ServiceIcon}
+        priceMinLabel={service.priceRange ? `${service.priceRange.min} RON` : null}
+        ctaPrimary={t('common.bookAppointment')}
+        photoSrc={hasLocalPhoto ? localPhotoPath : service.heroImage ? urlFor(service.heroImage).width(1200).height(750).auto('format').url() : null}
+        photoAlt={hasLocalPhoto || !service.heroImage ? `${service.title} - clinica stomatologica DentCraft Satu Mare` : (service.heroImage.alt || `${service.title} - clinica stomatologica DentCraft Satu Mare`)}
+        fallbackIcon={ServiceIcon}
+      />
 
-        <div className="container relative z-10">
-          <nav className="flex items-center gap-2 mb-8 md:mb-12 text-sm animate-[fadeInUp_0.4s_ease-out_both]" aria-label="Breadcrumb">
-            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">
-              {t('breadcrumbs.home')}
-            </Link>
-            <span className="text-[#8b7355]/40">/</span>
-            <Link href="/servicii" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">
-              {t('breadcrumbs.services')}
-            </Link>
-            <span className="text-[#8b7355]/40">/</span>
-            <span className="text-[#2a2118] font-medium">{service.title}</span>
-          </nav>
-
-          <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-center">
-            <div>
-              {ServiceIcon && (
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5] mb-6 animate-[fadeInUp_0.5s_ease-out_0.05s_both] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
-                  <ServiceIcon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
-                  <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">
-                    {t('services.heroLabel')}
-                  </span>
-                </div>
-              )}
-
-              <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-[#2a2118] mb-6 leading-[1.05] tracking-tight animate-[fadeInUp_0.6s_ease-out_0.1s_both]">
-                {service.title}{' '}
-                <span className="font-serif italic font-medium text-[#8b7355]">Satu Mare</span>
-              </h1>
-
-              {service.shortDescription && (
-                <p className="text-lg md:text-xl text-[#5a5048] mb-8 leading-relaxed max-w-2xl animate-[fadeInUp_0.6s_ease-out_0.2s_both]">
-                  {service.shortDescription}
-                </p>
-              )}
-
-              {service.priceRange && (
-                <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white border border-[#e8e0d5] animate-[fadeInUp_0.6s_ease-out_0.25s_both]">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
-                    De la
-                  </span>
-                  <span className="text-base font-bold text-[#2a2118]">
-                    {service.priceRange.min} RON
-                  </span>
-                </div>
-              )}
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 animate-[fadeInUp_0.6s_ease-out_0.3s_both]">
-                <BookingButton>{t('common.bookAppointment')}</BookingButton>
-                <a
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#e8e0d5] text-[#2a2118] font-semibold hover:border-[#d4c4b0] hover:shadow-[0_10px_40px_-10px_rgba(139,115,85,0.18)] transition-all duration-300"
-                  href="tel:+40741199977"
-                >
-                  <Phone className="w-5 h-5" strokeWidth={1.75} />
-                  0741 199 977
-                </a>
-              </div>
-
-              {/* Trust pills */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 animate-[fadeInUp_0.6s_ease-out_0.4s_both]">
-                {[
-                  'Plan personalizat',
-                  'Anestezie blândă',
-                  'Garanție lucrări',
-                ].map((label) => (
-                  <div key={label} className="flex items-center gap-2 text-sm text-[#5a5048]">
-                    <CheckCircle className="w-4 h-4 text-[#8b7355]" strokeWidth={2.25} />
-                    <span>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Hero Image with floating stat card */}
-            <div className="relative animate-[fadeInUp_0.7s_ease-out_0.15s_both]">
-              <div className="absolute -top-4 -right-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
-
-              {hasLocalPhoto ? (
-                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#faf6f1] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.3)] border border-[#e8e0d5]">
-                  <Image fill priority alt={`${service.title} - clinica stomatologica DentCraft Satu Mare`} className="object-cover" sizes="(max-width: 1024px) 100vw, 55vw" src={localPhotoPath} />
-                </div>
-              ) : service.heroImage ? (
-                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(139,115,85,0.3)] border border-[#e8e0d5]">
-                  <Image fill priority alt={service.heroImage.alt || `${service.title} - clinica stomatologica DentCraft Satu Mare`} className="object-cover" sizes="(max-width: 1024px) 100vw, 55vw" src={urlFor(service.heroImage).width(1200).height(750).auto('format').url()} />
-                </div>
-              ) : ServiceIcon ? (
-                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 flex items-center justify-center border border-[#e8e0d5]">
-                  <ServiceIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
-                </div>
-              ) : null}
-
-              {/* Floating stat card overlay */}
-              <div className="absolute -bottom-6 left-4 md:bottom-6 md:-left-6 lg:-left-8 z-10 animate-[fadeInUp_0.7s_ease-out_0.5s_both]">
-                <div className="bg-white rounded-2xl shadow-[0_20px_50px_-15px_rgba(42,33,24,0.25)] border border-[#e8e0d5] px-5 py-4 md:px-6 md:py-5">
-                  <div className="flex items-center gap-5 md:gap-6">
-                    <div>
-                      <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1">10+</div>
-                      <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">ani experiență</div>
-                    </div>
-                    <div className="h-10 w-px bg-[#e8e0d5]" />
-                    <div>
-                      <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1 flex items-baseline gap-1">
-                        4.9
-                        <Star className="w-4 h-4 md:w-5 md:h-5 fill-[#d4c4b0] text-[#d4c4b0]" />
-                      </div>
-                      <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">Google · 50+</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div id="service-content" />
 
       {/* Description Section */}
       {service.description && service.description.length > 0 && (
@@ -338,25 +237,36 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
         </section>
       )}
 
-      {/* Benefits Section — editorial (white to break Hero cream rhythm) */}
+      {/* Benefits Section — editorial */}
       {service.benefits && service.benefits.length > 0 && (
-        <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
-            <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold="Beneficii" italic="reale" />
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <ScrollReveal animation="fade-up">
+              <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+                  De ce să alegi DentCraft
+                </span>
+                <AnimatedServiceHeading bold="Beneficii" italic="reale" />
+              </div>
+            </ScrollReveal>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
               {service.benefits.map((benefit, index) => (
-                <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
-                  <div className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out h-full">
-                    <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500 group-hover:scale-110">
-                      <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
+                <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
+                  <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 hover:border-[#d4c4b0] hover:shadow-[0_24px_60px_-16px_rgba(139,115,85,0.22)] hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden">
+                    <span className="absolute top-5 right-6 font-serif italic text-[#8b7355]/30 text-2xl leading-none select-none group-hover:text-[#8b7355]/50 transition-colors">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] border border-[#e8e0d5] group-hover:from-[#d4c4b0]/30 group-hover:to-[#d4c4b0]/15 group-hover:border-[#d4c4b0] flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[-4deg]">
+                      <CheckCircle className="w-7 h-7 text-[#8b7355]" strokeWidth={1.75} />
                     </div>
-                    <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                    <h3 className="text-xl md:text-[1.375rem] font-bold text-[#2a2118] mb-3 leading-tight tracking-tight group-hover:text-[#8b7355] transition-colors">
                       {benefit.title}
                     </h3>
-                    <p className="text-sm text-[#5a5048] leading-relaxed">{benefit.description}</p>
+                    <p className="text-sm md:text-[15px] text-[#5a5048] leading-relaxed">{benefit.description}</p>
+                    <span aria-hidden="true" className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-[#d4c4b0] via-[#8b7355] to-[#d4c4b0] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                   </div>
                 </ScrollReveal>
               ))}
@@ -425,6 +335,9 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection />
 
+      {/* Reviews — social proof from Google */}
+      <ReviewsSection locale={locale} />
+
       {/* Servicii conexe — footer CTA banner closes the page */}
       <RelatedServicesSection currentSlug={service.slug} />
 
@@ -490,7 +403,7 @@ function FAQAccordionItem({ question, answer }: { question: string; answer: Arra
 }
 
 // Fallback service page content when Sanity has no data
-async function FallbackServicePageContent({ fallbackService }: { fallbackService: typeof fallbackServices[number] }) {
+async function FallbackServicePageContent({ fallbackService, locale }: { fallbackService: typeof fallbackServices[number]; locale: Locale }) {
   const t = await getTranslations()
   const ServiceIcon = fallbackService.Icon
 
@@ -520,126 +433,60 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {/* Hero — photo-driven editorial with floating stat card + trust pills */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] pt-28 pb-20 md:pt-36 md:pb-28">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
-        <div className="absolute top-32 left-[10%] w-2 h-2 rounded-full bg-[#d4c4b0]/60 hidden lg:block" aria-hidden="true" />
-        <div className="absolute bottom-40 right-[12%] w-3 h-3 rounded-full bg-[#8b7355]/40 hidden lg:block" aria-hidden="true" />
+      <ServiceHero
+        breadcrumbs={[
+          { label: t('breadcrumbs.home'), href: '/' },
+          { label: t('breadcrumbs.services'), href: '/servicii' },
+          { label: t(`services.fallback.${fallbackService.titleKey}`) },
+        ]}
+        title={t(`services.fallback.${fallbackService.titleKey}`)}
+        italicAccent="Satu Mare"
+        subtitle={t(`services.fallback.${fallbackService.descriptionKey}`)}
+        badgeLabel={t('services.heroLabel')}
+        badgeIcon={fallbackService.iconPath ? null : ServiceIcon}
+        badgeIconPath={fallbackService.iconPath ?? null}
+        ctaPrimary={t('common.bookAppointment')}
+        photoSrc={hasPhoto ? photoPath : null}
+        photoAlt={`${serviceName} - clinica stomatologica DentCraft Satu Mare`}
+        fallbackIcon={fallbackService.iconPath ? null : ServiceIcon}
+        fallbackIconPath={fallbackService.iconPath ?? null}
+      />
 
-        <div className="container relative z-10">
-          <nav className="flex items-center gap-2 mb-8 md:mb-12 text-sm animate-[fadeInUp_0.4s_ease-out_both]" aria-label="Breadcrumb">
-            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">{t('breadcrumbs.home')}</Link>
-            <span className="text-[#8b7355]/40">/</span>
-            <Link href="/servicii" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">{t('breadcrumbs.services')}</Link>
-            <span className="text-[#8b7355]/40">/</span>
-            <span className="text-[#2a2118] font-medium">{t(`services.fallback.${fallbackService.titleKey}`)}</span>
-          </nav>
-
-          <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5] mb-6 animate-[fadeInUp_0.5s_ease-out_0.05s_both] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
-                {fallbackService.iconPath ? (
-                  <Image alt="" className="w-5 h-5" height={20} src={fallbackService.iconPath} width={20} />
-                ) : (
-                  <ServiceIcon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
-                )}
-                <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">{t('services.heroLabel')}</span>
-              </div>
-
-              <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-[#2a2118] mb-6 leading-[1.05] tracking-tight animate-[fadeInUp_0.6s_ease-out_0.1s_both]">
-                {t(`services.fallback.${fallbackService.titleKey}`)}{' '}
-                <span className="font-serif italic font-medium text-[#8b7355]">Satu Mare</span>
-              </h1>
-
-              <p className="text-lg md:text-xl text-[#5a5048] mb-8 leading-relaxed max-w-2xl animate-[fadeInUp_0.6s_ease-out_0.2s_both]">
-                {t(`services.fallback.${fallbackService.descriptionKey}`)}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 animate-[fadeInUp_0.6s_ease-out_0.3s_both]">
-                <BookingButton>{t('common.bookAppointment')}</BookingButton>
-                <a
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#e8e0d5] text-[#2a2118] font-semibold hover:border-[#d4c4b0] hover:shadow-[0_10px_40px_-10px_rgba(139,115,85,0.18)] transition-all duration-300"
-                  href="tel:+40741199977"
-                >
-                  <Phone className="w-5 h-5" strokeWidth={1.75} />
-                  0741 199 977
-                </a>
-              </div>
-
-              {/* Trust pills */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 animate-[fadeInUp_0.6s_ease-out_0.4s_both]">
-                {['Plan personalizat', 'Anestezie blândă', 'Garanție lucrări'].map((label) => (
-                  <div key={label} className="flex items-center gap-2 text-sm text-[#5a5048]">
-                    <CheckCircle className="w-4 h-4 text-[#8b7355]" strokeWidth={2.25} />
-                    <span>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Photo with floating stat card */}
-            <div className="relative animate-[fadeInUp_0.7s_ease-out_0.15s_both]">
-              <div className="absolute -top-4 -right-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
-
-              {hasPhoto ? (
-                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#faf6f1] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.3)] border border-[#e8e0d5]">
-                  <Image src={photoPath} alt={`${serviceName} - clinica stomatologica DentCraft Satu Mare`} fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
-                </div>
-              ) : (
-                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 flex items-center justify-center border border-[#e8e0d5]">
-                  {fallbackService.iconPath ? (
-                    <Image alt="" className="w-32 h-32 opacity-30" height={128} src={fallbackService.iconPath} width={128} />
-                  ) : (
-                    <ServiceIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
-                  )}
-                </div>
-              )}
-
-              {/* Floating stat card overlay */}
-              <div className="absolute -bottom-6 left-4 md:bottom-6 md:-left-6 lg:-left-8 z-10 animate-[fadeInUp_0.7s_ease-out_0.5s_both]">
-                <div className="bg-white rounded-2xl shadow-[0_20px_50px_-15px_rgba(42,33,24,0.25)] border border-[#e8e0d5] px-5 py-4 md:px-6 md:py-5">
-                  <div className="flex items-center gap-5 md:gap-6">
-                    <div>
-                      <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1">10+</div>
-                      <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">ani experiență</div>
-                    </div>
-                    <div className="h-10 w-px bg-[#e8e0d5]" />
-                    <div>
-                      <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1 flex items-baseline gap-1">
-                        4.9
-                        <Star className="w-4 h-4 md:w-5 md:h-5 fill-[#d4c4b0] text-[#d4c4b0]" />
-                      </div>
-                      <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">Google · 50+</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div id="service-content" />
 
       {/* Benefits Section — editorial */}
       {fallbackService.benefits && fallbackService.benefits.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
-            <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold="Beneficii" italic="reale" />
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <ScrollReveal animation="fade-up">
+              <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+                  De ce să alegi DentCraft
+                </span>
+                <AnimatedServiceHeading bold="Beneficii" italic="reale" />
+              </div>
+            </ScrollReveal>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
               {fallbackService.benefits.map((benefit, index) => (
-                <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
-                  <div className="group bg-white border border-[#e8e0d5] rounded-3xl p-7 hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out h-full">
-                    <div className="w-12 h-12 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#d4c4b0]/30 group-hover:border-[#d4c4b0] flex items-center justify-center mb-5 transition-colors duration-500 group-hover:scale-110">
-                      <CheckCircle className="w-6 h-6 text-[#8b7355]" strokeWidth={1.75} />
+                <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
+                  <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 hover:border-[#d4c4b0] hover:shadow-[0_24px_60px_-16px_rgba(139,115,85,0.22)] hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden">
+                    {/* number top-right */}
+                    <span className="absolute top-5 right-6 font-serif italic text-[#8b7355]/30 text-2xl leading-none select-none group-hover:text-[#8b7355]/50 transition-colors">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {/* icon */}
+                    <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] border border-[#e8e0d5] group-hover:from-[#d4c4b0]/30 group-hover:to-[#d4c4b0]/15 group-hover:border-[#d4c4b0] flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[-4deg]">
+                      <CheckCircle className="w-7 h-7 text-[#8b7355]" strokeWidth={1.75} />
                     </div>
-                    <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                    <h3 className="text-xl md:text-[1.375rem] font-bold text-[#2a2118] mb-3 leading-tight tracking-tight group-hover:text-[#8b7355] transition-colors">
                       {t(`services.fallback.${benefit.titleKey}`)}
                     </h3>
-                    <p className="text-sm text-[#5a5048] leading-relaxed">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
+                    <p className="text-sm md:text-[15px] text-[#5a5048] leading-relaxed">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
+                    {/* bottom accent line that slides in on hover */}
+                    <span aria-hidden="true" className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-[#d4c4b0] via-[#8b7355] to-[#d4c4b0] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                   </div>
                 </ScrollReveal>
               ))}
@@ -687,6 +534,9 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection />
 
+      {/* Reviews — social proof from Google */}
+      <ReviewsSection locale={locale} />
+
       {/* Servicii conexe — footer CTA banner closes the page */}
       <RelatedServicesSection currentSlug={fallbackService.slug} />
 
@@ -702,9 +552,9 @@ function DoctorProfileSection() {
   if (!doctor) return null
 
   return (
-    <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-14 md:mb-16">
@@ -803,6 +653,32 @@ function DoctorProfileSection() {
           </ScrollReveal>
         </div>
       </div>
+    </section>
+  )
+}
+
+// Reviews — Google reviews marquee, mirrors the landing page section
+function ReviewsSection({ locale }: { locale: Locale }) {
+  return (
+    <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-80 h-80 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <ScrollReveal animation="fade-up">
+          <div className="text-center mb-14 md:mb-16">
+            <AnimatedServiceHeading bold="Ce spun" italic="pacienții" />
+          </div>
+        </ScrollReveal>
+      </div>
+      <ScrollReveal animation="fade-up" delay={150}>
+        <GoogleReviewsSlider
+          googleMapsUrl={googleReviewsData.googleMapsUrl}
+          locale={locale}
+          rating={googleReviewsData.rating}
+          reviews={googleReviewsData.reviews}
+          totalReviews={googleReviewsData.totalReviews}
+        />
+      </ScrollReveal>
     </section>
   )
 }

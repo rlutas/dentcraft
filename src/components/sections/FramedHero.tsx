@@ -155,26 +155,38 @@ export function FramedHero() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — vertical line with travelling drop + chevron bounce */}
         <motion.button
           type="button"
           onClick={() => {
-            const next = document.querySelector('section + section, header + section')
-            next?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
           }}
-          aria-label="Scrollează în jos"
-          initial={{ opacity: 0, y: 8 }}
+          aria-label="Derulează în jos"
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 group flex-col items-center gap-1 px-3 py-2 rounded-full transition-colors hover:bg-white/5"
+          transition={{ delay: 2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="group hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-full p-2 -m-2"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/70 group-hover:text-white transition-colors">scroll</span>
-          <span className="relative flex h-7 w-7 items-center justify-center rounded-full bg-white/10 backdrop-blur ring-1 ring-white/30 overflow-hidden">
-            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/0 via-white/80 to-white/0" />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70 group-hover:text-white transition-colors">
+            Scroll
           </span>
-          <motion.span animate={{ y: [0, 4, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="mt-1 text-white/70 group-hover:text-white transition-colors">
-            <ChevronDown className="w-4 h-4" strokeWidth={2.5} />
-          </motion.span>
+          <span className="relative flex flex-col items-center">
+            <span className="relative w-[1.5px] h-10 overflow-hidden rounded-full bg-white/15">
+              <motion.span
+                aria-hidden="true"
+                animate={{ y: ['-100%', '100%'] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/0 via-white/80 to-white/0"
+              />
+            </span>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              className="mt-1 text-white/70 group-hover:text-white transition-colors"
+            >
+              <ChevronDown className="w-4 h-4" strokeWidth={2.5} />
+            </motion.span>
+          </span>
         </motion.button>
       </div>
     </section>

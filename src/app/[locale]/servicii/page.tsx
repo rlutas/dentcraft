@@ -107,7 +107,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
         <div className="container">
           <h2 className="sr-only">{t('services.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {services.map((service, index) => {
+            {services.map((service) => {
               const ServiceIcon = getIconByName(service.icon)
               const hasPhoto = hasServicePhoto(service.slug)
               const photoPath = getServicePhotoPath(service.slug) ?? ''
@@ -122,9 +122,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
                     hover:border-[#d4c4b0]
                     hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
                     hover:-translate-y-1.5
-                    transition-all duration-500 ease-out flex flex-col
-                    animate-[fadeInUp_0.5s_ease-out_both]"
-                  style={{ animationDelay: `${index * 0.05}s` }}
+                    transition-all duration-500 ease-out flex flex-col"
                 >
                   {/* Photo or placeholder */}
                   <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
@@ -202,7 +200,7 @@ async function PlaceholderServicesPage() {
       <section className="py-20 md:py-28 bg-white">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {getMainFallbackServices().map((service, index) => {
+            {getMainFallbackServices().map((service) => {
               const hasPhoto = hasServicePhoto(service.slug)
               const photoPath = getServicePhotoPath(service.slug) ?? ''
               return (
@@ -215,9 +213,7 @@ async function PlaceholderServicesPage() {
                     hover:border-[#d4c4b0]
                     hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
                     hover:-translate-y-1.5
-                    transition-all duration-500 ease-out flex flex-col
-                    animate-[fadeInUp_0.5s_ease-out_both]"
-                  style={{ animationDelay: `${index * 0.05}s` }}
+                    transition-all duration-500 ease-out flex flex-col"
                 >
                   {/* Photo or placeholder */}
                   <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
