@@ -360,7 +360,7 @@ export function FramedHero() {
         {/* Gradient overlays — strong at bottom for text readability, subtle at top for navbar */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-15% via-50% to-100% md:from-[#1a1410]/75 md:via-[#2a2118]/25 md:to-transparent md:from-5% md:via-40% md:to-90%"
+          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-15% via-50% to-100%"
         />
         <div
           aria-hidden="true"
@@ -665,12 +665,9 @@ export function FramedHero() {
                             <service.Icon className="w-6 h-6 text-[#8b7355]" strokeWidth={1.5} />
                           )}
                         </div>
-                        <div className="flex-1 min-w-0 pt-0.5">
-                          <div className="font-semibold text-[#2a2118] text-[14px] leading-tight mb-1 group-hover:text-[#8b7355] transition-colors">
+                        <div className="flex-1 min-w-0 self-center">
+                          <div className="font-semibold text-[#2a2118] text-[14px] leading-tight group-hover:text-[#8b7355] transition-colors">
                             {tServices(`fallback.${service.titleKey}`)}
-                          </div>
-                          <div className="text-[12px] text-[#5a5048] leading-snug line-clamp-2">
-                            {tServices(`fallback.${service.descriptionKey}`)}
                           </div>
                         </div>
                       </Link>
