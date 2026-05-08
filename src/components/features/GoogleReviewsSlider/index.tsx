@@ -81,7 +81,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: Locale }) {
       </div>
 
       {/* Review Text */}
-      <p className="text-[var(--color-primary)] leading-relaxed line-clamp-3 text-sm">
+      <p className="text-[#2a2118] leading-relaxed line-clamp-4 text-sm">
         {typeof review.text === 'object' ? review.text[locale] : review.text}
       </p>
     </div>
@@ -89,7 +89,8 @@ function ReviewCard({ review, locale }: { review: Review; locale: Locale }) {
 }
 
 export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, googleMapsUrl }: GoogleReviewsSliderProps) {
-  const [isPaused, setIsPaused] = useState(false)
+  const [topPaused, setTopPaused] = useState(false)
+  const [bottomPaused, setBottomPaused] = useState(false)
 
   // Filter out reviews without text
   const reviewsWithText = reviews.filter(review => {
@@ -138,15 +139,15 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
 
       {/* Marquee Container - Full Screen Width */}
       <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
-        <div
-          className="space-y-8 md:space-y-10 overflow-hidden py-4"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Top Row - Scrolls Left */}
-          <div className="relative">
+        <div className="space-y-8 md:space-y-10 overflow-hidden py-4">
+          {/* Top Row - Scrolls Left — pauses independently on hover */}
+          <div
+            className="relative"
+            onMouseEnter={() => setTopPaused(true)}
+            onMouseLeave={() => setTopPaused(false)}
+          >
             <div
-              className={`flex gap-5 w-max animate-marquee-left ${isPaused ? 'animate-paused' : ''}`}
+              className={`flex gap-5 w-max animate-marquee-left ${topPaused ? 'animate-paused' : ''}`}
             >
               {topRowDuplicated.map((review, index) => (
                 <ReviewCard key={`top-${review.id}-${index}`} locale={locale} review={review} />
@@ -154,10 +155,14 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
             </div>
           </div>
 
-          {/* Bottom Row - Scrolls Right */}
-          <div className="relative">
+          {/* Bottom Row - Scrolls Right — pauses independently on hover */}
+          <div
+            className="relative"
+            onMouseEnter={() => setBottomPaused(true)}
+            onMouseLeave={() => setBottomPaused(false)}
+          >
             <div
-              className={`flex gap-5 w-max animate-marquee-right ${isPaused ? 'animate-paused' : ''}`}
+              className={`flex gap-5 w-max animate-marquee-right ${bottomPaused ? 'animate-paused' : ''}`}
             >
               {bottomRowDuplicated.map((review, index) => (
                 <ReviewCard key={`bottom-${review.id}-${index}`} locale={locale} review={review} />

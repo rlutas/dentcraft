@@ -118,7 +118,6 @@ export function DoctorVideoCard({
 }: Props) {
   const isControlled = typeof isPlaying === 'boolean'
   const [internalPlaying, setInternalPlaying] = useState(false)
-  const [canHover, setCanHover] = useState(true)
   const playing = isControlled ? isPlaying : internalPlaying
   const startPlay = () => {
     if (onPlay) onPlay()
@@ -127,12 +126,7 @@ export function DoctorVideoCard({
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    setCanHover(window.matchMedia('(hover: hover)').matches)
-  }, [])
-
-  useEffect(() => {
-    if (!playing || !canHover) return
+    if (!playing) return
     let cancelled = false
     ensureYTApi().then(() => {
       if (cancelled || !iframeRef.current) return
@@ -153,7 +147,7 @@ export function DoctorVideoCard({
     return () => {
       cancelled = true
     }
-  }, [playing, canHover])
+  }, [playing])
 
   const posterProps = { posterSrc, posterAlt, doctorName, doctorRole }
 
@@ -168,7 +162,7 @@ export function DoctorVideoCard({
           shadow-[0_20px_50px_-15px_rgba(42,33,24,0.18)] group-hover:shadow-[0_30px_70px_-15px_rgba(139,115,85,0.25)]
           group-hover:-translate-y-1.5"
       >
-        {playing && canHover ? (
+        {playing ? (
           <iframe
             ref={iframeRef}
             src={`https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&vq=hd720&enablejsapi=1`}
@@ -177,8 +171,7 @@ export function DoctorVideoCard({
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
-        ) : canHover ? (
-          // Desktop: button triggers inline iframe
+        ) : (
           <button
             type="button"
             onClick={startPlay}
@@ -187,17 +180,6 @@ export function DoctorVideoCard({
           >
             <PosterContent {...posterProps} />
           </button>
-        ) : (
-          // Mobile/touch: anchor link opens YouTube Shorts directly (one-tap, no double-tap issue)
-          <a
-            href={`https://youtube.com/shorts/${videoId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Vezi videoul cu ${doctorName} pe YouTube Shorts`}
-            className="absolute inset-0 w-full h-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-3xl"
-          >
-            <PosterContent {...posterProps} />
-          </a>
         )}
       </div>
     </div>

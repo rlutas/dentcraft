@@ -644,7 +644,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="container relative z-10">
           {/* Section header — matches hero typography */}
           <div className="text-center mb-12 md:mb-16">
-            <AnimatedServiceHeading bold="50+ recenzii" italic="reale" />
+            <AnimatedServiceHeading bold="Ce spun" italic="pacienții" />
             <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
                 Pacientii nostri vorbesc — fiecare recenzie e verificata pe Google si reflecta experienta lor reala la clinica DentCraft.
