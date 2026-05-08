@@ -4,17 +4,9 @@ import { notFound } from 'next/navigation'
 import {
   ArrowRight,
   Award,
-  BookOpen,
   Camera,
   GraduationCap,
-  Phone,
-  User,
-  Calendar,
-  MapPin,
-  Sparkles,
-  Play,
   Video,
-  ChevronRight,
 } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
@@ -26,7 +18,6 @@ import { getBreadcrumbSchema, getPersonSchema } from '@/lib/schema'
 import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { CountUp } from '@/components/ui/CountUp'
-import { TeamMemberBookingButton } from '@/components/ui/TeamMemberBookingButton'
 import { TeamMemberHero } from '@/components/sections/TeamMemberHero'
 import { splitName, getDoctorVideoForSlug, getMemberBadge, shortBio } from '@/lib/team-utils'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
@@ -141,83 +132,6 @@ export default async function TeamMemberPage({ params }: Props) {
   }
 
   return <TeamMemberPageContent member={member} />
-}
-
-// ─── Shared UI Components ────────────────────────────────────────────────────
-
-function HeroBreadcrumb({ name }: { name: string }) {
-  return (
-    <nav className="flex items-center gap-1.5 text-[13px] mb-8 md:mb-8">
-      <Link href="/" className="text-white/35 hover:text-white/60 transition-colors">
-        Acasa
-      </Link>
-      <ChevronRight className="w-3 h-3 text-white/15" />
-      <Link href="/echipa" className="text-white/35 hover:text-white/60 transition-colors">
-        Echipa
-      </Link>
-      <ChevronRight className="w-3 h-3 text-white/15" />
-      <span className="text-[#d4c4b0]/80">{name}</span>
-    </nav>
-  )
-}
-
-function HeroBackground() {
-  return (
-    <>
-      {/* Dramatic warm lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
-      <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-[#d4c4b0]/5 rounded-full blur-[80px]" />
-
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-        backgroundSize: '80px 80px'
-      }} />
-    </>
-  )
-}
-
-function SpecBadge({ label }: { label: string }) {
-  return (
-    <span className="px-4 py-2 text-sm bg-white/[0.06] backdrop-blur-sm text-[#d4c4b0] rounded-full border border-white/[0.08] font-medium">
-      {label}
-    </span>
-  )
-}
-
-function HeroInfoRow() {
-  return (
-    <div className="flex flex-wrap justify-center lg:justify-start gap-5 mb-8 text-sm text-white/50">
-      <div className="flex items-center gap-2">
-        <MapPin className="w-4 h-4 text-[#d4c4b0]" />
-        <span>Satu Mare</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <Calendar className="w-4 h-4 text-[#d4c4b0]" />
-        <span>L-V: 10:00 - 18:00</span>
-      </div>
-    </div>
-  )
-}
-
-function HeroCTAButtons({ memberName, memberRole }: { memberName: string; memberRole: string | null }) {
-  return (
-    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-      <TeamMemberBookingButton
-        memberName={memberName}
-        memberRole={memberRole}
-        variant="hero"
-      />
-      <a
-        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white rounded-full font-semibold text-lg border-2 border-white/20 hover:border-[#d4c4b0]/50 hover:bg-white/5 transition-all duration-300"
-        href="tel:+40741199977"
-      >
-        <Phone className="w-5 h-5" strokeWidth={2} />
-        0741 199 977
-      </a>
-    </div>
-  )
 }
 
 type DoctorVideoState =
@@ -439,7 +353,6 @@ function PhotoGallery({ images }: { images: Array<{ src: string; alt: string; po
 
 async function AboutSection({
   firstName,
-  aboutLabel,
   isDoctor,
   yearsExperience,
   specializationsCount,
@@ -448,7 +361,6 @@ async function AboutSection({
   gallery,
 }: {
   firstName: string
-  aboutLabel: string
   isDoctor: boolean
   yearsExperience: number
   specializationsCount: number
@@ -685,7 +597,6 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
           {member.bio && member.bio.length > 0 && (
             <AboutSection
               firstName={firstName}
-              aboutLabel={t('team.about')}
               isDoctor
               yearsExperience={computeYearsExperience(member.education, member.certifications)}
               specializationsCount={member.specializations?.length ?? 0}
@@ -874,7 +785,6 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
           {/* ───── ABOUT SECTION (Redesigned) ───── */}
           <AboutSection
             firstName={firstName}
-            aboutLabel={t('team.about')}
             isDoctor
             yearsExperience={member.stats?.yearsExperience ?? computeYearsExperience(member.education, member.certifications)}
             specializationsCount={member.specializations.length}
