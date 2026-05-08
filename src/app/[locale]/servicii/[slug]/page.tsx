@@ -213,14 +213,14 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
           { label: service.title },
         ]}
         title={service.title}
-        italicAccent="Satu Mare"
+        italicAccent={t('services.italicAccent')}
         subtitle={service.shortDescription ?? null}
         badgeLabel={t('services.heroLabel')}
         badgeIcon={ServiceIcon}
         priceMinLabel={service.priceRange ? `${service.priceRange.min} RON` : null}
         ctaPrimary={t('common.bookAppointment')}
         photoSrc={hasLocalPhoto ? localPhotoPath : service.heroImage ? urlFor(service.heroImage).width(1200).height(750).auto('format').url() : null}
-        photoAlt={hasLocalPhoto || !service.heroImage ? `${service.title} - clinica stomatologica DentCraft Satu Mare` : (service.heroImage.alt || `${service.title} - clinica stomatologica DentCraft Satu Mare`)}
+        photoAlt={hasLocalPhoto || !service.heroImage ? t('services.photoAlt', { title: service.title }) : (service.heroImage.alt || t('services.photoAlt', { title: service.title }))}
         fallbackIcon={ServiceIcon}
       />
 
@@ -247,9 +247,9 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
               <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                  De ce să alegi DentCraft
+                  {t('services.detail.whyChooseLabel')}
                 </span>
-                <AnimatedServiceHeading bold="Beneficii" italic="reale" />
+                <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
               </div>
             </ScrollReveal>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
@@ -281,7 +281,7 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
           <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
             <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold="Procesul" italic="tratamentului" />
+              <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
             </div>
             <div className="max-w-4xl mx-auto">
               <div className="relative">
@@ -298,7 +298,7 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
                           <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
                             <div className="flex items-center gap-2 mb-2">
                               <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
-                              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">Pasul {step.stepNumber}</span>
+                              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
                             </div>
                             <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">{step.title}</h3>
                             <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
@@ -319,7 +319,7 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
             <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold="Întrebări" italic="frecvente" />
+              <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
             </div>
             <div className="max-w-3xl mx-auto space-y-3">
               {faqs.map((faq, idx) => (
@@ -464,9 +464,9 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
               <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                  De ce să alegi DentCraft
+                  {t('services.detail.whyChooseLabel')}
                 </span>
-                <AnimatedServiceHeading bold="Beneficii" italic="reale" />
+                <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
               </div>
             </ScrollReveal>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
@@ -501,7 +501,7 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
           <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
             <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold="Procesul" italic="tratamentului" />
+              <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
             </div>
             <div className="max-w-4xl mx-auto">
               <div className="relative">
@@ -547,9 +547,10 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
 // ===== Shared section components for /servicii/[slug] =====
 
 // Doctor profile — show Dr. Petric (coordinator) by default for trust + E-E-A-T
-function DoctorProfileSection() {
+async function DoctorProfileSection() {
   const doctor = fallbackTeamMembers.find((m) => m.slug === 'razvan-petric')
   if (!doctor) return null
+  const t = await getTranslations()
 
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
@@ -558,7 +559,7 @@ function DoctorProfileSection() {
       <div className="container relative z-10">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-14 md:mb-16">
-            <AnimatedServiceHeading bold="Realizat de" italic="specialiști" />
+            <AnimatedServiceHeading bold={t('services.detail.doctorBold')} italic={t('services.detail.doctorItalic')} />
           </div>
         </ScrollReveal>
 
@@ -573,7 +574,7 @@ function DoctorProfileSection() {
                   {doctor.photo && (
                     <Image
                       src={doctor.photo}
-                      alt={`${doctor.name} - ${doctor.role} la clinica Dentcraft Satu Mare`}
+                      alt={t('team.profile.doctorPhotoAlt', { name: doctor.name, role: doctor.role })}
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-top"
@@ -613,7 +614,7 @@ function DoctorProfileSection() {
                           {doctor.stats.yearsExperience}+
                         </div>
                         <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          ani experiență
+                          {t('services.detail.yearsExperience')}
                         </div>
                       </div>
                     )}
@@ -623,7 +624,7 @@ function DoctorProfileSection() {
                           {doctor.stats.patientsCount}+
                         </div>
                         <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          pacienți tratați
+                          {t('services.detail.patientsTreated')}
                         </div>
                       </div>
                     )}
@@ -633,7 +634,7 @@ function DoctorProfileSection() {
                         <Star className="w-4 h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
                       </div>
                       <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                        Google
+                        {t('services.detail.googleLabel')}
                       </div>
                     </div>
                   </div>
@@ -643,7 +644,7 @@ function DoctorProfileSection() {
                   href={{ pathname: '/echipa/[slug]', params: { slug: doctor.slug } }}
                   className="group inline-flex items-center px-7 py-3.5 bg-[#2a2118] text-white rounded-full text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
                 >
-                  <span>Vezi profilul complet</span>
+                  <span>{t('services.detail.viewProfile')}</span>
                   <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                     <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
                   </span>
@@ -658,7 +659,8 @@ function DoctorProfileSection() {
 }
 
 // Reviews — Google reviews marquee, mirrors the landing page section
-function ReviewsSection({ locale }: { locale: Locale }) {
+async function ReviewsSection({ locale }: { locale: Locale }) {
+  const t = await getTranslations('services.detail')
   return (
     <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-80 h-80 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
@@ -666,7 +668,7 @@ function ReviewsSection({ locale }: { locale: Locale }) {
       <div className="container relative z-10">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-14 md:mb-16">
-            <AnimatedServiceHeading bold="Ce spun" italic="pacienții" />
+            <AnimatedServiceHeading bold={t('reviewsBold')} italic={t('reviewsItalic')} />
           </div>
         </ScrollReveal>
       </div>

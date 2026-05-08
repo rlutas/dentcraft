@@ -1,10 +1,11 @@
 'use client'
 
-import { ArrowRight, Camera, Eye, Images, Sparkles } from 'lucide-react'
+import { ArrowRight, Eye, Images, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { Link } from '@/i18n/navigation'
 import { GalleryModal, type GalleryCase } from '@/components/features/BeforeAfterGallery'
+import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 
 type SanityService = {
   _id: string
@@ -45,6 +46,17 @@ type GalleryPageClientProps = {
     subtitle: string
     title: string
     viewDetails: string
+    headingBold: string
+    headingItalic: string
+    beforeAfterBold: string
+    beforeAfterItalic: string
+    clinicHeadingBold: string
+    clinicHeadingItalic: string
+    doctorPrefix: string
+    closeLabel: string
+    categoryClinic: string
+    categoryTeam: string
+    categoryEquipment: string
   }
 }
 
@@ -74,46 +86,23 @@ export function GalleryPageClient({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Dark Editorial (same as other pages) */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
-        {/* Dramatic lighting */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Hero — light editorial matching /servicii rhythm */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-3 mb-12">
-            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              {t.breadcrumbHome}
-            </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">{t.breadcrumbGallery}</span>
-          </div>
-
-          <div className="max-w-4xl">
-            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              {t.heroLabel}
-            </span>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              {t.title}
-            </h1>
-
-            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+          <div className="text-center max-w-3xl mx-auto">
+            <AnimatedServiceHeading bold={t.headingBold} italic={t.headingItalic} />
+            <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t.subtitle}
             </p>
-          </div>
-
-          {/* Decorative line */}
-          <div className="mt-16 flex items-center gap-6">
-            <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{t.casesCount}</span>
+            <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                {t.casesCount}
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -162,15 +151,9 @@ export function GalleryPageClient({
 
         <div className="container relative z-10">
           {/* Section header */}
-          <div className="text-center mb-14">
-            <span className="inline-block px-4 py-2 mb-5 text-sm font-semibold tracking-wider uppercase
-              text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-              {t.sectionBadge}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-              {t.sectionTitle}
-            </h2>
-            <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
+          <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+            <AnimatedServiceHeading bold={t.beforeAfterBold} italic={t.beforeAfterItalic} />
+            <p className="text-base md:text-lg text-[#5a5048] max-w-xl mx-auto leading-relaxed mt-4">
               {t.sectionSubtitle}
             </p>
           </div>
@@ -215,16 +198,9 @@ export function GalleryPageClient({
 
           <div className="container relative z-10">
             {/* Section header */}
-            <div className="text-center mb-14">
-              <span className="inline-block px-4 py-2 mb-5 text-sm font-semibold tracking-wider uppercase
-                text-[#8b7355] bg-white rounded-full border border-[#e8e0d5]">
-                <Camera className="w-4 h-4 inline mr-2 -mt-0.5" />
-                {t.clinicBadge}
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-                {t.clinicTitle}
-              </h2>
-              <p className="text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
+            <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+              <AnimatedServiceHeading bold={t.clinicHeadingBold} italic={t.clinicHeadingItalic} />
+              <p className="text-base md:text-lg text-[#5a5048] max-w-xl mx-auto leading-relaxed mt-4">
                 {t.clinicSubtitle}
               </p>
             </div>
@@ -239,9 +215,7 @@ export function GalleryPageClient({
                     key={photo.src}
                     className={`gallery-photo-card group relative overflow-hidden rounded-xl md:rounded-2xl
                       cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8b7355] focus:ring-offset-2
-                      animate-[fadeInUp_0.5s_ease-out_both]
                       ${isWide ? 'col-span-2 aspect-[16/9]' : 'aspect-square'}`}
-                    style={{ animationDelay: `${index * 0.06}s` }}
                     type="button"
                     onClick={() => setLightboxPhoto(photo)}
                   >
@@ -265,7 +239,7 @@ export function GalleryPageClient({
                       translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100
                       transition-all duration-400">
                       <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-lg text-xs font-semibold text-[#2a2118]">
-                        {photo.category === 'clinic' ? 'Clinica' : photo.category === 'team' ? 'Echipa' : 'Echipamente'}
+                        {photo.category === 'clinic' ? t.categoryClinic : photo.category === 'team' ? t.categoryTeam : t.categoryEquipment}
                       </span>
                       <span className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
                         <Eye className="w-4 h-4 text-[#2a2118]" />
@@ -291,7 +265,7 @@ export function GalleryPageClient({
             className="absolute top-4 right-4 z-10 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
             onClick={() => setLightboxPhoto(null)}
             type="button"
-            aria-label="Inchide"
+            aria-label={t.closeLabel}
           >
             <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -469,7 +443,7 @@ function GalleryCard({
               <svg className="w-3.5 h-3.5 text-[#d4c4b0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
-              <span>Dr. {caseItem.doctor.name}</span>
+              <span>{t.doctorPrefix} {caseItem.doctor.name}</span>
             </div>
           )}
         </div>
@@ -491,13 +465,13 @@ export function PlaceholderGalleryClient({
   if (currentFilter) {
     return (
       <div className="flex flex-col">
-        {/* Hero Section - Dark Editorial */}
-        <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
+        {/* Hero — light editorial */}
+        <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
-            <div className="max-w-4xl">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight">{t.title}</h1>
-              <p className="text-xl text-white/50 max-w-2xl leading-relaxed">{t.subtitle}</p>
+            <div className="text-center max-w-3xl mx-auto">
+              <AnimatedServiceHeading bold={t.headingBold} italic={t.headingItalic} />
+              <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">{t.subtitle}</p>
             </div>
           </div>
         </section>
@@ -594,27 +568,14 @@ export function PlaceholderGalleryGrid({
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Dark Editorial */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Hero — light editorial matching /servicii rhythm */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
         <div className="container relative z-10">
-          <div className="flex items-center gap-3 mb-12">
-            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">{t.breadcrumbHome}</Link>
-            <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">{t.breadcrumbGallery}</span>
-          </div>
-          <div className="max-w-4xl">
-            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              {t.heroLabel}
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              {t.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+          <div className="text-center max-w-3xl mx-auto">
+            <AnimatedServiceHeading bold={t.headingBold} italic={t.headingItalic} />
+            <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t.subtitle}
             </p>
           </div>
@@ -626,27 +587,19 @@ export function PlaceholderGalleryGrid({
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
         <div className="container relative z-10">
-          <div className="text-center mb-14">
-            <span className="inline-block px-4 py-2 mb-5 text-sm font-semibold tracking-wider uppercase
-              text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5]">
-              {t.sectionBadge}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-              {t.sectionTitle}
-            </h2>
+          <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+            <AnimatedServiceHeading bold={t.beforeAfterBold} italic={t.beforeAfterItalic} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {placeholderCases.map((caseItem, index) => (
+            {placeholderCases.map((caseItem) => (
               <div
                 key={caseItem.key}
                 className="group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden
                   border border-[#f0ebe3] hover:border-[#d4c4b0]
                   shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)]
                   hover:shadow-[0_20px_60px_-15px_rgba(139,115,85,0.18)]
-                  transition-all duration-500 ease-out hover:-translate-y-1.5
-                  animate-[fadeInUp_0.5s_ease-out_both]"
-                style={{ animationDelay: `${index * 0.08}s` }}
+                  transition-all duration-500 ease-out hover:-translate-y-1.5"
               >
                 {/* Placeholder Image */}
                 <div className="relative w-full aspect-[4/3] overflow-hidden

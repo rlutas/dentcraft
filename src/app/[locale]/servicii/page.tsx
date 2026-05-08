@@ -89,7 +89,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
         <div className="container relative z-10">
           {/* Breadcrumb */}
           <div className="text-center max-w-3xl mx-auto">
-            <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
+            <AnimatedServiceHeading bold={t('services.headingBold')} italic={t('services.headingItalic')} />
             <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t('services.subtitle')}
             </p>
@@ -183,7 +183,7 @@ async function PlaceholderServicesPage() {
 
         <div className="container relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <AnimatedServiceHeading bold="Servicii" italic="stomatologice" />
+            <AnimatedServiceHeading bold={t('services.headingBold')} italic={t('services.headingItalic')} />
             <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t('services.subtitle')}
             </p>

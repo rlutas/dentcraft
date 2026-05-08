@@ -64,6 +64,7 @@ const navItems = [
   { href: '/echipa', key: 'team' },
   { href: '/preturi', key: 'prices' },
   { href: '/galerie', key: 'gallery' },
+  { href: '/blog', key: 'blog' },
   { href: '/contact', key: 'contact' },
 ] as const
 
@@ -108,7 +109,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[200] md:hidden">
+        <div className="fixed inset-0 z-[200] xl:hidden">
           <motion.div
             aria-hidden="true"
             initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
@@ -253,17 +254,17 @@ export function FramedNav() {
   return (
     <>
       <nav className={cn('fixed z-[150] transition-all duration-500 ease-out', isScrolled ? 'top-2 left-2 right-2 md:top-3 md:left-4 md:right-4 lg:left-6 lg:right-6' : 'top-3 left-3 right-3 md:top-6 md:left-8 md:right-8 lg:left-12 lg:right-12')}>
-        <div className={cn('flex items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] mx-auto rounded-full border transition-all duration-500 ease-out', isScrolled ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-1.5 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]' : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-2 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]')}>
+        <div className={cn('flex items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] mx-auto rounded-full border transition-all duration-500 ease-out', isScrolled ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-1.5 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]' : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-2 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]')}>
           <Link href="/" className="flex items-center shrink-0 group justify-self-start">
             <Image src="/branding/LOGO_BLACK_FINAL.png" alt="DentCraft" width={420} height={59} priority className={cn('w-auto transition-all duration-500 group-hover:opacity-80', isScrolled ? 'h-5' : 'h-5 md:h-6')} />
           </Link>
 
-          <ul className="hidden lg:flex items-center justify-center gap-1 text-[15px] font-bold uppercase tracking-[0.14em]">
+          <ul className="hidden xl:flex items-center justify-center gap-1 text-[15px] font-bold uppercase tracking-[0.14em]">
             <li className="relative" onMouseEnter={openServices} onMouseLeave={closeServices}>
               <button
                 type="button"
                 onClick={() => setIsServicesOpen((prev) => !prev)}
-                className={cn('flex items-center gap-1.5 px-3 py-2 rounded-full text-[15px] font-bold uppercase tracking-[0.14em] transition-colors', isServicesOpen ? 'text-[#2a2118] bg-[#faf6f1]' : 'text-[#2a2118]/70 hover:text-[#2a2118] hover:bg-[#faf6f1]')}
+                className={cn('flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-full text-[13px] xl:text-[15px] font-bold uppercase tracking-[0.12em] xl:tracking-[0.14em] transition-colors', isServicesOpen ? 'text-[#2a2118] bg-[#faf6f1]' : 'text-[#2a2118]/70 hover:text-[#2a2118] hover:bg-[#faf6f1]')}
                 aria-expanded={isServicesOpen}
                 aria-haspopup="true"
               >
@@ -308,7 +309,7 @@ export function FramedNav() {
 
             {navItems.map((item) => (
               <li key={item.key}>
-                <Link href={item.href} className="group relative px-3 py-2 rounded-full text-[#2a2118]/75 hover:text-[#2a2118] transition-colors">
+                <Link href={item.href} className="group relative px-2.5 xl:px-3 py-2 rounded-full text-[#2a2118]/75 hover:text-[#2a2118] transition-colors">
                   <span className="relative">
                     {t(item.key)}
                     <span aria-hidden="true" className="absolute left-1/2 -bottom-0.5 h-[2px] w-0 -translate-x-1/2 bg-[#d4c4b0] rounded-full transition-[width] duration-300 group-hover:w-3/4" />
@@ -319,7 +320,7 @@ export function FramedNav() {
           </ul>
 
           <div className="flex items-center gap-2 shrink-0 justify-self-end">
-            <div className="hidden lg:block relative" onMouseEnter={() => { if (langCloseTimer.current) clearTimeout(langCloseTimer.current); setIsLangOpen(true) }} onMouseLeave={() => { langCloseTimer.current = setTimeout(() => setIsLangOpen(false), 150) }}>
+            <div className="hidden xl:block relative" onMouseEnter={() => { if (langCloseTimer.current) clearTimeout(langCloseTimer.current); setIsLangOpen(true) }} onMouseLeave={() => { langCloseTimer.current = setTimeout(() => setIsLangOpen(false), 150) }}>
               <button
                 type="button"
                 onClick={() => setIsLangOpen((v) => !v)}
@@ -353,20 +354,20 @@ export function FramedNav() {
               </div>
             </div>
 
-            <a href="tel:+40741199977" aria-label="Sună-ne: 0741 199 977" title="0741 199 977" className="hidden md:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#2a2118] hover:bg-[#4a3d30] transition-colors group">
+            <a href="tel:+40741199977" aria-label="Sună-ne: 0741 199 977" title="0741 199 977" className="hidden xl:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#2a2118] hover:bg-[#4a3d30] transition-colors group">
               <Phone className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
             </a>
             <button
               type="button"
               onClick={() => setBookingOpen(true)}
-              className="group hidden sm:inline-flex items-center px-6 md:px-9 py-3 md:py-4 bg-[#2a2118] text-white rounded-full text-sm md:text-base font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+              className="group hidden sm:inline-flex md:hidden xl:inline-flex items-center whitespace-nowrap px-5 sm:px-6 xl:px-9 py-3 xl:py-4 bg-[#2a2118] text-white rounded-full text-sm xl:text-base font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
               <span>{tHero('ctaPrimary')}</span>
               <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-2 max-w-5 opacity-100 translate-x-0 md:ml-0 md:max-w-0 md:opacity-0 md:-translate-x-2 md:group-hover:ml-2 md:group-hover:max-w-5 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
               </span>
             </button>
-            <button type="button" onClick={() => setMobileOpen(true)} className="lg:hidden p-2.5 sm:p-3 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors" aria-label="Deschide meniul">
+            <button type="button" onClick={() => setMobileOpen(true)} className="xl:hidden p-2.5 sm:p-3 rounded-full text-[#2a2118] hover:bg-[#faf6f1] transition-colors" aria-label="Deschide meniul">
               <HamburgerIcon className="w-7 h-7 sm:w-8 sm:h-8" open={mobileOpen} />
             </button>
           </div>

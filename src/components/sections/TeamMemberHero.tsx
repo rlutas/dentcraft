@@ -2,50 +2,47 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown, Phone } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { ArrowRight, ChevronDown, Phone, Sparkles, User } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { BookingButton } from '@/components/ui/BookingButton'
 
 interface BreadcrumbItem {
   label: string
-  href?: '/' | '/servicii'
+  href?: '/' | '/echipa'
 }
 
-export interface ServiceHeroProps {
+export interface TeamMemberHeroProps {
   breadcrumbs: BreadcrumbItem[]
-  title: string
-  italicAccent: string
-  subtitle?: string | null
-  badgeLabel: string
-  badgeIcon?: LucideIcon | null
-  badgeIconPath?: string | null
-  priceMinLabel?: string | null
+  /** First half of the name (e.g. "Dr. Petric"). Renders as bold word stagger. */
+  nameBold: string
+  /** Second half of the name (e.g. "Razvan-Tudor"). Renders as italic letter stagger. */
+  nameItalic: string
+  role?: string | null
+  bio?: string | null
+  specializations?: string[]
   ctaPrimary: string
+  /** Photo URL or null for the User-icon placeholder */
   photoSrc: string | null
   photoAlt: string
-  fallbackIcon?: LucideIcon | null
-  fallbackIconPath?: string | null
+  /** Floating badge overlay on the photo (Expert/Medic/Asistent/Recepție...) */
+  photoBadge: { title: string; subtitle: string }
 }
 
-export function ServiceHero({
+export function TeamMemberHero({
   breadcrumbs,
-  title,
-  italicAccent,
-  subtitle,
-  badgeLabel,
-  badgeIcon: BadgeIcon,
-  badgeIconPath,
-  priceMinLabel,
+  nameBold,
+  nameItalic,
+  role,
+  bio,
+  specializations,
   ctaPrimary,
   photoSrc,
   photoAlt,
-  fallbackIcon: FallbackIcon,
-  fallbackIconPath,
-}: ServiceHeroProps) {
+  photoBadge,
+}: TeamMemberHeroProps) {
   const t = useTranslations('hero')
-  const titleWords = title.split(' ')
+  const boldWords = nameBold.split(' ')
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] min-h-[calc(100svh-5rem)] md:min-h-[calc(100svh-6rem)] flex flex-col justify-center pt-10 pb-20 md:pt-6 md:pb-24">
@@ -74,10 +71,9 @@ export function ServiceHero({
           ))}
         </motion.nav>
 
-        <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-20 items-center">
           <div>
-            {/* Headline — bold word stagger + italic letter stagger (mirrors landing) */}
-            <h1 className="font-bold text-[#2a2118] leading-[1.05] tracking-tight text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl">
+            <h1 className="font-bold text-[#2a2118] leading-[1.05] tracking-tight text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
               <motion.span
                 className="block"
                 initial="hidden"
@@ -87,7 +83,7 @@ export function ServiceHero({
                   visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
                 }}
               >
-                {titleWords.map((word, i) => (
+                {boldWords.map((word, i) => (
                   <motion.span
                     key={i}
                     className="inline-block mr-[0.25em] last:mr-0"
@@ -104,13 +100,13 @@ export function ServiceHero({
                 className="font-serif italic font-medium text-[#8b7355] block mt-1 pb-1"
                 initial="hidden"
                 animate="visible"
-                aria-label={italicAccent}
+                aria-label={nameItalic}
                 variants={{
                   hidden: {},
                   visible: { transition: { staggerChildren: 0.07, delayChildren: 0.55 } },
                 }}
               >
-                {Array.from(italicAccent).map((char, i) => (
+                {Array.from(nameItalic).map((char, i) => (
                   <motion.span
                     key={i}
                     className="inline-block"
@@ -120,40 +116,57 @@ export function ServiceHero({
                       visible: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 140, damping: 20 } },
                     }}
                   >
-                    {char === ' ' ? ' ' : char}
+                    {char === ' ' ? ' ' : char}
                   </motion.span>
                 ))}
               </motion.span>
             </h1>
 
-            {subtitle && (
+            {role && (
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.85, duration: 0.6 }}
-                className="text-lg md:text-xl text-[#5a5048] mt-5 mb-8 leading-relaxed max-w-2xl"
+                className="text-lg md:text-xl text-[#8b7355] font-medium mt-5 mb-6"
               >
-                {subtitle}
+                {role}
               </motion.p>
             )}
 
-            {priceMinLabel && (
+            {specializations && specializations.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.95, duration: 0.6 }}
-                className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]"
+                className="flex flex-wrap gap-2 mb-6"
               >
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('fromLabel')}</span>
-                <span className="text-base font-bold text-[#2a2118]">{priceMinLabel}</span>
+                {specializations.map((spec) => (
+                  <span
+                    key={spec}
+                    className="px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#8b7355] bg-white border border-[#e8e0d5] rounded-full"
+                  >
+                    {spec}
+                  </span>
+                ))}
               </motion.div>
+            )}
+
+            {bio && (
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.6 }}
+                className="text-base md:text-lg text-[#5a5048] mt-2 mb-8 leading-relaxed max-w-xl"
+              >
+                {bio}
+              </motion.p>
             )}
 
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
+              transition={{ delay: 1.1, duration: 0.6 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <BookingButton
                 variant="custom"
@@ -170,53 +183,59 @@ export function ServiceHero({
                 0741 199 977
               </a>
             </motion.div>
-
           </div>
 
-          {/* Image */}
+          {/* Photo column */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="relative flex justify-center lg:justify-end"
           >
-            <div className="absolute -top-4 -right-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
-            <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
+            <div className="relative w-full max-w-[420px]">
+              <div className="absolute -top-4 -right-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
+              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
 
-            {photoSrc ? (
-              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#faf6f1] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.3)] border border-[#e8e0d5]">
-                <Image src={photoSrc} alt={photoAlt} fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-[#faf6f1] border border-[#e8e0d5] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.3)]">
+                {photoSrc ? (
+                  <Image
+                    fill
+                    priority
+                    alt={photoAlt}
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    src={photoSrc}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                    <User className="w-24 h-24 text-[#8b7355]/30" strokeWidth={1.25} />
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 flex items-center justify-center border border-[#e8e0d5]">
-                {fallbackIconPath ? (
-                  <Image alt="" className="w-32 h-32 opacity-30" height={128} src={fallbackIconPath} width={128} />
-                ) : FallbackIcon ? (
-                  <FallbackIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
-                ) : null}
-              </div>
-            )}
 
-            {/* Badge overlay top-left of photo (always visible) */}
-            <motion.div
-              initial={{ opacity: 0, y: 8, scale: 0.92 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.45, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex absolute top-3 left-3 md:top-4 md:left-4 z-10 items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white border border-[#e8e0d5] shadow-[0_4px_16px_rgba(139,115,85,0.15)]"
-            >
-              {badgeIconPath ? (
-                <Image alt="" className="w-5 h-5" height={20} src={badgeIconPath} width={20} />
-              ) : BadgeIcon ? (
-                <BadgeIcon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
-              ) : null}
-              <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">{badgeLabel}</span>
-            </motion.div>
-
+              {/* Floating Expert badge — kept (user request) */}
+              <motion.div
+                initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.55, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute -bottom-4 left-3 md:-bottom-5 md:left-5 z-10 bg-white rounded-2xl shadow-[0_20px_50px_-15px_rgba(42,33,24,0.25)] border border-[#e8e0d5] px-4 py-3 md:px-5 md:py-3.5"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] flex items-center justify-center">
+                    <Sparkles className="w-4 h-4 text-white" strokeWidth={1.75} />
+                  </div>
+                  <div className="leading-tight">
+                    <p className="text-sm font-bold text-[#2a2118]">{photoBadge.title}</p>
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-[#8b7355] font-semibold">{photoBadge.subtitle}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator — mirror of FramedHero (vertical drop line + chevron bounce) */}
+      {/* Scroll indicator — mirror of FramedHero */}
       <motion.button
         type="button"
         onClick={() => {
@@ -252,3 +271,4 @@ export function ServiceHero({
     </section>
   )
 }
+

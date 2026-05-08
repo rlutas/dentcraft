@@ -98,7 +98,7 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
     clinicBadge: t('gallery.clinicBadge'),
     clinicSubtitle: t('gallery.clinicSubtitle'),
     clinicTitle: t('gallery.clinicTitle'),
-    doctor: t('team.viewAll') === 'Vezi toată echipa' ? 'Medic' : 'Doctor', // Fallback for doctor label
+    doctor: t('gallery.doctorLabel'),
     duration: t('gallery.duration'),
     featured: t('gallery.featured'),
     filterBy: t('gallery.filterBy'),
@@ -110,6 +110,17 @@ export default async function GalleryPage({ params, searchParams }: PageProps) {
     subtitle: t('gallery.subtitle'),
     title: t('gallery.title'),
     viewDetails: t('common.learnMore'),
+    headingBold: t('gallery.headingBold'),
+    headingItalic: t('gallery.headingItalic'),
+    beforeAfterBold: t('gallery.beforeAfterBold'),
+    beforeAfterItalic: t('gallery.beforeAfterItalic'),
+    clinicHeadingBold: t('gallery.clinicHeadingBold'),
+    clinicHeadingItalic: t('gallery.clinicHeadingItalic'),
+    doctorPrefix: t('gallery.doctorPrefix'),
+    closeLabel: t('gallery.closeLabel'),
+    categoryClinic: t('gallery.categories.clinic'),
+    categoryTeam: t('gallery.categories.team'),
+    categoryEquipment: t('gallery.categories.equipment'),
   }
 
   // Helper function to generate image URLs (serializable)

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { User } from 'lucide-react'
+import { ArrowRight, User } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
@@ -8,6 +8,7 @@ import { getAllTeamMembers, type Locale } from '@/lib/sanity/queries'
 import { getBreadcrumbSchema } from '@/lib/schema'
 import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
+import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import type { LocalePageProps } from '@/types'
 
 // Team member type based on Sanity schema
@@ -69,148 +70,102 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
 
   // Use Sanity data or fallback
   const hasMembers = teamMembers && teamMembers.length >= 6
+  const members = hasMembers ? teamMembers : fallbackTeamMembers
+  // "Specialiști" count = doctors only (those with "Dr." prefix). Assistants/receptionists not counted.
+  const count = members.filter((m) => m.name.trim().toLowerCase().startsWith('dr.')).length
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Dark Editorial */}
-      <section className="relative overflow-hidden bg-[#0d0d0d] pt-32 pb-20 md:pt-40 md:pb-28">
-        {/* Dramatic lighting */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#d4c4b0]/10 to-transparent blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/5 rounded-full blur-[100px]" />
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Hero — light editorial matching /servicii rhythm */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-3 mb-12">
-            <Link href="/" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              {t('breadcrumbs.home')}
-            </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-[#d4c4b0] text-sm font-medium">{t('breadcrumbs.team')}</span>
-          </div>
-
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <span className="inline-block text-[#d4c4b0] text-sm font-medium tracking-[0.3em] uppercase mb-6">
-              {t('teamPreview.badge')}
-            </span>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              {t('team.title')}
-            </h1>
-
-            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
+          <div className="text-center max-w-3xl mx-auto">
+            <AnimatedServiceHeading bold={t('team.headingBold')} italic={t('team.headingItalic')} />
+            <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t('team.subtitle')}
             </p>
-          </div>
-
-          {/* Decorative line */}
-          <div className="mt-16 flex items-center gap-6">
-            <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{t('team.specialistsCount', { count: hasMembers ? teamMembers.length : fallbackTeamMembers.length })}</span>
+            <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                {t('team.specialistsCount', { count })}
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Team Grid - Masonry Style on Light Background */}
-      <section className="py-20 md:py-28 bg-[#f8f5f0] relative">
-        {/* Subtle texture */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #1a1a1a 0.5px, transparent 0)`,
-          backgroundSize: '32px 32px'
-        }} />
-
-        <div className="container relative z-10">
+      {/* Team Grid - photo cards (mirrors /servicii) */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="container">
           <h2 className="sr-only">{t('team.title')}</h2>
-          {/* Grid with varying card sizes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {(hasMembers ? teamMembers : fallbackTeamMembers).map((member, index) => {
-              // Determine if this is a featured (larger) card - first one and every 4th
-              const isFeatured = index === 0
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {members.map((member) => {
+              const isSanity = '_id' in member
+              const photoNode = isSanity && member.photo && typeof member.photo !== 'string' && member.photo.asset ? (
+                <Image
+                  fill
+                  alt={member.photo.alt || member.name}
+                  className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  src={urlFor(member.photo).width(800).height(1000).quality(85).url()}
+                />
+              ) : !isSanity && typeof member.photo === 'string' ? (
+                <Image
+                  fill
+                  alt={member.name}
+                  className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  src={member.photo}
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                  <User className="w-20 h-20 text-[#8b7355]/30" strokeWidth={1.25} />
+                </div>
+              )
 
               return (
                 <Link
-                  key={'_id' in member ? member._id : member.key}
+                  key={isSanity ? member._id : member.key}
                   href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
-                  className={`group relative overflow-hidden rounded-[24px] bg-white
-                    border border-[#e8e0d5] hover:border-[#d4c4b0]
-                    shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)]
-                    hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)]
-                    transition-all duration-500 hover:-translate-y-1
-                    animate-[fadeInUp_0.6s_ease-out_both]
-                    ${isFeatured ? 'md:col-span-2 lg:col-span-1' : ''}`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="group relative block h-full overflow-hidden rounded-3xl
+                    bg-white border border-[#e8e0d5]
+                    shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]
+                    hover:border-[#d4c4b0]
+                    hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
+                    hover:-translate-y-1.5
+                    transition-all duration-500 ease-out flex flex-col"
                 >
                   {/* Photo */}
-                  <div className={`relative w-full overflow-hidden bg-gradient-to-b from-[#f0ebe4] to-[#e5ddd2]
-                    ${isFeatured ? 'aspect-[3/4]' : 'aspect-[4/5]'}`}>
-                    {'photo' in member && member.photo && typeof member.photo !== 'string' && member.photo.asset ? (
-                      <Image
-                        fill
-                        alt={'photo' in member && member.photo && typeof member.photo !== 'string' && member.photo.alt ? member.photo.alt : member.name}
-                        className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        src={urlFor(member.photo).width(600).height(800).quality(85).url()}
-                      />
-                    ) : 'photo' in member && typeof member.photo === 'string' ? (
-                      <Image
-                        fill
-                        alt={member.name}
-                        className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        src={member.photo}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <User className="w-20 h-20 text-[#d4c4b0]" strokeWidth={1} />
-                      </div>
-                    )}
-
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    {/* Hover content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                      <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-semibold text-[#1a1a1a]">
-                        {t('common.learnMore')}
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </span>
-                    </div>
+                  <div className="relative aspect-[4/5] bg-[#faf6f1] overflow-hidden">
+                    {photoNode}
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
-                    {/* Role tag */}
-                    <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider uppercase
-                      bg-[#f8f5f0] text-[#8b7355] rounded-full border border-[#e8e0d5]">
-                      {member.role}
-                    </span>
-
-                    <h3 className="text-xl md:text-2xl font-bold text-[#1a1a1a] group-hover:text-[#8b7355] transition-colors duration-300">
+                  <div className="p-6 md:p-7 flex flex-col flex-1">
+                    {member.role && (
+                      <span className="inline-block self-start text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5] px-3 py-1 mb-3 text-[11px] font-bold uppercase tracking-[0.16em]">
+                        {member.role}
+                      </span>
+                    )}
+                    <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight tracking-tight">
                       {member.name}
                     </h3>
-
-                    {/* Specializations for Sanity members */}
-                    {'specializations' in member && member.specializations && member.specializations.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {(member.specializations as Array<{ name: string } | string>).slice(0, 2).map((spec, specIndex) => (
-                          <span
-                            key={specIndex}
-                            className="text-xs text-[#6b6b6b]"
-                          >
-                            {typeof spec === 'string' ? spec : spec.name}
-                            {specIndex < Math.min((member.specializations as Array<unknown>).length, 2) - 1 && ' •'}
-                          </span>
-                        ))}
-                      </div>
+                    {!isSanity && member.specializations && member.specializations.length > 0 && (
+                      <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
+                        {member.specializations.slice(0, 3).join(' · ')}
+                      </p>
                     )}
+                    {isSanity && member.specializations && member.specializations.length > 0 && (
+                      <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
+                        {member.specializations.slice(0, 3).map((s) => s.name).join(' · ')}
+                      </p>
+                    )}
+                    <span className="inline-flex items-center gap-2 text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:gap-3 group-hover:text-[#2a2118] transition-all duration-300 mt-auto">
+                      {t('common.learnMore')}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.25} />
+                    </span>
                   </div>
                 </Link>
               )
@@ -218,12 +173,6 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
           </div>
         </div>
       </section>
-
     </div>
   )
-}
-
-// Placeholder uses the same component now - prefixed with _ to indicate intentionally unused
-async function _PlaceholderTeamPage() {
-  return <TeamPageContent teamMembers={[]} />
 }

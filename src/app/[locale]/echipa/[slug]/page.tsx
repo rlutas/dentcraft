@@ -27,6 +27,10 @@ import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-tea
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { CountUp } from '@/components/ui/CountUp'
 import { TeamMemberBookingButton } from '@/components/ui/TeamMemberBookingButton'
+import { TeamMemberHero } from '@/components/sections/TeamMemberHero'
+import { splitName, getDoctorVideoForSlug, getMemberBadge, shortBio } from '@/lib/team-utils'
+import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { DoctorVideoCard } from '@/components/sections/DoctorVideoCard'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -216,87 +220,68 @@ function HeroCTAButtons({ memberName, memberRole }: { memberName: string; member
   )
 }
 
-// Placeholder for video shorts - will be populated later
-const videoShorts: Array<{ title: string; youtubeUrl: string }> = []
+type DoctorVideoState =
+  | { kind: 'video'; videoId: string; doctorName: string; doctorRole: string; posterSrc?: string }
+  | { kind: 'comingSoon'; doctorName: string; doctorRole: string; posterSrc?: string }
+  | null
 
-function VideoShortsSection() {
+async function VideoShortsSection({ video }: { video: DoctorVideoState }) {
+  if (!video) return null
+  const t = await getTranslations('team.profile')
+  const firstName = video.doctorName.split(' ').slice(-1)[0] || video.doctorName
+
   return (
-    <section className="py-16 md:py-24 bg-[#faf6f1]">
-      <div className="container">
-        <div className="max-w-5xl mx-auto">
-          <ScrollReveal animation="fade-up">
-            {/* Section header */}
-            <div className="text-center mb-12">
-              <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b7355] bg-white rounded-full border border-[#e8e0d5] mb-6">
-                <Video className="w-4 h-4" />
-                Video
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4">
-                Videoclipuri scurte
-              </h2>
-              <p className="text-[#8b7355] text-lg max-w-xl mx-auto">
-                Urmareste clipuri informative si educative
-              </p>
-            </div>
-          </ScrollReveal>
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <ScrollReveal animation="fade-up">
+          <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+            <AnimatedServiceHeading bold={t('videoTipsBold')} italic={t('videoTipsItalic')} />
+            <p className="text-base md:text-lg text-[#5a5048] max-w-xl mx-auto leading-relaxed mt-4">
+              {video.kind === 'video'
+                ? t('videoTipsCopy', { firstName })
+                : t('videoComingSoonCopy', { firstName })}
+            </p>
+          </div>
+        </ScrollReveal>
 
-          {videoShorts.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-              {videoShorts.map((video, index) => {
-                // Extract YouTube video ID for thumbnail
-                const videoId = video.youtubeUrl.match(
-                  /(?:youtu\.be\/|youtube\.com\/(?:shorts\/|embed\/|watch\?v=))([^&?/]+)/
-                )?.[1]
-                return (
-                  <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
-                    <a
-                      href={video.youtubeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block"
-                    >
-                      <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.2)] transition-all duration-300 hover:-translate-y-1.5">
-                        {videoId && (
-                          <Image
-                            src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-                            alt={video.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        )}
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
-                        {/* Play button */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <Play className="w-6 h-6 text-[#2a2118] ml-0.5" fill="#2a2118" />
-                          </div>
-                        </div>
-                      </div>
-                      <p className="mt-3 text-sm font-medium text-[#2a2118] line-clamp-2 group-hover:text-[#8b7355] transition-colors">
-                        {video.title}
-                      </p>
-                    </a>
-                  </ScrollReveal>
-                )
-              })}
-            </div>
-          ) : (
-            <ScrollReveal animation="fade-up" delay={150}>
-              <div className="text-center py-12 bg-white rounded-3xl border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)]">
-                <div className="w-16 h-16 rounded-2xl bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center mx-auto mb-5">
-                  <Video className="w-8 h-8 text-[#d4c4b0]" />
+        <ScrollReveal animation="fade-up" delay={150}>
+          <div className="max-w-md mx-auto">
+            {video.kind === 'video' ? (
+              <DoctorVideoCard
+                videoId={video.videoId}
+                posterSrc={video.posterSrc || `https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
+                posterAlt={t('videoClipAlt', { name: video.doctorName })}
+                doctorName={video.doctorName}
+                doctorRole={video.doctorRole}
+              />
+            ) : (
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 border border-[#e8e0d5] shadow-[0_20px_50px_-15px_rgba(139,115,85,0.2)]">
+                {video.posterSrc && (
+                  <Image
+                    src={video.posterSrc}
+                    alt={video.doctorName}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 420px"
+                    className="object-cover object-top"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/85 via-[#2a2118]/30 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                  <div className="w-16 h-16 rounded-2xl bg-white/95 backdrop-blur flex items-center justify-center mb-4 shadow-[0_8px_24px_rgba(0,0,0,0.25)]">
+                    <Video className="w-8 h-8 text-[#8b7355]" strokeWidth={1.75} />
+                  </div>
+                  <p className="text-white text-lg md:text-xl font-bold mb-1">{t('videoComingSoonHeadline')}</p>
+                  <p className="text-white/80 text-sm">{t('videoComingSoonShort', { firstName })}</p>
                 </div>
-                <p className="text-[#8b7355] text-lg font-medium mb-2">
-                  Videoclipurile vor fi disponibile in curand
-                </p>
-                <p className="text-[#a89880] text-sm">
-                  Revino pentru continut video educativ si informativ
-                </p>
+                <div className="absolute bottom-5 left-5 right-5 text-center">
+                  <p className="text-white font-bold text-base leading-tight">{video.doctorName}</p>
+                  <p className="text-white/70 text-xs mt-0.5">{video.doctorRole}</p>
+                </div>
               </div>
-            </ScrollReveal>
-          )}
-        </div>
+            )}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
@@ -311,7 +296,7 @@ type TimelineEntry = {
   year: number
 }
 
-function StatsRow({
+async function StatsRow({
   isDoctor,
   yearsExperience,
   specializationsCount,
@@ -322,15 +307,16 @@ function StatsRow({
   specializationsCount: number
   patientsCount?: number
 }) {
+  const t = await getTranslations('team.profile')
   const stats = isDoctor
     ? [
-        { end: yearsExperience, suffix: '+', label: 'Ani Experienta', iconSrc: '/icons/097-calendar.svg' },
-        { end: patientsCount ?? 2000, suffix: '+', label: 'Pacienti Tratati', iconSrc: '/icons/010-smile.svg' },
-        { end: specializationsCount, suffix: '', label: 'Specializari', iconSrc: '/icons/090-book.svg' },
+        { end: yearsExperience, suffix: '+', label: t('statYears'), iconSrc: '/icons/097-calendar.svg' },
+        { end: patientsCount ?? 2000, suffix: '+', label: t('statPatients'), iconSrc: '/icons/010-smile.svg' },
+        { end: specializationsCount, suffix: '', label: t('statSpecializations'), iconSrc: '/icons/090-book.svg' },
       ]
     : [
-        { end: yearsExperience, suffix: '+', label: 'Ani Experienta', iconSrc: '/icons/097-calendar.svg' },
-        { end: specializationsCount, suffix: '', label: 'Specializari', iconSrc: '/icons/090-book.svg' },
+        { end: yearsExperience, suffix: '+', label: t('statYears'), iconSrc: '/icons/097-calendar.svg' },
+        { end: specializationsCount, suffix: '', label: t('statSpecializations'), iconSrc: '/icons/090-book.svg' },
       ]
 
   const gridColsClass = isDoctor ? 'grid-cols-3' : 'grid-cols-2'
@@ -395,7 +381,8 @@ function StatsRow({
   )
 }
 
-function PhotoGalleryPlaceholder() {
+async function PhotoGalleryPlaceholder() {
+  const t = await getTranslations('team.profile')
   return (
     <div className="mt-8">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -409,7 +396,7 @@ function PhotoGalleryPlaceholder() {
         ))}
       </div>
       <p className="text-center text-sm text-[#a89880] mt-4 font-medium">
-        Galerie foto in curand
+        {t('galleryComingSoon')}
       </p>
     </div>
   )
@@ -450,7 +437,7 @@ function PhotoGallery({ images }: { images: Array<{ src: string; alt: string; po
   )
 }
 
-function AboutSection({
+async function AboutSection({
   firstName,
   aboutLabel,
   isDoctor,
@@ -469,19 +456,16 @@ function AboutSection({
   bioContent: React.ReactNode
   gallery?: Array<{ src: string; alt: string }>
 }) {
+  const t = await getTranslations('team.profile')
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container">
-        <div className="max-w-4xl mx-auto">
+    <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <div className="max-w-5xl mx-auto">
           <ScrollReveal animation="fade-up">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f5f0e8] to-[#e8e0d5] flex items-center justify-center shadow-sm">
-                <BookOpen className="w-7 h-7 text-[#8b7355]" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118]">{aboutLabel}</h2>
-                <p className="text-sm text-[#8b7355]">Despre {firstName}</p>
-              </div>
+            <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+              <AnimatedServiceHeading bold={t('aboutBold')} italic={firstName} />
             </div>
           </ScrollReveal>
 
@@ -497,7 +481,7 @@ function AboutSection({
 
           {/* Bio content */}
           <ScrollReveal animation="fade-up" delay={200}>
-            <div className="bg-[#faf8f5] rounded-3xl p-8 md:p-10 border border-[#e8e0d5]">
+            <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#e8e0d5] shadow-[0_8px_32px_-8px_rgba(139,115,85,0.1)]">
               {bioContent}
             </div>
           </ScrollReveal>
@@ -516,7 +500,7 @@ function AboutSection({
   )
 }
 
-function ProfessionalJourneySection({
+async function ProfessionalJourneySection({
   entries,
 }: {
   entries: TimelineEntry[]
@@ -526,21 +510,18 @@ function ProfessionalJourneySection({
 
   if (sorted.length === 0) return null
 
+  const t = await getTranslations('team.profile')
+
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-[#faf8f5] to-white">
-      <div className="container">
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal animation="fade-up">
-            <div className="text-center mb-12">
-              <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b7355] bg-white rounded-full border border-[#e8e0d5] mb-6">
-                <GraduationCap className="w-4 h-4" />
-                Educatie & Certificari
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-3">
-                Parcurs Profesional
-              </h2>
-              <p className="text-[#8b7355] text-lg max-w-xl mx-auto">
-                Studii, specializari si certificari profesionale
+            <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+              <AnimatedServiceHeading bold={t('journeyBold')} italic={t('journeyItalic')} />
+              <p className="text-base md:text-lg text-[#5a5048] max-w-xl mx-auto leading-relaxed mt-4">
+                {t('journeyCopy')}
               </p>
             </div>
           </ScrollReveal>
@@ -553,7 +534,7 @@ function ProfessionalJourneySection({
             <div className="space-y-5">
               {sorted.map((entry, index) => {
                 const Icon = entry.type === 'education' ? GraduationCap : Award
-                const typeBadgeLabel = entry.type === 'education' ? 'Studii' : 'Certificare'
+                const typeBadgeLabel = entry.type === 'education' ? t('typeBadgeEducation') : t('typeBadgeCertification')
                 const typeBadgeBg = entry.type === 'education' ? 'bg-[#f5f0e8]' : 'bg-[#faf6f1]'
 
                 return (
@@ -649,6 +630,8 @@ function buildTimelineEntries(
 
 async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const t = await getTranslations()
+  const badgeT = await getTranslations('team.badges')
+  const profileT = await getTranslations('team.profile')
 
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
   const memberUrl = `${siteConfig.baseUrl}/echipa/${member.slug}`
@@ -661,7 +644,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const personSchema = getPersonSchema({
     name: member.name,
     url: memberUrl,
-    jobTitle: member.role || 'Medic Stomatolog',
+    jobTitle: member.role || profileT('defaultJobTitle'),
     ...(photoUrl ? { image: photoUrl } : {}),
     ...(member.specializations ? { knowsAbout: member.specializations.map((s) => s.name) } : {}),
     ...(member.education ? { alumniOf: member.education.map((e) => e.institution) } : {}),
@@ -677,128 +660,72 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      {/* ───── HERO SECTION - Dark Editorial ───── */}
-      <section className="relative bg-[#0d0d0d] pt-5 md:pt-[80px] pb-8">
-        <HeroBackground />
-
-        <div className="container relative z-10">
-          <HeroBreadcrumb name={member.name} />
-
-          <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
-            {/* Content - on mobile appears FIRST, on desktop on left */}
-            <div className="text-center lg:text-left">
-              <ScrollReveal animation="fade-up" delay={150}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight leading-[1.1]">
-                  {(() => {
-                    const parts = member.name.split(' ')
-                    if (parts.length <= 2) return member.name
-                    const mid = Math.ceil(parts.length / 2)
-                    return <>{parts.slice(0, mid).join(' ')}<br />{parts.slice(mid).join(' ')}</>
-                  })()}
-                </h1>
-
-                {member.role && (
-                  <p className="text-lg md:text-xl font-medium text-[#d4c4b0] mb-5">
-                    {member.role}
-                  </p>
-                )}
-              </ScrollReveal>
-
-              <ScrollReveal animation="fade-up" delay={300}>
-                {/* Specializations */}
-                {member.specializations && member.specializations.length > 0 && (
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
-                    {member.specializations.map((spec, index) => (
-                      <SpecBadge key={index} label={spec.name} />
-                    ))}
-                  </div>
-                )}
-
-                <HeroInfoRow />
-                <HeroCTAButtons memberName={member.name} memberRole={member.role} />
-              </ScrollReveal>
-            </div>
-
-            {/* Photo - on mobile appears AFTER text, on desktop on right */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-[260px] md:w-[300px] lg:w-[360px] team-photo-entrance">
-                {/* Warm glow behind photo */}
-                <div className="absolute -inset-4 lg:-inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.2)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
-
-                <div className="relative aspect-[3/4] rounded-2xl lg:rounded-3xl overflow-hidden border border-[#d4c4b0]/20 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.15)]">
-                  {member.photo ? (
-                    <Image
-                      fill
-                      priority
-                      alt={member.photo.alt || member.name}
-                      className="object-cover object-top"
-                      sizes="(max-width: 768px) 260px, (max-width: 1024px) 300px, 420px"
-                      src={urlFor(member.photo).width(600).height(800).auto('format').url()}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
-                      <div className="w-24 h-24 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                        <User className="w-12 h-12 text-white/30" strokeWidth={1.5} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Floating expert badge */}
-                <div className="absolute -bottom-3 left-3 sm:-bottom-4 sm:left-4 bg-white rounded-xl shadow-[0_8px_30px_-8px_rgba(0,0,0,0.25)] p-3 team-badge-pop">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-white" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#1a1a1a] leading-tight">Expert</p>
-                      <p className="text-[11px] text-[#8b7355]">Verificat</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TeamMemberHero
+        breadcrumbs={[
+          { label: t('breadcrumbs.home'), href: '/' },
+          { label: t('breadcrumbs.team'), href: '/echipa' },
+          { label: member.name },
+        ]}
+        nameBold={splitName(member.name).bold}
+        nameItalic={splitName(member.name).italic}
+        role={member.role}
+        specializations={(member.specializations ?? []).map((s) => s.name)}
+        ctaPrimary={t('common.bookAppointment')}
+        photoSrc={member.photo ? urlFor(member.photo).width(800).height(1000).auto('format').url() : null}
+        photoAlt={member.photo?.alt || member.name}
+        photoBadge={getMemberBadge(member.name, member.role || '', badgeT)}
+      />
 
       {/* ───── VIDEO SHORTS SECTION ───── */}
-      <VideoShortsSection />
+      {member.name.trim().toLowerCase().startsWith('dr.') ? (
+        <>
+          <VideoShortsSection video={getDoctorVideoForSlug(member.slug, member.name, member.role || profileT('defaultJobTitle'))} />
 
-      {/* ───── ABOUT SECTION (Redesigned) ───── */}
-      {member.bio && member.bio.length > 0 && (
-        <AboutSection
-          firstName={firstName}
-          aboutLabel={t('team.about')}
-          isDoctor={member.role?.toLowerCase().includes('medic') || member.role?.toLowerCase().includes('doctor') || false}
-          yearsExperience={computeYearsExperience(member.education, member.certifications)}
-          specializationsCount={member.specializations?.length ?? 0}
-          bioContent={
-            <div className="prose prose-lg prose-neutral max-w-none">
-              <PortableTextRenderer content={member.bio} />
-            </div>
-          }
-        />
+          {/* ───── ABOUT SECTION (Redesigned) ───── */}
+          {member.bio && member.bio.length > 0 && (
+            <AboutSection
+              firstName={firstName}
+              aboutLabel={t('team.about')}
+              isDoctor
+              yearsExperience={computeYearsExperience(member.education, member.certifications)}
+              specializationsCount={member.specializations?.length ?? 0}
+              bioContent={
+                <div className="prose prose-lg prose-neutral max-w-none">
+                  <PortableTextRenderer content={member.bio} />
+                </div>
+              }
+            />
+          )}
+
+          {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}
+          <ProfessionalJourneySection
+            entries={buildTimelineEntries(member.education, member.certifications)}
+          />
+        </>
+      ) : (
+        member.bio && member.bio.length > 0 && (
+          <SimpleStaffBio
+            firstName={firstName}
+            bio={member.bio
+              .filter((b) => b._type === 'block')
+              .map((b) => {
+                const children = b['children'] as Array<{ text: string }> | undefined
+                return children?.map((c) => c.text).join('') || ''
+              })
+              .join(' ')}
+          />
+        )
       )}
-
-      {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}
-      <ProfessionalJourneySection
-        entries={buildTimelineEntries(member.education, member.certifications)}
-      />
 
       {/* ───── SERVICES SECTION ───── */}
       {member.services && member.services.length > 0 && (
-        <section className="py-16 md:py-24 bg-[#faf6f1]">
-          <div className="container">
+        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#d4c4b0]/12 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+          <div className="container relative z-10">
             <div className="max-w-4xl mx-auto">
               <ScrollReveal animation="fade-up">
-                <div className="text-center mb-12">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b7355] bg-white rounded-full border border-[#e8e0d5] mb-6">
-                    <Sparkles className="w-4 h-4" />
-                    Servicii
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-3">{t('team.servicesOffered')}</h2>
-                  <p className="text-[#8b7355]">Servicii oferite de {firstName}</p>
+                <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+                  <AnimatedServiceHeading bold={profileT('worksWithBold')} italic={firstName} />
                 </div>
               </ScrollReveal>
 
@@ -862,13 +789,40 @@ function PortableTextRenderer({ content }: { content: Array<{ _type: string; [ke
   )
 }
 
+// Simple white bio section used for assistants & receptionists (no stats / timeline)
+async function SimpleStaffBio({ firstName, bio }: { firstName: string; bio: string }) {
+  if (!bio) return null
+  const t = await getTranslations('team.profile')
+  return (
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <div className="max-w-3xl mx-auto">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-10 md:mb-14">
+              <AnimatedServiceHeading bold={t('aboutBold')} italic={firstName} />
+            </div>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" delay={150}>
+            <div className="bg-[#faf6f1] rounded-3xl p-8 md:p-12 border border-[#e8e0d5]">
+              <p className="text-base md:text-lg text-[#4a4a4a] leading-relaxed text-center md:text-left">{bio}</p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Fallback Team Member Page ───────────────────────────────────────────────
 
 async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamMember }) {
   const t = await getTranslations()
+  const badgeT = await getTranslations('team.badges')
 
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
   const memberUrl = `${siteConfig.baseUrl}/echipa/${member.slug}`
+  const isDoctor = member.name.trim().toLowerCase().startsWith('dr.')
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: 'Dentcraft', url: siteConfig.baseUrl },
     { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
@@ -895,108 +849,50 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      {/* ───── HERO SECTION - Dark Editorial ───── */}
-      <section className="relative bg-[#0d0d0d] pt-5 md:pt-[80px] pb-8">
-        <HeroBackground />
-
-        <div className="container relative z-10">
-          <HeroBreadcrumb name={member.name} />
-
-          <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
-            {/* Content - on mobile appears FIRST, on desktop on left */}
-            <div className="text-center lg:text-left">
-              <ScrollReveal animation="fade-up" delay={150}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight leading-[1.1]">
-                  {(() => {
-                    const parts = member.name.split(' ')
-                    if (parts.length <= 2) return member.name
-                    const mid = Math.ceil(parts.length / 2)
-                    return <>{parts.slice(0, mid).join(' ')}<br />{parts.slice(mid).join(' ')}</>
-                  })()}
-                </h1>
-
-                <p className="text-lg md:text-xl font-medium text-[#d4c4b0] mb-5">
-                  {member.role}
-                </p>
-              </ScrollReveal>
-
-              <ScrollReveal animation="fade-up" delay={300}>
-                {/* Specializations */}
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
-                  {member.specializations.map((spec, index) => (
-                    <SpecBadge key={index} label={spec} />
-                  ))}
-                </div>
-
-                <HeroInfoRow />
-                <HeroCTAButtons memberName={member.name} memberRole={member.role} />
-              </ScrollReveal>
-            </div>
-
-            {/* Photo - on mobile appears AFTER text, on desktop on right */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-[260px] md:w-[300px] lg:w-[360px] team-photo-entrance">
-                {/* Warm glow behind photo */}
-                <div className="absolute -inset-4 lg:-inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,_rgba(212,196,176,0.2)_0%,_transparent_70%)] team-photo-glow pointer-events-none" />
-
-                <div className="relative aspect-[3/4] rounded-2xl lg:rounded-3xl overflow-hidden border border-[#d4c4b0]/20 shadow-[0_20px_60px_-15px_rgba(139,115,85,0.15)]">
-                  {member.photo ? (
-                    <Image
-                      src={member.photo}
-                      alt={member.name}
-                      fill
-                      priority
-                      className="object-cover object-top"
-                      sizes="(max-width: 768px) 260px, (max-width: 1024px) 300px, 420px"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-[#1a1510]">
-                      <div className="w-24 h-24 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                        <User className="w-12 h-12 text-white/30" strokeWidth={1.5} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Floating expert badge */}
-                <div className="absolute -bottom-3 left-3 sm:-bottom-4 sm:left-4 bg-white rounded-xl shadow-[0_8px_30px_-8px_rgba(0,0,0,0.25)] p-3 team-badge-pop">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#d4c4b0] to-[#b8a48e] flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-white" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#1a1a1a] leading-tight">Expert</p>
-                      <p className="text-[11px] text-[#8b7355]">Verificat</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ───── VIDEO SHORTS SECTION ───── */}
-      <VideoShortsSection />
-
-      {/* ───── ABOUT SECTION (Redesigned) ───── */}
-      <AboutSection
-        firstName={firstName}
-        aboutLabel={t('team.about')}
-        isDoctor={member.role.toLowerCase().includes('medic') || member.role.toLowerCase().includes('doctor')}
-        yearsExperience={member.stats?.yearsExperience ?? computeYearsExperience(member.education, member.certifications)}
-        specializationsCount={member.specializations.length}
-        bioContent={
-          <p className="text-base md:text-lg text-[#4a4a4a] leading-relaxed">{member.bio}</p>
-        }
-        {...(member.stats?.patientsCount !== undefined ? { patientsCount: member.stats.patientsCount } : {})}
-        {...(member.gallery && member.gallery.length > 0 ? { gallery: member.gallery } : {})}
+      <TeamMemberHero
+        breadcrumbs={[
+          { label: t('breadcrumbs.home'), href: '/' },
+          { label: t('breadcrumbs.team'), href: '/echipa' },
+          { label: member.name },
+        ]}
+        nameBold={splitName(member.name).bold}
+        nameItalic={splitName(member.name).italic}
+        role={member.role}
+        bio={shortBio(member.bio)}
+        specializations={member.specializations}
+        ctaPrimary={t('common.bookAppointment')}
+        photoSrc={member.photo ?? null}
+        photoAlt={member.name}
+        photoBadge={getMemberBadge(member.name, member.role, badgeT)}
       />
 
-      {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}
-      <ProfessionalJourneySection
-        entries={buildTimelineEntries(member.education, member.certifications)}
-      />
+      {isDoctor ? (
+        <>
+          {/* ───── VIDEO SHORTS SECTION ───── */}
+          <VideoShortsSection video={getDoctorVideoForSlug(member.slug, member.name, member.role)} />
+
+          {/* ───── ABOUT SECTION (Redesigned) ───── */}
+          <AboutSection
+            firstName={firstName}
+            aboutLabel={t('team.about')}
+            isDoctor
+            yearsExperience={member.stats?.yearsExperience ?? computeYearsExperience(member.education, member.certifications)}
+            specializationsCount={member.specializations.length}
+            bioContent={
+              <p className="text-base md:text-lg text-[#4a4a4a] leading-relaxed">{member.bio}</p>
+            }
+            {...(member.stats?.patientsCount !== undefined ? { patientsCount: member.stats.patientsCount } : {})}
+            {...(member.gallery && member.gallery.length > 0 ? { gallery: member.gallery } : {})}
+          />
+
+          {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}
+          <ProfessionalJourneySection
+            entries={buildTimelineEntries(member.education, member.certifications)}
+          />
+        </>
+      ) : (
+        <SimpleStaffBio firstName={firstName} bio={member.bio} />
+      )}
 
     </div>
   )

@@ -85,6 +85,11 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
   // Critical on mobile where the card is taller than the viewport — without
   // this, the user clicks "Continuă" and stays staring at the bottom of the
   // previous step's content while step 2/3 has already loaded above.
+  // Important: depend ONLY on state.step. `useReducedMotion()` returns `null`
+  // first then updates to a bool, which would re-fire this effect on mount
+  // and accidentally scroll the page down to the calculator.
+  const reduceRef = useRef(reduce)
+  reduceRef.current = reduce
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false
@@ -96,9 +101,9 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
     const target = rect.top + window.scrollY - 96
     window.scrollTo({
       top: Math.max(target, 0),
-      behavior: reduce ? 'auto' : 'smooth',
+      behavior: reduceRef.current ? 'auto' : 'smooth',
     })
-  }, [state.step, reduce])
+  }, [state.step])
 
   // Animation discipline: spring physics for natural step transitions.
   // Reduced motion: collapse to instant changes.
