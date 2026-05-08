@@ -423,7 +423,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                   delay={150 + i * 100}
                 >
                   <div className={`group flex items-start gap-5 md:gap-7 py-5 md:py-6 ${i !== 0 ? 'border-t border-[#e8e0d5]' : ''}`}>
-                    <span className="font-serif italic text-3xl md:text-4xl text-[#8b7355] shrink-0 leading-none pt-1 group-hover:text-[#2a2118] transition-colors duration-300">
+                    <span className="font-serif italic text-3xl md:text-4xl text-[#8b7355] shrink-0 leading-none pt-1 origin-left group-hover:text-[#2a2118] group-hover:scale-125 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                       {reason.num}
                     </span>
                     <div className="flex-1 min-w-0">
