@@ -3,14 +3,9 @@ import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import {
   ArrowRight,
-  Heart,
-  Microscope,
   Play,
   Star,
-  Stethoscope,
   User,
-  Users,
-  Wallet,
 } from 'lucide-react'
 import { ClinicSection } from '@/components/sections/ClinicSection'
 import { FramedHero } from '@/components/sections/FramedHero'
@@ -22,6 +17,7 @@ import googleReviews from '@/data/google-reviews.json'
 import type { Locale } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
 import { getMainFallbackServices } from '@/lib/fallback-services'
+import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllServices, getFeaturedTestimonials, getAllTeamMembers, getFeaturedBeforeAfter, getSettings } from '@/lib/sanity/queries'
@@ -180,15 +176,6 @@ export default async function HomePage({ params }: Props) {
   return <HomePageContent services={services} testimonials={testimonials} teamMembers={teamMembers} beforeAfterCases={beforeAfterCasesWithUrls} locale={locale as Locale} _heroTeamPhotoUrl={heroTeamPhotoUrl} _heroClinicPhotoUrl={heroClinicPhotoUrl} />
 }
 
-// Icon mapping for services from Sanity
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
-  stethoscope: Stethoscope,
-  microscope: Microscope,
-  users: Users,
-  heart: Heart,
-  wallet: Wallet,
-}
-
 interface HomePageContentProps {
   services: SanityService[]
   testimonials: SanityTestimonial[]
@@ -199,11 +186,10 @@ interface HomePageContentProps {
   _heroClinicPhotoUrl: string | null
 }
 
-function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases, locale, _heroTeamPhotoUrl, _heroClinicPhotoUrl }: HomePageContentProps) {
+function HomePageContent({ services: _services, testimonials, teamMembers, beforeAfterCases, locale, _heroTeamPhotoUrl, _heroClinicPhotoUrl }: HomePageContentProps) {
   const t = useTranslations()
 
   // Check if we have Sanity data
-  const hasSanityServices = services && services.length > 0
   const hasSanityTestimonials = testimonials && testimonials.length > 0
   const hasSanityTeamMembers = teamMembers && teamMembers.length > 0
   const hasSanityBeforeAfter = beforeAfterCases && beforeAfterCases.length > 0
@@ -259,9 +245,8 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
             return (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {top6.map((service, index) => {
-                  const photoPath = `/images/services/${service.slug}.png`
-                  // Only implantologie has a photo right now — others use placeholder
-                  const hasPhoto = service.slug === 'implantologie'
+                  const hasPhoto = hasServicePhoto(service.slug)
+                  const photoPath = getServicePhotoPath(service.slug) ?? ''
 
                   return (
                     <ScrollReveal

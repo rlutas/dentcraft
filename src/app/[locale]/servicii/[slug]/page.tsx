@@ -13,11 +13,13 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getFallbackServiceBySlug, getFallbackServiceSlugs } from '@/lib/fallback-services'
 import type { fallbackServices } from '@/lib/fallback-services'
 import { BookingButton } from '@/components/ui/BookingButton'
+import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getServiceBySlug, getServiceSlugs, getFAQs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, type Locale as SEOLocale, siteConfig } from '@/lib/seo'
 import { getServiceSchema, getBreadcrumbSchema } from '@/lib/schema'
+import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -158,6 +160,10 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
   const t = await getTranslations()
   const ServiceIcon = getIconByName(service.icon)
 
+  // Prefer local 3D medical photo over Sanity heroImage
+  const hasLocalPhoto = hasServicePhoto(service.slug)
+  const localPhotoPath = getServicePhotoPath(service.slug) ?? ''
+
   const serviceSchemaOptions: Parameters<typeof getServiceSchema>[0] = {
     serviceName: service.title,
     serviceDescription: service.shortDescription || service.title,
@@ -183,28 +189,47 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
+      {/* Hero Section - photo driven */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] pt-28 pb-16 md:pt-36 md:pb-24">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
+
+        <div className="container relative z-10">
+          <nav className="flex items-center gap-3 mb-10 text-sm" aria-label="Breadcrumb">
+            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">
+              {t('breadcrumbs.home')}
+            </Link>
+            <span className="text-[#8b7355]/40">/</span>
+            <Link href="/servicii" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">
+              {t('breadcrumbs.services')}
+            </Link>
+            <span className="text-[#8b7355]/40">/</span>
+            <span className="text-[#2a2118] font-medium">{service.title}</span>
+          </nav>
+
+          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-center">
             <div>
               {ServiceIcon && (
-                <div className="w-16 h-16 rounded-2xl bg-[var(--color-accent-light)] flex items-center justify-center mb-6 text-[var(--color-primary)]">
-                  <ServiceIcon className="w-8 h-8" strokeWidth={1.5} />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5] mb-6">
+                  <ServiceIcon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                  <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">
+                    {t('services.heroLabel')}
+                  </span>
                 </div>
               )}
 
-              <h1 className="mb-6">{service.title}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a2118] mb-6 leading-[1.1] tracking-tight">
+                {service.title}
+              </h1>
 
               {service.shortDescription && (
-                <p className="text-body-lg text-muted mb-8">
+                <p className="text-lg md:text-xl text-[#5a5048] mb-8 leading-relaxed max-w-2xl">
                   {service.shortDescription}
                 </p>
               )}
 
               {service.priceRange && (
-                <div className="flex items-center gap-3 mb-8 text-[var(--color-secondary)]">
+                <div className="flex items-center gap-3 mb-8 text-[#5a5048]">
                   <span className="font-semibold text-lg">
                     {service.priceRange.min} - {service.priceRange.max} RON
                   </span>
@@ -216,7 +241,7 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
                   {t('common.bookAppointment')}
                 </BookingButton>
                 <a
-                  className="btn btn-secondary btn-lg flex items-center gap-2"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white border border-[#e8e0d5] text-[#2a2118] font-semibold hover:bg-[#faf6f1] hover:border-[#d4c4b0] transition-colors"
                   href="tel:+40741199977"
                 >
                   <Phone className="w-5 h-5" strokeWidth={1.5} />
@@ -225,19 +250,36 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
               </div>
             </div>
 
-            {/* Hero Image */}
-            {service.heroImage && (
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[var(--shadow-card)]">
-                <Image
-                  fill
-                  priority
-                  alt={service.heroImage.alt || service.title}
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  src={urlFor(service.heroImage).width(800).height(600).auto('format').url()}
-                />
-              </div>
-            )}
+            {/* Hero Image: prefer local 3D photo, fallback to Sanity heroImage, then icon */}
+            <div className="relative">
+              {hasLocalPhoto ? (
+                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#faf6f1] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
+                  <Image
+                    fill
+                    priority
+                    alt={service.title}
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    src={localPhotoPath}
+                  />
+                </div>
+              ) : service.heroImage ? (
+                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
+                  <Image
+                    fill
+                    priority
+                    alt={service.heroImage.alt || service.title}
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    src={urlFor(service.heroImage).width(1200).height(750).auto('format').url()}
+                  />
+                </div>
+              ) : ServiceIcon ? (
+                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 flex items-center justify-center border border-[#e8e0d5]">
+                  <ServiceIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </section>
@@ -401,6 +443,9 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
   const t = await getTranslations()
   const ServiceIcon = fallbackService.Icon
 
+  const hasPhoto = hasServicePhoto(fallbackService.slug)
+  const photoPath = getServicePhotoPath(fallbackService.slug) ?? ''
+
   const serviceName = t(`services.fallback.${fallbackService.titleKey}`)
   const serviceDescription = t(`services.fallback.${fallbackService.descriptionKey}`)
   const serviceSchema = getServiceSchema({
@@ -424,29 +469,51 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Hero Section - photo driven */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] pt-28 pb-16 md:pt-36 md:pb-24">
+        {/* Subtle decorative background */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
+
+        <div className="container relative z-10">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-3 mb-10 text-sm" aria-label="Breadcrumb">
+            <Link href="/" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">
+              {t('breadcrumbs.home')}
+            </Link>
+            <span className="text-[#8b7355]/40">/</span>
+            <Link href="/servicii" className="text-[#8b7355]/70 hover:text-[#2a2118] transition-colors">
+              {t('breadcrumbs.services')}
+            </Link>
+            <span className="text-[#8b7355]/40">/</span>
+            <span className="text-[#2a2118] font-medium">{t(`services.fallback.${fallbackService.titleKey}`)}</span>
+          </nav>
+
+          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-center">
             {/* Content */}
             <div>
-              <div className="w-16 h-16 rounded-2xl bg-[var(--color-accent-light)] flex items-center justify-center mb-6 text-[var(--color-primary)]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5] mb-6">
                 {fallbackService.iconPath ? (
                   <Image
                     alt=""
-                    className="w-8 h-8"
-                    height={32}
+                    className="w-5 h-5"
+                    height={20}
                     src={fallbackService.iconPath}
-                    width={32}
+                    width={20}
                   />
                 ) : (
-                  <ServiceIcon className="w-8 h-8" strokeWidth={1.5} />
+                  <ServiceIcon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
                 )}
+                <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">
+                  {t('services.heroLabel')}
+                </span>
               </div>
 
-              <h1 className="mb-6">{t(`services.fallback.${fallbackService.titleKey}`)}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a2118] mb-6 leading-[1.1] tracking-tight">
+                {t(`services.fallback.${fallbackService.titleKey}`)}
+              </h1>
 
-              <p className="text-body-lg text-muted mb-8">
+              <p className="text-lg md:text-xl text-[#5a5048] mb-8 leading-relaxed max-w-2xl">
                 {t(`services.fallback.${fallbackService.descriptionKey}`)}
               </p>
 
@@ -455,7 +522,7 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
                   {t('common.bookAppointment')}
                 </BookingButton>
                 <a
-                  className="btn btn-secondary btn-lg flex items-center gap-2"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white border border-[#e8e0d5] text-[#2a2118] font-semibold hover:bg-[#faf6f1] hover:border-[#d4c4b0] transition-colors"
                   href="tel:+40741199977"
                 >
                   <Phone className="w-5 h-5" strokeWidth={1.5} />
@@ -464,18 +531,33 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
               </div>
             </div>
 
-            {/* Placeholder image area */}
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-[var(--color-accent-light)] flex items-center justify-center">
-              {fallbackService.iconPath ? (
-                <Image
-                  alt=""
-                  className="w-32 h-32 opacity-30"
-                  height={128}
-                  src={fallbackService.iconPath}
-                  width={128}
-                />
+            {/* Photo or placeholder */}
+            <div className="relative">
+              {hasPhoto ? (
+                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#faf6f1] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
+                  <Image
+                    src={photoPath}
+                    alt={serviceName}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="object-cover"
+                  />
+                </div>
               ) : (
-                <ServiceIcon className="w-32 h-32 text-[var(--color-primary)] opacity-30" strokeWidth={1} />
+                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 flex items-center justify-center border border-[#e8e0d5]">
+                  {fallbackService.iconPath ? (
+                    <Image
+                      alt=""
+                      className="w-32 h-32 opacity-30"
+                      height={128}
+                      src={fallbackService.iconPath}
+                      width={128}
+                    />
+                  ) : (
+                    <ServiceIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
+                  )}
+                </div>
               )}
             </div>
           </div>

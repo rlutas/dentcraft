@@ -1,13 +1,15 @@
 import type { LucideIcon } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { fallbackServices } from '@/lib/fallback-services'
+import { getMainFallbackServices } from '@/lib/fallback-services'
 import { Link } from '@/i18n/navigation'
 import { getAllServices, type Locale } from '@/lib/sanity/queries'
 import { getBreadcrumbSchema } from '@/lib/schema'
 import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
+import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
 import type { LocalePageProps } from '@/types'
 
 // Service type based on Sanity schema
@@ -122,47 +124,66 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid - photo cards */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container">
           <h2 className="sr-only">{t('services.title')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => {
               const ServiceIcon = getIconByName(service.icon)
+              const hasPhoto = hasServicePhoto(service.slug)
+              const photoPath = getServicePhotoPath(service.slug) ?? ''
 
               return (
                 <Link
                   key={service._id}
                   href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                  className="service-grid-card group relative bg-white rounded-2xl p-6 md:p-8
-                    border border-[#f0ebe3] hover:border-[#d4c4b0]
-                    shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]
-                    hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.12)]
-                    transition-all duration-500 hover:-translate-y-1
+                  className="group relative block h-full overflow-hidden rounded-3xl
+                    bg-white border border-[#e8e0d5]
+                    shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]
+                    hover:border-[#d4c4b0]
+                    hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
+                    hover:-translate-y-1.5
+                    transition-all duration-500 ease-out flex flex-col
                     animate-[fadeInUp_0.5s_ease-out_both]"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <div className="service-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
-                    {ServiceIcon ? (
-                      <ServiceIcon className="w-7 h-7 text-[#8b7355] transition-colors" strokeWidth={1.5} />
+                  {/* Photo or placeholder */}
+                  <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
+                    {hasPhoto ? (
+                      <Image
+                        src={photoPath}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
                     ) : (
-                      <div className="w-7 h-7 bg-[#d4c4b0] rounded-lg transition-colors" />
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                        {ServiceIcon ? (
+                          <ServiceIcon className="w-20 h-20 text-[#8b7355]/30 group-hover:text-[#8b7355]/50 transition-colors" strokeWidth={1.25} />
+                        ) : (
+                          <div className="w-20 h-20 bg-[#d4c4b0]/30 rounded-2xl" />
+                        )}
+                      </div>
                     )}
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3 group-hover:text-[#8b7355] transition-colors">
-                    {service.title}
-                  </h3>
-                  {service.shortDescription && (
-                    <p className="text-[#6b6b6b] text-sm leading-relaxed mb-5">
-                      {service.shortDescription}
-                    </p>
-                  )}
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#1a1a1a] group-hover:text-[#8b7355] transition-colors">
-                    {t('common.learnMore')}
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
+
+                  {/* Content */}
+                  <div className="p-6 md:p-7 flex flex-col flex-1">
+                    <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight">
+                      {service.title}
+                    </h3>
+                    {service.shortDescription && (
+                      <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
+                        {service.shortDescription}
+                      </p>
+                    )}
+                    <span className="inline-flex items-center gap-2 text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:gap-3 group-hover:text-[#2a2118] transition-all duration-300">
+                      {t('common.learnMore')}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.25} />
+                    </span>
+                  </div>
                 </Link>
               )
             })}
@@ -214,55 +235,75 @@ async function PlaceholderServicesPage() {
 
           <div className="mt-16 flex items-center gap-6">
             <div className="w-24 h-px bg-[#d4c4b0]" />
-            <span className="text-white/30 text-sm">{t('services.availableCount', { count: fallbackServices.length })}</span>
+            <span className="text-white/30 text-sm">{t('services.availableCount', { count: getMainFallbackServices().length })}</span>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid - photo cards */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {fallbackServices.map((service, index) => (
-              <Link
-                key={service.slug}
-                href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                className="service-grid-card group relative bg-white rounded-2xl p-6 md:p-8
-                  border border-[#f0ebe3] hover:border-[#d4c4b0]
-                  shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]
-                  hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.12)]
-                  transition-all duration-500 hover:-translate-y-1
-                  animate-[fadeInUp_0.5s_ease-out_both]"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <div className="service-icon-box w-14 h-14 rounded-2xl bg-[#f8f5f0] flex items-center justify-center mb-5
-                  transition-colors duration-300">
-                  {service.iconPath ? (
-                    <Image
-                      src={service.iconPath}
-                      alt=""
-                      width={28}
-                      height={28}
-                      className="w-7 h-7 transition-all duration-300"
-                    />
-                  ) : (
-                    <service.Icon className="w-7 h-7 text-[#8b7355] transition-colors" strokeWidth={1.5} />
-                  )}
-                </div>
-                <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3 group-hover:text-[#8b7355] transition-colors">
-                  {t(`services.fallback.${service.titleKey}`)}
-                </h3>
-                <p className="text-[#6b6b6b] text-sm leading-relaxed mb-5">
-                  {t(`services.fallback.${service.descriptionKey}`)}
-                </p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#1a1a1a] group-hover:text-[#8b7355] transition-colors">
-                  {t('common.learnMore')}
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {getMainFallbackServices().map((service, index) => {
+              const hasPhoto = hasServicePhoto(service.slug)
+              const photoPath = getServicePhotoPath(service.slug) ?? ''
+              return (
+                <Link
+                  key={service.slug}
+                  href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+                  className="group relative block h-full overflow-hidden rounded-3xl
+                    bg-white border border-[#e8e0d5]
+                    shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]
+                    hover:border-[#d4c4b0]
+                    hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
+                    hover:-translate-y-1.5
+                    transition-all duration-500 ease-out flex flex-col
+                    animate-[fadeInUp_0.5s_ease-out_both]"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  {/* Photo or placeholder */}
+                  <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
+                    {hasPhoto ? (
+                      <Image
+                        src={photoPath}
+                        alt={t(`services.fallback.${service.titleKey}`)}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                        {service.iconPath ? (
+                          <Image
+                            src={service.iconPath}
+                            alt=""
+                            width={80}
+                            height={80}
+                            className="w-20 h-20 opacity-30 group-hover:opacity-50 transition-opacity"
+                          />
+                        ) : (
+                          <service.Icon className="w-20 h-20 text-[#8b7355]/30 group-hover:text-[#8b7355]/50 transition-colors" strokeWidth={1.25} />
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 md:p-7 flex flex-col flex-1">
+                    <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight">
+                      {t(`services.fallback.${service.titleKey}`)}
+                    </h3>
+                    <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
+                      {t(`services.fallback.${service.descriptionKey}`)}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:gap-3 group-hover:text-[#2a2118] transition-all duration-300">
+                      {t('common.learnMore')}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.25} />
+                    </span>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
