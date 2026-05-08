@@ -397,11 +397,8 @@ async function ServicePageContent({ faqs, service }: { faqs: FAQ[]; service: Ser
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection />
 
-      {/* Servicii conexe */}
+      {/* Servicii conexe — footer CTA banner closes the page */}
       <RelatedServicesSection currentSlug={service.slug} />
-
-      {/* Final CTA banner — dark dramatic */}
-      <FinalCTABanner serviceName={service.title} />
 
     </div>
   )
@@ -655,11 +652,8 @@ async function FallbackServicePageContent({ fallbackService }: { fallbackService
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection />
 
-      {/* Servicii conexe */}
+      {/* Servicii conexe — footer CTA banner closes the page */}
       <RelatedServicesSection currentSlug={fallbackService.slug} />
-
-      {/* Final CTA banner */}
-      <FinalCTABanner serviceName={serviceName} />
 
     </div>
   )
@@ -840,50 +834,3 @@ async function RelatedServicesSection({ currentSlug }: { currentSlug: string }) 
   )
 }
 
-// Final CTA banner — dramatic dark, mirrors footer cta pattern
-function FinalCTABanner({ serviceName }: { serviceName: string }) {
-  return (
-    <section className="relative overflow-hidden bg-[#1a1410] py-20 md:py-28">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-[#d4c4b0]/15 to-transparent blur-[120px]" aria-hidden="true" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[100px]" aria-hidden="true" />
-
-      <div className="container relative z-10">
-        <ScrollReveal animation="fade-up">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-[0.28em] text-[#d4c4b0]/90 mb-5">
-              {serviceName}
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 tracking-tight leading-[1.05]">
-              Pregătit pentru un{' '}
-              <span className="font-serif italic font-medium text-[#d4c4b0]">zâmbet nou</span>?
-            </h2>
-            <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
-              Programează o consultație gratuită — discutăm planul de tratament, costuri și pași clari, fără presiune.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <BookingButton
-                variant="custom"
-                className="!inline-flex items-center justify-center px-7 py-3.5 sm:px-8 sm:py-4 bg-[#d4c4b0] text-[#1a1410] rounded-full font-semibold text-sm sm:text-base hover:shadow-[0_10px_30px_-8px_rgba(212,196,176,0.5)] transition-shadow duration-300 whitespace-nowrap"
-                icon={
-                  <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.25}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                }
-              >
-                Programează consultație
-              </BookingButton>
-              <a
-                href="tel:+40741199977"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 border border-white/20 text-white rounded-full font-medium text-sm sm:text-base hover:bg-white/10 hover:border-white/40 transition-colors duration-300"
-              >
-                <Phone className="w-5 h-5" strokeWidth={1.75} />
-                0741 199 977
-              </a>
-            </div>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  )
-}
