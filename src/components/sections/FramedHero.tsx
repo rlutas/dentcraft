@@ -367,7 +367,7 @@ export function FramedHero() {
         {/* Gradient overlays — strong at bottom for text readability, subtle at top for navbar */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-15% via-50% to-100%"
+          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-0% via-25% to-65% md:from-0% md:via-22% md:to-55%"
         />
         <div
           aria-hidden="true"
@@ -385,44 +385,44 @@ export function FramedHero() {
                 initial={{ opacity: 0, y: 12, scale: 0.92 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 1.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/15 backdrop-blur-2xl border border-white/30 px-2.5 sm:px-3 py-1.5 sm:py-2 pr-3 sm:pr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)]"
+                className="inline-flex items-center gap-1.5 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/15 backdrop-blur-2xl border border-white/30 px-2 sm:px-3 py-1 sm:py-2 pr-2.5 sm:pr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)]"
               >
-                <div className="flex -space-x-2">
+                <div className="flex -space-x-1.5 sm:-space-x-2">
                   <Image
                     src="/images/patient-1.png"
                     alt=""
                     width={32}
                     height={32}
-                    className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
+                    className="w-5 h-5 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
                   />
                   <Image
                     src="/images/patient-2.png"
                     alt=""
                     width={32}
                     height={32}
-                    className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
+                    className="w-5 h-5 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover"
                   />
-                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[9px] md:text-xs font-bold text-white">
+                  <div className="w-5 h-5 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[8px] md:text-xs font-bold text-white">
                     +
                   </div>
                 </div>
                 <div className="leading-tight">
-                  <div className="text-xs sm:text-sm md:text-base font-bold">2000+</div>
-                  <div className="text-[9px] sm:text-[10px] md:text-xs text-white/80 uppercase tracking-wider">
+                  <div className="text-[11px] sm:text-sm md:text-base font-bold">2000+</div>
+                  <div className="text-[8px] sm:text-[10px] md:text-xs text-white/80 uppercase tracking-wider">
                     {tHero('trustLabel')}
                   </div>
                 </div>
-                <div className="h-5 sm:h-6 w-px bg-white/25 mx-0.5 sm:mx-1" />
-                <div className="flex items-center gap-1">
-                  <Star className="w-3 h-3 md:w-4 md:h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
-                  <span className="text-xs sm:text-sm md:text-base font-bold">4.9</span>
+                <div className="h-4 sm:h-6 w-px bg-white/25 mx-0.5 sm:mx-1" />
+                <div className="flex items-center gap-0.5 sm:gap-1">
+                  <Star className="w-2.5 h-2.5 md:w-4 md:h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
+                  <span className="text-[11px] sm:text-sm md:text-base font-bold">4.9</span>
                 </div>
               </motion.div>
 
               {/* Headline — kicker inside h1 for SEO ("DentCraft Satu Mare"),
                   bold + italic lines with word stagger. Removed overflow-hidden
                   so descenders (g, y) and Hungarian diacritics aren't clipped. */}
-              <h1 className="font-bold text-white leading-[0.95] tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
+              <h1 className="font-bold text-white leading-[0.95] tracking-tight text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
                 <motion.span
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
