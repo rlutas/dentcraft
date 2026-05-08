@@ -32,6 +32,10 @@ type Props = {
   doctorName: string
   doctorRole: string
   delay?: string
+  // Controlled mode — when provided, parent owns play state (used to enforce only-one-playing)
+  isPlaying?: boolean
+  onPlay?: () => void
+  onStop?: () => void
 }
 
 export function DoctorVideoCard({
@@ -41,8 +45,18 @@ export function DoctorVideoCard({
   doctorName,
   doctorRole,
   delay = '0s',
+  isPlaying,
+  onPlay,
+  onStop,
 }: Props) {
-  const [playing, setPlaying] = useState(false)
+  // If parent controls (isPlaying defined), use it; otherwise self-managed.
+  const isControlled = typeof isPlaying === 'boolean'
+  const [internalPlaying, setInternalPlaying] = useState(false)
+  const playing = isControlled ? isPlaying : internalPlaying
+  const startPlay = () => {
+    if (onPlay) onPlay()
+    if (!isControlled) setInternalPlaying(true)
+  }
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   // Best-effort: try to nudge quality up when video starts.
@@ -95,7 +109,7 @@ export function DoctorVideoCard({
         ) : (
           <button
             type="button"
-            onClick={() => setPlaying(true)}
+            onClick={startPlay}
             aria-label={`Redă videoul cu ${doctorName}`}
             className="absolute inset-0 w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-3xl"
           >

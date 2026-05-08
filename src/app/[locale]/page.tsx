@@ -13,7 +13,7 @@ import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { cn } from '@/lib/utils'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
-import { DoctorVideoCard } from '@/components/sections/DoctorVideoCard'
+import { DoctorVideosGrid } from '@/components/sections/DoctorVideosGrid'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import googleReviews from '@/data/google-reviews.json'
@@ -599,24 +599,26 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
           </div>
 
           {/* Video Reels Grid - 2 doctor videos centered */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto">
-            <DoctorVideoCard
-              videoId="ZQnkXaijIXs"
-              posterSrc="https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png"
-              posterAlt="Dr. Petric Razvan-Tudor"
-              doctorName="Dr. Petric Razvan-Tudor"
-              doctorRole="Medic Stomatolog Coordonator"
-              delay="0.1s"
-            />
-            <DoctorVideoCard
-              videoId="KuxT2zKlrao"
-              posterSrc="/images/team/dr-ghirasim-denisa-stefania.webp"
-              posterAlt="Dr. Ghirasim Denisa-Stefania"
-              doctorName="Dr. Ghirasim Denisa"
-              doctorRole="Medic Stomatolog · Pediatrie"
-              delay="0.2s"
-            />
-          </div>
+          <DoctorVideosGrid
+            videos={[
+              {
+                videoId: 'ZQnkXaijIXs',
+                posterSrc: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
+                posterAlt: 'Dr. Petric Razvan-Tudor',
+                doctorName: 'Dr. Petric Razvan-Tudor',
+                doctorRole: 'Medic Stomatolog Coordonator',
+                delay: '0.1s',
+              },
+              {
+                videoId: 'KuxT2zKlrao',
+                posterSrc: '/images/team/dr-ghirasim-denisa-stefania.webp',
+                posterAlt: 'Dr. Ghirasim Denisa-Stefania',
+                doctorName: 'Dr. Ghirasim Denisa',
+                doctorRole: 'Medic Stomatolog · Pediatrie',
+                delay: '0.2s',
+              },
+            ]}
+          />
 
           {/* Bottom CTA - matches hero/services arrow-reveal pattern */}
           <ScrollReveal animation="fade-up" delay={300} className="mt-14 md:mt-16 text-center">
