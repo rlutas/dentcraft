@@ -88,7 +88,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     key: 'doctor3',
     name: 'Dr. Tincu Giovana-Nicoleta',
     slug: 'giovana-tincu',
-    role: 'Medic Stomatolog, Specialist Parodontolog',
+    role: 'Specialist Parodontolog',
     photo: '/images/team/dr-tincu-giovana.webp',
     specializations: ['Parodontologie', 'Stomatologie Pediatrica', 'Estetica Dentara'],
     bio: 'Dr. Tincu Giovana-Nicoleta este medic stomatolog specialist parodontolog la clinica DentCraft, cu experienta dobandita in cadrul clinicilor Antalka Comfort Dent (Sfantu Gheorghe) si A Dental Clinic (Botosani). Motivata si dedicata, Dr. Tincu este pasionata de perfectionare continua si de oferirea celor mai bune solutii pentru sanatatea parodontala si estetica zambetului. Abordarea ei este centrata pe pacient, combinand empatia si comunicarea clara cu expertiza clinica si utilizarea tehnologiilor moderne. Vorbeste romana, maghiara, engleza si spaniola.',
