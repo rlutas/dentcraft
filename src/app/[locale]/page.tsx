@@ -207,14 +207,9 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
         <div className="container relative z-10">
-          {/* Section header - mirrors hero typography (kicker + bold + serif italic) */}
+          {/* Section header - mirrors hero typography (bold + serif italic) */}
           <div className="text-center mb-16 md:mb-20">
             <ScrollReveal animation="fade-up">
-              <span className="block text-[11px] md:text-sm font-semibold tracking-[0.28em] uppercase text-[#8b7355] mb-4 md:mb-5">
-                {t('services.badge')}
-              </span>
-            </ScrollReveal>
-            <ScrollReveal animation="fade-up" delay={150}>
               <h2 className="font-bold text-[#2a2118] leading-[0.95] tracking-tight text-4xl md:text-5xl lg:text-6xl mb-6">
                 Servicii
                 <span className="font-serif italic font-medium text-[#8b7355] block pb-1 mt-1">stomatologice</span>
