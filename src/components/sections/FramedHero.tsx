@@ -186,10 +186,20 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
                             className="group flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-[#faf6f1] transition-colors"
                           >
                             <div className="w-9 h-9 rounded-lg bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center shrink-0 group-hover:bg-[#d4c4b0]/40 group-hover:border-[#d4c4b0] transition-colors">
-                              <service.Icon
-                                className="w-4 h-4 text-[#8b7355]"
-                                strokeWidth={1.5}
-                              />
+                              {service.iconPath ? (
+                                <Image
+                                  src={service.iconPath}
+                                  alt=""
+                                  width={20}
+                                  height={20}
+                                  className="w-5 h-5"
+                                />
+                              ) : (
+                                <service.Icon
+                                  className="w-4 h-4 text-[#8b7355]"
+                                  strokeWidth={1.5}
+                                />
+                              )}
                             </div>
                             <span className="flex-1 min-w-0 text-sm font-medium text-[#2a2118] leading-tight">
                               {tServices(service.titleKey)}
@@ -622,7 +632,7 @@ export function FramedHero() {
                   {/* Top accent */}
                   <div
                     aria-hidden="true"
-                    className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4c4b0] to-transparent"
+                    className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4c4b0]/40 to-transparent"
                   />
 
                   <div className="grid gap-1 pt-1">
@@ -634,7 +644,17 @@ export function FramedHero() {
                         onClick={() => setIsServicesOpen(false)}
                       >
                         <div className="w-10 h-10 rounded-xl bg-[#faf6f1] border border-[#e8e0d5] flex items-center justify-center shrink-0 group-hover:bg-[#d4c4b0]/40 group-hover:border-[#d4c4b0] transition-colors">
-                          <service.Icon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                          {service.iconPath ? (
+                            <Image
+                              src={service.iconPath}
+                              alt=""
+                              width={24}
+                              height={24}
+                              className="w-6 h-6"
+                            />
+                          ) : (
+                            <service.Icon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="font-semibold text-[#2a2118] text-[13px] leading-tight">
@@ -732,7 +752,7 @@ export function FramedHero() {
                 <div className="relative rounded-2xl bg-white shadow-[0_20px_60px_-10px_rgba(42,33,24,0.3)] border border-[#e8e0d5] p-2 overflow-hidden">
                   <div
                     aria-hidden="true"
-                    className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4c4b0] to-transparent"
+                    className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4c4b0]/40 to-transparent"
                   />
                   <div className="grid gap-1 pt-1">
                     {locales.map((loc) => {
