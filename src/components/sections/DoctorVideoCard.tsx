@@ -3,7 +3,27 @@
 import Image from 'next/image'
 import { Play } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+// Load YT IFrame API once globally
+function ensureYTApi(): Promise<void> {
+  return new Promise((resolve) => {
+    if (typeof window === 'undefined') return resolve()
+    const w = window as unknown as { YT?: { Player: unknown }; onYouTubeIframeAPIReady?: () => void }
+    if (w.YT && w.YT.Player) return resolve()
+    const existing = document.querySelector('script[src="https://www.youtube.com/iframe_api"]')
+    if (!existing) {
+      const tag = document.createElement('script')
+      tag.src = 'https://www.youtube.com/iframe_api'
+      document.body.appendChild(tag)
+    }
+    const prev = w.onYouTubeIframeAPIReady
+    w.onYouTubeIframeAPIReady = () => {
+      if (prev) prev()
+      resolve()
+    }
+  })
+}
 
 type Props = {
   videoId: string
@@ -23,6 +43,34 @@ export function DoctorVideoCard({
   delay = '0s',
 }: Props) {
   const [playing, setPlaying] = useState(false)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  // Best-effort: try to nudge quality up when video starts.
+  // YouTube has deprecated explicit quality control (auto-adaptive only since 2018),
+  // but on some platforms vq param + IFrame API setPlaybackQuality still get honored.
+  useEffect(() => {
+    if (!playing) return
+    let cancelled = false
+    ensureYTApi().then(() => {
+      if (cancelled || !iframeRef.current) return
+      const w = window as unknown as { YT?: { Player: new (el: HTMLIFrameElement, opts: unknown) => unknown } }
+      if (!w.YT?.Player) return
+      try {
+        new w.YT.Player(iframeRef.current, {
+          events: {
+            onReady: (event: { target: { setPlaybackQuality?: (q: string) => void } }) => {
+              try {
+                event.target.setPlaybackQuality?.('hd720')
+              } catch { /* ignore */ }
+            },
+          },
+        })
+      } catch { /* ignore */ }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [playing])
 
   return (
     <div
@@ -37,7 +85,8 @@ export function DoctorVideoCard({
       >
         {playing ? (
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`}
+            ref={iframeRef}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&vq=hd720&enablejsapi=1`}
             title={`${doctorName} — video`}
             className="absolute inset-0 w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
