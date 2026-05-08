@@ -1668,3 +1668,19 @@
 .legal-content tbody tr:hover {
   background: rgba(0, 0, 0, 0.015);
 }
+
+/* Clinic gallery — dim siblings when one is hovered (premium magazine feel) */
+.clinic-gallery .clinic-card {
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease-out, filter 400ms ease-out, box-shadow 400ms ease-out;
+}
+.clinic-gallery:hover .clinic-card:not(:hover) {
+  opacity: 0.55;
+  filter: brightness(0.92) saturate(0.85);
+  transform: scale(0.98);
+}
+.clinic-gallery .clinic-card:hover {
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0 30px 60px -20px rgba(42, 33, 24, 0.35);
+}
+
