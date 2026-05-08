@@ -280,14 +280,14 @@ function HomePageContent({ services, testimonials, teamMembers, beforeAfterCases
                           transition-all duration-500 ease-out flex flex-col"
                       >
                         {/* Photo or placeholder */}
-                        <div className="relative aspect-[4/3] bg-[#faf6f1] overflow-hidden">
+                        <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
                           {hasPhoto ? (
                             <Image
                               src={photoPath}
                               alt={t(`services.fallback.${service.titleKey}`)}
                               fill
                               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                              className="object-contain p-4 md:p-6 group-hover:scale-105 transition-transform duration-700 ease-out"
+                              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                             />
                           ) : (
                             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
