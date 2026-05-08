@@ -1,4 +1,4 @@
-import { Monitor, Shield, Armchair, Cpu } from 'lucide-react'
+import { Stethoscope, ShieldCheck, Sparkles, ScanLine } from 'lucide-react'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { ClinicGalleryDesktop } from './ClinicGalleryDesktop'
@@ -22,28 +22,32 @@ function buildClinicImages(t: ClinicSectionProps['t']) {
 
 const clinicFeatures = [
   {
-    icon: Monitor,
+    // Stethoscope = medical equipment / professional care
+    icon: Stethoscope,
     titleKey: 'clinic.features.equipment.title',
     descKey: 'clinic.features.equipment.description',
-    iconHover: 'group-hover:scale-110 group-hover:-rotate-6',
+    iconHover: 'group-hover:scale-110 group-hover:-rotate-12',
   },
   {
-    icon: Shield,
+    // ShieldCheck = verified-clean / certified sterilization
+    icon: ShieldCheck,
     titleKey: 'clinic.features.sterile.title',
     descKey: 'clinic.features.sterile.description',
     iconHover: 'group-hover:scale-110 group-hover:rotate-[360deg]',
   },
   {
-    icon: Armchair,
+    // Sparkles = premium comfort / spa-like care
+    icon: Sparkles,
     titleKey: 'clinic.features.comfort.title',
     descKey: 'clinic.features.comfort.description',
-    iconHover: 'group-hover:scale-110 group-hover:translate-y-[-4px] group-hover:rotate-3',
+    iconHover: 'group-hover:scale-125 group-hover:rotate-12',
   },
   {
-    icon: Cpu,
+    // ScanLine = 3D digital scanner / modern tech
+    icon: ScanLine,
     titleKey: 'clinic.features.digital.title',
     descKey: 'clinic.features.digital.description',
-    iconHover: 'group-hover:scale-125',
+    iconHover: 'group-hover:scale-110 group-hover:translate-y-[-2px]',
   },
 ]
 
