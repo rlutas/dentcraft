@@ -49,7 +49,7 @@ export function BookingButton({
   const buttonText = children || t('bookAppointment')
 
   // Base button styles
-  const baseStyles = 'inline-flex items-center justify-center gap-3 font-semibold transition-[background-color,border-color,color,transform,filter] duration-300'
+  const baseStyles = 'group inline-flex items-center justify-center font-semibold transition-[background-color,border-color,color,transform,filter] duration-300'
 
   // Variant styles
   const variantStyles = {
@@ -81,8 +81,15 @@ export function BookingButton({
         type="button"
         onClick={() => setIsPopupOpen(true)}
       >
-        {icon}
-        {buttonText}
+        <span>{buttonText}</span>
+        {icon ? (
+          <span
+            aria-hidden="true"
+            className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          >
+            {icon}
+          </span>
+        ) : null}
       </button>
 
       <CallbackPopup

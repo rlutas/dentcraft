@@ -107,28 +107,29 @@ export function Footer() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 py-16 lg:py-20">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
               <div className="text-center lg:text-left max-w-xl">
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 tracking-tight">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
                   {t('ctaTitle')}
                 </h3>
-                <p className="text-white/50 text-lg">
+                <p className="text-white/60 text-base md:text-lg leading-relaxed">
                   {t('ctaSubtitle')}
                 </p>
               </div>
               <div className="flex flex-row items-center gap-3">
                 <BookingButton
                   variant="custom"
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3.5 sm:py-4 bg-[#d4c4b0] text-[#1a1a1a]
-                    rounded-full font-semibold text-sm sm:text-base hover:bg-white
-                    transition-all duration-300 hover:shadow-[0_8px_32px_rgba(212,196,176,0.3)]
-                    group whitespace-nowrap"
+                  className="flex-1 sm:flex-initial !inline-flex items-center justify-center px-5 sm:px-8 py-3.5 sm:py-4 bg-[#d4c4b0] text-[#1a1a1a]
+                    rounded-full font-semibold text-sm sm:text-base hover:bg-[#1a1a1a] hover:text-white
+                    transition-colors duration-300
+                    whitespace-nowrap"
                   icon={
                     <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      className="w-4 h-4 shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
+                      strokeWidth={2.25}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   }
                 >
