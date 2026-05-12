@@ -1517,6 +1517,31 @@
   animation-play-state: paused;
 }
 
+/* Pause marquee on hover — only on devices with true hover capability.
+   Prevents iOS/Android sticky-hover where a tap leaves the row paused
+   off-screen, making the second row appear "missing" until next tap. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-row:hover .animate-marquee-left,
+  .marquee-row:hover .animate-marquee-right {
+    animation-play-state: paused;
+  }
+}
+
+/* Arrow-reveal CTAs: on touch devices, show the arrow permanently.
+   Tailwind's group-hover:* is wrapped in @media (hover: hover), so on
+   touch the arrow stays at max-w-0/opacity-0 — which makes the button
+   feel incomplete and can flash strangely on tap-sticky-hover iOS quirks.
+   Force the "revealed" state on touch for a clean, intentional CTA. */
+@media (hover: none) {
+  .group > [aria-hidden="true"].max-w-0 {
+    margin-left: 0.5rem;    /* ml-2 */
+    max-width: 1.25rem;     /* max-w-5 */
+    opacity: 1;
+    transform: translateX(0);
+    transition: none;       /* no animation on touch — already revealed */
+  }
+}
+
 /* ===== TEAM PROFILE HERO ANIMATIONS ===== */
 
 /* Photo entrance - slides in from right with scale */

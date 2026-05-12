@@ -1,7 +1,6 @@
 'use client'
 
 import { Star } from 'lucide-react'
-import { useState } from 'react'
 import type { Locale } from '@/i18n/config'
 
 // Avatar colors for Google reviews
@@ -89,9 +88,6 @@ function ReviewCard({ review, locale }: { review: Review; locale: Locale }) {
 }
 
 export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, googleMapsUrl }: GoogleReviewsSliderProps) {
-  const [topPaused, setTopPaused] = useState(false)
-  const [bottomPaused, setBottomPaused] = useState(false)
-
   // Filter out reviews without text
   const reviewsWithText = reviews.filter(review => {
     const text = typeof review.text === 'object' ? review.text[locale] : review.text
@@ -140,30 +136,18 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
       {/* Marquee Container - Full Screen Width */}
       <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
         <div className="space-y-8 md:space-y-10 overflow-hidden py-4">
-          {/* Top Row - Scrolls Left — pauses independently on hover */}
-          <div
-            className="relative"
-            onMouseEnter={() => setTopPaused(true)}
-            onMouseLeave={() => setTopPaused(false)}
-          >
-            <div
-              className={`flex gap-5 w-max animate-marquee-left ${topPaused ? 'animate-paused' : ''}`}
-            >
+          {/* Top Row - Scrolls Left — CSS-only hover pause (hover-capable devices only) */}
+          <div className="marquee-row relative">
+            <div className="flex gap-5 w-max animate-marquee-left">
               {topRowDuplicated.map((review, index) => (
                 <ReviewCard key={`top-${review.id}-${index}`} locale={locale} review={review} />
               ))}
             </div>
           </div>
 
-          {/* Bottom Row - Scrolls Right — pauses independently on hover */}
-          <div
-            className="relative"
-            onMouseEnter={() => setBottomPaused(true)}
-            onMouseLeave={() => setBottomPaused(false)}
-          >
-            <div
-              className={`flex gap-5 w-max animate-marquee-right ${bottomPaused ? 'animate-paused' : ''}`}
-            >
+          {/* Bottom Row - Scrolls Right — CSS-only hover pause (hover-capable devices only) */}
+          <div className="marquee-row relative">
+            <div className="flex gap-5 w-max animate-marquee-right">
               {bottomRowDuplicated.map((review, index) => (
                 <ReviewCard key={`bottom-${review.id}-${index}`} locale={locale} review={review} />
               ))}

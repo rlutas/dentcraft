@@ -20,7 +20,7 @@ export function DoctorVideosGrid({ videos }: Props) {
   const [activeId, setActiveId] = useState<string | null>(null)
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
       {videos.map((v) => (
         <DoctorVideoCard
           key={v.videoId}

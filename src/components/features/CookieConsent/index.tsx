@@ -206,11 +206,11 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
           role="dialog"
         >
           <div className="mx-auto max-w-4xl">
-            <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-[#e8e0d5] bg-[#faf6f1] shadow-[0_20px_50px_-12px_rgba(42,33,24,0.18)]">
               {/* Close button */}
               <button
                 aria-label="Close"
-                className="absolute top-3 right-3 rounded-full p-1.5 text-[var(--color-secondary)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-foreground)]"
+                className="absolute top-3 right-3 rounded-full p-1.5 text-[#8b7355] transition-colors hover:bg-white hover:text-[#2a2118]"
                 onClick={handleClose}
                 type="button"
               >
@@ -220,7 +220,7 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
               <div className="p-5 sm:p-6">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
                   {/* Icon */}
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white border border-[#e8e0d5] text-[#8b7355]">
                     <Cookie className="h-6 w-6" />
                   </div>
 

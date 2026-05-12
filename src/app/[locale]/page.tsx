@@ -616,6 +616,14 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                 doctorRole: 'Medic Stomatolog · Pediatrie',
                 delay: '0.2s',
               },
+              {
+                videoId: '1YaS-sdkYog',
+                posterSrc: '/images/team/dr-tincu-giovana.webp',
+                posterAlt: 'Dr. Tincu Giovana-Nicoleta',
+                doctorName: 'Dr. Tincu Giovana',
+                doctorRole: 'Medic Specialist · Parodontologie',
+                delay: '0.3s',
+              },
             ]}
           />
 

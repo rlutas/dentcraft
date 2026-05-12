@@ -78,12 +78,12 @@ export function getDoctorVideoForSlug(
       videoId: 'KuxT2zKlrao',
       posterSrc: '/images/team/dr-ghirasim-denisa-stefania.webp',
     },
-  }
-  const comingSoonSlugs: Record<string, { posterSrc?: string }> = {
     'giovana-tincu': {
+      videoId: '1YaS-sdkYog',
       posterSrc: '/images/team/dr-tincu-giovana.webp',
     },
   }
+  const comingSoonSlugs: Record<string, { posterSrc?: string }> = {}
   const cfg = videos[slug]
   if (cfg) {
     return {

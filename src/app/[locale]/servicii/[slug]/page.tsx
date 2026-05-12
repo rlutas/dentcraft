@@ -440,14 +440,14 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
           { label: t(`services.fallback.${fallbackService.titleKey}`) },
         ]}
         title={t(`services.fallback.${fallbackService.titleKey}`)}
-        italicAccent="Satu Mare"
+        italicAccent={t('services.italicAccent')}
         subtitle={t(`services.fallback.${fallbackService.descriptionKey}`)}
         badgeLabel={t('services.heroLabel')}
         badgeIcon={fallbackService.iconPath ? null : ServiceIcon}
         badgeIconPath={fallbackService.iconPath ?? null}
         ctaPrimary={t('common.bookAppointment')}
         photoSrc={hasPhoto ? photoPath : null}
-        photoAlt={`${serviceName} - clinica stomatologica DentCraft Satu Mare`}
+        photoAlt={t('services.photoAlt', { title: serviceName })}
         fallbackIcon={fallbackService.iconPath ? null : ServiceIcon}
         fallbackIconPath={fallbackService.iconPath ?? null}
       />
@@ -697,7 +697,7 @@ async function RelatedServicesSection({ currentSlug }: { currentSlug: string }) 
       <div className="container relative z-10">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-14 md:mb-16">
-            <AnimatedServiceHeading bold="Servicii" italic="conexe" />
+            <AnimatedServiceHeading bold={t('services.detail.relatedBold')} italic={t('services.detail.relatedItalic')} />
           </div>
         </ScrollReveal>
 
@@ -713,7 +713,7 @@ async function RelatedServicesSection({ currentSlug }: { currentSlug: string }) 
                 >
                   <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
                     {hasPhoto ? (
-                      <Image src={photoPath} alt={`${t(`services.fallback.${service.titleKey}`)} - clinica stomatologica Dentcraft Satu Mare`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                      <Image src={photoPath} alt={t('services.detail.relatedPhotoAlt', { title: t(`services.fallback.${service.titleKey}`) })} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
                         {service.iconPath ? (

@@ -117,7 +117,7 @@ export function FramedHero() {
                       visible: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 140, damping: 20 } },
                     }}
                   >
-                    {char === ' ' ? ' ' : char}
+                    {char === ' ' ? ' ' : char}
                   </motion.span>
                 ))}
               </motion.span>
