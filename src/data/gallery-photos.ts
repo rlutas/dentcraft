@@ -66,12 +66,6 @@ export const galleryPhotos: GalleryPhoto[] = [
     alt: 'Zona copii - periuta de dinti',
     category: 'clinic',
   },
-  // Team photos
-  {
-    src: '/images/team-clinic.webp',
-    alt: 'Echipa Dentcraft',
-    category: 'team',
-  },
   // Add more photos from /public/images/gallery/ below:
   // {
   //   src: '/images/gallery/your-photo.jpg',

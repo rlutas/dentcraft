@@ -250,7 +250,7 @@ const contentRo: PortableTextBlock[] = [
 
   richBlock('ro51', 'normal', [
     { text: 'Lucram cu ' },
-    { text: 'echipa de 6 specialisti', link: { key: 'lnk2', href: '/echipa' } },
+    { text: 'echipa noastra de specialisti', link: { key: 'lnk2', href: '/echipa' } },
     { text: ', cu experienta combinata de peste 10 ani. Avem scanner intraoral si radiografie 3D in cabinet \u2014 nu te trimitem in alta parte. Comunicam in romana, engleza si maghiara.' },
   ]),
 
@@ -407,7 +407,7 @@ const contentEn: PortableTextBlock[] = [
 
   block('en50', 'normal', 'I\'m not going to tell you we\'re "the best" \u2014 that\'s for each patient to decide. But I can tell you what sets us apart:'),
 
-  block('en51', 'normal', 'We work as a team of 6 specialists, with a combined experience of over 10 years. We have an intraoral scanner and 3D X-ray right in the office \u2014 we don\'t send you somewhere else. We communicate in Romanian, English, and Hungarian.'),
+  block('en51', 'normal', 'We work as a team of specialists, with a combined experience of over 10 years and 1500+ patients treated. We have an intraoral scanner and 3D X-ray right in the office \u2014 we don\'t send you somewhere else. We communicate in Romanian, English, and Hungarian.'),
 
   block('en52', 'normal', 'And most importantly: we tell you the final price before we start. Many patients from Satu Mare and the neighboring counties (Maramures, Bihor) choose to come to us precisely for this \u2014 transparency.'),
 

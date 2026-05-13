@@ -37,14 +37,17 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Medic Stomatolog Coordonator',
     photo: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
     specializations: ['Implantologie', 'Estetica Dentara', 'Protetică Dentară'],
-    bio: 'Dr. Razvan Petric este medicul stomatolog principal al clinicii DentCraft, cu peste 15 ani de experiență în domeniul stomatologiei moderne. Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise. Pasiunea sa pentru excelență și dedicarea față de pacienți fac din el un profesionist de încredere pentru tratamente complexe.',
+    bio: 'Dr. Razvan Petric este medicul stomatolog coordonator al clinicii DentCraft, cu peste 10 ani de experiență în domeniul stomatologiei moderne. A absolvit Facultatea de Medicină Dentară „Iuliu Hațieganu" din Cluj-Napoca în 2016 și și-a continuat formarea prin cursuri internaționale de protetică, implantologie și estetică dentară — Mauro Fradeani Education (Modulele I, II și III), Mastering Tooth Preparation cu Dr. Maxim Belograd (Kiev, 2019) și Competență în Implantologie Orală la Școala Națională de Sănătate Publică (București, 2020). Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise.',
     education: [
-      { institution: 'Universitatea de Medicină și Farmacie "Carol Davila" București', degree: 'Doctor în Medicină Dentară', year: 2008 },
-      { institution: 'Universitatea de Medicină și Farmacie Cluj-Napoca', degree: 'Specializare Implantologie', year: 2012 },
+      { institution: 'Universitatea de Medicină și Farmacie „Iuliu Hațieganu" Cluj-Napoca', degree: 'Doctor în Medicină Dentară', year: 2016 },
     ],
     certifications: [
-      { name: 'Certificat Implantologie Avansată', issuer: 'Nobel Biocare Academy', year: 2015 },
-      { name: 'Certificat Estetică Dentară', issuer: 'ESCD European Society', year: 2018 },
+      { name: 'Mauro Fradeani Education – Modul I: A Comprehensive Treatment Plan for Extensive Rehabilitations', issuer: 'Mauro Fradeani Education', year: 2017 },
+      { name: 'Mauro Fradeani Education – Modul II: Esthetic, Functional and Biologic Integration of the Prosthetic Rehabilitation on Natural Dentition and Implants', issuer: 'Mauro Fradeani Education', year: 2018 },
+      { name: 'Mauro Fradeani Education – Modul III: Ceramic Material Selection from Single Restoration to Full-Mouth Rehabilitation', issuer: 'Mauro Fradeani Education', year: 2019 },
+      { name: 'Mastering Tooth Preparation', issuer: 'Dr. Maxim Belograd – Kiev, Ucraina', year: 2019 },
+      { name: 'Competență în Implantologie Orală', issuer: 'Școala Națională de Sănătate Publică – Prof. Dr. Ioan Sîrbu, București', year: 2020 },
+      { name: 'Focus – Curs de Fotografie Dentară', issuer: 'Dr. Andrei Dicu & Dr. Dan Lazăr – Oradea', year: 2020 },
     ],
     gallery: [
       { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-1.webp', alt: 'Dr. Petric Razvan-Tudor - medic stomatolog principal DentCraft Satu Mare specializat in implantologie' },
@@ -55,8 +58,8 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-2.webp', alt: 'Dr. Petric Razvan in cabinetul DentCraft - lucrari de protetica dentara si coroane' },
     ],
     stats: {
-      yearsExperience: 15,
-      patientsCount: 2000,
+      yearsExperience: 10,
+      patientsCount: 1500,
     },
   },
   {
@@ -94,7 +97,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     bio: 'Dr. Tincu Giovana-Nicoleta este medic stomatolog specialist parodontolog la clinica DentCraft, cu experienta dobandita in cadrul clinicilor Antalka Comfort Dent (Sfantu Gheorghe) si A Dental Clinic (Botosani). Motivata si dedicata, Dr. Tincu este pasionata de perfectionare continua si de oferirea celor mai bune solutii pentru sanatatea parodontala si estetica zambetului. Abordarea ei este centrata pe pacient, combinand empatia si comunicarea clara cu expertiza clinica si utilizarea tehnologiilor moderne. Vorbeste romana, maghiara, engleza si spaniola.',
     education: [
       { institution: 'Ministerul Sanatatii, Iasi', degree: 'Medic Specialist Parodontolog', year: 2017 },
-      { institution: 'Universitatea de Medicina si Farmacie "Iuliu Hatieganu" Cluj-Napoca', degree: 'Licentiat in Medicina Dentara (media 9.69)', year: 2013 },
+      { institution: 'Universitatea de Medicina si Farmacie "Iuliu Hatieganu" Cluj-Napoca', degree: 'Licentiat in Medicina Dentara', year: 2013 },
     ],
     certifications: [
       { name: 'Congresul International de Medicina Dentara DENTIS', issuer: 'UMF "Iuliu Hatieganu" Cluj-Napoca', year: 2025 },
@@ -136,36 +139,6 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     bio: 'Karla Daraban este receptionista clinicii DentCraft si prima persoana care intampina pacientii. Cu o atitudine prietenoasa si profesionista, Karla se ocupa de programari, coordonarea fluxului de pacienti si asigurarea unei experiente placute inca de la primul contact cu clinica. Atentia la detalii si comunicarea clara fac din ea un membru esential al echipei.',
     education: [],
     certifications: [],
-  },
-  {
-    key: 'assistant3',
-    name: 'Danci Ionela Mikaela',
-    slug: 'ionela-danci',
-    role: 'Asistent Medical',
-    photo: '/images/team/asistent-danci-ionela-mikaela.webp',
-    specializations: ['Asistenta Stomatologica', 'Radiologie Dentara', 'Relatii Pacienti'],
-    bio: 'Ionela Mikaela Danci este asistent medical la clinica DentCraft, cu experienta in asistenta stomatologica si radiologie dentara. Cu o abordare prietenoasa si profesionista, Ionela contribuie la experienta pozitiva a fiecarui pacient.',
-    education: [
-      { institution: 'Scoala Postliceala Sanitara', degree: 'Asistent Medical Generalist', year: 2021 },
-    ],
-    certifications: [
-      { name: 'Certificat Radiologie Dentara', issuer: 'Colegiul Medicilor Stomatologi', year: 2022 },
-    ],
-  },
-  {
-    key: 'assistant4',
-    name: 'Calugher Ionela',
-    slug: 'ionela-calugher',
-    role: 'Asistent Medical',
-    photo: '/images/team/asistent-calugher-ionela.webp',
-    specializations: ['Asistenta Stomatologica', 'Igiena Orala', 'Relatii Pacienti'],
-    bio: 'Ionela Calugher este asistent medical la clinica DentCraft, dedicata ingrijirii pacientilor cu profesionalism si empatie. Cu o atitudine prietenoasa si atenta la detalii, Ionela asigura o experienta placuta pentru fiecare pacient.',
-    education: [
-      { institution: 'Scoala Postliceala Sanitara', degree: 'Asistent Medical Generalist', year: 2022 },
-    ],
-    certifications: [
-      { name: 'Certificat Asistenta Stomatologica', issuer: 'Colegiul Medicilor Stomatologi', year: 2023 },
-    ],
   },
 ]
 

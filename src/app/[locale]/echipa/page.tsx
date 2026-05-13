@@ -9,6 +9,7 @@ import { getBreadcrumbSchema } from '@/lib/schema'
 import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import type { LocalePageProps } from '@/types'
 
 // Team member type based on Sanity schema
@@ -69,7 +70,7 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
   const t = await getTranslations()
 
   // Use Sanity data or fallback
-  const hasMembers = teamMembers && teamMembers.length >= 6
+  const hasMembers = teamMembers && teamMembers.length >= 5
   const members = hasMembers ? teamMembers : fallbackTeamMembers
   // "Specialiști" count = doctors only (those with "Dr." prefix). Assistants/receptionists not counted.
   const count = members.filter((m) => m.name.trim().toLowerCase().startsWith('dr.')).length
@@ -97,8 +98,17 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
       </section>
 
       {/* Team Grid - photo cards (mirrors /servicii) */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container">
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        {/* Floating icons — same team/care theme as homepage */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/016-dentist-3.svg', className: 'top-6 left-3 w-14 h-14 md:top-10 md:left-12 md:w-24 md:h-24 lg:left-24 lg:w-28 lg:h-28', variant: 'driftB', duration: 28, opacity: 0.11 },
+            { src: '/icons/022-dental-care-1.svg', className: 'top-6 right-3 w-12 h-12 md:top-12 md:right-10 md:w-20 md:h-20 lg:right-24 lg:w-24 lg:h-24', variant: 'driftA', duration: 30, delay: 3, opacity: 0.11 },
+            { src: '/icons/010-smile.svg', className: 'bottom-6 left-4 w-12 h-12 md:bottom-10 md:left-12 md:w-20 md:h-20 lg:left-24 lg:w-24 lg:h-24', variant: 'driftC', duration: 24, delay: 1, opacity: 0.1 },
+            { src: '/icons/009-teeth.svg', className: 'bottom-6 right-4 w-14 h-14 md:bottom-12 md:right-12 md:w-20 md:h-20 lg:right-24 lg:w-24 lg:h-24', variant: 'driftB', duration: 26, delay: 5, opacity: 0.1 },
+          ]}
+        />
+        <div className="container relative z-10">
           <h2 className="sr-only">{t('team.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {members.map((member) => {

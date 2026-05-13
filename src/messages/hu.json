@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Fogorvos Szatmárnémeti | DentCraft Fogászati Klinika",
-    "description": "Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal. Implantátum, fogszabályozás, héjak, fehérítés. 6 fős szakértői csapat. Foglaljon időpontot!"
+    "description": "Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal és 1500+ kezelt beteggel. Implantátum, fogszabályozás, héjak, fehérítés. 5 fős szakértői csapat. Foglaljon időpontot!"
   },
   "navigation": {
     "menuTitle": "Menü",
@@ -74,7 +74,7 @@
     "availableCount": "{count} elérhető szolgáltatás",
     "subtitle": "Teljes koru fogaszati szolgaltatasokat kinalunk, a megelozestol a komplex kezelesekig.",
     "metaTitle": "Fogaszati Szolgaltatasok Szatmarnemeti | Implantatum, Fogszabalyozas",
-    "metaDescription": "Teljes koru fogaszati szolgaltatasok Szatmarnemetiben: implantatum, fogszabalyozas, hejak, feherites, gyermekfogaszat. DentCraft klinika - 6 szakember.",
+    "metaDescription": "Teljes koru fogaszati szolgaltatasok Szatmarnemetiben: implantatum, fogszabalyozas, hejak, feherites, gyermekfogaszat. DentCraft klinika - 5 szakember.",
     "benefits": "Elonyok",
     "process": "Kezelesi folyamat",
     "step": "Lepes",
@@ -567,8 +567,8 @@
     "title": "Fogorvosi Csapatunk Szatmárnémetiben",
     "specialistsCount": "{count} szakember",
     "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban.",
-    "metaTitle": "Fogorvosok Szatmarnemetiben | Csapat - 6 Szakember",
-    "metaDescription": "Ismerje meg a DentCraft fogaszati csapatat Szatmarnemetiben. Dr. Petric, Dr. Ghirasim, Dr. Tincu es asszisztenseink - 10+ ev tapasztalat.",
+    "metaTitle": "Fogorvosok Szatmarnemetiben | DentCraft Csapat",
+    "metaDescription": "Ismerje meg a DentCraft fogaszati csapatat Szatmarnemetiben - 3 fogorvos (Dr. Petric, Dr. Ghirasim, Dr. Tincu) es a recepcio/asszisztens csapat. 10+ ev tapasztalat, 1500+ kezelt beteg.",
     "about": "Rolunk",
     "education": "Tanulmanyok",
     "certifications": "Tanusitvanyok",

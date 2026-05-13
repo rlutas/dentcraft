@@ -322,6 +322,99 @@
   animation: pulse-whatsapp 2s ease-in-out infinite;
 }
 
+/* Floating background icons — smooth organic orbital float */
+.floating-icon {
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.floating-icon--driftA {
+  animation-name: floatOrbitA;
+}
+.floating-icon--driftB {
+  animation-name: floatOrbitB;
+}
+.floating-icon--driftC {
+  animation-name: floatOrbitC;
+}
+/* Clockwise circular orbit (9 keyframes = smooth curve, no corners) */
+@keyframes floatOrbitA {
+  0%   { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  12.5%{ transform: translate3d(-16px,-4px, 0) rotate(var(--icon-rot, 0deg)); }
+  25%  { transform: translate3d(-22px,-14px,0) rotate(var(--icon-rot, 0deg)); }
+  37.5%{ transform: translate3d(-16px,-24px,0) rotate(var(--icon-rot, 0deg)); }
+  50%  { transform: translate3d(0,    -28px,0) rotate(var(--icon-rot, 0deg)); }
+  62.5%{ transform: translate3d(16px, -24px,0) rotate(var(--icon-rot, 0deg)); }
+  75%  { transform: translate3d(22px, -14px,0) rotate(var(--icon-rot, 0deg)); }
+  87.5%{ transform: translate3d(16px, -4px, 0) rotate(var(--icon-rot, 0deg)); }
+  100% { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+}
+/* Counter-clockwise wider circular orbit */
+@keyframes floatOrbitB {
+  0%   { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  12.5%{ transform: translate3d(20px, -5px, 0) rotate(var(--icon-rot, 0deg)); }
+  25%  { transform: translate3d(28px, -16px,0) rotate(var(--icon-rot, 0deg)); }
+  37.5%{ transform: translate3d(20px, -27px,0) rotate(var(--icon-rot, 0deg)); }
+  50%  { transform: translate3d(0,    -32px,0) rotate(var(--icon-rot, 0deg)); }
+  62.5%{ transform: translate3d(-20px,-27px,0) rotate(var(--icon-rot, 0deg)); }
+  75%  { transform: translate3d(-28px,-16px,0) rotate(var(--icon-rot, 0deg)); }
+  87.5%{ transform: translate3d(-20px,-5px, 0) rotate(var(--icon-rot, 0deg)); }
+  100% { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+}
+/* Slow figure-eight / lemniscate */
+@keyframes floatOrbitC {
+  0%   { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  12.5%{ transform: translate3d(13px, -16px,0) rotate(var(--icon-rot, 0deg)); }
+  25%  { transform: translate3d(18px, -22px,0) rotate(var(--icon-rot, 0deg)); }
+  37.5%{ transform: translate3d(13px, -10px,0) rotate(var(--icon-rot, 0deg)); }
+  50%  { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  62.5%{ transform: translate3d(-13px,10px, 0) rotate(var(--icon-rot, 0deg)); }
+  75%  { transform: translate3d(-18px,22px, 0) rotate(var(--icon-rot, 0deg)); }
+  87.5%{ transform: translate3d(-13px,16px, 0) rotate(var(--icon-rot, 0deg)); }
+  100% { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+}
+/* On mobile, shrink orbit amplitude so icons never cross into adjacent sections */
+@media (max-width: 767px) {
+  @keyframes floatOrbitA {
+    0%   { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+    12.5%{ transform: translate3d(-7px, -2px, 0) rotate(var(--icon-rot, 0deg)); }
+    25%  { transform: translate3d(-10px,-6px, 0) rotate(var(--icon-rot, 0deg)); }
+    37.5%{ transform: translate3d(-7px, -10px,0) rotate(var(--icon-rot, 0deg)); }
+    50%  { transform: translate3d(0,    -12px,0) rotate(var(--icon-rot, 0deg)); }
+    62.5%{ transform: translate3d(7px,  -10px,0) rotate(var(--icon-rot, 0deg)); }
+    75%  { transform: translate3d(10px, -6px, 0) rotate(var(--icon-rot, 0deg)); }
+    87.5%{ transform: translate3d(7px,  -2px, 0) rotate(var(--icon-rot, 0deg)); }
+    100% { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  }
+  @keyframes floatOrbitB {
+    0%   { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+    12.5%{ transform: translate3d(9px,  -2px, 0) rotate(var(--icon-rot, 0deg)); }
+    25%  { transform: translate3d(12px, -7px, 0) rotate(var(--icon-rot, 0deg)); }
+    37.5%{ transform: translate3d(9px,  -12px,0) rotate(var(--icon-rot, 0deg)); }
+    50%  { transform: translate3d(0,    -14px,0) rotate(var(--icon-rot, 0deg)); }
+    62.5%{ transform: translate3d(-9px, -12px,0) rotate(var(--icon-rot, 0deg)); }
+    75%  { transform: translate3d(-12px,-7px, 0) rotate(var(--icon-rot, 0deg)); }
+    87.5%{ transform: translate3d(-9px, -2px, 0) rotate(var(--icon-rot, 0deg)); }
+    100% { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  }
+  @keyframes floatOrbitC {
+    0%   { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+    12.5%{ transform: translate3d(6px,  -7px, 0) rotate(var(--icon-rot, 0deg)); }
+    25%  { transform: translate3d(8px,  -10px,0) rotate(var(--icon-rot, 0deg)); }
+    37.5%{ transform: translate3d(6px,  -5px, 0) rotate(var(--icon-rot, 0deg)); }
+    50%  { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+    62.5%{ transform: translate3d(-6px, 5px,  0) rotate(var(--icon-rot, 0deg)); }
+    75%  { transform: translate3d(-8px, 10px, 0) rotate(var(--icon-rot, 0deg)); }
+    87.5%{ transform: translate3d(-6px, 7px,  0) rotate(var(--icon-rot, 0deg)); }
+    100% { transform: translate3d(0,    0,    0) rotate(var(--icon-rot, 0deg)); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-icon {
+    animation: none !important;
+  }
+}
+
 /* ============================================
    TESTIMONIALS SECTION STYLES
    ============================================ */

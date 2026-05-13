@@ -3,7 +3,6 @@ import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import {
   ArrowRight,
-  Star,
   User,
 } from 'lucide-react'
 import { ClinicSection } from '@/components/sections/ClinicSection'
@@ -12,6 +11,7 @@ import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { cn } from '@/lib/utils'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import { DoctorVideosGrid } from '@/components/sections/DoctorVideosGrid'
 import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
@@ -208,6 +208,16 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-accent)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
+        {/* Floating dental icons — general dental theme */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/010-smile.svg', className: 'top-8 left-3 w-12 h-12 md:top-32 md:left-10 md:w-24 md:h-24 lg:left-24 lg:w-32 lg:h-32', variant: 'driftA', duration: 26, opacity: 0.11 },
+            { src: '/icons/014-toothbrush.svg', className: 'top-8 right-3 w-12 h-12 md:top-40 md:right-12 md:w-20 md:h-20 lg:right-28 lg:w-24 lg:h-24', variant: 'driftB', duration: 32, delay: 4, opacity: 0.11 },
+            { src: '/icons/097-calendar.svg', className: 'top-[15rem] left-4 w-10 h-10 md:hidden xl:block xl:top-20 xl:left-[18%] xl:w-16 xl:h-16', variant: 'driftC', duration: 22, delay: 2, opacity: 0.1 },
+            { src: '/icons/008-white-teeth.svg', className: 'top-[15rem] right-4 w-12 h-12 md:hidden xl:block xl:top-24 xl:right-[20%] xl:w-20 xl:h-20', variant: 'driftA', duration: 28, delay: 6, opacity: 0.1 },
+          ]}
+        />
+
         <div className="container relative z-10">
           {/* Section header - mirrors hero typography (bold + animated serif italic) */}
           <div className="text-center mb-16 md:mb-20">
@@ -339,7 +349,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="container relative z-10">
           {/* Centered editorial header */}
           <div className="text-center mb-14 md:mb-20">
-            <AnimatedServiceHeading bold="De ce" italic="DentCraft" />
+            <AnimatedServiceHeading bold="De ce clinica" italic="DENTCRAFT" />
             <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
                 Stomatologie modernă în Satu Mare, cu accent pe rezultate vizibile, comunicare clară și pacienți care revin cu zâmbetul.
@@ -372,7 +382,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                     <div className="flex items-center gap-5 md:gap-7">
                       <div>
                         <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1">
-                          <CountUp end={15} suffix="+" duration={2000} />
+                          <CountUp end={10} suffix="+" duration={2000} />
                         </div>
                         <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
                           ani experiență
@@ -380,12 +390,11 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                       </div>
                       <div className="h-10 w-px bg-[#e8e0d5]" />
                       <div>
-                        <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1 flex items-baseline gap-1">
-                          <CountUp end={4.9} decimals={1} duration={1800} />
-                          <Star className="w-4 h-4 md:w-5 md:h-5 fill-[#d4c4b0] text-[#d4c4b0]" />
+                        <div className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-none mb-1">
+                          <CountUp end={1500} suffix="+" duration={2200} />
                         </div>
                         <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          Google · 50+
+                          pacienți tratați
                         </div>
                       </div>
                     </div>
@@ -399,8 +408,8 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               {[
                 {
                   num: '01',
-                  title: 'Echipă cu peste 15 ani de experiență',
-                  desc: 'Dr. Petric și echipa au tratat peste 2000 de pacienți, cu rezultate documentate prin cazuri reale.',
+                  title: 'Echipă cu peste 10 ani de experiență',
+                  desc: 'Dr. Petric și echipa au tratat peste 1500 de pacienți, cu rezultate documentate prin cazuri reale.',
                 },
                 {
                   num: '02',
@@ -447,6 +456,16 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
       <section className="py-24 md:py-32 bg-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#d4c4b0]/8 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" aria-hidden="true" />
+
+        {/* Floating icons — team/care theme */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/016-dentist-3.svg', className: 'top-8 left-3 w-14 h-14 md:top-28 md:left-12 md:w-24 md:h-24 lg:left-24 lg:w-28 lg:h-28', variant: 'driftB', duration: 28, opacity: 0.11 },
+            { src: '/icons/022-dental-care-1.svg', className: 'top-8 right-3 w-12 h-12 md:top-32 md:right-10 md:w-20 md:h-20 lg:right-24 lg:w-24 lg:h-24', variant: 'driftA', duration: 30, delay: 3, opacity: 0.11 },
+            { src: '/icons/010-smile.svg', className: 'top-[15rem] left-4 w-10 h-10 md:hidden xl:block xl:top-24 xl:left-[22%] xl:w-16 xl:h-16', variant: 'driftC', duration: 24, delay: 1, opacity: 0.1 },
+            { src: '/icons/009-teeth.svg', className: 'top-[15rem] right-4 w-12 h-12 md:hidden xl:block xl:top-20 xl:right-[22%] xl:w-16 xl:h-16', variant: 'driftB', duration: 26, delay: 5, opacity: 0.1 },
+          ]}
+        />
 
         <div className="container relative z-10">
           {/* Header */}
@@ -586,6 +605,16 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
+        {/* Floating icons — knowledge/education theme */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/001-x-ray.svg', className: 'top-8 left-3 w-14 h-14 md:top-28 md:left-12 md:w-24 md:h-24 lg:left-24 lg:w-28 lg:h-28', variant: 'driftC', duration: 30, opacity: 0.11 },
+            { src: '/icons/007-tooth-cleaning.svg', className: 'top-8 right-3 w-12 h-12 md:top-32 md:right-12 md:w-20 md:h-20 lg:right-24 lg:w-24 lg:h-24', variant: 'driftA', duration: 26, delay: 2.5, opacity: 0.11 },
+            { src: '/icons/024-dental-implant.svg', className: 'top-[15rem] left-4 w-10 h-10 md:hidden xl:block xl:top-24 xl:left-[22%] xl:w-16 xl:h-16', variant: 'driftB', duration: 28, delay: 4, opacity: 0.1 },
+            { src: '/icons/038-braces.svg', className: 'top-[15rem] right-4 w-12 h-12 md:hidden xl:block xl:top-20 xl:right-[22%] xl:w-16 xl:h-16', variant: 'driftC', duration: 24, delay: 1, opacity: 0.1 },
+          ]}
+        />
+
         <div className="container relative z-10">
           {/* Section header - editorial typography matching the rest */}
           <div className="text-center mb-14 md:mb-20">
@@ -676,6 +705,16 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <section className={`py-24 md:py-32 relative overflow-hidden ${hasSanityTestimonials ? 'bg-[#f5f0e8]' : 'bg-white'}`}>
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+
+          {/* Floating icons — transformation theme */}
+          <FloatingIcons
+            icons={[
+              { src: '/icons/002-broken-tooth-2.svg', className: 'top-8 left-3 w-12 h-12 md:top-28 md:left-12 md:w-20 md:h-20 lg:left-24 lg:w-24 lg:h-24', variant: 'driftB', duration: 28, opacity: 0.11 },
+              { src: '/icons/008-white-teeth.svg', className: 'top-8 right-3 w-14 h-14 md:top-32 md:right-12 md:w-24 md:h-24 lg:right-24 lg:w-28 lg:h-28', variant: 'driftA', duration: 32, delay: 3, opacity: 0.11 },
+              { src: '/icons/010-smile.svg', className: 'top-[15rem] left-4 w-10 h-10 md:hidden xl:block xl:top-24 xl:left-[24%] xl:w-14 xl:h-14', variant: 'driftC', duration: 24, delay: 2, opacity: 0.1 },
+              { src: '/icons/009-teeth.svg', className: 'top-[15rem] right-4 w-12 h-12 md:hidden xl:block xl:top-20 xl:right-[24%] xl:w-14 xl:h-14', variant: 'driftB', duration: 26, delay: 5, opacity: 0.1 },
+            ]}
+          />
 
           <div className="container relative z-10">
             {/* Editorial header — bold + serif italic accent (matches hero/services/team/clinic/reviews) */}

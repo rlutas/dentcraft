@@ -7,6 +7,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getMainFallbackServices } from '@/lib/fallback-services'
 import { Link } from '@/i18n/navigation'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import { getAllServices, type Locale } from '@/lib/sanity/queries'
 import { getBreadcrumbSchema } from '@/lib/schema'
 import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
@@ -103,8 +104,17 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
       </section>
 
       {/* Services Grid - photo cards */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container">
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        {/* Floating icons — same general dental theme as homepage */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/010-smile.svg', className: 'top-6 left-3 w-14 h-14 md:top-10 md:left-10 md:w-24 md:h-24 lg:left-24 lg:w-32 lg:h-32', variant: 'driftA', duration: 26, opacity: 0.11 },
+            { src: '/icons/014-toothbrush.svg', className: 'top-6 right-3 w-12 h-12 md:top-12 md:right-12 md:w-20 md:h-20 lg:right-28 lg:w-24 lg:h-24', variant: 'driftB', duration: 32, delay: 4, opacity: 0.11 },
+            { src: '/icons/097-calendar.svg', className: 'bottom-6 left-4 w-10 h-10 md:bottom-10 md:left-12 md:w-16 md:h-16 lg:left-24 lg:w-20 lg:h-20', variant: 'driftC', duration: 22, delay: 2, opacity: 0.1 },
+            { src: '/icons/008-white-teeth.svg', className: 'bottom-6 right-4 w-12 h-12 md:bottom-12 md:right-12 md:w-20 md:h-20 lg:right-24 lg:w-24 lg:h-24', variant: 'driftA', duration: 28, delay: 6, opacity: 0.1 },
+          ]}
+        />
+        <div className="container relative z-10">
           <h2 className="sr-only">{t('services.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service) => {
@@ -197,8 +207,17 @@ async function PlaceholderServicesPage() {
       </section>
 
       {/* Services Grid - photo cards */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container">
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        {/* Floating icons — same general dental theme as homepage */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/010-smile.svg', className: 'top-6 left-3 w-14 h-14 md:top-10 md:left-10 md:w-24 md:h-24 lg:left-24 lg:w-32 lg:h-32', variant: 'driftA', duration: 26, opacity: 0.11 },
+            { src: '/icons/014-toothbrush.svg', className: 'top-6 right-3 w-12 h-12 md:top-12 md:right-12 md:w-20 md:h-20 lg:right-28 lg:w-24 lg:h-24', variant: 'driftB', duration: 32, delay: 4, opacity: 0.11 },
+            { src: '/icons/097-calendar.svg', className: 'bottom-6 left-4 w-10 h-10 md:bottom-10 md:left-12 md:w-16 md:h-16 lg:left-24 lg:w-20 lg:h-20', variant: 'driftC', duration: 22, delay: 2, opacity: 0.1 },
+            { src: '/icons/008-white-teeth.svg', className: 'bottom-6 right-4 w-12 h-12 md:bottom-12 md:right-12 md:w-20 md:h-20 lg:right-24 lg:w-24 lg:h-24', variant: 'driftA', duration: 28, delay: 6, opacity: 0.1 },
+          ]}
+        />
+        <div className="container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {getMainFallbackServices().map((service) => {
               const hasPhoto = hasServicePhoto(service.slug)

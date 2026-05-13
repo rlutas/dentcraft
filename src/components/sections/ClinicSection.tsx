@@ -62,7 +62,7 @@ export function ClinicSection({ t }: ClinicSectionProps) {
       <div className="container relative z-10">
         {/* Section header */}
         <div className="text-center mb-16 lg:mb-20">
-          <AnimatedServiceHeading bold="Clinica" italic="DentCraft" />
+          <AnimatedServiceHeading bold="Clinica" italic="DENTCRAFT" />
           <ScrollReveal animation="fade-up" delay={500}>
             <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
               {t('clinic.subtitle')}

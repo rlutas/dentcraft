@@ -25,9 +25,9 @@ const localeTitles: Record<Locale, string> = {
  * Locale-specific site descriptions
  */
 const localeDescriptions: Record<Locale, string> = {
-  ro: 'Clinica stomatologica in Satu Mare cu 10+ ani experienta. Implanturi, ortodontie, fatete, albire dentara. Echipa de 6 specialisti. Programeaza consultatie!',
-  en: 'Dental clinic in Satu Mare with 10+ years experience. Implants, orthodontics, veneers, teeth whitening. Team of 6 specialists. Book a consultation!',
-  hu: 'Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal. Implantátum, fogszabályozás, héjak, fehérítés. 6 fős szakértői csapat. Foglaljon időpontot!',
+  ro: 'Clinica stomatologica in Satu Mare cu 10+ ani experienta si 1500+ pacienti tratati. Implanturi, ortodontie, fatete, albire dentara. Echipa de 5 specialisti. Programeaza consultatie!',
+  en: 'Dental clinic in Satu Mare with 10+ years experience and 1500+ patients treated. Implants, orthodontics, veneers, teeth whitening. Team of 5 specialists. Book a consultation!',
+  hu: 'Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal és 1500+ kezelt beteggel. Implantátum, fogszabályozás, héjak, fehérítés. 5 fős szakértői csapat. Foglaljon időpontot!',
 }
 
 /**

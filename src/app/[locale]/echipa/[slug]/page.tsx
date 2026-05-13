@@ -225,7 +225,7 @@ async function StatsRow({
   const stats = isDoctor
     ? [
         { end: yearsExperience, suffix: '+', label: t('statYears'), iconSrc: '/icons/097-calendar.svg' },
-        { end: patientsCount ?? 2000, suffix: '+', label: t('statPatients'), iconSrc: '/icons/010-smile.svg' },
+        { end: patientsCount ?? 1500, suffix: '+', label: t('statPatients'), iconSrc: '/icons/010-smile.svg' },
         { end: specializationsCount, suffix: '', label: t('statSpecializations'), iconSrc: '/icons/090-book.svg' },
       ]
     : [
