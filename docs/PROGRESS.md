@@ -131,6 +131,44 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 **Footer credits:**
 - Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` → WhatsApp link to +40 745 850 700 with pre-filled message about DentCraft
 
+### 14 May 2026 — Hero image overhaul + dark theme unification + diacritics + perf
+
+**New hero image (MJ-generated, brand-aligned):**
+- Replaced the old 1448×1086 hero with a fresh 2688×1792 dental clinic photo: woman patient reclined and smiling at camera, dentist hands in powder-blue gloves holding dental mirror + probe, warm cream/beige minimalist clinic interior
+- 9:20 portrait crop (808×1792) generated from same source so mobile fits with minimal cropping
+- Re-encoded both at WebP q85 with `-m 6`: landscape 884KB → 271KB, portrait 389KB → 142KB (~65% smaller)
+- Switched FramedHero from `<picture>` + `<source>` to two Next.js `<Image>` with `quality={95}` so both get AVIF/WebP derivatives at proper DPR
+- Top dark gradient overlay removed (bright source no longer needs it); bottom gradient strengthened (`from-[#0a0a0a] via /70`) for subtitle legibility, plus `text-shadow` added on the body copy
+
+**Trust chip refresh on hero:**
+- 3 patient avatars + "+" indicator (was 2 + "+"): patient-1/2 swapped to real WebP photos provided by Dr. Petric, patient-3 is the developer's photo (placeholder for a real testimonial avatar later)
+- All three patient images converted to WebP q90 (~40KB each)
+- "2000+" → "1500+ pacienți tratați" to match the Dr. Petric stats consistency pass
+- Avatar size shrunk one tier (w-6 h-6 md:w-8 md:h-8) so the chip feels right-weighted
+
+**Site-wide dark color unification:**
+- Replaced `bg-[#2a2118]` with `bg-[#1a1a1a]` across every button/CTA/active state/badge/pill (CTAs, filter chips, calculator stepper, phone button, FramedNav booking buttons, GoogleReviewsSlider CTA, etc.) — the whole dark UI now matches the footer top color, creating one coherent darkmode zone
+
+**Footer credit line:**
+- Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` linking to WhatsApp +40 745 850 700 with a pre-filled DentCraft inquiry message
+
+**Diacritics pass on visible UI:**
+- ro.json hero block: "Dinți sănătoși", "zâmbet luminos", subtitle and CTA fully diacriticized
+- Nav: "Echipă", "Prețuri"
+- common.bookAppointment, learnMore, discoverServices, contactUs, callNow all diacriticized
+- trustLabel changed from "PACIENȚI MULȚUMIȚI" to "Pacienți tratați" to match the stat we're displaying
+
+**Hero CTA polish:**
+- Mobile padding tightened (`px-7 py-3.5` → `px-6 py-3`) and text from `text-base` → `text-sm` so the pill fits proportionally at 390-420px
+- Added `leading-none` + `justify-center` + `block` on the SVG so the arrow rides on the exact text baseline instead of slightly above it
+- Arrow shrunk to `w-4 h-4` on mobile (`w-5 h-5` desktop) to match the smaller pill
+
+**Cookie banner timing:**
+- First-visit banner delay bumped 800ms → 3000ms so the hero entrance animations (title stagger ~2s, trust chip 1.15s, CTA 1.0s) finish before the cookie banner slides in from the bottom
+
+**Other quick fixes pushed mid-session:**
+- Vercel build was failing on `priceMinLabel is defined but never used` in ServiceHero (left over after removing the price chip in favor of the Calculator CTA); fixed by prefixing the destructured prop with `_`
+
 ### 7 May 2026 (evening) — Hero + Navigation Redesign (homepage only)
 
 **Status:** Live on homepage `/`. **Awaiting Dr. Petric's approval** before rolling out to the rest of the site (`/servicii`, `/echipa`, `/preturi`, `/contact`, `/blog`, etc.).
