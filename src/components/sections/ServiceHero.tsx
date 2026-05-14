@@ -37,7 +37,7 @@ export function ServiceHero({
   badgeLabel,
   badgeIcon: BadgeIcon,
   badgeIconPath,
-  priceMinLabel,
+  priceMinLabel: _priceMinLabel,
   ctaPrimary,
   photoSrc,
   photoAlt,
