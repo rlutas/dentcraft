@@ -58,14 +58,14 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
     try {
       const consent = localStorage.getItem(STORAGE_KEY)
       if (!consent) {
-        // Small delay to prevent banner flash on initial load
+        // Wait until hero entrance animations finish (~2.5s) before showing
         const timer = setTimeout(() => {
           setIsVisible(true)
           // Trigger entrance animation after a frame
           requestAnimationFrame(() => {
             setIsAnimatingIn(true)
           })
-        }, 800)
+        }, 3000)
         return () => clearTimeout(timer)
       }
       // Returning visitor — restore Google Consent Mode from saved preferences
@@ -81,7 +81,7 @@ export function CookieConsent({ translations, cookiePolicyPath }: Props) {
         requestAnimationFrame(() => {
           setIsAnimatingIn(true)
         })
-      }, 800)
+      }, 3000)
       return () => clearTimeout(timer)
     }
     return undefined

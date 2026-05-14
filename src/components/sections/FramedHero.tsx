@@ -147,11 +147,11 @@ export function FramedHero() {
             >
               <a
                 href="#contact"
-                className="group inline-flex items-center px-7 py-3.5 md:px-9 md:py-4 bg-white text-[#2a2118] rounded-full text-base md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.5)] transition-shadow duration-300"
+                className="group inline-flex items-center justify-center leading-none px-6 py-3 md:px-9 md:py-4 bg-white text-[#2a2118] rounded-full text-sm md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.5)] transition-shadow duration-300"
               >
-                <span>{tHero('ctaPrimary')}</span>
-                <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                  <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.25}>
+                <span className="leading-none">{tHero('ctaPrimary')}</span>
+                <span aria-hidden="true" className="inline-flex items-center justify-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                  <svg className="w-4 h-4 md:w-5 md:h-5 shrink-0 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.25}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
