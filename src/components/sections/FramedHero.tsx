@@ -53,11 +53,11 @@ export function FramedHero() {
               transition={{ delay: 1.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="inline-flex items-center gap-1.5 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/15 backdrop-blur-2xl border border-white/30 px-2 sm:px-3 py-1 sm:py-2 pr-2.5 sm:pr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)]"
             >
-              <div className="flex -space-x-2 sm:-space-x-2.5">
-                <Image src="/images/patient-1.png" alt="" width={48} height={48} className="w-7 h-7 md:w-10 md:h-10 rounded-full ring-2 ring-white object-cover" />
-                <Image src="/images/patient-2.png" alt="" width={48} height={48} className="w-7 h-7 md:w-10 md:h-10 rounded-full ring-2 ring-white object-cover" />
-                <Image src="/images/patient-3.png" alt="" width={48} height={48} className="w-7 h-7 md:w-10 md:h-10 rounded-full ring-2 ring-white object-cover" />
-                <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[10px] md:text-sm font-bold text-white">+</div>
+              <div className="flex -space-x-1.5 sm:-space-x-2">
+                <Image src="/images/patient-1.webp" alt="" width={40} height={40} className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover" />
+                <Image src="/images/patient-2.webp" alt="" width={40} height={40} className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover" />
+                <Image src="/images/patient-3.webp" alt="" width={40} height={40} className="w-6 h-6 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover" />
+                <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[9px] md:text-xs font-bold text-white">+</div>
               </div>
               <div className="leading-tight">
                 <div className="text-[11px] sm:text-sm md:text-base font-bold text-white">1500+</div>
