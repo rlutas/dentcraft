@@ -171,7 +171,7 @@ export function TeamMemberHero({
               <BookingButton
                 variant="custom"
                 icon={<ArrowRight className="w-5 h-5" strokeWidth={2.25} />}
-                className="group inline-flex items-center px-7 py-3.5 md:px-9 md:py-4 bg-[#2a2118] text-white rounded-full text-base md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(42,33,24,0.5)] transition-shadow duration-300"
+                className="group inline-flex items-center px-7 py-3.5 md:px-9 md:py-4 bg-[#1a1a1a] text-white rounded-full text-base md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(42,33,24,0.5)] transition-shadow duration-300"
               >
                 {ctaPrimary}
               </BookingButton>

@@ -650,7 +650,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
                       <h4 className="font-semibold text-[#2a2118] group-hover:text-[#8b7355] transition-colors">
                         {service.title}
                       </h4>
-                      <span className="w-10 h-10 rounded-full bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#2a2118] group-hover:border-[#2a2118] flex items-center justify-center transition-all duration-300 shrink-0 ml-4">
+                      <span className="w-10 h-10 rounded-full bg-[#faf6f1] border border-[#e8e0d5] group-hover:bg-[#1a1a1a] group-hover:border-[#2a2118] flex items-center justify-center transition-all duration-300 shrink-0 ml-4">
                         <ArrowRight className="w-5 h-5 text-[#8b7355] group-hover:text-white transition-colors" strokeWidth={2} />
                       </span>
                     </Link>

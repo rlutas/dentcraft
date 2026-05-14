@@ -117,7 +117,7 @@ export function GalleryPageClient({
                 <Link
                   className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                     !currentFilter
-                      ? 'bg-[#2a2118] text-white shadow-[0_4px_16px_rgba(42,33,24,0.25)]'
+                      ? 'bg-[#1a1a1a] text-white shadow-[0_4px_16px_rgba(42,33,24,0.25)]'
                       : 'bg-[#faf6f1] text-[#5a4a3a] border border-[#e8e0d5] hover:bg-[#f0ebe3] hover:border-[#d4c4b0]'
                   }`}
                   href="/galerie"
@@ -129,7 +129,7 @@ export function GalleryPageClient({
                     key={service._id}
                     className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                       currentFilter === service.slug
-                        ? 'bg-[#2a2118] text-white shadow-[0_4px_16px_rgba(42,33,24,0.25)]'
+                        ? 'bg-[#1a1a1a] text-white shadow-[0_4px_16px_rgba(42,33,24,0.25)]'
                         : 'bg-[#faf6f1] text-[#5a4a3a] border border-[#e8e0d5] hover:bg-[#f0ebe3] hover:border-[#d4c4b0]'
                     }`}
                     href={`/galerie?service=${service.slug}` as '/galerie'}
@@ -165,7 +165,7 @@ export function GalleryPageClient({
               </div>
               <p className="text-xl text-[#6b6b6b] mb-6">{t.noCases}</p>
               <Link
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#2a2118] text-white rounded-full font-medium
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium
                   hover:bg-[#3a3128] transition-colors"
                 href="/galerie"
               >
@@ -494,7 +494,7 @@ export function PlaceholderGalleryClient({
                       key={service._id}
                       className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                         currentFilter === service.slug
-                          ? 'bg-[#2a2118] text-white shadow-[0_4px_16px_rgba(42,33,24,0.25)]'
+                          ? 'bg-[#1a1a1a] text-white shadow-[0_4px_16px_rgba(42,33,24,0.25)]'
                           : 'bg-[#faf6f1] text-[#5a4a3a] border border-[#e8e0d5] hover:bg-[#f0ebe3]'
                       }`}
                       href={`/galerie?service=${service.slug}` as '/galerie'}
@@ -517,7 +517,7 @@ export function PlaceholderGalleryClient({
               </div>
               <p className="text-xl text-[#6b6b6b] mb-6">{t.noCases}</p>
               <Link
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#2a2118] text-white rounded-full font-medium hover:bg-[#3a3128] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium hover:bg-[#3a3128] transition-colors"
                 href="/galerie"
               >
                 {t.allTreatments}

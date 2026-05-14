@@ -37,7 +37,7 @@ export function ScenarioPicker({ locale, selectedId, onSelect }: ScenarioPickerP
             <div
               className={[
                 'w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center transition-colors',
-                isSelected ? 'bg-[#2a2118]' : 'bg-[#faf6f1] group-hover:bg-[#f5f0e8]',
+                isSelected ? 'bg-[#1a1a1a]' : 'bg-[#faf6f1] group-hover:bg-[#f5f0e8]',
               ].join(' ')}
             >
               <Image
@@ -59,7 +59,7 @@ export function ScenarioPicker({ locale, selectedId, onSelect }: ScenarioPickerP
             {isSelected && (
               <motion.div
                 layoutId="scenario-indicator"
-                className="absolute top-3 right-3 w-5 h-5 rounded-full bg-[#2a2118] flex items-center justify-center"
+                className="absolute top-3 right-3 w-5 h-5 rounded-full bg-[#1a1a1a] flex items-center justify-center"
               >
                 <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
                   <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />

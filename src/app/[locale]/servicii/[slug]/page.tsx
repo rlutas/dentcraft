@@ -292,7 +292,7 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
                     .map((step, index) => (
                       <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
                         <div className="group relative flex gap-5 md:gap-6">
-                          <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
+                          <div className="relative z-10 w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
                             {step.stepNumber}
                           </div>
                           <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
@@ -510,7 +510,7 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
                   {fallbackService.process.map((step, index) => (
                     <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
                       <div className="group relative flex gap-5 md:gap-6">
-                        <div className="relative z-10 w-12 h-12 rounded-full bg-[#2a2118] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
+                        <div className="relative z-10 w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
                           {step.stepNumber}
                         </div>
                         <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
@@ -642,7 +642,7 @@ async function DoctorProfileSection() {
 
                 <Link
                   href={{ pathname: '/echipa/[slug]', params: { slug: doctor.slug } }}
-                  className="group inline-flex items-center px-7 py-3.5 bg-[#2a2118] text-white rounded-full text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+                  className="group inline-flex items-center px-7 py-3.5 bg-[#1a1a1a] text-white rounded-full text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
                 >
                   <span>{t('services.detail.viewProfile')}</span>
                   <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">

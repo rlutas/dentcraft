@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown, Phone } from 'lucide-react'
+import { ArrowRight, Calculator, ChevronDown } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
@@ -137,38 +137,28 @@ export function ServiceHero({
               </motion.p>
             )}
 
-            {priceMinLabel && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.95, duration: 0.6 }}
-                className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]"
-              >
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('fromLabel')}</span>
-                <span className="text-base font-bold text-[#2a2118]">{priceMinLabel}</span>
-              </motion.div>
-            )}
 
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8"
             >
               <BookingButton
                 variant="custom"
                 icon={<ArrowRight className="w-5 h-5" strokeWidth={2.25} />}
-                className="group inline-flex items-center px-7 py-3.5 md:px-9 md:py-4 bg-[#2a2118] text-white rounded-full text-base md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(42,33,24,0.5)] transition-shadow duration-300"
+                className="group inline-flex items-center px-7 py-3.5 md:px-9 md:py-4 bg-[#1a1a1a] text-white rounded-full text-base md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(42,33,24,0.5)] transition-shadow duration-300"
               >
                 {ctaPrimary}
               </BookingButton>
-              <a
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#e8e0d5] text-[#2a2118] font-semibold hover:border-[#d4c4b0] hover:shadow-[0_10px_40px_-10px_rgba(139,115,85,0.18)] transition-all duration-300"
-                href="tel:+40741199977"
+              <Link
+                href={{ pathname: '/preturi', hash: 'calculator' }}
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#e8e0d5] text-[#2a2118] font-semibold hover:border-[#d4c4b0] hover:shadow-[0_10px_40px_-10px_rgba(139,115,85,0.18)] transition-all duration-300"
               >
-                <Phone className="w-5 h-5" strokeWidth={1.75} />
-                0741 199 977
-              </a>
+                <Calculator className="w-5 h-5 text-[#8b7355]" strokeWidth={1.75} />
+                {t('ctaSecondary')}
+                <ArrowRight aria-hidden="true" className="w-4 h-4 text-[#8b7355] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.25} />
+              </Link>
             </motion.div>
 
           </div>

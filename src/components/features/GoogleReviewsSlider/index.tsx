@@ -160,7 +160,7 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
       {/* Action Buttons - matches hero/services arrow-reveal pattern */}
       <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 px-2">
         <a
-          className="group inline-flex items-center px-4 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-4 bg-[#2a2118] text-white rounded-full text-xs sm:text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300 whitespace-nowrap"
+          className="group inline-flex items-center px-4 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-4 bg-[#1a1a1a] text-white rounded-full text-xs sm:text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300 whitespace-nowrap"
           href="https://g.page/r/CRn1KUzHwfjFEBM/review"
           rel="noopener noreferrer"
           target="_blank"

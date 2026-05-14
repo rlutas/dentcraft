@@ -116,7 +116,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
             animate={{ opacity: 1, backdropFilter: 'blur(8px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             transition={{ duration: 0.35 }}
-            className="absolute inset-0 bg-[#2a2118]/50"
+            className="absolute inset-0 bg-[#1a1a1a]/50"
             onClick={onClose}
           />
           <motion.nav
@@ -165,7 +165,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
                             <span className="flex-1 min-w-0 text-sm font-medium text-[#2a2118] leading-tight">{tServices(`fallback.${service.titleKey}`)}</span>
                           </Link>
                         ))}
-                        <Link href="/servicii" onClick={onClose} className="mt-1 flex items-center justify-between rounded-xl bg-[#2a2118] text-white px-4 py-2.5 text-sm font-semibold hover:bg-[#4a3d30] transition-colors">
+                        <Link href="/servicii" onClick={onClose} className="mt-1 flex items-center justify-between rounded-xl bg-[#1a1a1a] text-white px-4 py-2.5 text-sm font-semibold hover:bg-[#4a3d30] transition-colors">
                           <span>{t('services')}</span>
                           <ArrowRight className="w-4 h-4" strokeWidth={2.25} />
                         </Link>
@@ -188,7 +188,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
                 {locales.map((loc) => {
                   const Flag = LOCALE_FLAGS[loc]
                   return (
-                    <button key={loc} type="button" onClick={() => { switchLocale(loc); onClose() }} className={cn('flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium border transition-all duration-200', currentLocale === loc ? 'bg-[#2a2118] text-white border-[#d4c4b0]/40' : 'bg-[#faf6f1] text-[#2a2118] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]')}>
+                    <button key={loc} type="button" onClick={() => { switchLocale(loc); onClose() }} className={cn('flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium border transition-all duration-200', currentLocale === loc ? 'bg-[#1a1a1a] text-white border-[#d4c4b0]/40' : 'bg-[#faf6f1] text-[#2a2118] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]')}>
                       <span className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-black/10 flex items-center justify-center bg-white shrink-0">
                         <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
                       </span>
@@ -199,7 +199,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
               </div>
             </motion.div>
             <motion.div custom={navItems.length + 3} variants={itemVariants} initial="hidden" animate="visible" className="mt-4">
-              <button type="button" onClick={() => { onClose(); onBookingOpen() }} className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#2a2118] text-white rounded-xl font-semibold hover:bg-[#4a3d30] transition-colors">
+              <button type="button" onClick={() => { onClose(); onBookingOpen() }} className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#1a1a1a] text-white rounded-xl font-semibold hover:bg-[#4a3d30] transition-colors">
                 {tHero('ctaPrimary')}
               </button>
             </motion.div>
@@ -299,7 +299,7 @@ export function FramedNav() {
                       </Link>
                     ))}
                   </div>
-                  <Link href="/servicii" onClick={() => setIsServicesOpen(false)} className="mt-4 flex items-center justify-between rounded-2xl bg-[#2a2118] text-white px-5 py-3.5 text-[13px] font-semibold hover:bg-[#4a3d30] transition-colors">
+                  <Link href="/servicii" onClick={() => setIsServicesOpen(false)} className="mt-4 flex items-center justify-between rounded-2xl bg-[#1a1a1a] text-white px-5 py-3.5 text-[13px] font-semibold hover:bg-[#4a3d30] transition-colors">
                     <span>Vezi toate serviciile si tratamentele</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -341,7 +341,7 @@ export function FramedNav() {
                       const Flag = LOCALE_FLAGS[loc]
                       const isActive = currentLocale === loc
                       return (
-                        <button key={loc} type="button" onClick={() => { router.replace(pathname as '/', { locale: loc }); setIsLangOpen(false) }} className={cn('flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors', isActive ? 'bg-[#2a2118] text-white' : 'text-[#2a2118] hover:bg-[#faf6f1]')}>
+                        <button key={loc} type="button" onClick={() => { router.replace(pathname as '/', { locale: loc }); setIsLangOpen(false) }} className={cn('flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors', isActive ? 'bg-[#1a1a1a] text-white' : 'text-[#2a2118] hover:bg-[#faf6f1]')}>
                           <span className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-black/10 bg-white shrink-0">
                             <Flag className="absolute inset-0 w-full h-full object-cover scale-[1.6]" />
                           </span>
@@ -354,13 +354,13 @@ export function FramedNav() {
               </div>
             </div>
 
-            <a href="tel:+40741199977" aria-label="Sună-ne: 0741 199 977" title="0741 199 977" className="hidden xl:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#2a2118] hover:bg-[#4a3d30] transition-colors group">
+            <a href="tel:+40741199977" aria-label="Sună-ne: 0741 199 977" title="0741 199 977" className="hidden xl:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#1a1a1a] hover:bg-[#4a3d30] transition-colors group">
               <Phone className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
             </a>
             <button
               type="button"
               onClick={() => setBookingOpen(true)}
-              className="group hidden sm:inline-flex md:hidden xl:inline-flex items-center whitespace-nowrap px-5 sm:px-6 xl:px-9 py-3 xl:py-4 bg-[#2a2118] text-white rounded-full text-sm xl:text-base font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+              className="group hidden sm:inline-flex md:hidden xl:inline-flex items-center whitespace-nowrap px-5 sm:px-6 xl:px-9 py-3 xl:py-4 bg-[#1a1a1a] text-white rounded-full text-sm xl:text-base font-semibold hover:shadow-[0_10px_24px_-8px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
               <span>{tHero('ctaPrimary')}</span>
               <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-2 max-w-5 opacity-100 translate-x-0 md:ml-0 md:max-w-0 md:opacity-0 md:-translate-x-2 md:group-hover:ml-2 md:group-hover:max-w-5 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">

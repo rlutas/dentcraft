@@ -366,12 +366,19 @@ export function Footer() {
                 ))}
               </div>
 
-              {/* Made with love */}
-              <p className="text-sm text-white/30 flex items-center gap-2">
-                Made with
-                <span className="text-[#d4c4b0] animate-pulse">♥</span>
-                in Satu Mare
-              </p>
+              {/* Crafted by — WhatsApp contact for web dev inquiries */}
+              <a
+                aria-label="Crafted by Luțaș Raul — discută pe WhatsApp despre un website"
+                className="group inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
+                href="https://api.whatsapp.com/send/?phone=40745850700&text=Bun%C4%83%21+Am+v%C4%83zut+site-ul+dentcraft.ro+%C8%99i+a%C8%99+vrea+s%C4%83+discut%C4%83m+despre+dezvoltarea+unui+website.&type=phone_number&app_absent=0"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span className="font-mono text-xs text-white/30 group-hover:text-[#d4c4b0] transition-colors">&lt;/&gt;</span>
+                <span>Crafted by</span>
+                <span className="font-semibold text-[#d4c4b0] group-hover:text-white transition-colors">Luțaș Raul</span>
+                <span aria-hidden="true" className="text-[#d4c4b0] transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
             </div>
           </div>
         </div>

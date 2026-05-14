@@ -1,6 +1,6 @@
 # Dentcraft.ro - Project Status
 
-**Last updated:** 7 May 2026
+**Last updated:** 14 May 2026
 
 ---
 
@@ -102,6 +102,34 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 ---
 
 ## Session Log
+
+### 13–14 May 2026 — Dr. Petric content updates + floating icons + price calculator promo
+
+**Content (verified against drpetric.ro/despre/):**
+- Dr. Petric profile rewritten: 2016 "Iuliu Hatieganu" Cluj-Napoca + 6 real courses (Fradeani I/II/III, Belograd Kiev 2019, Sirbu Bucharest 2020, Dicu/Lazar Oradea 2020); stats 10+ years / 1500+ patients (was 15+ / 2000+)
+- Removed "(media 9.69)" from Dr. Tincu's diploma
+- Removed Ionela Danci + Ionela Calugher from team (per Dr. Petric); fallback team now 5 members (3 doctors + 2 staff); `/echipa` Sanity threshold lowered to 5
+- Removed `team-clinic.webp` ("Echipa Dentcraft") from `/galerie`
+- Site-wide consistency pass for new numbers: SEO `seo.ts`, meta descriptions (ro/en/hu) for home + `/servicii` + `/echipa`, blog fallback copy, doctor profile defaults — no more "6 specialists" or "15+ years" references
+- Stats card on homepage "De ce" section: replaced 4.9 Google rating with "1500+ pacienți tratați"
+
+**Branding:**
+- "DENTCRAFT" rendered uppercase in italic headings ("De ce clinica DENTCRAFT", "Clinica DENTCRAFT")
+- `AnimatedServiceHeading` scaled down one tier (`text-3xl md:text-4xl lg:text-5xl`), tracking normalized, italic gets `tracking-wide` for the uppercase brand word
+
+**Floating dental icons on white sections:**
+- New `FloatingIcons` component (`src/components/ui/FloatingIcons.tsx`) — smooth 9-keyframe orbital float, no rotation; CSS mask trick to color any SVG; `prefers-reduced-motion` respected
+- Mobile-specific keyframes with smaller amplitudes so icons never cross into adjacent sections
+- Applied on: homepage Servicii, Echipa, Doctor Videos, Before/After (conditional); `/servicii` grid; `/echipa` grid — themed icon sets per section (general dental, team/care, knowledge/education, transformation)
+- Reviews section deliberately skipped (bg is cream `#f5f0e8`, not white, in default state)
+
+**Price calculator promotion (3 placements):**
+- C — Homepage "De ce" reason #4 now has an inline "Calculează prețul tău →" link to `/preturi#calculator`
+- A — `/servicii/[slug]` hero: replaced "DE LA X RON" price chip with 2 buttons total: "Programează consultația" (primary) + "Calculează prețul" (outlined, with Calculator icon); removed redundant phone CTA
+- B — New full-width **dark statement section** (`bg-[#2a2118]`) between Servicii and "De ce" on landing: "Calculator instant de preț" headline (white + cream italic) + description + white CTA on dark bg, 3-step explainer grid (Alegi → Vezi preț → Primești estimarea) on the right with glassy white/5 cards — premium contrast break
+
+**Footer credits:**
+- Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` → WhatsApp link to +40 745 850 700 with pre-filled message about DentCraft
 
 ### 7 May 2026 (evening) — Hero + Navigation Redesign (homepage only)
 

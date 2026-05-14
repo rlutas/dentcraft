@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import {
   ArrowRight,
+  Calculator,
   User,
 } from 'lucide-react'
 import { ClinicSection } from '@/components/sections/ClinicSection'
@@ -327,7 +328,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
           <ScrollReveal animation="fade-up" delay={400} className="mt-16 text-center">
             <Link
               href="/servicii"
-              className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+              className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
               <span>{t('common.seeAll')}</span>
               <span
@@ -338,6 +339,84 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               </span>
             </Link>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Price Calculator Promo - Full-width dark statement section (matches footer) */}
+      <section className="py-20 md:py-28 bg-[#1a1a1a] relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-[36rem] h-[36rem] bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-[#8b7355]/15 rounded-full blur-3xl translate-y-1/2 translate-x-1/3" aria-hidden="true" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)`,
+            backgroundSize: '64px 64px',
+          }}
+        />
+
+        {/* Floating dental icons — diagonal: top-left + bottom-right */}
+        <FloatingIcons
+          icons={[
+            { src: '/icons/082-clipboard.svg', className: 'top-6 left-4 w-12 h-12 md:top-10 md:left-10 md:w-20 md:h-20 lg:left-16 lg:w-24 lg:h-24', variant: 'driftA', duration: 26, color: '#d4c4b0', opacity: 0.1 },
+            { src: '/icons/024-dental-implant.svg', className: 'bottom-6 right-4 w-14 h-14 md:bottom-10 md:right-10 md:w-20 md:h-20 lg:right-16 lg:w-24 lg:h-24', variant: 'driftA', duration: 24, delay: 5, color: '#d4c4b0', opacity: 0.09 },
+          ]}
+        />
+
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
+            <div>
+              <ScrollReveal animation="fade-up">
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 text-[10px] font-bold uppercase tracking-[0.18em] text-[#d4c4b0] bg-white/5 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+                  Transparență totală
+                </span>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={100}>
+                <h2 className="font-bold text-white leading-[0.95] tracking-normal text-3xl md:text-5xl lg:text-6xl mb-5">
+                  Calculator instant
+                  <span className="block font-serif italic font-medium text-[#d4c4b0] mt-2 tracking-wide">de preț</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={200}>
+                <p className="text-base md:text-lg text-white/70 leading-relaxed mb-8 max-w-xl">
+                  Selectează tratamentul de care ai nevoie și primești estimarea în câteva secunde — fără telefon, fără așteptare. Plan de tratament scris înainte de a începe.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={300}>
+                <Link
+                  href={{ pathname: '/preturi', hash: 'calculator' }}
+                  className="group inline-flex items-center gap-2 px-7 py-3.5 md:px-9 md:py-4 bg-white text-[#2a2118] rounded-full text-base md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(212,196,176,0.5)] transition-shadow duration-300"
+                >
+                  <Calculator className="w-5 h-5" strokeWidth={2} />
+                  <span>{t('hero.ctaSecondary')}</span>
+                  <ArrowRight aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.25} />
+                </Link>
+              </ScrollReveal>
+            </div>
+
+            <ScrollReveal animation="fade-up" delay={150}>
+              <div className="grid gap-4">
+                {[
+                  { num: '01', text: 'Alegi serviciile dorite din catalog' },
+                  { num: '02', text: 'Vezi prețul minim, maxim și media' },
+                  { num: '03', text: 'Primești estimarea pe email opțional' },
+                ].map((step) => (
+                  <div
+                    key={step.num}
+                    className="group flex items-start gap-5 p-5 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#d4c4b0]/40 transition-all duration-300"
+                  >
+                    <span className="font-serif italic text-3xl md:text-4xl text-[#d4c4b0] leading-none shrink-0 group-hover:text-white transition-colors duration-300">
+                      {step.num}
+                    </span>
+                    <span className="text-base md:text-lg text-white/80 leading-snug pt-1.5">
+                      {step.text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -425,6 +504,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                   num: '04',
                   title: 'Prețuri transparente, garanție',
                   desc: 'Calculator de preț online, plan de tratament scris înainte de a începe și garanție pentru lucrări.',
+                  link: { href: '/preturi#calculator' as const, label: t('hero.ctaSecondary') },
                 },
               ].map((reason, i) => (
                 <ScrollReveal
@@ -443,6 +523,15 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                       <p className="text-[#5a5048] text-sm md:text-base leading-relaxed">
                         {reason.desc}
                       </p>
+                      {'link' in reason && reason.link && (
+                        <Link
+                          href={{ pathname: '/preturi', hash: 'calculator' }}
+                          className="group/cta mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[#8b7355] hover:text-[#2a2118] transition-colors duration-300"
+                        >
+                          <span className="border-b border-[#d4c4b0] group-hover/cta:border-[#2a2118] pb-0.5 transition-colors duration-300">{reason.link.label}</span>
+                          <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" strokeWidth={2.25} />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </ScrollReveal>
@@ -583,7 +672,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
           <ScrollReveal animation="fade-up" delay={300} className="mt-12 md:mt-16 text-center">
             <Link
               href="/echipa"
-              className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+              className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
               <span>{t('teamPreview.viewAll')}</span>
               <span
@@ -662,7 +751,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               href="https://www.instagram.com/dentcraft.sm"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+              className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
               <span>Vezi mai multe pe Instagram</span>
               <span
@@ -738,7 +827,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             <ScrollReveal animation="fade-up" delay={300} className="mt-14 md:mt-16 text-center">
               <Link
                 href="/galerie"
-                className="group inline-flex items-center px-8 py-4 bg-[#2a2118] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+                className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
               >
                 <span>{t('galleryPreview.viewAll')}</span>
                 <span

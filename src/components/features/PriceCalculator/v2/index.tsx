@@ -151,7 +151,7 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
                 <div
                   className={[
                     'w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all',
-                    active ? 'bg-[#2a2118] text-white' : 'bg-[#f5f0e8] text-[#8b7355]',
+                    active ? 'bg-[#1a1a1a] text-white' : 'bg-[#f5f0e8] text-[#8b7355]',
                     isCurrent ? 'shadow-[0_0_0_4px_rgba(42,33,24,0.08)]' : '',
                   ].join(' ')}
                 >
@@ -170,7 +170,7 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
                 <div
                   className={[
                     'w-8 md:w-12 h-px mx-1 mt-4 transition-colors',
-                    stepIdx > i ? 'bg-[#2a2118]' : 'bg-[#e8e0d5]',
+                    stepIdx > i ? 'bg-[#1a1a1a]' : 'bg-[#e8e0d5]',
                   ].join(' ')}
                 />
               )}

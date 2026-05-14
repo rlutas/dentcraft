@@ -190,7 +190,7 @@ async function BlogPageContent({
               <Link
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
                   !categorySlug
-                    ? 'bg-[#2a2118] text-white border-[#2a2118]'
+                    ? 'bg-[#1a1a1a] text-white border-[#2a2118]'
                     : 'text-[#8b7355] bg-[#faf6f1] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                 }`}
                 href="/blog"
@@ -202,7 +202,7 @@ async function BlogPageContent({
                   key={category._id}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
                     categorySlug === category.slug
-                      ? 'bg-[#2a2118] text-white border-[#2a2118]'
+                      ? 'bg-[#1a1a1a] text-white border-[#2a2118]'
                       : 'text-[#8b7355] bg-[#faf6f1] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                   }`}
                   href={`/blog?category=${category.slug}` as '/blog'}
@@ -336,7 +336,7 @@ async function BlogPageContent({
                         key={pageNum}
                         className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-medium transition-all duration-200 border ${
                           pageNum === currentPage
-                            ? 'bg-[#2a2118] text-white border-[#2a2118]'
+                            ? 'bg-[#1a1a1a] text-white border-[#2a2118]'
                             : 'bg-[#faf6f1] text-[#8b7355] border-[#e8e0d5] hover:bg-[#f5f0e8] hover:border-[#d4c4b0]'
                         }`}
                         href={
@@ -379,7 +379,7 @@ async function BlogPageContent({
                 <p className="text-[var(--color-muted-foreground)] leading-relaxed mb-8">{t('blog.noPostsDescription')}</p>
                 {categorySlug && (
                   <Link
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-sm border-2 border-[#2a2118] text-[#2a2118] rounded-xl hover:bg-[#2a2118] hover:text-white transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-sm border-2 border-[#2a2118] text-[#2a2118] rounded-xl hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
                     href="/blog"
                   >
                     {t('blog.viewAllPosts')}

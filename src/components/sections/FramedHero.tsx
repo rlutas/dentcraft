@@ -16,52 +16,57 @@ export function FramedHero() {
   return (
     <section className="relative overflow-hidden min-h-[100svh]">
       <div className="relative w-full h-full min-h-[100svh]">
-        {/* Responsive hero image — portrait on mobile, landscape on desktop. */}
-        <picture className="absolute inset-0 block">
-          <source media="(min-width: 768px)" srcSet="/images/hero/hero-patient-landscape.webp" />
-          <Image
-            src="/images/hero/hero-patient-portrait.webp"
-            alt="Pacient zâmbind la consultație DentCraft Satu Mare"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[calc(30%-20px)_30%] md:object-center"
-          />
-        </picture>
-
-        {/* Gradient overlays — strong at bottom for text readability, subtle at top for navbar */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#1a1410] via-[#2a2118]/55 to-[#2a2118]/15 from-0% via-25% to-65% md:from-0% md:via-22% md:to-55%"
+        {/* Responsive hero image — portrait on mobile, landscape on desktop.
+            Both go through Next.js Image so each gets AVIF/WebP variants at proper DPR. */}
+        <Image
+          src="/images/hero/hero-patient-portrait.webp"
+          alt="Pacient zâmbind la consultație DentCraft Satu Mare"
+          fill
+          priority
+          quality={95}
+          sizes="(min-width: 768px) 0px, 100vw"
+          className="object-cover object-[55%_30%] md:hidden"
         />
+        <Image
+          src="/images/hero/hero-patient-landscape.webp"
+          alt="Pacient zâmbind la consultație DentCraft Satu Mare"
+          fill
+          priority
+          quality={95}
+          sizes="(min-width: 768px) 100vw, 0px"
+          className="object-cover object-center hidden md:block"
+        />
+
+        {/* Gradient overlays — only at bottom for text readability; top stays clean for the new bright image */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/25 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#1a1410]/70 to-transparent from-0% via-30% to-65% md:via-28% md:to-55%"
         />
 
         {/* Content overlay — single stack on left, all hierarchy in one column */}
         <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 sm:px-6 sm:pb-8 md:px-12 md:pb-16 lg:px-16 lg:pb-24">
           <div className="max-w-3xl">
-            {/* Trust chip with patient avatars + rating */}
+            {/* Trust chip — patient avatars + count + rating */}
             <motion.div
               initial={{ opacity: 0, y: 12, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 1.15, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="inline-flex items-center gap-1.5 sm:gap-3 mb-3 sm:mb-5 md:mb-8 rounded-full bg-white/15 backdrop-blur-2xl border border-white/30 px-2 sm:px-3 py-1 sm:py-2 pr-2.5 sm:pr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_32px_-8px_rgba(0,0,0,0.3)]"
             >
-              <div className="flex -space-x-1.5 sm:-space-x-2">
-                <Image src="/images/patient-1.png" alt="" width={32} height={32} className="w-5 h-5 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover" />
-                <Image src="/images/patient-2.png" alt="" width={32} height={32} className="w-5 h-5 md:w-8 md:h-8 rounded-full ring-2 ring-white object-cover" />
-                <div className="w-5 h-5 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[8px] md:text-xs font-bold text-white">+</div>
+              <div className="flex -space-x-2 sm:-space-x-2.5">
+                <Image src="/images/patient-1.png" alt="" width={48} height={48} className="w-7 h-7 md:w-10 md:h-10 rounded-full ring-2 ring-white object-cover" />
+                <Image src="/images/patient-2.png" alt="" width={48} height={48} className="w-7 h-7 md:w-10 md:h-10 rounded-full ring-2 ring-white object-cover" />
+                <Image src="/images/patient-3.png" alt="" width={48} height={48} className="w-7 h-7 md:w-10 md:h-10 rounded-full ring-2 ring-white object-cover" />
+                <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#d4c4b0] to-[#8b7355] ring-2 ring-white flex items-center justify-center text-[10px] md:text-sm font-bold text-white">+</div>
               </div>
               <div className="leading-tight">
-                <div className="text-[11px] sm:text-sm md:text-base font-bold">2000+</div>
-                <div className="text-[8px] sm:text-[10px] md:text-xs text-white/80 uppercase tracking-wider">{tHero('trustLabel')}</div>
+                <div className="text-[11px] sm:text-sm md:text-base font-bold text-white">1500+</div>
+                <div className="text-[8px] sm:text-[10px] md:text-xs text-white/85 uppercase tracking-wider">{tHero('trustLabel')}</div>
               </div>
               <div className="h-4 sm:h-6 w-px bg-white/25 mx-0.5 sm:mx-1" />
               <div className="flex items-center gap-0.5 sm:gap-1">
                 <Star className="w-2.5 h-2.5 md:w-4 md:h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
-                <span className="text-[11px] sm:text-sm md:text-base font-bold">4.9</span>
+                <span className="text-[11px] sm:text-sm md:text-base font-bold text-white">4.9</span>
               </div>
             </motion.div>
 
@@ -128,7 +133,7 @@ export function FramedHero() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85, duration: 0.6 }}
-              className="text-white/90 text-base sm:text-lg md:text-xl mt-4 sm:mt-5 md:mt-6 max-w-xl leading-relaxed"
+              className="text-white text-base sm:text-lg md:text-xl mt-4 sm:mt-5 md:mt-6 max-w-xl leading-relaxed [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]"
             >
               {tHero('subtitle')}
             </motion.p>
