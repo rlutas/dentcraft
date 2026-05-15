@@ -1,6 +1,31 @@
 # Dentcraft.ro - Project Status
 
-**Last updated:** 14 May 2026
+**Last updated:** 15 May 2026
+
+## 🚦 Launch Readiness Snapshot (15 May 2026)
+
+Site-ul este **gata de launch** din punct de vedere conținut + design + performanță. Lipsesc doar pașii tehnici de a scoate maintenance mode-ul. Detalii complete în `docs/GO-LIVE.md`.
+
+- ✅ Design + brand: warm cream/beige + dark `#1a1a1a` unificat, paletă coerentă
+- ✅ Hero photoreal MJ-generated, 9:20 portrait pentru mobile, WebP optimizat
+- ✅ Dr. Petric profil verificat de pe drpetric.ro (2016 Cluj + 6 cursuri reale)
+- ✅ Echipa: 3 medici + 2 staff (decizie Petric)
+- ✅ Stats 10+ ani / 1500+ pacienți uniformizate peste tot
+- ✅ Calculator promovat în 3 locații strategice
+- ✅ Floating dental icons pe toate secțiunile albe
+- ✅ Footer `</> Crafted by Luțaș Raul →` → WhatsApp
+- ✅ Diacritice peste tot pe UI vizibil
+- ✅ Forms + Resend + Analytics + Speed Insights live
+- ✅ Legal pages (privacy/cookies/terms) actualizate 3 limbi
+- ✅ PageSpeed mobile 94/100/100/100
+
+**Pentru LIVE rămân (~30 min):**
+1. **4 reverturi de cod** marcate cu TODO (`under construction`): `robots.ts`, `seo.ts` (×2 blocuri), `layout.tsx`
+2. **Vercel env var**: șterge `NEXT_PUBLIC_MAINTENANCE_MODE`
+3. **Deploy verify + smoke test** pe live URL
+4. **Submit sitemap în Google Search Console** + re-indexing pentru paginile principale
+
+---
 
 ---
 

@@ -1,6 +1,31 @@
 # Go-Live Checklist — Dentcraft.ro
 
-**Status la 14 May 2026:** Site-ul este în **MAINTENANCE / UNDER CONSTRUCTION mode**. Conținut + design = ready. Indexarea SEO este blocată intenționat. Acest document conține pașii exacți pentru a flipa site-ul live.
+**Status la 15 May 2026:** Site-ul este în **MAINTENANCE / UNDER CONSTRUCTION mode**. Conținut + design = ready. Indexarea SEO este blocată intenționat. Acest document conține pașii exacți pentru a flipa site-ul live.
+
+---
+
+## 🚦 UNDE AM RĂMAS — Quick Status
+
+| Etapă | Status | Note |
+|---|---|---|
+| **Design + conținut** | ✅ COMPLET | Toate paginile finalizate, brand DentCraft, paletă unificată |
+| **Hero MJ + optimizat** | ✅ COMPLET | Landscape 271KB, portrait 9:20 142KB, AVIF/WebP auto |
+| **Dr. Petric content verificat** | ✅ COMPLET | 2016 Cluj, 6 cursuri reale, 10+ ani / 1500+ pacienți |
+| **Echipa finalizată** | ✅ COMPLET | 3 medici + 2 staff (Petric, Ghirasim, Tincu + Camelia, Karla) |
+| **Calculator promovat** | ✅ COMPLET | Banner landing + reason #4 + servicii/[slug] hero |
+| **Diacritice + dark theme** | ✅ COMPLET | Toate textele UI + toate butoanele `#1a1a1a` |
+| **Footer credit + WhatsApp** | ✅ COMPLET | Crafted by Luțaș Raul → +40 745 850 700 |
+| **Cookie banner timing** | ✅ COMPLET | 3s delay (după animații hero) |
+| **Forms + Resend + Analytics** | ✅ COMPLET | Toate funcționale local + production |
+| **Legal pages** | ✅ COMPLET | Privacy, Cookies, Terms — 3 limbi, lastUpdated 2026-02-26 |
+| **PageSpeed mobile** | ✅ 94/100/100/100 | Perf/A11y/BP/SEO — toate sub limite |
+| **GO-LIVE COD (4 reverturi)** | ⏳ TODO | Vezi secțiunea 1 mai jos |
+| **GO-LIVE Vercel env vars** | ⏳ TODO | Vezi secțiunea 2 mai jos |
+| **Post-launch SEO (GSC submit)** | ⏳ AFTER | Vezi secțiunea 5 mai jos |
+
+**Timp estimat până LIVE:** ~30 min (4 reverturi cod + 1 env var change + deploy verify + smoke test).
+
+**Ce face acest doc:** ghidează pas cu pas reverturile + verificările pentru launch. **TODOs în cod sunt deja marcate** — caută `under construction` să le găsești.
 
 ---
 
