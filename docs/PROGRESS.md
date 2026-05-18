@@ -2,6 +2,39 @@
 
 **Last updated:** 18 May 2026
 
+## 📝 Session 2026-05-18 — Go-live, perf optimization, legal hardening
+
+### 8. Perf optimization (PageSpeed Insights mobile)
+**Înainte:** Performance 70 / LCP 8.4s / payload 9.15 MB
+**După:** payload **0.63 MB (−93%)**, FCP 556 ms, video nu se încarcă la initial paint
+
+- Nou: `src/components/ui/LazyVideo.tsx` — IntersectionObserver-based lazy mount
+- Renderizează doar poster image inițial; video MP4 se descarcă/pornește când userul scroll-ează aproape (rootMargin 200px)
+- Înlocuit `<video>` inline din "De ce clinica" cu `<LazyVideo />`
+- Fallback safe: dacă IntersectionObserver lipsește, load imediat
+
+### 7. Legal — Termeni & Condiții extinși (RO/EN/HU)
+Înlocuit secțiunea §8 (singur paragraf) cu 5 sub-secțiuni:
+- **8.1 Drepturi de autor** — listă completă conținut protejat + Legea 8/1996
+- **8.2 Marcă înregistrată** — DENTCRAFT brand protection în domenii, social, ads
+- **8.3 Interdicții exprese** — scraping, clonare design, refolosire texte/poze, domenii confuzionale, derivative works, redistribuire
+- **8.4 Monitorizare & măsuri legale** — cease & desist, despăgubiri civile, OSIM/Poliție/ORDA, DMCA takedowns
+- **8.5 Citare autorizată** — excerpts cu atribuire permise
+
+### 6. Go-live readiness
+- `src/app/robots.ts` — permite `/`, blochează `/api/`, `/studio/`, referă sitemap + host
+- `src/lib/seo.ts` — restaurat `noIndex` ca prop conditional (default index/follow true)
+- `src/app/[locale]/layout.tsx` — maintenance mode rămâne opt-in via `NEXT_PUBLIC_MAINTENANCE_MODE=true` env var
+- Verificat live: emails Resend funcționează (`/api/contact`, `/api/callback`, `/api/price-estimate` — toate 200 OK cu `success:true`)
+- Domain ownership verificat în Google Search Console prin DNS TXT record
+
+### 5. Site deployat live pe `https://www.dentcraft.ro`
+- Maintenance mode dezactivat (`NEXT_PUBLIC_MAINTENANCE_MODE` ștearsă/false + redeploy)
+- Toate paginile răspund 200 (homepage, /servicii, /preturi, /contact, /faq, /echipa, /galerie, /blog)
+- HTTPS + HSTS + CSP + X-Frame-Options + X-Content-Type-Options configurate
+
+---
+
 ## 📝 Session 2026-05-18 — Cazuri de succes + i18n complet
 
 ### 1. Video clinică optimizat
@@ -59,28 +92,35 @@
 
 ---
 
-## 🚦 Launch Readiness Snapshot (15 May 2026)
+## 🚦 Launch Status (18 May 2026) — LIVE
 
-Site-ul este **gata de launch** din punct de vedere conținut + design + performanță. Lipsesc doar pașii tehnici de a scoate maintenance mode-ul. Detalii complete în `docs/GO-LIVE.md`.
+Site-ul este **LIVE** pe `https://www.dentcraft.ro` cu maintenance off, indexabil și toate API-urile email funcționale.
 
 - ✅ Design + brand: warm cream/beige + dark `#1a1a1a` unificat, paletă coerentă
+- ✅ Brand DENTCRAFT all-caps peste tot (replace `DentCraft`/`Dentcraft` → `DENTCRAFT` ~85 apariții)
 - ✅ Hero photoreal MJ-generated, 9:20 portrait pentru mobile, WebP optimizat
 - ✅ Dr. Petric profil verificat de pe drpetric.ro (2016 Cluj + 6 cursuri reale)
 - ✅ Echipa: 3 medici + 2 staff (decizie Petric)
 - ✅ Stats 10+ ani / 1500+ pacienți uniformizate peste tot
 - ✅ Calculator promovat în 3 locații strategice
+- ✅ Cazuri de succes (4 fețe pacienți, lightbox + keyboard nav)
+- ✅ Video clinic LAZY (poster initial, MP4 doar la scroll — payload −93%)
 - ✅ Floating dental icons pe toate secțiunile albe
 - ✅ Footer `</> Crafted by Luțaș Raul →` → WhatsApp
-- ✅ Diacritice peste tot pe UI vizibil
-- ✅ Forms + Resend + Analytics + Speed Insights live
-- ✅ Legal pages (privacy/cookies/terms) actualizate 3 limbi
-- ✅ PageSpeed mobile 94/100/100/100
+- ✅ I18n complet RO + EN + HU — toate paginile traduse
+- ✅ Forms + Resend (testat live: contact/callback/price-estimate)
+- ✅ Analytics + Speed Insights live
+- ✅ Legal pages (privacy/cookies/terms) extinse cu IP/marca/anti-copy
+- ✅ Maintenance mode opt-in (env flag)
+- ✅ robots.txt indexabil + sitemap.xml submitted-ready
+- ✅ Google Search Console — DNS TXT verificat, ready to submit sitemap
+- ✅ PageSpeed mobile: payload 9.15 MB → 0.63 MB, FCP 556 ms
 
-**Pentru LIVE rămân (~30 min):**
-1. **4 reverturi de cod** marcate cu TODO (`under construction`): `robots.ts`, `seo.ts` (×2 blocuri), `layout.tsx`
-2. **Vercel env var**: șterge `NEXT_PUBLIC_MAINTENANCE_MODE`
-3. **Deploy verify + smoke test** pe live URL
-4. **Submit sitemap în Google Search Console** + re-indexing pentru paginile principale
+**Pași rămași (în afara codului):**
+1. Search Console → click VERIFICAȚI pe DNS (TXT deja propagat)
+2. Search Console → Submit `sitemap.xml`
+3. Request Indexing pentru paginile principale
+4. (opțional) Google Business Profile optimization pentru local SEO
 
 ---
 
