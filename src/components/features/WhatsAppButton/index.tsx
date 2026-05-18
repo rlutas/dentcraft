@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { trackWhatsAppClick } from '@/lib/gtm'
 
 // Official WhatsApp glyph (white phone-with-chat) — used inside the green circle
 function WhatsAppGlyph({ className = '' }: { className?: string }) {
@@ -156,7 +155,6 @@ export function WhatsAppButton({
             ${isPulsing ? 'animate-pulse-whatsapp' : ''}
           `}
           href={whatsappUrl}
-          onClick={trackWhatsAppClick}
           rel="noopener noreferrer"
           target="_blank"
         >
