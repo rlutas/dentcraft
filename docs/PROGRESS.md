@@ -2,6 +2,41 @@
 
 **Last updated:** 18 May 2026
 
+## 📝 Session 2026-05-18 (continuat) — Google Ads launch
+
+### 11. Google Ads setup complet (campanie + tracking)
+- **Cont Google Ads activ:** ID `AW-18165025740`
+- **Campanie creată:** `GOOG_Search_DENTCRAFT_SatuMare_Launch`
+  - 1 campanie cu 4 ad groups (Implant, Estetică, Ortodonție, General)
+  - Buget 50 lei/zi, Maximize Conversions, Max CPC 8 lei
+  - Geo: Județul Satu Mare + Carei + Negrești-Oaș
+  - Landing page: `https://www.dentcraft.ro/`
+- **Anunțuri RSA:** 15 titluri + 4 descrieri (toate verificate ≤ 30/90 chars)
+- **Extensii:** 6 sitelinks, 10 callouts, call extension, structured snippets, price extension
+- **Policy fixes:** scoase telefonul din ad text + simbolul `★` (interzis Google Ads)
+- **Conversion tracking native gtag instalat:**
+  - `src/app/[locale]/layout.tsx` — `<Script>` loads `AW-18165025740` after GTM
+  - `src/lib/gtm.ts` — `trackFormSubmission()` fires `gtag('event', 'conversion', {send_to: 'AW-18165025740/6tECCPjmna8cEMyX4dVD'})`
+  - Acoperă toate 3 formulare (contact, callback, price-estimate)
+- **Docs Google Ads** create în `docs/google-ads/`:
+  - `QUICK-START.md` — copy-paste ready settings
+  - `SETUP-GUIDE.md` — walkthrough + troubleshooting + KPI
+  - `AD-COPY.md` — 15+4 RSA variants pentru fiecare ad group
+
+### 10. Phone country selector mobil — flag emoji compact
+- `PriceEstimatePopup.tsx`: select fix la `w-[5.25rem]`
+- Adăugat flag emoji (🇷🇴 🇮🇹 🇪🇸 ...) la fiecare țară
+- Label compact `🇷🇴 RO` în loc de `RO +40 România`
+- Input phone primește toată lățimea rămasă (vizibil tot numărul)
+
+### 9. Global link tracker pentru conversii
+- `src/components/features/GlobalLinkTracker.tsx` — document-level click listener
+- Prinde `tel:` și `wa.me`/`api.whatsapp.com` pe orice pagină
+- Funcționează indiferent dacă componenta e server sau client
+- Eliminat per-link `onClick` din `WhatsAppButton` (evită double-fire)
+
+---
+
 ## 📝 Session 2026-05-18 — Go-live, perf optimization, legal hardening
 
 ### 8. Perf optimization (PageSpeed Insights mobile)

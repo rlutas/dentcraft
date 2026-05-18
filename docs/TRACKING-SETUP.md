@@ -1,11 +1,14 @@
-# Google Tag Manager + GA4 + Conversion Tracking
+# Google Tag Manager + GA4 + Google Ads Conversion Tracking
 
 ## Overview
 
-DENTCRAFT uses **Google Tag Manager (GTM)** as the single entry point for all Google tracking. GA4 and Google Ads conversions are managed inside GTM — no standalone GA4 script on the site.
+DENTCRAFT uses **Google Tag Manager (GTM)** as the entry point for all tracking, plus **Google Ads gtag.js** installed directly for native conversion tracking.
 
-**GTM ID:** `GTM-MHB5K5LL`
-**GA4 Measurement ID:** `G-8WF0LQ5PEX` (configured as a tag inside GTM)
+**Tracking IDs:**
+- **GTM:** `GTM-MHB5K5LL` (via @next/third-parties)
+- **GA4 Measurement ID:** `G-8WF0LQ5PEX` (configured as a tag inside GTM)
+- **Google Ads Conversion ID:** `AW-18165025740` (gtag.js installed in layout.tsx)
+- **Form Submission Conversion Label:** `AW-18165025740/6tECCPjmna8cEMyX4dVD`
 
 ---
 
@@ -85,7 +88,48 @@ Fires after successful submission of any form.
 
 ### `click_phone` — Phone Number Click
 
-Tracked via GTM trigger (Click - Just Links, URL contains `tel:`). No custom dataLayer push needed — GTM handles it natively.
+Fires on any `<a href="tel:...">` click. Handled by `GlobalLinkTracker` component (document-level listener in layout).
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `event` | string | Always `click_phone` |
+| `link_url` | string | `tel:+40741199977` |
+
+**Source:** `GlobalLinkTracker.tsx` — document-level click listener
+
+---
+
+## Google Ads Native Conversion (gtag.js)
+
+In addition to dataLayer events that route through GA4 → Google Ads import,
+**form submissions fire a native Google Ads conversion** directly via gtag.js
+for maximum attribution precision and faster bidding optimization.
+
+### Setup
+- Base tag `AW-18165025740` loaded in `src/app/[locale]/layout.tsx` (via `next/script`)
+- Conversion event fired in `src/lib/gtm.ts` → `trackFormSubmission()`:
+  ```js
+  gtag('event', 'conversion', { send_to: 'AW-18165025740/6tECCPjmna8cEMyX4dVD' })
+  ```
+
+### Coverage
+The conversion fires on success of ALL 3 forms:
+- ContactForm (`/contact`)
+- CallbackPopup (any page)
+- PriceEstimatePopup (after `/preturi` calculator)
+
+### Verification
+1. Open `www.dentcraft.ro/contact` in Incognito
+2. Open DevTools → Network → filter `googleadservices.com` or `google.com/pagead`
+3. Submit form → expect `POST` with `label=6tECCPjmna8cEMyX4dVD`
+4. Or use [tagassistant.google.com](https://tagassistant.google.com) — "Conversion fired: AW-18165025740/..." should appear
+
+### Conversion actions in Google Ads
+| Action | Source | Primary? |
+|---|---|---|
+| Form Submission (gtag) | Native gtag, fires from `lib/gtm.ts` | ✅ **Primary** — Maximize Conversions optimizes on this |
+| Phone Click | GA4 event `click_phone` (imported) | Secondary |
+| WhatsApp Click | GA4 event `click_whatsapp` (imported) | Secondary |
 
 ---
 
