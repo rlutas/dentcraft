@@ -35,18 +35,18 @@ const nextConfig: NextConfig = {
     // Content Security Policy directives
     const cspDirectives = [
       "default-src 'self'",
-      // Scripts: self + inline (Next.js, consent mode) + eval (GTM custom tags) + GTM/GA + Vercel
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com https://vercel.live",
+      // Scripts: self + inline (Next.js, consent mode) + eval (GTM custom tags) + GTM/GA/Google Ads + Vercel
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.googleadservices.com https://www.gstatic.com https://va.vercel-scripts.com https://vercel.live",
       // Styles: self + inline (Next.js injects inline styles) + Google Fonts CSS
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      // Images: self + data URIs + Sanity CDN + external photo sources + analytics pixels
-      "img-src 'self' data: blob: https://cdn.sanity.io https://drpetric.ro https://lh3.googleusercontent.com https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.ro",
+      // Images: self + data URIs + Sanity CDN + external photo sources + analytics/ads conversion pixels
+      "img-src 'self' data: blob: https://cdn.sanity.io https://drpetric.ro https://lh3.googleusercontent.com https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.ro https://www.googleadservices.com https://googleads.g.doubleclick.net",
       // Fonts: self + Google Fonts (some 3rd-party widgets load gstatic fonts directly)
       "font-src 'self' https://fonts.gstatic.com data:",
       // Frames: Google Maps + YouTube + Vimeo + GTM noscript + Vercel preview comments
-      "frame-src https://www.google.com https://www.youtube.com https://player.vimeo.com https://www.googletagmanager.com https://vercel.live",
-      // XHR/fetch/WebSocket: self + GTM + GA (incl. region1 collect endpoint) + Sanity + Vercel + Resend
-      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://cdn.sanity.io https://*.vercel-insights.com https://*.vercel-analytics.com https://va.vercel-scripts.com https://vercel.live wss://ws-us3.pusher.com",
+      "frame-src https://www.google.com https://www.youtube.com https://player.vimeo.com https://www.googletagmanager.com https://vercel.live https://td.doubleclick.net",
+      // XHR/fetch/WebSocket: self + GTM + GA + Google Ads conversion + Sanity + Vercel
+      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.ro https://www.googleadservices.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://cdn.sanity.io https://*.vercel-insights.com https://*.vercel-analytics.com https://va.vercel-scripts.com https://vercel.live wss://ws-us3.pusher.com",
       // Disallow plugins (Flash, Java, etc.)
       "object-src 'none'",
       // Restrict base URI to prevent base tag hijacking
