@@ -31,50 +31,50 @@ interface PriceEstimatePopupProps {
 // then alphabetical EU + worldwide common destinations.
 const DIAL_CODES = [
   // Default
-  { iso: 'RO', dial: '+40', name: 'România' },
+  { iso: 'RO', dial: '+40', name: 'România', flag: '🇷🇴' },
   // Top diaspora (most Romanian expats)
-  { iso: 'IT', dial: '+39', name: 'Italia' },
-  { iso: 'ES', dial: '+34', name: 'Spania' },
-  { iso: 'DE', dial: '+49', name: 'Germania' },
-  { iso: 'GB', dial: '+44', name: 'Marea Britanie' },
-  { iso: 'FR', dial: '+33', name: 'Franța' },
+  { iso: 'IT', dial: '+39', name: 'Italia', flag: '🇮🇹' },
+  { iso: 'ES', dial: '+34', name: 'Spania', flag: '🇪🇸' },
+  { iso: 'DE', dial: '+49', name: 'Germania', flag: '🇩🇪' },
+  { iso: 'GB', dial: '+44', name: 'Marea Britanie', flag: '🇬🇧' },
+  { iso: 'FR', dial: '+33', name: 'Franța', flag: '🇫🇷' },
   // Rest alphabetical
-  { iso: 'AT', dial: '+43', name: 'Austria' },
-  { iso: 'BE', dial: '+32', name: 'Belgia' },
-  { iso: 'BG', dial: '+359', name: 'Bulgaria' },
-  { iso: 'CY', dial: '+357', name: 'Cipru' },
-  { iso: 'CZ', dial: '+420', name: 'Cehia' },
-  { iso: 'DK', dial: '+45', name: 'Danemarca' },
-  { iso: 'EE', dial: '+372', name: 'Estonia' },
-  { iso: 'FI', dial: '+358', name: 'Finlanda' },
-  { iso: 'GR', dial: '+30', name: 'Grecia' },
-  { iso: 'HR', dial: '+385', name: 'Croația' },
-  { iso: 'HU', dial: '+36', name: 'Ungaria' },
-  { iso: 'IE', dial: '+353', name: 'Irlanda' },
-  { iso: 'IS', dial: '+354', name: 'Islanda' },
-  { iso: 'LT', dial: '+370', name: 'Lituania' },
-  { iso: 'LU', dial: '+352', name: 'Luxemburg' },
-  { iso: 'LV', dial: '+371', name: 'Letonia' },
-  { iso: 'MD', dial: '+373', name: 'Moldova' },
-  { iso: 'MT', dial: '+356', name: 'Malta' },
-  { iso: 'NL', dial: '+31', name: 'Olanda' },
-  { iso: 'NO', dial: '+47', name: 'Norvegia' },
-  { iso: 'PL', dial: '+48', name: 'Polonia' },
-  { iso: 'PT', dial: '+351', name: 'Portugalia' },
-  { iso: 'RS', dial: '+381', name: 'Serbia' },
-  { iso: 'SE', dial: '+46', name: 'Suedia' },
-  { iso: 'SI', dial: '+386', name: 'Slovenia' },
-  { iso: 'SK', dial: '+421', name: 'Slovacia' },
-  { iso: 'CH', dial: '+41', name: 'Elveția' },
-  { iso: 'TR', dial: '+90', name: 'Turcia' },
-  { iso: 'UA', dial: '+380', name: 'Ucraina' },
+  { iso: 'AT', dial: '+43', name: 'Austria', flag: '🇦🇹' },
+  { iso: 'BE', dial: '+32', name: 'Belgia', flag: '🇧🇪' },
+  { iso: 'BG', dial: '+359', name: 'Bulgaria', flag: '🇧🇬' },
+  { iso: 'CY', dial: '+357', name: 'Cipru', flag: '🇨🇾' },
+  { iso: 'CZ', dial: '+420', name: 'Cehia', flag: '🇨🇿' },
+  { iso: 'DK', dial: '+45', name: 'Danemarca', flag: '🇩🇰' },
+  { iso: 'EE', dial: '+372', name: 'Estonia', flag: '🇪🇪' },
+  { iso: 'FI', dial: '+358', name: 'Finlanda', flag: '🇫🇮' },
+  { iso: 'GR', dial: '+30', name: 'Grecia', flag: '🇬🇷' },
+  { iso: 'HR', dial: '+385', name: 'Croația', flag: '🇭🇷' },
+  { iso: 'HU', dial: '+36', name: 'Ungaria', flag: '🇭🇺' },
+  { iso: 'IE', dial: '+353', name: 'Irlanda', flag: '🇮🇪' },
+  { iso: 'IS', dial: '+354', name: 'Islanda', flag: '🇮🇸' },
+  { iso: 'LT', dial: '+370', name: 'Lituania', flag: '🇱🇹' },
+  { iso: 'LU', dial: '+352', name: 'Luxemburg', flag: '🇱🇺' },
+  { iso: 'LV', dial: '+371', name: 'Letonia', flag: '🇱🇻' },
+  { iso: 'MD', dial: '+373', name: 'Moldova', flag: '🇲🇩' },
+  { iso: 'MT', dial: '+356', name: 'Malta', flag: '🇲🇹' },
+  { iso: 'NL', dial: '+31', name: 'Olanda', flag: '🇳🇱' },
+  { iso: 'NO', dial: '+47', name: 'Norvegia', flag: '🇳🇴' },
+  { iso: 'PL', dial: '+48', name: 'Polonia', flag: '🇵🇱' },
+  { iso: 'PT', dial: '+351', name: 'Portugalia', flag: '🇵🇹' },
+  { iso: 'RS', dial: '+381', name: 'Serbia', flag: '🇷🇸' },
+  { iso: 'SE', dial: '+46', name: 'Suedia', flag: '🇸🇪' },
+  { iso: 'SI', dial: '+386', name: 'Slovenia', flag: '🇸🇮' },
+  { iso: 'SK', dial: '+421', name: 'Slovacia', flag: '🇸🇰' },
+  { iso: 'CH', dial: '+41', name: 'Elveția', flag: '🇨🇭' },
+  { iso: 'TR', dial: '+90', name: 'Turcia', flag: '🇹🇷' },
+  { iso: 'UA', dial: '+380', name: 'Ucraina', flag: '🇺🇦' },
   // Outside EU but common diaspora destinations
-  { iso: 'US', dial: '+1', name: 'SUA' },
-  { iso: 'CA', dial: '+1', name: 'Canada' },
-  { iso: 'AU', dial: '+61', name: 'Australia' },
-  { iso: 'NZ', dial: '+64', name: 'Noua Zeelandă' },
-  { iso: 'IL', dial: '+972', name: 'Israel' },
-  { iso: 'AE', dial: '+971', name: 'Emiratele Arabe Unite' },
+  { iso: 'US', dial: '+1', name: 'SUA', flag: '🇺🇸' },
+  { iso: 'CA', dial: '+1', name: 'Canada', flag: '🇨🇦' },
+  { iso: 'AU', dial: '+61', name: 'Australia', flag: '🇦🇺' },
+  { iso: 'NZ', dial: '+64', name: 'Noua Zeelandă', flag: '🇳🇿' },
+  { iso: 'IL', dial: '+972', name: 'Israel', flag: '🇮🇱' },
+  { iso: 'AE', dial: '+971', name: 'Emiratele Arabe Unite', flag: '🇦🇪' },
 ] as const
 
 const formatPrice = (price: number) => {
@@ -446,13 +446,13 @@ export default function PriceEstimatePopup({
                           Numar de telefon
                         </label>
                         <div className="flex gap-2">
-                          {/* Country dial code selector */}
+                          {/* Country dial code selector — compact (flag + ISO only) */}
                           <select
                             value={dialCode}
                             onChange={(e) => setDialCode(e.target.value)}
                             aria-label="Cod tara"
                             className={cn(
-                              'rounded-xl border bg-white py-2.5 sm:py-3 px-3 text-[14px] sm:text-[15px]',
+                              'w-[5.25rem] sm:w-[5.5rem] shrink-0 rounded-xl border bg-white py-2.5 sm:py-3 pl-3 pr-2 text-[14px] sm:text-[15px]',
                               'text-[#1a1a1a] cursor-pointer appearance-none',
                               'transition-all duration-200',
                               'focus:outline-none focus:ring-2 focus:ring-[#d4c4b0]/50 focus:border-[#d4c4b0]',
@@ -461,7 +461,7 @@ export default function PriceEstimatePopup({
                           >
                             {DIAL_CODES.map((c) => (
                               <option key={`${c.iso}-${c.dial}`} value={c.dial}>
-                                {c.iso} {c.dial} {c.name}
+                                {c.flag} {c.iso}
                               </option>
                             ))}
                           </select>
