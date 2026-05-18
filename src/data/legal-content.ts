@@ -338,8 +338,36 @@ export const legalContent: LegalContent = {
 <h3>7.2 Site web</h3>
 <p>Informatiile de pe site sunt furnizate "ca atare". Nu garantam ca site-ul va fi disponibil permanent sau fara erori. Nu suntem responsabili pentru eventualele pierderi rezultate din utilizarea sau imposibilitatea utilizarii site-ului.</p>
 
-<h2>8. Proprietate intelectuala</h2>
-<p>Continutul site-ului (texte, imagini, logo, design) este proprietatea DENTCRAFT SRL si este protejat de legile privind drepturile de autor. Reproducerea, distribuirea sau modificarea continutului fara acordul prealabil scris este interzisa.</p>
+<h2>8. Proprietate intelectuala, marca inregistrata si drepturi de autor</h2>
+<h3>8.1 Drepturi de autor</h3>
+<p>Intregul continut al site-ului <strong>dentcraft.ro</strong> — incluzand, dar fara a se limita la: texte, articole, descrieri de servicii, fotografii, imagini, ilustratii, grafice, video-uri, logo-uri, iconite, design-ul interfetei, codul sursa (HTML, CSS, JavaScript, TypeScript), structura site-ului, paleta de culori, tipografia, animatiile, layout-ul paginilor si orice alt element vizibil sau invizibil — sunt proprietatea exclusiva a <strong>DENTCRAFT SRL</strong> si/sau a colaboratorilor sai autorizati si sunt protejate de Legea nr. 8/1996 privind dreptul de autor si drepturile conexe, precum si de tratatele internationale aplicabile in materie de proprietate intelectuala.</p>
+
+<h3>8.2 Marca inregistrata</h3>
+<p><strong>„DENTCRAFT"</strong>, logo-ul DENTCRAFT, sloganele si elementele de identitate vizuala asociate sunt marci ce apartin DENTCRAFT SRL. Orice utilizare neautorizata a denumirii „DENTCRAFT" sau a elementelor de brand — inclusiv in domenii web, conturi de social media, materiale publicitare, ambalaje, semnaturi de email sau orice alt context comercial — constituie incalcare a drepturilor de proprietate intelectuala si va fi sanctionata conform legii.</p>
+
+<h3>8.3 Interdictii exprese</h3>
+<p>Fara acordul prealabil scris si explicit al DENTCRAFT SRL, este STRICT INTERZISA orice forma de:</p>
+<ul>
+<li>Copiere, reproducere, duplicare partiala sau integrala a continutului site-ului (inclusiv prin „web scraping", capturi automate, descarcari in masa, sau orice alte mijloace tehnice);</li>
+<li>Clonare a design-ului, layout-ului, structurii vizuale, codului sursa sau a oricarei componente a site-ului;</li>
+<li>Folosire a textelor, articolelor de blog, descrierilor de servicii, recenziilor sau a oricarui alt continut editorial pentru alte site-uri, publicatii, retele sociale sau materiale comerciale;</li>
+<li>Reutilizare a fotografiilor pacientilor, ale clinicii, ale echipei medicale, sau a oricaror imagini publicate pe site;</li>
+<li>Inregistrare de domenii web, nume comerciale, marci sau conturi de social media care imita sau folosesc denumirea „DENTCRAFT" ori variante confuzionale (DentCraft, Dent Craft, Dentcraft Satu Mare etc.);</li>
+<li>Modificare, adaptare, traducere, decompilare sau realizare de lucrari derivate pe baza continutului site-ului;</li>
+<li>Redistribuire, vanzare, inchiriere sau punere la dispozitia publicului a continutului, in scop comercial sau necomercial.</li>
+</ul>
+
+<h3>8.4 Monitorizare si masuri legale</h3>
+<p>DENTCRAFT SRL monitorizeaza in mod activ utilizarea continutului si a marcii sale. Orice incalcare constatata va atrage:</p>
+<ul>
+<li>Notificare formala de incetare a utilizarii ilegale („cease and desist");</li>
+<li>Cerere de despagubiri civile pentru prejudiciul moral si material cauzat;</li>
+<li>Sesizarea organelor competente (Oficiul de Stat pentru Inventii si Marci, Politia Romana, ORDA — Oficiul Roman pentru Drepturile de Autor) si initierea procedurilor penale acolo unde se impune;</li>
+<li>Solicitare catre platformele de hosting, registrarii de domenii, retelele sociale si motoarele de cautare pentru retragerea continutului contrafacut, conform procedurilor DMCA si reglementarilor UE aplicabile.</li>
+</ul>
+
+<h3>8.5 Citarea autorizata</h3>
+<p>Citarea unor fragmente scurte din continut, in scop informativ, jurnalistic sau educational, este permisa cu conditia indicarii clare a sursei (denumirea „DENTCRAFT" si link catre <a href="https://www.dentcraft.ro">dentcraft.ro</a>) si fara modificarea sensului original. Pentru orice alta utilizare, contactati-ne in prealabil la dentcraftsm@gmail.com.</p>
 
 <h2>9. Linkuri externe</h2>
 <p>Site-ul poate contine linkuri catre site-uri terte. Nu suntem responsabili pentru continutul sau politicile de confidentialitate ale acestor site-uri.</p>
@@ -656,8 +684,36 @@ export const legalContent: LegalContent = {
 <h3>7.2 Website</h3>
 <p>Information on the website is provided "as is." We do not guarantee that the website will be available at all times or error-free. We are not responsible for any losses resulting from the use or inability to use the website.</p>
 
-<h2>8. Intellectual Property</h2>
-<p>Website content (text, images, logo, design) is the property of DENTCRAFT SRL and is protected by copyright laws. Reproduction, distribution, or modification of the content without prior written consent is prohibited.</p>
+<h2>8. Intellectual Property, Registered Trademark and Copyright</h2>
+<h3>8.1 Copyright</h3>
+<p>The entire content of <strong>dentcraft.ro</strong> — including, without limitation: texts, articles, service descriptions, photographs, images, illustrations, graphics, videos, logos, icons, interface design, source code (HTML, CSS, JavaScript, TypeScript), site structure, color palette, typography, animations, page layout, and any other visible or invisible element — is the exclusive property of <strong>DENTCRAFT SRL</strong> and/or its authorized collaborators, and is protected by Romanian Law No. 8/1996 on copyright and related rights, as well as applicable international treaties on intellectual property.</p>
+
+<h3>8.2 Registered trademark</h3>
+<p><strong>„DENTCRAFT"</strong>, the DENTCRAFT logo, taglines and associated visual identity elements are trademarks owned by DENTCRAFT SRL. Any unauthorized use of the „DENTCRAFT" name or brand elements — including in web domains, social media accounts, advertising materials, packaging, email signatures or any other commercial context — constitutes infringement of intellectual property rights and will be prosecuted under applicable law.</p>
+
+<h3>8.3 Express prohibitions</h3>
+<p>Without DENTCRAFT SRL's prior written and explicit consent, the following are STRICTLY PROHIBITED:</p>
+<ul>
+<li>Copying, reproducing, duplicating part or all of the website content (including via web scraping, automated capture, bulk downloads, or any other technical means);</li>
+<li>Cloning the design, layout, visual structure, source code, or any other component of the website;</li>
+<li>Using texts, blog articles, service descriptions, reviews, or any other editorial content for other websites, publications, social networks or commercial materials;</li>
+<li>Reusing photographs of patients, the clinic, the medical team, or any other images published on the site;</li>
+<li>Registering web domains, business names, trademarks, or social media accounts that imitate or use the „DENTCRAFT" name or confusingly similar variants (DentCraft, Dent Craft, Dentcraft Satu Mare, etc.);</li>
+<li>Modifying, adapting, translating, decompiling, or creating derivative works based on website content;</li>
+<li>Redistributing, selling, renting, or making the content available to the public, for commercial or non-commercial purposes.</li>
+</ul>
+
+<h3>8.4 Monitoring and legal action</h3>
+<p>DENTCRAFT SRL actively monitors the use of its content and brand. Any infringement detected will result in:</p>
+<ul>
+<li>Formal cease-and-desist notice;</li>
+<li>Civil damages claim for moral and material harm caused;</li>
+<li>Referral to competent authorities (Romanian State Office for Inventions and Trademarks, Romanian Police, ORDA — Romanian Copyright Office) and initiation of criminal proceedings where applicable;</li>
+<li>Requests to hosting providers, domain registrars, social networks and search engines for takedown of infringing content under DMCA and applicable EU regulations.</li>
+</ul>
+
+<h3>8.5 Authorized citation</h3>
+<p>Short excerpts may be cited for informational, journalistic, or educational purposes, provided the source is clearly indicated (the name „DENTCRAFT" and a link to <a href="https://www.dentcraft.ro">dentcraft.ro</a>) and the original meaning is preserved. For any other use, please contact us in advance at dentcraftsm@gmail.com.</p>
 
 <h2>9. External Links</h2>
 <p>The website may contain links to third-party websites. We are not responsible for the content or privacy policies of these websites.</p>
@@ -974,8 +1030,36 @@ export const legalContent: LegalContent = {
 <h3>7.2 Weboldal</h3>
 <p>A weboldalon megjeleno informaciok "adott allapotukban" allnak rendelkezesre. Nem garantaljuk, hogy a weboldal mindenkori vagy hibamentes lesz. Nem vallalunk felelosseget a weboldal hasznalataból vagy annak nem lehetseges hasznalatabol eredő karokért.</p>
 
-<h2>8. Szellemi tulajdon</h2>
-<p>A weboldal tartalma (szovegek, kepek, logo, design) a DENTCRAFT SRL tulajdona, es a szerzoi jogi torvények vedelmezik. A tartalom engedely nelkuli sokszorosítása, terjesztese vagy modositasa tilos.</p>
+<h2>8. Szellemi tulajdon, bejegyzett védjegy és szerzői jog</h2>
+<h3>8.1 Szerzői jog</h3>
+<p>A <strong>dentcraft.ro</strong> weboldal teljes tartalma — beleértve, de nem kizárólag: szövegek, cikkek, szolgáltatásleírások, fényképek, képek, illusztrációk, grafikák, videók, logók, ikonok, felülettervezés, forráskód (HTML, CSS, JavaScript, TypeScript), oldalstruktúra, színpaletta, tipográfia, animációk, oldalelrendezés és bármely más látható vagy láthatatlan elem — a <strong>DENTCRAFT SRL</strong> és/vagy felhatalmazott közreműködőinek kizárólagos tulajdona, és védi a szerzői jogról szóló 8/1996-os román törvény, valamint a szellemi tulajdonra vonatkozó alkalmazható nemzetközi szerződések.</p>
+
+<h3>8.2 Bejegyzett védjegy</h3>
+<p>A <strong>„DENTCRAFT"</strong>, a DENTCRAFT logó, a szlogenek és a kapcsolódó vizuális arculati elemek a DENTCRAFT SRL tulajdonában lévő védjegyek. A „DENTCRAFT" név vagy bármely márkaelem engedély nélküli használata — beleértve a webdomain-eket, közösségi média fiókokat, reklámanyagokat, csomagolásokat, e-mail aláírásokat vagy bármely más kereskedelmi kontextust — szellemi tulajdoni jogsértésnek minősül és a törvény szerint büntetendő.</p>
+
+<h3>8.3 Kifejezett tilalmak</h3>
+<p>A DENTCRAFT SRL előzetes írásbeli és kifejezett hozzájárulása nélkül SZIGORÚAN TILOS:</p>
+<ul>
+<li>A weboldal tartalmának részleges vagy teljes másolása, sokszorosítása, duplikálása (beleértve a „web scraping"-et, automatizált rögzítést, tömeges letöltést vagy bármely más technikai eszközt);</li>
+<li>A weboldal designjának, elrendezésének, vizuális szerkezetének, forráskódjának vagy bármely más komponensének klónozása;</li>
+<li>A szövegek, blogcikkek, szolgáltatásleírások, vélemények vagy bármely más szerkesztői tartalom felhasználása más weboldalakon, kiadványokban, közösségi hálózatokon vagy kereskedelmi anyagokban;</li>
+<li>Pácienseink, a klinika, az orvosi csapat fényképeinek vagy bármely más, a webhelyen közzétett képnek az újrafelhasználása;</li>
+<li>Olyan webdomainek, cégnevek, védjegyek vagy közösségi média fiókok regisztrációja, amelyek a „DENTCRAFT" nevet utánozzák vagy összetéveszthetően hasonló változatokat használnak (DentCraft, Dent Craft, Dentcraft Szatmárnémeti stb.);</li>
+<li>A weboldal tartalmának módosítása, adaptálása, fordítása, dekompilálása vagy származékos művek létrehozása;</li>
+<li>A tartalom újraterjesztése, eladása, bérbeadása vagy a nyilvánosság számára történő elérhetővé tétele, kereskedelmi vagy nem kereskedelmi célból.</li>
+</ul>
+
+<h3>8.4 Monitorozás és jogi intézkedések</h3>
+<p>A DENTCRAFT SRL aktívan figyeli tartalmának és márkájának használatát. Minden észlelt jogsértés a következőkkel jár:</p>
+<ul>
+<li>Hivatalos felszólítás a jogellenes használat megszüntetésére („cease and desist");</li>
+<li>Polgári kártérítési kereset az erkölcsi és anyagi kárért;</li>
+<li>Az illetékes hatóságok (Román Találmányi és Védjegyhivatal, Román Rendőrség, ORDA — Román Szerzői Jogi Hivatal) értesítése és büntetőeljárás kezdeményezése, ahol indokolt;</li>
+<li>Megkeresés a tárhelyszolgáltatók, domainregisztrátorok, közösségi hálózatok és keresőmotorok felé a hamisított tartalom eltávolítása érdekében, a DMCA és az alkalmazható EU-s szabályozás szerint.</li>
+</ul>
+
+<h3>8.5 Engedélyezett hivatkozás</h3>
+<p>Rövid részletek idézhetők tájékoztatási, újságírói vagy oktatási célból, feltéve, hogy a forrás egyértelműen feltüntetésre kerül (a „DENTCRAFT" név és link a <a href="https://www.dentcraft.ro">dentcraft.ro</a>-ra), és az eredeti jelentés megőrződik. Bármely más felhasználás esetén kérjük, előzetesen lépjen kapcsolatba velünk a dentcraftsm@gmail.com címen.</p>
 
 <h2>9. Kulso linkek</h2>
 <p>A weboldal harmadik felek webhelyeire mutato hivatkozasokat tartalmazhat. Nem vallalunk felelosseget ezen webhelyek tartalmaert vagy adatvedelmi szabalyzataiert.</p>
