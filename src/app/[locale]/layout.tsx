@@ -5,6 +5,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import { routing } from '@/i18n/routing'
 import { generateRootMetadata, type Locale } from '@/lib/seo'
 import { getOrganizationSchema, getWebSiteSchema } from '@/lib/schema'
@@ -77,6 +78,25 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
       </head>
       {process.env['NEXT_PUBLIC_GTM_ID'] && <GoogleTagManager gtmId={process.env['NEXT_PUBLIC_GTM_ID']} />}
+      {/* Google Ads conversion tracking (gtag.js) — AW-18165025740 */}
+      <Script
+        id="google-ads-gtag"
+        src="https://www.googletagmanager.com/gtag/js?id=AW-18165025740"
+        strategy="afterInteractive"
+        async
+      />
+      <Script
+        id="google-ads-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18165025740');
+          `,
+        }}
+      />
       <body suppressHydrationWarning>
         {/* GTM noscript fallback */}
         {process.env['NEXT_PUBLIC_GTM_ID'] && (
