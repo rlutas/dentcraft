@@ -99,18 +99,37 @@ Fires on any `<a href="tel:...">` click. Handled by `GlobalLinkTracker` componen
 
 ---
 
-## Google Ads Native Conversion (gtag.js)
+## Google Ads Native Conversion (via GTM)
 
 In addition to dataLayer events that route through GA4 → Google Ads import,
-**form submissions fire a native Google Ads conversion** directly via gtag.js
-for maximum attribution precision and faster bidding optimization.
+**form submissions fire a native Google Ads conversion** via GTM tag for
+maximum attribution precision and faster bidding optimization.
 
 ### Setup
 - Base tag `AW-18165025740` loaded in `src/app/[locale]/layout.tsx` (via `next/script`)
-- Conversion event fired in `src/lib/gtm.ts` → `trackFormSubmission()`:
-  ```js
-  gtag('event', 'conversion', { send_to: 'AW-18165025740/6tECCPjmna8cEMyX4dVD' })
-  ```
+- Conversion fires via GTM tag (not from code — avoids double-counting):
+  - **Tag type:** Google Ads Conversion Tracking
+  - **Conversion ID:** `18165025740` (no AW- prefix in this template field)
+  - **Conversion Label:** `6tECCPjmna8cEMyX4dVD`
+  - **Trigger:** Custom Event = `generate_lead`
+- `src/lib/gtm.ts` → `trackFormSubmission()` only pushes `generate_lead` to dataLayer
+  (GTM picks it up via the Custom Event trigger)
+
+### CSP requirements
+`next.config.ts` allows these endpoints in CSP (required for conversion hits):
+- `script-src`: `www.googleadservices.com`
+- `img-src`: `www.googleadservices.com`, `googleads.g.doubleclick.net`
+- `connect-src`: `googleadservices.com`, `googleads.g.doubleclick.net`,
+  `td.doubleclick.net`, `google.com`, `google.ro`
+- `frame-src`: `td.doubleclick.net`
+
+Without these, GTM fires the tag but the actual conversion hit fails with CSP
+violation — Google Ads dashboard would show 0 conversions despite real leads.
+
+### Google Business Profile (GBP) link
+GBP `dentcraftsm@gmail.com` is linked to Google Ads via Tools → Linked accounts.
+Location asset added at account level — ads display address + km distance +
+map pin + rating, and are eligible to appear on Google Maps.
 
 ### Coverage
 The conversion fires on success of ALL 3 forms:

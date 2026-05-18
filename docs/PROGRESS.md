@@ -2,6 +2,59 @@
 
 **Last updated:** 18 May 2026
 
+## 📝 Session 2026-05-18 (final) — CSP fix, GTM migration, GBP link
+
+### 16. Google Business Profile linked în Google Ads
+- Linked `dentcraftsm@gmail.com` GBP account → Google Ads via Tools → Linked accounts
+- Adăugat **Location Asset** la nivel cont (account-level) — se aplică la toate campaniile
+- Anunțurile vor afișa acum: adresa + distanța (km) + map pin + rating ⭐ 4.9
+- Anunțurile devin eligibile pe **Google Maps** când userul caută "stomatolog" pe maps
+- Direction clicks + Maps actions vor fi tracked ca conversii suplimentare
+
+### 15. CSP fix pentru Google Ads conversion tracking
+**Problema identificată live:** request-urile de conversie blocate de Content Security Policy.
+
+Network test pe site-ul live arăta:
+```
+googleads.g.doubleclick.net/pagead/viewthroughconversion/... → BLOCKED by CSP
+```
+
+**Fix în `next.config.ts`:**
+- `script-src`: + `www.googleadservices.com`
+- `img-src`: + `www.googleadservices.com` + `googleads.g.doubleclick.net`
+- `connect-src`: + `googleadservices.com` + `googleads.g.doubleclick.net` + `td.doubleclick.net` + `google.com` + `google.ro`
+- `frame-src`: + `td.doubleclick.net`
+
+**După fix verificat live:** ✅ 200 OK la `googleadservices.com/pagead/conversion/18165025740/?label=6tECCPjmna8cEMyX4dVD&en=conversion&capi=1`
+
+### 14. Migrare conversion tracking de la cod direct → GTM
+- Conversion gtag direct în `lib/gtm.ts` ar fi cauzat double-counting cu tag-ul GTM
+- Scos `gtag('event', 'conversion', ...)` din `trackFormSubmission()`
+- GTM tag configurat:
+  - Tip: Google Ads Conversion Tracking
+  - Conversion ID: `18165025740` (fără prefix `AW-` — bug template GTM)
+  - Conversion Label: `6tECCPjmna8cEMyX4dVD`
+  - Trigger: Custom Event `generate_lead`
+- Container GTM published cu versiunea `Add Google Ads form conversion`
+
+### 13. Verificare E2E tracking live
+- Test full flow: form submit → `generate_lead` → GTM → Google Ads conversion endpoint
+- Network requests verificate:
+  - ✅ `googleadservices.com/pagead/conversion/...` → 200
+  - ✅ `googleads.g.doubleclick.net/pagead/viewthroughconversion/...` → 302
+  - ✅ `google.com/ccm/collect?tids=AW-18165025740` → 200
+  - ✅ `google.com/pagead/1p-user-list/...` → 302 (remarketing audience)
+- Toate cele 3 formulare (contact, callback, price-estimate) fire conversion-ul corect
+
+### 12. Google Business Profile posts + social content
+- Generat 2 postări GBP gata de publicat:
+  - Postare cu video clinică (`/public/video/clinica.mp4`)
+  - Postare lansare site nou cu CTA Learn More → `/preturi#calculator`
+- Generat 3 variante de postare Facebook (developer pride / tech focus / casual)
+- Screenshots hero: `dentcraft-hero-desktop.png` (1440×900) + `dentcraft-hero-mobile.png` (390×844)
+
+---
+
 ## 📝 Session 2026-05-18 (continuat) — Google Ads launch
 
 ### 11. Google Ads setup complet (campanie + tracking)
