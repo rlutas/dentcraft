@@ -13,6 +13,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/layout'
 import { FramedNav } from '@/components/layout/FramedNav'
 import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
+import { GlobalLinkTracker } from '@/components/features/GlobalLinkTracker'
 import { MaintenancePage } from '@/components/MaintenancePage'
 import '@/styles/globals.css'
 
@@ -111,6 +112,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                 <Footer />
                 <LazyClientComponents />
               </div>
+              <GlobalLinkTracker />
             </NextIntlClientProvider>
             <SpeedInsights />
             <Analytics />
