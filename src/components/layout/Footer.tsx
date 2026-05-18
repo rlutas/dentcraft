@@ -84,6 +84,7 @@ const legalLinks = [
 
 export function Footer() {
   const t = useTranslations('footer')
+  const tAria = useTranslations('ariaLabels')
   const tNav = useTranslations('navigation')
   const tServices = useTranslations('services.fallback')
 
@@ -138,7 +139,7 @@ export function Footer() {
                 </BookingButton>
                 {/* Mobile: phone icon-only round button. Tablet+: full pill with number */}
                 <a
-                  aria-label={`Sună-ne: ${CONTACT.phoneFormatted}`}
+                  aria-label={`${tAria('callUs')}: ${CONTACT.phoneFormatted}`}
                   href={`tel:${CONTACT.phoneFormatted.replace(/\s/g, '')}`}
                   className="sm:hidden inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 shrink-0"
                 >
@@ -171,7 +172,7 @@ export function Footer() {
               <Link className="inline-block" href="/">
                 <Image
                   src="/branding/LOGO_WHITE_FINAL.png"
-                  alt="Dentcraft"
+                  alt="DENTCRAFT"
                   width={480}
                   height={67}
                   className="h-10 w-auto"
@@ -350,7 +351,7 @@ export function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               {/* Copyright */}
               <p className="text-sm text-white/40 text-center md:text-left">
-                &copy; {currentYear} Dentcraft. {t('copyright')}
+                &copy; {currentYear} DENTCRAFT. {t('copyright')}
               </p>
 
               {/* Legal links */}
@@ -368,14 +369,14 @@ export function Footer() {
 
               {/* Crafted by — WhatsApp contact for web dev inquiries */}
               <a
-                aria-label="Crafted by Luțaș Raul — discută pe WhatsApp despre un website"
+                aria-label={t('crafted.aria')}
                 className="group inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
                 href="https://api.whatsapp.com/send/?phone=40745850700&text=Bun%C4%83%21+Am+v%C4%83zut+site-ul+dentcraft.ro+%C8%99i+a%C8%99+vrea+s%C4%83+discut%C4%83m+despre+dezvoltarea+unui+website.&type=phone_number&app_absent=0"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <span className="font-mono text-xs text-white/30 group-hover:text-[#d4c4b0] transition-colors">&lt;/&gt;</span>
-                <span>Crafted by</span>
+                <span>{t('crafted.label')}</span>
                 <span className="font-semibold text-[#d4c4b0] group-hover:text-white transition-colors">Luțaș Raul</span>
                 <span aria-hidden="true" className="text-[#d4c4b0] transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>

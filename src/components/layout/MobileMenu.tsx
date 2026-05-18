@@ -103,7 +103,7 @@ export default function MobileMenu({
               <Link href="/" onClick={onClose}>
                 <Image
                   src="/branding/LOGO_BLACK_FINAL.png"
-                  alt="Dentcraft"
+                  alt="DENTCRAFT"
                   width={360}
                   height={50}
                   className="h-6 w-auto"

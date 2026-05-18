@@ -10,7 +10,7 @@ language: "hu"
 
 „Doktor úr, mennyibe kerül egy implantátum?" Ez az a kérdés, amit naponta legalább háromszor hallok. És az őszinte válasz: attól függ. De nem azért mondom ezt, hogy kitérjek a válasz elől — hanem azért, mert egy fogimplantátum ára valóban több tényezőtől függ, amelyeket alább részletesen elmagyarázok.
 
-Azért írtam ezt az útmutatót, hogy minden információ a rendelkezésedre álljon, mielőtt bárhová bejelentkezel. Meglepetések nélkül, rejtett költségek nélkül. Így dolgozunk mi a DentCraft-nál.
+Azért írtam ezt az útmutatót, hogy minden információ a rendelkezésedre álljon, mielőtt bárhová bejelentkezel. Meglepetések nélkül, rejtett költségek nélkül. Így dolgozunk mi a DENTCRAFT-nál.
 
 ## Miért változó egy fogimplantátum ára?
 
@@ -24,7 +24,7 @@ Az ár három dologtól függ:
 
 **3. A kiegészítő beavatkozások.** Néha a csont nem elég vastag, és csontpótlást (augmentációt) kell végezni. Máskor az ínyt kell korrigálni. Ezek a beavatkozások hozzáadódnak az összköltséghez.
 
-## Tájékoztató árak fogimplantátumra a DentCraft Szatmárnémetiben (2026)
+## Tájékoztató árak fogimplantátumra a DENTCRAFT Szatmárnémetiben (2026)
 
 Íme egy reális áttekintés, hogy tudd, mire számíthatsz:
 
@@ -37,7 +37,7 @@ Az ár három dologtól függ:
 
 A fenti árak tájékoztató jellegűek. A végleges árat a konzultáció és a 3D röntgen után állapítjuk meg — amely nálunk ingyenes.
 
-## Mit tartalmaz egy implantátum ára a DentCraft-nál?
+## Mit tartalmaz egy implantátum ára a DENTCRAFT-nál?
 
 Láttam olyan eseteket, amikor a páciensek kevesebbet fizettek egy másik rendelőben, de aztán kiderült, hogy minden kontrollvizsgálatot külön számláztak. Vagy hogy a röntgen nem volt benne az árban. Vagy hogy az érzéstelenítésnek külön költsége volt.
 
@@ -90,7 +90,7 @@ A fő előny: a teljes költség alacsonyabb, mintha 8-10 egyedi implantátumot 
 
 Az All-on-4 ára körülbelül 15.000 lejtől indul fogívenként, de a választott anyagoktól és az eset összetettségétől függően változik.
 
-## Miért válaszd a DentCraft-ot az implantátumodhoz?
+## Miért válaszd a DENTCRAFT-ot az implantátumodhoz?
 
 Nem fogom azt mondani, hogy „mi vagyunk a legjobbak" — ezt minden páciens maga dönti el. De el tudom mondani, mi különböztet meg minket:
 
@@ -119,4 +119,4 @@ Romániában a fogimplantátumokat az állami egészségbiztosítás nem fedezi.
 
 Kérdésed van a fogimplantátumról, vagy személyre szabott értékelést szeretnél? Hívj minket a 0741 199 977 számon, vagy foglalj online időpontot. A konzultáció és a 3D röntgen ingyenes.
 
-Várunk a DentCraft-ban, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.
+Várunk a DENTCRAFT-ban, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.

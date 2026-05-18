@@ -151,7 +151,7 @@ Priority topics based on Search Console data:
 Each post should:
 - Include 134-167 word "answer block" in first 2 paragraphs
 - Use question-format H2/H3 headings
-- Include specific DentCraft pricing
+- Include specific DENTCRAFT pricing
 - Link to relevant service pages
 - Have BlogPosting schema with author attribution
 
@@ -165,7 +165,7 @@ Each post should:
 
 ### 4.3 Create answer blocks for AI citability
 - Write 134-167 word self-contained paragraphs per service
-- Format: "Ce este [tratament]? [Definition]. La DentCraft Satu Mare, [specific details]. [Pricing]. [CTA]."
+- Format: "Ce este [tratament]? [Definition]. La DENTCRAFT Satu Mare, [specific details]. [Pricing]. [CTA]."
 - Place at top of each service page
 - **Impact:** Direct AI Overview citation potential
 

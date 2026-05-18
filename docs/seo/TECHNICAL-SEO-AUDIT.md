@@ -325,7 +325,7 @@ Present on every page via root layout. Now uses `siteConfig.baseUrl` for consist
 {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "MedicalBusiness", "Dentist"],
-  "name": "Dentcraft",
+  "name": "DENTCRAFT",
   "description": "Clinica stomatologica moderna in Satu Mare",
   "url": "https://www.dentcraft.ro",
   "telephone": "0741 199 977",
@@ -346,7 +346,7 @@ Added to root layout alongside Organization schema:
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Dentcraft",
+  "name": "DENTCRAFT",
   "url": "https://www.dentcraft.ro",
   "potentialAction": {
     "@type": "SearchAction",

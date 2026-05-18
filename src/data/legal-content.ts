@@ -1,10 +1,10 @@
 /**
- * Hardcoded legal page content for DentCraft
+ * Hardcoded legal page content for DENTCRAFT
  *
  * Since Sanity CMS doesn't have legal page content, we serve
  * static content in all 3 locales (ro, en, hu).
  *
- * Company: DentCraft
+ * Company: DENTCRAFT
  * Address: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania
  * Email: dentcraftsm@gmail.com
  * Phone: 0741 199 977
@@ -56,11 +56,11 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Introducere</h2>
-<p>DentCraft SRL, cu sediul in Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania (denumita in continuare "Clinica", "noi"), se angajeaza sa protejeze confidentialitatea datelor dumneavoastra personale in conformitate cu Regulamentul General privind Protectia Datelor (GDPR - Regulamentul UE 2016/679) si legislatia nationala in vigoare.</p>
+<p>DENTCRAFT SRL, cu sediul in Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania (denumita in continuare "Clinica", "noi"), se angajeaza sa protejeze confidentialitatea datelor dumneavoastra personale in conformitate cu Regulamentul General privind Protectia Datelor (GDPR - Regulamentul UE 2016/679) si legislatia nationala in vigoare.</p>
 <p>Aceasta politica de confidentialitate descrie modul in care colectam, utilizam, stocam si protejam datele dumneavoastra personale atunci cand utilizati site-ul nostru web (www.dentcraft.ro) sau beneficiati de serviciile noastre stomatologice.</p>
 
 <h2>2. Operator de date</h2>
-<p><strong>DentCraft SRL</strong></p>
+<p><strong>DENTCRAFT SRL</strong></p>
 <ul>
 <li>Adresa: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania</li>
 <li>Email: dentcraftsm@gmail.com</li>
@@ -264,12 +264,12 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Informatii generale</h2>
-<p>Prezentii Termeni si Conditii reglementeaza utilizarea site-ului web www.dentcraft.ro si furnizarea serviciilor stomatologice de catre DentCraft SRL, cu sediul in Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania.</p>
+<p>Prezentii Termeni si Conditii reglementeaza utilizarea site-ului web www.dentcraft.ro si furnizarea serviciilor stomatologice de catre DENTCRAFT SRL, cu sediul in Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania.</p>
 <p>Prin accesarea site-ului si/sau utilizarea serviciilor noastre, sunteti de acord cu acesti termeni. Va rugam sa ii cititi cu atentie.</p>
 
 <h2>2. Servicii stomatologice</h2>
 <h3>2.1 Natura serviciilor</h3>
-<p>DentCraft ofera servicii stomatologice incluzand, dar fara a se limita la:</p>
+<p>DENTCRAFT ofera servicii stomatologice incluzand, dar fara a se limita la:</p>
 <ul>
 <li>Consultatii si diagnostic stomatologic</li>
 <li>Stomatologie generala (obturatii, extractii, detartraj)</li>
@@ -334,12 +334,12 @@ export const legalContent: LegalContent = {
 
 <h2>7. Limitarea raspunderii</h2>
 <h3>7.1 Servicii medicale</h3>
-<p>DentCraft isi asuma responsabilitatea pentru calitatea serviciilor medicale prestate, in limita standardelor profesionale in vigoare. Rezultatele tratamentelor pot varia in functie de particularitaile biologice individuale.</p>
+<p>DENTCRAFT isi asuma responsabilitatea pentru calitatea serviciilor medicale prestate, in limita standardelor profesionale in vigoare. Rezultatele tratamentelor pot varia in functie de particularitaile biologice individuale.</p>
 <h3>7.2 Site web</h3>
 <p>Informatiile de pe site sunt furnizate "ca atare". Nu garantam ca site-ul va fi disponibil permanent sau fara erori. Nu suntem responsabili pentru eventualele pierderi rezultate din utilizarea sau imposibilitatea utilizarii site-ului.</p>
 
 <h2>8. Proprietate intelectuala</h2>
-<p>Continutul site-ului (texte, imagini, logo, design) este proprietatea DentCraft SRL si este protejat de legile privind drepturile de autor. Reproducerea, distribuirea sau modificarea continutului fara acordul prealabil scris este interzisa.</p>
+<p>Continutul site-ului (texte, imagini, logo, design) este proprietatea DENTCRAFT SRL si este protejat de legile privind drepturile de autor. Reproducerea, distribuirea sau modificarea continutului fara acordul prealabil scris este interzisa.</p>
 
 <h2>9. Linkuri externe</h2>
 <p>Site-ul poate contine linkuri catre site-uri terte. Nu suntem responsabili pentru continutul sau politicile de confidentialitate ale acestor site-uri.</p>
@@ -374,11 +374,11 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Introduction</h2>
-<p>DentCraft SRL, located at Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania (hereinafter "the Clinic", "we"), is committed to protecting the privacy of your personal data in accordance with the General Data Protection Regulation (GDPR - EU Regulation 2016/679) and applicable national legislation.</p>
+<p>DENTCRAFT SRL, located at Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania (hereinafter "the Clinic", "we"), is committed to protecting the privacy of your personal data in accordance with the General Data Protection Regulation (GDPR - EU Regulation 2016/679) and applicable national legislation.</p>
 <p>This privacy policy describes how we collect, use, store, and protect your personal data when you use our website (www.dentcraft.ro) or use our dental services.</p>
 
 <h2>2. Data Controller</h2>
-<p><strong>DentCraft SRL</strong></p>
+<p><strong>DENTCRAFT SRL</strong></p>
 <ul>
 <li>Address: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania</li>
 <li>Email: dentcraftsm@gmail.com</li>
@@ -582,12 +582,12 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. General Information</h2>
-<p>These Terms and Conditions govern the use of the website www.dentcraft.ro and the provision of dental services by DentCraft SRL, located at Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania.</p>
+<p>These Terms and Conditions govern the use of the website www.dentcraft.ro and the provision of dental services by DENTCRAFT SRL, located at Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania.</p>
 <p>By accessing the website and/or using our services, you agree to these terms. Please read them carefully.</p>
 
 <h2>2. Dental Services</h2>
 <h3>2.1 Nature of Services</h3>
-<p>DentCraft provides dental services including, but not limited to:</p>
+<p>DENTCRAFT provides dental services including, but not limited to:</p>
 <ul>
 <li>Dental consultations and diagnosis</li>
 <li>General dentistry (fillings, extractions, scaling)</li>
@@ -652,12 +652,12 @@ export const legalContent: LegalContent = {
 
 <h2>7. Limitation of Liability</h2>
 <h3>7.1 Medical Services</h3>
-<p>DentCraft assumes responsibility for the quality of medical services provided, within the limits of applicable professional standards. Treatment outcomes may vary depending on individual biological characteristics.</p>
+<p>DENTCRAFT assumes responsibility for the quality of medical services provided, within the limits of applicable professional standards. Treatment outcomes may vary depending on individual biological characteristics.</p>
 <h3>7.2 Website</h3>
 <p>Information on the website is provided "as is." We do not guarantee that the website will be available at all times or error-free. We are not responsible for any losses resulting from the use or inability to use the website.</p>
 
 <h2>8. Intellectual Property</h2>
-<p>Website content (text, images, logo, design) is the property of DentCraft SRL and is protected by copyright laws. Reproduction, distribution, or modification of the content without prior written consent is prohibited.</p>
+<p>Website content (text, images, logo, design) is the property of DENTCRAFT SRL and is protected by copyright laws. Reproduction, distribution, or modification of the content without prior written consent is prohibited.</p>
 
 <h2>9. External Links</h2>
 <p>The website may contain links to third-party websites. We are not responsible for the content or privacy policies of these websites.</p>
@@ -692,11 +692,11 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Bevezetes</h2>
-<p>A DentCraft SRL (szekhely: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania, a tovabbiakban "Klinika", "mi") elkotelezett az On szemelyes adatainak vedelme irant az Altalanos Adatvedelmi Rendelettel (GDPR - EU 2016/679 rendelet) es a hatalyos nemzeti jogszabalyokkal osszhangban.</p>
+<p>A DENTCRAFT SRL (szekhely: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania, a tovabbiakban "Klinika", "mi") elkotelezett az On szemelyes adatainak vedelme irant az Altalanos Adatvedelmi Rendelettel (GDPR - EU 2016/679 rendelet) es a hatalyos nemzeti jogszabalyokkal osszhangban.</p>
 <p>Ez az adatvedelmi szabalyzat leirja, hogyan gyujtjuk, hasznaljuk, taroljuk es vedjuk az On szemelyes adatait, amikor a weboldalunkat (www.dentcraft.ro) hasznalja, vagy fogaszati szolgaltatasainkat veszi igenybe.</p>
 
 <h2>2. Adatkezelo</h2>
-<p><strong>DentCraft SRL</strong></p>
+<p><strong>DENTCRAFT SRL</strong></p>
 <ul>
 <li>Cim: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania</li>
 <li>Email: dentcraftsm@gmail.com</li>
@@ -900,12 +900,12 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Altalanos informaciok</h2>
-<p>Jelen Felhasznalasi Feltételek a www.dentcraft.ro weboldal hasznalatat es a DentCraft SRL (szekhely: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania) altal nyujtott fogaszati szolgaltatasok felteteleit szabalyozzak.</p>
+<p>Jelen Felhasznalasi Feltételek a www.dentcraft.ro weboldal hasznalatat es a DENTCRAFT SRL (szekhely: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti, Romania) altal nyujtott fogaszati szolgaltatasok felteteleit szabalyozzak.</p>
 <p>A weboldal elereesevel es/vagy szolgaltatasaink igenybevetelevel elfogadja ezeket a feltételeket. Keruk, olvassa el figyelmesen.</p>
 
 <h2>2. Fogaszati szolgaltatasok</h2>
 <h3>2.1 A szolgaltatasok jellege</h3>
-<p>A DentCraft fogaszati szolgaltatasokat nyujt, beleertve, de nem kizarolagosan:</p>
+<p>A DENTCRAFT fogaszati szolgaltatasokat nyujt, beleertve, de nem kizarolagosan:</p>
 <ul>
 <li>Fogaszati konzultaciok es diagnozis</li>
 <li>Altalanos fogaszat (tomes, huzas, fogkotisztitas)</li>
@@ -970,12 +970,12 @@ export const legalContent: LegalContent = {
 
 <h2>7. Felelosseg korlatozasa</h2>
 <h3>7.1 Orvosi szolgaltatasok</h3>
-<p>A DentCraft vallalja a felelosseget a nyujtott orvosi szolgaltatasok minosegerert a hatalyos szakmai szabvanyok keretein belul. A kezelesi eredmenyek az egyeni biológiai sajátosságoktol fuggoen valtozhatnak.</p>
+<p>A DENTCRAFT vallalja a felelosseget a nyujtott orvosi szolgaltatasok minosegerert a hatalyos szakmai szabvanyok keretein belul. A kezelesi eredmenyek az egyeni biológiai sajátosságoktol fuggoen valtozhatnak.</p>
 <h3>7.2 Weboldal</h3>
 <p>A weboldalon megjeleno informaciok "adott allapotukban" allnak rendelkezesre. Nem garantaljuk, hogy a weboldal mindenkori vagy hibamentes lesz. Nem vallalunk felelosseget a weboldal hasznalataból vagy annak nem lehetseges hasznalatabol eredő karokért.</p>
 
 <h2>8. Szellemi tulajdon</h2>
-<p>A weboldal tartalma (szovegek, kepek, logo, design) a DentCraft SRL tulajdona, es a szerzoi jogi torvények vedelmezik. A tartalom engedely nelkuli sokszorosítása, terjesztese vagy modositasa tilos.</p>
+<p>A weboldal tartalma (szovegek, kepek, logo, design) a DENTCRAFT SRL tulajdona, es a szerzoi jogi torvények vedelmezik. A tartalom engedely nelkuli sokszorosítása, terjesztese vagy modositasa tilos.</p>
 
 <h2>9. Kulso linkek</h2>
 <p>A weboldal harmadik felek webhelyeire mutato hivatkozasokat tartalmazhat. Nem vallalunk felelosseget ezen webhelyek tartalmaert vagy adatvedelmi szabalyzataiert.</p>

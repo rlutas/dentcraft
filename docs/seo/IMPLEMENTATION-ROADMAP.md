@@ -1,7 +1,7 @@
-# DentCraft SEO Implementation Roadmap
+# DENTCRAFT SEO Implementation Roadmap
 
 > **Last updated:** 2026-02-24
-> **Note:** DentCraft is a **clinica stomatologica** (dental clinic), not just a dentist office. All SEO content should reflect this — target both "dentist satu mare" AND "clinica stomatologica satu mare" / "clinica dentara satu mare".
+> **Note:** DENTCRAFT is a **clinica stomatologica** (dental clinic), not just a dentist office. All SEO content should reflect this — target both "dentist satu mare" AND "clinica stomatologica satu mare" / "clinica dentara satu mare".
 
 ## Phase 1 — Foundation (Weeks 1-4)
 
@@ -20,7 +20,7 @@
 
 ### Week 2-3: Local SEO Setup
 - [ ] Claim and optimize Google Business Profile
-  - Business name: "DentCraft - Clinica Stomatologica Satu Mare"
+  - Business name: "DENTCRAFT - Clinica Stomatologica Satu Mare"
   - Category: Dental Clinic (primary), Dentist, Cosmetic Dentist, Pediatric Dentist
   - Add all services with descriptions
   - Upload 20+ photos (clinic exterior, interior, team, equipment)
@@ -32,7 +32,7 @@
 - [ ] Register on 10 dental directories (see SEO-STRATEGY.md)
 
 ### Week 3-4: Homepage Optimization
-- [x] Title tag: "Dentist Satu Mare | Clinica Stomatologica DentCraft"
+- [x] Title tag: "Dentist Satu Mare | Clinica Stomatologica DENTCRAFT"
 - [x] H1 includes "clinica stomatologica in satu mare" naturally
 - [x] Meta description includes "clinica stomatologica" + primary keywords + call to action
 - [x] Schema: LocalBusiness, Dentist, MedicalBusiness types render (in root layout)
@@ -120,7 +120,7 @@ Remaining blog topics from keyword data:
 
 ## Phase 4 — Authority (Months 7-12)
 
-**Goal:** Establish DentCraft as the dominant clinica stomatologica brand in Satu Mare search.
+**Goal:** Establish DENTCRAFT as the dominant clinica stomatologica brand in Satu Mare search.
 
 ### Content Expansion
 - [ ] Create "Preturi" comparison content (vs competitor pricing transparency)

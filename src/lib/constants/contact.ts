@@ -1,4 +1,4 @@
-// Dentcraft clinic contact information - single source of truth
+// DENTCRAFT clinic contact information - single source of truth
 export const CONTACT = {
   address: 'Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare',
   addressShort: 'Str. B.S. Delavrancea 3, Satu Mare',
@@ -6,7 +6,7 @@ export const CONTACT = {
   phoneFormatted: '+40 741 199 977',
   email: 'dentcraftsm@gmail.com',
   whatsapp: '40741199977',
-  whatsappUrl: 'https://wa.me/40741199977?text=Bun%C4%83!%20A%C8%99%20dori%20s%C4%83%20programez%20o%20consulta%C8%9Bie%20la%20clinica%20Dentcraft.',
+  whatsappUrl: 'https://wa.me/40741199977?text=Bun%C4%83!%20A%C8%99%20dori%20s%C4%83%20programez%20o%20consulta%C8%9Bie%20la%20clinica%20DENTCRAFT.',
   workingHours: 'Luni - Vineri: 10:00 - 18:00',
   workingHoursShort: 'L-V: 10:00 - 18:00',
   // Social Media

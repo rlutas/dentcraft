@@ -1,4 +1,4 @@
-# DentCraft Icons Documentation
+# DENTCRAFT Icons Documentation
 
 This document provides a comprehensive overview of all dental icons available in the project and their current usage.
 

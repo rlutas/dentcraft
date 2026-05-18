@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Dentist Satu Mare | DentCraft Dental Clinic",
+    "title": "Dentist Satu Mare | DENTCRAFT Dental Clinic",
     "description": "Dental clinic in Satu Mare with 10+ years experience and 1500+ patients treated. Implants, orthodontics, veneers, teeth whitening. Team of 5 specialists. Book a consultation!"
   },
   "navigation": {
@@ -43,7 +43,7 @@
     "badge": "#1 Clinic in Satu Mare",
     "title": "Dental Clinic in Satu Mare, you can count on",
     "subtitle": "Dental implants, orthodontics, veneers and full-mouth rehabilitation in Satu Mare. Dedicated team of specialists with experience in modern dentistry.",
-    "kicker": "DentCraft · Dental Clinic Satu Mare",
+    "kicker": "DENTCRAFT · Dental Clinic Satu Mare",
     "titleBold": "Healthy Teeth",
     "titleItalic": "bright smile",
     "trustLabel": "Happy Patients",
@@ -74,16 +74,16 @@
     "availableCount": "{count} services available",
     "subtitle": "We offer a complete range of dental services, from prevention to complex treatments.",
     "metaTitle": "Dental Services Satu Mare | Implants, Orthodontics, Veneers",
-    "metaDescription": "Complete dental services in Satu Mare: implants, orthodontics, veneers, whitening, pediatric dentistry. DentCraft clinic - team of 5 specialists.",
+    "metaDescription": "Complete dental services in Satu Mare: implants, orthodontics, veneers, whitening, pediatric dentistry. DENTCRAFT clinic - team of 5 specialists.",
     "benefits": "Benefits",
     "process": "Treatment process",
     "step": "Step",
     "headingBold": "Dental",
     "headingItalic": "services",
     "italicAccent": "Satu Mare",
-    "photoAlt": "{title} - DentCraft Satu Mare dental clinic",
+    "photoAlt": "{title} - DENTCRAFT Satu Mare dental clinic",
     "detail": {
-      "whyChooseLabel": "Why choose DentCraft",
+      "whyChooseLabel": "Why choose DENTCRAFT",
       "benefitsBold": "Real",
       "benefitsItalic": "benefits",
       "processBold": "Treatment",
@@ -101,7 +101,7 @@
       "patientsTreated": "patients treated",
       "googleLabel": "Google",
       "defaultJobTitle": "Dentist",
-      "relatedPhotoAlt": "{title} - Dentcraft Satu Mare dental clinic"
+      "relatedPhotoAlt": "{title} - DENTCRAFT Satu Mare dental clinic"
     },
     "generalDentistry": "General Dentistry",
     "cosmeticDentistry": "Cosmetic Dentistry",
@@ -215,7 +215,6 @@
       "scalingStep2Desc": "Removing tartar with ultrasonic equipment.",
       "scalingStep3Title": "Polishing and fluoridation",
       "scalingStep3Desc": "Polishing teeth and applying protective fluoride.",
-
       "generalDentistry": "General Dentistry",
       "generalDentistryDesc": "Comprehensive dental care including examinations, preventive treatments, fillings, and routine maintenance to keep your smile healthy and beautiful.",
       "generalDentistryBenefit1Title": "Preventive Care",
@@ -232,7 +231,6 @@
       "generalDentistryStep3Desc": "Development of a personalized treatment plan to address any identified issues.",
       "generalDentistryStep4Title": "Follow-up Care",
       "generalDentistryStep4Desc": "Regular monitoring and maintenance appointments to ensure lasting dental health.",
-
       "cosmeticDentistry": "Cosmetic Dentistry",
       "cosmeticDentistryDesc": "Transform your smile with our advanced aesthetic treatments including veneers, whitening, and smile makeovers designed to enhance your natural beauty.",
       "cosmeticDentistryBenefit1Title": "Beautiful Smile",
@@ -249,7 +247,6 @@
       "cosmeticDentistryStep3Desc": "Precise implementation of your customized aesthetic treatment plan.",
       "cosmeticDentistryStep4Title": "Final Reveal",
       "cosmeticDentistryStep4Desc": "Enjoy your stunning new smile with guidance on maintaining your beautiful results.",
-
       "prosthetics": "Dental Prosthetics",
       "prostheticsDesc": "Restore function and aesthetics with our high-quality dental prosthetics including crowns, bridges, and dentures crafted for optimal comfort and natural appearance.",
       "prostheticsBenefit1Title": "Restored Function",
@@ -266,7 +263,6 @@
       "prostheticsStep3Desc": "Expert creation of your prosthetics in a specialized dental laboratory.",
       "prostheticsStep4Title": "Fitting and Adjustment",
       "prostheticsStep4Desc": "Careful placement and fine-tuning to ensure optimal comfort and function.",
-
       "implantology": "Dental Implants",
       "implantologyDesc": "The gold standard for tooth replacement. Our dental implants provide a permanent, natural-looking solution that preserves jawbone health and restores your complete smile.",
       "implantologyBenefit1Title": "Permanent Solution",
@@ -283,7 +279,6 @@
       "implantologyStep3Desc": "Healing period of 3-6 months as the implant fuses with your natural bone.",
       "implantologyStep4Title": "Crown Restoration",
       "implantologyStep4Desc": "Attachment of a custom-made crown for a natural-looking, functional tooth.",
-
       "orthodontics": "Orthodontics",
       "orthodonticsDesc": "Achieve perfectly aligned teeth and a harmonious bite with our orthodontic treatments, including traditional braces and clear aligners for patients of all ages.",
       "orthodonticsBenefit1Title": "Straight Teeth",
@@ -300,7 +295,6 @@
       "orthodonticsStep3Desc": "Regular adjustments and monitoring to gradually move teeth into ideal positions.",
       "orthodonticsStep4Title": "Retention Phase",
       "orthodonticsStep4Desc": "Custom retainers to maintain your beautiful new smile for life.",
-
       "endodontics": "Endodontics",
       "endodonticsDesc": "Save your natural teeth with our expert root canal treatments. Using advanced techniques and technology, we eliminate infection while preserving your tooth structure.",
       "endodonticsBenefit1Title": "Save Your Tooth",
@@ -317,7 +311,6 @@
       "endodonticsStep3Desc": "Removal of infected tissue and thorough cleaning of the root canal system.",
       "endodonticsStep4Title": "Restoration",
       "endodonticsStep4Desc": "Sealing the tooth and placing a crown to protect and restore full function.",
-
       "oralSurgery": "Oral and Maxillofacial Surgery",
       "oralSurgeryDesc": "Expert surgical solutions for complex dental issues including wisdom teeth extraction, bone grafting, and jaw surgery performed with precision and care.",
       "oralSurgeryBenefit1Title": "Expert Care",
@@ -334,7 +327,6 @@
       "oralSurgeryStep3Desc": "Expert execution of your procedure with appropriate anesthesia and monitoring.",
       "oralSurgeryStep4Title": "Recovery Support",
       "oralSurgeryStep4Desc": "Comprehensive post-operative care and follow-up to ensure proper healing.",
-
       "pediatricDentistry": "Pediatric Dentistry",
       "pediatricDentistryDesc": "Gentle, child-friendly dental care in a welcoming environment. We make dental visits fun while establishing healthy habits that last a lifetime.",
       "pediatricDentistryBenefit1Title": "Child-Friendly Approach",
@@ -351,7 +343,6 @@
       "pediatricDentistryStep3Desc": "Cleanings, fluoride treatments, and sealants to protect developing teeth.",
       "pediatricDentistryStep4Title": "Parent Education",
       "pediatricDentistryStep4Desc": "Guidance on home care and nutrition to support your child's dental health.",
-
       "dentalEmergencies": "Dental Emergencies",
       "dentalEmergenciesDesc": "Fast, effective care when you need it most. Our emergency dental services provide prompt relief for toothaches, broken teeth, and other urgent dental issues.",
       "dentalEmergenciesBenefit1Title": "Rapid Response",
@@ -372,7 +363,7 @@
   },
   "whyUs": {
     "badge": "Why Us",
-    "title": "Why Dentcraft?",
+    "title": "Why DENTCRAFT?",
     "subtitle": "We are dedicated to excellence in modern dentistry.",
     "stats": {
       "years": {
@@ -423,7 +414,7 @@
     "sectionTitle": "Real patient transformations",
     "sectionSubtitle": "Each case demonstrates the results of our professional treatments",
     "clinicBadge": "Our Clinic",
-    "clinicTitle": "Discover Dentcraft Clinic",
+    "clinicTitle": "Discover DENTCRAFT Clinic",
     "clinicSubtitle": "Modern equipment, comfortable spaces, and a team dedicated to your smile",
     "headingBold": "Gallery",
     "headingItalic": "real results",
@@ -441,7 +432,7 @@
     },
     "subtitle": "See our patients' transformations. Real results, real smiles.",
     "metaTitle": "Before & After Gallery | Real Results",
-    "metaDescription": "Before and after photos of dental treatments: implants, veneers, whitening, orthodontics. Real results from DentCraft clinic Satu Mare.",
+    "metaDescription": "Before and after photos of dental treatments: implants, veneers, whitening, orthodontics. Real results from DENTCRAFT clinic Satu Mare.",
     "filterBy": "Filter by treatment",
     "allTreatments": "All treatments",
     "noCases": "No cases found for this filter.",
@@ -479,7 +470,7 @@
     "subtitle": "Discover our modern clinic, equipped with the latest dental technology in a warm and welcoming environment.",
     "captions": {
       "reception": "Waiting area",
-      "treatment": "Dentcraft Reception",
+      "treatment": "DENTCRAFT Reception",
       "equipment": "Treatment room",
       "waiting": "Treatment room",
       "detail": "Waiting room",
@@ -488,13 +479,13 @@
       "toys": "Kids corner"
     },
     "images": {
-      "reception": "Dentcraft clinic waiting area",
-      "waiting": "Dentcraft clinic reception",
+      "reception": "DENTCRAFT clinic waiting area",
+      "waiting": "DENTCRAFT clinic reception",
       "treatment": "Modern dental treatment room",
       "detail": "Sterilization room",
       "equipment": "Clinic waiting room",
-      "treatmentRoom": "Dentcraft treatment room",
-      "toys": "Toys with toothbrush at Dentcraft"
+      "treatmentRoom": "DENTCRAFT treatment room",
+      "toys": "Toys with toothbrush at DENTCRAFT"
     },
     "features": {
       "equipment": {
@@ -528,7 +519,7 @@
     "title": "What our patients say",
     "subtitle": "Real reviews from satisfied patients.",
     "metaTitle": "Patient Reviews | Testimonials & Ratings",
-    "metaDescription": "Read patient reviews for DentCraft Satu Mare. Real testimonials about implants, orthodontics, dental aesthetics. 4.9 stars on Google.",
+    "metaDescription": "Read patient reviews for DENTCRAFT Satu Mare. Real testimonials about implants, orthodontics, dental aesthetics. 4.9 stars on Google.",
     "allTreatments": "All treatments",
     "filterBy": "Filter by treatment",
     "noTestimonials": "No testimonials found for this filter.",
@@ -543,7 +534,7 @@
       "whitening": "Teeth whitening"
     },
     "quotes": {
-      "1": "Exceptional result! The Dentcraft team completely transformed my smile. I recommend with full confidence.",
+      "1": "Exceptional result! The DENTCRAFT team completely transformed my smile. I recommend with full confidence.",
       "2": "I was very satisfied with the professionalism and attention. The implant looks and feels like a natural tooth.",
       "3": "The whitening exceeded my expectations. The staff is very friendly and the procedure was quick and comfortable."
     }
@@ -567,8 +558,8 @@
     "title": "Our Dental Team",
     "specialistsCount": "{count} specialists",
     "subtitle": "Dedicated specialists with extensive experience in modern dentistry.",
-    "metaTitle": "Dentists in Satu Mare | DentCraft Team",
-    "metaDescription": "Meet the DentCraft dental team in Satu Mare - 3 dentists (Dr. Petric, Dr. Ghirasim, Dr. Tincu) plus reception/assistance team. 10+ years experience, 1500+ patients treated.",
+    "metaTitle": "Dentists in Satu Mare | DENTCRAFT Team",
+    "metaDescription": "Meet the DENTCRAFT dental team in Satu Mare - 3 dentists (Dr. Petric, Dr. Ghirasim, Dr. Tincu) plus reception/assistance team. 10+ years experience, 1500+ patients treated.",
     "about": "About",
     "education": "Education",
     "certifications": "Certifications",
@@ -585,7 +576,7 @@
       "videoComingSoonCopy": "The clip with {firstName} is on the way — check back soon.",
       "videoComingSoonHeadline": "Video coming soon",
       "videoComingSoonShort": "The clip with {firstName} is on the way.",
-      "videoClipAlt": "{name} — DentCraft video clip",
+      "videoClipAlt": "{name} — DENTCRAFT video clip",
       "aboutBold": "About",
       "journeyBold": "Professional",
       "journeyItalic": "journey",
@@ -600,7 +591,7 @@
       "infoSatuMare": "Satu Mare",
       "infoHours": "Mon-Fri: 10:00 - 18:00",
       "defaultJobTitle": "Dentist",
-      "doctorPhotoAlt": "{name} - {role} at Dentcraft Satu Mare clinic"
+      "doctorPhotoAlt": "{name} - {role} at DENTCRAFT Satu Mare clinic"
     },
     "badges": {
       "doctorTitle": "Doctor",
@@ -608,12 +599,22 @@
       "doctorSpecialist": "Specialist",
       "doctorDefault": "Dentist",
       "receptionTitle": "Reception",
-      "receptionSubtitle": "DentCraft",
+      "receptionSubtitle": "DENTCRAFT",
       "assistantTitle": "Assistant",
       "assistantCoordinator": "Coordinator",
       "assistantDefault": "Medical",
       "teamTitle": "Team",
-      "teamSubtitle": "DentCraft"
+      "teamSubtitle": "DENTCRAFT"
+    },
+    "roles": {
+      "coordinator": "Coordinating Dentist",
+      "dentist": "Dentist",
+      "periodontologist": "Periodontology Specialist",
+      "pediatric": "Pediatric Dentist",
+      "assistantCoordinator": "Lead Dental Assistant",
+      "assistant": "Dental Assistant",
+      "receptionist": "Receptionist",
+      "principal": "Principal Dentist"
     }
   },
   "teamPreview": {
@@ -632,7 +633,7 @@
     "sectionTitle": "Full price list",
     "sectionSubtitle": "All our services with transparent pricing",
     "metaTitle": "Dental Prices Satu Mare 2026 | Implant, Braces & Veneers Costs",
-    "metaDescription": "Full dental price list at DentCraft Satu Mare. Transparent costs for implants, braces, veneers, whitening, crowns. Free consultation!",
+    "metaDescription": "Full dental price list at DENTCRAFT Satu Mare. Transparent costs for implants, braces, veneers, whitening, crowns. Free consultation!",
     "disclaimer": "* Prices shown are indicative and may vary depending on the complexity of the case. The final price will be determined after consultation.",
     "promotion": "Promotion",
     "tryCalculator": "Calculate treatment price",
@@ -692,7 +693,7 @@
     "title": "Frequently Asked Questions",
     "subtitle": "Answers to the most common questions about our dental services.",
     "metaTitle": "Dental FAQ | Common Questions About Implants, Braces & More",
-    "metaDescription": "Answers to frequently asked questions about dental implants, braces, whitening, veneers and prices. DentCraft dental clinic Satu Mare.",
+    "metaDescription": "Answers to frequently asked questions about dental implants, braces, whitening, veneers and prices. DENTCRAFT dental clinic Satu Mare.",
     "stillHaveQuestions": "Still have questions?",
     "contactUsText": "Our team is here to help you. Contact us for any clarification.",
     "categories": {
@@ -703,7 +704,7 @@
     },
     "placeholder": {
       "general": {
-        "q1": "What services does Dentcraft clinic offer?",
+        "q1": "What services does DENTCRAFT clinic offer?",
         "a1": "We offer a complete range of dental services, including general dentistry, cosmetic dentistry, implantology, orthodontics, pediatric dentistry and dental emergencies.",
         "q2": "Is the first consultation free?",
         "a2": "Yes, the first consultation is free. You will receive a complete assessment of your dental health and a personalized treatment plan."
@@ -730,17 +731,17 @@
     "locationLabel": "Satu Mare, Romania",
     "subtitle": "We're here for you. Book a consultation or send us a message.",
     "metaTitle": "Contact | Book Appointment - 0741 199 977",
-    "metaDescription": "Contact DentCraft dental clinic Satu Mare. Appointments: 0741 199 977. Address: Str. Barbu Stefanescu Delavrancea nr.3. Mon-Fri 10:00-18:00.",
+    "metaDescription": "Contact DENTCRAFT dental clinic Satu Mare. Appointments: 0741 199 977. Address: Str. Barbu Stefanescu Delavrancea nr.3. Mon-Fri 10:00-18:00.",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "addressLabel": "Address",
     "workingHoursLabel": "Working hours",
     "callDescription": "Call us for appointments or information",
     "whatsappDescription": "Message us on WhatsApp for quick response",
-    "whatsappPrefill": "Hello! I would like to book a consultation at Dentcraft clinic.",
+    "whatsappPrefill": "Hello! I would like to book a consultation at DENTCRAFT clinic.",
     "emailDescription": "We respond within 24 hours",
     "addressDescription": "We're waiting for you at our clinic",
-    "mapTitle": "Dentcraft clinic location",
+    "mapTitle": "DENTCRAFT clinic location",
     "findUs": "Find us",
     "getDirections": "Get directions",
     "ctaTitle": "Need help fast?",
@@ -756,10 +757,10 @@
     "title": "Dental Blog",
     "badge": "Tips and information",
     "headingBold": "Blog",
-    "headingItalic": "DentCraft",
+    "headingItalic": "DENTCRAFT",
     "subtitle": "Articles and tips for your dental health.",
     "metaTitle": "Dental Blog | Oral Health Tips & News",
-    "metaDescription": "Articles about dental health, tips from dentists, treatment costs and news from DentCraft clinic Satu Mare.",
+    "metaDescription": "Articles about dental health, tips from dentists, treatment costs and news from DENTCRAFT clinic Satu Mare.",
     "filterBy": "Filter by category",
     "allCategories": "All",
     "noPosts": "No posts found",
@@ -869,7 +870,11 @@
     "terms": "Terms & Conditions",
     "ctaTitle": "Book a consultation",
     "ctaSubtitle": "We are here for your perfect smile",
-    "bookAppointment": "Book now"
+    "bookAppointment": "Book now",
+    "crafted": {
+      "label": "Crafted by",
+      "aria": "Crafted by Luțaș Raul — chat on WhatsApp about a website"
+    }
   },
   "legal": {
     "privacy": "Privacy Policy",
@@ -923,5 +928,82 @@
       "serviceRequired": "Please select a service",
       "timeRequired": "Please select a time slot"
     }
+  },
+  "home": {
+    "calculator": {
+      "badge": "Total transparency",
+      "titleBold": "Instant calculator",
+      "titleItalic": "for prices",
+      "subtitle": "Choose the treatment you need and get an estimate in seconds — no phone calls, no waiting. Written treatment plan before we begin.",
+      "step1": "Pick the services you want from the catalog",
+      "step2": "See the minimum, maximum and average price",
+      "step3": "Receive the estimate via email (optional)"
+    },
+    "whyClinic": {
+      "headingBold": "Why the",
+      "headingItalic": "DENTCRAFT clinic",
+      "subtitle": "Modern dentistry in Satu Mare, focused on visible results, clear communication and patients who return with a smile.",
+      "statsExperience": "years experience",
+      "statsPatients": "patients treated",
+      "reasons": {
+        "r1Title": "Team with over 10 years of experience",
+        "r1Desc": "Dr. Petric and the team have treated over 1500 patients, with results documented through real cases.",
+        "r2Title": "Modern technology, precise plans",
+        "r2Desc": "3D digital scanner, low-dose radiology and computerized planning — no surprises during treatment.",
+        "r3Title": "Comfort and gentle anesthesia",
+        "r3Desc": "Relaxing atmosphere, painless anesthesia and clear communication at every step. Dental fear stays outside.",
+        "r4Title": "Transparent prices, guarantee",
+        "r4Desc": "Online price calculator, written treatment plan before we begin and guarantee on procedures."
+      }
+    },
+    "teamSection": {
+      "headingBold": "Meet",
+      "headingItalic": "the team"
+    },
+    "faqSection": {
+      "headingBold": "Advice from",
+      "headingItalic": "our doctors",
+      "subtitle": "DENTCRAFT doctors answer your most frequent questions about treatments, hygiene and results.",
+      "instagramCta": "See more on Instagram"
+    },
+    "reviewsSection": {
+      "headingBold": "What patients",
+      "headingItalic": "are saying",
+      "subtitle": "Our patients speak — every review is verified on Google and reflects their real experience at the DENTCRAFT clinic.",
+      "googleCount": "50+ reviews on Google",
+      "countSuffix": "reviews on Google",
+      "leaveReview": "Leave a review"
+    },
+    "successCases": {
+      "headingBold": "Success",
+      "headingItalic": "cases",
+      "subtitle": "Real work done at our clinic. Click any image to view it enlarged.",
+      "viewCaseLabel": "View case",
+      "caseLabel": "Case",
+      "categories": {
+        "aesthetic": "Aesthetic",
+        "implantology": "Implantology",
+        "prosthetics": "Prosthetics",
+        "periodontology": "Periodontology",
+        "pediatric": "Pediatric dentistry",
+        "treatment": "Treatment"
+      },
+      "titlePrefix": "Aesthetic case"
+    },
+    "doctorRoles": {
+      "coordinator": "Coordinating Dentist",
+      "dentistPediatric": "Dentist · Pediatric",
+      "specialistPeriodontics": "Specialist · Periodontology"
+    }
+  },
+  "ariaLabels": {
+    "close": "Close",
+    "nextCase": "Next case",
+    "prevCase": "Previous case",
+    "scrollDown": "Scroll down",
+    "closeMenu": "Close menu",
+    "callPrefix": "Call us",
+    "language": "Language",
+    "callUs": "Call us"
   }
 }

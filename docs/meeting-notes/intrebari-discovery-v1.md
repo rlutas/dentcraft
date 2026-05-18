@@ -6,7 +6,7 @@
 # 1. BRAND & IDENTITATE
 
 ### Logo & Culori
-- [ ] Ai logo Dentcraft? (vector/PNG)
+- [ ] Ai logo DENTCRAFT? (vector/PNG)
 - [ ] Ce culori vrei pentru site? (ai brand guidelines?)
 - [ ] Vrei sa pastram ceva de pe drpetric.ro sau fresh start?
 
@@ -28,11 +28,11 @@
 ### Homepage - ce vrei sa vada vizitatorii PRIMUL lucru?
 - [ ] Serviciu principal? (implanturi? estetica? general?)
 - [ ] Promotie/oferta curenta?
-- [ ] "De ce Dentcraft"?
+- [ ] "De ce DENTCRAFT"?
 - [ ] Testimoniale featured?
 
 ### Despre Clinica
-- [ ] Poveste Dentcraft? (cand ai inceput, de ce, viziune)
+- [ ] Poveste DENTCRAFT? (cand ai inceput, de ce, viziune)
 - [ ] Ce te diferentiaza de competitie?
 - [ ] Ce echipamente speciale ai? (mentioneaza brand-uri)
 - [ ] Certificari clinica?

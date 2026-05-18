@@ -1,8 +1,8 @@
-# PRD: Dentcraft.ro - Remaining Implementation
+# PRD: DENTCRAFT.ro - Remaining Implementation
 
 ## Introduction
 
-Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's clinic in Satu Mare, Romania. The project uses Next.js 15, Tailwind CSS v4, and next-intl for internationalization (RO/EN/HU).
+DENTCRAFT.ro is a multilingual dental clinic website for Dr. Razvan Petric's clinic in Satu Mare, Romania. The project uses Next.js 15, Tailwind CSS v4, and next-intl for internationalization (RO/EN/HU).
 
 **Current status (Feb 2026):** All 48 user stories are complete. The site is fully functional with 12 multilingual pages, Sanity CMS integration, email forms via Resend, GDPR cookie consent, price calculator, before/after gallery, and comprehensive SEO. Ready for Vercel deployment and content population.
 
@@ -516,7 +516,7 @@ Dentcraft.ro is a multilingual dental clinic website for Dr. Razvan Petric's cli
 **Acceptance Criteria:**
 - [x] Create `src/lib/seo.ts` with generateMetadata helper
 - [x] Each page exports generateMetadata function
-- [x] Title format: "Page Title | Dentcraft Satu Mare"
+- [x] Title format: "Page Title | DENTCRAFT Satu Mare"
 - [x] Meta descriptions from Sanity SEO fields
 - [x] Open Graph tags with images
 - [x] Hreflang tags for all 3 languages

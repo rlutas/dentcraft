@@ -1,6 +1,6 @@
-# Dentcraft Scripts
+# DENTCRAFT Scripts
 
-This directory contains utility scripts for the Dentcraft website.
+This directory contains utility scripts for the DENTCRAFT website.
 
 ## Google Reviews Sync (`sync-google-reviews.ts`)
 
@@ -103,7 +103,7 @@ The script uses the following configuration for SerpAPI:
 - Engine: `google_maps_reviews`
 - Language: Romanian (`hl=ro`)
 - Sort: Newest first
-- Place Data ID: `0x4738059c49336e2f:0xc5f8c1c74c29f519` (Dentcraft Satu Mare)
+- Place Data ID: `0x4738059c49336e2f:0xc5f8c1c74c29f519` (DENTCRAFT Satu Mare)
 
 ### Scheduling (Optional)
 

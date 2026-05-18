@@ -1,8 +1,8 @@
-# Continut Necesar de la Dr. Petric - Dentcraft.ro
+# Continut Necesar de la Dr. Petric - DENTCRAFT.ro
 
 **Data:** 24 Februarie 2026 (actualizat)
 **Destinatar:** Dr. Razvan Petric
-**Proiect:** Site premium clinica stomatologica Dentcraft, Satu Mare
+**Proiect:** Site premium clinica stomatologica DENTCRAFT, Satu Mare
 
 ---
 
@@ -353,7 +353,7 @@ Sectiunea Hero (prima sectiune de pe homepage) afiseaza o fotografie mare a echi
 ### Structura recomandata in folder:
 
 ```
-Dentcraft Content/
+DENTCRAFT Content/
   cv-uri/
     cv-dr-petric.txt (sau PDF/Word)
     cv-dr-ghirasim.txt

@@ -1,4 +1,4 @@
-# ChatGPT Image Prompts — Poze GMB DentCraft
+# ChatGPT Image Prompts — Poze GMB DENTCRAFT
 
 > **Stil general:** Fotografii realiste, luminoase, curate, ton cald. Clinica moderna, echipa tanara, zambete naturale. Culorile brandului: bej cald (#d4c4b0), maro (#8b7355), crem (#faf6f1). Fara text pe imagine (textul il pui in postarea GMB).
 

@@ -60,17 +60,17 @@ cat-costa-implant-dentar-satu-mare
 
 **Romanian:**
 ```
-Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul, ce include pretul si intrebari frecvente. Ghid complet de la Dr. Petric, DentCraft.
+Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul, ce include pretul si intrebari frecvente. Ghid complet de la Dr. Petric, DENTCRAFT.
 ```
 
 **English:**
 ```
-How much does a dental implant cost in Satu Mare? Prices from 2,500 lei (approx. 500 EUR), factors that influence the cost, what's included, and FAQ. Complete guide by Dr. Petric, DentCraft.
+How much does a dental implant cost in Satu Mare? Prices from 2,500 lei (approx. 500 EUR), factors that influence the cost, what's included, and FAQ. Complete guide by Dr. Petric, DENTCRAFT.
 ```
 
 **Hungarian:**
 ```
-Mennyibe kerül egy fogimplantátum Szatmárnémetiben? Árak 2.500 lejtől, a költséget befolyásoló tényezők, mit tartalmaz az ár és gyakori kérdések. Teljes útmutató Dr. Petric-től, DentCraft.
+Mennyibe kerül egy fogimplantátum Szatmárnémetiben? Árak 2.500 lejtől, a költséget befolyásoló tényezők, mit tartalmaz az ár és gyakori kérdések. Teljes útmutató Dr. Petric-től, DENTCRAFT.
 ```
 
 ---
@@ -111,7 +111,7 @@ Trebuie o imagine relevanta - optiuni:
 
 **Alt Text:**
 ```
-Implant dentar la clinica DentCraft Satu Mare - consultatie gratuita
+Implant dentar la clinica DENTCRAFT Satu Mare - consultatie gratuita
 ```
 
 ---
@@ -156,7 +156,7 @@ Implant Dentar Satu Mare Pret 2026 - Ghid Complet
 
 **Meta Description:**
 ```
-Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DentCraft.
+Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT.
 ```
 
 **OG Image:** Upload aceeasi imagine ca Cover Image

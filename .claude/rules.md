@@ -1,8 +1,8 @@
-# Claude Rules - Dentcraft.ro Project
+# Claude Rules - DENTCRAFT.ro Project
 
 ## Project Context
-- **Project:** Dentcraft.ro - Site prezentare clinică stomatologică
-- **Client:** Dr. Razvan Petric - Dentcraft Satu Mare
+- **Project:** DENTCRAFT.ro - Site prezentare clinică stomatologică
+- **Client:** Dr. Razvan Petric - DENTCRAFT Satu Mare
 - **Budget:** €3,000
 - **Timeline:** 4-6 săptămâni
 - **Tech Stack:** Next.js 16+, TypeScript, Tailwind CSS v4, Sanity CMS, Vercel

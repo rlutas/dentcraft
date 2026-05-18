@@ -1,4 +1,4 @@
-# Specificatii Tehnice - Dentcraft.ro
+# Specificatii Tehnice - DENTCRAFT.ro
 
 ## Tech Stack
 

@@ -61,3 +61,4 @@ tmp/
 temp/
 .playwright-mcp/
 .claude/scheduled_tasks.lock
+agent-skills/

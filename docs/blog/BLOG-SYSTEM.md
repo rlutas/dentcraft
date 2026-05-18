@@ -1,4 +1,4 @@
-# Blog System - DentCraft
+# Blog System - DENTCRAFT
 
 ## Overview
 

@@ -8,7 +8,7 @@
 ## Postare 1 — Clinica Stomatologica (keyword principal)
 **Tip:** Update | **Keywords:** clinica stomatologica satu mare, stomatologie satu mare
 
-Clinica stomatologica DentCraft din Satu Mare iti pune la dispozitie o echipa de 6 specialisti cu peste 10 ani de experienta.
+Clinica stomatologica DENTCRAFT din Satu Mare iti pune la dispozitie o echipa de 6 specialisti cu peste 10 ani de experienta.
 
 De la stomatologie generala la implanturi dentare, ortodontie si estetica dentara — toate serviciile stomatologice intr-un singur loc.
 
@@ -20,7 +20,7 @@ Programari: 0741 199 977
 ## Postare 2 — Preturi Transparente (keyword cu pozitie 6.97)
 **Tip:** Update | **Keywords:** stomatologie satu mare preturi, preturi stomatologie
 
-Preturi transparente pentru toate serviciile stomatologice la DentCraft Satu Mare!
+Preturi transparente pentru toate serviciile stomatologice la DENTCRAFT Satu Mare!
 
 Consultatie gratuita, implanturi dentare, aparate dentare, fatete si albire — toate cu tarife afisate clar pe site-ul nostru.
 
@@ -35,7 +35,7 @@ Viziteaza dentcraft.ro/preturi pentru lista completa de tarife.
 
 Ai nevoie de un implant dentar in Satu Mare?
 
-La clinica stomatologica DentCraft lucram cu implanturi de ultima generatie. Dr. Petric are peste 10 ani de experienta in implantologie si a realizat sute de cazuri cu succes.
+La clinica stomatologica DENTCRAFT lucram cu implanturi de ultima generatie. Dr. Petric are peste 10 ani de experienta in implantologie si a realizat sute de cazuri cu succes.
 
 Ce include tratamentul:
 - Consultatie si planificare 3D
@@ -50,7 +50,7 @@ Programeaza o consultatie gratuita: 0741 199 977
 ## Postare 4 — Aparat Dentar / Ortodontie (keyword pozitie 6.47)
 **Tip:** Update | **Keywords:** aparat dentar satu mare, ortodont satu mare, ortodontie satu mare
 
-Vrei un zambet drept? La DentCraft Satu Mare oferim solutii ortodontice pentru copii si adulti.
+Vrei un zambet drept? La DENTCRAFT Satu Mare oferim solutii ortodontice pentru copii si adulti.
 
 Tipuri de aparate dentare disponibile:
 - Aparat dentar metalic clasic
@@ -68,7 +68,7 @@ Programeaza o consultatie ortodontica: 0741 199 977
 
 Cauti un dentist pentru copii in Satu Mare?
 
-La DentCraft avem experienta cu pacientii mici si cream un mediu prietenos pentru ca vizita la stomatolog sa fie o experienta placuta.
+La DENTCRAFT avem experienta cu pacientii mici si cream un mediu prietenos pentru ca vizita la stomatolog sa fie o experienta placuta.
 
 Servicii de pedodontie (stomatologie copii):
 - Control si igienizare profesionala
@@ -87,7 +87,7 @@ Programeaza: 0741 199 977
 
 Vrei un zambet mai alb si mai stralucitor?
 
-La clinica DentCraft din Satu Mare oferim albire dentara profesionala — rezultate vizibile dupa o singura sedinta!
+La clinica DENTCRAFT din Satu Mare oferim albire dentara profesionala — rezultate vizibile dupa o singura sedinta!
 
 De ce sa alegi albirea profesionala:
 - Rezultate cu 5-8 nuante mai alb
@@ -104,7 +104,7 @@ Programeaza-te acum: 0741 199 977
 ## Postare 7 — Fatete Dentare
 **Tip:** Update | **Keywords:** fatete dentare satu mare, fatete dentare pret
 
-Transformare completa a zambetului cu fatete dentare la DentCraft Satu Mare!
+Transformare completa a zambetului cu fatete dentare la DENTCRAFT Satu Mare!
 
 Fatetele sunt solutia ideala pentru:
 - Dinti cu fisuri sau ciobiti
@@ -121,9 +121,9 @@ Programeaza consultatie: 0741 199 977
 ## Postare 8 — Recenzii / Social Proof
 **Tip:** Update | **Keywords:** cel mai bun dentist satu mare, recenzii dentist satu mare
 
-Multumim pacientilor nostri pentru incredere! DentCraft este una dintre cele mai apreciate clinici stomatologice din Satu Mare.
+Multumim pacientilor nostri pentru incredere! DENTCRAFT este una dintre cele mai apreciate clinici stomatologice din Satu Mare.
 
-"Am venit pentru un implant dentar si experienta a fost excelenta. Echipa profesionista, pret corect si rezultat impecabil." — Pacient DentCraft
+"Am venit pentru un implant dentar si experienta a fost excelenta. Echipa profesionista, pret corect si rezultat impecabil." — Pacient DENTCRAFT
 
 Citeste toate recenziile noastre pe Google si pe dentcraft.ro/testimoniale.
 
@@ -134,7 +134,7 @@ Programeaza si tu o consultatie: 0741 199 977
 ## Postare 9 — Echipa Medicala (E-E-A-T)
 **Tip:** Update | **Keywords:** medici stomatologi satu mare, echipa dentist satu mare
 
-Cunoaste echipa DentCraft — 6 specialisti dedicati sanatatii tale dentare!
+Cunoaste echipa DENTCRAFT — 6 specialisti dedicati sanatatii tale dentare!
 
 Medicii nostri:
 - Dr. Razvan Petric — Implantologie, Protetica
@@ -152,7 +152,7 @@ Afla mai multe: dentcraft.ro/echipa
 
 Urgenta dentara in Satu Mare? Suna-ne imediat!
 
-La DentCraft tratam urgentele stomatologice rapid:
+La DENTCRAFT tratam urgentele stomatologice rapid:
 - Durere puternica de masea
 - Dinte spart sau ciobit
 - Abces dentar cu umflatura
@@ -169,7 +169,7 @@ Adresa: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare
 ## Postare 11 — Fogorvos (Hungarian keyword)
 **Tip:** Update | **Keywords:** fogorvos satu mare, fogaszat szatmarnemeti
 
-Megbizhato fogorvos Szatmarnemetiben? Valassza a DentCraft-ot!
+Megbizhato fogorvos Szatmarnemetiben? Valassza a DENTCRAFT-ot!
 
 6 tapasztalt szakember, modern technologia es baratsagos kornyezet varja Ont.
 
@@ -185,7 +185,7 @@ Cim: Str. Barbu Stefanescu Delavrancea nr.3, Szatmarnemeti
 ## Postare 12 — Consultatie Gratuita (CTA puternic)
 **Tip:** Offer | **Keywords:** consultatie stomatologica satu mare, programare dentist
 
-Consultatie stomatologica GRATUITA la DentCraft Satu Mare!
+Consultatie stomatologica GRATUITA la DENTCRAFT Satu Mare!
 
 Nu stii de unde sa incepi? Vino la o evaluare completa si primesti:
 - Examinare detaliata

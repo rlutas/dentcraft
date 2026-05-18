@@ -1,4 +1,4 @@
-# Claude Orchestrator - Dentcraft.ro
+# Claude Orchestrator - DENTCRAFT.ro
 
 ## Agent Strategy
 
@@ -165,7 +165,7 @@ Lansez 3 agenți în paralel:
 
 ---
 
-## Task Breakdown pentru Dentcraft
+## Task Breakdown pentru DENTCRAFT
 
 ### FAZA 1: Setup (secvențial)
 ```
@@ -217,11 +217,11 @@ Batch 3 (secvențial - depind de template-uri):
 
 ---
 
-## Prompt Templates pentru Dentcraft
+## Prompt Templates pentru DENTCRAFT
 
 ### Creare Component:
 ```
-Creează componenta [NUME] pentru Dentcraft.
+Creează componenta [NUME] pentru DENTCRAFT.
 
 Design specs:
 - Stil: Apple-inspired, minimalist
@@ -241,7 +241,7 @@ Include: TypeScript types, responsive design, hover states
 
 ### Creare Page:
 ```
-Creează pagina [NUME] pentru Dentcraft.
+Creează pagina [NUME] pentru DENTCRAFT.
 
 Secțiuni:
 1. [SECȚIUNE 1]
@@ -288,7 +288,7 @@ Salvează în: sanity/schemas/documents/[nume].ts
 ### 2. Provide Context
 ```
 // MAI BINE: Context complet
-"Creează Header pentru Dentcraft.
+"Creează Header pentru DENTCRAFT.
 Avem deja: Button în src/components/ui/button.tsx
 Design system: docs/design-system.md
 Logo: text 'DENTCRAFT', font-bold"

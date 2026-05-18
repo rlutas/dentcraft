@@ -1,4 +1,4 @@
-# Go-Live Checklist — Dentcraft.ro
+# Go-Live Checklist — DENTCRAFT.ro
 
 **Status la 15 May 2026:** Site-ul este în **MAINTENANCE / UNDER CONSTRUCTION mode**. Conținut + design = ready. Indexarea SEO este blocată intenționat. Acest document conține pașii exacți pentru a flipa site-ul live.
 
@@ -8,7 +8,7 @@
 
 | Etapă | Status | Note |
 |---|---|---|
-| **Design + conținut** | ✅ COMPLET | Toate paginile finalizate, brand DentCraft, paletă unificată |
+| **Design + conținut** | ✅ COMPLET | Toate paginile finalizate, brand DENTCRAFT, paletă unificată |
 | **Hero MJ + optimizat** | ✅ COMPLET | Landscape 271KB, portrait 9:20 142KB, AVIF/WebP auto |
 | **Dr. Petric content verificat** | ✅ COMPLET | 2016 Cluj, 6 cursuri reale, 10+ ani / 1500+ pacienți |
 | **Echipa finalizată** | ✅ COMPLET | 3 medici + 2 staff (Petric, Ghirasim, Tincu + Camelia, Karla) |

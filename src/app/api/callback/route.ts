@@ -193,7 +193,7 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey)
 
     const { error } = await resend.emails.send({
-      from: 'Dentcraft Website <noreply@dentcraft.ro>',
+      from: 'DENTCRAFT Website <noreply@dentcraft.ro>',
       html: callbackAdminEmail({
         name: data.name,
         phone: data.phone,
@@ -202,7 +202,7 @@ export async function POST(request: Request) {
         ...(timeLabel ? { timePreference: timeLabel } : {}),
         ...(data.doctor ? { doctor: data.doctor } : {}),
       }),
-      subject: `[Dentcraft] Cerere programare - ${data.name}`,
+      subject: `[DENTCRAFT] Cerere programare - ${data.name}`,
       to: recipientEmail,
     })
 
@@ -216,11 +216,11 @@ export async function POST(request: Request) {
 
     // Send confirmation email to client (non-blocking)
     resend.emails.send({
-      from: 'Dentcraft <noreply@dentcraft.ro>',
+      from: 'DENTCRAFT <noreply@dentcraft.ro>',
       html: callbackConfirmationEmail({
         name: data.name,
       }),
-      subject: 'Am primit cererea ta de programare - Dentcraft',
+      subject: 'Am primit cererea ta de programare - DENTCRAFT',
       to: data.email,
     }).catch((err) => {
       console.error('Failed to send callback confirmation email:', err)

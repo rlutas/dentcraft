@@ -1,4 +1,4 @@
-# CHECKLIST MASTER - Dentcraft.ro
+# CHECKLIST MASTER - DENTCRAFT.ro
 
 > **Status:** 🟢 In lucru - SEO optimized, PageSpeed optimized (94/93/100/100), email marketing setup, analytics installed
 > **Ultima actualizare:** 26 Februarie 2026
@@ -364,7 +364,7 @@ Search the codebase for "under construction" — all changes are marked with TOD
 - [x] Hero section cu CTA buttons
 - [x] Trust indicators bar (ani experiență, pacienți, rating, garanție)
 - [x] Servicii grid (6 servicii cu Lucide icons)
-- [x] De ce Dentcraft section (4 USP-uri cu Lucide icons)
+- [x] De ce DENTCRAFT section (4 USP-uri cu Lucide icons)
 - [x] Echipa preview - 6 membri cu poze reale, premium cards ✅ (19 Feb 2026)
 - [ ] Before/After preview - necesită poze
 - [x] Testimoniale preview (3 testimoniale cu star ratings)

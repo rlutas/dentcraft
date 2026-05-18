@@ -1,8 +1,8 @@
-# Content Checklist - Dentcraft.ro
+# Content Checklist - DENTCRAFT.ro
 
 ## Overview
 
-Acest document contine lista completa a continutului necesar de la client pentru realizarea site-ului Dentcraft.ro. Fara aceste materiale, proiectul nu poate avansa conform timeline-ului stabilit.
+Acest document contine lista completa a continutului necesar de la client pentru realizarea site-ului DENTCRAFT.ro. Fara aceste materiale, proiectul nu poate avansa conform timeline-ului stabilit.
 
 ---
 
@@ -25,8 +25,8 @@ Acest document contine lista completa a continutului necesar de la client pentru
 ### Logo
 | Item | Format Acceptat | Status | Note |
 |------|-----------------|--------|------|
-| Logo Dentcraft (vector) | SVG, AI, EPS | Pending | Obligatoriu pentru header/footer |
-| Logo Dentcraft (PNG) | PNG transparent, min 1000px | Pending | Backup pentru compatibilitate |
+| Logo DENTCRAFT (vector) | SVG, AI, EPS | Pending | Obligatoriu pentru header/footer |
+| Logo DENTCRAFT (PNG) | PNG transparent, min 1000px | Pending | Backup pentru compatibilitate |
 
 ### Ghid Brand (daca exista)
 | Item | Format | Status | Note |
@@ -360,15 +360,15 @@ Categoria: [Nume serviciu]
 ## TEMPLATE EMAIL PENTRU CLIENT
 
 ```
-Subiect: Dentcraft.ro - Materiale necesare pentru site
+Subiect: DENTCRAFT.ro - Materiale necesare pentru site
 
 Buna ziua,
 
-Pentru a putea avansa cu dezvoltarea site-ului Dentcraft.ro,
+Pentru a putea avansa cu dezvoltarea site-ului DENTCRAFT.ro,
 avem nevoie de urmatoarele materiale:
 
 PRIORITATE INALTA (Saptamana 1):
-□ Logo Dentcraft (format vector - SVG, AI, sau EPS)
+□ Logo DENTCRAFT (format vector - SVG, AI, sau EPS)
 □ Poze clinica profesionale (minim 10)
 □ Poze echipa (portrete profesionale)
 □ Bio Dr. Petric (educatie, experienta, certificari)

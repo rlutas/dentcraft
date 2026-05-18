@@ -2,7 +2,7 @@
 
 **Date:** February 25, 2026
 **Site:** https://www.dentcraft.ro
-**Business:** DentCraft — Clinica Stomatologica, Satu Mare, Romania
+**Business:** DENTCRAFT — Clinica Stomatologica, Satu Mare, Romania
 **Stack:** Next.js 15 App Router + Tailwind CSS v4 + Sanity CMS + next-intl (ro/en/hu)
 **Audit method:** Source code analysis + live site crawl via Playwright + 5 parallel specialist agents
 
@@ -131,7 +131,7 @@ All pages have unique, keyword-rich titles per locale with proper length (44-96 
 
 Best examples:
 - Prices: `Preturi Stomatologie Satu Mare 2026 | Tarife Implant, Aparat Dentar, Fatete`
-- Contact: `Contact | Programare Stomatolog - 0741 199 977 | Dentcraft Satu Mare`
+- Contact: `Contact | Programare Stomatolog - 0741 199 977 | DENTCRAFT Satu Mare`
 
 ### Meta Descriptions: 18/20 — Excellent
 
@@ -251,7 +251,7 @@ Article schema references `/images/logo.png` which does not exist. Only `/brandi
 
 ### Weaknesses
 - No self-contained "answer blocks" (134-167 words) for AI citation
-- Only 1 question-format heading on homepage ("De ce Dentcraft?")
+- Only 1 question-format heading on homepage ("De ce DENTCRAFT?")
 - No FAQ section on homepage
 - Only 1 blog post — insufficient for topical authority
 - No comparison tables on service pages

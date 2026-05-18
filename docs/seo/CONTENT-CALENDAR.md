@@ -1,4 +1,4 @@
-# DentCraft Content Calendar
+# DENTCRAFT Content Calendar
 
 > **Last updated:** 2026-02-24
 > **Writing skill:** Use `/dentcraft-blog-writer` skill when generating blog posts
@@ -65,7 +65,7 @@ These 4 articles target 6,440+ combined monthly impressions with near-zero click
 - **Secondary:** dentist satu mare (4,290 imp, pos 10.52), clinica dentara satu mare
 - **Intent:** Informational / Commercial
 - **Word count:** 1,500-2,000
-- **Angle:** Criteria for choosing a dentist: qualifications, equipment, reviews, before/after photos, languages spoken. Naturally positions DentCraft as the answer.
+- **Angle:** Criteria for choosing a dentist: qualifications, equipment, reviews, before/after photos, languages spoken. Naturally positions DENTCRAFT as the answer.
 - **Competitor note:** Sala Diagnostics has a competing article.
 - **Internal links:** Team page, Google reviews, Gallery
 - **CTA:** Viziteaza clinica / Programare
@@ -199,7 +199,7 @@ These 4 articles target 6,440+ combined monthly impressions with near-zero click
 | Finess Dental | No blog | Only landing pages | LOW (but growing fast) |
 | Clinica Duo Dent | Minimal | Weak online presence | LOW |
 
-**Key insight:** No Satu Mare competitor covers more than 3-4 topics. DentCraft can become the dominant local dental content authority by being first to publish on all 20 topics.
+**Key insight:** No Satu Mare competitor covers more than 3-4 topics. DENTCRAFT can become the dominant local dental content authority by being first to publish on all 20 topics.
 
 ---
 

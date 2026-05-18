@@ -16,8 +16,7 @@ import { LazyClientComponents } from '@/components/layout/LazyClientComponents'
 import { MaintenancePage } from '@/components/MaintenancePage'
 import '@/styles/globals.css'
 
-// TEMPORARY: Set to true to show under construction page
-// TODO: Remove when site is ready for launch (search "under construction")
+// Optional maintenance mode — only active when NEXT_PUBLIC_MAINTENANCE_MODE=true is set in env
 const isMaintenanceMode = process.env['NEXT_PUBLIC_MAINTENANCE_MODE'] === 'true'
 
 const inter = Inter({
@@ -98,9 +97,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteSchema()) }}
         />
-        {/* TEMPORARY: Show maintenance page when NEXT_PUBLIC_MAINTENANCE_MODE=true */}
-        {/* Authorized preview: cookie set via /api/preview?key=... bypasses the gate */}
-        {/* TODO: Remove this conditional when site is ready for launch (search "under construction") */}
+        {/* Maintenance mode (opt-in via NEXT_PUBLIC_MAINTENANCE_MODE=true) — preview cookie set via /api/preview?key=... bypasses the gate */}
         {showMaintenance ? (
           <MaintenancePage />
         ) : (

@@ -1,4 +1,4 @@
-# DentCraft SEO Strategy
+# DENTCRAFT SEO Strategy
 
 **Goal:** Become the #1 clinica stomatologica in Satu Mare for local search.
 **Current state:** Site not yet live. Good technical foundation (Next.js 15, trilingual, schema markup). Weak on content, reviews, and local visibility.
@@ -48,13 +48,13 @@
 
 *Across all platforms
 
-### DentCraft's Advantages
+### DENTCRAFT's Advantages
 1. **Trilingual site (ro/en/hu)** — Only Dr. Telegdy also does this. Satu Mare has a large Hungarian-speaking population.
 2. **Next.js tech stack** — Faster than every competitor's WordPress site. Better Core Web Vitals.
 3. **"implant dentar satu mare pret"** — Already position 3.92. High-intent commercial keyword.
 4. **Brand recognition** — Dr. Petric branded searches show 33.93% CTR.
 
-### DentCraft's Gaps
+### DENTCRAFT's Gaps
 1. **Google reviews: 14** vs Sala Diagnostics' 88. This is the single biggest problem.
 2. **No children's dentistry content** — Position 30+ for all "copii" keywords (combined 1,851 impressions).
 3. **No emergency page** — 2,000+ impressions for urgency keywords, barely ranking.
@@ -70,7 +70,7 @@
 **Target:** Position 3-5
 
 **Actions:**
-- Optimize homepage title tag: "Dentist Satu Mare | Clinica Stomatologica DentCraft"
+- Optimize homepage title tag: "Dentist Satu Mare | Clinica Stomatologica DENTCRAFT"
 - Add "dentist satu mare" to H1 on homepage
 - Build 3-5 internal links from service pages pointing to homepage with "dentist satu mare" anchor
 - Ensure Google Business Profile name matches
@@ -169,7 +169,7 @@ The site structure is solid. Before launch, verify:
 
 ## Directory Listings (NAP Citations)
 
-Register DentCraft on these platforms with consistent name, address, and phone:
+Register DENTCRAFT on these platforms with consistent name, address, and phone:
 
 - [ ] Google Business Profile (primary)
 - [ ] CityMaps.ro

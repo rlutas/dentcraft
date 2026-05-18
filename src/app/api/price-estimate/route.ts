@@ -275,7 +275,7 @@ export async function POST(request: Request) {
     // for someone who just wants to think it over.
     if (!data.saveOnly) {
       const { error } = await resend.emails.send({
-        from: 'Dentcraft Website <noreply@dentcraft.ro>',
+        from: 'DENTCRAFT Website <noreply@dentcraft.ro>',
         html: priceEstimateAdminEmail({
           name: data.name,
           phone: data.phone,
@@ -288,7 +288,7 @@ export async function POST(request: Request) {
           ...(data.lineItems ? { lineItems: data.lineItems } : {}),
           ...(data.notes ? { notes: data.notes } : {}),
         }),
-        subject: `[Dentcraft] Estimare pret - ${data.service} - ${data.name}`,
+        subject: `[DENTCRAFT] Estimare pret - ${data.service} - ${data.name}`,
         to: recipientEmail,
       })
 
@@ -303,7 +303,7 @@ export async function POST(request: Request) {
 
     // Send confirmation email to client (non-blocking)
     resend.emails.send({
-      from: 'Dentcraft <noreply@dentcraft.ro>',
+      from: 'DENTCRAFT <noreply@dentcraft.ro>',
       html: priceEstimateConfirmationEmail({
         name: data.name,
         service: data.service,
@@ -312,7 +312,7 @@ export async function POST(request: Request) {
         ...(data.lineItems ? { lineItems: data.lineItems } : {}),
         ...(data.notes ? { notes: data.notes } : {}),
       }),
-      subject: `Estimare pret - ${data.service} | Dentcraft`,
+      subject: `Estimare pret - ${data.service} | DENTCRAFT`,
       to: data.email,
     }).catch((err) => {
       console.error('Failed to send price estimate confirmation email:', err)

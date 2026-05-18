@@ -76,6 +76,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
   const tServices = useTranslations('services')
+  const tAria = useTranslations('ariaLabels')
   const router = useRouter()
   const pathname = usePathname()
   const currentLocale = useLocale() as Locale
@@ -128,7 +129,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
           >
             <motion.div custom={0} variants={itemVariants} initial="hidden" animate="visible" className="flex items-center justify-between mb-4">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#8b7355]">Meniu</span>
-              <button type="button" onClick={onClose} aria-label="Închide meniul" className="w-10 h-10 rounded-full bg-[#faf6f1] hover:bg-[#f5f0e8] flex items-center justify-center transition-colors">
+              <button type="button" onClick={onClose} aria-label={tAria('closeMenu')} className="w-10 h-10 rounded-full bg-[#faf6f1] hover:bg-[#f5f0e8] flex items-center justify-center transition-colors">
                 <X className="w-5 h-5 text-[#2a2118]" strokeWidth={2} />
               </button>
             </motion.div>
@@ -183,7 +184,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
               ))}
             </ul>
             <motion.div custom={navItems.length + 2} variants={itemVariants} initial="hidden" animate="visible" className="mt-4 pt-4 border-t border-[#f5f0e8]">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8b7355] mb-2 px-2">Limbă</p>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8b7355] mb-2 px-2">{tAria('language')}</p>
               <div className="flex gap-2 px-2">
                 {locales.map((loc) => {
                   const Flag = LOCALE_FLAGS[loc]
@@ -219,6 +220,7 @@ export function FramedNav() {
   const t = useTranslations('navigation')
   const tHero = useTranslations('hero')
   const tServices = useTranslations('services')
+  const tAria = useTranslations('ariaLabels')
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
@@ -256,7 +258,7 @@ export function FramedNav() {
       <nav className={cn('fixed z-[150] transition-all duration-500 ease-out', isScrolled ? 'top-2 left-2 right-2 md:top-3 md:left-4 md:right-4 lg:left-6 lg:right-6' : 'top-3 left-3 right-3 md:top-6 md:left-8 md:right-8 lg:left-12 lg:right-12')}>
         <div className={cn('flex items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] mx-auto rounded-full border transition-all duration-500 ease-out', isScrolled ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-1.5 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]' : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-2 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]')}>
           <Link href="/" className="flex items-center shrink-0 group justify-self-start">
-            <Image src="/branding/LOGO_BLACK_FINAL.png" alt="DentCraft" width={420} height={59} priority className={cn('w-auto transition-all duration-500 group-hover:opacity-80', isScrolled ? 'h-5' : 'h-5 md:h-6')} />
+            <Image src="/branding/LOGO_BLACK_FINAL.png" alt="DENTCRAFT" width={420} height={59} priority className={cn('w-auto transition-all duration-500 group-hover:opacity-80', isScrolled ? 'h-5' : 'h-5 md:h-6')} />
           </Link>
 
           <ul className="hidden xl:flex items-center justify-center gap-1 text-[15px] font-bold uppercase tracking-[0.14em]">
@@ -354,7 +356,7 @@ export function FramedNav() {
               </div>
             </div>
 
-            <a href="tel:+40741199977" aria-label="Sună-ne: 0741 199 977" title="0741 199 977" className="hidden xl:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#1a1a1a] hover:bg-[#4a3d30] transition-colors group">
+            <a href="tel:+40741199977" aria-label={`${tAria('callUs')}: 0741 199 977`} title="0741 199 977" className="hidden xl:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#1a1a1a] hover:bg-[#4a3d30] transition-colors group">
               <Phone className="w-[18px] h-[18px] text-white" strokeWidth={2.25} />
             </a>
             <button

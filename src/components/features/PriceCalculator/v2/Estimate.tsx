@@ -203,7 +203,7 @@ export function Estimate({ locale, estimate, scenarioTitle, translations }: Prop
                 <div className="text-xs font-semibold uppercase tracking-wider text-[#d4c4b0]">
                   {translations.doctorName}
                 </div>
-                <div className="text-xs text-white/50 mt-0.5">DentCraft Satu Mare</div>
+                <div className="text-xs text-white/50 mt-0.5">DENTCRAFT Satu Mare</div>
               </div>
             </div>
           </div>

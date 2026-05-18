@@ -154,7 +154,7 @@ export default function Header() {
               <div className="relative">
                 <Image
                   src="/branding/LOGO_BLACK_FINAL.png"
-                  alt="Dentcraft"
+                  alt="DENTCRAFT"
                   width={420}
                   height={59}
                   className="h-7 w-auto lg:h-8 transition-all duration-300 group-hover:opacity-80"

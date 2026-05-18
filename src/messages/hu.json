@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Fogorvos Szatmárnémeti | DentCraft Fogászati Klinika",
+    "title": "Fogorvos Szatmárnémeti | DENTCRAFT Fogászati Klinika",
     "description": "Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal és 1500+ kezelt beteggel. Implantátum, fogszabályozás, héjak, fehérítés. 5 fős szakértői csapat. Foglaljon időpontot!"
   },
   "navigation": {
@@ -43,7 +43,7 @@
     "badge": "#1 Klinika Szatmarban",
     "title": "Fogászati klinika Szatmárnémetiben, akiben megbízhat",
     "subtitle": "Fogászati implantátum, fogszabályozó, héjak és teljes szájrehabilitáció Szatmárnémetiben. Tapasztalt csapat, modern fogászat.",
-    "kicker": "DentCraft · Fogászati klinika Szatmárnémeti",
+    "kicker": "DENTCRAFT · Fogászati klinika Szatmárnémeti",
     "titleBold": "Egészséges fogak",
     "titleItalic": "ragyogó mosoly",
     "trustLabel": "Elégedett páciens",
@@ -74,16 +74,16 @@
     "availableCount": "{count} elérhető szolgáltatás",
     "subtitle": "Teljes koru fogaszati szolgaltatasokat kinalunk, a megelozestol a komplex kezelesekig.",
     "metaTitle": "Fogaszati Szolgaltatasok Szatmarnemeti | Implantatum, Fogszabalyozas",
-    "metaDescription": "Teljes koru fogaszati szolgaltatasok Szatmarnemetiben: implantatum, fogszabalyozas, hejak, feherites, gyermekfogaszat. DentCraft klinika - 5 szakember.",
+    "metaDescription": "Teljes koru fogaszati szolgaltatasok Szatmarnemetiben: implantatum, fogszabalyozas, hejak, feherites, gyermekfogaszat. DENTCRAFT klinika - 5 szakember.",
     "benefits": "Elonyok",
     "process": "Kezelesi folyamat",
     "step": "Lepes",
     "headingBold": "Fogászati",
     "headingItalic": "szolgáltatások",
     "italicAccent": "Szatmárnémeti",
-    "photoAlt": "{title} - DentCraft Szatmárnémeti fogászati klinika",
+    "photoAlt": "{title} - DENTCRAFT Szatmárnémeti fogászati klinika",
     "detail": {
-      "whyChooseLabel": "Miért a DentCraft",
+      "whyChooseLabel": "Miért a DENTCRAFT",
       "benefitsBold": "Valódi",
       "benefitsItalic": "előnyök",
       "processBold": "Kezelési",
@@ -101,7 +101,7 @@
       "patientsTreated": "kezelt páciens",
       "googleLabel": "Google",
       "defaultJobTitle": "Fogorvos",
-      "relatedPhotoAlt": "{title} - Dentcraft Szatmárnémeti fogászati klinika"
+      "relatedPhotoAlt": "{title} - DENTCRAFT Szatmárnémeti fogászati klinika"
     },
     "generalDentistry": "Altalanos Fogaszat",
     "cosmeticDentistry": "Esztetikai Fogaszat",
@@ -215,7 +215,6 @@
       "scalingStep2Desc": "Fogko eltavolitasa ultrahangos keszulekkel.",
       "scalingStep3Title": "Polírozás és fluoridálás",
       "scalingStep3Desc": "Fogak polírozása és védő fluor alkalmazása.",
-
       "generalDentistry": "Általános Fogászat",
       "generalDentistryDesc": "Átfogó fogászati ellátás a szájüreg egészségének megőrzéséért. Rendszeres ellenőrzések, professzionális tisztítás, tömések és megelőző kezelések.",
       "generalDentistryBenefit1Title": "Megelőző ellátás",
@@ -232,7 +231,6 @@
       "generalDentistryStep3Desc": "Személyre szabott kezelési javaslat készítése.",
       "generalDentistryStep4Title": "Kezelés végrehajtása",
       "generalDentistryStep4Desc": "A szükséges beavatkozások elvégzése modern technológiával.",
-
       "cosmeticDentistry": "Esztétikai Fogászat",
       "cosmeticDentistryDesc": "A tökéletes mosolyért végzett esztétikai kezelések: héjak, fehérítés, fogforma-korrekció és mosolyátalakítás.",
       "cosmeticDentistryBenefit1Title": "Ragyogó mosoly",
@@ -249,7 +247,6 @@
       "cosmeticDentistryStep3Desc": "A fogak előkészítése az esztétikai kezelésre.",
       "cosmeticDentistryStep4Title": "Végleges eredmény",
       "cosmeticDentistryStep4Desc": "Az esztétikai helyreállítás elkészítése és rögzítése.",
-
       "prosthetics": "Fogpótlástan",
       "prostheticsDesc": "Teljes körű fogpótlási megoldások: koronák, hidak, kivehető és rögzített protézisek a funkció és esztétika helyreállításáért.",
       "prostheticsBenefit1Title": "Funkció helyreállítása",
@@ -266,7 +263,6 @@
       "prostheticsStep3Desc": "A fogpótlás laboratóriumi elkészítése precíz lenyomat alapján.",
       "prostheticsStep4Title": "Behelyezés",
       "prostheticsStep4Desc": "A kész fogpótlás illesztése és rögzítése.",
-
       "implantology": "Fogimplantátumok",
       "implantologyDesc": "Csúcstechnológiás implantátumok a hiányzó fogak tartós pótlására. Természetes megjelenés és teljes funkcionalitás egy életen át.",
       "implantologyBenefit1Title": "Élethosszig tartó megoldás",
@@ -283,7 +279,6 @@
       "implantologyStep3Desc": "3-6 hónap a teljes csontintegrációhoz.",
       "implantologyStep4Title": "Végleges korona",
       "implantologyStep4Desc": "A kerámia korona felhelyezése az implantátumra.",
-
       "orthodontics": "Fogszabályozás",
       "orthodonticsDesc": "Modern fogszabályozási megoldások minden korosztály számára: hagyományos készülékek, láthatatlan sínek és önzáró bracketek.",
       "orthodonticsBenefit1Title": "Egyenes fogsor",
@@ -300,7 +295,6 @@
       "orthodonticsStep3Desc": "A fogszabályozó készülék felhelyezése vagy az első sín átadása.",
       "orthodonticsStep4Title": "Rendszeres kontroll",
       "orthodonticsStep4Desc": "Havonta vagy kéthavonta kontrollvizsgálatok és beállítások.",
-
       "endodontics": "Endodoncia",
       "endodonticsDesc": "Gyökérkezelés és gyökércsatorna-terápia a fertőzött fogak megmentéséért. Modern, fájdalommentes technikákkal.",
       "endodonticsBenefit1Title": "Fog megmentése",
@@ -317,7 +311,6 @@
       "endodonticsStep3Desc": "A gyökércsatornák hermetikus lezárása speciális anyaggal.",
       "endodonticsStep4Title": "Helyreállítás",
       "endodonticsStep4Desc": "A fog megerősítése töméssel vagy koronával.",
-
       "oralSurgery": "Szájsebészet",
       "oralSurgeryDesc": "Szakszerű szájsebészeti beavatkozások: bölcsességfog-eltávolítás, csonpótlás, implantáció előkészítés és egyéb sebészeti eljárások.",
       "oralSurgeryBenefit1Title": "Szakértő ellátás",
@@ -334,7 +327,6 @@
       "oralSurgeryStep3Desc": "A szájsebészeti eljárás elvégzése steril körülmények között.",
       "oralSurgeryStep4Title": "Gyógyulás",
       "oralSurgeryStep4Desc": "Utógondozás és a gyógyulás nyomon követése.",
-
       "pediatricDentistry": "Gyermekfogászat",
       "pediatricDentistryDesc": "Gyermekbarát fogászati ellátás a legkisebbeknek: megelőzés, kezelés és fogazati fejlődés követése játékos, stresszmentes környezetben.",
       "pediatricDentistryBenefit1Title": "Barátságos környezet",
@@ -351,7 +343,6 @@
       "pediatricDentistryStep3Desc": "Fluoridálás, barázdazárás és tisztítás.",
       "pediatricDentistryStep4Title": "Tanácsadás",
       "pediatricDentistryStep4Desc": "Szülői útmutató a gyermek fogápolásához.",
-
       "dentalEmergencies": "Sürgősségi Fogászat",
       "dentalEmergenciesDesc": "Azonnali segítség fogászati vészhelyzetekben: erős fogfájás, letört fog, kiesett tömés vagy traumás sérülések esetén.",
       "dentalEmergenciesBenefit1Title": "Gyors ellátás",
@@ -372,7 +363,7 @@
   },
   "whyUs": {
     "badge": "Miért Mi",
-    "title": "Miert a Dentcraft?",
+    "title": "Miert a DENTCRAFT?",
     "subtitle": "Elkotelezettek vagyunk a modern fogaszat kivalosaga mellett.",
     "stats": {
       "years": {
@@ -423,14 +414,14 @@
     "sectionTitle": "Valós átalakulások",
     "sectionSubtitle": "Minden eset a professzionális kezeléseink eredményeit mutatja",
     "clinicBadge": "Klinikánk",
-    "clinicTitle": "Fedezze Fel a Dentcraft Klinikát",
+    "clinicTitle": "Fedezze Fel a DENTCRAFT Klinikát",
     "clinicSubtitle": "Modern felszerelés, kényelmes terek és az Ön mosolyának elkötelezett csapat",
     "headingBold": "Galéria",
     "headingItalic": "valós eredmények",
     "beforeAfterBold": "Előtte és",
     "beforeAfterItalic": "utána",
     "clinicHeadingBold": "Klinika",
-    "clinicHeadingItalic": "DentCraft",
+    "clinicHeadingItalic": "DENTCRAFT",
     "doctorPrefix": "Dr.",
     "doctorLabel": "Orvos",
     "closeLabel": "Bezárás",
@@ -441,7 +432,7 @@
     },
     "subtitle": "Tekintse meg pacienseink atalakulasat. Valos eredmenyek, valos mosolyok.",
     "metaTitle": "Elotte es Utana Galeria | Valos Eredmenyek",
-    "metaDescription": "Elotte es utana fotok fogaszati kezelesekrol: implantatum, hejak, feherites, fogszabalyozas. Valos eredmenyek a DentCraft klinikarol.",
+    "metaDescription": "Elotte es utana fotok fogaszati kezelesekrol: implantatum, hejak, feherites, fogszabalyozas. Valos eredmenyek a DENTCRAFT klinikarol.",
     "filterBy": "Szures kezeles szerint",
     "allTreatments": "Minden kezeles",
     "noCases": "Nincs talalt eset ezzel a szurovel.",
@@ -479,7 +470,7 @@
     "subtitle": "Fedezze fel modern klinikankat, amely a legujabb fogaszati technologiaval van felszerelve, meleg es baratsagos kornyezetben.",
     "captions": {
       "reception": "Varoterem",
-      "treatment": "Dentcraft recepcio",
+      "treatment": "DENTCRAFT recepcio",
       "equipment": "Kezeloszoba",
       "waiting": "Kezeloszoba",
       "detail": "Varoterem",
@@ -488,13 +479,13 @@
       "toys": "Gyereksarok"
     },
     "images": {
-      "reception": "Dentcraft klinika varoterem",
-      "waiting": "Dentcraft klinika recepcio",
+      "reception": "DENTCRAFT klinika varoterem",
+      "waiting": "DENTCRAFT klinika recepcio",
       "treatment": "Modern fogaszati kezeloszoba",
       "detail": "Sterilizalo szoba",
       "equipment": "Klinika varoterem",
-      "treatmentRoom": "Dentcraft kezeloszoba",
-      "toys": "Jatekok fogkefevel a Dentcraft klinikan"
+      "treatmentRoom": "DENTCRAFT kezeloszoba",
+      "toys": "Jatekok fogkefevel a DENTCRAFT klinikan"
     },
     "features": {
       "equipment": {
@@ -528,7 +519,7 @@
     "title": "Mit mondanak pacienseink",
     "subtitle": "Valos velemenyek elegedett paciensektol.",
     "metaTitle": "Paciens Velemenyek | Ertekelesek",
-    "metaDescription": "Olvassa el a DentCraft Szatmarnemeti paciens velemenyeit. Valos tapasztalatok implantatum, fogszabalyozas, fogaszati esztetika temaban. 4.9 csillag a Google-on.",
+    "metaDescription": "Olvassa el a DENTCRAFT Szatmarnemeti paciens velemenyeit. Valos tapasztalatok implantatum, fogszabalyozas, fogaszati esztetika temaban. 4.9 csillag a Google-on.",
     "allTreatments": "Minden kezeles",
     "filterBy": "Szures kezeles szerint",
     "noTestimonials": "Nincs talalt velemeny ezzel a szurovel.",
@@ -543,7 +534,7 @@
       "whitening": "Fogfeherites"
     },
     "quotes": {
-      "1": "Kivaló eredmeny! A Dentcraft csapata teljesen atalakitotta a mosolyomat. Teljes bizalommal ajanlom.",
+      "1": "Kivaló eredmeny! A DENTCRAFT csapata teljesen atalakitotta a mosolyomat. Teljes bizalommal ajanlom.",
       "2": "Nagyon elegedett voltam a professzionalizmussal es az odafigyelęssel. Az implantatum ugy nez ki es ugy erződik, mint egy termeszetes fog.",
       "3": "A feherites felulmalda a varakozasaimat. A szemelyzet nagyon baratsagos es az eljaras gyors es kenyelmes volt."
     }
@@ -567,15 +558,15 @@
     "title": "Fogorvosi Csapatunk Szatmárnémetiben",
     "specialistsCount": "{count} szakember",
     "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban.",
-    "metaTitle": "Fogorvosok Szatmarnemetiben | DentCraft Csapat",
-    "metaDescription": "Ismerje meg a DentCraft fogaszati csapatat Szatmarnemetiben - 3 fogorvos (Dr. Petric, Dr. Ghirasim, Dr. Tincu) es a recepcio/asszisztens csapat. 10+ ev tapasztalat, 1500+ kezelt beteg.",
+    "metaTitle": "Fogorvosok Szatmarnemetiben | DENTCRAFT Csapat",
+    "metaDescription": "Ismerje meg a DENTCRAFT fogaszati csapatat Szatmarnemetiben - 3 fogorvos (Dr. Petric, Dr. Ghirasim, Dr. Tincu) es a recepcio/asszisztens csapat. 10+ ev tapasztalat, 1500+ kezelt beteg.",
     "about": "Rolunk",
     "education": "Tanulmanyok",
     "certifications": "Tanusitvanyok",
     "servicesOffered": "Szolgaltatasok",
     "viewAll": "Teljes csapat",
     "headingBold": "Csapat",
-    "headingItalic": "DentCraft",
+    "headingItalic": "DENTCRAFT",
     "breadcrumbHome": "Főoldal",
     "breadcrumbTeam": "Csapat",
     "profile": {
@@ -585,7 +576,7 @@
       "videoComingSoonCopy": "A klip {firstName} doktorral hamarosan elkészül — nézz vissza nemsokára.",
       "videoComingSoonHeadline": "Videó hamarosan",
       "videoComingSoonShort": "A klip {firstName} doktorral hamarosan elkészül.",
-      "videoClipAlt": "{name} — DentCraft videóklip",
+      "videoClipAlt": "{name} — DENTCRAFT videóklip",
       "aboutBold": "Bemutatkozás",
       "journeyBold": "Szakmai",
       "journeyItalic": "életút",
@@ -600,7 +591,7 @@
       "infoSatuMare": "Szatmárnémeti",
       "infoHours": "H-P: 10:00 - 18:00",
       "defaultJobTitle": "Fogorvos",
-      "doctorPhotoAlt": "{name} - {role} a Dentcraft Szatmárnémeti klinikán"
+      "doctorPhotoAlt": "{name} - {role} a DENTCRAFT Szatmárnémeti klinikán"
     },
     "badges": {
       "doctorTitle": "Orvos",
@@ -608,12 +599,22 @@
       "doctorSpecialist": "Szakorvos",
       "doctorDefault": "Fogorvos",
       "receptionTitle": "Recepció",
-      "receptionSubtitle": "DentCraft",
+      "receptionSubtitle": "DENTCRAFT",
       "assistantTitle": "Asszisztens",
       "assistantCoordinator": "Koordinátor",
       "assistantDefault": "Egészségügyi",
       "teamTitle": "Csapat",
-      "teamSubtitle": "DentCraft"
+      "teamSubtitle": "DENTCRAFT"
+    },
+    "roles": {
+      "coordinator": "Koordináló fogorvos",
+      "dentist": "Fogorvos",
+      "periodontologist": "Parodontológus szakorvos",
+      "pediatric": "Gyermekfogorvos",
+      "assistantCoordinator": "Vezető fogászati asszisztens",
+      "assistant": "Fogászati asszisztens",
+      "receptionist": "Recepciós",
+      "principal": "Fő fogorvos"
     }
   },
   "teamPreview": {
@@ -632,7 +633,7 @@
     "sectionTitle": "Teljes árlista",
     "sectionSubtitle": "Minden szolgáltatásunk átlátható árakkal",
     "metaTitle": "Fogaszati Arak Szatmarnemeti 2026 | Implantatum, Fogszabalyozo Arak",
-    "metaDescription": "Teljes fogaszati arlista a DentCraft Szatmarnemetiben. Atlathato arak: implantatum, fogszabalyozo, hejak, feherites, koronak. Ingyenes konzultacio!",
+    "metaDescription": "Teljes fogaszati arlista a DENTCRAFT Szatmarnemetiben. Atlathato arak: implantatum, fogszabalyozo, hejak, feherites, koronak. Ingyenes konzultacio!",
     "disclaimer": "* A feltuntetett arak tajekoztatoak es az eset osszettetsegétől fuggoen valtozhatnak. A vegleges arat a konzultacio utan allapitjuk meg.",
     "promotion": "Akcio",
     "tryCalculator": "Kezeles aranak szamitasa",
@@ -692,7 +693,7 @@
     "title": "Gyakran Ismetelt Kerdesek",
     "subtitle": "Valaszok a leggyakoribb kerdesekre fogaszati szolgaltatasainkrol.",
     "metaTitle": "Fogaszati GYIK | Kerdesek Implantatum, Fogszabalyozo Temaban",
-    "metaDescription": "Valaszok a leggyakoribb kerdesekre: fogimplantatum, fogszabalyozo, feherites, hejak es arak. DentCraft fogaszati klinika Szatmarnemeti.",
+    "metaDescription": "Valaszok a leggyakoribb kerdesekre: fogimplantatum, fogszabalyozo, feherites, hejak es arak. DENTCRAFT fogaszati klinika Szatmarnemeti.",
     "stillHaveQuestions": "Meg mindig vannak kerdesei?",
     "contactUsText": "Csapatunk keszen all a segitsegere. Keressen minket barmilyen kerdessel.",
     "categories": {
@@ -703,7 +704,7 @@
     },
     "placeholder": {
       "general": {
-        "q1": "Milyen szolgaltatasokat kinal a Dentcraft klinika?",
+        "q1": "Milyen szolgaltatasokat kinal a DENTCRAFT klinika?",
         "a1": "Teljes koru fogaszati szolgaltatasokat kinalunk, beleertve az altalanos fogaszatot, esztetikai fogaszatot, implantologiat, fogszabalyozast, gyermekfogaszatot es surgossegi fogaszatot.",
         "q2": "Ingyenes az elso konzultacio?",
         "a2": "Igen, az elso konzultacio ingyenes. Teljes koru felmerest kap fogaszati allapotarol es szemelyreaszabott kezelesi tervet."
@@ -730,17 +731,17 @@
     "locationLabel": "Szatmárnémeti, Románia",
     "subtitle": "Itt vagyunk Onert. Foglaljon konzultaciot vagy kuldje el uzenetet.",
     "metaTitle": "Kapcsolat | Idopontfoglalas - 0741 199 977",
-    "metaDescription": "Lepjen kapcsolatba a DentCraft fogaszati klinikaval Szatmarnemetiben. Idopontok: 0741 199 977. Cim: Str. Barbu Stefanescu Delavrancea nr.3. H-P 10:00-18:00.",
+    "metaDescription": "Lepjen kapcsolatba a DENTCRAFT fogaszati klinikaval Szatmarnemetiben. Idopontok: 0741 199 977. Cim: Str. Barbu Stefanescu Delavrancea nr.3. H-P 10:00-18:00.",
     "phoneLabel": "Telefon",
     "emailLabel": "Email",
     "addressLabel": "Cim",
     "workingHoursLabel": "Nyitvatartas",
     "callDescription": "Hivjon minket idopontfoglalasert vagy informacioert",
     "whatsappDescription": "Irjon WhatsApp-on gyors valaszert",
-    "whatsappPrefill": "Udvozlom! Konzultaciot szeretnek foglalni a Dentcraft klinikara.",
+    "whatsappPrefill": "Udvozlom! Konzultaciot szeretnek foglalni a DENTCRAFT klinikara.",
     "emailDescription": "24 oran belul valaszolunk",
     "addressDescription": "Varjuk kliniánkon",
-    "mapTitle": "Dentcraft klinika helye",
+    "mapTitle": "DENTCRAFT klinika helye",
     "findUs": "Talaljon meg minket",
     "getDirections": "Utvonaltervezes",
     "ctaTitle": "Gyors segitsegre van szuksege?",
@@ -756,10 +757,10 @@
     "title": "Fogászati Blog",
     "badge": "Tippek es informaciok",
     "headingBold": "Blog",
-    "headingItalic": "DentCraft",
+    "headingItalic": "DENTCRAFT",
     "subtitle": "Cikkek es tanacsok a fogaszati egeszsegehez.",
     "metaTitle": "Fogaszati Blog | Szajhigieniai Tanacsok",
-    "metaDescription": "Cikkek a fogaszati egeszségrol, tanacsok fogorvosoktol, kezelesi koltsegek es ujdonsagok a DentCraft klinikarol Szatmarnemetiben.",
+    "metaDescription": "Cikkek a fogaszati egeszségrol, tanacsok fogorvosoktol, kezelesi koltsegek es ujdonsagok a DENTCRAFT klinikarol Szatmarnemetiben.",
     "filterBy": "Szures kategoria szerint",
     "allCategories": "Osszes",
     "noPosts": "Nincs cikk",
@@ -869,7 +870,11 @@
     "terms": "Felhasznalasi feltetelek",
     "ctaTitle": "Foglaljon idopontot",
     "ctaSubtitle": "Itt vagyunk a tokeletes mosolyaert",
-    "bookAppointment": "Foglaljon most"
+    "bookAppointment": "Foglaljon most",
+    "crafted": {
+      "label": "Készítette",
+      "aria": "Készítette Luțaș Raul — beszélj WhatsApp-on egy weboldalról"
+    }
   },
   "legal": {
     "privacy": "Adatvedelmi Szabalyzat",
@@ -923,5 +928,82 @@
       "serviceRequired": "Kérjük, válasszon szolgáltatást",
       "timeRequired": "Kérjük, válasszon idősávot"
     }
+  },
+  "home": {
+    "calculator": {
+      "badge": "Teljes átláthatóság",
+      "titleBold": "Azonnali kalkulátor",
+      "titleItalic": "árhoz",
+      "subtitle": "Válaszd ki a szükséges kezelést, és másodperceken belül megkapod a becslést — telefonhívás nélkül, várakozás nélkül. Írásos kezelési terv mielőtt elkezdjük.",
+      "step1": "Válaszd ki a szükséges szolgáltatásokat a katalógusból",
+      "step2": "Lásd a minimum, maximum és átlagárat",
+      "step3": "Megkapod a becslést e-mailben (opcionális)"
+    },
+    "whyClinic": {
+      "headingBold": "Miért a",
+      "headingItalic": "DENTCRAFT klinika",
+      "subtitle": "Modern fogászat Szatmárnémetiben, látható eredményekre, világos kommunikációra és visszatérő, mosolygó páciensekre összpontosítva.",
+      "statsExperience": "év tapasztalat",
+      "statsPatients": "kezelt páciens",
+      "reasons": {
+        "r1Title": "Több mint 10 év tapasztalattal rendelkező csapat",
+        "r1Desc": "Dr. Petric és csapata több mint 1500 pácienst kezelt, valós esetekkel dokumentált eredményekkel.",
+        "r2Title": "Modern technológia, pontos tervek",
+        "r2Desc": "3D digitális szkenner, alacsony dózisú radiológia és számítógépes tervezés — meglepetések nélkül a kezelés során.",
+        "r3Title": "Kényelem és gyengéd érzéstelenítés",
+        "r3Desc": "Pihentető környezet, fájdalommentes érzéstelenítés és világos kommunikáció minden lépésnél. A fogorvostól való félelem kívül marad.",
+        "r4Title": "Átlátható árak, garancia",
+        "r4Desc": "Online árkalkulátor, írásos kezelési terv a kezdés előtt és garancia a munkákra."
+      }
+    },
+    "teamSection": {
+      "headingBold": "Ismerd meg",
+      "headingItalic": "a csapatot"
+    },
+    "faqSection": {
+      "headingBold": "Tanácsok a",
+      "headingItalic": "orvosainktól",
+      "subtitle": "A DENTCRAFT orvosai válaszolnak a leggyakoribb kérdéseidre a kezelésekről, higiéniáról és eredményekről.",
+      "instagramCta": "Nézz többet az Instagramon"
+    },
+    "reviewsSection": {
+      "headingBold": "Mit mondanak",
+      "headingItalic": "a páciensek",
+      "subtitle": "Pácienseink beszélnek — minden értékelés Google-on ellenőrzött és valós élményüket tükrözi a DENTCRAFT klinikán.",
+      "googleCount": "50+ értékelés a Google-on",
+      "countSuffix": "értékelés a Google-on",
+      "leaveReview": "Hagyj értékelést"
+    },
+    "successCases": {
+      "headingBold": "Sikeres",
+      "headingItalic": "esetek",
+      "subtitle": "Valódi munkák, melyeket a klinikán végeztünk. Kattints bármelyik képre, hogy nagyítva megnézd.",
+      "viewCaseLabel": "Eset megtekintése",
+      "caseLabel": "Eset",
+      "categories": {
+        "aesthetic": "Esztétika",
+        "implantology": "Implantológia",
+        "prosthetics": "Protetika",
+        "periodontology": "Parodontológia",
+        "pediatric": "Gyermekfogászat",
+        "treatment": "Kezelés"
+      },
+      "titlePrefix": "Esztétikai eset"
+    },
+    "doctorRoles": {
+      "coordinator": "Koordináló fogorvos",
+      "dentistPediatric": "Fogorvos · Gyermekfogászat",
+      "specialistPeriodontics": "Szakorvos · Parodontológia"
+    }
+  },
+  "ariaLabels": {
+    "close": "Bezárás",
+    "nextCase": "Következő eset",
+    "prevCase": "Előző eset",
+    "scrollDown": "Görgess lefelé",
+    "closeMenu": "Menü bezárása",
+    "callPrefix": "Hívj minket",
+    "language": "Nyelv",
+    "callUs": "Hívj minket"
   }
 }

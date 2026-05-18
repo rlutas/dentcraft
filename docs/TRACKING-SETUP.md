@@ -2,7 +2,7 @@
 
 ## Overview
 
-DentCraft uses **Google Tag Manager (GTM)** as the single entry point for all Google tracking. GA4 and Google Ads conversions are managed inside GTM — no standalone GA4 script on the site.
+DENTCRAFT uses **Google Tag Manager (GTM)** as the single entry point for all Google tracking. GA4 and Google Ads conversions are managed inside GTM — no standalone GA4 script on the site.
 
 **GTM ID:** `GTM-MHB5K5LL`
 **GA4 Measurement ID:** `G-8WF0LQ5PEX` (configured as a tag inside GTM)

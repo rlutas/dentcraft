@@ -1,6 +1,6 @@
-# Sincronizarea Recenziilor Google pentru Dentcraft
+# Sincronizarea Recenziilor Google pentru DENTCRAFT
 
-Acest document descrie scriptul de sincronizare a recenziilor Google Maps pentru site-ul Dentcraft. Scriptul permite actualizarea automata sau manuala a recenziilor afisate pe site.
+Acest document descrie scriptul de sincronizare a recenziilor Google Maps pentru site-ul DENTCRAFT. Scriptul permite actualizarea automata sau manuala a recenziilor afisate pe site.
 
 ## Cuprins
 
@@ -106,7 +106,7 @@ SERPAPI_KEY=cheia_ta npm run sync-reviews -- --dry-run
 ```
 
 **Ce face scriptul:**
-1. Trimite o cerere catre SerpAPI cu ID-ul locatiei Dentcraft
+1. Trimite o cerere catre SerpAPI cu ID-ul locatiei DENTCRAFT
 2. Primeste lista de recenzii in format JSON
 3. Transforma datele in formatul utilizat de site
 4. Salveaza rezultatul in `/src/data/google-reviews.json`
@@ -191,7 +191,7 @@ npm run sync-reviews -- --dry-run
 
 **Output exemplu:**
 ```
-=== Dentcraft Google Reviews Sync ===
+=== DENTCRAFT Google Reviews Sync ===
 
 Fetching reviews from SerpAPI...
 
@@ -251,7 +251,7 @@ SERPAPI_KEY=cheia_copiata npm run sync-reviews
 | Developer | $50 | 5,000 |
 | Production | $130 | 15,000 |
 
-**Estimare pentru Dentcraft:**
+**Estimare pentru DENTCRAFT:**
 - Sincronizare saptamanala = ~4 cautari/luna
 - Sincronizare zilnica = ~30 cautari/luna
 - Planul gratuit este suficient pentru majoritatea cazurilor
@@ -286,7 +286,7 @@ SERPAPI_KEY=cheia_copiata npm run sync-reviews
 
 | Camp | Tip | Descriere |
 |------|-----|-----------|
-| `placeId` | string | ID-ul Google Places al locatiei Dentcraft |
+| `placeId` | string | ID-ul Google Places al locatiei DENTCRAFT |
 | `rating` | number | Rating-ul mediu (1.0 - 5.0) |
 | `totalReviews` | number | Numarul total de recenzii pe Google |
 | `lastUpdated` | string | Data ultimei sincronizari (YYYY-MM-DD) |
@@ -474,7 +474,7 @@ Scriptul foloseste urmatoarele setari pentru API-ul SerpAPI:
 
 - [Documentatie SerpAPI](https://serpapi.com/google-maps-reviews-api)
 - [Dashboard SerpAPI](https://serpapi.com/dashboard)
-- [Google Maps - Dentcraft](https://www.google.com/maps/place/DENTCRAFT/@47.7897,22.8747,17z)
+- [Google Maps - DENTCRAFT](https://www.google.com/maps/place/DENTCRAFT/@47.7897,22.8747,17z)
 
 ### Contact pentru suport
 

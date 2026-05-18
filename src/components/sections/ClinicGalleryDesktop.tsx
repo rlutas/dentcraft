@@ -27,19 +27,18 @@ const SLOT_CLASSES: Record<number, string> = {
 }
 
 const SLOT_COUNT = 7
-const ROTATE_MS = 5500
-const HOVER_DEBOUNCE_MS = 200
+const ROTATE_MS = 6500
+const TAP_PAUSE_MS = 7000
 
 export function ClinicGalleryDesktop({ images }: Props) {
   const [layout, setLayout] = useState<number[]>(() =>
     images.slice(0, SLOT_COUNT).map((_, i) => i)
   )
   const [paused, setPaused] = useState(false)
-  // Detect hover capability — touch devices won't get hover-based pause/swap
+  // Detect hover capability — touch devices won't get hover-based pause
   const [canHover, setCanHover] = useState(true)
   const prefersReduced = useReducedMotion()
   const cycleRef = useRef(1)
-  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
   const tapPauseTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
@@ -58,26 +57,12 @@ export function ClinicGalleryDesktop({ images }: Props) {
     })
   }
 
-  const handleHover = (slotIdx: number) => {
-    if (!canHover) return
-    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
-    hoverTimerRef.current = setTimeout(() => swapPrimary(slotIdx), HOVER_DEBOUNCE_MS)
-  }
-
-  const cancelHover = () => {
-    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
-  }
-
   const handleTap = (slotIdx: number) => {
-    // Cancel any pending hover-debounced swap and run immediately
-    cancelHover()
     swapPrimary(slotIdx)
-    // On touch devices, briefly pause auto-rotate so user can see their pick
-    if (!canHover) {
-      setPaused(true)
-      if (tapPauseTimerRef.current) clearTimeout(tapPauseTimerRef.current)
-      tapPauseTimerRef.current = setTimeout(() => setPaused(false), 6000)
-    }
+    // Briefly pause auto-rotate so user can enjoy their pick (both touch + desktop)
+    setPaused(true)
+    if (tapPauseTimerRef.current) clearTimeout(tapPauseTimerRef.current)
+    tapPauseTimerRef.current = setTimeout(() => setPaused(false), TAP_PAUSE_MS)
   }
 
   useEffect(() => {
@@ -111,30 +96,31 @@ export function ClinicGalleryDesktop({ images }: Props) {
             <button
               key={`slot-${slotIdx}`}
               type="button"
-              onMouseEnter={canHover ? () => handleHover(slotIdx) : undefined}
-              onMouseLeave={canHover ? cancelHover : undefined}
               onClick={() => handleTap(slotIdx)}
               onFocus={() => swapPrimary(slotIdx)}
               aria-label={img.caption}
-              className={`relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-2xl md:rounded-3xl ${SLOT_CLASSES[slotIdx]}`}
+              aria-current={isPrimary ? 'true' : undefined}
+              className={`group/slot relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 rounded-2xl md:rounded-3xl ${isPrimary ? 'cursor-default' : 'cursor-pointer'} ${SLOT_CLASSES[slotIdx]}`}
             >
               <motion.div
                 layoutId={`clinic-photo-${imageIdx}`}
                 transition={{
                   layout: {
                     type: 'spring',
-                    stiffness: 80,
-                    damping: 22,
-                    mass: 1.6,
+                    stiffness: 140,
+                    damping: 26,
+                    mass: 1,
                   },
                 }}
-                className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0] shadow-[0_10px_30px_-10px_rgba(42,33,24,0.22)]"
+                {...(!isPrimary && canHover ? { whileHover: { scale: 1.025 } } : {})}
+                {...(!isPrimary ? { whileTap: { scale: 0.98 } } : {})}
+                className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-[#e8e0d5] to-[#d4c4b0] shadow-[0_10px_30px_-10px_rgba(42,33,24,0.22)] will-change-transform"
               >
                 <motion.div
                   key={isPrimary ? `primary-${imageIdx}` : `thumb-${imageIdx}`}
-                  initial={isPrimary ? { scale: 1.04, opacity: 0.9 } : false}
-                  animate={isPrimary ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  initial={isPrimary ? { scale: 1.06, opacity: 0.85 } : false}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute inset-0"
                 >
                   <Image
@@ -142,7 +128,7 @@ export function ClinicGalleryDesktop({ images }: Props) {
                     alt={img.caption}
                     fill
                     sizes={isPrimary ? '(max-width: 768px) 100vw, 60vw' : '(max-width: 768px) 33vw, 20vw'}
-                    className="object-cover"
+                    className={`object-cover transition-[filter] duration-500 ${isPrimary ? '' : 'brightness-95 group-hover/slot:brightness-110'}`}
                   />
                 </motion.div>
                 <div

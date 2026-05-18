@@ -1,5 +1,5 @@
 # NOTITE MEETING - DENTCRAFT
-## Client: Dr. Razvan Petric - Dentcraft Satu Mare
+## Client: Dr. Razvan Petric - DENTCRAFT Satu Mare
 ## Data: _______________
 
 ---
@@ -7,7 +7,7 @@
 # REZUMAT RAPID (TALKING POINTS)
 
 ## CE VINDEM
-- **Platforma digitala** pentru clinica stomatologica Dentcraft.ro
+- **Platforma digitala** pentru clinica stomatologica DENTCRAFT.ro
 - **Prima clinica din Satu Mare** cu patient portal complet
 - **2 variante** disponibile
 
@@ -248,7 +248,7 @@
 # CE TREBUIE DE LA CLIENT
 
 ## Obligatoriu:
-1. **Logo** Dentcraft (vector/PNG high-res)
+1. **Logo** DENTCRAFT (vector/PNG high-res)
 2. **Poze profesionale** clinica, echipa, echipamente
 3. **Before/After** imagini (minim 10-15 cazuri)
 4. **Texte servicii** sau input pentru a le scrie

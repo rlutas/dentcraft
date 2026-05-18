@@ -1,10 +1,10 @@
-# Dentcraft.ro - Plan de Implementare
+# DENTCRAFT.ro - Plan de Implementare
 
 ## Sumar Proiect
 
 | Element | Detalii |
 |---------|---------|
-| **Client** | Dentcraft - Clinică Stomatologică |
+| **Client** | DENTCRAFT - Clinică Stomatologică |
 | **Buget** | €3,000 |
 | **Timeline** | 4-6 săptămâni |
 | **Tech Stack** | Next.js 14+, TypeScript, Tailwind CSS, Sanity CMS, Vercel |
@@ -257,7 +257,7 @@ dentcraft/
 - [x] Hero section cu CTA (badge, headline, 2 buttons)
 - [x] Trust indicators bar (15+ ani, 5000+ pacienți, 4.9 rating, 100% garanție)
 - [x] Secțiune servicii preview (grid 6 servicii cu Lucide icons)
-- [x] Secțiune De ce Dentcraft (4 USP-uri cu icons)
+- [x] Secțiune De ce DENTCRAFT (4 USP-uri cu icons)
 - [ ] Secțiune echipă preview (needs content)
 - [ ] Before/After preview (needs images)
 - [x] Secțiune testimoniale (3 testimoniale cu star ratings)
@@ -1370,7 +1370,7 @@ La un rate de 6h/zi productive = **17 zile lucru** = **~4 săptămâni** cu buff
 
 ## 10. Concluzii
 
-Acest plan oferă un ghid complet pentru implementarea proiectului Dentcraft.ro. Timeline-ul de 4-6 săptămâni este realist, cu condiția să avem:
+Acest plan oferă un ghid complet pentru implementarea proiectului DENTCRAFT.ro. Timeline-ul de 4-6 săptămâni este realist, cu condiția să avem:
 
 1. **Content pregătit** - texte, imagini, video de la client
 2. **Feedback rapid** - răspunsuri în maxim 24h la întrebări

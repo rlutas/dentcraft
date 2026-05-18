@@ -1,4 +1,4 @@
-# Landing Page Structure - Dentcraft.ro
+# Landing Page Structure - DENTCRAFT.ro
 
 > **Obiectiv:** Landing page care CONVERTEȘTE vizitatori în programări
 > **Inspirație:** Apple.com (minimalism) + Dentakay.com (dental specific)
@@ -104,7 +104,7 @@
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                                                         │
-│            De Ce Să Alegi Dentcraft?                    │
+│            De Ce Să Alegi DENTCRAFT?                    │
 │                                                         │
 │  ┌──────────────────┐    ┌──────────────────┐          │
 │  │ 🔬 Tehnologie    │    │ 👨‍⚕️ Echipă       │          │
@@ -203,7 +203,7 @@
 │  │  ⭐⭐⭐⭐⭐                                 │         │
 │  │                                           │         │
 │  │  "Am avut o experiență extraordinară la   │         │
-│  │   Dentcraft. Personalul este foarte       │         │
+│  │   DENTCRAFT. Personalul este foarte       │         │
 │  │   profesionist și atent cu pacienții."    │         │
 │  │                                           │         │
 │  │  — Maria P., Satu Mare                    │         │
@@ -289,7 +289,7 @@
 │  [FB] [IG] [YT]     Blog            🕐 L-V: 10-18     │
 │                                                         │
 │  ─────────────────────────────────────────────────────  │
-│  © 2026 Dentcraft │ Confidențialitate │ Cookies │ T&C  │
+│  © 2026 DENTCRAFT │ Confidențialitate │ Cookies │ T&C  │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -355,7 +355,7 @@
 | 1. Hero Section | ✅ | În `page.tsx` |
 | 2. Trust Indicators | ✅ | În Hero section |
 | 3. Servicii Preview | ✅ | În `page.tsx` (cu Lucide icons) |
-| 4. De Ce Dentcraft | ✅ | În `page.tsx` (cu Lucide icons) |
+| 4. De Ce DENTCRAFT | ✅ | În `page.tsx` (cu Lucide icons) |
 | 5. Echipa Preview | 🔲 | Necesită content |
 | 6. Before/After | 🔲 | Necesită poze |
 | 7. Testimoniale | ✅ | În `page.tsx` (cu Star icons) |

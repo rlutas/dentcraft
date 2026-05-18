@@ -146,7 +146,7 @@ const contentRo: PortableTextBlock[] = [
 
   richBlock('ro02', 'normal', [
     { text: 'Am scris acest ghid ca sa ai toate informatiile inainte sa te programezi undeva. Fara surprize, fara costuri ascunse. Asa cum lucram noi la ' },
-    { text: 'DentCraft', link: { key: 'lnk1', href: '/' } },
+    { text: 'DENTCRAFT', link: { key: 'lnk1', href: '/' } },
     { text: '.' },
   ]),
 
@@ -173,7 +173,7 @@ const contentRo: PortableTextBlock[] = [
   ]),
 
   // Section: Preturi orientative
-  block('ro09', 'h2', 'Preturi orientative implant dentar la DentCraft Satu Mare (2026)'),
+  block('ro09', 'h2', 'Preturi orientative implant dentar la DENTCRAFT Satu Mare (2026)'),
 
   block('ro10', 'normal', 'Iata o situatie realista, ca sa stii la ce sa te astepti:'),
 
@@ -187,7 +187,7 @@ const contentRo: PortableTextBlock[] = [
   block('ro17', 'normal', 'Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D \u2014 care la noi e gratuita.'),
 
   // Section: Ce include pretul
-  block('ro18', 'h2', 'Ce include pretul unui implant la DentCraft?'),
+  block('ro18', 'h2', 'Ce include pretul unui implant la DENTCRAFT?'),
 
   block('ro19', 'normal', 'Am vazut cazuri in care pacienti au platit mai putin la alta clinica, dar apoi au descoperit ca fiecare vizita de control era taxata separat. Sau ca radiografia nu era inclusa. Sau ca anestazia avea un cost extra.'),
 
@@ -243,8 +243,8 @@ const contentRo: PortableTextBlock[] = [
 
   block('ro48', 'normal', 'Pretul pentru All-on-4 porneste de la aproximativ 15.000 lei per arcada, dar variaza in functie de materialele alese si de complexitatea cazului.'),
 
-  // Section: De ce DentCraft
-  block('ro49', 'h2', 'De ce sa alegi DentCraft pentru implantul tau?'),
+  // Section: De ce DENTCRAFT
+  block('ro49', 'h2', 'De ce sa alegi DENTCRAFT pentru implantul tau?'),
 
   block('ro50', 'normal', 'Nu o sa iti spun ca suntem "cei mai buni" \u2014 asta decide fiecare pacient in parte. Dar iti pot spune ce ne diferentiaza:'),
 
@@ -295,7 +295,7 @@ const contentRo: PortableTextBlock[] = [
 
   richBlock('ro65', 'normal', [
     { text: 'Ne vedem la ' },
-    { text: 'DentCraft, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare', link: { key: 'lnk4', href: '/contact' } },
+    { text: 'DENTCRAFT, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare', link: { key: 'lnk4', href: '/contact' } },
     { text: '.' },
   ]),
 ]
@@ -307,7 +307,7 @@ const contentRo: PortableTextBlock[] = [
 const contentEn: PortableTextBlock[] = [
   block('en01', 'normal', '"Doctor, how much does an implant cost?" It\'s a question I hear at least 3 times a day. And the honest answer is: it depends. But I\'m not saying that to dodge the question \u2014 it\'s because the price of a dental implant genuinely varies based on several factors that I\'ll walk you through below.'),
 
-  block('en02', 'normal', 'I wrote this guide so you\'d have all the information before booking an appointment anywhere. No surprises, no hidden costs. That\'s how we do things at DentCraft.'),
+  block('en02', 'normal', 'I wrote this guide so you\'d have all the information before booking an appointment anywhere. No surprises, no hidden costs. That\'s how we do things at DENTCRAFT.'),
 
   // Section: Why does the price vary
   block('en03', 'h2', 'Why Does the Price of a Dental Implant Vary?'),
@@ -332,7 +332,7 @@ const contentEn: PortableTextBlock[] = [
   ]),
 
   // Section: Estimated prices
-  block('en09', 'h2', 'Estimated Dental Implant Prices at DentCraft Satu Mare (2026)'),
+  block('en09', 'h2', 'Estimated Dental Implant Prices at DENTCRAFT Satu Mare (2026)'),
 
   block('en10', 'normal', 'Here\'s a realistic breakdown so you know what to expect:'),
 
@@ -346,7 +346,7 @@ const contentEn: PortableTextBlock[] = [
   block('en17', 'normal', 'The prices above are estimates. Your final price is determined after a consultation and 3D X-ray \u2014 which is free of charge at our clinic.'),
 
   // Section: What's included
-  block('en18', 'h2', 'What\'s Included in the Price of an Implant at DentCraft?'),
+  block('en18', 'h2', 'What\'s Included in the Price of an Implant at DENTCRAFT?'),
 
   block('en19', 'normal', 'I\'ve seen cases where patients paid less at another clinic, only to find out that every follow-up visit was billed separately. Or that the X-ray wasn\'t included. Or that anesthesia came at an extra cost.'),
 
@@ -402,8 +402,8 @@ const contentEn: PortableTextBlock[] = [
 
   block('en48', 'normal', 'The price for All-on-4 starts at approximately 15,000 lei (approx. 3,000 EUR) per arch, but varies depending on the materials chosen and the complexity of the case.'),
 
-  // Section: Why choose DentCraft
-  block('en49', 'h2', 'Why Choose DentCraft for Your Implant?'),
+  // Section: Why choose DENTCRAFT
+  block('en49', 'h2', 'Why Choose DENTCRAFT for Your Implant?'),
 
   block('en50', 'normal', 'I\'m not going to tell you we\'re "the best" \u2014 that\'s for each patient to decide. But I can tell you what sets us apart:'),
 
@@ -442,7 +442,7 @@ const contentEn: PortableTextBlock[] = [
   // CTA
   block('en64', 'normal', 'Have questions about dental implants or want a personalized evaluation? Call us at 0741 199 977 or book online. The consultation and 3D X-ray are free.'),
 
-  block('en65', 'normal', 'See you at DentCraft, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.'),
+  block('en65', 'normal', 'See you at DENTCRAFT, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.'),
 ]
 
 // ============================================
@@ -452,7 +452,7 @@ const contentEn: PortableTextBlock[] = [
 const contentHu: PortableTextBlock[] = [
   block('hu01', 'normal', '\u201eDoktor \u00far, mennyibe ker\u00fcl egy implant\u00e1tum?\u201d Ez az a k\u00e9rd\u00e9s, amit naponta legal\u00e1bb h\u00e1romszor hallok. \u00c9s az \u0151szinte v\u00e1lasz: att\u00f3l f\u00fcgg. De nem az\u00e9rt mondom ezt, hogy kit\u00e9rjek a v\u00e1lasz el\u0151l \u2014 hanem az\u00e9rt, mert egy fogimplant\u00e1tum \u00e1ra val\u00f3ban t\u00f6bb t\u00e9nyez\u0151t\u0151l f\u00fcgg, amelyeket al\u00e1bb r\u00e9szletesen elmagyar\u00e1zok.'),
 
-  block('hu02', 'normal', 'Az\u00e9rt \u00edrtam ezt az \u00fatmutat\u00f3t, hogy minden inform\u00e1ci\u00f3 a rendelkez\u00e9sedre \u00e1lljon, miel\u0151tt b\u00e1rhov\u00e1 bejelentkezel. Meglep\u00e9t\u00e9sek n\u00e9lk\u00fcl, rejtett k\u00f6lts\u00e9gek n\u00e9lk\u00fcl. \u00cdgy dolgozunk mi a DentCraft-n\u00e1l.'),
+  block('hu02', 'normal', 'Az\u00e9rt \u00edrtam ezt az \u00fatmutat\u00f3t, hogy minden inform\u00e1ci\u00f3 a rendelkez\u00e9sedre \u00e1lljon, miel\u0151tt b\u00e1rhov\u00e1 bejelentkezel. Meglep\u00e9t\u00e9sek n\u00e9lk\u00fcl, rejtett k\u00f6lts\u00e9gek n\u00e9lk\u00fcl. \u00cdgy dolgozunk mi a DENTCRAFT-n\u00e1l.'),
 
   // Section: Miert valtozo
   block('hu03', 'h2', 'Mi\u00e9rt v\u00e1ltoz\u00f3 egy fogimplant\u00e1tum \u00e1ra?'),
@@ -477,7 +477,7 @@ const contentHu: PortableTextBlock[] = [
   ]),
 
   // Section: Tajékoztato arak
-  block('hu09', 'h2', 'T\u00e1j\u00e9koztat\u00f3 \u00e1rak fogimplant\u00e1tumra a DentCraft Szatm\u00e1rn\u00e9metiben (2026)'),
+  block('hu09', 'h2', 'T\u00e1j\u00e9koztat\u00f3 \u00e1rak fogimplant\u00e1tumra a DENTCRAFT Szatm\u00e1rn\u00e9metiben (2026)'),
 
   block('hu10', 'normal', '\u00cdme egy re\u00e1lis \u00e1ttekint\u00e9s, hogy tudd, mire sz\u00e1m\u00edthatsz:'),
 
@@ -491,7 +491,7 @@ const contentHu: PortableTextBlock[] = [
   block('hu17', 'normal', 'A fenti \u00e1rak t\u00e1j\u00e9koztat\u00f3 jelleg\u0171ek. A v\u00e9gleges \u00e1rat a konzult\u00e1ci\u00f3 \u00e9s a 3D r\u00f6ntgen ut\u00e1n \u00e1llap\u00edtjuk meg \u2014 amely n\u00e1lunk ingyenes.'),
 
   // Section: Mit tartalmaz
-  block('hu18', 'h2', 'Mit tartalmaz egy implant\u00e1tum \u00e1ra a DentCraft-n\u00e1l?'),
+  block('hu18', 'h2', 'Mit tartalmaz egy implant\u00e1tum \u00e1ra a DENTCRAFT-n\u00e1l?'),
 
   block('hu19', 'normal', 'L\u00e1ttam olyan eseteket, amikor a p\u00e1ciensek kevesebbet fizettek egy m\u00e1sik rendel\u0151ben, de azt\u00e1n kider\u00fclt, hogy minden kontrollvizsg\u00e1latot k\u00fcl\u00f6n sz\u00e1ml\u00e1ztak. Vagy hogy a r\u00f6ntgen nem volt benne az \u00e1rban. Vagy hogy az \u00e9rz\u00e9stelen\u00edt\u00e9snek k\u00fcl\u00f6n k\u00f6lts\u00e9ge volt.'),
 
@@ -547,8 +547,8 @@ const contentHu: PortableTextBlock[] = [
 
   block('hu48', 'normal', 'Az All-on-4 \u00e1ra k\u00f6r\u00fclbel\u00fcl 15.000 lejt\u0151l indul fog\u00edvenk\u00e9nt, de a v\u00e1lasztott anyagokt\u00f3l \u00e9s az eset \u00f6sszetetts\u00e9g\u00e9t\u0151l f\u00fcgg\u0151en v\u00e1ltozik.'),
 
-  // Section: Miert DentCraft
-  block('hu49', 'h2', 'Mi\u00e9rt v\u00e1laszd a DentCraft-ot az implant\u00e1tumodhoz?'),
+  // Section: Miert DENTCRAFT
+  block('hu49', 'h2', 'Mi\u00e9rt v\u00e1laszd a DENTCRAFT-ot az implant\u00e1tumodhoz?'),
 
   block('hu50', 'normal', 'Nem fogom azt mondani, hogy \u201emi vagyunk a legjobbak\u201d \u2014 ezt minden p\u00e1ciens maga d\u00f6nti el. De el tudom mondani, mi k\u00fcl\u00f6nb\u00f6ztet meg minket:'),
 
@@ -587,7 +587,7 @@ const contentHu: PortableTextBlock[] = [
   // CTA
   block('hu64', 'normal', 'K\u00e9rd\u00e9sed van a fogimplant\u00e1tumr\u00f3l, vagy szem\u00e9lyre szabott \u00e9rt\u00e9kel\u00e9st szeretn\u00e9l? H\u00edvj minket a 0741 199 977 sz\u00e1mon, vagy foglalj online időpontot. A konzult\u00e1ci\u00f3 \u00e9s a 3D r\u00f6ntgen ingyenes.'),
 
-  block('hu65', 'normal', 'V\u00e1runk a DentCraft-ban, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.'),
+  block('hu65', 'normal', 'V\u00e1runk a DENTCRAFT-ban, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.'),
 ]
 
 // ============================================
@@ -608,7 +608,7 @@ const author = {
     },
   },
   slug: 'razvan-petric',
-  bio: 'Medic stomatolog principal al clinicii DentCraft, cu peste 10 ani de experienta. Specializat in implantologie si estetica dentara.',
+  bio: 'Medic stomatolog principal al clinicii DENTCRAFT, cu peste 10 ani de experienta. Specializat in implantologie si estetica dentara.',
   jobTitle: 'Medic Stomatolog Principal',
 }
 
@@ -621,7 +621,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       excerpt: '"Doctor, cat ma costa un implant?" E intrebarea pe care o aud de cel putin 3 ori pe zi. Am scris acest ghid ca sa ai toate informatiile inainte sa te programezi undeva. Fara surprize, fara costuri ascunse.',
       content: contentRo,
       coverImage: {
-        alt: 'Medic dentist prezentand un model de implant dentar intr-un cabinet stomatologic modern - DentCraft Satu Mare',
+        alt: 'Medic dentist prezentand un model de implant dentar intr-un cabinet stomatologic modern - DENTCRAFT Satu Mare',
         asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryRo,
@@ -629,8 +629,8 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       publishedAt: '2026-02-24T10:00:00.000Z',
       featured: true,
       seo: {
-        metaTitle: 'Implant Dentar Satu Mare Pret 2026 | DentCraft',
-        metaDescription: 'Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DentCraft.',
+        metaTitle: 'Implant Dentar Satu Mare Pret 2026 | DENTCRAFT',
+        metaDescription: 'Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT.',
         ogImage: null,
         noIndex: false,
       },
@@ -644,7 +644,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       excerpt: '"Doctor, how much does an implant cost?" It\'s a question I hear at least 3 times a day. I wrote this guide so you\'d have all the information before booking an appointment anywhere. No surprises, no hidden costs.',
       content: contentEn,
       coverImage: {
-        alt: 'Dentist presenting a dental implant model in a modern dental office - DentCraft Satu Mare',
+        alt: 'Dentist presenting a dental implant model in a modern dental office - DENTCRAFT Satu Mare',
         asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryEn,
@@ -652,8 +652,8 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       publishedAt: '2026-02-24T10:00:00.000Z',
       featured: true,
       seo: {
-        metaTitle: 'Dental Implant Satu Mare Price 2026 | DentCraft',
-        metaDescription: 'How much does a dental implant cost in Satu Mare? Prices from 2,500 lei, factors that influence cost and what\'s included. Free consultation at DentCraft.',
+        metaTitle: 'Dental Implant Satu Mare Price 2026 | DENTCRAFT',
+        metaDescription: 'How much does a dental implant cost in Satu Mare? Prices from 2,500 lei, factors that influence cost and what\'s included. Free consultation at DENTCRAFT.',
         ogImage: null,
         noIndex: false,
       },
@@ -667,7 +667,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       excerpt: '\u201eDoktor \u00far, mennyibe ker\u00fcl egy implant\u00e1tum?\u201d Ez az a k\u00e9rd\u00e9s, amit naponta legal\u00e1bb h\u00e1romszor hallok. Az\u00e9rt \u00edrtam ezt az \u00fatmutat\u00f3t, hogy minden inform\u00e1ci\u00f3 a rendelkez\u00e9sedre \u00e1lljon. Meglep\u00e9t\u00e9sek n\u00e9lk\u00fcl, rejtett k\u00f6lts\u00e9gek n\u00e9lk\u00fcl.',
       content: contentHu,
       coverImage: {
-        alt: 'Fogorvos bemutat egy fogimplantatum modelljét egy modern rendelőben - DentCraft Szatmárnémeti',
+        alt: 'Fogorvos bemutat egy fogimplantatum modelljét egy modern rendelőben - DENTCRAFT Szatmárnémeti',
         asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryHu,
@@ -675,8 +675,8 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       publishedAt: '2026-02-24T10:00:00.000Z',
       featured: true,
       seo: {
-        metaTitle: 'Fogimplant\u00e1tum Szatm\u00e1rn\u00e9meti \u00c1r 2026 | DentCraft',
-        metaDescription: 'Mennyibe ker\u00fcl egy fogimplant\u00e1tum Szatm\u00e1rn\u00e9metiben? \u00c1rak 2.500 lejt\u0151l, k\u00f6lts\u00e9get befoly\u00e1sol\u00f3 t\u00e9nyez\u0151k \u00e9s mit tartalmaz. Ingyenes konzult\u00e1ci\u00f3 a DentCraft-n\u00e1l.',
+        metaTitle: 'Fogimplant\u00e1tum Szatm\u00e1rn\u00e9meti \u00c1r 2026 | DENTCRAFT',
+        metaDescription: 'Mennyibe ker\u00fcl egy fogimplant\u00e1tum Szatm\u00e1rn\u00e9metiben? \u00c1rak 2.500 lejt\u0151l, k\u00f6lts\u00e9get befoly\u00e1sol\u00f3 t\u00e9nyez\u0151k \u00e9s mit tartalmaz. Ingyenes konzult\u00e1ci\u00f3 a DENTCRAFT-n\u00e1l.',
         ogImage: null,
         noIndex: false,
       },

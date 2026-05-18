@@ -1,7 +1,7 @@
 #!/usr/bin/env npx tsx
 
 /**
- * Google Reviews Sync Script for Dentcraft
+ * Google Reviews Sync Script for DENTCRAFT
  *
  * This script fetches Google reviews using SerpAPI and saves them to the local JSON file.
  * It can also import reviews from a manual JSON file.
@@ -22,7 +22,7 @@
  * Environment Variables:
  *   SERPAPI_KEY - Your SerpAPI API key (get one at https://serpapi.com)
  *
- * @author Dentcraft Development Team
+ * @author DENTCRAFT Development Team
  */
 
 import * as fs from 'fs'
@@ -30,7 +30,7 @@ import * as path from 'path'
 
 // Configuration
 const CONFIG = {
-  // Dentcraft Google Place ID (extracted from Google Maps URL)
+  // DENTCRAFT Google Place ID (extracted from Google Maps URL)
   PLACE_ID: 'ChIJL242SZwFOEcRGfUpTMfB-MU',
   // Data CID for the place
   DATA_CID: '0x4738059c49336e2f:0xc5f8c1c74c29f519',
@@ -152,7 +152,7 @@ function parseArgs(): ParsedArgs {
 // Show help message
 function showHelp(): void {
   console.log(`
-Google Reviews Sync Script for Dentcraft
+Google Reviews Sync Script for DENTCRAFT
 =========================================
 
 Usage:
@@ -391,7 +391,7 @@ function mergeReviews(existing: GoogleReviewsData, newData: GoogleReviewsData): 
 
 // Main function
 async function main(): Promise<void> {
-  console.log('=== Dentcraft Google Reviews Sync ===\n')
+  console.log('=== DENTCRAFT Google Reviews Sync ===\n')
 
   const args = parseArgs()
 

@@ -1,4 +1,4 @@
-# DentCraft Competitor Analysis
+# DENTCRAFT Competitor Analysis
 
 ## Summary
 
@@ -141,19 +141,19 @@
 **Google Reviews:** 82 opinions on CityMaps
 **Languages:** Romanian, Hungarian, English
 
-The only multilingual competitor. Most direct threat to DentCraft's trilingual advantage, though their site is basic compared to DentCraft's tech stack.
+The only multilingual competitor. Most direct threat to DENTCRAFT's trilingual advantage, though their site is basic compared to DENTCRAFT's tech stack.
 
 ---
 
-## Competitive Gaps = DentCraft Opportunities
+## Competitive Gaps = DENTCRAFT Opportunities
 
 | Gap | Who Has It | Who Doesn't | Opportunity |
 |-----|-----------|-------------|-------------|
-| Trilingual site | Dr. Telegdy | Everyone else | DentCraft's biggest differentiator |
+| Trilingual site | Dr. Telegdy | Everyone else | DENTCRAFT's biggest differentiator |
 | 50+ Google reviews | Sala Diagnostics | Everyone else | Match or exceed Sala's 88 reviews |
-| Children's dentistry landing page | Finess, Art Dental | DentCraft | Create dedicated page for 1,851 monthly impressions |
+| Children's dentistry landing page | Finess, Art Dental | DENTCRAFT | Create dedicated page for 1,851 monthly impressions |
 | Emergency page | Nobody | Everyone | First mover advantage for 2,000+ urgency impressions |
-| Blog content | Sala, Art Dental, Duo Dent, Expert | DentCraft, Finess | Start blog with locally-targeted SEO content |
+| Blog content | Sala, Art Dental, Duo Dent, Expert | DENTCRAFT, Finess | Start blog with locally-targeted SEO content |
 | Google Ads | Expert Dental | Everyone else | Consider PPC for high-intent "implant" keywords |
 | Saturday hours | Art Dental | Most others | Consider Saturday availability |
 | Next.js performance | Nobody | Everyone (all WordPress) | Speed advantage for Core Web Vitals |

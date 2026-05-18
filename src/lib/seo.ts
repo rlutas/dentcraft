@@ -6,8 +6,8 @@ export type Locale = 'ro' | 'en' | 'hu'
  * Base site configuration for SEO
  */
 export const siteConfig = {
-  name: 'Dentcraft',
-  siteName: 'Dentcraft Satu Mare',
+  name: 'DENTCRAFT',
+  siteName: 'DENTCRAFT Satu Mare',
   baseUrl: 'https://www.dentcraft.ro',
   defaultOgImage: '/images/team-clinic.webp',
 }
@@ -16,9 +16,9 @@ export const siteConfig = {
  * Locale-specific site titles
  */
 const localeTitles: Record<Locale, string> = {
-  ro: 'Dentist Satu Mare | Clinica Stomatologica DentCraft',
-  en: 'Dentist Satu Mare | DentCraft Dental Clinic',
-  hu: 'Fogorvos Szatmárnémeti | DentCraft Fogászati Klinika',
+  ro: 'Dentist Satu Mare | Clinica Stomatologica DENTCRAFT',
+  en: 'Dentist Satu Mare | DENTCRAFT Dental Clinic',
+  hu: 'Fogorvos Szatmárnémeti | DENTCRAFT Fogászati Klinika',
 }
 
 /**
@@ -53,7 +53,7 @@ export const localizedPathnames: Record<string, Record<Locale, string>> = {
  * Options for generatePageMetadata
  */
 export type PageMetadataOptions = {
-  /** Page title - will be formatted as "Title | Dentcraft Satu Mare" */
+  /** Page title - will be formatted as "Title | DENTCRAFT Satu Mare" */
   title?: string
   /** Page description for meta description tag */
   description?: string
@@ -162,14 +162,14 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     locale,
     path = '/',
     slug,
-    noIndex: _noIndex = false, // TEMPORARY: renamed while all pages are noindex
+    noIndex = false,
     keywords,
     ogType = 'website',
     publishedTime,
     modifiedTime,
   } = options
 
-  // Use provided title directly (root layout template will append site name via '%s | Dentcraft Satu Mare')
+  // Use provided title directly (root layout template will append site name via '%s | DENTCRAFT Satu Mare')
   // When no title is provided, use the locale default as the full title
   const formattedTitle = title || (localeTitles[locale] || localeTitles['ro'])
 
@@ -231,13 +231,8 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     metadata.keywords = keywords
   }
 
-  // TEMPORARY: noindex ALL pages while site is under construction
-  // TODO: Revert to conditional noIndex check when site is ready for launch
-  // Original code:
-  // if (noIndex) { metadata.robots = { index: false, follow: false } }
-  metadata.robots = {
-    index: false,
-    follow: false,
+  if (noIndex) {
+    metadata.robots = { index: false, follow: false }
   }
 
   return metadata
@@ -409,11 +404,9 @@ export function generateRootMetadata(locale: Locale): Metadata {
       description: localeDescriptions[locale] || localeDescriptions['ro'],
       images: [`${siteConfig.baseUrl}${siteConfig.defaultOgImage}`],
     },
-    // TEMPORARY: noindex while site is under construction
-    // TODO: Revert to index: true, follow: true when site is ready for launch
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   }
 }

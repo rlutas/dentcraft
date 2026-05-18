@@ -1,10 +1,10 @@
-# Dentcraft.ro - Documentație Proiect
+# DENTCRAFT.ro - Documentație Proiect
 
 ## Informații Generale
 
 | Info | Valoare |
 |------|---------|
-| **Client** | Dr. Razvan Petric - Dentcraft Satu Mare |
+| **Client** | Dr. Razvan Petric - DENTCRAFT Satu Mare |
 | **Proiect** | Site prezentare clinică stomatologică |
 | **Budget** | €3,000 |
 | **Timeline** | 4-6 săptămâni |

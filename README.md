@@ -1,6 +1,6 @@
-# Dentcraft - Dental Clinic Website
+# DENTCRAFT - Dental Clinic Website
 
-A premium multilingual website for **Dentcraft Dental Clinic** in Satu Mare, Romania. Built with Next.js 15, Sanity CMS, and Tailwind CSS v4.
+A premium multilingual website for **DENTCRAFT Dental Clinic** in Satu Mare, Romania. Built with Next.js 15, Sanity CMS, and Tailwind CSS v4.
 
 Live at: `dentcraft.ro` (pending deployment)
 

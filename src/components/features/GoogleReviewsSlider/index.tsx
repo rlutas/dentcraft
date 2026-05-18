@@ -1,6 +1,7 @@
 'use client'
 
 import { Star } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import type { Locale } from '@/i18n/config'
 
 // Avatar colors for Google reviews
@@ -88,6 +89,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: Locale }) {
 }
 
 export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, googleMapsUrl }: GoogleReviewsSliderProps) {
+  const t = useTranslations()
   // Filter out reviews without text
   const reviewsWithText = reviews.filter(review => {
     const text = typeof review.text === 'object' ? review.text[locale] : review.text
@@ -128,7 +130,7 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
             </div>
 
             {/* Label */}
-            <span className="text-sm text-[#6b5a40]">{totalReviews}+ recenzii pe Google</span>
+            <span className="text-sm text-[#6b5a40]">{totalReviews}+ {t('home.reviewsSection.countSuffix')}</span>
           </div>
         </div>
       )}
@@ -166,7 +168,7 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
           target="_blank"
         >
           <Star className="w-3.5 h-3.5 md:w-5 md:h-5 fill-current mr-1.5 sm:mr-2" />
-          <span>Lasă recenzie</span>
+          <span>{t('home.reviewsSection.leaveReview')}</span>
           <span
             aria-hidden="true"
             className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"

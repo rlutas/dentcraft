@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Dentist Satu Mare | Clinica Stomatologica DentCraft",
+    "title": "Dentist Satu Mare | Clinica Stomatologica DENTCRAFT",
     "description": "Clinica stomatologica in Satu Mare cu 10+ ani experienta si 1500+ pacienti tratati. Implanturi, ortodontie, fatete, albire dentara. Echipa de 5 specialisti. Programeaza consultatie!"
   },
   "navigation": {
@@ -43,7 +43,7 @@
     "badge": "Clinica #1 in Satu Mare",
     "title": "Clinica stomatologica in Satu Mare, pe care te poti baza",
     "subtitle": "Implant dentar, ortodonție, fațete și reabilitări complete în Satu Mare. Echipă de specialiști dedicată, cu experiență în stomatologie modernă.",
-    "kicker": "DentCraft · Stomatologie Satu Mare",
+    "kicker": "DENTCRAFT · Stomatologie Satu Mare",
     "titleBold": "Dinți sănătoși",
     "titleItalic": "zâmbet luminos",
     "trustLabel": "Pacienți tratați",
@@ -74,16 +74,16 @@
     "availableCount": "{count} servicii disponibile",
     "subtitle": "Oferim o gama completa de servicii stomatologice, de la preventie pana la tratamente complexe.",
     "metaTitle": "Servicii Stomatologice Satu Mare | Implanturi, Ortodontie, Estetica Dentara",
-    "metaDescription": "Servicii stomatologice complete in Satu Mare: implanturi dentare, ortodontie, fatete, albire, pedodontie. Clinica DentCraft - echipa de 5 specialisti.",
+    "metaDescription": "Servicii stomatologice complete in Satu Mare: implanturi dentare, ortodontie, fatete, albire, pedodontie. Clinica DENTCRAFT - echipa de 5 specialisti.",
     "benefits": "Beneficii",
     "process": "Procesul de tratament",
     "step": "Pasul",
     "headingBold": "Servicii",
     "headingItalic": "stomatologice",
     "italicAccent": "Satu Mare",
-    "photoAlt": "{title} - clinica stomatologica DentCraft Satu Mare",
+    "photoAlt": "{title} - clinica stomatologica DENTCRAFT Satu Mare",
     "detail": {
-      "whyChooseLabel": "De ce să alegi DentCraft",
+      "whyChooseLabel": "De ce să alegi DENTCRAFT",
       "benefitsBold": "Beneficii",
       "benefitsItalic": "reale",
       "processBold": "Procesul",
@@ -101,7 +101,7 @@
       "patientsTreated": "pacienți tratați",
       "googleLabel": "Google",
       "defaultJobTitle": "Medic Stomatolog",
-      "relatedPhotoAlt": "{title} - clinica stomatologica Dentcraft Satu Mare"
+      "relatedPhotoAlt": "{title} - clinica stomatologica DENTCRAFT Satu Mare"
     },
     "generalDentistry": "Stomatologie Generala",
     "cosmeticDentistry": "Estetica Dentara",
@@ -215,7 +215,6 @@
       "scalingStep2Desc": "Indepartarea tartrului cu echipament ultrasonic.",
       "scalingStep3Title": "Periaj si fluorizare",
       "scalingStep3Desc": "Lustruirea dintilor si aplicarea fluorului protector.",
-
       "generalDentistry": "Stomatologie Generala",
       "generalDentistryDesc": "Clinica stomatologica Satu Mare ofera servicii complete de stomatologie generala: consultatie dentara profesionala, detartraj profesional, tratamente preventive si obturatii estetice. Echipa noastra de medici stomatologi asigura sanatatea orala optima pentru intreaga familie.",
       "generalDentistryBenefit1Title": "Diagnostic complet",
@@ -232,7 +231,6 @@
       "generalDentistryStep3Desc": "Detartraj ultrasonic, periaj profesional si aplicare de fluor pentru protectie optima.",
       "generalDentistryStep4Title": "Monitorizare continua",
       "generalDentistryStep4Desc": "Programari regulate de control pentru mentinerea sanatatii dentare pe termen lung.",
-
       "cosmeticDentistry": "Estetica Dentara",
       "cosmeticDentistryDesc": "Obtine zambetul perfect la clinica noastra de estetica dentara din Satu Mare. Oferim fatete dentare premium, albire profesionala cu rezultate garantate si tratamente estetice complete pentru un zambet de invidiat.",
       "cosmeticDentistryBenefit1Title": "Zambet de Hollywood",
@@ -249,7 +247,6 @@
       "cosmeticDentistryStep3Desc": "Aplicarea fatetelor dentare sau tratamentul de albire profesionala conform planului.",
       "cosmeticDentistryStep4Title": "Finisare perfecta",
       "cosmeticDentistryStep4Desc": "Ajustari finale si instructiuni de intretinere pentru rezultate de lunga durata.",
-
       "prosthetics": "Protetica Dentara",
       "prostheticsDesc": "Servicii complete de protetica dentara in Satu Mare: coroane dentare ceramice, punti dentare fixe si proteze dentare de ultima generatie. Restabilim functionalitatea si estetica dentara cu materiale premium si tehnici moderne.",
       "prostheticsBenefit1Title": "Coroane de calitate",
@@ -266,9 +263,8 @@
       "prostheticsStep3Desc": "Realizarea amprentelor digitale pentru confectionarea lucrarilor protetice in laborator.",
       "prostheticsStep4Title": "Cimentare definitiva",
       "prostheticsStep4Desc": "Montarea si cimentarea finala a coroanelor, puntilor sau protezelor dentare.",
-
       "implantology": "Implantologie",
-      "implantologyDesc": "Implanturi dentare Satu Mare de ultima generatie la clinica Dentcraft. Oferim solutii complete All-on-4 pentru restaurari totale si implanturi individuale. Afla implant dentar pret si beneficiaza de consultatie gratuita pentru zambetul perfect.",
+      "implantologyDesc": "Implanturi dentare Satu Mare de ultima generatie la clinica DENTCRAFT. Oferim solutii complete All-on-4 pentru restaurari totale si implanturi individuale. Afla implant dentar pret si beneficiaza de consultatie gratuita pentru zambetul perfect.",
       "implantologyBenefit1Title": "Implanturi premium",
       "implantologyBenefit1Desc": "Folosim implanturi dentare de top mondial cu rata de succes de peste 98% si garantie extinsa.",
       "implantologyBenefit2Title": "Tehnica All-on-4",
@@ -283,9 +279,8 @@
       "implantologyStep3Desc": "Perioada de vindecare de 3-4 luni in care implantul se integreaza cu osul maxilar.",
       "implantologyStep4Title": "Coroana definitiva",
       "implantologyStep4Desc": "Montarea coroanei ceramice pe implant pentru un rezultat estetic si functional perfect.",
-
       "orthodontics": "Ortodontie",
-      "orthodonticsDesc": "Aparat dentar Satu Mare pentru adulti si copii la clinica Dentcraft. Oferim Invisalign si aparate dentare moderne pentru alinierea perfecta a dintilor. Tratamente ortodontice personalizate pentru un zambet drept si sanatos.",
+      "orthodonticsDesc": "Aparat dentar Satu Mare pentru adulti si copii la clinica DENTCRAFT. Oferim Invisalign si aparate dentare moderne pentru alinierea perfecta a dintilor. Tratamente ortodontice personalizate pentru un zambet drept si sanatos.",
       "orthodonticsBenefit1Title": "Aparate invizibile",
       "orthodonticsBenefit1Desc": "Tratament Invisalign cu gutiere transparente pentru aliniere discreta a dintilor fara aparat vizibil.",
       "orthodonticsBenefit2Title": "Aparate moderne",
@@ -300,9 +295,8 @@
       "orthodonticsStep3Desc": "Montarea aparatului ortodontic ales si instructiuni detaliate de ingrijire.",
       "orthodonticsStep4Title": "Controale regulate",
       "orthodonticsStep4Desc": "Vizite lunare pentru ajustari si monitorizarea progresului alinierii dintilor.",
-
       "endodontics": "Endodontie",
-      "endodonticsDesc": "Tratament de canal Satu Mare cu tehnologie moderna la clinica Dentcraft. Specialisti in endodontie pentru salvarea dintilor afectati si eliminarea durerii dentare. Proceduri precise cu microscop dentar pentru rezultate durabile.",
+      "endodonticsDesc": "Tratament de canal Satu Mare cu tehnologie moderna la clinica DENTCRAFT. Specialisti in endodontie pentru salvarea dintilor afectati si eliminarea durerii dentare. Proceduri precise cu microscop dentar pentru rezultate durabile.",
       "endodonticsBenefit1Title": "Salvam dintii",
       "endodonticsBenefit1Desc": "Tratament de canal profesional pentru salvarea dintilor cu infectii sau leziuni pulpare.",
       "endodonticsBenefit2Title": "Tehnologie avansata",
@@ -317,9 +311,8 @@
       "endodonticsStep3Desc": "Eliminarea tesutului infectat si dezinfectarea completa a sistemului de canale.",
       "endodonticsStep4Title": "Obturarea definitiva",
       "endodonticsStep4Desc": "Sigilarea hermetica a canalelor si reconstructia dintelui pentru functionalitate completa.",
-
       "oralSurgery": "Chirurgie Oro-Maxilo-Faciala",
-      "oralSurgeryDesc": "Chirurgie dentara Satu Mare la clinica Dentcraft: extractie molar de minte, interventii oro-maxilo-faciale si chirurgie pre-protetica. Echipa de chirurgi specialisti pentru proceduri sigure si recuperare rapida.",
+      "oralSurgeryDesc": "Chirurgie dentara Satu Mare la clinica DENTCRAFT: extractie molar de minte, interventii oro-maxilo-faciale si chirurgie pre-protetica. Echipa de chirurgi specialisti pentru proceduri sigure si recuperare rapida.",
       "oralSurgeryBenefit1Title": "Extractii atraumatice",
       "oralSurgeryBenefit1Desc": "Extracție molar de minte si dinti inclusi cu tehnici minim invazive pentru vindecare rapida.",
       "oralSurgeryBenefit2Title": "Chirurgi experti",
@@ -334,9 +327,8 @@
       "oralSurgeryStep3Desc": "Realizarea procedurii cu tehnici moderne si monitorizare continua.",
       "oralSurgeryStep4Title": "Ingrijire postoperatorie",
       "oralSurgeryStep4Desc": "Instructiuni de recuperare si control la 7 zile pentru verificarea vindecarii.",
-
       "pediatricDentistry": "Pedodontie - Stomatologie Pediatrica",
-      "pediatricDentistryDesc": "Dentist pentru copii Satu Mare la clinica Dentcraft. Oferim stomatologie copii cu abordare blanda, sigilari dentare preventive si tratamente pediatrice in mediu prietenos. Sanatatea dentara a celor mici este prioritatea noastra.",
+      "pediatricDentistryDesc": "Dentist pentru copii Satu Mare la clinica DENTCRAFT. Oferim stomatologie copii cu abordare blanda, sigilari dentare preventive si tratamente pediatrice in mediu prietenos. Sanatatea dentara a celor mici este prioritatea noastra.",
       "pediatricDentistryBenefit1Title": "Abordare prietenoasa",
       "pediatricDentistryBenefit1Desc": "Dentist pentru copii cu experienta in lucrul cu cei mici, mediu relaxant si tehnici de management comportamental.",
       "pediatricDentistryBenefit2Title": "Sigilari protectoare",
@@ -351,9 +343,8 @@
       "pediatricDentistryStep3Desc": "Obturatii colorate si tratamente realizate cu rabdare si intelegere pentru varsta copilului.",
       "pediatricDentistryStep4Title": "Educatie dentara",
       "pediatricDentistryStep4Desc": "Invatam copilul tehnica corecta de periaj si importanta igienei orale zilnice.",
-
       "dentalEmergencies": "Urgente Dentare",
-      "dentalEmergenciesDesc": "Urgenta stomatologica Satu Mare? Clinica Dentcraft ofera asistenta rapida pentru durere de dinti, traumatisme dentare si urgente dentare. Dentist urgenta disponibil pentru tratament imediat si calmare a durerii.",
+      "dentalEmergenciesDesc": "Urgenta stomatologica Satu Mare? Clinica DENTCRAFT ofera asistenta rapida pentru durere de dinti, traumatisme dentare si urgente dentare. Dentist urgenta disponibil pentru tratament imediat si calmare a durerii.",
       "dentalEmergenciesBenefit1Title": "Raspuns rapid",
       "dentalEmergenciesBenefit1Desc": "Urgenta stomatologica tratata prioritar pentru calmare imediata a durerii de dinti.",
       "dentalEmergenciesBenefit2Title": "Disponibilitate extinsa",
@@ -372,7 +363,7 @@
   },
   "whyUs": {
     "badge": "De Ce Noi",
-    "title": "De ce Dentcraft?",
+    "title": "De ce DENTCRAFT?",
     "subtitle": "Suntem dedicati excelentei in stomatologie moderna.",
     "stats": {
       "years": {
@@ -423,14 +414,14 @@
     "sectionTitle": "Transformări reale ale pacienților",
     "sectionSubtitle": "Fiecare caz demonstrează rezultatele tratamentelor noastre profesionale",
     "clinicBadge": "Clinica Noastră",
-    "clinicTitle": "Descoperă Clinica Dentcraft",
+    "clinicTitle": "Descoperă Clinica DENTCRAFT",
     "clinicSubtitle": "Echipamente moderne, spații confortabile și o echipă dedicată zâmbetului tău",
     "headingBold": "Galerie",
     "headingItalic": "rezultate reale",
     "beforeAfterBold": "Înainte și",
     "beforeAfterItalic": "după",
     "clinicHeadingBold": "Clinica",
-    "clinicHeadingItalic": "DentCraft",
+    "clinicHeadingItalic": "DENTCRAFT",
     "doctorPrefix": "Dr.",
     "doctorLabel": "Medic",
     "closeLabel": "Închide",
@@ -441,7 +432,7 @@
     },
     "subtitle": "Vezi transformarile pacientilor nostri. Rezultate reale, zambete reale.",
     "metaTitle": "Galerie Inainte si Dupa | Rezultate Reale",
-    "metaDescription": "Galerie foto inainte si dupa tratamente stomatologice: implanturi, fatete, albire dentara, ortodontie. Rezultate reale de la clinica DentCraft Satu Mare.",
+    "metaDescription": "Galerie foto inainte si dupa tratamente stomatologice: implanturi, fatete, albire dentara, ortodontie. Rezultate reale de la clinica DENTCRAFT Satu Mare.",
     "filterBy": "Filtreaza dupa tratament",
     "allTreatments": "Toate tratamentele",
     "noCases": "Nu exista cazuri pentru acest filtru.",
@@ -479,7 +470,7 @@
     "subtitle": "Descopera clinica noastra moderna, dotata cu cea mai noua tehnologie dentara intr-un mediu cald si primitor.",
     "captions": {
       "reception": "Sala de asteptare",
-      "treatment": "Receptia Dentcraft",
+      "treatment": "Receptia DENTCRAFT",
       "equipment": "Cabinet tratament",
       "waiting": "Cabinet tratament",
       "detail": "Sala de asteptare",
@@ -488,13 +479,13 @@
       "toys": "Coltul celor mici"
     },
     "images": {
-      "reception": "Sala de asteptare a clinicii Dentcraft",
-      "waiting": "Receptia clinicii Dentcraft",
+      "reception": "Sala de asteptare a clinicii DENTCRAFT",
+      "waiting": "Receptia clinicii DENTCRAFT",
       "treatment": "Cabinet de tratament dentar modern",
       "detail": "Camera de sterilizare",
       "equipment": "Sala de asteptare clinica",
-      "treatmentRoom": "Cabinet de tratament Dentcraft",
-      "toys": "Jucarii cu periuta de dinti la clinica Dentcraft"
+      "treatmentRoom": "Cabinet de tratament DENTCRAFT",
+      "toys": "Jucarii cu periuta de dinti la clinica DENTCRAFT"
     },
     "features": {
       "equipment": {
@@ -528,7 +519,7 @@
     "title": "Ce spun pacientii nostri",
     "subtitle": "Recenzii reale de la pacienti multumiti.",
     "metaTitle": "Recenzii Pacienti | Pareri si Testimoniale",
-    "metaDescription": "Citeste recenziile pacientilor DentCraft Satu Mare. Pareri reale despre implanturi, ortodontie, estetica dentara. 4.9 stele pe Google.",
+    "metaDescription": "Citeste recenziile pacientilor DENTCRAFT Satu Mare. Pareri reale despre implanturi, ortodontie, estetica dentara. 4.9 stele pe Google.",
     "allTreatments": "Toate tratamentele",
     "filterBy": "Filtreaza dupa tratament",
     "noTestimonials": "Nu exista testimoniale pentru acest filtru.",
@@ -543,7 +534,7 @@
       "whitening": "Albire dentara"
     },
     "quotes": {
-      "1": "Rezultat exceptional! Echipa de la Dentcraft mi-a transformat complet zambetul. Recomand cu toata increderea.",
+      "1": "Rezultat exceptional! Echipa de la DENTCRAFT mi-a transformat complet zambetul. Recomand cu toata increderea.",
       "2": "Am fost foarte multumit de profesionalismul si atentia acordata. Implantul arata si se simte ca un dinte natural.",
       "3": "Albirea a depasit asteptarile mele. Personalul este foarte prietenos si procedura a fost rapida si confortabila."
     }
@@ -567,15 +558,15 @@
     "title": "Echipa de Medici Stomatologi",
     "specialistsCount": "{count} specialiști",
     "subtitle": "Specialisti dedicati cu experienta vasta in stomatologie moderna.",
-    "metaTitle": "Medici Stomatologi Satu Mare | Echipa DentCraft",
-    "metaDescription": "Cunoaste echipa DentCraft Satu Mare - 3 medici stomatologi (Dr. Petric, Dr. Ghirasim, Dr. Tincu) si echipa de receptie/asistenta. 10+ ani experienta, 1500+ pacienti tratati.",
+    "metaTitle": "Medici Stomatologi Satu Mare | Echipa DENTCRAFT",
+    "metaDescription": "Cunoaste echipa DENTCRAFT Satu Mare - 3 medici stomatologi (Dr. Petric, Dr. Ghirasim, Dr. Tincu) si echipa de receptie/asistenta. 10+ ani experienta, 1500+ pacienti tratati.",
     "about": "Despre",
     "education": "Studii",
     "certifications": "Certificari",
     "servicesOffered": "Servicii oferite",
     "viewAll": "Vezi toata echipa",
     "headingBold": "Echipa",
-    "headingItalic": "DentCraft",
+    "headingItalic": "DENTCRAFT",
     "breadcrumbHome": "Acasa",
     "breadcrumbTeam": "Echipa",
     "profile": {
@@ -585,7 +576,7 @@
       "videoComingSoonCopy": "Clipul cu {firstName} este în pregătire — revino curând.",
       "videoComingSoonHeadline": "Video în curând",
       "videoComingSoonShort": "Clipul cu {firstName} este în pregătire.",
-      "videoClipAlt": "{name} — clip video DentCraft",
+      "videoClipAlt": "{name} — clip video DENTCRAFT",
       "aboutBold": "Despre",
       "journeyBold": "Parcurs",
       "journeyItalic": "profesional",
@@ -600,7 +591,7 @@
       "infoSatuMare": "Satu Mare",
       "infoHours": "L-V: 10:00 - 18:00",
       "defaultJobTitle": "Medic Stomatolog",
-      "doctorPhotoAlt": "{name} - {role} la clinica Dentcraft Satu Mare"
+      "doctorPhotoAlt": "{name} - {role} la clinica DENTCRAFT Satu Mare"
     },
     "badges": {
       "doctorTitle": "Medic",
@@ -608,12 +599,22 @@
       "doctorSpecialist": "Specialist",
       "doctorDefault": "Stomatolog",
       "receptionTitle": "Recepție",
-      "receptionSubtitle": "DentCraft",
+      "receptionSubtitle": "DENTCRAFT",
       "assistantTitle": "Asistent",
       "assistantCoordinator": "Coordonator",
       "assistantDefault": "Medical",
       "teamTitle": "Echipă",
-      "teamSubtitle": "DentCraft"
+      "teamSubtitle": "DENTCRAFT"
+    },
+    "roles": {
+      "coordinator": "Medic Stomatolog Coordonator",
+      "dentist": "Medic Stomatolog",
+      "periodontologist": "Specialist Parodontolog",
+      "pediatric": "Medic Stomatolog Pediatru",
+      "assistantCoordinator": "Asistent Medical Coordonator",
+      "assistant": "Asistent Medical",
+      "receptionist": "Recepționer",
+      "principal": "Medic Stomatolog Principal"
     }
   },
   "teamPreview": {
@@ -632,7 +633,7 @@
     "sectionTitle": "Lista completă de prețuri",
     "sectionSubtitle": "Toate serviciile noastre cu prețuri transparente",
     "metaTitle": "Preturi Stomatologie Satu Mare 2026 | Tarife Implant, Aparat Dentar, Fatete",
-    "metaDescription": "Lista completa preturi stomatologie DentCraft Satu Mare. Tarife transparente: implant dentar, aparat dentar, fatete, albire, coroane. Consultatie gratuita!",
+    "metaDescription": "Lista completa preturi stomatologie DENTCRAFT Satu Mare. Tarife transparente: implant dentar, aparat dentar, fatete, albire, coroane. Consultatie gratuita!",
     "disclaimer": "* Preturile afisate sunt orientative si pot varia in functie de complexitatea cazului. Pretul final va fi stabilit dupa consultatie.",
     "promotion": "Promotie",
     "tryCalculator": "Calculeaza pretul tratamentului",
@@ -692,7 +693,7 @@
     "title": "Intrebari frecvente",
     "subtitle": "Raspunsuri la cele mai comune intrebari despre serviciile noastre stomatologice.",
     "metaTitle": "Intrebari Frecvente Stomatologie | FAQ",
-    "metaDescription": "Raspunsuri la intrebarile frecvente despre implanturi dentare, aparate dentare, albire, fatete si preturi. Clinica stomatologica DentCraft Satu Mare.",
+    "metaDescription": "Raspunsuri la intrebarile frecvente despre implanturi dentare, aparate dentare, albire, fatete si preturi. Clinica stomatologica DENTCRAFT Satu Mare.",
     "stillHaveQuestions": "Mai ai intrebari?",
     "contactUsText": "Echipa noastra este aici sa te ajute. Contacteaza-ne pentru orice nelamurire.",
     "categories": {
@@ -703,7 +704,7 @@
     },
     "placeholder": {
       "general": {
-        "q1": "Ce servicii ofera clinica Dentcraft?",
+        "q1": "Ce servicii ofera clinica DENTCRAFT?",
         "a1": "Oferim o gama completa de servicii stomatologice, inclusiv stomatologie generala, estetica dentara, implantologie, ortodontie, pedodontie si urgente dentare.",
         "q2": "Este prima consultatie gratuita?",
         "a2": "Da, prima consultatie este gratuita. Vei primi o evaluare completa a sanatatii tale dentare si un plan de tratament personalizat."
@@ -730,17 +731,17 @@
     "locationLabel": "Satu Mare, România",
     "subtitle": "Suntem aici pentru tine. Programeaza o consultatie sau trimite-ne un mesaj.",
     "metaTitle": "Contact | Programare Stomatolog - 0741 199 977",
-    "metaDescription": "Contacteaza clinica stomatologica DentCraft Satu Mare. Programari: 0741 199 977. Adresa: Str. Barbu Stefanescu Delavrancea nr.3. Luni-Vineri 10:00-18:00.",
+    "metaDescription": "Contacteaza clinica stomatologica DENTCRAFT Satu Mare. Programari: 0741 199 977. Adresa: Str. Barbu Stefanescu Delavrancea nr.3. Luni-Vineri 10:00-18:00.",
     "phoneLabel": "Telefon",
     "emailLabel": "Email",
     "addressLabel": "Adresa",
     "workingHoursLabel": "Program de lucru",
     "callDescription": "Suna-ne pentru programari sau informatii",
     "whatsappDescription": "Scrie-ne pe WhatsApp pentru raspuns rapid",
-    "whatsappPrefill": "Buna! As dori sa programez o consultatie la clinica Dentcraft.",
+    "whatsappPrefill": "Buna! As dori sa programez o consultatie la clinica DENTCRAFT.",
     "emailDescription": "Raspundem in maxim 24 de ore",
     "addressDescription": "Te asteptam la clinica noastra",
-    "mapTitle": "Locatia clinicii Dentcraft",
+    "mapTitle": "Locatia clinicii DENTCRAFT",
     "findUs": "Gaseste-ne",
     "getDirections": "Obtine indicatii",
     "ctaTitle": "Ai nevoie de ajutor rapid?",
@@ -756,10 +757,10 @@
     "title": "Blog Stomatologie",
     "badge": "Sfaturi si informatii",
     "headingBold": "Blog",
-    "headingItalic": "DentCraft",
+    "headingItalic": "DENTCRAFT",
     "subtitle": "Articole si sfaturi pentru sanatatea ta dentara.",
     "metaTitle": "Blog Stomatologie | Sfaturi Dentare si Noutati",
-    "metaDescription": "Articole despre sanatate dentara, sfaturi de la medici stomatologi, preturi tratamente si noutati de la clinica DentCraft Satu Mare.",
+    "metaDescription": "Articole despre sanatate dentara, sfaturi de la medici stomatologi, preturi tratamente si noutati de la clinica DENTCRAFT Satu Mare.",
     "filterBy": "Filtreaza dupa categorie",
     "allCategories": "Toate",
     "noPosts": "Nu exista articole",
@@ -869,7 +870,11 @@
     "terms": "Termeni si conditii",
     "ctaTitle": "Programeaza o consultatie",
     "ctaSubtitle": "Suntem aici pentru zambetul tau perfect",
-    "bookAppointment": "Programeaza acum"
+    "bookAppointment": "Programeaza acum",
+    "crafted": {
+      "label": "Crafted by",
+      "aria": "Crafted by Luțaș Raul — discută pe WhatsApp despre un website"
+    }
   },
   "legal": {
     "privacy": "Politica de Confidentialitate",
@@ -923,5 +928,82 @@
       "serviceRequired": "Te rugam sa selectezi un serviciu",
       "timeRequired": "Te rugam sa selectezi un interval orar"
     }
+  },
+  "home": {
+    "calculator": {
+      "badge": "Transparență totală",
+      "titleBold": "Calculator instant",
+      "titleItalic": "de preț",
+      "subtitle": "Selectează tratamentul de care ai nevoie și primești estimarea în câteva secunde — fără telefon, fără așteptare. Plan de tratament scris înainte de a începe.",
+      "step1": "Alegi serviciile dorite din catalog",
+      "step2": "Vezi prețul minim, maxim și media",
+      "step3": "Primești estimarea pe email opțional"
+    },
+    "whyClinic": {
+      "headingBold": "De ce clinica",
+      "headingItalic": "DENTCRAFT",
+      "subtitle": "Stomatologie modernă în Satu Mare, cu accent pe rezultate vizibile, comunicare clară și pacienți care revin cu zâmbetul.",
+      "statsExperience": "ani experiență",
+      "statsPatients": "pacienți tratați",
+      "reasons": {
+        "r1Title": "Echipă cu peste 10 ani de experiență",
+        "r1Desc": "Dr. Petric și echipa au tratat peste 1500 de pacienți, cu rezultate documentate prin cazuri reale.",
+        "r2Title": "Tehnologie modernă, planuri exacte",
+        "r2Desc": "Scanner 3D digital, radiologie low-dose și planificare computerizată — fără surprize în timpul tratamentului.",
+        "r3Title": "Confort și anestezie blândă",
+        "r3Desc": "Ambient relaxant, anestezie nedureroasă și comunicare clară la fiecare pas. Frica de stomatolog rămâne afară.",
+        "r4Title": "Prețuri transparente, garanție",
+        "r4Desc": "Calculator de preț online, plan de tratament scris înainte de a începe și garanție pentru lucrări."
+      }
+    },
+    "teamSection": {
+      "headingBold": "Cunoaște",
+      "headingItalic": "echipa"
+    },
+    "faqSection": {
+      "headingBold": "Sfaturi de la",
+      "headingItalic": "doctorii nostri",
+      "subtitle": "Doctorii DENTCRAFT îți răspund la cele mai frecvente întrebări despre tratamente, igienă și rezultate.",
+      "instagramCta": "Vezi mai multe pe Instagram"
+    },
+    "reviewsSection": {
+      "headingBold": "Ce spun",
+      "headingItalic": "pacienții",
+      "subtitle": "Pacienții noștri vorbesc — fiecare recenzie e verificată pe Google și reflectă experiența lor reală la clinica DENTCRAFT.",
+      "googleCount": "50+ recenzii pe Google",
+      "countSuffix": "recenzii pe Google",
+      "leaveReview": "Lasă recenzie"
+    },
+    "successCases": {
+      "headingBold": "Cazuri de succes",
+      "headingItalic": "DENTCRAFT",
+      "subtitle": "Lucrări reale realizate în clinică. Apasă pe orice imagine pentru a o vedea mărită.",
+      "viewCaseLabel": "Vezi cazul",
+      "caseLabel": "Caz",
+      "categories": {
+        "aesthetic": "Estetică",
+        "implantology": "Implantologie",
+        "prosthetics": "Protetică",
+        "periodontology": "Parodontologie",
+        "pediatric": "Pedodonție",
+        "treatment": "Tratament"
+      },
+      "titlePrefix": "Lucrare estetică"
+    },
+    "doctorRoles": {
+      "coordinator": "Medic Stomatolog Coordonator",
+      "dentistPediatric": "Medic Stomatolog · Pediatrie",
+      "specialistPeriodontics": "Medic Specialist · Parodontologie"
+    }
+  },
+  "ariaLabels": {
+    "close": "Închide",
+    "nextCase": "Caz următor",
+    "prevCase": "Caz anterior",
+    "scrollDown": "Derulează în jos",
+    "closeMenu": "Închide meniul",
+    "callPrefix": "Sună-ne",
+    "language": "Limbă",
+    "callUs": "Sună-ne"
   }
 }

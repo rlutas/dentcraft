@@ -1,4 +1,4 @@
-# DentCraft Design System v2
+# DENTCRAFT Design System v2
 
 **Last updated:** 8 May 2026
 **Audience:** Anyone building or refining pages on dentcraft.ro
@@ -335,9 +335,9 @@ Standard Tailwind:
 |---|---|---|---|---|
 | Hero | dark image | "Dinți sanatosi" + "*zambet luminos*" | letter slide italic | white pill arrow-reveal |
 | Services | white | "Servicii *stomatologice*" | letter slide | dark pill arrow-reveal |
-| Why Us | `#faf6f1` | "De ce *DentCraft*" | letter slide + 4 numbered editorial items with hover scale | none (next section CTAs) |
+| Why Us | `#faf6f1` | "De ce *DENTCRAFT*" | letter slide + 4 numbered editorial items with hover scale | none (next section CTAs) |
 | Team | white | "Cunoaște *echipa*" | letter slide | dark pill arrow-reveal |
-| Clinic | `#f5f0e8` | "Clinica *DentCraft*" | letter slide + photo-swap gallery + unique icon hovers | none |
+| Clinic | `#f5f0e8` | "Clinica *DENTCRAFT*" | letter slide + photo-swap gallery + unique icon hovers | none |
 | Doctor Videos | white | "Sfaturi de la *doctorii nostri*" | letter slide + animated play button | dark pill arrow-reveal → IG |
 | Reviews | `#f5f0e8` | "Ce spun *pacienții*" | letter slide + per-row marquee | 2 buttons single row |
 | Before/After | white | "Rezultate *reale*" | letter slide + slider hover | dark pill arrow-reveal |

@@ -1,11 +1,12 @@
 'use client'
 
-import { ArrowRight, Eye, Images, Sparkles } from 'lucide-react'
+import { ArrowRight, Eye, Images } from 'lucide-react'
 import Image from 'next/image'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Link } from '@/i18n/navigation'
-import { GalleryModal, type GalleryCase } from '@/components/features/BeforeAfterGallery'
+import { type GalleryCase } from '@/components/features/BeforeAfterGallery'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { SuccessCasesSection } from '@/components/sections/SuccessCasesSection'
 
 type SanityService = {
   _id: string
@@ -61,28 +62,13 @@ type GalleryPageClientProps = {
 }
 
 export function GalleryPageClient({
-  cases,
+  cases: _cases,
   currentFilter,
   galleryPhotos = [],
   services,
   translations: t,
 }: GalleryPageClientProps) {
-  const [modalOpen, setModalOpen] = useState(false)
-  const [currentCaseIndex, setCurrentCaseIndex] = useState(0)
   const [lightboxPhoto, setLightboxPhoto] = useState<GalleryPhoto | null>(null)
-
-  const openModal = useCallback((index: number) => {
-    setCurrentCaseIndex(index)
-    setModalOpen(true)
-  }, [])
-
-  const closeModal = useCallback(() => {
-    setModalOpen(false)
-  }, [])
-
-  const navigateModal = useCallback((index: number) => {
-    setCurrentCaseIndex(index)
-  }, [])
 
   return (
     <div className="flex flex-col">
@@ -143,51 +129,8 @@ export function GalleryPageClient({
         </section>
       )}
 
-      {/* Before/After Gallery Grid - Premium Cards */}
-      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        {/* Subtle decorative background */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#d4c4b0]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
-        <div className="container relative z-10">
-          {/* Section header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
-            <AnimatedServiceHeading bold={t.beforeAfterBold} italic={t.beforeAfterItalic} />
-            <p className="text-base md:text-lg text-[#5a5048] max-w-xl mx-auto leading-relaxed mt-4">
-              {t.sectionSubtitle}
-            </p>
-          </div>
-
-          {cases.length === 0 && currentFilter ? (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#faf6f1] flex items-center justify-center">
-                <Images className="w-10 h-10 text-[#d4c4b0]" strokeWidth={1.5} />
-              </div>
-              <p className="text-xl text-[#6b6b6b] mb-6">{t.noCases}</p>
-              <Link
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium
-                  hover:bg-[#3a3128] transition-colors"
-                href="/galerie"
-              >
-                {t.allTreatments}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {cases.map((caseItem, index) => (
-                <GalleryCard
-                  key={caseItem._id}
-                  caseItem={caseItem}
-                  index={index}
-                  translations={t}
-                  onOpenModal={openModal}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      {/* Cazuri de succes — minimalist gallery cu lightbox */}
+      <SuccessCasesSection />
 
       {/* Clinic & Team Photo Gallery */}
       {galleryPhotos.length > 0 && (
@@ -288,169 +231,10 @@ export function GalleryPageClient({
         </div>
       )}
 
-      {/* Gallery Modal (Before/After) */}
-      <GalleryModal
-        afterLabel={t.after}
-        beforeLabel={t.before}
-        cases={cases}
-        currentIndex={currentCaseIndex}
-        doctorLabel={t.doctor}
-        durationLabel={t.duration}
-        isOpen={modalOpen}
-        onClose={closeModal}
-        onNavigate={navigateModal}
-      />
     </div>
   )
 }
 
-// Premium Gallery Card Component
-function GalleryCard({
-  caseItem,
-  index,
-  onOpenModal,
-  translations: t,
-}: {
-  caseItem: GalleryCase
-  index: number
-  onOpenModal: (index: number) => void
-  translations: GalleryPageClientProps['translations']
-}) {
-  return (
-    <div
-      className="gallery-card group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden
-        border border-[#f0ebe3] hover:border-[#d4c4b0]
-        shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)]
-        hover:shadow-[0_20px_60px_-15px_rgba(139,115,85,0.18)]
-        transition-all duration-500 ease-out hover:-translate-y-1.5
-        animate-[fadeInUp_0.5s_ease-out_both]"
-      style={{ animationDelay: `${index * 0.08}s` }}
-    >
-      {/* Image Comparison Preview - Clickable */}
-      <button
-        aria-label={t.viewDetails}
-        className="relative w-full aspect-[4/3] overflow-hidden cursor-pointer focus:outline-none
-          focus:ring-2 focus:ring-[#8b7355] focus:ring-offset-2"
-        type="button"
-        onClick={() => onOpenModal(index)}
-      >
-        {/* Split view - Before on left, After on right */}
-        <div className="absolute inset-0 flex">
-          {/* Before side */}
-          <div className="relative w-1/2 h-full overflow-hidden">
-            {caseItem.beforeImage?.generatedUrl && (
-              <Image
-                fill
-                alt={caseItem.beforeImage.alt || t.before}
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 17vw"
-                src={caseItem.beforeImage.generatedUrl}
-              />
-            )}
-            {/* Before label - glassmorphism */}
-            <span className="absolute bottom-3 left-3 px-3 py-1.5 bg-black/50 backdrop-blur-md text-white text-xs font-semibold rounded-lg
-              border border-white/10 uppercase tracking-wider">
-              {t.before}
-            </span>
-          </div>
-
-          {/* After side */}
-          <div className="relative w-1/2 h-full overflow-hidden">
-            {caseItem.afterImage?.generatedUrl && (
-              <Image
-                fill
-                alt={caseItem.afterImage.alt || t.after}
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 17vw"
-                src={caseItem.afterImage.generatedUrl}
-              />
-            )}
-            {/* After label - warm accent */}
-            <span className="absolute bottom-3 right-3 px-3 py-1.5 bg-[#8b7355]/90 backdrop-blur-md text-white text-xs font-semibold rounded-lg
-              border border-[#d4c4b0]/30 uppercase tracking-wider">
-              {t.after}
-            </span>
-          </div>
-        </div>
-
-        {/* Center divider - premium thin line with glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/90 z-10
-          shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
-
-        {/* Featured badge */}
-        {caseItem.featured && (
-          <span className="absolute top-3 left-3 z-20 inline-flex items-center gap-1.5
-            px-3 py-1.5 bg-[#d4c4b0] text-[#2a2118] text-xs font-bold rounded-full uppercase tracking-wider
-            shadow-[0_4px_12px_rgba(212,196,176,0.5)]">
-            <Sparkles className="w-3 h-3" />
-            {t.featured}
-          </span>
-        )}
-
-        {/* Hover overlay with view prompt */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2a2118]/60 via-[#2a2118]/0 to-transparent
-          opacity-0 group-hover:opacity-100 transition-all duration-500 z-10
-          flex items-center justify-center">
-          <span className="translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100
-            transition-all duration-400 ease-out
-            inline-flex items-center gap-2 px-5 py-2.5
-            bg-white/95 backdrop-blur-sm rounded-full text-sm font-semibold text-[#2a2118]
-            shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
-            <Eye className="w-4 h-4" />
-            {t.viewDetails}
-          </span>
-        </div>
-      </button>
-
-      {/* Content - Premium card bottom */}
-      <div className="p-5 md:p-6">
-        {/* Treatment Type Badge */}
-        {caseItem.service && (
-          <span className="inline-flex px-3 py-1 bg-[#faf6f1] text-[#8b7355] text-xs font-semibold rounded-full
-            border border-[#e8e0d5] mb-3">
-            {caseItem.service.title}
-          </span>
-        )}
-
-        {/* Title */}
-        {caseItem.title && (
-          <h3 className="text-lg md:text-xl font-bold text-[#2a2118] mb-2
-            group-hover:text-[#8b7355] transition-colors duration-300">
-            {caseItem.title}
-          </h3>
-        )}
-
-        {/* Description */}
-        {caseItem.description && (
-          <p className="text-sm text-[#6b6b6b] leading-relaxed line-clamp-2 mb-4">
-            {caseItem.description}
-          </p>
-        )}
-
-        {/* Duration and Doctor - premium separator */}
-        <div className="flex items-center gap-4 text-xs text-[#8b7a68] mt-auto pt-4
-          border-t border-[#f0ebe3]">
-          {caseItem.treatmentDuration && (
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-[#d4c4b0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>{caseItem.treatmentDuration}</span>
-            </div>
-          )}
-          {caseItem.doctor && (
-            <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-[#d4c4b0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span>{t.doctorPrefix} {caseItem.doctor.name}</span>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // Placeholder Gallery Component
 export function PlaceholderGalleryClient({

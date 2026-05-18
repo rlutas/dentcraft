@@ -1,6 +1,63 @@
-# Dentcraft.ro - Project Status
+# DENTCRAFT.ro - Project Status
 
-**Last updated:** 15 May 2026
+**Last updated:** 18 May 2026
+
+## 📝 Session 2026-05-18 — Cazuri de succes + i18n complet
+
+### 1. Video clinică optimizat
+- Original 87 MB (4K, 50fps, HEVC) → 7.6 MB (1080p, 30fps, H.264 CRF 24), reducere 91%
+- Generat poster JPG (186 KB) pentru instant load
+- Integrat în secțiunea "De ce clinica DENTCRAFT" cu autoplay/muted/loop/playsInline
+- Layout secțiune lățit la `max-w-[1600px]`, grid `1.85fr_1fr`, aspect video `16/9`
+- Șters originalul .mov (87 MB) din repo
+- Fișiere: `public/video/clinica.mp4`, `public/video/clinica-poster.jpg`, `src/app/[locale]/page.tsx`
+
+### 2. Galerie clinică (ClinicGalleryDesktop) mai smooth
+- Eliminat swap pe hover — acum doar pe click/focus (UX mai predictibil)
+- Spring animation reglat: `mass 1.6→1`, `stiffness 80→140`, `damping 22→26` — mai vioi
+- Hover thumb: scale 1.025 + brightness 95→110 ca afordanță de click
+- Tap feedback: scale 0.98
+- Auto-rotate relaxat (5.5s → 6.5s); pauză 7s după tap
+- Added `aria-current="true"` pe imaginea primary
+
+### 3. Brand DENTCRAFT — caps peste tot
+- Înlocuit `DentCraft` / `Dentcraft` → `DENTCRAFT` în ~85 apariții
+- Acoperă: traduceri (ro/en/hu.json), TSX (alt-uri, aria-labels), SEO (schema.ts, seo.ts), email templates, blog fallback, footer, header, docs interne
+- Salvat ca regulă permanentă în memorie pentru sesiuni viitoare
+
+### 4. Secțiune nouă "Cazuri de succes" (înlocuiește Before/After)
+- Creat `src/components/sections/SuccessCasesSection.tsx` — grid 4 coloane × 1 rând, aspect 4:3
+- Lightbox cu navigare ESC / ← / → + body-scroll-lock
+- 4 cazuri placeholder cu fețele pacienților (case-01...04.jpeg din `public/images/results/`)
+- Bg alb, secțiune lățită la `max-w-[1600px]`
+- Înlocuit pe homepage și `/galerie` (eliminat `BeforeAfterGalleryPreview`, `GalleryModal`, `GalleryCard` dead code)
+- Componenta reutilizabilă cu props opționale (`viewAllLabel`, `extraCases`)
+
+### 5. Traduceri EN + HU complete pentru tot site-ul
+**Chei noi adăugate în `src/messages/{ro,en,hu}.json`:**
+- `home.calculator.*` — badge, titlu, subtitlu, 3 pași
+- `home.whyClinic.*` — heading, stats (ani/pacienți), 4 motive (titluri + descrieri)
+- `home.teamSection.*`, `home.faqSection.*`, `home.reviewsSection.*` — headere & subtitluri
+- `home.successCases.*` — heading, subtitlu, categorii (aesthetic/implantology/etc.), titlu placeholder
+- `home.doctorRoles.*` — roluri pentru DoctorVideosGrid
+- `team.roles.*` — 8 roluri (coordinator, dentist, periodontologist, etc.)
+- `ariaLabels.*` — close, scrollDown, closeMenu, callUs, language, nextCase, prevCase
+- `footer.crafted.*` — label + aria text
+
+**Helper nou:** `src/lib/translate-team-role.ts` mapează rolurile RO din date (Sanity / fallback-team) către traduceri.
+
+**Fișiere modificate pentru i18n:**
+- `src/app/[locale]/page.tsx`, `echipa/page.tsx`, `echipa/[slug]/page.tsx`, `galerie/GalleryPageClient.tsx`
+- `src/components/sections/{SuccessCasesSection,FramedHero}.tsx`
+- `src/components/layout/{Footer,FramedNav}.tsx`
+- `src/components/features/GoogleReviewsSlider/index.tsx`
+- `src/data/success-cases.ts` (restructurat cu categoryKey + titleNum)
+
+**Rezultat:** Zero text RO nedorit pe `/`, `/servicii`, `/preturi`, `/contact`, `/faq`, `/testimoniale`, `/blog`, `/galerie`, `/echipa`, `/echipa/[slug]` pe EN și HU. Recenziile Google rămân în limba originală (user-generated content).
+
+**TODO viitor:** Bio-urile lungi ale medicilor + specializările detaliate rămân RO în `fallback-team.ts` — recomandare: migrare în Sanity cu câmpuri localizate.
+
+---
 
 ## 🚦 Launch Readiness Snapshot (15 May 2026)
 
@@ -134,7 +191,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 - Dr. Petric profile rewritten: 2016 "Iuliu Hatieganu" Cluj-Napoca + 6 real courses (Fradeani I/II/III, Belograd Kiev 2019, Sirbu Bucharest 2020, Dicu/Lazar Oradea 2020); stats 10+ years / 1500+ patients (was 15+ / 2000+)
 - Removed "(media 9.69)" from Dr. Tincu's diploma
 - Removed Ionela Danci + Ionela Calugher from team (per Dr. Petric); fallback team now 5 members (3 doctors + 2 staff); `/echipa` Sanity threshold lowered to 5
-- Removed `team-clinic.webp` ("Echipa Dentcraft") from `/galerie`
+- Removed `team-clinic.webp` ("Echipa DENTCRAFT") from `/galerie`
 - Site-wide consistency pass for new numbers: SEO `seo.ts`, meta descriptions (ro/en/hu) for home + `/servicii` + `/echipa`, blog fallback copy, doctor profile defaults — no more "6 specialists" or "15+ years" references
 - Stats card on homepage "De ce" section: replaced 4.9 Google rating with "1500+ pacienți tratați"
 
@@ -154,7 +211,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 - B — New full-width **dark statement section** (`bg-[#2a2118]`) between Servicii and "De ce" on landing: "Calculator instant de preț" headline (white + cream italic) + description + white CTA on dark bg, 3-step explainer grid (Alegi → Vezi preț → Primești estimarea) on the right with glassy white/5 cards — premium contrast break
 
 **Footer credits:**
-- Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` → WhatsApp link to +40 745 850 700 with pre-filled message about DentCraft
+- Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` → WhatsApp link to +40 745 850 700 with pre-filled message about DENTCRAFT
 
 ### 14 May 2026 — Hero image overhaul + dark theme unification + diacritics + perf
 
@@ -175,7 +232,7 @@ Premium/luxury dental clinic aesthetic with warm earth-tone palette. Sections al
 - Replaced `bg-[#2a2118]` with `bg-[#1a1a1a]` across every button/CTA/active state/badge/pill (CTAs, filter chips, calculator stepper, phone button, FramedNav booking buttons, GoogleReviewsSlider CTA, etc.) — the whole dark UI now matches the footer top color, creating one coherent darkmode zone
 
 **Footer credit line:**
-- Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` linking to WhatsApp +40 745 850 700 with a pre-filled DentCraft inquiry message
+- Replaced "Made with ♥ in Satu Mare" with `</> Crafted by Luțaș Raul →` linking to WhatsApp +40 745 850 700 with a pre-filled DENTCRAFT inquiry message
 
 **Diacritics pass on visible UI:**
 - ro.json hero block: "Dinți sănătoși", "zâmbet luminos", subtitle and CTA fully diacriticized

@@ -1,7 +1,7 @@
 ---
 title: "Cat costa un implant dentar in Satu Mare? Ghid complet preturi 2026"
-metaTitle: "Implant Dentar Satu Mare Pret 2026 | DentCraft"
-metaDescription: "Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DentCraft."
+metaTitle: "Implant Dentar Satu Mare Pret 2026 | DENTCRAFT"
+metaDescription: "Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT."
 slug: "cat-costa-implant-dentar-satu-mare"
 targetKeyword: "implant dentar satu mare pret"
 secondaryKeywords: ["implant dentar satu mare", "implanturi dentare satu mare", "cat costa un implant dentar"]
@@ -15,7 +15,7 @@ estimatedReadTime: "9 min"
 
 "Doctor, cat ma costa un implant?" E intrebarea pe care o aud de cel putin 3 ori pe zi. Si raspunsul sincer e: depinde. Dar nu iti spun asta ca sa te evit — ci pentru ca pretul unui implant dentar variaza real in functie de mai multi factori pe care ti-i explic mai jos.
 
-Am scris acest ghid ca sa ai toate informatiile inainte sa te programezi undeva. Fara surprize, fara costuri ascunse. Asa cum lucram noi la [DentCraft](https://dentcraft.ro).
+Am scris acest ghid ca sa ai toate informatiile inainte sa te programezi undeva. Fara surprize, fara costuri ascunse. Asa cum lucram noi la [DENTCRAFT](https://dentcraft.ro).
 
 ## De ce variaza pretul unui implant dentar?
 
@@ -29,7 +29,7 @@ Pretul depinde de trei lucruri:
 
 **3. Lucrarile suplimentare.** Uneori osul nu e suficient de gros si trebuie facut un aditie osoasa (augmentare). Alteori gingiva trebuie corectata. Aceste proceduri se adauga la costul total.
 
-## Preturi orientative implant dentar la DentCraft Satu Mare (2026)
+## Preturi orientative implant dentar la DENTCRAFT Satu Mare (2026)
 
 Iata o situatie realista, ca sa stii la ce sa te astepti:
 
@@ -44,7 +44,7 @@ Iata o situatie realista, ca sa stii la ce sa te astepti:
 
 Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D — care la noi e gratuita.
 
-## Ce include pretul unui implant la DentCraft?
+## Ce include pretul unui implant la DENTCRAFT?
 
 Am vazut cazuri in care pacienti au platit mai putin la alta clinica, dar apoi au descoperit ca fiecare vizita de control era taxata separat. Sau ca radiografia nu era inclusa. Sau ca anestesia avea un cost extra.
 
@@ -97,7 +97,7 @@ Avantajul major: pretul total e mai mic decat daca ai pune 8-10 implanturi indiv
 
 Pretul pentru All-on-4 porneste de la aproximativ 15.000 lei per arcada, dar variaza in functie de materialele alese si de complexitatea cazului.
 
-## De ce sa alegi DentCraft pentru implantul tau?
+## De ce sa alegi DENTCRAFT pentru implantul tau?
 
 Nu o sa iti spun ca suntem "cei mai buni" — asta decide fiecare pacient in parte. Dar iti pot spune ce ne diferentiaza:
 
@@ -126,4 +126,4 @@ De la 18 ani in sus, cand osul si-a terminat cresterea. Nu exista limita superio
 
 Ai intrebari despre implantul dentar sau vrei o evaluare personalizata? Suna-ne la **0741 199 977** sau [programeaza online](https://dentcraft.ro/contact). Consultatia si radiografia 3D sunt gratuite.
 
-Ne vedem la [DentCraft, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare](https://dentcraft.ro/contact).
+Ne vedem la [DENTCRAFT, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare](https://dentcraft.ro/contact).

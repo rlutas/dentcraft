@@ -10,7 +10,7 @@ language: "en"
 
 "Doctor, how much does an implant cost?" It's a question I hear at least 3 times a day. And the honest answer is: it depends. But I'm not saying that to dodge the question — it's because the price of a dental implant genuinely varies based on several factors that I'll walk you through below.
 
-I wrote this guide so you'd have all the information before booking an appointment anywhere. No surprises, no hidden costs. That's how we do things at DentCraft.
+I wrote this guide so you'd have all the information before booking an appointment anywhere. No surprises, no hidden costs. That's how we do things at DENTCRAFT.
 
 ## Why Does the Price of a Dental Implant Vary?
 
@@ -24,7 +24,7 @@ The price comes down to three things:
 
 **3. Additional procedures.** Sometimes the bone isn't thick enough and a bone graft (augmentation) is needed. Other times the gum tissue needs to be corrected. These procedures add to the total cost.
 
-## Estimated Dental Implant Prices at DentCraft Satu Mare (2026)
+## Estimated Dental Implant Prices at DENTCRAFT Satu Mare (2026)
 
 Here's a realistic breakdown so you know what to expect:
 
@@ -37,7 +37,7 @@ Here's a realistic breakdown so you know what to expect:
 
 The prices above are estimates. Your final price is determined after a consultation and 3D X-ray — which is free of charge at our clinic.
 
-## What's Included in the Price of an Implant at DentCraft?
+## What's Included in the Price of an Implant at DENTCRAFT?
 
 I've seen cases where patients paid less at another clinic, only to find out that every follow-up visit was billed separately. Or that the X-ray wasn't included. Or that anesthesia came at an extra cost.
 
@@ -90,7 +90,7 @@ The major advantage: the total cost is lower than if you were to place 8-10 indi
 
 The price for All-on-4 starts at approximately 15,000 lei (approx. 3,000 EUR) per arch, but varies depending on the materials chosen and the complexity of the case.
 
-## Why Choose DentCraft for Your Implant?
+## Why Choose DENTCRAFT for Your Implant?
 
 I'm not going to tell you we're "the best" — that's for each patient to decide. But I can tell you what sets us apart:
 
@@ -119,4 +119,4 @@ From age 18 and up, once the bone has finished growing. There's no upper age lim
 
 Have questions about dental implants or want a personalized evaluation? Call us at 0741 199 977 or book online. The consultation and 3D X-ray are free.
 
-See you at DentCraft, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.
+See you at DENTCRAFT, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.

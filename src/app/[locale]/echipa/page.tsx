@@ -8,6 +8,7 @@ import { getAllTeamMembers, type Locale } from '@/lib/sanity/queries'
 import { getBreadcrumbSchema } from '@/lib/schema'
 import { generatePageMetadata, localizedPathnames, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
+import { translateTeamRole } from '@/lib/translate-team-role'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import type { LocalePageProps } from '@/types'
@@ -156,7 +157,7 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
                   <div className="p-6 md:p-7 flex flex-col flex-1">
                     {member.role && (
                       <span className="inline-block self-start text-[#8b7355] bg-[#faf6f1] rounded-full border border-[#e8e0d5] px-3 py-1 mb-3 text-[11px] font-bold uppercase tracking-[0.16em]">
-                        {member.role}
+                        {translateTeamRole(member.role, t)}
                       </span>
                     )}
                     <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight tracking-tight">

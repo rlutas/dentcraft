@@ -10,7 +10,7 @@ const dataset = process.env['NEXT_PUBLIC_SANITY_DATASET'] || 'production'
 
 export default defineConfig({
   name: 'dentcraft-studio',
-  title: 'Dentcraft CMS',
+  title: 'DENTCRAFT CMS',
 
   projectId,
   dataset,

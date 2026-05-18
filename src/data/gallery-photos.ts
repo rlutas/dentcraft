@@ -8,7 +8,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   // Clinic interior photos
   {
     src: '/images/clinic/clinic-1.webp',
-    alt: 'Receptie Clinica Dentcraft',
+    alt: 'Receptie Clinica DENTCRAFT',
     category: 'clinic',
   },
   {
@@ -23,7 +23,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/clinic-4.webp',
-    alt: 'Interior clinica Dentcraft',
+    alt: 'Interior clinica DENTCRAFT',
     category: 'clinic',
   },
   {
@@ -43,7 +43,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/clinic-8.webp',
-    alt: 'Cabinet stomatologic Dentcraft',
+    alt: 'Cabinet stomatologic DENTCRAFT',
     category: 'equipment',
   },
   {
@@ -58,7 +58,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/clinic-11.webp',
-    alt: 'Hol clinica Dentcraft',
+    alt: 'Hol clinica DENTCRAFT',
     category: 'clinic',
   },
   {

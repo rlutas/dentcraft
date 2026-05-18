@@ -1,11 +1,11 @@
 # Product Requirements Document (PRD)
-## Dentcraft.ro - Site Prezentare Clinica Stomatologica
+## DENTCRAFT.ro - Site Prezentare Clinica Stomatologica
 
 ---
 
 **Document Version:** 1.0
 **Data creare:** 14 Ianuarie 2026
-**Client:** Dr. Razvan Petric - Dentcraft Satu Mare
+**Client:** Dr. Razvan Petric - DENTCRAFT Satu Mare
 **Tip proiect:** Site prezentare premium
 **Buget:** €3,000
 **Timeline estimat:** 4-6 saptamani
@@ -31,7 +31,7 @@
 
 ### 1.1 Viziune Proiect
 
-Dentcraft.ro va fi un site de prezentare premium pentru clinica stomatologica Dentcraft din Satu Mare, condusa de Dr. Razvan Petric. Site-ul va reflecta profesionalismul si calitatea serviciilor oferite, adoptand un design modern inspirat de estetica Apple combinata cu elemente specifice domeniului dentar (referinta: Dentakay.com).
+DENTCRAFT.ro va fi un site de prezentare premium pentru clinica stomatologica DENTCRAFT din Satu Mare, condusa de Dr. Razvan Petric. Site-ul va reflecta profesionalismul si calitatea serviciilor oferite, adoptand un design modern inspirat de estetica Apple combinata cu elemente specifice domeniului dentar (referinta: Dentakay.com).
 
 ### 1.2 Scope
 
@@ -305,7 +305,7 @@ dentcraft.ro/
    - Iconita + Titlu + Descriere scurta
    - Link catre pagina individuala
 
-4. **De ce Dentcraft?**
+4. **De ce DENTCRAFT?**
    - 3-4 beneficii cheie cu iconite
    - Imagine suportiva clinica/echipa
 

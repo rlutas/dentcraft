@@ -16,6 +16,7 @@ import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sani
 import { generateDynamicPageMetadata, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { getBreadcrumbSchema, getPersonSchema } from '@/lib/schema'
 import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
+import { translateTeamRole } from '@/lib/translate-team-role'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { CountUp } from '@/components/ui/CountUp'
 import { TeamMemberHero } from '@/components/sections/TeamMemberHero'
@@ -548,7 +549,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const firstName = member.name.split(' ').pop() || member.name.split(' ')[0] || member.name
   const memberUrl = `${siteConfig.baseUrl}/echipa/${member.slug}`
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: 'DENTCRAFT', url: siteConfig.baseUrl },
     { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
     { name: member.name, url: memberUrl },
   ])
@@ -556,7 +557,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
   const personSchema = getPersonSchema({
     name: member.name,
     url: memberUrl,
-    jobTitle: member.role || profileT('defaultJobTitle'),
+    jobTitle: translateTeamRole(member.role, t) || profileT('defaultJobTitle'),
     ...(photoUrl ? { image: photoUrl } : {}),
     ...(member.specializations ? { knowsAbout: member.specializations.map((s) => s.name) } : {}),
     ...(member.education ? { alumniOf: member.education.map((e) => e.institution) } : {}),
@@ -580,7 +581,7 @@ async function TeamMemberPageContent({ member }: { member: TeamMember }) {
         ]}
         nameBold={splitName(member.name).bold}
         nameItalic={splitName(member.name).italic}
-        role={member.role}
+        role={translateTeamRole(member.role, t)}
         specializations={(member.specializations ?? []).map((s) => s.name)}
         ctaPrimary={t('common.bookAppointment')}
         photoSrc={member.photo ? urlFor(member.photo).width(800).height(1000).auto('format').url() : null}
@@ -735,7 +736,7 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
   const memberUrl = `${siteConfig.baseUrl}/echipa/${member.slug}`
   const isDoctor = member.name.trim().toLowerCase().startsWith('dr.')
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: 'Dentcraft', url: siteConfig.baseUrl },
+    { name: 'DENTCRAFT', url: siteConfig.baseUrl },
     { name: t('navigation.team'), url: `${siteConfig.baseUrl}/echipa` },
     { name: member.name, url: memberUrl },
   ])
@@ -743,7 +744,7 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
   const personSchema = getPersonSchema({
     name: member.name,
     url: memberUrl,
-    jobTitle: member.role,
+    jobTitle: translateTeamRole(member.role, t),
     description: member.bio,
     ...(fallbackPhotoUrl ? { image: fallbackPhotoUrl } : {}),
     knowsAbout: member.specializations,
@@ -768,7 +769,7 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
         ]}
         nameBold={splitName(member.name).bold}
         nameItalic={splitName(member.name).italic}
-        role={member.role}
+        role={translateTeamRole(member.role, t)}
         bio={shortBio(member.bio)}
         specializations={member.specializations}
         ctaPrimary={t('common.bookAppointment')}

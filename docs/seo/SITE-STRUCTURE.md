@@ -1,4 +1,4 @@
-# DentCraft Site Structure & URL Architecture
+# DENTCRAFT Site Structure & URL Architecture
 
 ## Current Structure (Audit)
 
@@ -139,19 +139,19 @@ Blog: "Urgente stomatologice..."        →  /urgente
 ## Page Title Templates
 
 ### Romanian (default)
-- Homepage: `Dentist Satu Mare | Clinica Stomatologica DentCraft`
-- Service: `[Service Name] Satu Mare | DentCraft`
-- Blog: `[Post Title] | DentCraft Blog`
-- Team: `[Doctor Name] - [Specialization] | DentCraft Satu Mare`
+- Homepage: `Dentist Satu Mare | Clinica Stomatologica DENTCRAFT`
+- Service: `[Service Name] Satu Mare | DENTCRAFT`
+- Blog: `[Post Title] | DENTCRAFT Blog`
+- Team: `[Doctor Name] - [Specialization] | DENTCRAFT Satu Mare`
 
 ### English
-- Homepage: `Dentist Satu Mare | DentCraft Dental Clinic`
-- Service: `[Service Name] Satu Mare | DentCraft`
-- Blog: `[Post Title] | DentCraft Blog`
+- Homepage: `Dentist Satu Mare | DENTCRAFT Dental Clinic`
+- Service: `[Service Name] Satu Mare | DENTCRAFT`
+- Blog: `[Post Title] | DENTCRAFT Blog`
 
 ### Hungarian
-- Homepage: `Fogorvos Szatmarnemeti | DentCraft Fogaszati Klinika`
-- Service: `[Service Name] Szatmarnemeti | DentCraft`
+- Homepage: `Fogorvos Szatmarnemeti | DENTCRAFT Fogaszati Klinika`
+- Service: `[Service Name] Szatmarnemeti | DENTCRAFT`
 
 ---
 

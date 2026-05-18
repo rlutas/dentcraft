@@ -12,6 +12,7 @@ import { useTranslations } from 'next-intl'
  */
 export function FramedHero() {
   const tHero = useTranslations('hero')
+  const tAria = useTranslations('ariaLabels')
 
   return (
     <section className="relative overflow-hidden min-h-[100svh]">
@@ -20,7 +21,7 @@ export function FramedHero() {
             Both go through Next.js Image so each gets AVIF/WebP variants at proper DPR. */}
         <Image
           src="/images/hero/hero-patient-portrait.webp"
-          alt="Pacient zâmbind la consultație DentCraft Satu Mare"
+          alt="Pacient zâmbind la consultație DENTCRAFT Satu Mare"
           fill
           priority
           quality={95}
@@ -29,7 +30,7 @@ export function FramedHero() {
         />
         <Image
           src="/images/hero/hero-patient-landscape.webp"
-          alt="Pacient zâmbind la consultație DentCraft Satu Mare"
+          alt="Pacient zâmbind la consultație DENTCRAFT Satu Mare"
           fill
           priority
           quality={95}
@@ -166,7 +167,7 @@ export function FramedHero() {
           onClick={() => {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
           }}
-          aria-label="Derulează în jos"
+          aria-label={tAria('scrollDown')}
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}

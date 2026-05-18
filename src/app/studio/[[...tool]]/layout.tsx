@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Dentcraft Studio',
-  description: 'Content Management System for Dentcraft',
+  title: 'DENTCRAFT Studio',
+  description: 'Content Management System for DENTCRAFT',
 }
 
 export default function StudioLayout({

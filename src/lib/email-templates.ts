@@ -1,4 +1,4 @@
-// Shared email template components for DentCraft
+// Shared email template components for DENTCRAFT
 // Used by all API routes that send emails via Resend
 
 // HTML escaping to prevent XSS in email content
@@ -34,7 +34,7 @@ export function emailWrapper(content: string, options?: {
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #1a1a1a; background-image: linear-gradient(135deg, #1a1a1a, #2a2a2a); border-radius: 12px 12px 0 0;">
         <tr>
           <td style="padding: 32px 24px; text-align: center;">
-            <img src="${LOGO_WHITE_URL}" alt="Dentcraft" width="180" height="28" style="display: inline-block; height: 28px; width: auto; max-width: 180px;" />
+            <img src="${LOGO_WHITE_URL}" alt="DENTCRAFT" width="180" height="28" style="display: inline-block; height: 28px; width: auto; max-width: 180px;" />
             ${options?.headerTitle ? `<h1 style="margin: 20px 0 0; color: #ffffff; font-size: 20px; font-weight: 600; letter-spacing: -0.3px;">${options.headerTitle}</h1>` : ''}
             ${options?.headerSubtitle ? `<p style="margin: 8px 0 0; color: ${ACCENT_COLOR}; font-size: 14px; font-weight: 400;">${options.headerSubtitle}</p>` : ''}
           </td>
@@ -46,7 +46,7 @@ export function emailWrapper(content: string, options?: {
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: ${BG_COLOR}; border-top: 1px solid ${BORDER_COLOR};">
         <tr>
           <td style="padding: 24px; text-align: center;">
-            <img src="${LOGO_DARK_URL}" alt="Dentcraft" width="140" height="22" style="display: inline-block; height: 22px; width: auto; max-width: 140px; opacity: 0.85; margin-bottom: 12px;" />
+            <img src="${LOGO_DARK_URL}" alt="DENTCRAFT" width="140" height="22" style="display: inline-block; height: 22px; width: auto; max-width: 140px; opacity: 0.85; margin-bottom: 12px;" />
             ${options?.footerNote ? `<p style="margin: 0 0 12px; color: #8b8b8b; font-size: 12px;">${options.footerNote}</p>` : ''}
             <p style="margin: 0; color: #8b8b8b; font-size: 11px; line-height: 1.6;">
               Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare<br>
@@ -406,7 +406,7 @@ export function priceEstimateConfirmationEmail(data: {
                   `).join('')}
                   <p style="margin: 12px 0 0; padding-top: 12px; border-top: 1px solid #3a2f24; color: ${ACCENT_COLOR}; font-size: 12px; font-weight: 600;">
                     Dr. Petric Răzvan-Tudor
-                    <span style="display: block; color: #b8a890; font-size: 11px; font-weight: 400; margin-top: 2px;">DentCraft Satu Mare</span>
+                    <span style="display: block; color: #b8a890; font-size: 11px; font-weight: 400; margin-top: 2px;">DENTCRAFT Satu Mare</span>
                   </p>
                 </td>
               </tr>

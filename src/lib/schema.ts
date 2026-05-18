@@ -8,7 +8,7 @@ export function getOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'MedicalBusiness', 'Dentist'],
-    name: 'Dentcraft',
+    name: 'DENTCRAFT',
     description: 'Clinica stomatologica moderna in Satu Mare',
     url: SITE_URL,
     telephone: CONTACT.phone,
@@ -58,7 +58,7 @@ export function getWebSiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Dentcraft',
+    name: 'DENTCRAFT',
     url: SITE_URL,
     potentialAction: {
       '@type': 'SearchAction',
@@ -119,7 +119,7 @@ export function getServiceSchema(options: {
     medicalSpecialty: 'Dentistry',
     provider: {
       '@type': 'Dentist',
-      name: 'Dentcraft',
+      name: 'DENTCRAFT',
       url: SITE_URL,
       telephone: CONTACT.phone,
       address: {
@@ -160,7 +160,7 @@ export function getPersonSchema(person: {
     ...(person.image ? { image: person.image } : {}),
     worksFor: {
       '@type': 'Dentist',
-      name: person.worksFor || 'Dentcraft',
+      name: person.worksFor || 'DENTCRAFT',
       url: SITE_URL,
     },
     ...(person.alumniOf ? {
@@ -200,13 +200,13 @@ export function getArticleSchema(article: {
     dateModified: article.dateModified || article.datePublished,
     author: {
       '@type': 'Person',
-      name: article.author || 'Dentcraft',
+      name: article.author || 'DENTCRAFT',
       ...(article.authorUrl ? { url: article.authorUrl } : {}),
       ...(article.authorJobTitle ? { jobTitle: article.authorJobTitle } : {}),
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Dentcraft',
+      name: 'DENTCRAFT',
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',

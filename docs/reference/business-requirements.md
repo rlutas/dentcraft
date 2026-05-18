@@ -1,13 +1,13 @@
 # Business Requirements Document (BRD)
-## Dentcraft.ro - Platformă Web pentru Clinică Stomatologică
+## DENTCRAFT.ro - Platformă Web pentru Clinică Stomatologică
 
 ---
 
 **Document Version:** 1.0
 **Date:** 24 Octombrie 2025
 **Prepared by:** Raul Lutas - Full Stack Developer
-**Client:** Dr. Răzvan Petric - Dentcraft Satu Mare
-**Project Name:** Dentcraft.ro - Digital Dental Platform
+**Client:** Dr. Răzvan Petric - DENTCRAFT Satu Mare
+**Project Name:** DENTCRAFT.ro - Digital Dental Platform
 
 ---
 
@@ -46,14 +46,14 @@
 
 ### 1.1 Project Purpose
 
-Dentcraft este o clinică stomatologică modernă din Satu Mare care oferă servicii complete de stomatologie generală, estetică dentară, protetică, implantologie, ortodonție și alte specialități. Momentan, clinica nu are un site web propriu, doar site-ul personal al Dr. Răzvan Petric (drpetric.ro).
+DENTCRAFT este o clinică stomatologică modernă din Satu Mare care oferă servicii complete de stomatologie generală, estetică dentară, protetică, implantologie, ortodonție și alte specialități. Momentan, clinica nu are un site web propriu, doar site-ul personal al Dr. Răzvan Petric (drpetric.ro).
 
-Acest proiect vizează crearea unei platforme web complete pentru Dentcraft.ro care va:
+Acest proiect vizează crearea unei platforme web complete pentru DENTCRAFT.ro care va:
 
 - **Atrage pacienți noi** prin prezență digitală profesională
 - **Automatizează procesul de programări** și reduce volumul de apeluri telefonice
 - **Oferă pacienților acces digital** la planuri de tratament, scanări dentare și documente
-- **Diferențiază Dentcraft** de competiție prin tehnologie avansată
+- **Diferențiază DENTCRAFT** de competiție prin tehnologie avansată
 - **Măsoară și optimizează** performanța de marketing prin KPI-uri clare
 
 ### 1.2 Business Value
@@ -104,13 +104,13 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 
 ### 2.1 Project Vision
 
-**"Dentcraft.ro va deveni platforma dentară digitală de referință în Satu Mare, oferind pacienților o experiență modernă, transparentă și accesibilă - de la prima vizită până la finalizarea tratamentului."**
+**"DENTCRAFT.ro va deveni platforma dentară digitală de referință în Satu Mare, oferind pacienților o experiență modernă, transparentă și accesibilă - de la prima vizită până la finalizarea tratamentului."**
 
 ### 2.2 Project Objectives
 
 | Obiectiv | Descriere | Măsurare |
 |----------|-----------|----------|
-| **O1: Digital Presence** | Creare identitate online profesională pentru Dentcraft | Website live, SEO rank Top 3 Satu Mare |
+| **O1: Digital Presence** | Creare identitate online profesională pentru DENTCRAFT | Website live, SEO rank Top 3 Satu Mare |
 | **O2: Lead Generation** | Atragere minimum 50 lead-uri/lună prin canal digital | Google Analytics, form submissions |
 | **O3: Appointment Automation** | 70% din programări făcute online fără telefon | Booking system metrics |
 | **O4: Patient Engagement** | Retenție crescută prin acces digital la informații | Portal usage, return rate |
@@ -155,7 +155,7 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 ### 2.4 Key Stakeholders
 
 - **Dr. Răzvan Petric** - Owner & Lead Dentist
-- **Echipa medicală Dentcraft** - Utilizatori dashboard medici
+- **Echipa medicală DENTCRAFT** - Utilizatori dashboard medici
 - **Pacienți existenți și noi** - Utilizatori finali platformă
 - **Personal administrativ** - Gestionare programări și pacienți
 - **Raul Lutas** - Developer & Project Manager
@@ -167,7 +167,7 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 ### 3.1 Current Digital Presence
 
 **Website:**
-- ❌ Dentcraft.ro NU există momentan
+- ❌ DENTCRAFT.ro NU există momentan
 - ✅ drpetric.ro există - site personal Dr. Petric (design plăcut, funcționalități basic)
 
 **Social Media:**
@@ -196,7 +196,7 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 ```
 
 **Pain Points:**
-- 🔴 Lipsa site dedicat Dentcraft (confuzie între personal brand și clinică)
+- 🔴 Lipsa site dedicat DENTCRAFT (confuzie între personal brand și clinică)
 - 🔴 Programări doar telefonic (pierdere apeluri în afara programului)
 - 🔴 Pacienții nu au acces digital la planuri tratament
 - 🔴 Nu există remindere automate (pacienți ratează programări)
@@ -219,7 +219,7 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 - ❌ NIMENI nu are patient portal
 - ❌ NIMENI nu are booking online funcțional
 - ❌ Majoritatea au design outdated
-- 🎯 **OPORTUNITATE: Dentcraft poate deveni lider prin tehnologie**
+- 🎯 **OPORTUNITATE: DENTCRAFT poate deveni lider prin tehnologie**
 
 ### 3.4 Best-in-Class International Benchmarks
 
@@ -233,14 +233,14 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 - ✅ **Mobile-first approach** - navigare perfectă pe telefon
 - ✅ **Trust signals** prominent (certificări, media mentions, garantii)
 
-**Dentakay Insights pentru Dentcraft:**
+**Dentakay Insights pentru DENTCRAFT:**
 - 🎨 **Design inspiration**: Layout modern, spacing generos, imagini premium
 - 📱 **Booking flow**: Multi-step form cu progress bar - reduce abandonare
 - 💰 **Price transparency**: Calculator in real-time crește încrederea
 - 🎥 **Video content**: Testimoniale video au conversie mult mai mare
 - ⭐ **Social proof**: Trustpilot badges + review count vizibil peste tot
 
-**Target pentru Dentcraft:** Să aducă acest nivel de profesionalism digital la Satu Mare, adaptat pieței locale românești
+**Target pentru DENTCRAFT:** Să aducă acest nivel de profesionalism digital la Satu Mare, adaptat pieței locale românești
 
 ---
 
@@ -260,7 +260,7 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
   - Lead generation consistent
   - Brand positioning premium
 
-#### 4.1.2 Echipa Medicală Dentcraft
+#### 4.1.2 Echipa Medicală DENTCRAFT
 - **Role:** Medici și asistenți utilizatori dashboard
 - **Needs:**
   - Acces rapid la informații pacienți
@@ -308,13 +308,13 @@ Alternativ, implementare directă Varianta 2 dacă bugetul permite și echipa es
 ### 5.1 Variant 1: Site Prezentare Premium
 
 #### 5.1.1 Overview
-Website modern, multi-limbă, mobile-first pentru prezentarea profesională a clinicii Dentcraft. Focus pe conversie lead-uri și SEO local.
+Website modern, multi-limbă, mobile-first pentru prezentarea profesională a clinicii DENTCRAFT. Focus pe conversie lead-uri și SEO local.
 
 #### 5.1.2 Core Features
 
 **Public Pages:**
 - Homepage cu hero section, servicii featured, testimoniale
-- Despre Dentcraft (echipă, valori, echipamente)
+- Despre DENTCRAFT (echipă, valori, echipamente)
 - Despre Dr. Răzvan Petric (bio, certificări, experiență)
 - Servicii (pagini detaliate per specialitate):
   - Stomatologie generală
@@ -324,7 +324,7 @@ Website modern, multi-limbă, mobile-first pentru prezentarea profesională a cl
   - Ortodonție
   - Endodonție
   - Chirurgie oro-maxilo-facială
-  - Pedodonție (opțional - "Dentcraft 4 Kids")
+  - Pedodonție (opțional - "DENTCRAFT 4 Kids")
 - Galerie Before/After (filtru per tip tratament)
 - Testimoniale pacienți (text + video)
 - Blog educațional (artole, studii de caz)
@@ -497,7 +497,7 @@ Platformă completă cu tot din Varianta 1 PLUS patient portal, booking online, 
   - Patient ID, Nume, Prenume, CNP, Email, Telefon
   - Treatment Plan ID, Descriere, Preț, Status
   - Payments: Achitat, Restant
-- Export programări din Dentcraft.ro → CSV pentru import în droot
+- Export programări din DENTCRAFT.ro → CSV pentru import în droot
 - Actualizare periodică (saptamânală sau on-demand)
 
 **File Management:**
@@ -807,7 +807,7 @@ Notifications
 | FR2.9.3 | Import CSV plăți | MUST | Ca admin, vreau să sincronizez plățile |
 | FR2.9.4 | CSV template download | MUST | Ca admin, vreau să știu formatul corect |
 | FR2.9.5 | Validation & error handling la import | MUST | Ca admin, vreau să văd ce a mers greșit |
-| FR2.9.6 | Export programări din Dentcraft → CSV | SHOULD | Ca admin, vreau să aduc programările în droot |
+| FR2.9.6 | Export programări din DENTCRAFT → CSV | SHOULD | Ca admin, vreau să aduc programările în droot |
 | **FR2.10** | **Analytics & Reporting (Advanced)** | SHOULD | Ca owner, vreau insights business |
 | FR2.10.1 | Dashboard KPI-uri (leads, conversii, revenue) | MUST | Ca owner, vreau overview financiar |
 | FR2.10.2 | Lead source tracking | MUST | Ca owner, vreau să știu de unde vin pacienții |
@@ -1620,7 +1620,7 @@ PAT001,TRT001,Fatete Ceramica,Fateta incisiv central superior,2,1500,completed
 PAT001,TRT001,Fatete Ceramica,Fateta incisiv lateral superior,2,1500,in_progress
 ```
 
-#### 11.1.5 Export Flow (Dentcraft → droot)
+#### 11.1.5 Export Flow (DENTCRAFT → droot)
 
 ```
 1. Admin accesează Admin Dashboard → Export Appointments
@@ -1640,15 +1640,15 @@ Ion Popescu,ion@example.com,0721234567,Dr. Razvan Petric,Control,2024-10-25 10:0
 
 #### Templates:
 1. **Confirmare programare**
-   - Subject: "Programare confirmată - Dentcraft"
+   - Subject: "Programare confirmată - DENTCRAFT"
    - Content: Detalii programare, data, ora, doctor, serviciu, link anulare/reprogramare
 
 2. **Reminder programare (24h înainte)**
-   - Subject: "Reminder: Programarea ta mâine la Dentcraft"
+   - Subject: "Reminder: Programarea ta mâine la DENTCRAFT"
    - Content: Detalii programare, link reprogramare/anulare, telefon clinică
 
 3. **Welcome email (înregistrare pacient)**
-   - Subject: "Bine ai venit la Dentcraft!"
+   - Subject: "Bine ai venit la DENTCRAFT!"
    - Content: Link verificare email, cum să folosești portalul
 
 4. **Completare tratament**
@@ -1656,7 +1656,7 @@ Ion Popescu,ion@example.com,0721234567,Dr. Razvan Petric,Control,2024-10-25 10:0
    - Content: Detalii tratament, next steps, link portal pentru vizualizare
 
 5. **Request review** (opțional)
-   - Subject: "Cum a fost experiența ta la Dentcraft?"
+   - Subject: "Cum a fost experiența ta la DENTCRAFT?"
    - Content: Link review Google, testimonial request
 
 ### 11.3 SMS Integration (Twilio - Optional)
@@ -2223,7 +2223,7 @@ Ion Popescu,ion@example.com,0721234567,Dr. Razvan Petric,Control,2024-10-25 10:0
 
 **Dependencies:**
 1. Acces la droot.ro pentru testare CSV export
-2. Logo final Dentcraft (sau confirmare folosire logo existent)
+2. Logo final DENTCRAFT (sau confirmare folosire logo existent)
 3. Texte pentru servicii și pagini (colaborare cu client)
 4. Imagini profesionale (clinică, echipamente, before/after)
 5. Certificări Dr. Petric (pentru pagina About)
@@ -2304,4 +2304,4 @@ Ion Popescu,ion@example.com,0721234567,Dr. Razvan Petric,Control,2024-10-25 10:0
 
 ---
 
-_Acest document este confidențial și destinat exclusiv clientului Dr. Răzvan Petric / Dentcraft Satu Mare. Reproducerea sau distribuția fără permisiune este interzisă._
+_Acest document este confidențial și destinat exclusiv clientului Dr. Răzvan Petric / DENTCRAFT Satu Mare. Reproducerea sau distribuția fără permisiune este interzisă._

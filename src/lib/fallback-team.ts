@@ -37,7 +37,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Medic Stomatolog Coordonator',
     photo: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
     specializations: ['Implantologie', 'Estetica Dentara', 'Protetică Dentară'],
-    bio: 'Dr. Razvan Petric este medicul stomatolog coordonator al clinicii DentCraft, cu peste 10 ani de experiență în domeniul stomatologiei moderne. A absolvit Facultatea de Medicină Dentară „Iuliu Hațieganu" din Cluj-Napoca în 2016 și și-a continuat formarea prin cursuri internaționale de protetică, implantologie și estetică dentară — Mauro Fradeani Education (Modulele I, II și III), Mastering Tooth Preparation cu Dr. Maxim Belograd (Kiev, 2019) și Competență în Implantologie Orală la Școala Națională de Sănătate Publică (București, 2020). Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise.',
+    bio: 'Dr. Razvan Petric este medicul stomatolog coordonator al clinicii DENTCRAFT, cu peste 10 ani de experiență în domeniul stomatologiei moderne. A absolvit Facultatea de Medicină Dentară „Iuliu Hațieganu" din Cluj-Napoca în 2016 și și-a continuat formarea prin cursuri internaționale de protetică, implantologie și estetică dentară — Mauro Fradeani Education (Modulele I, II și III), Mastering Tooth Preparation cu Dr. Maxim Belograd (Kiev, 2019) și Competență în Implantologie Orală la Școala Națională de Sănătate Publică (București, 2020). Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise.',
     education: [
       { institution: 'Universitatea de Medicină și Farmacie „Iuliu Hațieganu" Cluj-Napoca', degree: 'Doctor în Medicină Dentară', year: 2016 },
     ],
@@ -50,12 +50,12 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { name: 'Focus – Curs de Fotografie Dentară', issuer: 'Dr. Andrei Dicu & Dr. Dan Lazăr – Oradea', year: 2020 },
     ],
     gallery: [
-      { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-1.webp', alt: 'Dr. Petric Razvan-Tudor - medic stomatolog principal DentCraft Satu Mare specializat in implantologie' },
-      { src: '/images/gallery/razvan-petric/petric-razvan-estetica-dentara-1.webp', alt: 'Dr. Petric Razvan in cabinetul DentCraft Satu Mare - proceduri de estetica dentara' },
-      { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-1.webp', alt: 'Dr. Petric Razvan-Tudor - tratamente de protetica dentara la clinica DentCraft Satu Mare' },
-      { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-2.webp', alt: 'Dr. Petric Razvan - interventie de implantologie dentara la clinica DentCraft' },
-      { src: '/images/gallery/razvan-petric/petric-razvan-estetica-dentara-2.webp', alt: 'Dr. Petric Razvan-Tudor - tratamente de estetica dentara si fatete la DentCraft Satu Mare' },
-      { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-2.webp', alt: 'Dr. Petric Razvan in cabinetul DentCraft - lucrari de protetica dentara si coroane' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-1.webp', alt: 'Dr. Petric Razvan-Tudor - medic stomatolog principal DENTCRAFT Satu Mare specializat in implantologie' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-estetica-dentara-1.webp', alt: 'Dr. Petric Razvan in cabinetul DENTCRAFT Satu Mare - proceduri de estetica dentara' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-1.webp', alt: 'Dr. Petric Razvan-Tudor - tratamente de protetica dentara la clinica DENTCRAFT Satu Mare' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-implantologie-2.webp', alt: 'Dr. Petric Razvan - interventie de implantologie dentara la clinica DENTCRAFT' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-estetica-dentara-2.webp', alt: 'Dr. Petric Razvan-Tudor - tratamente de estetica dentara si fatete la DENTCRAFT Satu Mare' },
+      { src: '/images/gallery/razvan-petric/petric-razvan-protetica-dentara-2.webp', alt: 'Dr. Petric Razvan in cabinetul DENTCRAFT - lucrari de protetica dentara si coroane' },
     ],
     stats: {
       yearsExperience: 10,
@@ -69,7 +69,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Medic Stomatolog',
     photo: '/images/team/dr-ghirasim-denisa-stefania.webp',
     specializations: ['Stomatologie Pediatrica', 'Stomatologie Generala', 'Endodontie'],
-    bio: 'Dr. Ghirasim Denisa-Stefania este medic stomatolog la clinica DentCraft, cu o pasiune deosebita pentru lucrul cu copiii. Empatica, rabdatoare si dedicata, isi propune sa transforme vizita la cabinet intr-o experienta pozitiva si lipsita de teama pentru cei mici. Cu o abordare calma, blandete si o comunicare adaptata varstei, asigura un mediu de incredere atat pentru pacienti, cat si pentru parinti. Ofera tratamente de inalta calitate si diagnosticare precisa, sustinute de experienta clinica, de finalizarea rezidentiatului in Stomatologie Generala si a programului de formare psihopedagogica.',
+    bio: 'Dr. Ghirasim Denisa-Stefania este medic stomatolog la clinica DENTCRAFT, cu o pasiune deosebita pentru lucrul cu copiii. Empatica, rabdatoare si dedicata, isi propune sa transforme vizita la cabinet intr-o experienta pozitiva si lipsita de teama pentru cei mici. Cu o abordare calma, blandete si o comunicare adaptata varstei, asigura un mediu de incredere atat pentru pacienti, cat si pentru parinti. Ofera tratamente de inalta calitate si diagnosticare precisa, sustinute de experienta clinica, de finalizarea rezidentiatului in Stomatologie Generala si a programului de formare psihopedagogica.',
     education: [
       { institution: 'Universitatea din Oradea, Facultatea de Medicina si Farmacie', degree: 'Diploma de Licenta si Master – Doctor Medic Stomatolog (Medicina Dentara)', year: 2020 },
       { institution: 'Universitatea din Oradea', degree: 'Program de Formare Psihopedagogica (Modul 1 si Modul 2)', year: 2018 },
@@ -79,8 +79,8 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { name: 'Certificat Formare Psihopedagogica (Modul 1 si Modul 2)', issuer: 'Universitatea din Oradea', year: 2018 },
     ],
     gallery: [
-      { src: '/images/gallery/ghirasim-denisa/ghirasim-denisa-stomatologie-pediatrica-1.webp', alt: 'Dr. Ghirasim Denisa-Stefania - medic stomatolog specializata in stomatologie pediatrica la DentCraft Satu Mare', position: 'top' },
-      { src: '/images/gallery/ghirasim-denisa/ghirasim-denisa-stomatologie-pediatrica-2.webp', alt: 'Dr. Ghirasim Denisa-Stefania in cabinetul DentCraft - tratamente stomatologice pentru copii' },
+      { src: '/images/gallery/ghirasim-denisa/ghirasim-denisa-stomatologie-pediatrica-1.webp', alt: 'Dr. Ghirasim Denisa-Stefania - medic stomatolog specializata in stomatologie pediatrica la DENTCRAFT Satu Mare', position: 'top' },
+      { src: '/images/gallery/ghirasim-denisa/ghirasim-denisa-stomatologie-pediatrica-2.webp', alt: 'Dr. Ghirasim Denisa-Stefania in cabinetul DENTCRAFT - tratamente stomatologice pentru copii' },
     ],
     stats: {
       yearsExperience: 5,
@@ -94,7 +94,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Specialist Parodontolog',
     photo: '/images/team/dr-tincu-giovana.webp',
     specializations: ['Parodontologie', 'Stomatologie Pediatrica', 'Estetica Dentara'],
-    bio: 'Dr. Tincu Giovana-Nicoleta este medic stomatolog specialist parodontolog la clinica DentCraft, cu experienta dobandita in cadrul clinicilor Antalka Comfort Dent (Sfantu Gheorghe) si A Dental Clinic (Botosani). Motivata si dedicata, Dr. Tincu este pasionata de perfectionare continua si de oferirea celor mai bune solutii pentru sanatatea parodontala si estetica zambetului. Abordarea ei este centrata pe pacient, combinand empatia si comunicarea clara cu expertiza clinica si utilizarea tehnologiilor moderne. Vorbeste romana, maghiara, engleza si spaniola.',
+    bio: 'Dr. Tincu Giovana-Nicoleta este medic stomatolog specialist parodontolog la clinica DENTCRAFT, cu experienta dobandita in cadrul clinicilor Antalka Comfort Dent (Sfantu Gheorghe) si A Dental Clinic (Botosani). Motivata si dedicata, Dr. Tincu este pasionata de perfectionare continua si de oferirea celor mai bune solutii pentru sanatatea parodontala si estetica zambetului. Abordarea ei este centrata pe pacient, combinand empatia si comunicarea clara cu expertiza clinica si utilizarea tehnologiilor moderne. Vorbeste romana, maghiara, engleza si spaniola.',
     education: [
       { institution: 'Ministerul Sanatatii, Iasi', degree: 'Medic Specialist Parodontolog', year: 2017 },
       { institution: 'Universitatea de Medicina si Farmacie "Iuliu Hatieganu" Cluj-Napoca', degree: 'Licentiat in Medicina Dentara', year: 2013 },
@@ -106,8 +106,8 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { name: 'Rezidentiat Parodontologie', issuer: 'Spitalul Clinic de Urgenta "Sfantul Spiridon" Iasi', year: 2017 },
     ],
     gallery: [
-      { src: '/images/gallery/giovana-tincu/tincu-giovana-parodontologie-1.webp', alt: 'Dr. Tincu Giovana-Nicoleta - medic specialist parodontolog la DentCraft Satu Mare' },
-      { src: '/images/gallery/giovana-tincu/tincu-giovana-parodontologie-2.webp', alt: 'Dr. Tincu Giovana-Nicoleta in cabinetul DentCraft - consultatie parodontologie' },
+      { src: '/images/gallery/giovana-tincu/tincu-giovana-parodontologie-1.webp', alt: 'Dr. Tincu Giovana-Nicoleta - medic specialist parodontolog la DENTCRAFT Satu Mare' },
+      { src: '/images/gallery/giovana-tincu/tincu-giovana-parodontologie-2.webp', alt: 'Dr. Tincu Giovana-Nicoleta in cabinetul DENTCRAFT - consultatie parodontologie' },
     ],
     stats: {
       yearsExperience: 12,
@@ -121,7 +121,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Asistent Medical Coordonator',
     photo: '/images/team/asistent-gherman-camelia.webp',
     specializations: ['Asistenta Stomatologica', 'Igiena Orala', 'Relatii Pacienti'],
-    bio: 'Camelia Gherman este asistent medical la clinica DentCraft, cu experienta in asistenta stomatologica profesionala. Cu o atitudine calda si atenta, Camelia asigura confortul pacientilor pe parcursul tratamentelor.',
+    bio: 'Camelia Gherman este asistent medical la clinica DENTCRAFT, cu experienta in asistenta stomatologica profesionala. Cu o atitudine calda si atenta, Camelia asigura confortul pacientilor pe parcursul tratamentelor.',
     education: [
       { institution: 'Scoala Postliceala Sanitara', degree: 'Asistent Medical Generalist', year: 2019 },
     ],
@@ -136,7 +136,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     role: 'Receptionist',
     photo: '/images/team/asistent-daraban-carla.webp',
     specializations: ['Relatii Pacienti', 'Programari si Coordonare', 'Managementul Receptiei'],
-    bio: 'Karla Daraban este receptionista clinicii DentCraft si prima persoana care intampina pacientii. Cu o atitudine prietenoasa si profesionista, Karla se ocupa de programari, coordonarea fluxului de pacienti si asigurarea unei experiente placute inca de la primul contact cu clinica. Atentia la detalii si comunicarea clara fac din ea un membru esential al echipei.',
+    bio: 'Karla Daraban este receptionista clinicii DENTCRAFT si prima persoana care intampina pacientii. Cu o atitudine prietenoasa si profesionista, Karla se ocupa de programari, coordonarea fluxului de pacienti si asigurarea unei experiente placute inca de la primul contact cu clinica. Atentia la detalii si comunicarea clara fac din ea un membru esential al echipei.',
     education: [],
     certifications: [],
   },

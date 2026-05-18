@@ -1,4 +1,4 @@
-# Design System - Dentcraft.ro
+# Design System - DENTCRAFT.ro
 
 ## Directie Vizuala
 

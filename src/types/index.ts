@@ -1,5 +1,5 @@
 /**
- * Global type definitions for Dentcraft
+ * Global type definitions for DENTCRAFT
  */
 
 import type { Locale } from '@/i18n/config'

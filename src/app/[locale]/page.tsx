@@ -11,10 +11,11 @@ import { FramedHero } from '@/components/sections/FramedHero'
 import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { cn } from '@/lib/utils'
+import { translateTeamRole } from '@/lib/translate-team-role'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import { DoctorVideosGrid } from '@/components/sections/DoctorVideosGrid'
-import { BeforeAfterGalleryPreview } from '@/components/features/BeforeAfterGalleryPreview'
+import { SuccessCasesSection } from '@/components/sections/SuccessCasesSection'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import googleReviews from '@/data/google-reviews.json'
 import type { Locale } from '@/i18n/config'
@@ -195,7 +196,9 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
   // Check if we have Sanity data
   const hasSanityTestimonials = testimonials && testimonials.length > 0
   const hasSanityTeamMembers = teamMembers && teamMembers.length > 0
-  const hasSanityBeforeAfter = beforeAfterCases && beforeAfterCases.length > 0
+
+  // Sanity before/after cases nu mai sunt afișate momentan — păstrate pentru viitor
+  void beforeAfterCases
 
   return (
     <div className="flex flex-col">
@@ -369,18 +372,18 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               <ScrollReveal animation="fade-up">
                 <span className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 text-[10px] font-bold uppercase tracking-[0.18em] text-[#d4c4b0] bg-white/5 rounded-full border border-white/10">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                  Transparență totală
+                  {t('home.calculator.badge')}
                 </span>
               </ScrollReveal>
               <ScrollReveal animation="fade-up" delay={100}>
                 <h2 className="font-bold text-white leading-[0.95] tracking-normal text-3xl md:text-5xl lg:text-6xl mb-5">
-                  Calculator instant
-                  <span className="block font-serif italic font-medium text-[#d4c4b0] mt-2 tracking-wide">de preț</span>
+                  {t('home.calculator.titleBold')}
+                  <span className="block font-serif italic font-medium text-[#d4c4b0] mt-2 tracking-wide">{t('home.calculator.titleItalic')}</span>
                 </h2>
               </ScrollReveal>
               <ScrollReveal animation="fade-up" delay={200}>
                 <p className="text-base md:text-lg text-white/70 leading-relaxed mb-8 max-w-xl">
-                  Selectează tratamentul de care ai nevoie și primești estimarea în câteva secunde — fără telefon, fără așteptare. Plan de tratament scris înainte de a începe.
+                  {t('home.calculator.subtitle')}
                 </p>
               </ScrollReveal>
               <ScrollReveal animation="fade-up" delay={300}>
@@ -398,9 +401,9 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             <ScrollReveal animation="fade-up" delay={150}>
               <div className="grid gap-4">
                 {[
-                  { num: '01', text: 'Alegi serviciile dorite din catalog' },
-                  { num: '02', text: 'Vezi prețul minim, maxim și media' },
-                  { num: '03', text: 'Primești estimarea pe email opțional' },
+                  { num: '01', text: t('home.calculator.step1') },
+                  { num: '02', text: t('home.calculator.step2') },
+                  { num: '03', text: t('home.calculator.step3') },
                 ].map((step) => (
                   <div
                     key={step.num}
@@ -420,24 +423,24 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         </div>
       </section>
 
-      {/* Why Dentcraft - Editorial split-screen with photo + 4 reasons */}
+      {/* Why DENTCRAFT - Editorial split-screen with photo + 4 reasons */}
       <section className="py-24 md:py-32 bg-[#faf6f1] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
-        <div className="container relative z-10">
+        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-10">
           {/* Centered editorial header */}
           <div className="text-center mb-14 md:mb-20">
-            <AnimatedServiceHeading bold="De ce clinica" italic="DENTCRAFT" />
+            <AnimatedServiceHeading bold={t('home.whyClinic.headingBold')} italic={t('home.whyClinic.headingItalic')} />
             <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
-                Stomatologie modernă în Satu Mare, cu accent pe rezultate vizibile, comunicare clară și pacienți care revin cu zâmbetul.
+                {t('home.whyClinic.subtitle')}
               </p>
             </ScrollReveal>
           </div>
 
           {/* Split screen — photo + reasons */}
-          <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.85fr_1fr] gap-10 lg:gap-16 items-center">
             {/* LEFT: clinic photo with overlay stat card */}
             <ScrollReveal animation="fade-up">
               <div className="relative">
@@ -445,13 +448,17 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                 <div className="absolute -top-8 -left-8 w-24 h-24 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
                 <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
 
-                <div className="relative aspect-[4/3] md:aspect-[5/4] lg:aspect-[4/3] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
-                  <Image
-                    src="/images/clinic/clinic-1.webp"
-                    alt="Cabinet Dentcraft"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 55vw"
-                    className="object-cover object-[30%_center] md:object-center"
+                <div className="relative aspect-[4/3] md:aspect-[5/4] lg:aspect-[16/9] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
+                  <video
+                    src="/video/clinica.mp4"
+                    poster="/video/clinica-poster.jpg"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label="Cabinet DENTCRAFT"
+                    className="absolute inset-0 w-full h-full object-cover object-[30%_center] md:object-center"
                   />
                 </div>
 
@@ -464,7 +471,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                           <CountUp end={10} suffix="+" duration={2000} />
                         </div>
                         <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          ani experiență
+                          {t('home.whyClinic.statsExperience')}
                         </div>
                       </div>
                       <div className="h-10 w-px bg-[#e8e0d5]" />
@@ -473,7 +480,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                           <CountUp end={1500} suffix="+" duration={2200} />
                         </div>
                         <div className="text-[10px] md:text-xs text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          pacienți tratați
+                          {t('home.whyClinic.statsPatients')}
                         </div>
                       </div>
                     </div>
@@ -487,23 +494,23 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               {[
                 {
                   num: '01',
-                  title: 'Echipă cu peste 10 ani de experiență',
-                  desc: 'Dr. Petric și echipa au tratat peste 1500 de pacienți, cu rezultate documentate prin cazuri reale.',
+                  title: t('home.whyClinic.reasons.r1Title'),
+                  desc: t('home.whyClinic.reasons.r1Desc'),
                 },
                 {
                   num: '02',
-                  title: 'Tehnologie modernă, planuri exacte',
-                  desc: 'Scanner 3D digital, radiologie low-dose și planificare computerizată — fără surprize în timpul tratamentului.',
+                  title: t('home.whyClinic.reasons.r2Title'),
+                  desc: t('home.whyClinic.reasons.r2Desc'),
                 },
                 {
                   num: '03',
-                  title: 'Confort și anestezie blândă',
-                  desc: 'Ambient relaxant, anestezie nedureroasă și comunicare clară la fiecare pas. Frica de stomatolog rămâne afară.',
+                  title: t('home.whyClinic.reasons.r3Title'),
+                  desc: t('home.whyClinic.reasons.r3Desc'),
                 },
                 {
                   num: '04',
-                  title: 'Prețuri transparente, garanție',
-                  desc: 'Calculator de preț online, plan de tratament scris înainte de a începe și garanție pentru lucrări.',
+                  title: t('home.whyClinic.reasons.r4Title'),
+                  desc: t('home.whyClinic.reasons.r4Desc'),
                   link: { href: '/preturi#calculator' as const, label: t('hero.ctaSecondary') },
                 },
               ].map((reason, i) => (
@@ -559,7 +566,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="container relative z-10">
           {/* Header */}
           <div className="text-center mb-16 lg:mb-20">
-            <AnimatedServiceHeading bold="Cunoaște" italic="echipa" />
+            <AnimatedServiceHeading bold={t('home.teamSection.headingBold')} italic={t('home.teamSection.headingItalic')} />
             <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
                 {t('teamPreview.subtitle')}
@@ -657,7 +664,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                         {member.name}
                       </h3>
                       <p className="text-xs md:text-sm text-[#8b7355] font-medium leading-tight">
-                        {member.role}
+                        {translateTeamRole(member.role, t)}
                       </p>
                     </div>
                   </div>
@@ -707,10 +714,10 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="container relative z-10">
           {/* Section header - editorial typography matching the rest */}
           <div className="text-center mb-14 md:mb-20">
-            <AnimatedServiceHeading bold="Sfaturi de la" italic="doctorii nostri" />
+            <AnimatedServiceHeading bold={t('home.faqSection.headingBold')} italic={t('home.faqSection.headingItalic')} />
             <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
-                Doctorii Dentcraft iti raspund la cele mai frecvente intrebari despre tratamente, igiena si rezultate.
+                {t('home.faqSection.subtitle')}
               </p>
             </ScrollReveal>
           </div>
@@ -723,7 +730,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                 posterSrc: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
                 posterAlt: 'Dr. Petric Razvan-Tudor',
                 doctorName: 'Dr. Petric Razvan-Tudor',
-                doctorRole: 'Medic Stomatolog Coordonator',
+                doctorRole: t('home.doctorRoles.coordinator'),
                 delay: '0.1s',
               },
               {
@@ -731,7 +738,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                 posterSrc: '/images/team/dr-ghirasim-denisa-stefania.webp',
                 posterAlt: 'Dr. Ghirasim Denisa-Stefania',
                 doctorName: 'Dr. Ghirasim Denisa',
-                doctorRole: 'Medic Stomatolog · Pediatrie',
+                doctorRole: t('home.doctorRoles.dentistPediatric'),
                 delay: '0.2s',
               },
               {
@@ -739,7 +746,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                 posterSrc: '/images/team/dr-tincu-giovana.webp',
                 posterAlt: 'Dr. Tincu Giovana-Nicoleta',
                 doctorName: 'Dr. Tincu Giovana',
-                doctorRole: 'Medic Specialist · Parodontologie',
+                doctorRole: t('home.doctorRoles.specialistPeriodontics'),
                 delay: '0.3s',
               },
             ]}
@@ -753,7 +760,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               rel="noopener noreferrer"
               className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
             >
-              <span>Vezi mai multe pe Instagram</span>
+              <span>{t('home.faqSection.instagramCta')}</span>
               <span
                 aria-hidden="true"
                 className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -770,10 +777,10 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         <div className="container relative z-10">
           {/* Section header — matches hero typography */}
           <div className="text-center mb-12 md:mb-16">
-            <AnimatedServiceHeading bold="Ce spun" italic="pacienții" />
+            <AnimatedServiceHeading bold={t('home.reviewsSection.headingBold')} italic={t('home.reviewsSection.headingItalic')} />
             <ScrollReveal animation="fade-up" delay={500}>
               <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
-                Pacientii nostri vorbesc — fiecare recenzie e verificata pe Google si reflecta experienta lor reala la clinica DentCraft.
+                {t('home.reviewsSection.subtitle')}
               </p>
             </ScrollReveal>
           </div>
@@ -789,58 +796,8 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
         </div>
       </section>
 
-      {/* Before/After Gallery Section - editorial redesign */}
-      {hasSanityBeforeAfter && (
-        <section className={`py-24 md:py-32 relative overflow-hidden ${hasSanityTestimonials ? 'bg-[#f5f0e8]' : 'bg-white'}`}>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
-
-          {/* Floating icons — transformation theme */}
-          <FloatingIcons
-            icons={[
-              { src: '/icons/002-broken-tooth-2.svg', className: 'top-8 left-3 w-12 h-12 md:top-28 md:left-12 md:w-20 md:h-20 lg:left-24 lg:w-24 lg:h-24', variant: 'driftB', duration: 28, opacity: 0.11 },
-              { src: '/icons/008-white-teeth.svg', className: 'top-8 right-3 w-14 h-14 md:top-32 md:right-12 md:w-24 md:h-24 lg:right-24 lg:w-28 lg:h-28', variant: 'driftA', duration: 32, delay: 3, opacity: 0.11 },
-              { src: '/icons/010-smile.svg', className: 'top-[15rem] left-4 w-10 h-10 md:hidden xl:block xl:top-24 xl:left-[24%] xl:w-14 xl:h-14', variant: 'driftC', duration: 24, delay: 2, opacity: 0.1 },
-              { src: '/icons/009-teeth.svg', className: 'top-[15rem] right-4 w-12 h-12 md:hidden xl:block xl:top-20 xl:right-[24%] xl:w-14 xl:h-14', variant: 'driftB', duration: 26, delay: 5, opacity: 0.1 },
-            ]}
-          />
-
-          <div className="container relative z-10">
-            {/* Editorial header — bold + serif italic accent (matches hero/services/team/clinic/reviews) */}
-            <div className="text-center mb-14 md:mb-20">
-              <AnimatedServiceHeading bold="Rezultate" italic="reale" />
-              <ScrollReveal animation="fade-up" delay={500}>
-                <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed">
-                  Cazuri reale, fotografiate la clinica DentCraft. Trage de slider să vezi cum un tratament profesional schimbă vizibil zambetul fiecărui pacient.
-                </p>
-              </ScrollReveal>
-            </div>
-
-            <BeforeAfterGalleryPreview
-              afterLabel={t('gallery.after')}
-              beforeLabel={t('gallery.before')}
-              cases={beforeAfterCases}
-              durationLabel={t('gallery.duration')}
-            />
-
-            {/* View All — matches hero CTA arrow-reveal pattern */}
-            <ScrollReveal animation="fade-up" delay={300} className="mt-14 md:mt-16 text-center">
-              <Link
-                href="/galerie"
-                className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
-              >
-                <span>{t('galleryPreview.viewAll')}</span>
-                <span
-                  aria-hidden="true"
-                  className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                >
-                  <ArrowRight className="w-5 h-5 shrink-0" strokeWidth={2.25} />
-                </span>
-              </Link>
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
+      {/* Cazuri de succes — minimalist gallery cu lightbox */}
+      <SuccessCasesSection viewAllLabel={t('galleryPreview.viewAll')} />
 
     </div>
   )

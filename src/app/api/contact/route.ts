@@ -204,7 +204,7 @@ export async function POST(request: Request) {
 
     // Send admin notification
     const { error } = await resend.emails.send({
-      from: 'Dentcraft Website <noreply@dentcraft.ro>',
+      from: 'DENTCRAFT Website <noreply@dentcraft.ro>',
       html: contactAdminEmail({
         name: data.name,
         email: data.email,
@@ -215,7 +215,7 @@ export async function POST(request: Request) {
         gdprDate: new Date().toISOString(),
       }),
       replyTo: data.email,
-      subject: `[Dentcraft Contact] ${subjectLabel} - ${data.name}`,
+      subject: `[DENTCRAFT Contact] ${subjectLabel} - ${data.name}`,
       to: recipientEmail,
     })
 
@@ -226,12 +226,12 @@ export async function POST(request: Request) {
 
     // Send confirmation email to client (non-blocking)
     resend.emails.send({
-      from: 'Dentcraft <noreply@dentcraft.ro>',
+      from: 'DENTCRAFT <noreply@dentcraft.ro>',
       html: contactConfirmationEmail({
         name: data.name,
         subjectLabel,
       }),
-      subject: 'Am primit mesajul tau - Dentcraft',
+      subject: 'Am primit mesajul tau - DENTCRAFT',
       to: data.email,
     }).catch((err) => {
       console.error('Failed to send confirmation email:', err)

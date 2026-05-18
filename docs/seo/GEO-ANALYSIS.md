@@ -1,4 +1,4 @@
-# GEO Analysis - DentCraft Satu Mare
+# GEO Analysis - DENTCRAFT Satu Mare
 ## Generative Engine Optimization Report (February 2026)
 
 ---
@@ -14,7 +14,7 @@
 | Technical Accessibility | 20% | 85/100 | 17.0 |
 | **Total** | | | **45.75 → 38** (brand penalty) |
 
-> Brand penalty applied: DentCraft has near-zero verified online presence, making AI citation extremely unlikely regardless of on-site quality.
+> Brand penalty applied: DENTCRAFT has near-zero verified online presence, making AI citation extremely unlikely regardless of on-site quality.
 
 ---
 
@@ -58,7 +58,7 @@ No `/llms.txt` file exists. This is a missed opportunity to provide AI crawlers 
 **Recommended llms.txt content:**
 
 ```
-# DentCraft - Clinica Stomatologica Satu Mare
+# DENTCRAFT - Clinica Stomatologica Satu Mare
 
 > Clinica stomatologica moderna in Satu Mare, Romania. 6 specialisti,
 > peste 10 ani experienta. Implantologie, ortodontie, estetica dentara,
@@ -98,7 +98,7 @@ No `/llms.txt` file exists. This is a missed opportunity to provide AI crawlers 
 
 | Platform | Status | Impact on AI Citations |
 |----------|--------|----------------------|
-| Google Search ("DentCraft Satu Mare") | NOT INDEXED | Cannot be cited |
+| Google Search ("DENTCRAFT Satu Mare") | NOT INDEXED | Cannot be cited |
 | Google Business Profile | NOT FOUND | No local entity recognition |
 | Wikipedia / Wikidata | NOT FOUND | ChatGPT cites Wikipedia 47.9% of time |
 | Reddit | NOT FOUND | Perplexity cites Reddit 46.7% of time |
@@ -110,11 +110,11 @@ No `/llms.txt` file exists. This is a missed opportunity to provide AI crawlers 
 | Dr. Razvan Petric (drpetric.ro) | ACTIVE | Only verifiable entity link |
 | Dr. Razvan Petric Instagram | ACTIVE (@dr.razvanpetric) | Dental case studies |
 
-**Brand Confusion Risk:** "DentCraft" is dominated in search by DentCraft Tools (paintless dent repair, Oklahoma, USA, est. 1992). Multiple other dental entities use "DentCraft" globally (India, Canada).
+**Brand Confusion Risk:** "DENTCRAFT" is dominated in search by DENTCRAFT Tools (paintless dent repair, Oklahoma, USA, est. 1992). Multiple other dental entities use "DENTCRAFT" globally (India, Canada).
 
 ### Brand Mention Score: 5/100
 
-Per Ahrefs December 2025 study, brand mentions correlate 3x more strongly with AI visibility than backlinks. DentCraft has effectively zero brand mentions across high-citation platforms.
+Per Ahrefs December 2025 study, brand mentions correlate 3x more strongly with AI visibility than backlinks. DENTCRAFT has effectively zero brand mentions across high-citation platforms.
 
 ---
 
@@ -129,7 +129,7 @@ All content pages use Next.js async server components. No key content is client-
 - Service pages: `async function ServicePage()` — content + FAQ server-rendered
 - Team pages: `async function TeamMemberPage()` — bio + credentials server-rendered
 
-AI crawlers do NOT execute JavaScript. All DentCraft content is accessible via initial HTML response.
+AI crawlers do NOT execute JavaScript. All DENTCRAFT content is accessible via initial HTML response.
 
 ---
 
@@ -195,17 +195,17 @@ The article has several quotable 134-167 word answer blocks:
 
 ### Homepage — Add Answer Blocks
 
-**Current:** "De ce DentCraft" section with stats icons
+**Current:** "De ce DENTCRAFT" section with stats icons
 **Suggested:** Add 5-8 question-based H2 sections with direct 134-167 word answers:
 
 ```
-## Ce servicii stomatologice ofera DentCraft in Satu Mare?
+## Ce servicii stomatologice ofera DENTCRAFT in Satu Mare?
 [134-167 word answer block with specific services, prices, and equipment]
 
-## Cat costa un implant dentar la DentCraft?
+## Cat costa un implant dentar la DENTCRAFT?
 [Direct answer with price range in first sentence, then context]
 
-## Cine sunt medicii de la DentCraft?
+## Cine sunt medicii de la DENTCRAFT?
 [Named doctors with credentials, linking to /echipa pages]
 ```
 
@@ -218,7 +218,7 @@ The article has several quotable 134-167 word answer blocks:
 
 **Current:** Service page starts with general description
 **Suggested:** Start each service with definition pattern:
-"Implantul dentar este o procedura stomatologica prin care se inlocuieste radacina unui dinte pierdut cu un surub din titan biocompatibil. La DentCraft Satu Mare, folosim implanturi premium cu garantie extinsa."
+"Implantul dentar este o procedura stomatologica prin care se inlocuieste radacina unui dinte pierdut cu un surub din titan biocompatibil. La DENTCRAFT Satu Mare, folosim implanturi premium cu garantie extinsa."
 
 ---
 
@@ -279,7 +279,7 @@ The article has several quotable 134-167 word answer blocks:
 
 ## Competitive Context
 
-DentCraft's local competitors with blogs:
+DENTCRAFT's local competitors with blogs:
 - **Art Dental Studio** — established blog presence
 - **Clinica Duo Dent** — active content marketing
 - **Expert Dental** — competing for same keywords

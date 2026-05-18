@@ -1,4 +1,4 @@
-# Design Standard - Dentcraft.ro
+# Design Standard - DENTCRAFT.ro
 
 > **Bazat pe implementarea Homepage + Team Profiles - Actualizat 24 Februarie 2026**
 > Acest document definește standardele vizuale pentru toate paginile site-ului.
