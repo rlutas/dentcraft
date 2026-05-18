@@ -12,6 +12,7 @@ import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { cn } from '@/lib/utils'
 import { translateTeamRole } from '@/lib/translate-team-role'
+import { LazyVideo } from '@/components/ui/LazyVideo'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import { DoctorVideosGrid } from '@/components/sections/DoctorVideosGrid'
@@ -449,16 +450,10 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                 <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
 
                 <div className="relative aspect-[4/3] md:aspect-[5/4] lg:aspect-[16/9] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
-                  <video
+                  <LazyVideo
                     src="/video/clinica.mp4"
                     poster="/video/clinica-poster.jpg"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label="Cabinet DENTCRAFT"
-                    className="absolute inset-0 w-full h-full object-cover object-[30%_center] md:object-center"
+                    alt="Cabinet DENTCRAFT"
                   />
                 </div>
 
