@@ -35,10 +35,10 @@ export function updateGoogleConsent(analytics: boolean, marketing: boolean) {
   })
 }
 
-// Google Ads conversion label for "Form Submission" action (AW-18165025740)
-const GOOGLE_ADS_FORM_CONVERSION = 'AW-18165025740/6tECCPjmna8cEMyX4dVD'
-
-// Track form submissions for Google Ads conversions
+// Track form submissions — pushes `generate_lead` to dataLayer.
+// Google Ads conversion is wired in GTM (tag fires on this Custom Event,
+// using conversion AW-18165025740/6tECCPjmna8cEMyX4dVD).
+// Wiring directly via gtag here would cause double-count.
 export function trackFormSubmission(formType: 'contact' | 'callback' | 'price_estimate', data?: {
   service?: string
   doctor?: string
@@ -49,11 +49,6 @@ export function trackFormSubmission(formType: 'contact' | 'callback' | 'price_es
     ...(data?.service ? { service_name: data.service } : {}),
     ...(data?.doctor ? { doctor_name: data.doctor } : {}),
   })
-
-  // Fire Google Ads conversion (native gtag — most precise attribution)
-  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    window.gtag('event', 'conversion', { send_to: GOOGLE_ADS_FORM_CONVERSION })
-  }
 }
 
 // Track phone number clicks
