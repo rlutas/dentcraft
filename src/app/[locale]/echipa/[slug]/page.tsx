@@ -360,6 +360,7 @@ async function AboutSection({
   patientsCount,
   bioContent,
   gallery,
+  hideGalleryPlaceholder,
 }: {
   firstName: string
   isDoctor: boolean
@@ -368,6 +369,7 @@ async function AboutSection({
   patientsCount?: number
   bioContent: React.ReactNode
   gallery?: Array<{ src: string; alt: string }>
+  hideGalleryPlaceholder?: boolean
 }) {
   const t = await getTranslations('team.profile')
   return (
@@ -400,13 +402,15 @@ async function AboutSection({
           </ScrollReveal>
 
           {/* Photo gallery */}
-          <ScrollReveal animation="fade-up" delay={300}>
-            {gallery && gallery.length > 0 ? (
+          {gallery && gallery.length > 0 ? (
+            <ScrollReveal animation="fade-up" delay={300}>
               <PhotoGallery images={gallery} />
-            ) : (
+            </ScrollReveal>
+          ) : !hideGalleryPlaceholder ? (
+            <ScrollReveal animation="fade-up" delay={300}>
               <PhotoGalleryPlaceholder />
-            )}
-          </ScrollReveal>
+            </ScrollReveal>
+          ) : null}
         </div>
       </div>
     </section>
@@ -794,6 +798,7 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
             }
             {...(member.stats?.patientsCount !== undefined ? { patientsCount: member.stats.patientsCount } : {})}
             {...(member.gallery && member.gallery.length > 0 ? { gallery: member.gallery } : {})}
+            {...(member.hideGalleryPlaceholder ? { hideGalleryPlaceholder: true } : {})}
           />
 
           {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}

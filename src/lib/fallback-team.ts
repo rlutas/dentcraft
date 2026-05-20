@@ -22,6 +22,8 @@ export type FallbackTeamMember = {
     alt: string
     position?: 'top' | 'center' | 'bottom'
   }>
+  /** When true, the "gallery coming soon" placeholder is suppressed on the profile page. */
+  hideGalleryPlaceholder?: boolean
   stats?: {
     yearsExperience?: number
     patientsCount?: number
@@ -112,6 +114,30 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     stats: {
       yearsExperience: 12,
       patientsCount: 3200,
+    },
+  },
+  {
+    key: 'doctor4',
+    name: 'Dr. Buterchi Codrut-Ciprian',
+    slug: 'codrut-buterchi',
+    role: 'Medic Specialist Chirurgie Dento-Alveolara',
+    photo: '/images/team/dr-buterchi-codrut-ciprian.webp',
+    specializations: ['Chirurgie Dento-Alveolara', 'Implantologie', 'Protetica Dentara pe Implanturi'],
+    bio: 'Dr. Buterchi Codrut-Ciprian este medic specialist in Chirurgie Dento-Alveolara la clinica DENTCRAFT, cu o experienta unica ce combina pregatirea de medic stomatolog cu cea de tehnician dentar. A absolvit Facultatea de Tehnica Dentara la UMF "Iuliu Hatieganu" Cluj-Napoca in 2011 si Facultatea de Medicina Dentara la Universitatea din Oradea in 2021. Inainte de a deveni medic, a lucrat peste 10 ani ca tehnician dentar specializat in lucrari protetice pe implanturi si Design CAD-CAM, inclusiv ca Head of Prosthetic Department la Athena Dental Laboratory din Northampton, Anglia. A finalizat rezidentiatul in Chirurgie Dento-Alveolara la Spitalul Clinic Judetean de Urgenta Cluj-Napoca in 2023, unde activeaza in continuare ca medic specialist. Aceasta dubla expertiza ii permite o intelegere profunda atat a partii chirurgicale, cat si a celei protetice — un avantaj important in implantologie si reabilitari complexe.',
+    education: [
+      { institution: 'Universitatea din Oradea, Facultatea de Medicina Dentara', degree: 'Doctor Medic Stomatolog (Medicina Dentara)', year: 2021 },
+      { institution: 'Universitatea de Medicina si Farmacie "Iuliu Hatieganu" Cluj-Napoca, Facultatea de Tehnica Dentara', degree: 'Tehnician Dentar', year: 2011 },
+    ],
+    certifications: [
+      { name: 'Specialist Chirurgie Dento-Alveolara', issuer: 'Spitalul Clinic Judetean de Urgenta Cluj-Napoca', year: 2023 },
+      { name: 'Rezidentiat Chirurgie Dento-Alveolara', issuer: 'Spitalul Clinic Judetean de Urgenta Cluj-Napoca', year: 2023 },
+      { name: 'Curs de Specializare Chirurgicala si Protetica', issuer: 'Dinu Academy, Cluj-Napoca', year: 2025 },
+      { name: 'Head of Prosthetic Department', issuer: 'Athena Dental Laboratory, Northampton, UK', year: 2015 },
+    ],
+    hideGalleryPlaceholder: true,
+    stats: {
+      yearsExperience: 14,
+      patientsCount: 2000,
     },
   },
   {

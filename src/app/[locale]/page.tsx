@@ -10,7 +10,6 @@ import { ClinicSection } from '@/components/sections/ClinicSection'
 import { FramedHero } from '@/components/sections/FramedHero'
 import { CountUp } from '@/components/ui/CountUp'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { cn } from '@/lib/utils'
 import { translateTeamRole } from '@/lib/translate-team-role'
 import { LazyVideo } from '@/components/ui/LazyVideo'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
@@ -569,11 +568,11 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             </ScrollReveal>
           </div>
 
-          {/* Team Grid - 3 doctors top row + 2 staff centered on second row (md+) */}
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-5 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {/* Team Grid - 4 doctors top row + 2 staff centered on second row (md+) */}
+          <div className="grid grid-cols-2 md:grid-cols-8 gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {(() => {
-              const TEAM_SLUGS = ['razvan-petric', 'denisa-ghirasim', 'giovana-tincu', 'camelia-gherman', 'karla-daraban']
-              const allMembers = hasSanityTeamMembers && teamMembers.length >= 5 ? teamMembers : fallbackTeamMembers
+              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'denisa-ghirasim', 'giovana-tincu', 'camelia-gherman', 'karla-daraban']
+              const allMembers = hasSanityTeamMembers && teamMembers.length >= 6 ? teamMembers : fallbackTeamMembers
               const filtered = TEAM_SLUGS
                 .map((slug) => allMembers.find((m) => m.slug === slug))
                 .filter((m): m is NonNullable<typeof m> => Boolean(m))
@@ -581,23 +580,23 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               return filtered.map((member, index) => (
                 <div
                   key={'_id' in member ? member._id : member.key}
-                  className={cn(
+                  className={[
                     'md:col-span-2',
-                    index === 0 && 'col-span-2 md:col-span-2',
-                    index === 3 && 'md:col-start-2',
-                    index === 4 && 'md:col-start-4'
-                  )}
+                    index === 4 ? 'md:col-start-3' : '',
+                    index === 5 ? 'md:col-start-5' : '',
+                  ].filter(Boolean).join(' ')}
                 >
                 <ScrollReveal
                   animation="fade-up"
                   delay={index * 100}
+                  className="h-full"
                 >
                 <Link
                   href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
-                  className="group block"
+                  className="group block h-full"
                 >
                   {/* Card with photo */}
-                  <div className="relative rounded-2xl md:rounded-3xl overflow-hidden
+                  <div className="relative h-full flex flex-col rounded-2xl md:rounded-3xl overflow-hidden
                     bg-white border border-[#e8e0d5]
                     shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08)]
                     hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.2)]
@@ -653,7 +652,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                     </div>
 
                     {/* Name & Role - inside card */}
-                    <div className="px-3 py-3 md:px-4 md:py-4 text-center">
+                    <div className="flex-1 flex flex-col justify-center px-3 py-3 md:px-4 md:py-4 text-center">
                       <h3 className="text-sm md:text-base lg:text-lg font-bold text-[#2a2118] mb-0.5 md:mb-1
                         group-hover:text-[#8b7355] transition-colors duration-300 leading-tight">
                         {member.name}

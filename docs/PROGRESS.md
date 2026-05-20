@@ -1,6 +1,41 @@
 # DENTCRAFT.ro - Project Status
 
-**Last updated:** 18 May 2026
+**Last updated:** 20 May 2026
+
+## 📝 Session 2026-05-20 — Dr. Buterchi adăugat în echipă + CSP & Next.js 16 polish
+
+### 4. CSP extins pentru Google Ads / Conversion Linker
+**Problema:** Console errors live blocau request-uri spre `pagead2.googlesyndication.com` (din Conversion Linker / Enhanced Conversions) și un script `googleads.g.doubleclick.net/pagead/viewthroughconversion`.
+
+**Fix în `next.config.ts`:**
+- `script-src`: + `googleads.g.doubleclick.net` + `pagead2.googlesyndication.com`
+- `img-src`: + `pagead2.googlesyndication.com`
+- `connect-src`: + `pagead2.googlesyndication.com`
+
+### 3. Image quality config pentru Next.js 16 compat
+- `images.qualities: [75, 95]` în `next.config.ts` — elimină warning-ul "quality 95 not configured in images.qualities" pentru `Image quality={95}` folosit la hero portrait/landscape.
+
+### 2. Layout echipă pe homepage: 4 doctori + 2 asistente
+- `src/app/[locale]/page.tsx`: schimbat grid de la `md:grid-cols-6` (3 doctori + 2 asistente centrate) la `md:grid-cols-8` (4 doctori + 2 asistente centrate cu `md:col-start-3` / `md:col-start-5`).
+- Mobile: păstrat `grid-cols-2` (3 rânduri × 2 carduri).
+- Carduri egal-înălțime: `h-full` propagat prin ScrollReveal → Link → card div, card devenit `flex flex-col`, panou nume/rol cu `flex-1 + justify-center` — corecție pentru când rolul se rupe pe 2 rânduri (ex: "Medic Specialist Chirurgie Dento-Alveolara").
+- Ordine TEAM_SLUGS: petric → buterchi → ghirasim → tincu → camelia → karla.
+- Curățat import `cn` nefolosit.
+
+### 1. Dr. Buterchi Codrut-Ciprian — Medic Specialist Chirurgie Dento-Alveolara
+- **Foto:** `public/images/team/dr-buterchi-codrut-ciprian.webp` (convertită din PNG 1.3MB → WebP 87KB cu `cwebp -q 85`).
+- **Profil în `src/lib/fallback-team.ts`** (`key: doctor4`, `slug: codrut-buterchi`):
+  - Specializări: Chirurgie Dento-Alveolara, Implantologie, Protetică pe Implanturi
+  - Bio: subliniază dubla expertiză (tehnician dentar 10+ ani + medic stomatolog), inclusiv Head of Prosthetic Department la Athena Dental Laboratory UK
+  - Educație: UMF Cluj-Napoca (Tehnică Dentară 2011) + Univ. Oradea (Medicină Dentară 2021)
+  - Certificări: Specialist Chirurgie Dento-Alveolara (Spital Cluj 2023), Rezidențiat 2023, Curs Dinu Academy 2025, Head of Prosthetic UK 2015
+  - Stats: 14 ani experiență, 2000 pacienți
+- **Profil page (`/echipa/codrut-buterchi`):** ascuns placeholder-ul "Galerie foto în curând" + nu afișează secțiunea video reels (nu există încă conținut):
+  - Adăugat câmp opțional `hideGalleryPlaceholder?: boolean` pe tipul `FallbackTeamMember`.
+  - `AboutSection` în `echipa/[slug]/page.tsx` acceptă noul prop și sare peste `<PhotoGalleryPlaceholder>` când e activ.
+  - Video reels: `getDoctorVideoForSlug('codrut-buterchi', ...)` returnează `null` (slug nedefinit în map) → secțiunea se ascunde automat, fără cod special.
+
+---
 
 ## 📝 Session 2026-05-18 (final) — CSP fix, GTM migration, GBP link
 
