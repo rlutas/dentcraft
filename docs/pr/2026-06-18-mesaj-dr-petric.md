@@ -16,9 +16,12 @@ Bună ziua, domnule doctor! 👋 Vă fac un rezumat cu tot ce am lucrat azi pent
 • Am răspuns la **toate cele 5 recenzii noi** de pe Google — frumos, personalizat. (Felicitări pentru recenzii, continuați să le cereți pacienților, contează enorm!)
 • Am publicat o postare nouă pe profilul Google.
 
-**📣 Google Ads (reclamele)**
-• Am refăcut **toate anunțurile** — mai relevante, mai bine structurate. **Am scos numele dvs. din anunțuri**, cum am discutat.
-• Am pornit o **campanie nouă pe „prețuri"** — prinde pacienții care caută direct tarife.
+**📣 Google Ads (reclamele) — refăcute complet**
+• Am **rescris și refăcut TOATE anunțurile**, de la zero, pe fiecare categorie (general, implant, ortodonție, estetică, brand) — texte noi, mai relevante, optimizate ca să apară mai sus și să coste mai puțin.
+• **Am scos numele dvs. din anunțuri**, cum am discutat.
+• Am eliminat o problemă care scumpea reclamele (anunțurile vechi erau setate greșit) — am oprit anunțurile vechi și le-am înlocuit cu cele noi.
+• Am pornit o **campanie nouă pe „prețuri"** — prinde pacienții care caută direct tarife și îi duce pe pagina cu prețuri.
+• Am ajustat strategia de licitare ca să aducă **mai mult trafic** (mai mulți pacienți care văd reclama).
 • Lucrez să apărem și pe **Google Maps** cu reclama (am reparat azi o setare care lipsea).
 
 **📊 Strategie**
