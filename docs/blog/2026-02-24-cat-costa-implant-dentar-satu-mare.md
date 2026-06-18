@@ -42,7 +42,7 @@ Iata o situatie realista, ca sa stii la ce sa te astepti:
 | Sinus lift (daca e necesar) | 1.500 – 3.500 lei |
 | **Total implant complet (medie)** | **4.000 – 6.500 lei** |
 
-Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D — care la noi e gratuita.
+Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D — care la noi e gratuita. Poti vedea si [lista completa de preturi DENTCRAFT](https://dentcraft.ro/preturi) pentru toate tratamentele.
 
 ## Ce include pretul unui implant la DENTCRAFT?
 
@@ -101,7 +101,7 @@ Pretul pentru All-on-4 porneste de la aproximativ 15.000 lei per arcada, dar var
 
 Nu o sa iti spun ca suntem "cei mai buni" — asta decide fiecare pacient in parte. Dar iti pot spune ce ne diferentiaza:
 
-Lucram cu [echipa de 6 specialisti](https://dentcraft.ro/echipa), cu experienta combinata de peste 10 ani. Avem scanner intraoral si radiografie 3D in cabinet — nu te trimitem in alta parte. Comunica in romana, engleza si maghiara.
+Lucram cu [echipa de 6 specialisti](https://dentcraft.ro/echipa), cu experienta combinata de peste 10 ani. Vezi mai multe despre [implantologia la DENTCRAFT](https://dentcraft.ro/servicii/implantologie). Avem scanner intraoral si radiografie 3D in cabinet — nu te trimitem in alta parte. Comunicam in romana, engleza si maghiara.
 
 Si cel mai important: iti spunem pretul final inainte sa incepem. Multi pacienti din Satu Mare si din judetele vecine (Maramures, Bihor) aleg sa vina la noi tocmai pentru asta — transparenta.
 

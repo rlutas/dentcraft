@@ -66,7 +66,7 @@ Pe langa controlul de rutina si curatarea, cele mai frecvente sunt:
 Ideal in jurul varstei de 1 an sau la aparitia primului dinte. Daca ati depasit aceasta varsta, mergeti cat mai curand — pana in 3 ani e foarte bine. Prima vizita e despre obisnuinta, nu despre tratament.
 
 **Cat costa o consultatie pentru copii in Satu Mare?**
-Consultatia initiala la DENTCRAFT este gratuita. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile si ti le comunicam transparent inainte. Suna-ne pentru detalii la 0741 199 977.
+Consultatia initiala la DENTCRAFT este gratuita. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile si ti le comunicam transparent inainte — le poti vedea oricand in [lista noastra de preturi](https://dentcraft.ro/preturi). Suna-ne pentru detalii la 0741 199 977.
 
 **Ce fac daca copilul refuza sa deschida gura?**
 Nu fortam niciodata. Daca un copil e foarte anxios, mergem mai incet — uneori prima vizita e doar de cunoastere, fara niciun tratament. Increderea se construieste in timp, si merita efortul.
@@ -81,4 +81,4 @@ Da, controlul periodic la 6 luni e exact ce previne durerea. La copii cariile ev
 
 Vrei ca prima vizita a copilului tau sa fie una blanda si fara stres? Programeaza-l la **0741 199 977** sau [online aici](https://dentcraft.ro/contact). Spune-ne ca e prima data si ne ocupam noi de rest.
 
-Afla mai multe despre [stomatologia pentru copii (pedodontie)](https://dentcraft.ro/servicii/pedodontie) la DENTCRAFT. Si daca dintii copilului au nevoie de aliniere mai tarziu, [aici gasesti ghidul nostru despre aparatul dentar](https://dentcraft.ro/blog/aparat-dentar-satu-mare). Ne gasesti pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.
+Afla mai multe despre [stomatologia pentru copii (pedodontie)](https://dentcraft.ro/servicii/pedodontie) la DENTCRAFT, vezi [lista de preturi](https://dentcraft.ro/preturi) sau [contacteaza-ne pentru o programare](https://dentcraft.ro/contact). Si daca dintii copilului au nevoie de aliniere mai tarziu, [aici gasesti ghidul nostru despre aparatul dentar](https://dentcraft.ro/blog/aparat-dentar-satu-mare). Ne gasesti pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.

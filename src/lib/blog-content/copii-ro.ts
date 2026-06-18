@@ -456,7 +456,13 @@ export const content: PortableTextBlock[] = [
     "_type": "block",
     "_key": "cp28",
     "style": "normal",
-    "markDefs": [],
+    "markDefs": [
+      {
+        "_key": "cp28l0",
+        "_type": "link",
+        "href": "/preturi"
+      }
+    ],
     "children": [
       {
         "_type": "span",
@@ -469,7 +475,21 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp28s1",
-        "text": " Consultatia initiala la DENTCRAFT este gratuita. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile si ti le comunicam transparent inainte. Suna-ne pentru detalii la 0741 199 977.",
+        "text": " Consultatia initiala la DENTCRAFT este gratuita. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile si ti le comunicam transparent inainte — le poti vedea oricand in ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "cp28s2",
+        "text": "lista noastra de preturi",
+        "marks": [
+          "cp28l0"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "cp28s3",
+        "text": ". Suna-ne pentru detalii la 0741 199 977.",
         "marks": []
       }
     ]
@@ -601,6 +621,16 @@ export const content: PortableTextBlock[] = [
       {
         "_key": "cp33l1",
         "_type": "link",
+        "href": "/preturi"
+      },
+      {
+        "_key": "cp33l2",
+        "_type": "link",
+        "href": "/contact"
+      },
+      {
+        "_key": "cp33l3",
+        "_type": "link",
         "href": "/blog/aparat-dentar-satu-mare"
       }
     ],
@@ -622,13 +652,13 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s2",
-        "text": " la DENTCRAFT. Si daca dintii copilului au nevoie de aliniere mai tarziu, ",
+        "text": " la DENTCRAFT, vezi ",
         "marks": []
       },
       {
         "_type": "span",
         "_key": "cp33s3",
-        "text": "aici gasesti ghidul nostru despre aparatul dentar",
+        "text": "lista de preturi",
         "marks": [
           "cp33l1"
         ]
@@ -636,6 +666,34 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s4",
+        "text": " sau ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "cp33s5",
+        "text": "contacteaza-ne pentru o programare",
+        "marks": [
+          "cp33l2"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "cp33s6",
+        "text": ". Si daca dintii copilului au nevoie de aliniere mai tarziu, ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "cp33s7",
+        "text": "aici gasesti ghidul nostru despre aparatul dentar",
+        "marks": [
+          "cp33l3"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "cp33s8",
         "text": ". Ne gasesti pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.",
         "marks": []
       }
