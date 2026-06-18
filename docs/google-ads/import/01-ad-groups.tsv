@@ -1,0 +1,6 @@
+Action	Campaign	Ad Group	Status	Default Max CPC	Ad Group Type
+Add	Search-1	AG_Implant_SM	Paused	10	Standard
+Add	Search-1	AG_Estetica_SM	Paused	8	Standard
+Add	Search-1	AG_Ortodontie_SM	Paused	8	Standard
+Add	Search-1	AG_General_SM	Paused	8	Standard
+Add	Search-1	AG_Brand_SM	Paused	3	Standard

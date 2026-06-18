@@ -1,6 +1,11 @@
 # Google Ads — Quick Start (copy-paste ready)
 
-> **Strategie:** 1 campanie · 4 ad groups · toate trimit pe `www.dentcraft.ro` · buget 50 lei/zi · Maximize Conversions cu Max CPC = 8 lei
+> ⚠️ **SUPERSEDED — 2026-05-26**
+> Acest quick start e din planul ORIGINAL (mai 18). Pentru status curent vezi:
+> - **[INDEX.md](INDEX.md)** — index toate docs
+> - **[IMPLEMENTAT-2026-05-26.md](IMPLEMENTAT-2026-05-26.md)** — ce e LIVE acum
+
+> **Strategie ORIGINAL:** 1 campanie · 4 ad groups · toate trimit pe `www.dentcraft.ro` · buget 50 lei/zi · Maximize Conversions cu Max CPC = 8 lei
 
 ---
 

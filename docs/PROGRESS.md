@@ -1,6 +1,79 @@
 # DENTCRAFT.ro - Project Status
 
-**Last updated:** 20 May 2026
+**Last updated:** 26 May 2026
+
+## 📝 Session 2026-05-26 — Google Ads restructurare completă
+
+### Audit complet + restructurare campanie
+
+**Probleme identificate:**
+- CPC 20,63 RON ultimele 30 zile (degradare vs 7,42 RON lifetime)
+- 1 singur ad group cu broad match → keywords extinși la competitori (`clinica datcu`, `art dental`, `dr matiz` etc)
+- Quality Score 6/10 (sub recomandare 7+)
+- Conv rate 1,84% vs benchmark dentar 4,2%
+- Plătit ~120 RON pentru search-uri pe brand-uri competitori
+
+**Diagnostic corectat după research industrie:**
+- CPC 20 RON în RO ≈ $4.5 USD — DE FAPT SUB media globală industrie dentară $8 (Wordstream, Dentx)
+- Conversiile GBP "Other engagements" sunt Google-managed și deja excluse din bidding (NU trebuie demote)
+- AI Max era deja OFF (nu era cauza)
+- Cauza reală: QS scăzut + broad match + landing page generic
+
+### Implementare:
+
+**1. Negative keywords (26 total) — adăugat la campanie:**
+- Exact match competitori: `[clinica datcu]`, `[dr matiz]`, `[art dental]`, `[duo dent]`, `[kocsis hajnalka]`, `[dr magyari]`, `[stoma art]` etc.
+- Phrase match servicii: `"non stop"`, `"urgent"`, `"radiografie"`, `"radiologie"`, `"livada"`, `"strada horea"` etc.
+
+**2. Restructurare în 5 ad groups thematice (de la 1):**
+- `AG_Implant_SM` → `/preturi#calculator`, Max CPC 10 RON (11 keywords)
+- `AG_Estetica_SM` → `/galerie`, Max CPC 8 RON (10 keywords)
+- `AG_Ortodontie_SM` → `/servicii/ortodontie`, Max CPC 8 RON (9 keywords)
+- `AG_General_SM` → `/`, Max CPC 8 RON (10 keywords)
+- `AG_Brand_SM` → `/`, Max CPC 3 RON (7 keywords brand defense)
+
+**3. Match types: phrase + exact** (NU broad — broad era cauza waste-ului)
+
+**4. 5 RSAs noi, câte unul per ad group:**
+- 10 headlines fiecare cu pin top 3 (mesaj consistent)
+- 4 descriptions specifice (≤ 90 chars)
+- Final URL specific per ad group
+
+**5. Bulk import prin Google Ads Editor:**
+- Generat 5 fișiere TSV în `docs/google-ads/import/`
+- 100% posted: ad groups, keywords, RSAs
+
+**6. Aplicat recomandare Google: "Eliminați cuvinte redundante" (+0,8% optimization score)**
+
+### Status după implementare:
+- 5 ad groups noi: **Eligible** (active)
+- 1 ad group vechi (`Grupul de anunțuri 1`): **încă Eligible** (păstrat 14 zile ca buffer)
+- Keywords: **Pending review** (Google verifică, normal 24h pentru dental)
+- Health policy: **Request exemption** necesar (policy specifică pentru servicii medicale)
+
+### Documente create/actualizate:
+- `docs/google-ads/INDEX.md` (NEW) — index toate docs Google Ads
+- `docs/google-ads/AUDIT-2026-05-26.md` (NEW) — audit complet cu diagnostic
+- `docs/google-ads/IMPLEMENTAT-2026-05-26.md` (NEW) — implementare + monitoring + KPIs
+- `docs/google-ads/import/` (NEW) — fișiere TSV de import
+- `docs/google-ads/SETUP-GUIDE.md` — marcat SUPERSEDED
+- `docs/google-ads/QUICK-START.md` — marcat SUPERSEDED
+
+### Așteptăm în săptămâna 1-4:
+- Săpt 1: Impressions cresc, CTR > 5%, primele conversii pe ad groups noi
+- Săpt 2: Quality Score crește la 7-8/10, CPC scade natural la 5-8 RON
+- Săpt 3-4: 15-25 conversii, cost/conv 80-120 RON, ROI 6-10×
+- După Luna 1: dacă conv ≥ 20 → switch la Target CPA = 120 RON
+
+### TODO următoarele zile:
+- [ ] Mâine: verifică keywords Eligible (nu Pending review)
+- [ ] Request Health policy exemption în Google Ads
+- [ ] Săpt 1: monitor zilnic Search Terms → adaugă negative kw noi
+- [ ] Săpt 2: pune pe pauză `Grupul de anunțuri 1`
+- [ ] Săpt 2: aplică recomandări Google (image extensions, structured snippets, logo)
+- [ ] **Landing page fix:** conv rate 1,84% → target 4,2% (2× pacienți la același cost)
+
+---
 
 ## 📝 Session 2026-05-20 — Dr. Buterchi adăugat în echipă + CSP & Next.js 16 polish
 

@@ -1,0 +1,49 @@
+Account	Campaign	Ad Group	Keyword	Match Type	Status	Max CPC
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant dentar satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant dentar satu mare	Exact	Enabled	12
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant dentar carei	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant dentar pret	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant dentar pret satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	all on 4 satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	all on 6 satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant unidentar satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implantologie satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	implant zirconiu satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Implant_SM	proteza pe implant satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	fatete dentare satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	fatete dentare satu mare	Exact	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	fatete ceramice satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	fatete pret satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	hollywood smile satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	albire dentara satu mare	Phrase	Enabled	6
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	albire dentara profesionala satu mare	Phrase	Enabled	6
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	estetica dentara satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	zambet hollywood satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Estetica_SM	fatete e.max satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	aparat dentar satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	aparat dentar satu mare	Exact	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	ortodontie satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	invisalign satu mare	Phrase	Enabled	10
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	aparat dentar copii satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	aparat dentar adulti satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	ortodont satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	aparat dentar pret satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Ortodontie_SM	aparat dentar invizibil satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	stomatolog satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	stomatolog satu mare	Exact	Enabled	10
+SC PRTESTET SRL	Search-1	AG_General_SM	dentist satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	dentist satu mare	Exact	Enabled	10
+SC PRTESTET SRL	Search-1	AG_General_SM	cabinet stomatologic satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	clinica stomatologica satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	medic stomatolog satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	stomatolog bun satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	clinica dentara satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_General_SM	clinica stomatologica buna satu mare	Phrase	Enabled	8
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dentcraft	Exact	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dentcraft satu mare	Exact	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dentcraft clinica	Phrase	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	clinica dentcraft	Phrase	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dr petric	Exact	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dr razvan petric	Phrase	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dr buterchi	Exact	Enabled	3
+SC PRTESTET SRL	Search-1	AG_Brand_SM	dentcraft.ro	Phrase	Enabled	3

@@ -1,6 +1,23 @@
 # Google Ads Setup — DENTCRAFT Satu Mare
 
-**Strategie launch:** 1 campanie unică cu 4 ad groups, toate trimit pe homepage `www.dentcraft.ro`. Bugetul se distribuie automat de Google AI către ad group-ul cu cele mai bune conversii.
+> ⚠️ **SUPERSEDED — 2026-05-26**
+> Acest document e planul ORIGINAL de lansare (18 mai 2026).
+> Strategia a fost actualizată după audit. Citește:
+> - **[IMPLEMENTAT-2026-05-26.md](IMPLEMENTAT-2026-05-26.md)** — status curent + KPIs + monitoring
+> - **[AUDIT-2026-05-26.md](AUDIT-2026-05-26.md)** — audit complet cu diagnostic
+>
+> **Schimbări majore vs acest plan:**
+> - 5 ad groups (nu 4): adăugat **AG_Brand_SM** pentru brand defense
+> - Match types **phrase + exact** (NU broad — broad era cauza waste-ului pe competitori)
+> - **Landing pages specifice per ad group** (NU toate pe homepage)
+> - **Default Max CPC** setat per ad group (10/8/8/8/3 RON)
+> - Buget actual: 167 RON/zi (NU 50 RON/zi cum era planul original)
+>
+> Acest document rămâne ca referință istorică pentru strategy original.
+
+---
+
+**Strategie launch (ORIGINAL):** 1 campanie unică cu 4 ad groups, toate trimit pe homepage `www.dentcraft.ro`. Bugetul se distribuie automat de Google AI către ad group-ul cu cele mai bune conversii.
 
 ---
 
