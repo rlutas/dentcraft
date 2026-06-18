@@ -22,7 +22,7 @@ Bună ziua, domnule doctor! 👋 Vă fac un rezumat cu tot ce am lucrat azi pent
 • Am eliminat o problemă care scumpea reclamele (anunțurile vechi erau setate greșit) — am oprit anunțurile vechi și le-am înlocuit cu cele noi.
 • Am pornit o **campanie nouă pe „prețuri"** — prinde pacienții care caută direct tarife și îi duce pe pagina cu prețuri.
 • Am ajustat strategia de licitare ca să aducă **mai mult trafic** (mai mulți pacienți care văd reclama).
-• Lucrez să apărem și pe **Google Maps** cu reclama (am reparat azi o setare care lipsea).
+• Am pus la punct ca reclama **să apară și pe Google Maps** — legată direct de profilul de companie (Google Business). Se activează în câteva ore, apoi pacienții vă văd pe hartă când caută stomatolog în Satu Mare.
 
 **📊 Strategie**
 • Am analizat concurența (Finess, Datcu, Art Dental) și am făcut un plan clar de creștere pentru următoarele luni.
