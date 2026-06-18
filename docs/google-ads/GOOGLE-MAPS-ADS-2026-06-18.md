@@ -24,7 +24,16 @@ GBP-ul **ESTE conectat** la Ads: „Profilul companiei: serviciiseonethut@gmail.
 
 > Linkul GBP nu e rupt — doar nu e **filtrat/atribuit** locația DENTCRAFT pe campanie.
 
-### ⚠️ Blocaj găsit la încercarea de fix
+### ✅ REZOLVAT (18 iun, după reconectare GBP)
+1. Raul a **reconectat GBP-ul** în Manager de date → locațiile au devenit disponibile.
+2. Am creat **Location asset cu DOAR „DENTCRAFT- Clinica Stomatologica Satu Mare" (1 locație)** — NU celelalte 17 firme din cont.
+3. Atribuit la **nivel de Cont + campania Search-1**. Salvat (formularul s-a închis = succes).
+4. ⏳ **Nu apare imediat în raport** — location asset-urile + sync GBP se activează în minute–câteva ore. Verifică peste câteva ore: ar trebui să apară „Total: locații" în Elemente.
+5. După activare → **eligibil pe Google Maps**. (Nu apare instant în căutarea ta — asset-ul trebuie procesat ȘI anunțul trebuie să câștige licitația local.)
+
+---
+
+### 📌 Istoric diagnostic (pentru referință)
 Am încercat să creez grupul de locații DENTCRAFT, dar: la „Nou grup de locații", căutarea locațiilor returnează **„Niciun rezultat"** — atât după numele „DENTCRAFT", cât și după adresă „Delavrancea Satu Mare". Adică:
 > Deși GBP-ul e „Conectat" cu 18 locații în Manager de date, **locațiile NU sunt disponibile ca assets selectabile** în formularul de grup. E o problemă de **sincronizare/stare a conexiunii**, nu de configurare simplă.
 
