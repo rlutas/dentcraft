@@ -14,7 +14,29 @@ Asset-uri asociate campaniei **Search-1**:
 | Fragmente / Imagini / Înștiințări | ✅ |
 | **Locație (Location asset)** | ❌ **LIPSEȘTE** |
 
-→ **Fără Location asset, anunțurile NU pot apărea pe Google Maps.** Memoria zicea că GBP-ul a fost linkat în mai, dar location asset-ul nu e activ/asociat pe campanie.
+→ **Fără Location asset, anunțurile NU pot apărea pe Google Maps.**
+
+### 🔬 Diagnostic precis (verificat în Manager de date → Produse conectate)
+GBP-ul **ESTE conectat** la Ads: „Profilul companiei: serviciiseonethut@gmail.com — **18 locații — Conectat**". DAR:
+- Cele **18 locații = toate firmele din cont** (Angeloff Grill, avocați, eGhiseul, DENTCRAFT etc.), nu doar clinica.
+- Grupul de locații „DENTCRAFT" folosit pentru asset are **„0 locații"** → nu e **filtrat** pe locația clinicii.
+- Rezultat: **niciun Location asset cu DENTCRAFT nu servește pe campania Search-1** → nu apari pe Maps.
+
+> Linkul GBP nu e rupt — doar nu e **filtrat/atribuit** locația DENTCRAFT pe campanie.
+
+### ⚠️ Blocaj găsit la încercarea de fix
+Am încercat să creez grupul de locații DENTCRAFT, dar: la „Nou grup de locații", căutarea locațiilor returnează **„Niciun rezultat"** — atât după numele „DENTCRAFT", cât și după adresă „Delavrancea Satu Mare". Adică:
+> Deși GBP-ul e „Conectat" cu 18 locații în Manager de date, **locațiile NU sunt disponibile ca assets selectabile** în formularul de grup. E o problemă de **sincronizare/stare a conexiunii**, nu de configurare simplă.
+
+### ✅ FIX-ul (de finalizat — necesită verificare conexiune GBP)
+1. **Manager de date → Produse conectate → Google Business Profile → Gestionați.** Verifică starea conexiunii „serviciiseonethut@gmail.com — 18 locații — Conectat":
+   - Dacă e „În așteptare/aprobare" → **aprobă** (email GBP).
+   - Dacă e conectat dar locațiile nu apar → **deconectează și reconectează** profilul (forțează re-sincronizarea), sau așteaptă câteva ore (sincronizarea poate dura).
+2. După ce locațiile devin disponibile: **Elemente → „+" → Locație → Nou grup de locații** → caută/selectează **DENTCRAFT** (Str. Barbu Ștefănescu Delavrancea nr.3) → NU „Toate locațiile" (ar băga și celelalte 17 firme).
+3. **Atribuie grupul campaniei Search-1** → Salvează.
+4. Când grupul arată „1 locație" (DENTCRAFT) asociată → eligibil pe Google Maps.
+
+*Notă: GBP-ul gestionează 18 firme (Angeloff, avocați, eGhiseul etc.) — la creare, filtrează STRICT pe DENTCRAFT, altfel apar reclame pe locații greșite.*
 
 ---
 
