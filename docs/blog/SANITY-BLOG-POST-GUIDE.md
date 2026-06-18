@@ -111,7 +111,7 @@ Trebuie o imagine relevanta - optiuni:
 
 **Alt Text:**
 ```
-Implant dentar la clinica DENTCRAFT Satu Mare - consultatie gratuita
+Implant dentar la clinica DENTCRAFT Satu Mare
 ```
 
 ---
@@ -156,7 +156,7 @@ Implant Dentar Satu Mare Pret 2026 - Ghid Complet
 
 **Meta Description:**
 ```
-Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT.
+Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include la DENTCRAFT Satu Mare.
 ```
 
 **OG Image:** Upload aceeasi imagine ca Cover Image

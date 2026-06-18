@@ -66,7 +66,7 @@ Pe langa controlul de rutina si curatarea, cele mai frecvente sunt:
 Ideal in jurul varstei de 1 an sau la aparitia primului dinte. Daca ati depasit aceasta varsta, mergeti cat mai curand — pana in 3 ani e foarte bine. Prima vizita e despre obisnuinta, nu despre tratament.
 
 **Cat costa o consultatie pentru copii in Satu Mare?**
-Consultatia initiala la DENTCRAFT este gratuita. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile si ti le comunicam transparent inainte — le poti vedea oricand in [lista noastra de preturi](https://dentcraft.ro/preturi). Suna-ne pentru detalii la 0741 199 977.
+La DENTCRAFT iti comunicam transparent costul consultatiei si al tratamentelor inainte sa incepem. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile — le poti vedea oricand in [lista noastra de preturi](https://dentcraft.ro/preturi). Suna-ne pentru detalii la 0741 199 977.
 
 **Ce fac daca copilul refuza sa deschida gura?**
 Nu fortam niciodata. Daca un copil e foarte anxios, mergem mai incet — uneori prima vizita e doar de cunoastere, fara niciun tratament. Increderea se construieste in timp, si merita efortul.

@@ -35,7 +35,7 @@ Az ár három dologtól függ:
 - **Arcüregemelés (ha szükséges):** 1.500 – 3.500 lej
 - **Teljes implantátum összesen (átlag):** **4.000 – 6.500 lej**
 
-A fenti árak tájékoztató jellegűek. A végleges árat a konzultáció és a 3D röntgen után állapítjuk meg — amely nálunk ingyenes.
+A fenti árak tájékoztató jellegűek. A végleges árat a konzultáció és a 3D röntgen után állapítjuk meg a rendelőnkben.
 
 ## Mit tartalmaz egy implantátum ára a DENTCRAFT-nál?
 
@@ -117,6 +117,6 @@ Romániában a fogimplantátumokat az állami egészségbiztosítás nem fedezi.
 
 ---
 
-Kérdésed van a fogimplantátumról, vagy személyre szabott értékelést szeretnél? Hívj minket a 0741 199 977 számon, vagy foglalj online időpontot. A konzultáció és a 3D röntgen ingyenes.
+Kérdésed van a fogimplantátumról, vagy személyre szabott értékelést szeretnél? Hívj minket a 0741 199 977 számon, vagy foglalj online időpontot. Világos kezelési tervet adunk, előre meghatározott árral.
 
 Várunk a DENTCRAFT-ban, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.

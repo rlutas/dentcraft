@@ -35,7 +35,7 @@ Here's a realistic breakdown so you know what to expect:
 - **Sinus lift (if needed):** 1,500 – 3,500 lei (approx. 300 – 700 EUR)
 - **Total complete implant (average):** **4,000 – 6,500 lei (approx. 800 – 1,300 EUR)**
 
-The prices above are estimates. Your final price is determined after a consultation and 3D X-ray — which is free of charge at our clinic.
+The prices above are estimates. Your final price is determined after a consultation and 3D X-ray at our clinic.
 
 ## What's Included in the Price of an Implant at DENTCRAFT?
 
@@ -117,6 +117,6 @@ From age 18 and up, once the bone has finished growing. There's no upper age lim
 
 ---
 
-Have questions about dental implants or want a personalized evaluation? Call us at 0741 199 977 or book online. The consultation and 3D X-ray are free.
+Have questions about dental implants or want a personalized evaluation? Call us at 0741 199 977 or book online. We'll give you a clear treatment plan with the price set in advance.
 
 See you at DENTCRAFT, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.

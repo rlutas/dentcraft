@@ -1,7 +1,7 @@
 ---
 title: "Cat costa un implant dentar in Satu Mare? Ghid complet preturi 2026"
 metaTitle: "Implant Dentar Satu Mare Pret 2026 | DENTCRAFT"
-metaDescription: "Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT."
+metaDescription: "Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include la DENTCRAFT Satu Mare."
 slug: "cat-costa-implant-dentar-satu-mare"
 targetKeyword: "implant dentar satu mare pret"
 secondaryKeywords: ["implant dentar satu mare", "implanturi dentare satu mare", "cat costa un implant dentar"]
@@ -42,7 +42,7 @@ Iata o situatie realista, ca sa stii la ce sa te astepti:
 | Sinus lift (daca e necesar) | 1.500 – 3.500 lei |
 | **Total implant complet (medie)** | **4.000 – 6.500 lei** |
 
-Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D — care la noi e gratuita. Poti vedea si [lista completa de preturi DENTCRAFT](https://dentcraft.ro/preturi) pentru toate tratamentele.
+Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D. Poti vedea si [lista completa de preturi DENTCRAFT](https://dentcraft.ro/preturi) pentru toate tratamentele.
 
 ## Ce include pretul unui implant la DENTCRAFT?
 
@@ -124,6 +124,6 @@ De la 18 ani in sus, cand osul si-a terminat cresterea. Nu exista limita superio
 
 ---
 
-Ai intrebari despre implantul dentar sau vrei o evaluare personalizata? Suna-ne la **0741 199 977** sau [programeaza online](https://dentcraft.ro/contact). Consultatia si radiografia 3D sunt gratuite.
+Ai intrebari despre implantul dentar sau vrei o evaluare personalizata? Suna-ne la **0741 199 977** sau [programeaza online](https://dentcraft.ro/contact). Iti facem un plan de tratament clar, cu pretul stabilit dinainte.
 
 Ne vedem la [DENTCRAFT, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare](https://dentcraft.ro/contact).

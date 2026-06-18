@@ -475,7 +475,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp28s1",
-        "text": " Consultatia initiala la DENTCRAFT este gratuita. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile si ti le comunicam transparent inainte — le poti vedea oricand in ",
+        "text": " La DENTCRAFT iti comunicam transparent costul consultatiei si al tratamentelor inainte sa incepem. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile — le poti vedea oricand in ",
         "marks": []
       },
       {
