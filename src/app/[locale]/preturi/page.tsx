@@ -11,6 +11,7 @@ import {
   type Locale as SEOLocale,
 } from '@/lib/seo'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
+import { PriceListSection } from '@/components/sections/PriceListSection'
 
 type PageProps = {
   params: Promise<{ locale: string }>
@@ -133,6 +134,9 @@ export default async function PricesPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {/* Static, crawlable price list + price FAQ (SEO) */}
+        <PriceListSection locale={locale as Locale} />
       </div>
     </>
   )
