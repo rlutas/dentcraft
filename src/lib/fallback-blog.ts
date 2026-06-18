@@ -1,5 +1,7 @@
 // Fallback blog data - used when Sanity CMS has no blog content
 // Follows the same pattern as fallback-team.ts
+import { content as contentRoAparat } from './blog-content/aparat-dentar-ro'
+import { content as contentRoCopii } from './blog-content/copii-ro'
 
 // ============================================
 // PORTABLE TEXT HELPERS
@@ -18,7 +20,7 @@ type MarkDef = {
   href?: string
 }
 
-type PortableTextBlock = {
+export type PortableTextBlock = {
   _type: 'block'
   _key: string
   style: string
@@ -131,9 +133,21 @@ type FallbackBlogPost = {
 // ============================================
 
 export const fallbackBlogCategories: Record<string, FallbackBlogCategory[]> = {
-  ro: [{ _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantologie' }],
-  en: [{ _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantology' }],
-  hu: [{ _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantologia' }],
+  ro: [
+    { _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantologie' },
+    { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Ortodontie' },
+    { _id: 'cat-copii', slug: 'copii', title: 'Stomatologie pediatrica' },
+  ],
+  en: [
+    { _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantology' },
+    { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Orthodontics' },
+    { _id: 'cat-copii', slug: 'copii', title: 'Pediatric Dentistry' },
+  ],
+  hu: [
+    { _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantologia' },
+    { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Fogszabalyozas' },
+    { _id: 'cat-copii', slug: 'copii', title: 'Gyermekfogaszat' },
+  ],
 }
 
 // ============================================
@@ -631,6 +645,48 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       seo: {
         metaTitle: 'Implant Dentar Satu Mare Pret 2026 | DENTCRAFT',
         metaDescription: 'Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT.',
+        ogImage: null,
+        noIndex: false,
+      },
+    },
+    {
+      _id: 'blog-aparat-dentar-satu-mare',
+      title: 'Aparat dentar in Satu Mare: tipuri, preturi si tot ce trebuie sa stii in 2026',
+      slug: 'aparat-dentar-satu-mare',
+      excerpt: 'Metalic, ceramic, safir sau alignere transparente? Iti explic exact ce optiuni de aparat dentar ai in Satu Mare, cat costa fiecare si cat dureaza tratamentul. Fara termeni complicati.',
+      content: contentRoAparat,
+      coverImage: {
+        alt: 'Aparat dentar ceramic la clinica DENTCRAFT Satu Mare',
+        asset: { _id: 'local-cover-aparat', url: '/images/blog/aparat-dentar-satu-mare-cover.webp' },
+      },
+      category: { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Ortodontie' },
+      author,
+      publishedAt: '2026-06-18T10:00:00.000Z',
+      featured: false,
+      seo: {
+        metaTitle: 'Aparat Dentar Satu Mare: Tipuri si Preturi 2026 | DENTCRAFT',
+        metaDescription: 'Aparat dentar in Satu Mare: metalic, ceramic, safir sau alignere? Preturi, durata tratament si cum alegi. Consultatie ortodontica la DENTCRAFT.',
+        ogImage: null,
+        noIndex: false,
+      },
+    },
+    {
+      _id: 'blog-stomatolog-copii-satu-mare',
+      title: 'Stomatolog copii in Satu Mare: prima vizita la dentist si cum o faci usoara',
+      slug: 'stomatolog-copii-satu-mare',
+      excerpt: 'Cum faci ca primei vizite la dentist a copilului sa nu-i fie frica? Cand sa mergeti prima data, cum il pregatesti si cum lucram noi cu cei mici la DENTCRAFT Satu Mare.',
+      content: contentRoCopii,
+      coverImage: {
+        alt: 'Stomatolog pentru copii la DENTCRAFT Satu Mare - prima vizita fara stres',
+        asset: { _id: 'local-cover-copii', url: '/images/blog/stomatolog-copii-satu-mare-cover.webp' },
+      },
+      category: { _id: 'cat-copii', slug: 'copii', title: 'Stomatologie pediatrica' },
+      author,
+      publishedAt: '2026-06-18T11:00:00.000Z',
+      featured: false,
+      seo: {
+        metaTitle: 'Stomatolog Copii Satu Mare: Prima Vizita | DENTCRAFT',
+        metaDescription: 'Stomatolog copii in Satu Mare: cand sa mergi prima data, cum pregatesti copilul si ce facem la DENTCRAFT ca sa nu-i fie frica. Programare 0741 199 977.',
         ogImage: null,
         noIndex: false,
       },

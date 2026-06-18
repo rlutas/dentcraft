@@ -6,6 +6,7 @@ import {
 import { client } from '@/lib/sanity/client'
 import { localizedPathnames, siteConfig } from '@/lib/seo'
 import { getFallbackServiceSlugs } from '@/lib/fallback-services'
+import { fallbackBlogPosts } from '@/lib/fallback-blog'
 
 const baseUrl = siteConfig.baseUrl
 
@@ -118,9 +119,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
+  // Merge Sanity blog slugs with fallback blog slugs (dedupe; fallback posts are
+  // live via fallback-blog.ts when Sanity has no published content)
+  const blogDateBySlug = new Map(blogSlugs.map((b) => [b.slug, b.publishedAt]))
+  for (const post of fallbackBlogPosts['ro'] ?? []) {
+    if (!blogDateBySlug.has(post.slug)) blogDateBySlug.set(post.slug, post.publishedAt)
+  }
+
   // Build blog post page entries with actual publish dates
-  const blogEntries: MetadataRoute.Sitemap = blogSlugs.flatMap(
-    ({ slug, publishedAt }) =>
+  const blogEntries: MetadataRoute.Sitemap = [...blogDateBySlug.entries()].flatMap(
+    ([slug, publishedAt]) =>
       locales.map((locale) => ({
         url: buildDynamicUrl('/blog', slug, locale),
         lastModified: publishedAt ? new Date(publishedAt) : now,
