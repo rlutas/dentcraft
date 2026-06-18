@@ -8,7 +8,9 @@ Bună ziua, domnule doctor! 👋 Vă fac un rezumat cu tot ce am lucrat azi pent
 **🌐 Site (dentcraft.ro) — optimizat pentru Google**
 • Am rescris paginile cheie ca să apară mai bine la căutările din Satu Mare (dentist, clinică, implant, aparat dentar, albire).
 • Am construit o **listă completă de prețuri** pe pagina /preturi (toate cele 145 de tratamente) + întrebări frecvente — ca să apară în Google când lumea caută „prețuri stomatologie Satu Mare".
+• Am publicat **2 articole noi** pe blog („aparat dentar Satu Mare" și „stomatolog copii Satu Mare") — optimizate pentru Google.
 • Am legat articolele de blog către paginile de prețuri și contact.
+• Am trimis paginile la **indexare în Google Search Console** și am făcut ajustări ca Google să găsească și să afișeze site-ul mai repede.
 
 **⭐ Google (recenzii + profil)**
 • Am răspuns la **toate cele 5 recenzii noi** de pe Google — frumos, personalizat. (Felicitări pentru recenzii, continuați să le cereți pacienților, contează enorm!)
