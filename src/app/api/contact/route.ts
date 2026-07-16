@@ -22,6 +22,21 @@ type ContactFormData = {
   subject: string
 }
 
+// File upload constraints (must match ContactForm component)
+const ALLOWED_FILE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]
+const MAX_FILES = 5
+// Vercel serverless functions reject request bodies over ~4.5MB,
+// so the effective per-request cap is below the UI's per-file limit
+const MAX_TOTAL_FILE_SIZE = 4 * 1024 * 1024 // 4MB combined
+
 // Subject labels for email
 const subjectLabels: Record<string, string> = {
   appointment: 'Reprogramare',
@@ -161,12 +176,47 @@ export async function POST(request: Request) {
       )
     }
 
-    // Parse request body
+    // Parse request body — the contact form posts multipart/form-data
+    // (it supports file uploads); JSON is kept for API clients
     let body: unknown
-    try {
-      body = await request.json()
-    } catch {
-      return NextResponse.json({ error: 'Invalid JSON in request body' }, { status: 400 })
+    let files: File[] = []
+    const contentType = request.headers.get('content-type') || ''
+
+    if (contentType.includes('multipart/form-data')) {
+      let formData: FormData
+      try {
+        formData = await request.formData()
+      } catch {
+        return NextResponse.json({ error: 'Invalid form data in request body' }, { status: 400 })
+      }
+
+      body = {
+        email: formData.get('email'),
+        gdprConsent: formData.get('gdprConsent') === 'true',
+        message: formData.get('message'),
+        name: formData.get('name'),
+        phone: formData.get('phone') || undefined,
+        subject: formData.get('subject'),
+      }
+      files = formData.getAll('files').filter((f): f is File => f instanceof File && f.size > 0)
+
+      // Validate uploaded files
+      if (files.length > MAX_FILES) {
+        return NextResponse.json({ error: `Maximum ${MAX_FILES} files allowed` }, { status: 400 })
+      }
+      if (files.some((f) => !ALLOWED_FILE_TYPES.includes(f.type))) {
+        return NextResponse.json({ error: 'File type not allowed' }, { status: 400 })
+      }
+      const totalSize = files.reduce((sum, f) => sum + f.size, 0)
+      if (totalSize > MAX_TOTAL_FILE_SIZE) {
+        return NextResponse.json({ error: 'Attached files are too large' }, { status: 400 })
+      }
+    } else {
+      try {
+        body = await request.json()
+      } catch {
+        return NextResponse.json({ error: 'Invalid JSON in request body' }, { status: 400 })
+      }
     }
 
     // Validate form data
@@ -202,8 +252,17 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey)
     const subjectLabel = subjectLabels[data.subject] || data.subject
 
+    // Attach uploaded files to the admin notification
+    const attachments = await Promise.all(
+      files.map(async (file) => ({
+        content: Buffer.from(await file.arrayBuffer()),
+        filename: file.name,
+      }))
+    )
+
     // Send admin notification
     const { error } = await resend.emails.send({
+      ...(attachments.length > 0 ? { attachments } : {}),
       from: 'DENTCRAFT Website <noreply@dentcraft.ro>',
       html: contactAdminEmail({
         name: data.name,

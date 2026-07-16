@@ -46,7 +46,10 @@ const ALLOWED_TYPES = [
   'application/msword',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ]
-const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
+// Vercel serverless functions reject request bodies over ~4.5MB,
+// so the combined upload size must stay below that
+const MAX_FILE_SIZE = 4 * 1024 * 1024 // 4MB per file
+const MAX_TOTAL_SIZE = 4 * 1024 * 1024 // 4MB combined
 const MAX_FILES = 5
 
 function getFileIcon(type: string) {
@@ -165,7 +168,14 @@ export function ContactForm() {
 
       // Check file size
       if (file.size > MAX_FILE_SIZE) {
-        fileErrors.push(`${file.name}: File too large (max 10MB)`)
+        fileErrors.push(`${file.name}: File too large (max 4MB)`)
+        return
+      }
+
+      // Check combined size of all attachments
+      const currentTotal = [...uploadedFiles, ...newFiles].reduce((sum, f) => sum + f.file.size, 0)
+      if (currentTotal + file.size > MAX_TOTAL_SIZE) {
+        fileErrors.push(`${file.name}: Total attachments limited to 4MB`)
         return
       }
 
