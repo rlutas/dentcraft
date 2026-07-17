@@ -163,6 +163,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     hideGalleryPlaceholder: true,
     stats: {
       yearsExperience: 5,
+      patientsCount: 700,
     },
   },
   {
