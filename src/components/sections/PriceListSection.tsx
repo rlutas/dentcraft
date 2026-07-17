@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { treatmentCategories, type Locale } from '@/data/treatments'
+import { Link } from '@/i18n/navigation'
 
 /**
  * Server-rendered, crawlable price list for /preturi.
@@ -117,6 +118,54 @@ export async function PriceListSection({ locale }: { locale: Locale }) {
               ))}
             </div>
           </div>
+
+          {/* Internal links to service pages — price-intent anchors (RO only) */}
+          {locale === 'ro' && (
+            <div className="mt-16 rounded-2xl border border-[#e8e0d5] bg-white px-6 py-6">
+              <h2 className="text-xl font-bold text-[#2a2118]">
+                Vrei detalii despre un tratament anume?
+              </h2>
+              <p className="mt-3 text-[#5a5048] leading-relaxed">
+                Pentru{' '}
+                <Link
+                  href={{ pathname: '/servicii/[slug]', params: { slug: 'implanturi-dentare' } }}
+                  className="font-semibold text-[#8b7355] underline underline-offset-4"
+                >
+                  implanturi dentare în Satu Mare
+                </Link>{' '}
+                am pus pe pagina serviciului prețurile pe fiecare sistem, pașii tratamentului și
+                întrebările pe care ni le pun cel mai des pacienții. Găsești pagini dedicate și pentru{' '}
+                <Link
+                  href={{ pathname: '/servicii/[slug]', params: { slug: 'ortodontie' } }}
+                  className="font-semibold text-[#8b7355] underline underline-offset-4"
+                >
+                  aparate dentare
+                </Link>
+                ,{' '}
+                <Link
+                  href={{ pathname: '/servicii/[slug]', params: { slug: 'fatete-dentare' } }}
+                  className="font-semibold text-[#8b7355] underline underline-offset-4"
+                >
+                  fațete dentare
+                </Link>{' '}
+                și{' '}
+                <Link
+                  href={{ pathname: '/servicii/[slug]', params: { slug: 'pedodontie' } }}
+                  className="font-semibold text-[#8b7355] underline underline-offset-4"
+                >
+                  stomatologie pentru copii
+                </Link>
+                . Dacă nu știi de unde să începi, programează o consultație prin pagina de{' '}
+                <Link
+                  href="/contact"
+                  className="font-semibold text-[#8b7355] underline underline-offset-4"
+                >
+                  contact
+                </Link>{' '}
+                sau sună la 0741 199 977.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

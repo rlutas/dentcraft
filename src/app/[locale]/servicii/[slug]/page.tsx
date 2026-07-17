@@ -19,7 +19,9 @@ import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getServiceBySlug, getServiceSlugs, getFAQs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, type Locale as SEOLocale, siteConfig } from '@/lib/seo'
+import { getServiceSeoOverride } from '@/lib/seo-overrides'
 import { getServiceSchema, getBreadcrumbSchema, getFAQSchema as getFAQSchema } from '@/lib/schema'
+import { ServiceLocalSeo } from '@/components/sections/ServiceLocalSeo'
 import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
@@ -94,13 +96,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = await getServiceBySlug(slug, locale as Locale) as Service | null
   const t = await getTranslations({ locale })
 
+  // Local-SEO override (city + price intent) — wins over generic CMS/fallback meta
+  const seoOverride = getServiceSeoOverride(slug, locale)
+
   // If no Sanity service, check for fallback service
   if (!service) {
     const fallbackService = getFallbackServiceBySlug(slug)
     if (fallbackService) {
       return generateDynamicPageMetadata({
-        title: t(`services.fallback.${fallbackService.titleKey}`),
-        description: t(`services.fallback.${fallbackService.descriptionKey}`),
+        title: seoOverride?.metaTitle ?? t(`services.fallback.${fallbackService.titleKey}`),
+        description: seoOverride?.metaDescription ?? t(`services.fallback.${fallbackService.descriptionKey}`),
         locale: locale as SEOLocale,
         path: '/servicii/[slug]',
         slug,
@@ -110,16 +115,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Build options object conditionally to avoid undefined values (exactOptionalPropertyTypes)
+  // When a local-SEO override exists it wins over the generic CMS meta fields.
   const metadataOptions: Parameters<typeof generateDynamicPageMetadata>[0] = {
-    title: service.title,
+    title: seoOverride?.metaTitle ?? service.title,
     locale: locale as SEOLocale,
     path: '/servicii/[slug]',
     slug,
-    seo: service.seo,
+    seo: seoOverride
+      ? {
+          ...service.seo,
+          metaTitle: seoOverride.metaTitle,
+          metaDescription: seoOverride.metaDescription,
+          ogImage: service.seo?.ogImage ?? null,
+          noIndex: service.seo?.noIndex ?? false,
+        }
+      : service.seo,
     imageUrlBuilder: (img) => urlFor(img).width(1200).height(630).url(),
   }
 
-  if (service.shortDescription) {
+  if (seoOverride) {
+    metadataOptions.description = seoOverride.metaDescription
+  } else if (service.shortDescription) {
     metadataOptions.description = service.shortDescription
   }
 
@@ -332,6 +348,9 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
         </section>
       )}
 
+      {/* Local SEO content — city + price intent for key services */}
+      <ServiceLocalSeo slug={service.slug} locale={locale} />
+
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection />
 
@@ -536,6 +555,9 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
 
       {/* Reviews — social proof from Google */}
       <ReviewsSection locale={locale} />
+
+      {/* Local SEO content — city + price intent for key services */}
+      <ServiceLocalSeo slug={fallbackService.slug} locale={locale} />
 
       {/* Servicii conexe — footer CTA banner closes the page */}
       <RelatedServicesSection currentSlug={fallbackService.slug} />
