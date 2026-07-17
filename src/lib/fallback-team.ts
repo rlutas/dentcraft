@@ -146,12 +146,24 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     slug: 'stefana-cozma',
     role: 'Medic Stomatolog - Ortodontie',
     photo: '/images/team/dr-cozma-stefana.webp',
-    specializations: ['Ortodontie'],
-    // TODO: bio complet, educatie si certificari dupa primirea CV-ului (17 iul 2026)
-    bio: 'Dr. Cozma Stefana este medicul ortodont al clinicii DENTCRAFT si cea mai noua colega a echipei. Se ocupa de tratamentele ortodontice pentru copii si adulti, de la evaluarea initiala pana la finalizarea tratamentului cu aparat dentar.',
-    education: [],
-    certifications: [],
+    specializations: ['Ortodontie', 'Stomatologie Pediatrica'],
+    bio: 'Dr. Cozma Stefana este medicul ortodont al clinicii DENTCRAFT. A absolvit Facultatea de Medicina Dentara la UMF "Victor Babes" din Timisoara in 2021 si urmeaza rezidentiatul in Ortodontie si Ortopedie Dento-Faciala. Lucreaza in stomatologie din 2017 — intai ca asistenta, apoi ca medic pedodont si ortodont in clinici din Medias si Satu Mare — asa ca stie cabinetul din ambele parti si lucreaza la fel de firesc cu copiii si cu adultii. S-a format pe sistemele moderne de aparate dentare: bracketi Damon si alignere Spark (ORMCO), plus cursuri de biomecanica ortodontica cu lectori internationali. A copilarit o vreme in Italia si vorbeste fluent italiana, un plus pentru pacientii din diaspora.',
+    education: [
+      { institution: 'Universitatea de Medicina si Farmacie "Victor Babes" Timisoara, Facultatea de Medicina Dentara', degree: 'Doctor Medic Stomatolog (Medicina Dentara)', year: 2021 },
+      { institution: 'UMFST "George Emil Palade" Targu Mures', degree: 'Medic Rezident Ortodontie si Ortopedie Dento-Faciala (in curs)', year: 2022 },
+    ],
+    certifications: [
+      { name: 'Starting with the End in Mind — Comprehensive Finishing Course', issuer: 'Dr. Diana Boangar & Dr. Christian Samoila', year: 2023 },
+      { name: 'Spark Aligners — In-Person Onboarding', issuer: 'ORMCO', year: 2023 },
+      { name: 'An Introduction to Tweed Philosophy and Biomechanics — Typodont Course', issuer: 'Dr. Giovanni Biondi', year: 2023 },
+      { name: 'Curs de Ortodontie — Nivel 1', issuer: 'Dr. Diana Boangar & Dr. Christian Samoila', year: 2023 },
+      { name: 'Principii pentru un tratament de succes — sistemul Damon', issuer: 'ORMCO', year: 2022 },
+      { name: 'Membru al Colegiului Medicilor Stomatologi din Romania', issuer: 'CMSR', year: 2022 },
+    ],
     hideGalleryPlaceholder: true,
+    stats: {
+      yearsExperience: 5,
+    },
   },
   {
     key: 'assistant1',
