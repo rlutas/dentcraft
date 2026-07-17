@@ -568,10 +568,10 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             </ScrollReveal>
           </div>
 
-          {/* Team Grid - 3 doctors / 2 doctors centered / 2 staff centered (md+) */}
+          {/* Team Grid - 2 rows of 3: doctors row 1, doctors + head nurse row 2 (md+) */}
           <div className="grid grid-cols-2 md:grid-cols-6 gap-5 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
             {(() => {
-              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'giovana-tincu', 'denisa-ghirasim', 'stefana-cozma', 'camelia-gherman', 'karla-daraban']
+              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'giovana-tincu', 'denisa-ghirasim', 'stefana-cozma', 'camelia-gherman']
               const sanityMembers = hasSanityTeamMembers ? teamMembers : []
               // Per-slug fallback so new members (e.g. Dr. Cozma) show even before they exist in Sanity
               const filtered = TEAM_SLUGS
@@ -581,11 +581,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               return filtered.map((member, index) => (
                 <div
                   key={'_id' in member ? member._id : member.key}
-                  className={[
-                    'md:col-span-2',
-                    index === 3 ? 'md:col-start-2' : '',
-                    index === 5 ? 'md:col-start-2' : '',
-                  ].filter(Boolean).join(' ')}
+                  className="md:col-span-2"
                 >
                 <ScrollReveal
                   animation="fade-up"
