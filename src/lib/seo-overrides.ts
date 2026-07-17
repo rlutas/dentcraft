@@ -14,7 +14,7 @@ const overrides: Record<string, Partial<Record<string, ServiceSeoOverride>>> = {
       // Root layout title template appends "| DENTCRAFT Satu Mare" — don't add the brand here
       metaTitle: 'Implant Dentar Satu Mare — Prețuri de la 2.200 lei',
       metaDescription:
-        'Implant dentar în Satu Mare: de la 2.200 lei (INO) până la 4.000 lei (Straumann). Radiografie 3D CBCT în clinică, plan de tratament cu preț final înainte, plată în rate.',
+        'Implant dentar în Satu Mare: de la 2.200 lei (INO) până la 4.000 lei (Straumann). Chirurg specialist, plan de tratament cu preț final înainte, plată în rate.',
     },
   },
 }

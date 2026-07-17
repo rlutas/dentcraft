@@ -26,7 +26,7 @@ const content: Record<string, Partial<Record<string, LocalSeoContent>>> = {
       heading: 'Implant dentar în Satu Mare: prețuri și ce presupune',
       intro: [
         'Un implant dentar costă la DENTCRAFT între 2.200 și 4.000 de lei, în funcție de sistemul ales. Prețul acoperă implantul propriu-zis, adică șurubul de titan care înlocuiește rădăcina dintelui. Coroana care se montează deasupra se calculează separat, iar suma totală o afli la consultație, înainte să începem orice tratament.',
-        'Clinica este pe strada Barbu Ștefănescu Delavrancea nr. 3, în Satu Mare. Vin la noi pacienți și din Carei, Negrești-Oaș sau din județele vecine, pentru că radiografia 3D se face direct în clinică și nu mai e nevoie de drumuri separate pentru investigații.',
+        'Clinica este pe strada Barbu Ștefănescu Delavrancea nr. 3, în Satu Mare. Vin la noi pacienți și din Carei, Negrești-Oaș sau din județele vecine, pentru că planul de tratament și prețul se stabilesc clar de la prima vizită.',
       ],
       priceHeading: 'Cât costă un implant dentar la Satu Mare în 2026',
       priceRows: [
@@ -37,10 +37,10 @@ const content: Record<string, Partial<Record<string, LocalSeoContent>>> = {
         { label: 'Consultație chirurgie / implantologie', price: '200 lei' },
       ],
       priceNote:
-        'Prețurile sunt cele din lista oficială a clinicii, valabile în 2026. Diferența dintre sisteme ține de producător, de documentația clinică din spatele lui și de garanție. Care se potrivește în cazul tău se decide după radiografia 3D, nu înainte.',
+        'Prețurile sunt cele din lista oficială a clinicii, valabile în 2026. Diferența dintre sisteme ține de producător, de documentația clinică din spatele lui și de garanție. Care se potrivește în cazul tău se decide la consultație, după ce medicul vede situația osului, nu înainte.',
       processHeading: 'Cum decurge tratamentul la DENTCRAFT',
       processParagraphs: [
-        'Prima vizită înseamnă consultație și radiografie 3D CBCT, făcută în clinică. Pe baza ei, medicul vede exact câtă masă osoasă există și unde poate fi poziționat implantul. Tot atunci primești planul de tratament în scris, cu prețul final.',
+        'La prima vizită, medicul evaluează situația și îți spune exact ce investigații sunt necesare pentru cazul tău. Pe baza lor se vede câtă masă osoasă există și unde poate fi poziționat implantul. Primești planul de tratament în scris, cu prețul final.',
         'Intervenția o face Dr. Buterchi Codruț-Ciprian, chirurgul echipei, sub anestezie locală. Durează de regulă sub o oră pentru un implant. Urmează perioada de osteointegrare, între 3 și 6 luni, în care implantul se prinde de os. La final, Dr. Răzvan Petric se ocupă de partea protetică: amprenta se ia cu scanner intraoral Medit i700, fără pasta clasică, iar coroana se montează pe implant.',
         'Se poate plăti și în rate. Detaliile le stabilim la consultație, în funcție de planul de tratament.',
       ],
@@ -49,7 +49,7 @@ const content: Record<string, Partial<Record<string, LocalSeoContent>>> = {
         {
           question: 'Cât costă un implant dentar complet, cu tot cu coroană?',
           answer:
-            'Implantul costă între 2.200 și 4.000 de lei, iar coroana se adaugă separat, în funcție de materialul ales. Suma exactă pentru cazul tău o primești în scris la consultație, după radiografia 3D. Consultația de chirurgie și implantologie costă 200 de lei.',
+            'Implantul costă între 2.200 și 4.000 de lei, iar coroana se adaugă separat, în funcție de materialul ales. Suma exactă pentru cazul tău o primești în scris la consultație. Consultația de chirurgie și implantologie costă 200 de lei.',
         },
         {
           question: 'Doare operația de implant dentar?',
@@ -59,7 +59,7 @@ const content: Record<string, Partial<Record<string, LocalSeoContent>>> = {
         {
           question: 'Cât durează până am dintele finit?',
           answer:
-            'De la montarea implantului până la coroana finală trec de regulă 3 până la 6 luni, cât durează osteointegrarea. În unele cazuri se poate monta o lucrare provizorie mai devreme; dacă e posibil în situația ta se vede pe radiografia 3D.',
+            'De la montarea implantului până la coroana finală trec de regulă 3 până la 6 luni, cât durează osteointegrarea. În unele cazuri se poate monta o lucrare provizorie mai devreme; medicul îți spune la consultație dacă e posibil în situația ta.',
         },
         {
           question: 'Ce sistem de implant este mai bun?',
