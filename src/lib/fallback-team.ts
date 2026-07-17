@@ -141,6 +141,19 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     },
   },
   {
+    key: 'doctor5',
+    name: 'Dr. Cozma Stefana',
+    slug: 'stefana-cozma',
+    role: 'Medic Stomatolog - Ortodontie',
+    photo: '/images/team/dr-cozma-stefana.webp',
+    specializations: ['Ortodontie'],
+    // TODO: bio complet, educatie si certificari dupa primirea CV-ului (17 iul 2026)
+    bio: 'Dr. Cozma Stefana este medicul ortodont al clinicii DENTCRAFT si cea mai noua colega a echipei. Se ocupa de tratamentele ortodontice pentru copii si adulti, de la evaluarea initiala pana la finalizarea tratamentului cu aparat dentar.',
+    education: [],
+    certifications: [],
+    hideGalleryPlaceholder: true,
+  },
+  {
     key: 'assistant1',
     name: 'Gherman Camelia',
     slug: 'camelia-gherman',
