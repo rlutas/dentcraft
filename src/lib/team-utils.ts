@@ -72,7 +72,7 @@ export function getDoctorVideoForSlug(
   const videos: Record<string, { videoId: string; posterSrc?: string }> = {
     'razvan-petric': {
       videoId: 'ZQnkXaijIXs',
-      posterSrc: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
+      posterSrc: '/images/stomatolog-satu-mare.png',
     },
     'denisa-ghirasim': {
       videoId: 'KuxT2zKlrao',

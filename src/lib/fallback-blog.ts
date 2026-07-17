@@ -618,7 +618,7 @@ const author = {
   photo: {
     asset: {
       _id: 'author-photo-petric',
-      url: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
+      url: '/images/stomatolog-satu-mare.png',
     },
   },
   slug: 'razvan-petric',

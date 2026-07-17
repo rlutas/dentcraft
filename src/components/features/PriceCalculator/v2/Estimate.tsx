@@ -31,7 +31,7 @@ type Props = {
   translations: CalcTranslations
 }
 
-const DOCTOR_PHOTO_URL = 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png'
+const DOCTOR_PHOTO_URL = '/images/stomatolog-satu-mare.png'
 
 export function Estimate({ locale, estimate, scenarioTitle, translations }: Props) {
   const [popupOpen, setPopupOpen] = useState(false)

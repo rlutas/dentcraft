@@ -721,7 +721,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             videos={[
               {
                 videoId: 'ZQnkXaijIXs',
-                posterSrc: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
+                posterSrc: '/images/stomatolog-satu-mare.png',
                 posterAlt: 'Dr. Petric Razvan-Tudor',
                 doctorName: 'Dr. Petric Razvan-Tudor',
                 doctorRole: t('home.doctorRoles.coordinator'),

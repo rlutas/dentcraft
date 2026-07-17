@@ -37,7 +37,7 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
     name: 'Dr. Petric Razvan-Tudor',
     slug: 'razvan-petric',
     role: 'Medic Stomatolog Coordonator',
-    photo: 'https://drpetric.ro/wp-content/uploads/2024/11/stomatolog-satu-mare.png',
+    photo: '/images/stomatolog-satu-mare.png',
     specializations: ['Implantologie', 'Estetica Dentara', 'Protetică Dentară'],
     bio: 'Dr. Razvan Petric este medicul stomatolog coordonator al clinicii DENTCRAFT, cu peste 10 ani de experiență în domeniul stomatologiei moderne. A absolvit Facultatea de Medicină Dentară „Iuliu Hațieganu" din Cluj-Napoca în 2016 și și-a continuat formarea prin cursuri internaționale de protetică, implantologie și estetică dentară — Mauro Fradeani Education (Modulele I, II și III), Mastering Tooth Preparation cu Dr. Maxim Belograd (Kiev, 2019) și Competență în Implantologie Orală la Școala Națională de Sănătate Publică (București, 2020). Specializat în implantologie și estetică dentară, Dr. Petric aduce o abordare personalizată fiecărui pacient, combinând tehnologiile de ultimă generație cu tehnici chirurgicale precise.',
     education: [
