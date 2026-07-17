@@ -50,7 +50,12 @@ Ordinea = prioritate după trafic. Toate țintele au fost verificate (HTTP 200).
 ### Faza 0 — pregătire (FĂCUT, 17 iul)
 - [x] Imaginea `stomatolog-satu-mare.png` folosită de dentcraft.ro de pe drpetric.ro a fost mutată local (`/images/stomatolog-satu-mare.png`) — site-ul nou nu mai depinde de cel vechi.
 
-### Faza 1 — implementare redirecturi (30 min, necesită acces WP admin sau hosting)
+### Faza 1 — implementare redirecturi ✅ EXECUTAT 17 iul 2026
+- [x] 12 redirecturi pagină-la-pagină adăugate în **Rank Math → Redirections** (Rank Math era deja instalat; plugin-ul Redirection instalat din greșeală a fost șters)
+- [x] Homepage: Rank Math nu redirecționează front page (limitare cunoscută) → snippet `template_redirect` în `functions.php` (tema Hello Elementor), 301 către www.dentcraft.ro, cu excepție pentru utilizatorii logați. **Atenție: snippet-ul se pierde la update-ul temei Hello Elementor — de repus după update sau de mutat în child theme.**
+- [x] Toate cele 13 rute testate live: 301 către ținta corectă; wp-admin/wp-login neafectate; 404-urile rămân 404
+
+### Detalii implementare originale (referință)
 Variante, în ordinea preferinței:
 1. **Plugin „Redirection"** (WP admin → Plugins): import listă de mai sus, tip 301. Cel mai simplu de întreținut.
 2. **.htaccess** (dacă hosting Apache/LiteSpeed) — regulile de mai jos, la începutul fișierului:
@@ -75,10 +80,10 @@ RewriteRule ^(.*)$ https://www.dentcraft.ro/ [R=301,L]
 
 3. **Cloudflare Bulk Redirects** (dacă DNS-ul e pe Cloudflare) — aceeași listă ca reguli.
 
-### Faza 2 — imediat după activare (15 min)
-- [ ] Test manual: fiecare URL din tabel → răspunde 301 către ținta corectă (verific eu cu script).
-- [ ] GSC (proprietatea drpetric.ro) → Setări → **„Schimbarea adresei"** (Change of Address) → mutare către dentcraft.ro. Semnalul oficial pentru Google; accelerează transferul.
-- [ ] Sitemap-ul drpetric.ro rămâne accesibil (Google recrawlează URL-urile vechi și vede 301).
+### Faza 2 — imediat după activare ✅ EXECUTAT 17 iul 2026
+- [x] Test complet script: 13/13 redirecturi 301 corecte
+- [x] GSC „Schimbarea adresei": depusă 17 iul 2026 (drpetric.ro → dentcraft.ro, status „Site-ul se mută") — depusă de Raul
+- [x] Imaginea partajată stomatolog-satu-mare.png mutată local pe dentcraft.ro (commit 73a5669)
 
 ### Faza 3 — săptămânile 1–4
 - [ ] Domeniul drpetric.ro rămâne plătit și cu redirecturile active **minim 2 ani** (recomandat: permanent).
