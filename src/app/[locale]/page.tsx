@@ -568,13 +568,14 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             </ScrollReveal>
           </div>
 
-          {/* Team Grid - 4 doctors top row + 2 staff centered on second row (md+) */}
-          <div className="grid grid-cols-2 md:grid-cols-8 gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
+          {/* Team Grid - 3 doctors / 2 doctors centered / 2 staff centered (md+) */}
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-5 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
             {(() => {
-              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'denisa-ghirasim', 'giovana-tincu', 'camelia-gherman', 'karla-daraban']
-              const allMembers = hasSanityTeamMembers && teamMembers.length >= 6 ? teamMembers : fallbackTeamMembers
+              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'giovana-tincu', 'denisa-ghirasim', 'stefana-cozma', 'camelia-gherman', 'karla-daraban']
+              const sanityMembers = hasSanityTeamMembers ? teamMembers : []
+              // Per-slug fallback so new members (e.g. Dr. Cozma) show even before they exist in Sanity
               const filtered = TEAM_SLUGS
-                .map((slug) => allMembers.find((m) => m.slug === slug))
+                .map((slug) => sanityMembers.find((m) => m.slug === slug) ?? fallbackTeamMembers.find((m) => m.slug === slug))
                 .filter((m): m is NonNullable<typeof m> => Boolean(m))
 
               return filtered.map((member, index) => (
@@ -582,8 +583,8 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                   key={'_id' in member ? member._id : member.key}
                   className={[
                     'md:col-span-2',
-                    index === 4 ? 'md:col-start-3' : '',
-                    index === 5 ? 'md:col-start-5' : '',
+                    index === 3 ? 'md:col-start-2' : '',
+                    index === 5 ? 'md:col-start-2' : '',
                   ].filter(Boolean).join(' ')}
                 >
                 <ScrollReveal
