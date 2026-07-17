@@ -198,7 +198,7 @@ const contentRo: PortableTextBlock[] = [
   richListItem('ro15', [{ text: 'Sinus lift (daca e necesar):', bold: true }, { text: ' 1.500 \u2013 3.500 lei' }]),
   richListItem('ro16', [{ text: 'Total implant complet (medie):', bold: true }, { text: ' 4.000 \u2013 6.500 lei', bold: true }]),
 
-  block('ro17', 'normal', 'Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie si radiografie 3D \u2014 care la noi e gratuita.'),
+  block('ro17', 'normal', 'Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie, inainte sa inceapa orice tratament.'),
 
   // Section: Ce include pretul
   block('ro18', 'h2', 'Ce include pretul unui implant la DENTCRAFT?'),
@@ -208,7 +208,6 @@ const contentRo: PortableTextBlock[] = [
   block('ro20', 'normal', 'La noi, pretul implantului include:'),
 
   listItem('ro21', 'Consultatia initiala si planul de tratament'),
-  listItem('ro22', 'Radiografia 3D (CBCT) \u2014 o facem in cabinet, cu scanner-ul nostru'),
   listItem('ro23', 'Implantul propriu-zis (titan, biocompatibil)'),
   listItem('ro24', 'Bontul protetic (piesa care leaga implantul de coroana)'),
   listItem('ro25', 'Controalele post-operatorii pe toata perioada de vindecare'),
@@ -238,7 +237,7 @@ const contentRo: PortableTextBlock[] = [
 
   block('ro37', 'normal', 'Timeline-ul complet arata cam asa:'),
 
-  richListItem('ro38', [{ text: 'Ziua 1:', bold: true }, { text: ' Consultatie + radiografie 3D + plan de tratament' }], 'number'),
+  richListItem('ro38', [{ text: 'Ziua 1:', bold: true }, { text: ' Consultatie + plan de tratament' }], 'number'),
   richListItem('ro39', [{ text: 'Ziua chirurgiei:', bold: true }, { text: ' Inserarea implantului (30-45 min)' }], 'number'),
   richListItem('ro40', [{ text: 'Luna 1-2:', bold: true }, { text: ' Controale periodice, vindecarea gingiei' }], 'number'),
   richListItem('ro41', [{ text: 'Luna 3-6:', bold: true }, { text: ' Osteointegrare (implantul se integreaza in os)' }], 'number'),
@@ -265,7 +264,7 @@ const contentRo: PortableTextBlock[] = [
   richBlock('ro51', 'normal', [
     { text: 'Lucram cu ' },
     { text: 'echipa noastra de specialisti', link: { key: 'lnk2', href: '/echipa' } },
-    { text: ', cu experienta combinata de peste 10 ani. Avem scanner intraoral si radiografie 3D in cabinet \u2014 nu te trimitem in alta parte. Comunicam in romana, engleza si maghiara.' },
+    { text: ', cu experienta combinata de peste 10 ani. Avem scanner intraoral in cabinet. Comunicam in romana, engleza si maghiara.' },
   ]),
 
   block('ro52', 'normal', 'Si cel mai important: iti spunem pretul final inainte sa incepem. Multi pacienti din Satu Mare si din judetele vecine (Maramures, Bihor) aleg sa vina la noi tocmai pentru asta \u2014 transparenta.'),
@@ -304,7 +303,7 @@ const contentRo: PortableTextBlock[] = [
     { text: '0741 199 977', bold: true },
     { text: ' sau ' },
     { text: 'programeaza online', link: { key: 'lnk3', href: '/contact' } },
-    { text: '. Consultatia si radiografia 3D sunt gratuite.' },
+    { text: '.' },
   ]),
 
   richBlock('ro65', 'normal', [

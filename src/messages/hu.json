@@ -225,8 +225,8 @@
       "generalDentistryBenefit3Desc": "Modern, esztétikus tömőanyagokkal végzett helyreállítások a fogak épségéért.",
       "generalDentistryStep1Title": "Fogászati vizsgálat",
       "generalDentistryStep1Desc": "A szájüreg és a fogak teljes körű felmérése.",
-      "generalDentistryStep2Title": "Röntgenfelvétel",
-      "generalDentistryStep2Desc": "Digitális röntgen a rejtett problémák feltárásához.",
+      "generalDentistryStep2Title": "Szájhigiéniai kezelés",
+      "generalDentistryStep2Desc": "Ultrahangos fogkő-eltávolítás és professzionális tisztítás.",
       "generalDentistryStep3Title": "Kezelési terv",
       "generalDentistryStep3Desc": "Személyre szabott kezelési javaslat készítése.",
       "generalDentistryStep4Title": "Kezelés végrehajtása",
@@ -304,7 +304,7 @@
       "endodonticsBenefit3Title": "Tartós eredmény",
       "endodonticsBenefit3Desc": "A kezelt fog megfelelő gondozással évtizedekig működőképes marad.",
       "endodonticsStep1Title": "Diagnózis",
-      "endodonticsStep1Desc": "Röntgenfelvétel és a gyökércsatorna állapotának felmérése.",
+      "endodonticsStep1Desc": "A fog és a gyökércsatorna állapotának alapos felmérése.",
       "endodonticsStep2Title": "Gyökércsatorna tisztítás",
       "endodonticsStep2Desc": "A fertőzött szövet eltávolítása és a csatornák fertőtlenítése.",
       "endodonticsStep3Title": "Gyökértömés",
@@ -502,7 +502,7 @@
       },
       "digital": {
         "title": "Digitalis Technologia",
-        "description": "3D szkenneles, digitalis rontgen es CAD/CAM rendszerek a kimagaslo eredmenyekert."
+        "description": "3D szkenneles es modern digitalis rendszerek a kimagaslo eredmenyekert."
       }
     }
   },

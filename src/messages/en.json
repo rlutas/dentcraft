@@ -288,7 +288,7 @@
       "orthodonticsBenefit3Title": "Flexible Options",
       "orthodonticsBenefit3Desc": "Choose from traditional braces or nearly invisible aligners based on your lifestyle.",
       "orthodonticsStep1Title": "Orthodontic Assessment",
-      "orthodonticsStep1Desc": "Complete evaluation including X-rays and digital scans to plan your treatment.",
+      "orthodonticsStep1Desc": "Complete evaluation with digital scans to plan your treatment.",
       "orthodonticsStep2Title": "Treatment Selection",
       "orthodonticsStep2Desc": "Choose the best option for your needs: metal braces, ceramic, or clear aligners.",
       "orthodonticsStep3Title": "Active Treatment",
@@ -502,7 +502,7 @@
       },
       "digital": {
         "title": "Digital Technology",
-        "description": "3D scanning, digital X-rays and CAD/CAM systems for superior results."
+        "description": "3D scanning and modern digital systems for superior results."
       }
     }
   },

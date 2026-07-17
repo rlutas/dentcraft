@@ -224,7 +224,7 @@
       "generalDentistryBenefit3Title": "Tratamente fara durere",
       "generalDentistryBenefit3Desc": "Tehnici moderne de anestezie si abordare blanda pentru o experienta confortabila la dentist.",
       "generalDentistryStep1Title": "Consultatie initiala",
-      "generalDentistryStep1Desc": "Examinare completa a cavitatii bucale si radiografie panoramica pentru diagnostic precis.",
+      "generalDentistryStep1Desc": "Examinare completa a cavitatii bucale pentru un diagnostic precis.",
       "generalDentistryStep2Title": "Plan de tratament",
       "generalDentistryStep2Desc": "Prezentarea optiunilor de tratament si stabilirea prioritatilor in functie de nevoile tale.",
       "generalDentistryStep3Title": "Igienizare profesionala",
@@ -288,7 +288,7 @@
       "orthodonticsBenefit3Title": "Rezultate garantate",
       "orthodonticsBenefit3Desc": "Plan de tratament ortodontic cu simulare 3D si previzualizarea rezultatului final.",
       "orthodonticsStep1Title": "Consultatie ortodontica",
-      "orthodonticsStep1Desc": "Examinare completa, radiografii si scanare 3D pentru diagnosticul ortodontic precis.",
+      "orthodonticsStep1Desc": "Examinare completa si scanare 3D pentru diagnosticul ortodontic precis.",
       "orthodonticsStep2Title": "Plan de tratament",
       "orthodonticsStep2Desc": "Prezentarea optiunilor de aparat dentar si simularea digitala a rezultatului final.",
       "orthodonticsStep3Title": "Aplicarea aparatului",
@@ -304,7 +304,7 @@
       "endodonticsBenefit3Title": "Fara durere",
       "endodonticsBenefit3Desc": "Eliminam durerea dentara cu tratament de canal modern si anestezie eficienta.",
       "endodonticsStep1Title": "Diagnostic endodontic",
-      "endodonticsStep1Desc": "Evaluarea dintelui afectat cu radiografie si teste de vitalitate pentru plan de tratament.",
+      "endodonticsStep1Desc": "Evaluarea dintelui afectat si teste de vitalitate pentru plan de tratament.",
       "endodonticsStep2Title": "Accesul la canale",
       "endodonticsStep2Desc": "Deschiderea dintelui sub anestezie locala si localizarea canalelor radiculare.",
       "endodonticsStep3Title": "Curatarea canalelor",
@@ -502,7 +502,7 @@
       },
       "digital": {
         "title": "Tehnologie Digitala",
-        "description": "Scanare 3D, radiografii digitale si sisteme CAD/CAM pentru rezultate superioare."
+        "description": "Scanare 3D si sisteme digitale moderne pentru rezultate superioare."
       }
     }
   },
@@ -644,7 +644,7 @@
     "faqTitle": "Întrebări frecvente despre prețuri",
     "faq": [
       { "q": "Cât costă o consultație stomatologică în Satu Mare?", "a": "La DENTCRAFT îți comunicăm transparent costul consultației și al planului de tratament înainte să începem. Tarifele pentru consultație și control le găsești mai sus, la categoria Consultații-Control." },
-      { "q": "Prețurile afișate sunt fixe?", "a": "Unele tarife sunt fixe, altele pornesc „de la” o anumită sumă, pentru că depind de complexitatea cazului. Prețul exact pentru situația ta îl stabilim după consultație și radiografie." },
+      { "q": "Prețurile afișate sunt fixe?", "a": "Unele tarife sunt fixe, altele pornesc „de la” o anumită sumă, pentru că depind de complexitatea cazului. Prețul exact pentru situația ta îl stabilim după consultație." },
       { "q": "Pot plăti tratamentul în rate?", "a": "Da, oferim posibilitatea de plată în rate pentru tratamentele mai ample, cum ar fi implanturile, lucrările protetice sau ortodonția. Discutăm opțiunile la consultație." },
       { "q": "Ce include prețul unui implant dentar?", "a": "Prețul implantului include de obicei implantul propriu-zis, intervenția și controalele. Coroana se plătește separat și o știi dinainte, fără surprize." },
       { "q": "De ce variază prețul de la un pacient la altul?", "a": "Pentru că fiecare caz e diferit: numărul de dinți tratați, starea osului și a gingiei, materialele alese și complexitatea influențează costul final. De aceea facem un plan personalizat după evaluare." }

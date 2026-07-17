@@ -335,7 +335,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad19s0",
-        "text": "Pretul de mai sus e per arcada. Daca ai nevoie de aparat sus si jos — ceea ce e cazul cel mai des — costul se aproximativ dubleaza. Pretul include de obicei aplicarea, arcurile si controalele lunare pe durata tratamentului. Pretul final il stabilim dupa consultatie si o radiografie, pentru ca fiecare gura e diferita.",
+        "text": "Pretul de mai sus e per arcada. Daca ai nevoie de aparat sus si jos — ceea ce e cazul cel mai des — costul se aproximativ dubleaza. Pretul include de obicei aplicarea, arcurile si controalele lunare pe durata tratamentului. Pretul final il stabilim dupa consultatie, pentru ca fiecare gura e diferita.",
         "marks": []
       }
     ]
@@ -419,7 +419,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad25s0",
-        "text": "La DENTCRAFT, prima consultatie ortodontica inseamna ca ne uitam la dintii tai, facem o radiografie panoramica si, daca e nevoie, o scanare 3D cu scanner-ul intraoral. Apoi iti aratam pe ecran exact ce avem de corectat si ce optiuni ai.",
+        "text": "La DENTCRAFT, prima consultatie ortodontica inseamna ca ne uitam la dintii tai si, daca e nevoie, facem o scanare 3D cu scanner-ul intraoral. Apoi iti aratam pe ecran exact ce avem de corectat si ce optiuni ai.",
         "marks": []
       }
     ]
