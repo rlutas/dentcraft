@@ -45,6 +45,31 @@ campania Search-1 îl folosește deja (1 din 1). Obiectivul conține și „Clic
   (2 respinse: „Suprapuneri grafice sau de text" — de înlocuit cândva), **locația DENTCRAFT era
   deja atașată campaniei** (grupul de locații din iunie e activ).
 
+## Extindere cuvinte cheie — toate grupurile tematice (3 aug, seara, rundă 2)
+
+Rețeta: campania e geo-țintită pe Satu Mare → phrase match FĂRĂ oraș aduce volum local
+(long-tail-urile „... satu mare" erau aproape toate „Volum scăzut"). Dovadă: „implant dentar pret"
+fără oraș avea deja 73 clicuri în AG_Implant.
+
+| Grup | Cuvinte noi (phrase) |
+|---|---|
+| AG_Estetica_SM | fatete dentare, fatete dentare pret, albire dentara, albire dentara pret, albire dinti, estetica dentara, fatete ceramice, bonding dentar |
+| AG_Implant_SM | implant dentar, implanturi dentare, implant dentar cost, all on 4, all on 6, proteza pe implanturi |
+| AG_Ortodontie_SM | aparat dentar, aparat dentar pret, invisalign, ortodont, indreptarea dintilor, aparat dentar invizibil |
+| AG_Preturi_SM | preturi stomatologie, preturi dentist, cat costa un implant dentar, cat costa un aparat dentar, cat costa albirea dentara, pret consultatie stomatologica |
+
+Total 26 cuvinte noi + `[dentist satu mare]` exact în Grupul 1. Majoritatea au primit flag
+„Health in personalized advertising" → **exceptare cerută la fiecare**, toate „În curs de examinare"
+(1–3 zile lucrătoare de obicei). Cuvintele vechi „Volum scăzut" NU au fost șterse — nu costă nimic,
+se reactivează singure.
+
+## De verificat ~10 aug (extins)
+- Exceptările aprobate + cuvintele noi „Eligibilă" și cu afișări.
+- Impact buget: cu AG_General oprit + 26 cuvinte noi, cheltuiala se redistribuie — de văzut
+  cost/conversie pe grupurile tematice.
+- Termeni de căutare noi după lărgire → negative dacă apare gunoi (variantele fără oraș pot
+  prinde căutări din alte orașe doar dacă userul e în geo-target — de monitorizat totuși).
+
 ## Observație pentru mai târziu (nefăcut, de discutat)
 Grupul 1 are broad-uri pe servicii (fatete/albire/aparat/implant „satu mare") care se suprapun cu
 grupurile tematice → fură trafic de la landing-urile dedicate. După ce grupurile tematice prind
