@@ -181,17 +181,6 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       { name: 'Certificat Asistenta Stomatologica', issuer: 'Colegiul Medicilor Stomatologi', year: 2020 },
     ],
   },
-  {
-    key: 'assistant2',
-    name: 'Daraban Karla',
-    slug: 'karla-daraban',
-    role: 'Receptionist',
-    photo: '/images/team/asistent-daraban-carla.webp',
-    specializations: ['Relatii Pacienti', 'Programari si Coordonare', 'Managementul Receptiei'],
-    bio: 'Karla Daraban este receptionista clinicii DENTCRAFT si prima persoana care intampina pacientii. Cu o atitudine prietenoasa si profesionista, Karla se ocupa de programari, coordonarea fluxului de pacienti si asigurarea unei experiente placute inca de la primul contact cu clinica. Atentia la detalii si comunicarea clara fac din ea un membru esential al echipei.',
-    education: [],
-    certifications: [],
-  },
 ]
 
 // Get fallback team member by slug
