@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
       // Frames: Google Maps + YouTube + Vimeo + GTM noscript + Vercel preview comments
       "frame-src https://www.google.com https://www.youtube.com https://player.vimeo.com https://www.googletagmanager.com https://vercel.live https://td.doubleclick.net",
       // XHR/fetch/WebSocket: self + GTM + GA + Google Ads conversion + Sanity + Vercel
-      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.ro https://www.googleadservices.com https://googleads.g.doubleclick.net https://td.doubleclick.net https://pagead2.googlesyndication.com https://cdn.sanity.io https://*.vercel-insights.com https://*.vercel-analytics.com https://va.vercel-scripts.com https://vercel.live wss://ws-us3.pusher.com",
+      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.ro https://www.googleadservices.com https://*.doubleclick.net https://pagead2.googlesyndication.com https://cdn.sanity.io https://*.vercel-insights.com https://*.vercel-analytics.com https://va.vercel-scripts.com https://vercel.live wss://ws-us3.pusher.com",
       // Disallow plugins (Flash, Java, etc.)
       "object-src 'none'",
       // Restrict base URI to prevent base tag hijacking
