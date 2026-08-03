@@ -31,3 +31,22 @@ campania Search-1 îl folosește deja (1 din 1). Obiectivul conține și „Clic
 ## Alte fixuri 3 aug
 - Negativ `"datcu"` (potrivire expresie) adăugat pe Search-1 (variantele treceau de negativele exacte).
 - GA4 „DentCraft" (525980361) conectat la Google Ads (import valori + segmente activ).
+- CSP site: `connect-src` bloca `ad.doubleclick.net` (endpoint măsurare conversii) → wildcard `*.doubleclick.net` (commit `3fabb16`).
+
+## Restructurare 3 aug (seara)
+- **AG_General_SM ÎNTRERUPT** (1.455 RON / 1 conversie, CTR 9,45%, suprapunere cu Grupul 1).
+- `[dentist satu mare]` exact adăugat în Grupul de anunțuri 1 (în examinare); broad-ul exista deja acolo.
+- **AG_Estetica_SM**: +8 cuvinte phrase fără oraș (fatete dentare, fatete dentare pret, albire dentara,
+  albire dentara pret, albire dinti, estetica dentara, fatete ceramice, bonding dentar) — cele vechi
+  „... satu mare" erau aproape toate „Volum scăzut". 5 din 8 au flag „Health in personalized
+  advertising" → exceptare cerută, în examinare.
+- **Asseturi verificate**: 4 sitelinkuri (CTR 20,7%, „Eligibil limitat" pe aceeași politică Health —
+  funcționează), apel 0741 199 977 activ, 4 înștiințări, 1 fragment structurat, ~20 imagini
+  (2 respinse: „Suprapuneri grafice sau de text" — de înlocuit cândva), **locația DENTCRAFT era
+  deja atașată campaniei** (grupul de locații din iunie e activ).
+
+## Observație pentru mai târziu (nefăcut, de discutat)
+Grupul 1 are broad-uri pe servicii (fatete/albire/aparat/implant „satu mare") care se suprapun cu
+grupurile tematice → fură trafic de la landing-urile dedicate. După ce grupurile tematice prind
+volum, de pauzat broad-urile de servicii din Grupul 1 (păstrat doar genericele dentist/stomatolog/
+cabinet/clinica).
