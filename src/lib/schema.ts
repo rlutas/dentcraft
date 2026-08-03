@@ -17,7 +17,7 @@ export function getOrganizationSchema() {
       '@type': 'ImageObject',
       url: `${SITE_URL}/branding/LOGO_BLACK_FINAL.png`,
     },
-    image: `${SITE_URL}/images/team-clinic.webp`,
+    image: `${SITE_URL}/images/og-clinic.webp`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Str. Barbu Ștefănescu Delavrancea nr.3',
