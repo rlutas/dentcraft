@@ -23,10 +23,7 @@ Categoria „Persoană de contact" a devenit automat obiectiv prestabilit de con
 campania Search-1 îl folosește deja (1 din 1). Obiectivul conține și „Clicks to call"
 (găzduit de Google/GBP, principal, nemodificabil) — semnal de apel din profil, acceptat.
 
-## De verificat (~10 aug)
-- Conversii noi „Click telefon (site)" / „Click WhatsApp (site)" apar în Ads cu status
-  „Înregistrează conversii" (nu „Inactivă") + primele numere.
-- Notă: tag-urile respectă Consent Mode — se numără doar utilizatorii care acceptă cookies.
+Notă: tag-urile respectă Consent Mode — se numără doar utilizatorii care acceptă cookies.
 
 ## Alte fixuri 3 aug
 - Negativ `"datcu"` (potrivire expresie) adăugat pe Search-1 (variantele treceau de negativele exacte).
@@ -63,15 +60,68 @@ Total 26 cuvinte noi + `[dentist satu mare]` exact în Grupul 1. Majoritatea au 
 (1–3 zile lucrătoare de obicei). Cuvintele vechi „Volum scăzut" NU au fost șterse — nu costă nimic,
 se reactivează singure.
 
-## De verificat ~10 aug (extins)
-- Exceptările aprobate + cuvintele noi „Eligibilă" și cu afișări.
-- Impact buget: cu AG_General oprit + 26 cuvinte noi, cheltuiala se redistribuie — de văzut
-  cost/conversie pe grupurile tematice.
-- Termeni de căutare noi după lărgire → negative dacă apare gunoi (variantele fără oraș pot
-  prinde căutări din alte orașe doar dacă userul e în geo-target — de monitorizat totuși).
-
 ## Observație pentru mai târziu (nefăcut, de discutat)
 Grupul 1 are broad-uri pe servicii (fatete/albire/aparat/implant „satu mare") care se suprapun cu
 grupurile tematice → fură trafic de la landing-urile dedicate. După ce grupurile tematice prind
 volum, de pauzat broad-urile de servicii din Grupul 1 (păstrat doar genericele dentist/stomatolog/
 cabinet/clinica).
+
+---
+
+# BASELINE 3 aug 2026 (pentru comparație data viitoare)
+
+Interval de referință: **4 iul – 2 aug** (ultimele 30 zile). GOTCHA: UI-ul se deschide pe „ieri" —
+click „Afișați ultimele 30 de zile" înainte de a citi cifre!
+
+| Metric campanie | Valoare 3 aug |
+|---|---|
+| Afișări | 14.783 |
+| Clicuri | 1.806 (CTR 12,22%) |
+| CPC mediu | 3,23 RON |
+| Cost | 5.834 RON (~194/zi, plafon 200 atins) |
+| Conversii | **5** (0,28%) — subcontorizate, fără call/WA de pe site |
+| Cost/conversie | 1.167 RON |
+
+Pe grupuri (cost / conversii): Grupul 1 2.852/4 · AG_General 1.455/1 (ÎNTRERUPT 3 aug) ·
+Preturi 751/0 · Implant 337/0 · Brand 233/0 · Ortodonție 194/0 · Estetica 12/0.
+Referință cerere reală din GBP (neatribuită campaniei): **73 clicks-to-call + 139 direcții/lună**.
+
+# CHECKLIST URMĂTOAREA SESIUNE (~10 aug, apoi bilanț 30 zile ~2 sept)
+
+Ordinea exactă + criteriu reușit/eșuat la fiecare:
+
+1. **Conversii noi active?** Obiective → Conversii → Rezumat → „Vedeți toate acțiunile".
+   „Click telefon (site)" + „Click WhatsApp (site)": REUȘIT = stare „Activ" + primele numere
+   (aștept 5–15/săpt. combinat, doar userii cu consimțământ). EȘUAT = tot „Inactiv" pe 10 aug →
+   de depanat cu Tag Assistant pe dentcraft.ro (click pe tel:/wa.me, verificat tagurile Ads că se declanșează).
+2. **Exceptările keywords aprobate?** Cuvinte cheie → filtru stare. REUȘIT = cele 26 noi „Eligibilă"
+   și încep afișările (mai ales „implant dentar", „aparat dentar", „fatete dentare").
+   EȘUAT = „Respins" → repet exceptarea sau reformulez cuvântul.
+3. **Redistribuirea bugetului după oprirea AG_General:** grupurile tematice (Implant/Ortodonție/
+   Estetica/Preturi) trebuie să crească afișările vs baseline-ul de sus (Estetica de la 27!).
+   Grupul 1 poate crește și el — OK. Semnal rău: afișări totale scad sub ~12.000/30d → Google
+   n-a realocat, de lărgit iar.
+4. **Termeni de căutare noi** (după lărgirea fără oraș): Statistici → Termeni de căutare, 30 zile.
+   De adăugat negative pe orice gunoi nou (alte orașe, „gratis", competitori noi). „datcu" nu mai
+   trebuie să apară.
+5. **Cost/conversie** (abia la bilanțul din ~2 sept are sens): ȚINTA cu tracking complet =
+   sub 200 RON/lead real (vs 1.167 fals azi). Dacă conversiile măsurate ajung 30–60/lună
+   (nivelul cererii din GBP), am confirmarea.
+6. **Warningul CSP din GTM dispărut?** tagmanager.google.com → dentcraft.ro → Prezentare
+   generală. Fixul (`*.doubleclick.net`) e deployat din 3 aug; diagnosticul se reevaluează în
+   câteva zile. Dacă persistă >2 săpt., de verificat response headers live.
+7. **Imagini respinse (2, „suprapuneri text")**: de înlocuit cu poze curate din
+   `public/images/clinic/` (fără text pe ele) — 10 minute.
+
+## Pașii mari DUPĂ ce tracking-ul strânge 2–3 săptămâni de date (deci ~17–24 aug)
+1. **Licitare: Maximizați clicurile → Maximizați conversiile** (abia cu 30+ conv/lună măsurate;
+   UI-ul estima +10,5%). Supravegheat CPC-ul zilnic prima săptămână.
+2. **PMax local (recomandarea advisorului Google)**: obiective Get Directions + Clicks to call —
+   are sens abia cu conversii curate din care să învețe.
+3. **De discutat:** pauză broad-uri de servicii din Grupul 1 (vezi observația de mai sus);
+   Brand (233 RON/lună pe „dentcraft" — apărare sau tăiem?).
+
+## Acces rapid
+Cont: SC PRTESTET SRL, ocid `8242104670`, serviciiseonethut@gmail.com · Campanie: Search-1
+(id 23858371853) · GTM: GTM-MHB5K5LL · GA4: DentCraft 525980361 · Labels conversii: telefon
+`W9saCK2bqdscEMyX4dVD`, WhatsApp `cDl3CLCbqdscEMyX4dVD`.
