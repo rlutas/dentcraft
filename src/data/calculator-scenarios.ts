@@ -8,8 +8,7 @@
 
 import { findTreatment, type Locale } from './treatments'
 
-export type Tier = 'economic' | 'mediu' | 'premium' | 'doctor'
-export type SubQuestionType = 'count' | 'tier' | 'choice' | 'arcades' | 'package'
+export type SubQuestionType = 'count' | 'choice' | 'arcades' | 'package'
 
 export type SubQuestion = {
   id: string
@@ -22,6 +21,10 @@ export type SubQuestion = {
   }>
   min?: number
   max?: number
+  // Count questions: unit shown under the number ("1 dinte" / "3 dinți").
+  unit?: Record<Locale, { one: string; other: string }>
+  // Hide the question when it doesn't apply to the current answers.
+  showIf?: (a: ScenarioAnswer) => boolean
   default: string | number
 }
 
@@ -68,21 +71,28 @@ const coerceToString = (v: string | number | undefined, fallback: string): strin
 // ---------- shared notes ----------
 
 const BRACES_NOTE_CLEAR_CORRECT: Record<Locale, string> = {
-  ro: 'Clear Correct e o variantă invizibilă completă — pachetul include toate seturile de aligneri. Tratamentul durează între 12 și 24 luni, în funcție de complexitate.',
-  en: 'Clear Correct is a fully invisible option — the package includes all aligner sets. Treatment usually lasts 12-24 months, depending on complexity.',
-  hu: 'A Clear Correct teljesen láthatatlan megoldás — a csomag minden sín készletet tartalmaz. A kezelés 12-24 hónapig tart, a komplexitástól függően.',
+  ro: 'Clear Correct e o variantă invizibilă — pachetul include toate seturile de aligneri. Durata tratamentului depinde de complexitatea cazului.',
+  en: 'Clear Correct is an invisible option — the package includes all aligner sets. Treatment length depends on how complex the case is.',
+  hu: 'A Clear Correct láthatatlan megoldás — a csomag minden sín készletet tartalmaz. A kezelés időtartama az eset összetettségétől függ.',
 }
 
 const BRACES_NOTE_FIXED: Record<Locale, string> = {
-  ro: 'Aparatul fix necesită activări lunare (cca 200 RON/ședință). În medie tratamentul durează 12-24 luni — ne vedem o dată pe lună.',
-  en: 'Fixed braces need monthly activations (~200 RON each visit). On average the treatment lasts 12-24 months with a check-up every month.',
-  hu: 'A fix készülék havi aktiválást igényel (kb. 200 RON / alkalom). A kezelés átlagosan 12-24 hónapig tart, havi kontrollal.',
+  ro: 'Aparatul fix necesită activări periodice, de obicei o dată pe lună, pe toată durata tratamentului.',
+  en: 'Fixed braces need regular activations, usually once a month, for the whole treatment.',
+  hu: 'A fix készülék rendszeres aktiválást igényel, általában havonta egyszer, a kezelés teljes ideje alatt.',
 }
 
 const VENEER_NOTE: Record<Locale, string> = {
   ro: 'Pentru zona frontală recomand fațete E-Max — sunt cele mai estetice și durabile. Albirea o facem înainte de fațete ca să stabilim nuanța de referință.',
   en: 'For the front zone I recommend E-Max veneers — most esthetic and durable. We do whitening before veneers to set the reference shade.',
   hu: 'Az elülső fogaknál E-Max héjakat ajánlok — a legesztétikusabb és legtartósabb. A fehérítést a héjak előtt csináljuk, hogy beállítsuk a referencia árnyalatot.',
+}
+
+// Appended to every estimate: the calculator is informative only.
+export const CONSULT_NOTE: Record<Locale, string> = {
+  ro: 'Calculatorul are rol strict informativ. Prețul final și planul de tratament propriu-zis se stabilesc la consultație, după ce văd situația ta.',
+  en: 'This calculator is for information only. The final price and your actual treatment plan are set at the consultation, once I see your situation.',
+  hu: 'A kalkulátor kizárólag tájékoztató jellegű. A végleges árat és a tényleges kezelési tervet a konzultáción határozzuk meg, miután látom az Ön helyzetét.',
 }
 
 // ---------- scenarios ----------
@@ -117,92 +127,31 @@ export const scenarios: Scenario[] = [
         },
         min: 1,
         max: 3,
-        default: 1,
-      },
-      {
-        id: 'tier',
-        type: 'tier',
-        labels: {
-          ro: 'Ce nivel preferi?',
-          en: 'Which tier?',
-          hu: 'Melyik szintet választod?',
+        unit: {
+          ro: { one: 'dinte', other: 'dinți' },
+          en: { one: 'tooth', other: 'teeth' },
+          hu: { one: 'fog', other: 'fog' },
         },
-        options: [
-          {
-            value: 'economic',
-            labels: { ro: 'Economic', en: 'Economic', hu: 'Gazdaságos' },
-            hint: {
-              ro: 'Implant INO + coroană metaloceramică',
-              en: 'INO implant + porcelain-fused-to-metal crown',
-              hu: 'INO implantátum + fém-porcelán korona',
-            },
-          },
-          {
-            value: 'mediu',
-            labels: { ro: 'Mediu', en: 'Mid-range', hu: 'Közepes' },
-            hint: {
-              ro: 'Implant Megagen + coroană zirconiu CAD CAM',
-              en: 'Megagen implant + zirconia CAD CAM crown',
-              hu: 'Megagen implantátum + cirkónium CAD CAM korona',
-            },
-          },
-          {
-            value: 'premium',
-            labels: { ro: 'Premium', en: 'Premium', hu: 'Prémium' },
-            hint: {
-              ro: 'Implant Straumann + coroană total-ceramică',
-              en: 'Straumann implant + full ceramic crown',
-              hu: 'Straumann implantátum + teljes kerámia korona',
-            },
-          },
-          {
-            value: 'doctor',
-            labels: {
-              ro: 'Las doctorul să recomande',
-              en: 'Let the doctor recommend',
-              hu: 'A doktor döntsön',
-            },
-            hint: {
-              ro: 'Estimare cu range complet',
-              en: 'Estimate with full range',
-              hu: 'Teljes árskála',
-            },
-          },
-        ],
-        default: 'doctor',
+        default: 1,
       },
     ],
     resolve: (a) => {
       const count = Math.max(1, Math.min(3, toNumber(a['count'], 1)))
-      const tier = coerceToString(a['tier'], 'doctor') as Tier
-
-      // 'doctor' tier resolves to economic items as the floor; the UI displays
-      // the full tier range separately via doctor-tier handling in calculations
-      // or copy.
-      const implantByTier: Record<Tier, string> = {
-        economic: 'implant-dentar-ino',
-        mediu: 'implant-dentar-megagen',
-        premium: 'implant-straumann',
-        doctor: 'implant-dentar-ino',
-      }
-      const crownByTier: Record<Tier, string> = {
-        economic: 'coroana-metalo-ceramica-pe-implant',
-        mediu: 'coroana-ceramica-pe-suport-zirconiu-cad-cam-pentru-implant',
-        premium: 'coroana-total-ceramica-ceramica-presata-pe-implant',
-        doctor: 'coroana-metalo-ceramica-pe-implant',
-      }
 
       return {
         items: [
-          { treatmentRef: ref('implantologie', implantByTier[tier]), qty: count },
+          { treatmentRef: ref('implantologie', 'implant-bredent'), qty: count },
           { treatmentRef: ref('implantologie', 'bont-protetic-hibrid'), qty: count },
-          { treatmentRef: ref('implantologie', crownByTier[tier]), qty: count },
+          {
+            treatmentRef: ref('implantologie', 'coroana-ceramica-pe-suport-zirconiu-cad-cam-pentru-implant'),
+            qty: count,
+          },
         ],
         notes: [
           {
-            ro: 'Iată ce vreau să știi: estimarea include implant + bont + coroană. Dacă în zona implantului lipsește os, voi recomanda augmentare osoasă (+3000 RON).',
-            en: 'Here is what I want you to know: the estimate includes implant + abutment + crown. If bone is missing in that area, I will recommend bone augmentation (+3000 RON).',
-            hu: 'Amit fontos tudni: a becslés tartalmazza az implantátumot, a felépítményt és a koronát. Ha hiányzik a csont, csontpótlást javaslok (+3000 RON).',
+            ro: 'Iată ce vreau să știi: estimarea include implant Bredent + bont + coroană. Dacă în zona implantului lipsește os, voi recomanda augmentare osoasă.',
+            en: 'Here is what I want you to know: the estimate includes a Bredent implant + abutment + crown. If bone is missing in that area, I will recommend bone augmentation.',
+            hu: 'Amit fontos tudni: a becslés tartalmazza a Bredent implantátumot, a felépítményt és a koronát. Ha hiányzik a csont, csontpótlást javaslok.',
           },
         ],
       }
@@ -256,69 +205,23 @@ export const scenarios: Scenario[] = [
         ],
         default: 'one',
       },
-      {
-        id: 'tier',
-        type: 'tier',
-        labels: {
-          ro: 'Ce nivel preferi?',
-          en: 'Which tier?',
-          hu: 'Melyik szintet választod?',
-        },
-        options: [
-          {
-            value: 'economic',
-            labels: { ro: 'Economic', en: 'Economic', hu: 'Gazdaságos' },
-            hint: {
-              ro: 'All-on-6 metaloceramic',
-              en: 'All-on-6 PFM',
-              hu: 'All-on-6 fém-porcelán',
-            },
-          },
-          {
-            value: 'mediu',
-            labels: { ro: 'Mediu', en: 'Mid-range', hu: 'Közepes' },
-            hint: {
-              ro: 'All-on-4/6 zirconiu stratificat',
-              en: 'All-on-4/6 layered zirconia',
-              hu: 'All-on-4/6 réteges cirkónium',
-            },
-          },
-          {
-            value: 'premium',
-            labels: { ro: 'Premium', en: 'Premium', hu: 'Prémium' },
-            hint: {
-              ro: 'All-on-6 E-Max',
-              en: 'All-on-6 E-Max',
-              hu: 'All-on-6 E-Max',
-            },
-          },
-        ],
-        default: 'mediu',
-      },
     ],
     resolve: (a) => {
       const arcades = coerceToString(a['arcades'], 'one')
-      const tier = coerceToString(a['tier'], 'mediu') as Exclude<Tier, 'doctor'>
       const arcadeCount = arcades === 'both' ? 2 : 1
-
-      const treatmentByTier: Record<Exclude<Tier, 'doctor'>, string> = {
-        economic: 'all-on-6-4-metalo-ceramica-si-gingie-stratificata',
-        mediu: 'all-on-6-cu-zirconiu-stratificat-si-gingie-din-compozit',
-        premium: 'all-on-6-cu-e-max-si-gingie-din-compozit',
-      }
 
       return {
         items: [
           {
-            treatmentRef: ref('protetica-dentara', treatmentByTier[tier]),
+            treatmentRef: ref('implantologie', 'sistem-all-on-x-bredent-lucrare-provizorie-2'),
             qty: arcadeCount,
           },
         ],
         notes: [
           {
-            ro: 'În cazul tău, numărul exact de implanți (4 sau 6) și materialul îl decid la consultație, după evaluarea cantității de os disponibilă. Pachetul include implanții, lucrarea finală și provizoriul.',
-            en: 'In your case, the exact number of implants (4 or 6) and the material I will decide at consultation, after evaluating the available bone. The package includes the implants, the final prosthesis, and the temporary.',
-            hu: 'Az Ön esetében az implantátumok pontos számát (4 vagy 6) és az anyagot a konzultáción határozom meg, a rendelkezésre álló csont alapján. A csomag tartalmazza az implantátumokat, a végleges protézist és az ideiglenest.',
+            ro: 'În cazul tău, numărul exact de implanți și tipul lucrării finale le stabilesc la consultație, după evaluarea cantității de os disponibile. Lucrăm cu sistemul All on X Bredent, iar pachetul include și lucrarea provizorie.',
+            en: 'In your case, the exact number of implants and the type of final prosthesis are decided at consultation, after evaluating the available bone. We work with the Bredent All on X system, and the package includes the temporary prosthesis.',
+            hu: 'Az Ön esetében az implantátumok pontos számát és a végleges protézis típusát a konzultáción határozom meg, a rendelkezésre álló csont alapján. A Bredent All on X rendszerrel dolgozunk, a csomag az ideiglenes protézist is tartalmazza.',
           },
         ],
       }
@@ -390,6 +293,12 @@ export const scenarios: Scenario[] = [
         },
         min: 4,
         max: 10,
+        unit: {
+          ro: { one: 'fațetă', other: 'fațete' },
+          en: { one: 'veneer', other: 'veneers' },
+          hu: { one: 'héj', other: 'héj' },
+        },
+        showIf: (a) => a['package'] !== 'whitening',
         default: 6,
       },
     ],
@@ -676,8 +585,8 @@ export const scenarios: Scenario[] = [
     },
     questions: [
       {
-        id: 'tier',
-        type: 'tier',
+        id: 'type',
+        type: 'choice',
         labels: {
           ro: 'Tip aparat',
           en: 'Type',
@@ -685,7 +594,7 @@ export const scenarios: Scenario[] = [
         },
         options: [
           {
-            value: 'economic',
+            value: 'metal',
             labels: { ro: 'Metalic', en: 'Metal', hu: 'Fém' },
             hint: {
               ro: 'Bracketi metalici clasici',
@@ -694,7 +603,7 @@ export const scenarios: Scenario[] = [
             },
           },
           {
-            value: 'mediu',
+            value: 'ceramic',
             labels: { ro: 'Ceramic', en: 'Ceramic', hu: 'Kerámia' },
             hint: {
               ro: 'Bracketi fizionomici, mai discreți',
@@ -703,7 +612,7 @@ export const scenarios: Scenario[] = [
             },
           },
           {
-            value: 'premium',
+            value: 'clear',
             labels: {
               ro: 'Invizibil (Clear Correct)',
               en: 'Invisible (Clear Correct)',
@@ -716,7 +625,7 @@ export const scenarios: Scenario[] = [
             },
           },
         ],
-        default: 'mediu',
+        default: 'ceramic',
       },
       {
         id: 'arcades',
@@ -740,11 +649,11 @@ export const scenarios: Scenario[] = [
       },
     ],
     resolve: (a) => {
-      const tier = coerceToString(a['tier'], 'mediu') as Exclude<Tier, 'doctor'>
+      const type = coerceToString(a['type'], 'ceramic')
       const arcades = coerceToString(a['arcades'], 'both')
       const arcadeCount = arcades === 'both' ? 2 : 1
 
-      if (tier === 'premium') {
+      if (type === 'clear') {
         return {
           items: [
             {
@@ -757,7 +666,7 @@ export const scenarios: Scenario[] = [
       }
 
       const treatmentId =
-        tier === 'economic'
+        type === 'metal'
           ? 'aparat-fix-pe-o-arcada-cu-bracketi-metalici'
           : 'aparat-fix-pe-o-arcada-cu-bracketi-ceramici-fizionomici'
 
@@ -801,9 +710,9 @@ export const scenarios: Scenario[] = [
       ],
       notes: [
         {
-          ro: 'După examen voi decide tratamentul exact. În funcție de cauză poate fi nevoie de tratament endodontic (800-1000 RON), extracție (250-500 RON) sau drenaj de abces (250 RON). Range total: 200-1500 RON.',
-          en: 'After the exam I will decide the exact treatment. Depending on the cause it may need endodontic treatment (800-1000 RON), extraction (250-500 RON), or abscess drainage (250 RON). Total range: 200-1500 RON.',
-          hu: 'A vizsgálat után határozom meg a pontos kezelést. Az októl függően szükség lehet endodontiai kezelésre (800-1000 RON), foghúzásra (250-500 RON) vagy tályogdrenázsra (250 RON). Tartomány: 200-1500 RON.',
+          ro: 'După examen decid tratamentul exact. În funcție de cauză, poate fi nevoie de tratament endodontic, extracție sau drenaj de abces.',
+          en: 'After the exam I decide the exact treatment. Depending on the cause, it may need endodontic treatment, an extraction, or abscess drainage.',
+          hu: 'A vizsgálat után határozom meg a pontos kezelést. Az októl függően szükség lehet gyökérkezelésre, foghúzásra vagy tályogdrenázsra.',
         },
       ],
     }),
@@ -837,9 +746,9 @@ export const scenarios: Scenario[] = [
       ],
       notes: [
         {
-          ro: 'La prima vizită facem discuție, examen clinic, fotografii și scanare. Pentru cazuri complexe (reabilitare, ortodonție) pot avea nevoie de documentare extinsă (500 RON).',
-          en: 'On your first visit we do a conversation, clinical exam, photographs, and scanning. For complex cases (rehab, ortho) I may need extended documentation (500 RON).',
-          hu: 'Az első látogatáson beszélgetünk, klinikai vizsgálatot végzek, fotózunk és szkennelünk. Komplex esetekben (rehabilitáció, ortodoncia) kiterjedtebb dokumentációra lehet szükség (500 RON).',
+          ro: 'La prima vizită facem discuție, examen clinic, fotografii și scanare. Pentru cazuri complexe (reabilitare, ortodonție) pot avea nevoie de documentare extinsă.',
+          en: 'On your first visit we do a conversation, clinical exam, photographs, and scanning. For complex cases (rehab, ortho) I may need extended documentation.',
+          hu: 'Az első látogatáson beszélgetünk, klinikai vizsgálatot végzek, fotózunk és szkennelünk. Komplex esetekben (rehabilitáció, ortodoncia) kiterjedtebb dokumentációra lehet szükség.',
         },
       ],
     }),

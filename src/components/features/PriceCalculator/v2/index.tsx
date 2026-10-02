@@ -225,6 +225,8 @@ export function PriceCalculatorV2({ locale, translations }: Props) {
                 scenario={scenario}
                 answers={state.answers}
                 onChange={(key, value) => dispatch({ type: 'set-answer', key, value })}
+                includesTitle={translations.includesTitle}
+                includesNote={translations.includesNote}
               />
             </motion.div>
           )}

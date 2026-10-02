@@ -58,6 +58,9 @@ export type CalcTranslations = {
   trustWarrantyLabel: string
   treatmentsIncluded: string
   treatmentIncludedSingular: string
+  // questions-step live preview
+  includesTitle: string
+  includesNote: string
 }
 
 export type { Locale }

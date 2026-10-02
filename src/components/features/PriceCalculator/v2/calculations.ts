@@ -1,5 +1,5 @@
 import { findTreatment, type Locale } from '@/data/treatments'
-import { getScenario, type ScenarioAnswer } from '@/data/calculator-scenarios'
+import { CONSULT_NOTE, getScenario, type ScenarioAnswer } from '@/data/calculator-scenarios'
 
 export type ResolvedLineItem = {
   label: string
@@ -54,7 +54,8 @@ export function computeEstimate(
     0,
   )
 
-  const notes = (resolved.notes ?? []).map((n) => n[locale])
+  // Every estimate ends with the consultation note: the calculator is informative only.
+  const notes = [...(resolved.notes ?? []), CONSULT_NOTE].map((n) => n[locale])
   const hasFromPrice = lineItems.some((li) => li.priceType === 'from')
 
   return {

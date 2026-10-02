@@ -1,6 +1,9 @@
 import { getTranslations } from 'next-intl/server'
-import { treatmentCategories, type Locale } from '@/data/treatments'
+import type { Locale } from '@/data/treatments'
+import { getPublicCategories } from '@/data/price-list'
+import { ChevronDown } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
+import { PriceListTabs, type PriceListTab } from './PriceListTabs'
 
 /**
  * Server-rendered, crawlable price list for /preturi.
@@ -12,22 +15,20 @@ import { Link } from '@/i18n/navigation'
  * ("stomatologie satu mare preturi", "[serviciu] satu mare pret").
  */
 
-function formatPrice(
-  price: number,
-  priceType: 'fixed' | 'from',
-  fromLabel: string,
-  currency: string
-): string {
-  const formatted = new Intl.NumberFormat('ro-RO').format(price)
-  return priceType === 'from'
-    ? `${fromLabel} ${formatted} ${currency}`
-    : `${formatted} ${currency}`
-}
-
 export async function PriceListSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: 'prices' })
   const fromLabel = t('fromLabel')
   const currency = t('currency')
+  const tabs: PriceListTab[] = getPublicCategories().map((category) => ({
+    id: category.id,
+    label: category.labels[locale],
+    rows: category.treatments.map((treatment) => ({
+      id: treatment.id,
+      label: treatment.labels[locale],
+      price: `${new Intl.NumberFormat('ro-RO').format(treatment.price)} ${currency}`,
+      from: treatment.priceType === 'from',
+    })),
+  }))
   const faqs = t.raw('faq') as { q: string; a: string }[]
 
   const faqSchema = {
@@ -47,60 +48,33 @@ export async function PriceListSection({ locale }: { locale: Locale }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="container">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] tracking-tight">
-            {t('listTitle')}
-          </h2>
-          <p className="text-lg text-[#5a5048] leading-relaxed mt-4">
-            {t('listIntro')}
-          </p>
-
-          <div className="mt-12 space-y-12">
-            {treatmentCategories.map((category) => (
-              <div key={category.id}>
-                <h3 className="text-xl md:text-2xl font-bold text-[#8b7355] mb-4">
-                  {category.labels[locale]}
-                </h3>
-                <table className="w-full border-collapse text-left">
-                  <thead>
-                    <tr className="border-b-2 border-[#e8e0d5]">
-                      <th className="py-3 pr-4 text-sm font-semibold uppercase tracking-wide text-[#6b6b6b]">
-                        {t('colTreatment')}
-                      </th>
-                      <th className="py-3 pl-4 text-right text-sm font-semibold uppercase tracking-wide text-[#6b6b6b] whitespace-nowrap">
-                        {t('colPrice')}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {category.treatments.map((treatment) => (
-                      <tr
-                        key={treatment.id}
-                        className="border-b border-[#e8e0d5]/70"
-                      >
-                        <td className="py-3 pr-4 text-[#2a2118]">
-                          {treatment.labels[locale]}
-                        </td>
-                        <td className="py-3 pl-4 text-right font-semibold text-[#2a2118] whitespace-nowrap">
-                          {formatPrice(
-                            treatment.price,
-                            treatment.priceType,
-                            fromLabel,
-                            currency
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))}
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                {t('listKicker')}
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] tracking-tight text-balance">
+              {t('listTitle')}
+            </h2>
+            <p className="max-w-3xl text-base md:text-lg text-[#5a5048] leading-relaxed mt-4">
+              {t('listIntro')}
+            </p>
           </div>
 
-          <p className="text-sm text-[#6b6b6b] mt-8">{t('disclaimer')}</p>
+          <div className="mt-10">
+            <PriceListTabs
+              tabs={tabs}
+              fromLabel={fromLabel}
+              countSuffix={t('listCountSuffix')}
+              footnote={t('listFootnote')}
+            />
+          </div>
 
           {/* Price FAQ — crawlable + FAQPage schema */}
-          <div className="mt-20">
+          <div className="mt-20 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] tracking-tight">
               {t('faqTitle')}
             </h2>
@@ -108,12 +82,16 @@ export async function PriceListSection({ locale }: { locale: Locale }) {
               {faqs.map((faq, i) => (
                 <details
                   key={i}
-                  className="group rounded-2xl border border-[#e8e0d5] bg-white px-6 py-4"
+                  className="group rounded-2xl border border-[#e8e0d5] bg-white transition-colors duration-200 open:border-[#d4c4b0]"
                 >
-                  <summary className="cursor-pointer list-none font-semibold text-[#2a2118] marker:hidden">
+                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-semibold text-[#2a2118] [&::-webkit-details-marker]:hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355]">
                     {faq.q}
+                    <ChevronDown
+                      className="w-5 h-5 flex-shrink-0 text-[#8b7355] transition-transform duration-200 group-open:rotate-180"
+                      aria-hidden="true"
+                    />
                   </summary>
-                  <p className="mt-3 text-[#5a5048] leading-relaxed">{faq.a}</p>
+                  <p className="px-6 pb-5 -mt-1 text-[#5a5048] leading-relaxed">{faq.a}</p>
                 </details>
               ))}
             </div>
@@ -121,7 +99,7 @@ export async function PriceListSection({ locale }: { locale: Locale }) {
 
           {/* Internal links to service pages — price-intent anchors (RO only) */}
           {locale === 'ro' && (
-            <div className="mt-16 rounded-2xl border border-[#e8e0d5] bg-white px-6 py-6">
+            <div className="mt-16 max-w-4xl mx-auto rounded-2xl border border-[#e8e0d5] bg-white px-6 py-6 md:px-8 md:py-7">
               <h2 className="text-xl font-bold text-[#2a2118]">
                 Vrei detalii despre un tratament anume?
               </h2>

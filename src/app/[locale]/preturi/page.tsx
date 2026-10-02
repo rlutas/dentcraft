@@ -83,6 +83,8 @@ export default async function PricesPage({ params }: PageProps) {
     trustWarrantyLabel: t('prices.calculator.trustWarrantyLabel'),
     treatmentsIncluded: t('prices.calculator.treatmentsIncluded'),
     treatmentIncludedSingular: t('prices.calculator.treatmentIncludedSingular'),
+    includesTitle: t('prices.calculator.includesTitle'),
+    includesNote: t('prices.calculator.includesNote'),
   }
 
   return (
