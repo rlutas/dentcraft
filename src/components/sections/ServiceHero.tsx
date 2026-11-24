@@ -251,6 +251,38 @@ export function ServiceHero({
                 </div>
               </div>
 
+              {/* orbit layer sits under the illustration: icons pass behind the render */}
+              <div aria-hidden="true" className="svc-par-rings absolute inset-0 pointer-events-none">
+                {/* small service icons orbiting the middle ring, kept upright by a counter-rotation */}
+              <div className="svc-dots absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2">
+                <div className="svc-orbit relative h-full w-full">
+                  {orbitIcons.map((icon, i) => (
+                    <span
+                      key={icon}
+                      className="absolute -translate-x-1/2 -translate-y-1/2"
+                      style={{ left: ORBIT_POS[i]![0], top: ORBIT_POS[i]![1] }}
+                    >
+                      <span className="svc-upright flex items-center justify-center [filter:drop-shadow(0_2px_6px_rgba(255,250,244,0.9))_drop-shadow(0_4px_10px_rgba(139,115,85,0.25))]">
+                        <span
+                          className="block h-9 w-9 md:h-11 md:w-11 bg-[#8b7355]"
+                          style={{
+                            maskImage: `url(/icons/${icon}.svg)`,
+                            WebkitMaskImage: `url(/icons/${icon}.svg)`,
+                            maskSize: 'contain',
+                            WebkitMaskSize: 'contain',
+                            maskRepeat: 'no-repeat',
+                            WebkitMaskRepeat: 'no-repeat',
+                            maskPosition: 'center',
+                            WebkitMaskPosition: 'center',
+                          }}
+                        />
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+              </div>
+
               {/* illustration (parallax layer) */}
               <div className="svc-par-img absolute inset-0">
                 <div className="svc-in absolute inset-0">
@@ -283,37 +315,6 @@ export function ServiceHero({
                     )}
                   </div>
                 </div>
-              </div>
-              {/* orbit sits above the illustration so the icons are never hidden by its mask */}
-              <div aria-hidden="true" className="svc-par-rings absolute inset-0 pointer-events-none">
-                {/* small service icons orbiting the middle ring, kept upright by a counter-rotation */}
-              <div className="svc-dots absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2">
-                <div className="svc-orbit relative h-full w-full">
-                  {orbitIcons.map((icon, i) => (
-                    <span
-                      key={icon}
-                      className="absolute -translate-x-1/2 -translate-y-1/2"
-                      style={{ left: ORBIT_POS[i]![0], top: ORBIT_POS[i]![1] }}
-                    >
-                      <span className="svc-upright flex items-center justify-center [filter:drop-shadow(0_2px_6px_rgba(255,250,244,0.9))_drop-shadow(0_4px_10px_rgba(139,115,85,0.25))]">
-                        <span
-                          className="block h-9 w-9 md:h-11 md:w-11 bg-[#8b7355]"
-                          style={{
-                            maskImage: `url(/icons/${icon}.svg)`,
-                            WebkitMaskImage: `url(/icons/${icon}.svg)`,
-                            maskSize: 'contain',
-                            WebkitMaskSize: 'contain',
-                            maskRepeat: 'no-repeat',
-                            WebkitMaskRepeat: 'no-repeat',
-                            maskPosition: 'center',
-                            WebkitMaskPosition: 'center',
-                          }}
-                        />
-                      </span>
-                    </span>
-                  ))}
-                </div>
-              </div>
               </div>
             </div>
           </div>
