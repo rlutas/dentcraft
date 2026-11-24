@@ -7,6 +7,7 @@ import { client } from '@/lib/sanity/client'
 import { localizedPathnames, siteConfig } from '@/lib/seo'
 import { getFallbackServiceSlugs } from '@/lib/fallback-services'
 import { fallbackBlogPosts } from '@/lib/fallback-blog'
+import { getFallbackTeamMemberSlugs } from '@/lib/fallback-team'
 
 const baseUrl = siteConfig.baseUrl
 
@@ -109,8 +110,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
   )
 
+  // Team profiles live in fallback-team.ts (Sanity only holds an old duplicate
+  // 'dr-razvan-petric', now 301-redirected). Merge both, drop redirected slugs.
+  const REDIRECTED_TEAM_SLUGS = new Set(['dr-razvan-petric'])
+  const allTeamSlugs = [
+    ...new Set([...teamSlugs.map((s) => s.slug), ...getFallbackTeamMemberSlugs()]),
+  ].filter((slug) => !REDIRECTED_TEAM_SLUGS.has(slug))
+
   // Build team member page entries with localized paths
-  const teamEntries: MetadataRoute.Sitemap = teamSlugs.flatMap(({ slug }) =>
+  const teamEntries: MetadataRoute.Sitemap = allTeamSlugs.flatMap((slug) =>
     locales.map((locale) => ({
       url: buildDynamicUrl('/echipa', slug, locale),
       lastModified: now,

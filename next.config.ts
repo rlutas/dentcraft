@@ -32,6 +32,14 @@ const nextConfig: NextConfig = {
   },
 
   // Security headers
+  async redirects() {
+    // Old Sanity-only profile slug duplicated the real /echipa/razvan-petric page
+    return [
+      { source: '/echipa/dr-razvan-petric', destination: '/echipa/razvan-petric', permanent: true },
+      { source: '/en/team/dr-razvan-petric', destination: '/en/team/razvan-petric', permanent: true },
+      { source: '/hu/csapat/dr-razvan-petric', destination: '/hu/csapat/razvan-petric', permanent: true },
+    ]
+  },
   async headers() {
     // Content Security Policy directives
     const cspDirectives = [
