@@ -130,7 +130,7 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
             </div>
 
             {/* Label */}
-            <span className="text-sm text-[#6b5a40]">{totalReviews}+ {t('home.reviewsSection.countSuffix')}</span>
+            <span className="text-sm text-[#6b5a40]">{totalReviews} {t('home.reviewsSection.countSuffix')}</span>
           </div>
         </div>
       )}

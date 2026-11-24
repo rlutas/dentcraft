@@ -128,9 +128,7 @@ export function ServiceHero({
 
             {subtitle && (
               <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.85, duration: 0.6 }}
+                initial={false} // LCP element: render visible from the server
                 className="text-lg md:text-xl text-[#5a5048] mt-5 mb-8 leading-relaxed max-w-2xl"
               >
                 {subtitle}

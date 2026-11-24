@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ChevronDown, Star } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 /**
  * Hero "stage" — the warm framed image + headline overlay.
@@ -130,10 +131,10 @@ export function FramedHero() {
             </h1>
 
             {/* Subtitle */}
+            {/* Rendered visible from the server: this paragraph is the LCP element,
+                a fade-in delayed LCP by 2-3 s (CWV review 24 Nov 2026) */}
             <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85, duration: 0.6 }}
+              initial={false}
               className="text-white text-base sm:text-lg md:text-xl mt-4 sm:mt-5 md:mt-6 max-w-xl leading-relaxed [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]"
             >
               {tHero('subtitle')}
@@ -146,8 +147,8 @@ export function FramedHero() {
               transition={{ delay: 1.0, duration: 0.6 }}
               className="mt-6 sm:mt-8 md:mt-10"
             >
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="group inline-flex items-center justify-center leading-none px-6 py-3 md:px-9 md:py-4 bg-white text-[#2a2118] rounded-full text-sm md:text-lg font-bold hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.5)] transition-shadow duration-300"
               >
                 <span className="leading-none">{tHero('ctaPrimary')}</span>
@@ -156,7 +157,7 @@ export function FramedHero() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>

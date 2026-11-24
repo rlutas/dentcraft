@@ -22,7 +22,9 @@ export function CountUp({
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const reduce = useReducedMotion()
-  const [value, setValue] = useState(reduce ? end : 0)
+  // Start at the final value so server HTML and first client render match
+  // (avoids hydration error #418) and crawlers/no-JS see the real number.
+  const [value, setValue] = useState(end)
   const [hasStarted, setHasStarted] = useState(false)
 
   useEffect(() => {
