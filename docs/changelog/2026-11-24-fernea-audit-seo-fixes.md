@@ -84,9 +84,25 @@ Jurnalul zilei. Rapoartele de audit sunt în `docs/seo/*-2026-11-24.md`: SITE-AU
   - ce medic apare la albire, urgențe, consultație și stomatologie generală.
 - **Rămâne de făcut.** `ServiceLocalSeo` de pe pagina de implanturi arată încă prețuri și mărci, până vin prețurile noi. Bio-urile medicilor sunt doar în română pe paginile EN/HU.
 
+## 7a. Performanță (din raportul CWV, `docs/seo/CWV-VISUAL-REVIEW-2026-11-24.md`)
+
+| Commit | Ce s-a făcut |
+|---|---|
+| `3ba1ba1` | **Textul de sus (hero) e vizibil de la încărcare**, pe homepage și pe paginile de servicii. Fiind elementul LCP, fade-in-ul îl întârzia cu 2–3 s. Butonul „Programează acum” trimitea la `#contact`, care nu există; acum duce la /contact. CountUp pornește de la valoarea finală, iar eroarea de hidratare #418 a dispărut. Slider-ul afișează numărul exact de recenzii. |
+| `2bb7cbc` | **Cache CDN.** `cookies()` se apelează doar în modul mentenanță. Cookie-ul `NEXT_LOCALE` e oprit, iar paginile se reîmprospătează la o oră (`revalidate = 3600`). Paginile sunt acum statice; verificat live cu `x-vercel-cache: HIT`. /blog, /galerie și /testimoniale rămân dinamice (filtre). |
+| `9168821` | **Videoul de pe homepage are 3,0 MB în loc de 7,96 MB.** E codat 1280×720 H.264, CRF 25, cu SSIM 0,984; diferența nu se vede. Fișierul nou e `clinica-v2.mp4`. |
+| `f31d647` | **gtag.js se încărca de 2 ori.** Am scos copia directă din layout. Tagul Google AW-18165025740 și Conector de conversii erau deja în GTM; verificat live: un singur `gtag/js?id=AW-…`, iar remarketingul funcționează. |
+
 ## 7b. În lucru
 
-- Core Web Vitals și review-ul vizual (agent), cu raportul în `docs/seo/CWV-VISUAL-REVIEW-2026-11-24.md`.
+- Design (agent, branch `design-2026-11`): 
+  - /testimoniale în designul de pe homepage, cu 12 recenzii și butonul „Vezi mai multe”;
+  - citat mare dintr-o recenzie pe homepage;
+  - bară de programare fixă pe mobil;
+  - header care se ascunde la scroll;
+  - numerotare 01/02/03;
+  - același stil de titlu peste tot;
+  - timeline-ul Dr. Fernea.
 - TikTok: contul clinicii e `@dentcraftsm`. În GBP apare `@petricr13`, contul personal al doctorului; aștept decizia lui Raul dacă îl înlocuim.
 
 ## 8. De făcut / decizii
