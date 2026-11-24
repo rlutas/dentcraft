@@ -15,7 +15,7 @@ import { urlFor } from '@/lib/sanity/image'
 import { getTeamMemberBySlug, getTeamMemberSlugs, type Locale } from '@/lib/sanity/queries'
 import { generateDynamicPageMetadata, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { getBreadcrumbSchema, getPersonSchema } from '@/lib/schema'
-import { fallbackTeamMembers, type FallbackTeamMember } from '@/lib/fallback-team'
+import { fallbackTeamMembers, TEAM_OG_SLUGS, type FallbackTeamMember } from '@/lib/fallback-team'
 import { translateTeamRole } from '@/lib/translate-team-role'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { CountUp } from '@/components/ui/CountUp'
@@ -110,7 +110,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataOptions.description = role
   }
 
-  if (member?.photo) {
+  // Prefer the branded per-doctor share card (scripts/generate-team-og.py), then the Sanity photo
+  if (TEAM_OG_SLUGS.has(slug)) {
+    metadataOptions.fallbackImage = `/images/og/team/${slug}.jpg`
+  } else if (member?.photo) {
     metadataOptions.fallbackImage = urlFor(member.photo).width(1200).height(630).url()
   }
 
