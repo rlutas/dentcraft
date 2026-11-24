@@ -14,6 +14,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
     contactHours: 'Luni–vineri, 10:00–18:00',
     contactAddressLabel: 'Adresă',
     contactLanguages: 'Vorbim română, engleză și maghiară.',
+    linksLabel: 'Vezi și',
   },
   services: {
     // ------------------------------------------------------------------
@@ -99,6 +100,10 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'Depinde de ce tratament e nevoie. Medicul îți spune ce urmează să facă și cât costă înainte să înceapă. Lista de prețuri a clinicii o găsești pe pagina Prețuri.',
         },
       ],
+      links: [
+        { label: 'Contact și hartă', page: '/contact' },
+        { label: 'Lista de prețuri', page: '/preturi' },
+      ],
     },
 
     // ------------------------------------------------------------------
@@ -141,7 +146,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
         {
           heading: 'De ce contează dinții de lapte',
           paragraphs: [
-            'Dinții de lapte cad, dar până atunci au de făcut o treabă importantă. Copilul mestecă și vorbește cu ei, iar ei păstrează locul pentru dinții permanenți. O carie netratată poate ajunge la nerv și poate da durere sau abces, iar infecția poate afecta dintele permanent care se formează dedesubt. Dacă un dinte de lapte se pierde prea devreme, vecinii se pot înclina în spațiul liber și pot apărea înghesuieli mai târziu.',
+            'Dinții de lapte cad, dar până atunci au treabă. Copilul mestecă și vorbește cu ei, iar ei păstrează locul pentru dinții permanenți. O carie netratată poate ajunge la nerv și poate da durere sau abces, iar infecția poate afecta dintele permanent care se formează dedesubt. Dacă un dinte de lapte se pierde prea devreme, vecinii se pot înclina în spațiul liber și pot apărea înghesuieli mai târziu.',
           ],
         },
         {
@@ -187,6 +192,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'De obicei, la 6 luni. Dacă are multe carii sau risc mare de carii, medicul poate recomanda controale mai dese.',
         },
       ],
+      links: [{ label: 'Dr. Ghirasim Denisa-Ștefania', doctor: 'denisa-ghirasim' }],
     },
 
     // ------------------------------------------------------------------
@@ -206,7 +212,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'la copii: suptul degetului sau respirația pe gură, care pot schimba felul în care cresc maxilarele.',
           ],
           after:
-            'Contează și sănătatea, nu doar aspectul. Dinții aliniați se curăță mai ușor, iar forțele de mestecat se distribuie mai uniform.',
+            'Aparatul ajută și sănătatea dinților. Dinții aliniați se curăță mai ușor, iar forțele de mestecat se distribuie mai uniform.',
         },
         {
           heading: 'La ce vârstă se începe',
@@ -221,7 +227,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
           bullets: [
             'Aparat fix metalic: cel mai rezistent și cel mai potrivit pentru cazurile complexe.',
             'Aparat fix ceramic: funcționează la fel, dar bracketurile au culoarea dintelui și se văd mai puțin.',
-            'Alignere transparente: gutiere care se schimbă pe rând și se poartă aproximativ 22 de ore pe zi. Se scot la masă și la periaj. Nu se potrivesc pentru orice caz, iar medicul îți spune dacă ești un candidat bun.',
+            'Alignere transparente: gutiere care se schimbă pe rând și se poartă aproximativ 22 de ore pe zi. Se scot la masă și la periaj. Nu se potrivesc pentru orice caz, așa că discutăm la consultație dacă sunt o opțiune pentru tine.',
             'Aparate mobile pentru copii: ghidează creșterea maxilarelor și pregătesc locul pentru dinții permanenți.',
           ],
         },
@@ -263,7 +269,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
         {
           question: 'Ce aleg: aparat fix sau alignere?',
           answer:
-            'Depinde de caz. Aparatul fix poate face mișcări mai complexe și nu depinde de cât îl porți. Alignerele se văd foarte puțin și se scot la masă, dar funcționează doar dacă le porți aproape toată ziua. Medicul îți spune ce variante se potrivesc pentru dinții tăi.',
+            'Depinde de caz. Aparatul fix poate face mișcări mai complexe și nu depinde de cât îl porți. Alignerele se văd foarte puțin și se scot la masă, dar funcționează doar dacă le porți aproape toată ziua. La consultație vedem care variantă merge pentru dinții tăi.',
         },
         {
           question: 'Ce se întâmplă după ce scot aparatul?',
@@ -276,12 +282,13 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'Cu aparat fix, de obicei la 4–8 săptămâni. Cu alignere, controalele pot fi mai rare. Medicul stabilește ritmul pentru tratamentul tău.',
         },
       ],
+      links: [{ label: 'Dr. Cozma Ștefana', doctor: 'stefana-cozma' }],
     },
 
     // ------------------------------------------------------------------
     detartraj: {
       intro:
-        'Detartrajul este curățarea profesională a tartrului și a plăcii bacteriene de pe dinți și de sub marginea gingiei, de unde periuța nu le poate scoate. La DENTCRAFT în Satu Mare, igienizarea o face Dr. Fernea Remus, certificat în Guided Biofilm Therapy, cu aparatură AIRFLOW, PERIOFLOW și PIEZON. Pentru cei mai mulți pacienți, o ședință la 6 luni este suficientă.',
+        'Detartrajul este curățarea profesională a tartrului și a plăcii bacteriene de pe dinți și de sub marginea gingiei, de unde periuța nu le poate scoate. Igienizarea la DENTCRAFT în Satu Mare o face Dr. Fernea Remus, certificat în Guided Biofilm Therapy, cu aparatură AIRFLOW, PERIOFLOW și PIEZON. Pentru cei mai mulți pacienți, o ședință la 6 luni este suficientă.',
       sections: [
         {
           heading: 'De ce nu ajunge periajul',
@@ -357,12 +364,16 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'La cei mai mulți oameni, o dată la 6 luni. Dacă ai boală parodontală, implanturi, aparat dentar sau fumezi, medicul îți poate recomanda o ședință la 3–4 luni.',
         },
       ],
+      links: [
+        { label: 'Dr. Fernea Remus', doctor: 'remus-fernea' },
+        { label: 'Dr. Tincu Giovana-Nicoleta, parodontolog', doctor: 'giovana-tincu' },
+      ],
     },
 
     // ------------------------------------------------------------------
     'implanturi-dentare': {
       intro:
-        'Un implant dentar este un șurub mic din titan, inserat în os, care ține locul rădăcinii unui dinte pierdut. Peste el se montează o coroană, o punte sau o lucrare fixă pe toată arcada. La DENTCRAFT în Satu Mare, implantul îl inserează Dr. Buterchi Codruț-Ciprian, medic specialist în chirurgie dento-alveolară, iar lucrarea de pe implant o face Dr. Petric Răzvan-Tudor.',
+        'Un implant dentar este un șurub mic din titan, inserat în os, care ține locul rădăcinii unui dinte pierdut. Peste el se montează o coroană, o punte sau o arcadă întreagă. La DENTCRAFT în Satu Mare, implantul îl inserează Dr. Buterchi Codruț-Ciprian, medic specialist în chirurgie dento-alveolară, iar lucrarea de pe implant o face Dr. Petric Răzvan-Tudor.',
       sections: [
         {
           heading: 'Cine poate primi un implant',
@@ -435,12 +446,17 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'Un implant bine integrat poate rezista foarte mulți ani, dacă e îngrijit. Ce contează cel mai mult este igiena zilnică, controalele regulate și evitarea fumatului. Coroana de pe implant se poate uza în timp și se poate înlocui fără să fie atins implantul.',
         },
       ],
+      links: [
+        { label: 'Dr. Buterchi Codruț-Ciprian', doctor: 'codrut-buterchi' },
+        { label: 'Dr. Petric Răzvan-Tudor', doctor: 'razvan-petric' },
+        { label: 'Lista de prețuri', page: '/preturi' },
+      ],
     },
 
     // ------------------------------------------------------------------
     endodontie: {
       intro:
-        'Tratamentul de canal (endodonția) salvează un dinte al cărui nerv s-a inflamat sau s-a infectat, de obicei din cauza unei carii adânci, a unei fisuri sau a unei lovituri. Medicul curăță și dezinfectează canalele din rădăcină, apoi le sigilează. La DENTCRAFT în Satu Mare, tratamentele de canal le face Dr. Ghirasim Denisa-Ștefania.',
+        'Tratamentul de canal (endodonția) salvează un dinte al cărui nerv s-a inflamat sau s-a infectat, de obicei din cauza unei carii adânci, a unei fisuri sau a unei lovituri. Medicul curăță și dezinfectează canalele din rădăcină, apoi le sigilează. În clinica DENTCRAFT din Satu Mare, de tratamentele de canal se ocupă Dr. Ghirasim Denisa-Ștefania.',
       sections: [
         {
           heading: 'Semne că ai nevoie de tratament de canal',
@@ -485,7 +501,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
         {
           question: 'Câte ședințe sunt necesare?',
           answer:
-            'Între una și trei, în funcție de numărul de canale, de forma lor și de existența unei infecții. Medicul îți spune după prima ședință cum arată planul.',
+            'Între una și trei, în funcție de numărul de canale, de forma lor și de existența unei infecții. După prima ședință știi câte mai urmează.',
         },
         {
           question: 'Nu e mai simplu să scot dintele?',
@@ -714,6 +730,10 @@ export const serviceContentRo: ServiceContentLocaleFile = {
             'Sună la 0741 199 977, de luni până vineri, între 10:00 și 18:00, sau folosește formularul de programare de pe site.',
         },
       ],
+      links: [
+        { label: 'Lista de prețuri', page: '/preturi' },
+        { label: 'Contact', page: '/contact' },
+      ],
     },
 
     // ------------------------------------------------------------------
@@ -858,7 +878,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
         {
           heading: 'Ceramică sau compozit',
           paragraphs: [
-            'Fațetele ceramice se fac în laborator. Își păstrează culoarea și luciul mult timp și arată foarte natural. Fațetele din compozit se modelează direct pe dinte, de obicei într-o singură ședință. Sunt mai ușor de reparat, dar se pot păta și uza în timp. Medicul îți explică diferențele pentru cazul tău.',
+            'Fațetele ceramice se fac în laborator. Își păstrează culoarea și luciul mult timp și arată foarte natural. Fațetele din compozit se modelează direct pe dinte, de obicei într-o singură ședință. Sunt mai ușor de reparat, dar se pot păta și uza în timp. Pe care o alegi depinde de dinții tăi și de cât de mult vrei să dureze lucrarea fără retușuri.',
           ],
         },
         {

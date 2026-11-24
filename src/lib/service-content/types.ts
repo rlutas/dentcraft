@@ -14,11 +14,17 @@ export type ServiceContentFaq = {
   answer: string
 }
 
+/** Contextual internal link rendered under the content sections. */
+export type ServiceContentLink =
+  | { label: string; page: '/preturi' | '/contact' }
+  | { label: string; doctor: string }
+
 export type ServiceContentLocale = {
   /** 40–60 word answer paragraph shown right under the hero. */
   intro: string
   sections: ServiceContentSection[]
   faqs: ServiceContentFaq[]
+  links?: ServiceContentLink[]
 }
 
 /** UI strings used by the service-content block (one set per locale). */
@@ -32,6 +38,7 @@ export type ServiceContentLabels = {
   contactHours: string
   contactAddressLabel: string
   contactLanguages: string
+  linksLabel: string
 }
 
 export type ServiceContentLocaleFile = {

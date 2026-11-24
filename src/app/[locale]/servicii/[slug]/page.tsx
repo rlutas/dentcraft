@@ -788,6 +788,25 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
               </div>
             ))}
           </div>
+
+          {content.links && content.links.length > 0 && (
+            <div className="mt-12 pt-6 border-t border-[#e8e0d5]">
+              <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">{labels.linksLabel}</span>
+              <ul className="flex flex-wrap gap-3">
+                {content.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={'doctor' in link ? { pathname: '/echipa/[slug]', params: { slug: link.doctor } } : link.page}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#e8e0d5] text-sm font-semibold text-[#2a2118] hover:border-[#8b7355] hover:text-[#8b7355] transition-colors"
+                    >
+                      {link.label}
+                      <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>

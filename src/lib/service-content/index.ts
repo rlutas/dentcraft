@@ -3,7 +3,7 @@ import { serviceContentEn } from './en'
 import { serviceContentHu } from './hu'
 import type { ServiceContentLabels, ServiceContentLocale, ServiceContentLocaleFile } from './types'
 
-export type { ServiceContentLabels, ServiceContentLocale, ServiceContentSection, ServiceContentFaq } from './types'
+export type { ServiceContentLabels, ServiceContentLocale, ServiceContentSection, ServiceContentFaq, ServiceContentLink } from './types'
 
 const files: Record<string, ServiceContentLocaleFile> = {
   ro: serviceContentRo,
