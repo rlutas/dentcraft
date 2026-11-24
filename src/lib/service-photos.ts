@@ -1,7 +1,8 @@
 /**
  * Service photos availability map.
  *
- * As 3D medical illustrations are generated for services, add their slug here.
+ * 3D illustrations (GPT Image 2.6 via Higgsfield, 24 Nov 2026), one per service,
+ * same style: warm cream background, soft studio light. Add new slugs here.
  * Returns the public path to the photo, or null if no photo exists yet.
  */
 const SERVICE_PHOTOS = new Set([
@@ -14,6 +15,11 @@ const SERVICE_PHOTOS = new Set([
   'endodontie',
   'chirurgie-oro-maxilo-faciala',
   'urgente-dentare',
+  'consultatie-stomatologica',
+  'coroane-dentare',
+  'fatete-dentare',
+  'albire-dentara',
+  'detartraj',
 ])
 
 export function getServicePhotoPath(slug: string): string | null {
