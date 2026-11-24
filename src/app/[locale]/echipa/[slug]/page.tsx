@@ -467,20 +467,15 @@ async function ProfessionalJourneySection({
                 return (
                   <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
                     <div className="flex gap-4 md:gap-6 items-start">
-                      {/* Year pill + timeline dot */}
-                      <div className="flex flex-col items-center shrink-0 z-10">
-                        <span className="rounded-full bg-[#faf6f1] border border-[#e8e0d5] px-3 py-1.5 md:px-4 md:py-2 text-sm font-bold text-[#8b7355] whitespace-nowrap shadow-sm">
-                          {entry.year !== undefined ? (
-                            entry.year
-                          ) : (
-                            <span className="relative inline-block" aria-hidden="true">
-                              <span className="invisible">0000</span>
-                              <span className="absolute inset-0 flex items-center justify-center">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                              </span>
-                            </span>
-                          )}
-                        </span>
+                      {/* Year pill, or a quiet node on the line for undated entries */}
+                      <div className="flex w-[78px] md:w-[94px] justify-center shrink-0 z-10">
+                        {entry.year !== undefined ? (
+                          <span className="rounded-full bg-[#faf6f1] border border-[#e8e0d5] px-3 py-1.5 md:px-4 md:py-2 text-sm font-bold text-[#7a6347] whitespace-nowrap shadow-sm">
+                            {entry.year}
+                          </span>
+                        ) : (
+                          <span aria-hidden="true" className="mt-[18px] block w-3 h-3 rounded-full bg-white border-2 border-[#d4c4b0] ring-4 ring-white" />
+                        )}
                       </div>
 
                       {/* Entry card */}
