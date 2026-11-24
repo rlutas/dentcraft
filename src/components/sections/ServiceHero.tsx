@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment } from 'react'
+import { Fragment, useRef, type PointerEvent } from 'react'
 import Image from 'next/image'
 import { MotionConfig, motion } from 'framer-motion'
 import { ArrowRight, Calculator, ChevronDown } from 'lucide-react'
@@ -47,6 +47,28 @@ export function ServiceHero({
 }: ServiceHeroProps) {
   const t = useTranslations('hero')
   const titleWords = title.split(' ')
+  // Desktop-only mouse parallax: writes two CSS vars, no React re-render
+  const stageRef = useRef<HTMLDivElement>(null)
+  const frame = useRef(0)
+  const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') return
+    const el = stageRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 2
+    const y = ((e.clientY - r.top) / r.height - 0.5) * 2
+    cancelAnimationFrame(frame.current)
+    frame.current = requestAnimationFrame(() => {
+      el.style.setProperty('--mx', x.toFixed(3))
+      el.style.setProperty('--my', y.toFixed(3))
+    })
+  }
+  const onPointerLeave = () => {
+    const el = stageRef.current
+    if (!el) return
+    el.style.setProperty('--mx', '0')
+    el.style.setProperty('--my', '0')
+  }
 
   return (
     <MotionConfig reducedMotion="user">
@@ -144,61 +166,105 @@ export function ServiceHero({
 
           </div>
 
-          {/* Illustration — the 3D render melts into the cream background (radial mask, same approach as the 404 tooth),
-              warm glow + thin tan halo behind it, slow float. CSS-only motion, static with reduced motion.
-              The priority image is never hidden (no opacity on it) so LCP is unaffected. */}
-          <div className="relative mx-auto w-full max-w-[640px] lg:max-w-none">
+          {/* Illustration — the 3D render melts into the cream background (radial mask, like the 404 tooth).
+              Backdrop: breathing warm glow, concentric tan rings (drawn in once, slow counter-rotation),
+              small dots orbiting. Float + tilt with a synced contact shadow, gentle mouse parallax on desktop.
+              CSS transforms only; static with prefers-reduced-motion. h1/text never animate. */}
+          <div
+            ref={stageRef}
+            onPointerMove={onPointerMove}
+            onPointerLeave={onPointerLeave}
+            className="svc-stage relative mx-auto w-full max-w-[640px] lg:max-w-none"
+          >
             <style>{`
-              @keyframes svcFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
-              @keyframes svcIn { from { transform: scale(0.96) } to { transform: scale(1) } }
-              @keyframes svcBreathe { 0%,100% { transform: scale(1); opacity: .5 } 50% { transform: scale(1.06); opacity: .62 } }
+              .svc-stage { --mx: 0; --my: 0; }
+              .svc-par-img { transform: translate3d(calc(var(--mx) * 12px), calc(var(--my) * 12px), 0); transition: transform .6s cubic-bezier(0.16,1,0.3,1); }
+              .svc-par-rings { transform: translate3d(calc(var(--mx) * -6px), calc(var(--my) * -6px), 0); transition: transform .6s cubic-bezier(0.16,1,0.3,1); }
+              @keyframes svcIn { from { opacity: .35; transform: translateY(20px) scale(.92) } to { opacity: 1; transform: none } }
+              @keyframes svcFloat { 0%,100% { transform: translateY(0) rotate(-1.5deg) } 50% { transform: translateY(-16px) rotate(1.5deg) } }
+              @keyframes svcShadow { 0%,100% { transform: scaleX(1); opacity: .9 } 50% { transform: scaleX(.78); opacity: .5 } }
+              @keyframes svcBreathe { 0%,100% { transform: scale(.95) } 50% { transform: scale(1.05) } }
               @keyframes svcSpin { to { transform: rotate(360deg) } }
-              @keyframes svcShadow { 0%,100% { transform: scaleX(1); opacity: 1 } 50% { transform: scaleX(.9); opacity: .7 } }
+              @keyframes svcDraw { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }
+              @keyframes svcFadeIn { from { opacity: 0 } to { opacity: 1 } }
               @media (prefers-reduced-motion: no-preference) {
-                .svc-in { animation: svcIn 1.1s cubic-bezier(0.16,1,0.3,1) both }
-                .svc-float { animation: svcFloat 7s ease-in-out infinite }
-                .svc-glow { animation: svcBreathe 9s ease-in-out infinite }
-                .svc-ring { animation: svcSpin 36s linear infinite }
-                .svc-ring-rev { animation: svcSpin 48s linear infinite reverse }
-                .svc-shadow { animation: svcShadow 7s ease-in-out infinite }
+                .svc-in { animation: svcIn .9s cubic-bezier(0.16,1,0.3,1) both }
+                .svc-float { animation: svcFloat 6s ease-in-out infinite }
+                .svc-shadow { animation: svcShadow 6s ease-in-out infinite }
+                .svc-glow { animation: svcBreathe 8s ease-in-out infinite }
+                .svc-spin { animation: svcSpin 40s linear infinite }
+                .svc-spin-rev { animation: svcSpin 55s linear infinite reverse }
+                .svc-orbit { animation: svcSpin 25s linear infinite }
+                .svc-draw { stroke-dasharray: 1; animation: svcDraw 1.6s cubic-bezier(0.65,0,0.35,1) .2s both }
+                .svc-dots { animation: svcFadeIn 1s ease-out 1.2s both }
               }
+              @media (prefers-reduced-motion: reduce) { .svc-par-img, .svc-par-rings { transform: none !important; transition: none } }
             `}</style>
             <div className="relative aspect-[3/2]">
-              {/* warm glow */}
-              <div aria-hidden="true" className="svc-glow absolute left-[12%] top-[8%] h-[84%] w-[76%] rounded-full bg-[#e8dccb] opacity-50 blur-3xl" />
-              {/* thin tan halo — solid + dashed ring, slowly turning */}
-              <div aria-hidden="true" className="absolute left-1/2 top-1/2 aspect-square w-[62%] -translate-x-1/2 -translate-y-1/2">
-                <div className="svc-ring h-full w-full rounded-full border border-[#c4ab8d]/35" />
+              {/* warm breathing glow */}
+              <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[min(82%,520px)] aspect-square -translate-x-1/2 -translate-y-1/2">
+                <div className="svc-glow h-full w-full rounded-full bg-[radial-gradient(closest-side,rgba(230,211,187,0.75),rgba(217,194,163,0.45)_55%,transparent)] blur-3xl" />
               </div>
-              <div aria-hidden="true" className="absolute left-1/2 top-1/2 aspect-square w-[78%] -translate-x-1/2 -translate-y-1/2">
-                <div className="svc-ring-rev h-full w-full rounded-full border border-dashed border-[#c4ab8d]/25" />
+
+              {/* rings (parallax layer) */}
+              <div aria-hidden="true" className="svc-par-rings absolute inset-0">
+                <div className="absolute left-1/2 top-1/2 aspect-square w-[60%] -translate-x-1/2 -translate-y-1/2">
+                  <svg viewBox="0 0 100 100" className="svc-spin h-full w-full overflow-visible">
+                    <circle cx="50" cy="50" r="49.5" fill="none" stroke="#b59a7a" strokeOpacity="0.35" strokeWidth="0.3" pathLength={1} className="svc-draw" />
+                  </svg>
+                </div>
+                <div className="absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2">
+                  <svg viewBox="0 0 100 100" className="svc-spin-rev h-full w-full overflow-visible">
+                    <circle cx="50" cy="50" r="49.5" fill="none" stroke="#b59a7a" strokeOpacity="0.28" strokeWidth="0.25" strokeDasharray="0.8 1.6" />
+                  </svg>
+                </div>
+                <div className="absolute left-1/2 top-1/2 aspect-square w-[92%] -translate-x-1/2 -translate-y-1/2">
+                  <svg viewBox="0 0 100 100" className="h-full w-full overflow-visible">
+                    <circle cx="50" cy="50" r="49.5" fill="none" stroke="#b59a7a" strokeOpacity="0.2" strokeWidth="0.2" pathLength={1} className="svc-draw" />
+                  </svg>
+                </div>
+                {/* small dots orbiting the middle ring */}
+                <div className="svc-dots absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2">
+                  <div className="svc-orbit relative h-full w-full">
+                    <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b59a7a]/70" />
+                    <span className="absolute left-[93%] top-[75%] h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c4ab8d]/70" />
+                    <span className="absolute left-[7%] top-[75%] h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d4c4b0]" />
+                    <span className="absolute left-1/2 top-full h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8b7355]/50" />
+                  </div>
+                </div>
               </div>
-              {/* contact shadow */}
-              <div aria-hidden="true" className="svc-shadow absolute bottom-[12%] left-[30%] h-[6%] w-[40%] rounded-[50%] bg-[radial-gradient(closest-side,rgba(90,66,42,0.22),transparent)]" />
-              <div className="svc-in absolute inset-0">
-                <div className="svc-float absolute inset-0">
-                  {photoSrc ? (
-                    <Image
-                      src={photoSrc}
-                      alt={photoAlt}
-                      fill
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                      className="object-cover"
-                      style={{
-                        maskImage: 'radial-gradient(closest-side, #000 62%, transparent 100%)',
-                        WebkitMaskImage: 'radial-gradient(closest-side, #000 62%, transparent 100%)',
-                      }}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {fallbackIconPath ? (
-                        <Image alt="" className="w-32 h-32 opacity-30" height={128} src={fallbackIconPath} width={128} />
-                      ) : FallbackIcon ? (
-                        <FallbackIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
-                      ) : null}
-                    </div>
-                  )}
+
+              {/* illustration (parallax layer) */}
+              <div className="svc-par-img absolute inset-0">
+                <div className="svc-in absolute inset-0">
+                  {/* contact shadow, synced with the float */}
+                  <div aria-hidden="true" className="absolute bottom-[9%] left-[27%] h-[7%] w-[46%]">
+                    <div className="svc-shadow h-full w-full rounded-[50%] bg-[#5a422a]/25 blur-xl" />
+                  </div>
+                  <div className="svc-float absolute inset-0">
+                    {photoSrc ? (
+                      <Image
+                        src={photoSrc}
+                        alt={photoAlt}
+                        fill
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        className="object-cover"
+                        style={{
+                          maskImage: 'radial-gradient(closest-side, #000 62%, transparent 100%)',
+                          WebkitMaskImage: 'radial-gradient(closest-side, #000 62%, transparent 100%)',
+                        }}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        {fallbackIconPath ? (
+                          <Image alt="" className="w-32 h-32 opacity-30" height={128} src={fallbackIconPath} width={128} />
+                        ) : FallbackIcon ? (
+                          <FallbackIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
+                        ) : null}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
