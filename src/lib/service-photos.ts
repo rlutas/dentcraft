@@ -23,7 +23,7 @@ const SERVICE_PHOTOS = new Set([
 ])
 
 export function getServicePhotoPath(slug: string): string | null {
-  return SERVICE_PHOTOS.has(slug) ? `/images/services/${slug}.webp` : null
+  return SERVICE_PHOTOS.has(slug) ? `/images/services/${slug}-v2.webp` : null
 }
 
 export function hasServicePhoto(slug: string): boolean {
