@@ -53,7 +53,7 @@ function PosterContent({
         src={posterSrc}
         alt={posterAlt}
         fill
-        sizes="(max-width: 640px) 100vw, 50vw"
+        sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 33vw"
         className="object-cover object-top"
       />
 

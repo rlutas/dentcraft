@@ -347,7 +347,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar - sleek minimal design. Mobile: extra bottom space so the sticky booking bar never covers it. */}
-        <div className="border-t border-white/5 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
+        <div className="border-t border-white/5 pb-[calc(5.5rem+env(safe-area-inset-bottom))] md:pb-0">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               {/* Copyright */}

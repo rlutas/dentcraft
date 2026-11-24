@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, Phone } from 'lucide-react'
+import { ArrowRight, CalendarCheck, Phone } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { WhatsAppGlyph } from '@/components/features/WhatsAppButton'
@@ -61,38 +61,39 @@ export function MobileBookingBar() {
       aria-hidden={!visible}
       aria-label={t('label')}
       className={cn(
-        'fixed inset-x-0 bottom-0 z-40 md:hidden',
-        'border-t border-[#e8e0d5] bg-[#faf6f1]/95 backdrop-blur-md shadow-[0_-10px_30px_-12px_rgba(42,33,24,0.25)]',
-        'px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]',
+        // Floating dock — mirrors the header's FramedNav pill (white glass, soft warm shadow)
+        'pointer-events-none fixed inset-x-0 bottom-0 z-40 md:hidden',
+        'px-3 pb-[calc(0.625rem+env(safe-area-inset-bottom))]',
         'transition-[transform,opacity,visibility] duration-300 ease-out motion-reduce:transition-none',
-        visible ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-full opacity-0',
+        visible ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-[calc(100%+1rem)] opacity-0',
       )}
       inert={!visible}
       role="region"
     >
-      <div className="mx-auto flex max-w-md items-center gap-2.5">
+      <div className="pointer-events-auto mx-auto flex max-w-md items-center gap-1.5 rounded-full border border-white/70 bg-white/85 p-1.5 shadow-[0_14px_40px_-10px_rgba(42,33,24,0.38),0_2px_6px_-2px_rgba(42,33,24,0.12)] ring-1 ring-[#2a2118]/[0.06] backdrop-blur-xl backdrop-saturate-150 supports-[not(backdrop-filter:blur(1px))]:bg-white/95">
         <Link
-          className="group flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-[#1a1a1a] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#4a3d30] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6f1]"
+          className="group flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-[#1a1a1a] px-5 text-[15px] font-semibold tracking-[0.01em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors active:bg-[#4a3d30] hover:bg-[#4a3d30] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           href="/contact"
         >
-          {t('book')}
-          <ArrowRight aria-hidden="true" className="h-4 w-4" strokeWidth={2.25} />
+          <CalendarCheck aria-hidden="true" className="h-[18px] w-[18px] shrink-0 text-[#d4c4b0]" strokeWidth={2} />
+          <span className="truncate">{t('book')}</span>
+          <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.25} />
         </Link>
         <a
           aria-label={tCommon('whatsappMessage')}
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#e8e0d5] bg-white text-[#1f9e4d] transition-colors hover:border-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6f1]"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366]/10 text-[#1f9e4d] ring-1 ring-inset ring-[#25D366]/25 transition-colors active:bg-[#25D366]/20 hover:bg-[#25D366]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           href={waUrl}
           rel="noopener noreferrer"
           target="_blank"
         >
-          <WhatsAppGlyph className="h-6 w-6" />
+          <WhatsAppGlyph className="h-[22px] w-[22px]" />
         </a>
         <a
           aria-label={t('call')}
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#e8e0d5] bg-white text-[#2a2118] transition-colors hover:border-[#8b7355] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6f1]"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#faf6f1] text-[#2a2118] ring-1 ring-inset ring-[#e8e0d5] transition-colors active:bg-[#f5f0e8] hover:bg-[#f5f0e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           href={`tel:${PHONE_TEL}`}
         >
-          <Phone aria-hidden="true" className="h-5 w-5" strokeWidth={2.25} />
+          <Phone aria-hidden="true" className="h-5 w-5" strokeWidth={2} />
         </a>
       </div>
     </div>
