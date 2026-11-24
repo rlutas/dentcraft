@@ -1,11 +1,16 @@
 import type { LucideIcon } from 'lucide-react'
 import {
   ArrowRight,
-  CheckCircle,
-  ChevronDown,
+  Check,
   Clock,
+  Gem,
+  HeartPulse,
+  Leaf,
   MapPin,
   Phone,
+  ShieldCheck,
+  Smile,
+  Sparkles,
   Star,
 } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
@@ -30,6 +35,8 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import googleReviewsData from '@/data/google-reviews.json'
 import { ServiceHero } from '@/components/sections/ServiceHero'
+import { ServiceFaqAccordion } from '@/components/sections/ServiceFaqAccordion'
+import { ServiceProcessTimeline } from '@/components/sections/ServiceProcessTimeline'
 import { getServiceLocalSeoContent } from '@/components/sections/ServiceLocalSeo'
 import { translateTeamRole } from '@/lib/translate-team-role'
 import {
@@ -223,18 +230,12 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
   ])
 
   // FAQ schema — emit only when there are FAQs (huge SEO win for AI/rich snippets)
-  const faqSchema = faqs.length > 0
-    ? getFAQSchema(faqs.map((f) => ({
-        question: f.question,
-        answer: f.answer
-          .filter((b) => b._type === 'block')
-          .map((b) => {
-            const children = b['children'] as Array<{ text: string }> | undefined
-            return children?.map((c) => c.text).join('') || ''
-          })
-          .join(' '),
-      })))
-    : null
+  // One FAQ section + one FAQPage schema: CMS FAQs merged with the local-SEO FAQs
+  const cmsFaqItems = mergeFaqs(
+    faqs.map((f) => ({ question: f.question, answer: portableToText(f.answer) })),
+    getServiceLocalSeoContent(service.slug, locale)?.faqs ?? [],
+  )
+  const faqSchema = cmsFaqItems.length > 0 ? getFAQSchema(cmsFaqItems) : null
 
   const showBenefits = Boolean(service.benefits && service.benefits.length > 0)
   const showProcess = Boolean(service.process && service.process.length > 0)
@@ -243,8 +244,8 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
     ['description', Boolean(service.description && service.description.length > 0)],
     ['benefits', showBenefits],
     ['process', showProcess],
-    ['faq', faqs.length > 0],
     ['localSeo', Boolean(getServiceLocalSeoContent(service.slug, locale))],
+    ['faq', cmsFaqItems.length > 0],
     ['doctor', true],
     ['reviews', true],
     ['related', true],
@@ -306,27 +307,11 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
         />
       )}
 
-      {/* FAQ Section — editorial */}
-      {faqs.length > 0 && (
-        <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tones.faq)}`}>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
-          <div className="container relative z-10">
-            <div className="text-center mb-14 md:mb-20">
-              <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
-            </div>
-            <div className="max-w-3xl mx-auto space-y-3">
-              {faqs.map((faq, idx) => (
-                <ScrollReveal key={faq._id} animation="fade-up" delay={Math.min(idx, 3) * 60}>
-                  <FAQAccordionItem answer={faq.answer} question={faq.question} />
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Local SEO content — city + price intent for key services */}
       <ServiceLocalSeo slug={service.slug} locale={locale} tone={tones.localSeo ?? 'white'} />
+
+      {/* FAQ Section — single editorial accordion */}
+      {cmsFaqItems.length > 0 && <FaqSection tone={tones.faq ?? 'white'} items={cmsFaqItems} />}
 
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(service.slug)} tone={tones.doctor ?? 'white'} />
@@ -375,27 +360,26 @@ function PortableTextRenderer({ content }: { content: Array<{ _type: string; [ke
   )
 }
 
-// FAQ Accordion Item Component (client-side interaction needed in future)
-function FAQAccordionItem({ question, answer }: { question: string; answer: Array<{ _type: string; [key: string]: unknown }> }) {
-  // For now, display as static expanded items
-  // A proper Accordion component will be created in US-018
-  const answerText = answer
+/** Concatenate FAQ lists, dropping exact duplicate questions (text kept verbatim). */
+function mergeFaqs(...lists: Array<Array<{ question: string; answer: string }>>) {
+  const seen = new Set<string>()
+  return lists.flat().filter((f) => {
+    const key = f.question.trim().toLowerCase()
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+// Plain text of a Portable Text answer (same join as the FAQ schema above)
+function portableToText(answer: Array<{ _type: string; [key: string]: unknown }>) {
+  return answer
     .filter((block) => block._type === 'block')
     .map((block) => {
       const children = block['children'] as Array<{ text: string }> | undefined
       return children?.map((child) => child.text).join('') || ''
     })
     .join(' ')
-
-  return (
-    <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-7 md:py-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] open:border-[#d4c4b0] transition-colors duration-300">
-      <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
-        <h3 className="text-base md:text-lg font-semibold text-[#2a2118] pr-2 leading-tight group-hover:text-[#8b7355] transition-colors">{question}</h3>
-        <ChevronDown className="w-5 h-5 text-[#8b7355] transition-transform duration-300 group-open:rotate-180 shrink-0" strokeWidth={2} />
-      </summary>
-      <p className="mt-4 text-sm md:text-base text-[#5a5048] leading-relaxed">{answerText}</p>
-    </details>
-  )
 }
 
 // Fallback service page content when Sanity has no data
@@ -412,11 +396,10 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
   // Per-service editorial copy (src/lib/service-content). Missing locale → page renders as before.
   const serviceContent = getServiceContent(fallbackService.slug, locale)
   const hideLegacyBlocks = shouldHideLegacyBlocks(fallbackService.slug, locale)
-  // One FAQPage per page: ServiceLocalSeo already emits its own where it has content.
-  const contentFaqSchema =
-    serviceContent && serviceContent.faqs.length > 0 && !getServiceLocalSeoContent(fallbackService.slug, locale)
-      ? getFAQSchema(serviceContent.faqs)
-      : null
+  // One FAQ section + one FAQPage schema per page: service FAQs merged with the local-SEO FAQs
+  const localSeo = getServiceLocalSeoContent(fallbackService.slug, locale)
+  const faqItems = mergeFaqs(serviceContent?.faqs ?? [], localSeo?.faqs ?? [])
+  const contentFaqSchema = faqItems.length > 0 ? getFAQSchema(faqItems) : null
   const serviceSchema = getServiceSchema({
     serviceName,
     serviceDescription,
@@ -435,10 +418,10 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
     ['content', Boolean(serviceContent)],
     ['benefits', showBenefits],
     ['process', showProcess],
-    ['faq', Boolean(serviceContent && serviceContent.faqs.length > 0)],
+    ['localSeo', Boolean(localSeo)],
+    ['faq', faqItems.length > 0],
     ['doctor', true],
     ['reviews', true],
-    ['localSeo', Boolean(getServiceLocalSeoContent(fallbackService.slug, locale))],
     ['related', true],
   ])
 
@@ -502,19 +485,17 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
         />
       )}
 
-      {/* Per-service FAQ */}
-      {serviceContent && serviceContent.faqs.length > 0 && (
-        <ServiceContentFaqSection faqs={serviceContent.faqs} tone={tones.faq ?? 'cream'} />
-      )}
+      {/* Local SEO content — city + price intent for key services */}
+      <ServiceLocalSeo slug={fallbackService.slug} locale={locale} tone={tones.localSeo ?? 'white'} />
+
+      {/* Single FAQ: per-service + local-SEO questions */}
+      {faqItems.length > 0 && <FaqSection items={faqItems} tone={tones.faq ?? 'cream'} />}
 
       {/* Doctor profile — E-E-A-T + internal linking */}
       <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(fallbackService.slug)} tone={tones.doctor ?? 'white'} />
 
       {/* Reviews — social proof from Google */}
       <ReviewsSection locale={locale} tone={tones.reviews ?? 'cream'} />
-
-      {/* Local SEO content — city + price intent for key services */}
-      <ServiceLocalSeo slug={fallbackService.slug} locale={locale} tone={tones.localSeo ?? 'white'} />
 
       {/* Servicii conexe — footer CTA banner closes the page */}
       <RelatedServicesSection currentSlug={fallbackService.slug} tone={tones.related ?? 'white'} />
@@ -543,85 +524,123 @@ function sectionBg(tone: SectionTone | undefined) {
   return tone === 'cream' ? 'bg-[#faf6f1]' : 'bg-white'
 }
 
-// Benefits — editorial numbered cards (01/02/03), same card language as the homepage service cards
+// Decorative icon tiles for the bento (no meaning attached — the copy carries the content)
+const BENTO_ICONS: LucideIcon[] = [Sparkles, ShieldCheck, HeartPulse, Smile, Gem, Leaf]
+
+/** Column spans that always fill complete rows: md = 2 cols, lg = 3 cols. First card is the wide feature. */
+function bentoSpans(n: number): string[] {
+  const spans: string[] = []
+  for (let i = 0; i < n; i++) {
+    let md = ''
+    let lg = 'lg:col-span-1'
+    if (i === 0) {
+      md = 'md:col-span-2'
+      lg = n === 1 ? 'lg:col-span-3' : 'lg:col-span-2'
+    }
+    spans.push(`${md} ${lg}`)
+  }
+  if (n >= 2) {
+    // md: after the full-width first card, an odd remainder leaves the last card alone → stretch it
+    if ((n - 1) % 2 === 1) spans[n - 1] = spans[n - 1]!.replace(/md:col-span-\d|^ /, '') + ' md:col-span-2'
+    // lg: first row = [2,1]; then rows of 3; stretch a lonely / paired last row
+    const rem = (n - 2) % 3
+    if (n > 2 && rem === 1) spans[n - 1] = spans[n - 1]!.replace('lg:col-span-1', 'lg:col-span-3')
+    if (n > 2 && rem === 2) spans[n - 1] = spans[n - 1]!.replace('lg:col-span-1', 'lg:col-span-2')
+  }
+  return spans
+}
+
+// Benefits — bento grid: one dark feature card + icon-tile cards, staggered entrance, hover lift
 async function BenefitsSection({ items, tone }: { items: Array<{ title: string; description: string }>; tone: SectionTone }) {
   const t = await getTranslations()
+  const spans = bentoSpans(items.length)
   return (
     <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
       <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
-          <ScrollReveal animation="fade-up">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-              {t('services.detail.whyChooseLabel')}
-            </span>
-          </ScrollReveal>
-          <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
-          {items.map((benefit, index) => (
-            <ScrollReveal key={index} animation="fade-up" delay={(index % 3) * 100}>
-              <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out h-full overflow-hidden">
-                {/* editorial serif-italic number — same system as the homepage "De ce clinica DENTCRAFT" list */}
-                <span aria-hidden="true" className="block font-serif italic text-4xl md:text-5xl text-[#8b7355] leading-none mb-6 origin-left group-hover:text-[#2a2118] transition-colors duration-500">
-                  {String(index + 1).padStart(2, '0')}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-6 items-end mb-12 md:mb-16">
+            <div>
+              <ScrollReveal animation="fade-up">
+                <span className="flex items-center gap-3 mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355]">
+                  <span aria-hidden="true" className="h-px w-10 bg-[#8b7355]/50" />
+                  {t('services.detail.whyChooseLabel')}
                 </span>
-                <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-3 leading-tight group-hover:text-[#8b7355] transition-colors duration-300">
-                  {benefit.title}
-                </h3>
-                <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{benefit.description}</p>
-                <span aria-hidden="true" className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-[#d4c4b0] via-[#8b7355] to-[#d4c4b0] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+              <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {items.map((benefit, index) => {
+              const feature = index === 0
+              const Icon = BENTO_ICONS[index % BENTO_ICONS.length]!
+              // a stretched last card reads as a horizontal band on desktop (icon left, text right)
+              const wide = !feature && /lg:col-span-[23]/.test(spans[index] ?? '')
+              return (
+                <ScrollReveal key={index} animation={feature ? 'scale-up' : 'fade-up'} delay={index * 70} duration={700} className={spans[index] ?? ''}>
+                  <div
+                    className={`group relative h-full overflow-hidden rounded-[2rem] p-7 md:p-9 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 ${
+                      feature
+                        ? 'bg-[#2a2118] text-white shadow-[0_40px_80px_-40px_rgba(42,33,24,0.7)] min-h-[16rem] md:min-h-[18rem] flex flex-col justify-between'
+                        : 'bg-white border border-[#ebe2d6] shadow-[0_10px_40px_-20px_rgba(139,115,85,0.25)] hover:border-[#d4c4b0] hover:shadow-[0_30px_60px_-24px_rgba(139,115,85,0.35)]'
+                    } ${wide ? 'lg:flex lg:items-center lg:gap-10 lg:py-10 bg-gradient-to-r from-white to-[#faf6f1]' : ''}`}
+                  >
+                    {feature && (
+                      <>
+                        <div aria-hidden="true" className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(212,196,176,0.35),transparent_65%)]" />
+                        <span aria-hidden="true" className="absolute right-6 bottom-2 md:right-10 font-serif italic text-[7rem] md:text-[9rem] leading-none text-white/[0.06] select-none">01</span>
+                      </>
+                    )}
+                    <div className="relative shrink-0">
+                      <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center mb-6 md:mb-8 ${wide ? 'lg:mb-0 lg:w-16 lg:h-16' : ''} transition-transform duration-300 group-hover:scale-105 ${feature ? 'bg-white/10 ring-1 ring-white/15' : 'bg-[#faf6f1] ring-1 ring-[#ebe2d6]'}`}>
+                        <Icon aria-hidden="true" className={`w-6 h-6 ${feature ? 'text-[#d4c4b0]' : 'text-[#8b7355]'}`} strokeWidth={1.5} />
+                      </div>
+                    </div>
+                    <div className="relative min-w-0">
+                      <h3 className={`font-bold leading-tight tracking-tight mb-3 ${feature ? 'text-2xl md:text-3xl text-white max-w-xl' : 'text-xl md:text-[1.35rem] text-[#2a2118]'}`}>
+                        {benefit.title}
+                      </h3>
+                      <p className={`leading-relaxed ${feature ? 'text-base md:text-lg text-white/75 max-w-xl' : 'text-[15px] md:text-base text-[#5a5048]'}`}>{benefit.description}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-// Process — numbered timeline; serif-italic 01/02/03 nodes like the homepage calculator steps
+// Process — sticky heading left, timeline right; the connecting line draws in on scroll
 async function ProcessSection({ steps, tone }: { steps: Array<{ stepNumber: number; title: string; description: string }>; tone: SectionTone }) {
   const t = await getTranslations()
-  const ring = tone === 'cream' ? 'ring-[#faf6f1]' : 'ring-white'
   return (
-    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
+    <section className={`py-24 md:py-32 relative overflow-x-clip ${sectionBg(tone)}`}>
       <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="text-center mb-14 md:mb-20">
-          <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
-        </div>
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            <div className="absolute left-6 md:left-7 top-0 bottom-0 w-px bg-[#e8e0d5]" aria-hidden="true" />
-            <div className="space-y-5 md:space-y-6">
-              {steps.map((step, index) => (
-                <ScrollReveal key={index} animation="fade-up">
-                  <div className="group relative flex gap-4 md:gap-6">
-                    <div className={`relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-[#e8e0d5] flex items-center justify-center shrink-0 ring-4 ${ring} group-hover:bg-[#1a1a1a] group-hover:border-[#1a1a1a] transition-colors duration-500`}>
-                      <span className="font-serif italic text-xl md:text-2xl text-[#8b7355] leading-none group-hover:text-[#d4c4b0] transition-colors duration-500">
-                        {String(step.stepNumber).padStart(2, '0')}
-                      </span>
-                    </div>
-                    <div className="flex-1 min-w-0 bg-white border border-[#e8e0d5] rounded-2xl md:rounded-3xl px-5 py-5 md:px-7 md:py-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] transition-all duration-500">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors duration-300">{step.title}</h3>
-                      <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20">
+          <div className="lg:sticky lg:top-32 self-start">
+            <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
+            <span aria-hidden="true" className="hidden lg:block mt-4 font-serif italic text-[8rem] leading-none text-[#8b7355]/10 select-none">
+              {String(steps.length).padStart(2, '0')}
+            </span>
           </div>
+          <ServiceProcessTimeline
+            steps={steps.map((st) => ({ ...st, label: `${t('services.step')} ${st.stepNumber}` }))}
+          />
         </div>
       </div>
     </section>
   )
+}
+
+/** "Dr. Buterchi Codruț-Ciprian" → bold "Dr. Buterchi" + serif italic "Codruț-Ciprian" (text unchanged). */
+function splitDoctorName(name: string): [string, string] {
+  const words = name.split(' ')
+  if (words.length < 3) return [name, '']
+  return [words.slice(0, 2).join(' '), words.slice(2).join(' ')]
 }
 
 // Doctor profile — the doctor(s) mapped to this service (src/lib/service-content), Dr. Petric as fallback
@@ -637,229 +656,251 @@ async function DoctorProfileSection({ doctorSlugs, tone }: { doctorSlugs: string
   return (
     <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
         <div className="text-center mb-14 md:mb-20">
           <AnimatedServiceHeading bold={t('services.detail.doctorBold')} italic={t('services.detail.doctorItalic')} />
         </div>
 
-        <div className="max-w-5xl mx-auto space-y-16 md:space-y-20">
-          {doctors.map((doctor) => (
-            <div key={doctor.slug} className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
-              {/* Doctor photo */}
-              <ScrollReveal animation="fade-up" className="relative max-w-md mx-auto w-full lg:max-w-none">
-                <div className="absolute -top-4 -left-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
-                <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[#f5f0e8] border border-[#e8e0d5] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)]">
-                  {doctor.photo && (
-                    <Image
-                      src={doctor.photo}
-                      alt={t('team.profile.doctorPhotoAlt', { name: doctor.name, role: doctor.role })}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover object-top"
-                    />
-                  )}
-                </div>
-              </ScrollReveal>
+        <div className="max-w-6xl mx-auto space-y-20 md:space-y-28">
+          {doctors.map((doctor, di) => {
+            const [nameBold, nameItalic] = splitDoctorName(doctor.name)
+            const flip = di % 2 === 1
+            return (
+              <div key={doctor.slug} className={`grid gap-10 lg:gap-16 xl:gap-20 items-center ${flip ? 'lg:grid-cols-[1fr_26rem]' : 'lg:grid-cols-[26rem_1fr]'}`}>
+                {/* Doctor photo — large framed card, scale-in */}
+                <ScrollReveal animation="fade-up" duration={900} className={`relative max-w-[26rem] mx-auto w-full ${flip ? 'lg:order-2' : ''}`}>
+                  <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-[#faf6f1] border border-[#ebe2d6] shadow-[0_40px_80px_-40px_rgba(90,70,45,0.45)]">
+                    {doctor.photo && (
+                      <Image
+                        src={doctor.photo}
+                        alt={t('team.profile.doctorPhotoAlt', { name: doctor.name, role: doctor.role })}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 416px"
+                        className="object-cover object-top"
+                      />
+                    )}
+                  </div>
+                </ScrollReveal>
 
-              {/* Doctor info */}
-              <ScrollReveal animation="fade-up" delay={150}>
-                <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">
-                  {translateTeamRole(doctor.role, t)}
-                </span>
-                <h3 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4 leading-[1.05] tracking-tight [text-wrap:balance]">
-                  {doctor.name}
-                </h3>
-                {/* Short teaser only — the full bio lives on /echipa/[slug] (button below) */}
-                <p className="text-base md:text-lg text-[#5a5048] leading-relaxed mb-6 line-clamp-3">
-                  {doctor.bio}
-                </p>
-
-                {doctor.specializations && doctor.specializations.length > 0 && (
-                  <p className="text-sm text-[#8b7355] leading-relaxed mb-6">
-                    {doctor.specializations.join(' · ')}
+                {/* Doctor info */}
+                <ScrollReveal animation={flip ? 'fade-right' : 'fade-left'} delay={150}>
+                  <span className="flex items-center gap-3 mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355]">
+                    <span aria-hidden="true" className="h-px w-10 bg-[#8b7355]/50" />
+                    {translateTeamRole(doctor.role, t)}
+                  </span>
+                  <h3 className="font-bold text-[#2a2118] leading-[0.98] tracking-tight text-[2.25rem] md:text-5xl mb-6">
+                    <span className="block">{nameBold}</span>{nameItalic && ' '}
+                    {nameItalic && (
+                      <span className="block font-serif italic font-medium text-[#8b7355] tracking-wide mt-1 pb-1 [text-wrap:balance]">{nameItalic}</span>
+                    )}
+                  </h3>
+                  {/* Short teaser only — the full bio lives on /echipa/[slug] (button below) */}
+                  <p className="text-base md:text-lg text-[#5a5048] leading-relaxed mb-6 line-clamp-3 max-w-[60ch]">
+                    {doctor.bio}
                   </p>
-                )}
 
-                {/* Quick stats */}
-                {doctor.stats && !doctor.hideStats && (
-                  <div className="flex items-center gap-6 mb-7 pb-6 border-b border-[#e8e0d5]">
-                    {doctor.stats.yearsExperience && (
+                  {doctor.specializations && doctor.specializations.length > 0 && (
+                    <p className="text-sm text-[#8b7355] leading-relaxed mb-7">
+                      {doctor.specializations.join(' · ')}
+                    </p>
+                  )}
+
+                  {/* Quick stats */}
+                  {doctor.stats && !doctor.hideStats && (
+                    <div className="grid grid-cols-3 gap-4 mb-8 py-6 border-y border-[#e8e0d5] max-w-md">
+                      {doctor.stats.yearsExperience && (
+                        <div>
+                          <div className="font-serif italic text-3xl md:text-4xl text-[#2a2118] leading-none">{doctor.stats.yearsExperience}+</div>
+                          <div className="text-[10px] mt-2 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">{t('services.detail.yearsExperience')}</div>
+                        </div>
+                      )}
+                      {doctor.stats.patientsCount && (
+                        <div>
+                          <div className="font-serif italic text-3xl md:text-4xl text-[#2a2118] leading-none">{doctor.stats.patientsCount}+</div>
+                          <div className="text-[10px] mt-2 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">{t('services.detail.patientsTreated')}</div>
+                        </div>
+                      )}
                       <div>
-                        <div className="text-2xl font-bold text-[#2a2118] leading-none">
-                          {doctor.stats.yearsExperience}+
+                        <div className="font-serif italic text-3xl md:text-4xl text-[#2a2118] leading-none flex items-baseline gap-1.5">
+                          4.9
+                          <Star className="w-4 h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
                         </div>
-                        <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          {t('services.detail.yearsExperience')}
-                        </div>
-                      </div>
-                    )}
-                    {doctor.stats.patientsCount && (
-                      <div>
-                        <div className="text-2xl font-bold text-[#2a2118] leading-none">
-                          {doctor.stats.patientsCount}+
-                        </div>
-                        <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                          {t('services.detail.patientsTreated')}
-                        </div>
-                      </div>
-                    )}
-                    <div>
-                      <div className="text-2xl font-bold text-[#2a2118] leading-none flex items-baseline gap-1">
-                        4.9
-                        <Star className="w-4 h-4 fill-[#d4c4b0] text-[#d4c4b0]" />
-                      </div>
-                      <div className="text-[10px] mt-1 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">
-                        {t('services.detail.googleLabel')}
+                        <div className="text-[10px] mt-2 text-[#8b7355] uppercase tracking-[0.16em] font-semibold">{t('services.detail.googleLabel')}</div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                <Link
-                  href={{ pathname: '/echipa/[slug]', params: { slug: doctor.slug } }}
-                  className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
-                >
-                  <span>{t('services.detail.viewProfile')}</span>
-                  <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            </div>
-          ))}
+                  <Link
+                    href={{ pathname: '/echipa/[slug]', params: { slug: doctor.slug } }}
+                    className="group inline-flex items-center min-h-[52px] px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] active:scale-[0.98] transition-[box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#8b7355]/60"
+                  >
+                    <span>{t('services.detail.viewProfile')}</span>
+                    <ArrowRight aria-hidden="true" className="w-4 h-4 shrink-0 ml-2 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={2.25} />
+                  </Link>
+                </ScrollReveal>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
   )
 }
 
-// Unique per-service copy: answer paragraph, optional contact callout, H2 sections
+function slugifyHeading(text: string, i: number) {
+  return `s${i + 1}-${text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 48)}`
+}
+
+// Unique per-service copy: pull-quote intro, optional contact callout, H2 sections with a sticky outline on desktop
 async function ServiceContentBlock({ content, locale, slug }: { content: ServiceContentLocale; locale: string; slug: string }) {
   const labels = getServiceContentLabels(locale)
+  const anchors = content.sections.map((s, i) => slugifyHeading(s.heading, i))
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-white relative overflow-x-clip">
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-6xl mx-auto">
+          {/* Intro — "Pe scurt" summary card: full content width, label column aligned with the outline below */}
           <ScrollReveal animation="fade-up">
-            <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-4">
-              {labels.introLabel}
-            </span>
-            <p className="text-lg md:text-2xl text-[#2a2118] leading-relaxed md:leading-[1.55]">{content.intro}</p>
-            <p className="mt-4 text-xs text-[#8b7355]">
-              {labels.updatedLabel}: {labels.updatedValue}
-            </p>
+            <div className="rounded-[2rem] bg-[#faf6f1] px-6 py-8 md:px-10 md:py-12 lg:px-12 lg:py-14 grid lg:grid-cols-[calc(15rem-3rem)_1fr] xl:grid-cols-[calc(17rem-3rem)_1fr] gap-4 lg:gap-16 xl:gap-24 shadow-[0_20px_60px_-36px_rgba(139,115,85,0.45)]">
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355] lg:pt-2">
+                {labels.introLabel}
+              </span>
+              <div className="min-w-0">
+                <p className="text-lg md:text-2xl lg:text-[1.65rem] text-[#2a2118] leading-[1.6] md:leading-[1.5] max-w-[46rem]">{content.intro}</p>
+                <p className="mt-5 text-xs text-[#8b7355]">
+                  {labels.updatedLabel}: {labels.updatedValue}
+                </p>
+              </div>
+            </div>
           </ScrollReveal>
 
           {showsContactCallout(slug) && (
             <ScrollReveal animation="fade-up">
-            <div className="mt-8 rounded-3xl border border-[#d4c4b0] bg-[#faf6f1] p-6 md:p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]">
-              <p className="text-lg md:text-xl font-bold text-[#2a2118] mb-4">{labels.contactTitle}</p>
-              <a
-                href={`tel:${CLINIC_PHONE_TEL}`}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-[#1a1a1a] text-white rounded-full text-base md:text-lg font-semibold hover:bg-[#8b7355] transition-colors"
-              >
-                <Phone className="w-5 h-5" strokeWidth={2} />
-                <span>{labels.contactCall} {CLINIC_PHONE_DISPLAY}</span>
-              </a>
-              <ul className="mt-5 space-y-2 text-[#5a5048]">
-                <li className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 mt-1 text-[#8b7355] shrink-0" strokeWidth={2} />
-                  <span><strong>{labels.contactHoursLabel}:</strong> {labels.contactHours}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 mt-1 text-[#8b7355] shrink-0" strokeWidth={2} />
-                  <span><strong>{labels.contactAddressLabel}:</strong> {CLINIC_ADDRESS}</span>
-                </li>
-              </ul>
-              <p className="mt-3 text-sm text-[#5a5048]">{labels.contactLanguages}</p>
-            </div>
+              <div className="mt-10 rounded-[2rem] border border-[#e2d8ca] bg-[#faf6f1] p-6 md:p-9 shadow-[0_20px_60px_-30px_rgba(139,115,85,0.35)]">
+                <p className="text-lg md:text-xl font-bold text-[#2a2118] mb-4">{labels.contactTitle}</p>
+                <a
+                  href={`tel:${CLINIC_PHONE_TEL}`}
+                  className="inline-flex items-center gap-3 min-h-[48px] px-6 py-3 bg-[#1a1a1a] text-white rounded-full text-base md:text-lg font-semibold hover:bg-[#8b7355] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#8b7355]/60"
+                >
+                  <Phone className="w-5 h-5" strokeWidth={2} />
+                  <span>{labels.contactCall} {CLINIC_PHONE_DISPLAY}</span>
+                </a>
+                <ul className="mt-5 space-y-2 text-[#5a5048]">
+                  <li className="flex items-start gap-2">
+                    <Clock className="w-4 h-4 mt-1 text-[#8b7355] shrink-0" strokeWidth={2} />
+                    <span><strong>{labels.contactHoursLabel}:</strong> {labels.contactHours}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 mt-1 text-[#8b7355] shrink-0" strokeWidth={2} />
+                    <span><strong>{labels.contactAddressLabel}:</strong> {CLINIC_ADDRESS}</span>
+                  </li>
+                </ul>
+                <p className="mt-3 text-sm text-[#5a5048]">{labels.contactLanguages}</p>
+              </div>
             </ScrollReveal>
           )}
 
-          <div className="mt-14 md:mt-16 space-y-12 md:space-y-14">
-            {content.sections.map((section, sectionIndex) => (
-              <ScrollReveal key={section.heading} animation="fade-up" className={sectionIndex > 0 ? 'pt-12 md:pt-14 border-t border-[#e8e0d5]' : ''}>
-              <div className="group">
-                <div className="flex items-baseline gap-4 md:gap-6 mb-5">
-                  <span aria-hidden="true" className="font-serif italic text-3xl md:text-4xl text-[#8b7355] leading-none shrink-0 origin-left group-hover:text-[#2a2118] transition-colors duration-500">
-                    {String(sectionIndex + 1).padStart(2, '0')}
-                  </span>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-tight tracking-tight [text-wrap:balance]">
-                    {section.heading}
-                  </h2>
-                </div>
-                <div className="space-y-4 text-base md:text-lg text-[#5a5048] leading-relaxed">
-                  {section.paragraphs.map((paragraph, i) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
-                  {section.bullets && section.bullets.length > 0 && (
-                    <ul className="space-y-2.5">
-                      {section.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 mt-1 text-[#8b7355] shrink-0" strokeWidth={1.75} />
-                          <span>{bullet}</span>
+          <div className="mt-16 md:mt-24 grid lg:grid-cols-[15rem_1fr] xl:grid-cols-[17rem_1fr] gap-10 lg:gap-16 xl:gap-24">
+            {/* Sticky outline — desktop only; the section headings as in-page links */}
+            <nav className="hidden lg:block">
+              <ol className="sticky top-32 space-y-1 border-l border-[#e8e0d5] list-none m-0 p-0">
+                {content.sections.map((section, i) => (
+                  <li key={section.heading}>
+                    <a
+                      href={`#${anchors[i]}`}
+                      className="group -ml-px flex gap-3 border-l-2 border-transparent hover:border-[#8b7355] pl-4 py-2 text-sm leading-snug text-[#5a5048] hover:text-[#2a2118] transition-colors duration-200 focus-visible:outline-none focus-visible:border-[#8b7355] focus-visible:text-[#2a2118]"
+                    >
+                      <span aria-hidden="true" className="font-serif italic text-[#b5a089] group-hover:text-[#8b7355] shrink-0 w-5">{String(i + 1).padStart(2, '0')}</span>
+                      <span>{section.heading}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
+            <div className="min-w-0 space-y-16 md:space-y-20">
+              {content.sections.map((section, sectionIndex) => (
+                <ScrollReveal key={section.heading} animation="fade-up">
+                  <article id={anchors[sectionIndex]} className="scroll-mt-28 max-w-[72ch]">
+                    <span aria-hidden="true" className="block font-serif italic text-5xl md:text-6xl text-[#d4c4b0] leading-none mb-4">
+                      {String(sectionIndex + 1).padStart(2, '0')}
+                    </span>
+                    <h2 className="text-[1.7rem] md:text-[2.25rem] font-bold text-[#2a2118] leading-[1.12] tracking-tight mb-6 [text-wrap:balance]">
+                      {section.heading}
+                    </h2>
+                    <div className="space-y-5 text-[17px] md:text-lg text-[#4a4038] leading-[1.75]">
+                      {section.paragraphs.map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                      {section.bullets && section.bullets.length > 0 && (
+                        <ul className="rounded-[1.75rem] bg-[#faf6f1] border border-[#efe7dc] p-5 md:p-7 space-y-3.5 list-none m-0">
+                          {section.bullets.map((bullet, i) => (
+                            <li key={i} className="flex items-start gap-3.5 text-base md:text-[17px]">
+                              <span aria-hidden="true" className="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-white ring-1 ring-[#e2d8ca] flex items-center justify-center">
+                                <Check className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2.5} />
+                              </span>
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {section.after && (
+                        <p className="border-l-2 border-[#8b7355]/60 pl-5 text-[#2a2118] font-medium">{section.after}</p>
+                      )}
+                    </div>
+                  </article>
+                </ScrollReveal>
+              ))}
+
+              {content.links && content.links.length > 0 && (
+                <ScrollReveal animation="fade-up">
+                  <div className="pt-8 border-t border-[#e8e0d5] max-w-[72ch]">
+                    <span className="block text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355] mb-4">{labels.linksLabel}</span>
+                    <ul className="grid sm:grid-cols-2 gap-3 list-none m-0 p-0">
+                      {content.links.map((link) => (
+                        <li key={link.label}>
+                          <Link
+                            href={'doctor' in link ? { pathname: '/echipa/[slug]', params: { slug: link.doctor } } : link.page}
+                            className="group/cta flex items-center justify-between gap-3 min-h-[56px] rounded-2xl bg-white border border-[#ebe2d6] px-5 py-3.5 text-sm md:text-base font-semibold text-[#2a2118] hover:border-[#8b7355] hover:shadow-[0_14px_40px_-20px_rgba(139,115,85,0.4)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355]/50"
+                          >
+                            <span>{link.label}</span>
+                            <ArrowRight aria-hidden="true" className="w-4 h-4 shrink-0 text-[#8b7355] transition-transform duration-200 group-hover/cta:translate-x-1" strokeWidth={2.25} />
+                          </Link>
                         </li>
                       ))}
                     </ul>
-                  )}
-                  {section.after && <p>{section.after}</p>}
-                </div>
-              </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {content.links && content.links.length > 0 && (
-            <ScrollReveal animation="fade-up">
-            <div className="mt-12 pt-6 border-t border-[#e8e0d5]">
-              <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">{labels.linksLabel}</span>
-              <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                {content.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={'doctor' in link ? { pathname: '/echipa/[slug]', params: { slug: link.doctor } } : link.page}
-                      className="group/cta inline-flex items-center gap-1.5 text-sm md:text-base font-semibold text-[#8b7355] hover:text-[#2a2118] transition-colors duration-300"
-                    >
-                      <span className="border-b border-[#d4c4b0] group-hover/cta:border-[#2a2118] pb-0.5 transition-colors duration-300">{link.label}</span>
-                      <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" strokeWidth={2.25} />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+                  </div>
+                </ScrollReveal>
+              )}
             </div>
-            </ScrollReveal>
-          )}
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-// Per-service FAQ (plain-text answers), same look as the CMS FAQ block
-async function ServiceContentFaqSection({ faqs, tone }: { faqs: ServiceContentLocale['faqs']; tone: SectionTone }) {
+// FAQ — heading left (sticky on desktop), smooth accordion right. Used by both the CMS and the fallback path.
+async function FaqSection({ items, tone }: { items: Array<{ question: string; answer: string }>; tone: SectionTone }) {
   const t = await getTranslations()
   return (
-    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
+    <section className={`py-24 md:py-32 relative overflow-x-clip ${sectionBg(tone)}`}>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="text-center mb-14 md:mb-20">
-          <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
-        </div>
-        <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map((faq, idx) => (
-            <ScrollReveal key={faq.question} animation="fade-up" delay={Math.min(idx, 3) * 60}>
-              <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-7 md:py-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] open:border-[#d4c4b0] transition-colors duration-300">
-                <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
-                  <h3 className="text-base md:text-lg font-semibold text-[#2a2118] pr-2 leading-tight group-hover:text-[#8b7355] transition-colors">{faq.question}</h3>
-                  <ChevronDown className="w-5 h-5 text-[#8b7355] transition-transform duration-300 group-open:rotate-180 shrink-0" strokeWidth={2} />
-                </summary>
-                <p className="mt-4 text-sm md:text-base text-[#5a5048] leading-relaxed">{faq.answer}</p>
-              </details>
-            </ScrollReveal>
-          ))}
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.75fr_1.25fr] gap-10 lg:gap-16">
+          <div className="lg:sticky lg:top-32 self-start">
+            <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
+          </div>
+          <ScrollReveal animation="fade-up" duration={700}>
+            <ServiceFaqAccordion items={items} />
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -891,7 +932,7 @@ async function ReviewsSection({ locale, tone }: { locale: Locale; tone: SectionT
   )
 }
 
-// Servicii conexe — pull 3 other main services (excluding current) with the photo card pattern
+// Servicii conexe — 3 other main services; snap-scroll row on mobile, grid on desktop
 async function RelatedServicesSection({ currentSlug, tone }: { currentSlug: string; tone: SectionTone }) {
   const t = await getTranslations()
   const all = getMainFallbackServices().filter((s) => s.slug !== currentSlug).slice(0, 3)
@@ -901,54 +942,55 @@ async function RelatedServicesSection({ currentSlug, tone }: { currentSlug: stri
     <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl translate-y-1/3 translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="text-center mb-14 md:mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <AnimatedServiceHeading bold={t('services.detail.relatedBold')} italic={t('services.detail.relatedItalic')} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {all.map((service, index) => {
-            const hasPhoto = hasServicePhoto(service.slug)
-            const photoPath = getServicePhotoPath(service.slug) ?? ''
-            return (
-              <ScrollReveal key={service.slug} animation="fade-up" delay={index * 100}>
-                <Link
-                  href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
-                  className="group relative block h-full overflow-hidden rounded-3xl bg-white border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col"
-                >
-                  <div className="relative aspect-[16/10] bg-[#faf6f1] overflow-hidden">
-                    {hasPhoto ? (
-                      <Image src={photoPath} alt={t('services.detail.relatedPhotoAlt', { title: t(`services.fallback.${service.titleKey}`) })} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
-                        {service.iconPath ? (
-                          <Image src={service.iconPath} alt="" width={80} height={80} className="w-20 h-20 opacity-30 group-hover:opacity-50 transition-opacity" />
-                        ) : (
-                          <service.Icon className="w-20 h-20 text-[#8b7355]/30" strokeWidth={1.25} />
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6 md:p-7 flex flex-col flex-1">
-                    <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight">
-                      {t(`services.fallback.${service.titleKey}`)}
-                    </h3>
-                    <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">
-                      {t(`services.fallback.${service.descriptionKey}`)}
-                    </p>
-                    <span className="inline-flex items-center text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em] group-hover:text-[#2a2118] transition-colors">
-                      <span>{t('common.learnMore')}</span>
-                      <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
+        <ScrollReveal animation="fade-up" duration={800}>
+          <ul className="list-none m-0 -mx-5 px-5 sm:-mx-8 sm:px-8 md:mx-auto md:px-0 flex md:grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-6xl overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-px-5 sm:scroll-px-8 pb-4 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {all.map((service) => {
+              const hasPhoto = hasServicePhoto(service.slug)
+              const photoPath = getServicePhotoPath(service.slug) ?? ''
+              return (
+                <li key={service.slug} className="snap-start shrink-0 w-[82%] sm:w-[60%] md:w-auto">
+                  <Link
+                    href={{ pathname: '/servicii/[slug]', params: { slug: service.slug } }}
+                    className="group relative flex flex-col h-full overflow-hidden rounded-[2rem] bg-white border border-[#ebe2d6] shadow-[0_10px_40px_-20px_rgba(139,115,85,0.3)] hover:border-[#d4c4b0] hover:shadow-[0_40px_80px_-30px_rgba(139,115,85,0.45)] hover:-translate-y-1.5 transition-[transform,box-shadow,border-color] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355]/50"
+                  >
+                    <div className="relative aspect-[3/2] m-2.5 mb-0 rounded-[1.5rem] bg-[#faf6f1] overflow-hidden">
+                      {hasPhoto ? (
+                        <Image src={photoPath} alt={t('services.detail.relatedPhotoAlt', { title: t(`services.fallback.${service.titleKey}`) })} fill sizes="(max-width: 768px) 82vw, 33vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60">
+                          {service.iconPath ? (
+                            <Image src={service.iconPath} alt="" width={80} height={80} className="w-20 h-20 opacity-30 group-hover:opacity-50 transition-opacity" />
+                          ) : (
+                            <service.Icon className="w-20 h-20 text-[#8b7355]/30" strokeWidth={1.25} />
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6 md:p-7 flex flex-col flex-1">
+                      <h3 className="text-xl md:text-2xl font-bold text-[#2a2118] mb-2 leading-tight tracking-tight">
+                        {t(`services.fallback.${service.titleKey}`)}
+                      </h3>
+                      <p className="text-[#5a5048] text-sm md:text-[15px] leading-relaxed mb-6 flex-1">
+                        {t(`services.fallback.${service.descriptionKey}`)}
+                      </p>
+                      <span className="flex items-center justify-between text-[#2a2118] text-xs font-bold uppercase tracking-[0.16em]">
+                        <span>{t('common.learnMore')}</span>
+                        <span aria-hidden="true" className="w-10 h-10 rounded-full border border-[#e2d8ca] flex items-center justify-center text-[#8b7355] group-hover:bg-[#1a1a1a] group-hover:border-[#1a1a1a] group-hover:text-white transition-colors duration-300">
+                          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.25} />
+                        </span>
                       </span>
-                    </span>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            )
-          })}
-        </div>
+                    </div>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </ScrollReveal>
       </div>
     </section>
   )
 }
-

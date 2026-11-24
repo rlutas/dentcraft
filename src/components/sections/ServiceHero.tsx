@@ -81,6 +81,20 @@ export function ServiceHero({
             {/* Headline — same "Bold / serif italic" voice as the homepage hero, but static:
                 the h1 is the LCP text on mobile, so it renders visible from the server.
                 Mobile size tuned so the longest RO title (Pedodonție…) stays at 2+1 lines. */}
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-2.5 mb-4 md:mb-6"
+            >
+              {badgeIconPath ? (
+                <Image alt="" className="w-5 h-5 opacity-80" height={20} src={badgeIconPath} width={20} />
+              ) : BadgeIcon ? (
+                <BadgeIcon aria-hidden="true" className="w-4 h-4 text-[#8b7355]" strokeWidth={1.75} />
+              ) : null}
+              <span className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-[#8b7355]">{badgeLabel}</span>
+            </motion.div>
+
             <h1 className="font-bold text-[#2a2118] leading-[1.02] tracking-tight text-[clamp(1.75rem,7.7vw,2.25rem)] sm:text-5xl lg:text-[3.25rem] xl:text-6xl">
               <span className="block [text-wrap:balance]">
                 {titleWords.map((word, i) => (
@@ -130,41 +144,64 @@ export function ServiceHero({
 
           </div>
 
-          {/* Image */}
-          {/* Holds the priority hero image (LCP on desktop) — visible from the server */}
-          <div className="relative">
-            <div className="absolute -top-4 -right-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
-            <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
-
-            {photoSrc ? (
-              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#faf6f1] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.3)] border border-[#e8e0d5]">
-                <Image src={photoSrc} alt={photoAlt} fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+          {/* Illustration — the 3D render melts into the cream background (radial mask, same approach as the 404 tooth),
+              warm glow + thin tan halo behind it, slow float. CSS-only motion, static with reduced motion.
+              The priority image is never hidden (no opacity on it) so LCP is unaffected. */}
+          <div className="relative mx-auto w-full max-w-[640px] lg:max-w-none">
+            <style>{`
+              @keyframes svcFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+              @keyframes svcIn { from { transform: scale(0.96) } to { transform: scale(1) } }
+              @keyframes svcBreathe { 0%,100% { transform: scale(1); opacity: .5 } 50% { transform: scale(1.06); opacity: .62 } }
+              @keyframes svcSpin { to { transform: rotate(360deg) } }
+              @keyframes svcShadow { 0%,100% { transform: scaleX(1); opacity: 1 } 50% { transform: scaleX(.9); opacity: .7 } }
+              @media (prefers-reduced-motion: no-preference) {
+                .svc-in { animation: svcIn 1.1s cubic-bezier(0.16,1,0.3,1) both }
+                .svc-float { animation: svcFloat 7s ease-in-out infinite }
+                .svc-glow { animation: svcBreathe 9s ease-in-out infinite }
+                .svc-ring { animation: svcSpin 36s linear infinite }
+                .svc-ring-rev { animation: svcSpin 48s linear infinite reverse }
+                .svc-shadow { animation: svcShadow 7s ease-in-out infinite }
+              }
+            `}</style>
+            <div className="relative aspect-[3/2]">
+              {/* warm glow */}
+              <div aria-hidden="true" className="svc-glow absolute left-[12%] top-[8%] h-[84%] w-[76%] rounded-full bg-[#e8dccb] opacity-50 blur-3xl" />
+              {/* thin tan halo — solid + dashed ring, slowly turning */}
+              <div aria-hidden="true" className="absolute left-1/2 top-1/2 aspect-square w-[62%] -translate-x-1/2 -translate-y-1/2">
+                <div className="svc-ring h-full w-full rounded-full border border-[#c4ab8d]/35" />
               </div>
-            ) : (
-              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#e8e0d5]/60 flex items-center justify-center border border-[#e8e0d5]">
-                {fallbackIconPath ? (
-                  <Image alt="" className="w-32 h-32 opacity-30" height={128} src={fallbackIconPath} width={128} />
-                ) : FallbackIcon ? (
-                  <FallbackIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
-                ) : null}
+              <div aria-hidden="true" className="absolute left-1/2 top-1/2 aspect-square w-[78%] -translate-x-1/2 -translate-y-1/2">
+                <div className="svc-ring-rev h-full w-full rounded-full border border-dashed border-[#c4ab8d]/25" />
               </div>
-            )}
-
-            {/* Badge overlay top-left of photo (always visible) */}
-            <motion.div
-              initial={{ opacity: 0, y: 8, scale: 0.92 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.45, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex absolute top-3 left-3 md:top-4 md:left-4 z-10 items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white border border-[#e8e0d5] shadow-[0_4px_16px_rgba(139,115,85,0.15)]"
-            >
-              {badgeIconPath ? (
-                <Image alt="" className="w-5 h-5" height={20} src={badgeIconPath} width={20} />
-              ) : BadgeIcon ? (
-                <BadgeIcon className="w-5 h-5 text-[#8b7355]" strokeWidth={1.5} />
-              ) : null}
-              <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">{badgeLabel}</span>
-            </motion.div>
-
+              {/* contact shadow */}
+              <div aria-hidden="true" className="svc-shadow absolute bottom-[12%] left-[30%] h-[6%] w-[40%] rounded-[50%] bg-[radial-gradient(closest-side,rgba(90,66,42,0.22),transparent)]" />
+              <div className="svc-in absolute inset-0">
+                <div className="svc-float absolute inset-0">
+                  {photoSrc ? (
+                    <Image
+                      src={photoSrc}
+                      alt={photoAlt}
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                      className="object-cover"
+                      style={{
+                        maskImage: 'radial-gradient(closest-side, #000 62%, transparent 100%)',
+                        WebkitMaskImage: 'radial-gradient(closest-side, #000 62%, transparent 100%)',
+                      }}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      {fallbackIconPath ? (
+                        <Image alt="" className="w-32 h-32 opacity-30" height={128} src={fallbackIconPath} width={128} />
+                      ) : FallbackIcon ? (
+                        <FallbackIcon className="w-32 h-32 text-[#8b7355]/30" strokeWidth={1} />
+                      ) : null}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
