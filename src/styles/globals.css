@@ -293,9 +293,11 @@
 
 /* Gradient background for hero */
 .gradient-hero {
+  /* Vertical so the whole top edge is #faf6f1 — it sits right under the
+     cream nav spacer on inner pages (see FramedNav) without a seam. */
   background: linear-gradient(
-    165deg,
-    #faf8f5 0%,
+    180deg,
+    #faf6f1 0%,
     var(--color-background) 40%,
     #ede6db 100%
   );
