@@ -93,9 +93,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Merge Sanity slugs with fallback slugs (dedupe in case they overlap)
   const fallbackSlugs = getFallbackServiceSlugs()
+  // 'implantologie' 301s to 'implanturi-dentare' (next.config.ts) — keep it out even if Sanity has it
+  const REDIRECTED_SERVICE_SLUGS = new Set(['implantologie'])
   const allServiceSlugs = [
     ...new Set([...serviceSlugs.map((s) => s.slug), ...fallbackSlugs]),
-  ]
+  ].filter((slug) => !REDIRECTED_SERVICE_SLUGS.has(slug))
 
   // Build service page entries with localized paths
   const serviceEntries: MetadataRoute.Sitemap = allServiceSlugs.flatMap(

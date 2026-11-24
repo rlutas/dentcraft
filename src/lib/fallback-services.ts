@@ -99,26 +99,7 @@ export const fallbackServices: FallbackService[] = [
     ],
   },
 
-  // 4. Implantologie (Implantology)
-  {
-    slug: 'implantologie',
-    titleKey: 'implantology',
-    descriptionKey: 'implantologyDesc',
-    Icon: Crosshair,
-    iconPath: '/icons/024-dental-implant.svg',
-    order: 4,
-    benefits: [
-      { titleKey: 'implantologyBenefit1Title', descriptionKey: 'implantologyBenefit1Desc' },
-      { titleKey: 'implantologyBenefit2Title', descriptionKey: 'implantologyBenefit2Desc' },
-      { titleKey: 'implantologyBenefit3Title', descriptionKey: 'implantologyBenefit3Desc' },
-    ],
-    process: [
-      { stepNumber: 1, titleKey: 'implantologyStep1Title', descriptionKey: 'implantologyStep1Desc' },
-      { stepNumber: 2, titleKey: 'implantologyStep2Title', descriptionKey: 'implantologyStep2Desc' },
-      { stepNumber: 3, titleKey: 'implantologyStep3Title', descriptionKey: 'implantologyStep3Desc' },
-      { stepNumber: 4, titleKey: 'implantologyStep4Title', descriptionKey: 'implantologyStep4Desc' },
-    ],
-  },
+  // 4. Implantologie: merged into 'implanturi-dentare' (301 in next.config.ts)
 
   // 5. Ortodontie (Orthodontics)
   {
@@ -250,7 +231,7 @@ export const fallbackServices: FallbackService[] = [
     descriptionKey: 'implantsDesc',
     Icon: Crosshair,
     iconPath: '/icons/024-dental-implant.svg',
-    order: 11,
+    order: 4,
     benefits: [
       { titleKey: 'implantsBenefit1Title', descriptionKey: 'implantsBenefit1Desc' },
       { titleKey: 'implantsBenefit2Title', descriptionKey: 'implantsBenefit2Desc' },

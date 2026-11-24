@@ -237,7 +237,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
           {(() => {
             // Top 6 services in priority order (Implantologie first - has photo + hero SEO)
             const topSlugs = [
-              'implantologie',
+              'implanturi-dentare',
               'estetica-dentara',
               'ortodontie',
               'protetica',

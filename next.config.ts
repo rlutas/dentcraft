@@ -38,6 +38,10 @@ const nextConfig: NextConfig = {
       { source: '/echipa/dr-razvan-petric', destination: '/echipa/razvan-petric', permanent: true },
       { source: '/en/team/dr-razvan-petric', destination: '/en/team/razvan-petric', permanent: true },
       { source: '/hu/csapat/dr-razvan-petric', destination: '/hu/csapat/razvan-petric', permanent: true },
+      // 'implantologie' and 'implanturi-dentare' competed for the same queries; merged Nov 2026
+      { source: '/servicii/implantologie', destination: '/servicii/implanturi-dentare', permanent: true },
+      { source: '/en/services/implantologie', destination: '/en/services/implanturi-dentare', permanent: true },
+      { source: '/hu/szolgaltatasok/implantologie', destination: '/hu/szolgaltatasok/implanturi-dentare', permanent: true },
     ]
   },
   async headers() {

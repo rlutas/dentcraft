@@ -81,7 +81,7 @@ function MobileDrawer({ open, onClose, onBookingOpen }: MobileDrawerProps) {
   const pathname = usePathname()
   const currentLocale = useLocale() as Locale
   const [servicesExpanded, setServicesExpanded] = useState(false)
-  const NAV_SLUGS = ['implantologie', 'estetica-dentara', 'ortodontie', 'protetica', 'stomatologie-generala', 'pedodontie']
+  const NAV_SLUGS = ['implanturi-dentare', 'estetica-dentara', 'ortodontie', 'protetica', 'stomatologie-generala', 'pedodontie']
   const allMain = getMainFallbackServices()
   const mainServices = NAV_SLUGS.map((slug) => allMain.find((s) => s.slug === slug)).filter((s): s is NonNullable<typeof s> => Boolean(s))
 
@@ -232,7 +232,7 @@ export function FramedNav() {
   const langCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const NAV_SLUGS = ['implantologie', 'estetica-dentara', 'ortodontie', 'protetica', 'stomatologie-generala', 'pedodontie']
+  const NAV_SLUGS = ['implanturi-dentare', 'estetica-dentara', 'ortodontie', 'protetica', 'stomatologie-generala', 'pedodontie']
   const allMain = getMainFallbackServices()
   const mainServices = NAV_SLUGS.map((slug) => allMain.find((s) => s.slug === slug)).filter((s): s is NonNullable<typeof s> => Boolean(s))
 

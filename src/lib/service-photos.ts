@@ -5,7 +5,7 @@
  * Returns the public path to the photo, or null if no photo exists yet.
  */
 const SERVICE_PHOTOS = new Set([
-  'implantologie',
+  'implanturi-dentare',
   'estetica-dentara',
   'ortodontie',
   'protetica',

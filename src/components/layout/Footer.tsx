@@ -69,7 +69,7 @@ const quickLinks = [
 
 const servicesLinks = [
   { slug: 'stomatologie-generala', labelKey: 'generalDentistry' as const },
-  { slug: 'implantologie', labelKey: 'implantology' as const },
+  { slug: 'implanturi-dentare', labelKey: 'implantology' as const },
   { slug: 'ortodontie', labelKey: 'orthodontics' as const },
   { slug: 'estetica-dentara', labelKey: 'cosmeticDentistry' as const },
   { slug: 'protetica', labelKey: 'prosthetics' as const },
