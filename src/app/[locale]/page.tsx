@@ -450,7 +450,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
 
                 <div className="relative aspect-[4/3] md:aspect-[5/4] lg:aspect-[16/9] rounded-3xl overflow-hidden bg-[#f5f0e8] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)] border border-[#e8e0d5]">
                   <LazyVideo
-                    src="/video/clinica.mp4"
+                    src="/video/clinica-v2.mp4"
                     poster="/video/clinica-poster.jpg"
                     alt="Cabinet DENTCRAFT"
                   />
