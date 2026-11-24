@@ -93,16 +93,20 @@ Jurnalul zilei. Rapoartele de audit sunt în `docs/seo/*-2026-11-24.md`: SITE-AU
 | `9168821` | **Videoul de pe homepage are 3,0 MB în loc de 7,96 MB.** E codat 1280×720 H.264, CRF 25, cu SSIM 0,984; diferența nu se vede. Fișierul nou e `clinica-v2.mp4`. |
 | `f31d647` | **gtag.js se încărca de 2 ori.** Am scos copia directă din layout. Tagul Google AW-18165025740 și Conector de conversii erau deja în GTM; verificat live: un singur `gtag/js?id=AW-…`, iar remarketingul funcționează. |
 
-## 7b. În lucru
+## 7b. Design și ilustrații (`5d79df8`…`524e93f`, `179684b`, `904e702`)
 
-- Design (agent, branch `design-2026-11`): 
-  - /testimoniale în designul de pe homepage, cu 12 recenzii și butonul „Vezi mai multe”;
-  - citat mare dintr-o recenzie pe homepage;
-  - bară de programare fixă pe mobil;
-  - header care se ascunde la scroll;
-  - numerotare 01/02/03;
-  - același stil de titlu peste tot;
-  - timeline-ul Dr. Fernea.
+- /testimoniale folosește cardul de pe homepage; arată 12 recenzii, apoi butonul „Vezi mai multe recenzii” (+12).
+- Pe homepage apare un citat mare din recenzia Dianei Sabou, verbatim.
+- Pe mobil există o bară fixă cu „Programează”, WhatsApp și telefon. Nu apare pe /contact. Bula de WhatsApp apare doar de la md în sus.
+- Header-ul se ascunde la scroll în jos și reapare la scroll în sus.
+- Paginile de servicii au numerotare 01/02/03; titlurile au stilul Bold / *serif italic* pe /testimoniale, /preturi, /faq și în footer.
+- În timeline-ul Dr. Fernea, intrările fără dată au un punct în loc de o etichetă goală.
+- Toate cele 14 servicii au ilustrații 3D noi (GPT Image 2.6 prin Higgsfield, ~28 de credite), salvate ca `public/images/services/<slug>-v2.webp`. Sufixul `-v2` ocolește cache-ul de imagini.
+- Rămâne de făcut: multe texte RO din `messages/ro.json` sunt fără diacritice.
+- Checklist pentru Dr. Petric: https://claude.ai/artifact/VbbT8jEcjce13WhXFu8tiP
+
+## 7c. În lucru
+
 - TikTok: contul clinicii e `@dentcraftsm`. În GBP apare `@petricr13`, contul personal al doctorului; aștept decizia lui Raul dacă îl înlocuim.
 
 ## 8. De făcut / decizii
