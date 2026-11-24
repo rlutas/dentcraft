@@ -274,6 +274,7 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
         photoSrc={hasLocalPhoto ? localPhotoPath : service.heroImage ? urlFor(service.heroImage).width(1200).height(750).auto('format').url() : null}
         photoAlt={hasLocalPhoto || !service.heroImage ? t('services.photoAlt', { title: service.title }) : (service.heroImage.alt || t('services.photoAlt', { title: service.title }))}
         fallbackIcon={ServiceIcon}
+        slug={service.slug}
       />
 
       <div id="service-content" />
@@ -465,6 +466,7 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
         photoAlt={t('services.photoAlt', { title: serviceName })}
         fallbackIcon={fallbackService.iconPath ? null : ServiceIcon}
         fallbackIconPath={fallbackService.iconPath ?? null}
+        slug={fallbackService.slug}
       />
 
       <div id="service-content" />
@@ -797,7 +799,7 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
 
           {showsContactCallout(slug) && (
             <ScrollReveal animation="fade-up">
-              <div className="mt-10 rounded-[2rem] border border-[#e2d8ca] bg-[#faf6f1] p-6 md:p-9 shadow-[0_20px_60px_-30px_rgba(139,115,85,0.35)]">
+              <div className="mt-10 mx-auto max-w-4xl rounded-[2rem] border border-[#e2d8ca] bg-[#faf6f1] p-6 md:p-9 shadow-[0_20px_60px_-30px_rgba(139,115,85,0.35)]">
                 <p className="text-lg md:text-xl font-bold text-[#2a2118] mb-4">{labels.contactTitle}</p>
                 <a
                   href={`tel:${CLINIC_PHONE_TEL}`}

@@ -28,7 +28,30 @@ export interface ServiceHeroProps {
   photoAlt: string
   fallbackIcon?: LucideIcon | null
   fallbackIconPath?: string | null
+  /** Service slug — picks the small icons orbiting the illustration. */
+  slug?: string
 }
+
+// Custom dental icons from /public/icons (tinted tan via CSS mask), three per service
+const ORBIT_ICONS: Record<string, [string, string, string]> = {
+  'implanturi-dentare': ['024-dental-implant', '057-implants', '110-tooth'],
+  ortodontie: ['038-braces', '010-smile', '110-tooth'],
+  'albire-dentara': ['008-white-teeth', '010-smile', '011-toothpaste'],
+  detartraj: ['007-tooth-cleaning', '014-toothbrush', '080-floss'],
+  pedodontie: ['035-baby', '010-smile', '014-toothbrush'],
+  'urgente-dentare': ['003-toothache', '097-calendar', '035-support'],
+  'chirurgie-oro-maxilo-faciala': ['110-tooth', '036-anesthesia', '089-dentist-chair'],
+  endodontie: ['092-broken-tooth-1', '110-tooth', '036-anesthesia'],
+  'coroane-dentare': ['091-crown', '110-tooth', '010-smile'],
+  protetica: ['091-crown', '015-denture', '057-implants'],
+  'fatete-dentare': ['008-white-teeth', '010-smile', '091-crown'],
+  'consultatie-stomatologica': ['082-clipboard', '089-dentist-chair', '110-tooth'],
+  'estetica-dentara': ['010-smile', '008-white-teeth', '073-heart'],
+  'stomatologie-generala': ['110-tooth', '014-toothbrush', '089-dentist-chair'],
+}
+const DEFAULT_ORBIT_ICONS: [string, string, string] = ['110-tooth', '010-smile', '014-toothbrush']
+// 0°, 120°, 240° on the ring
+const ORBIT_POS: Array<[string, string]> = [['50%', '0%'], ['93.3%', '75%'], ['6.7%', '75%']]
 
 export function ServiceHero({
   breadcrumbs,
@@ -44,7 +67,9 @@ export function ServiceHero({
   photoAlt,
   fallbackIcon: FallbackIcon,
   fallbackIconPath,
+  slug,
 }: ServiceHeroProps) {
+  const orbitIcons = (slug && ORBIT_ICONS[slug]) || DEFAULT_ORBIT_ICONS
   const t = useTranslations('hero')
   const titleWords = title.split(' ')
   // Desktop-only mouse parallax: writes two CSS vars, no React re-render
@@ -178,23 +203,24 @@ export function ServiceHero({
           >
             <style>{`
               .svc-stage { --mx: 0; --my: 0; }
-              .svc-par-img { transform: translate3d(calc(var(--mx) * 12px), calc(var(--my) * 12px), 0); transition: transform .6s cubic-bezier(0.16,1,0.3,1); }
-              .svc-par-rings { transform: translate3d(calc(var(--mx) * -6px), calc(var(--my) * -6px), 0); transition: transform .6s cubic-bezier(0.16,1,0.3,1); }
+              .svc-par-img { transform: translate3d(calc(var(--mx) * 6px), calc(var(--my) * 6px), 0); transition: transform 1.2s cubic-bezier(0.22,1,0.36,1); }
+              .svc-par-rings { transform: translate3d(calc(var(--mx) * -3px), calc(var(--my) * -3px), 0); transition: transform 1.2s cubic-bezier(0.22,1,0.36,1); }
               @keyframes svcIn { from { opacity: .35; transform: translateY(20px) scale(.92) } to { opacity: 1; transform: none } }
-              @keyframes svcFloat { 0%,100% { transform: translateY(0) rotate(-1.5deg) } 50% { transform: translateY(-16px) rotate(1.5deg) } }
-              @keyframes svcShadow { 0%,100% { transform: scaleX(1); opacity: .9 } 50% { transform: scaleX(.78); opacity: .5 } }
+              @keyframes svcFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+              @keyframes svcShadow { 0%,100% { transform: scaleX(1); opacity: .9 } 50% { transform: scaleX(.86); opacity: .6 } }
               @keyframes svcBreathe { 0%,100% { transform: scale(.95) } 50% { transform: scale(1.05) } }
               @keyframes svcSpin { to { transform: rotate(360deg) } }
               @keyframes svcDraw { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }
               @keyframes svcFadeIn { from { opacity: 0 } to { opacity: 1 } }
               @media (prefers-reduced-motion: no-preference) {
                 .svc-in { animation: svcIn .9s cubic-bezier(0.16,1,0.3,1) both }
-                .svc-float { animation: svcFloat 6s ease-in-out infinite }
-                .svc-shadow { animation: svcShadow 6s ease-in-out infinite }
+                .svc-float { animation: svcFloat 7s ease-in-out infinite }
+                .svc-shadow { animation: svcShadow 7s ease-in-out infinite }
                 .svc-glow { animation: svcBreathe 8s ease-in-out infinite }
                 .svc-spin { animation: svcSpin 40s linear infinite }
                 .svc-spin-rev { animation: svcSpin 55s linear infinite reverse }
-                .svc-orbit { animation: svcSpin 25s linear infinite }
+                .svc-orbit { animation: svcSpin 40s linear infinite }
+                .svc-upright { animation: svcSpin 40s linear infinite reverse }
                 .svc-draw { stroke-dasharray: 1; animation: svcDraw 1.6s cubic-bezier(0.65,0,0.35,1) .2s both }
                 .svc-dots { animation: svcFadeIn 1s ease-out 1.2s both }
               }
@@ -222,15 +248,6 @@ export function ServiceHero({
                   <svg viewBox="0 0 100 100" className="h-full w-full overflow-visible">
                     <circle cx="50" cy="50" r="49.5" fill="none" stroke="#b59a7a" strokeOpacity="0.2" strokeWidth="0.2" pathLength={1} className="svc-draw" />
                   </svg>
-                </div>
-                {/* small dots orbiting the middle ring */}
-                <div className="svc-dots absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2">
-                  <div className="svc-orbit relative h-full w-full">
-                    <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b59a7a]/70" />
-                    <span className="absolute left-[93%] top-[75%] h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c4ab8d]/70" />
-                    <span className="absolute left-[7%] top-[75%] h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d4c4b0]" />
-                    <span className="absolute left-1/2 top-full h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8b7355]/50" />
-                  </div>
                 </div>
               </div>
 
@@ -266,6 +283,37 @@ export function ServiceHero({
                     )}
                   </div>
                 </div>
+              </div>
+              {/* orbit sits above the illustration so the icons are never hidden by its mask */}
+              <div aria-hidden="true" className="svc-par-rings absolute inset-0 pointer-events-none">
+                {/* small service icons orbiting the middle ring, kept upright by a counter-rotation */}
+              <div className="svc-dots absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2">
+                <div className="svc-orbit relative h-full w-full">
+                  {orbitIcons.map((icon, i) => (
+                    <span
+                      key={icon}
+                      className="absolute -translate-x-1/2 -translate-y-1/2"
+                      style={{ left: ORBIT_POS[i]![0], top: ORBIT_POS[i]![1] }}
+                    >
+                      <span className="svc-upright flex items-center justify-center [filter:drop-shadow(0_2px_6px_rgba(255,250,244,0.9))_drop-shadow(0_4px_10px_rgba(139,115,85,0.25))]">
+                        <span
+                          className="block h-9 w-9 md:h-11 md:w-11 bg-[#8b7355]"
+                          style={{
+                            maskImage: `url(/icons/${icon}.svg)`,
+                            WebkitMaskImage: `url(/icons/${icon}.svg)`,
+                            maskSize: 'contain',
+                            WebkitMaskSize: 'contain',
+                            maskRepeat: 'no-repeat',
+                            WebkitMaskRepeat: 'no-repeat',
+                            maskPosition: 'center',
+                            WebkitMaskPosition: 'center',
+                          }}
+                        />
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
               </div>
             </div>
           </div>
