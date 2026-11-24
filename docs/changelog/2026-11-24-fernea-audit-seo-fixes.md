@@ -57,17 +57,37 @@ Jurnalul zilei. Rapoartele de audit sunt în `docs/seo/*-2026-11-24.md`: SITE-AU
 - **GA4, 90 de zile:** 1.783 de sesiuni, din care 62% paid. GA4 vede ~25% din clicurile Ads, din cauza Consent Mode v2 (normal).
 - **GBP:** 4,9 din 79 de recenzii. Interacțiunile au scăzut de la 209 (iulie) la 127 (octombrie). Concurenți: Finess are mai multe recenzii; Datcu are 191.
 
-## 7. În lucru (agenți)
+## 7. Texte unice pentru paginile de servicii (`bc7d041`, `c3221f9`)
 
-- **Texte unice pentru paginile de servicii.** Fiecare serviciu primește medicul potrivit:
+- **Ce are fiecare pagină acum.** Toate cele 14 servicii au text propriu, în RO, EN și HU. Fiecare pagină are:
+  - o introducere de 40–60 de cuvinte;
+  - 3–5 secțiuni H2;
+  - 4–6 întrebări frecvente, cu FAQPage JSON-LD;
+  - linkuri interne spre servicii înrudite.
+
+  Textele sunt în `src/lib/service-content/{ro,en,hu}.ts`.
+- **Medicul afișat pe fiecare pagină:**
   - Cozma: ortodonție;
   - Ghirasim: pedodonție și endodonție;
-  - Tincu: parodontologie;
   - Buterchi: chirurgie;
-  - Fernea: detartraj.
-  
-  Urgențe include program, simptome și pașii până ajungi la clinică. Textele trec prin /humanizer și /seo-content. Lucrul e pe branch-ul `service-content-2026-11`, în worktree-ul `../dentcraft-service-content`, și încă nu e pe `main`.
-- **Core Web Vitals (PageSpeed) și review vizual pe mobil și desktop.** Raportul va fi în `docs/seo/CWV-VISUAL-REVIEW-2026-11-24.md`.
+  - Buterchi și Petric: implanturi;
+  - Fernea: detartraj (cu link și spre Tincu);
+  - Petric: protetică, estetică, fațete, coroane, plus albire, urgențe, consultație și stomatologie generală, unde trebuie confirmat medicul.
+- **Urgențe.** Pagina are casetă de apel (luni–vineri 10–18), lista de simptome, ce faci până ajungi la clinică și când mergi la UPU/112.
+- **Implanturi.** Pagina explică All-on-X și sinus lift, fără prețuri și fără mărci.
+- **Blocuri vechi ascunse pe 11 pagini.** Conțineau afirmații neverificate: Invisalign, „program prelungit”, sedare, „15 ani”, „8 nuanțe” și altele.
+- **Descrieri de serviciu rescrise** (ortodonție, estetică, albire). Am scos Invisalign, „rezultate garantate” și „8 nuanțe”.
+- **Verificări.** Textele au trecut prin /humanizer și /seo-content. Căutarea de afirmații interzise pe paginile randate nu a găsit nimic.
+- **De confirmat cu Dr. Petric:**
+  - dacă se fac fațete din compozit;
+  - politicile scrise pe pagina de copii (părintele poate sta în cabinet; un copil speriat nu e forțat, ci reprogramat);
+  - ce medic apare la albire, urgențe, consultație și stomatologie generală.
+- **Rămâne de făcut.** `ServiceLocalSeo` de pe pagina de implanturi arată încă prețuri și mărci, până vin prețurile noi. Bio-urile medicilor sunt doar în română pe paginile EN/HU.
+
+## 7b. În lucru
+
+- Core Web Vitals și review-ul vizual (agent), cu raportul în `docs/seo/CWV-VISUAL-REVIEW-2026-11-24.md`.
+- TikTok: contul clinicii e `@dentcraftsm`. În GBP apare `@petricr13`, contul personal al doctorului; aștept decizia lui Raul dacă îl înlocuim.
 
 ## 8. De făcut / decizii
 
