@@ -139,6 +139,21 @@ Raportul complet: https://claude.ai/artifact/QP8g4bvoAGMHYE5BWNetvC
 - `d07a633`: am pus la loc `services.metaTitle` în EN și HU; se pierduse la commit-ul 404.
 - Checklistul pentru Dr. Petric are acum secțiunea „7. Ce am făcut pe 24 noiembrie”.
 
+## 7e. Pagini de servicii refăcute, bara de mobil, cod poștal (după-amiaza)
+
+- **Bara de jos pe mobil** (`15971b1`, `94df72f`, `4d90b3f`): bară plutitoare albă în stilul header-ului. „Programează” deschide popup-ul „Te sunăm noi” (înainte ducea la /contact). Bara se ascunde când e deschis un popup.
+- **„Sfaturi de la doctorii noștri”** (`15971b1`): carusel orizontal pe mobil, cu puncte; grid de 3 coloane pe desktop.
+- **Logo footer pe mobil** (`572cbc6`): 28px în loc de 40px.
+- **Cod poștal** (`bb60f36`): schema LocalBusiness folosește 440055 (str. Barbu Ștefănescu Delavrancea, toate numerele, după codpostal.com.ro). În GBP nu s-a modificat nimic.
+- **Pagini de servicii, runda 1** (`063c7a5`): h1 afișat imediat, pe maxim 3 rânduri la 390px, fundaluri alternate alb/crem, ScrollReveal cu prefers-reduced-motion, bio-ul medicului limitat la 3 rânduri, specializările ca rând simplu în loc de pastile.
+- **Pagini de servicii, runda 2** (`f026e0b`, `e300ecd`, `596db5e`, `4c1d7ff`, `9dcfba9`):
+  - Hero: același layout pe toată lățimea, cu ilustrația fără card. În spate: lumină caldă care pulsează și inele tan care se rotesc încet. Iconițe specifice fiecărui serviciu orbitează în spatele ilustrației. Ilustrația plutește 10px în 7s; pe desktop are parallax cu mouse-ul.
+  - „Pe scurt”: card centrat cu ghilimea serif mare, iar numele medicilor apar evidențiate. Rândul vizibil „Actualizat” a fost scos.
+  - Beneficii în layout bento, etape pe o linie de timp care se desenează la scroll, cuprins sticky pe desktop, un singur FAQ în acordeon, carduri de medici cu poza întreagă, servicii conexe cu scroll orizontal pe mobil.
+  - Implanturi dentare: cele două liste FAQ sunt unite (11 întrebări, o singură schemă FAQPage). Blocul de prețuri și local SEO e acum deasupra FAQ-ului, cu cardul de prețuri sticky.
+  - Textele și JSON-LD sunt identice cu versiunea anterioară, cu o excepție: FAQ-ul unit de la implanturi.
+  - De urmărit: pe desktop, LCP-ul e acum ilustrația din hero, care pornește de la opacitate 35%. Verificăm CWV peste câteva zile.
+
 ## 8. De făcut / decizii
 
 - [ ] **Prețuri de la Dr. Petric.** Apoi unificăm `/preturi`, `/servicii/implanturi-dentare` (`ServiceLocalSeo.tsx` încă arată 2.200–4.000 lei), blogul și calculatorul.
