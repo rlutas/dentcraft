@@ -30,6 +30,7 @@ import { getServiceSeoOverride } from '@/lib/seo-overrides'
 import { getServiceSchema, getBreadcrumbSchema, getFAQSchema as getFAQSchema } from '@/lib/schema'
 import { ServiceLocalSeo } from '@/components/sections/ServiceLocalSeo'
 import { hasServicePhoto, getServicePhotoPath } from '@/lib/service-photos'
+import { getServiceIcons } from '@/lib/service-icons'
 import { AnimatedServiceHeading } from '@/components/ui/AnimatedServiceHeading'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
@@ -782,14 +783,32 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
           <ScrollReveal animation="fade-up">
             <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-[#8b7355]/10 bg-gradient-to-br from-[#faf6f1] via-[#fdfbf8] to-white px-6 py-10 md:px-14 md:py-14 lg:px-16 lg:py-16 shadow-[0_30px_80px_-44px_rgba(139,115,85,0.5)]">
               <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#e8dccb] opacity-50 blur-3xl" />
-              <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full border border-[#c4ab8d]/30" />
-              <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full border border-dashed border-[#c4ab8d]/20" />
+              {/* service emblem: thin ring + dashed outer ring (counter-rotating) around the service icon; hidden on small screens */}
+              <div aria-hidden="true" className="pointer-events-none absolute right-8 top-8 lg:right-12 lg:top-12 hidden md:flex h-28 w-28 lg:h-32 lg:w-32 items-center justify-center">
+                <span className="absolute inset-0 rounded-full border border-dashed border-[#c4ab8d]/45 motion-safe:animate-[spin_40s_linear_infinite]" />
+                <span className="absolute inset-[14%] rounded-full border border-[#c4ab8d]/50 motion-safe:animate-[spin_30s_linear_infinite_reverse]">
+                  <span className="absolute -top-[3px] left-1/2 -ml-[3px] h-1.5 w-1.5 rounded-full bg-[#c4ab8d]" />
+                </span>
+                <span
+                  className="relative block h-10 w-10 lg:h-12 lg:w-12 bg-[#8b7355]"
+                  style={{
+                    maskImage: `url(/icons/${getServiceIcons(slug)[0]}.svg)`,
+                    WebkitMaskImage: `url(/icons/${getServiceIcons(slug)[0]}.svg)`,
+                    maskSize: 'contain',
+                    WebkitMaskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskPosition: 'center',
+                    WebkitMaskPosition: 'center',
+                  }}
+                />
+              </div>
               <div className="relative">
                 <div className="flex items-center gap-4 mb-6 md:mb-8">
                   <span aria-hidden="true" className="font-serif italic text-[5.5rem] md:text-[7rem] leading-none h-12 md:h-16 -mt-2 text-[#c4ab8d]/80 select-none">&ldquo;</span>
                   <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355]">{labels.introLabel}</span>
                 </div>
-                <p className="max-w-[60ch] text-lg md:text-[1.4rem] text-[#3a3028] leading-[1.7] md:leading-[1.7]">
+                <p className="max-w-[60ch] md:max-w-[50ch] text-lg md:text-[1.4rem] text-[#3a3028] leading-[1.7] md:leading-[1.7]">
                   {highlightDoctorNames(content.intro)}
                 </p>
                 <span aria-hidden="true" className="mt-8 md:mt-10 block h-px w-16 bg-[#c4ab8d]/60" />
@@ -851,12 +870,12 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
                     <h2 className="text-[1.7rem] md:text-[2.25rem] font-bold text-[#2a2118] leading-[1.12] tracking-tight mb-6 [text-wrap:balance]">
                       {section.heading}
                     </h2>
-                    <div className="space-y-5 text-[17px] md:text-lg text-[#4a4038] leading-[1.75]">
+                    <div className="flex flex-col gap-5 text-[17px] md:text-lg text-[#4a4038] leading-[1.75]">
                       {section.paragraphs.map((paragraph, i) => (
                         <p key={i}>{paragraph}</p>
                       ))}
                       {section.bullets && section.bullets.length > 0 && (
-                        <ul className="rounded-[1.75rem] bg-[#faf6f1] border border-[#efe7dc] p-5 md:p-7 space-y-3.5 list-none m-0">
+                        <ul className="my-2 md:my-3 rounded-[1.75rem] bg-[#faf6f1] border border-[#efe7dc] p-5 md:p-7 space-y-3.5 list-none">
                           {section.bullets.map((bullet, i) => (
                             <li key={i} className="flex items-start gap-3.5 text-base md:text-[17px]">
                               <span aria-hidden="true" className="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-white ring-1 ring-[#e2d8ca] flex items-center justify-center">
@@ -868,7 +887,7 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
                         </ul>
                       )}
                       {section.after && (
-                        <p className="border-l-2 border-[#8b7355]/60 pl-5 text-[#2a2118] font-medium">{section.after}</p>
+                        <p className="mt-3 md:mt-5 border-l-2 border-[#8b7355]/60 pl-5 text-[#2a2118] font-medium">{section.after}</p>
                       )}
                     </div>
                   </article>
