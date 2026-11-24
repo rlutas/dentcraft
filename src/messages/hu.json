@@ -135,8 +135,8 @@
       "consultationBenefit1Desc": "Modern felszereles a reszletes fogaszati felmeresehez.",
       "consultationBenefit2Title": "Személyre szabott terv",
       "consultationBenefit2Desc": "Az On egyeni igeneihez igazitott kezelesi tervet kap.",
-      "consultationBenefit3Title": "Ingyenes konzultacio",
-      "consultationBenefit3Desc": "Az elso konzultacio ingyenes, kotelezettseg nelkul.",
+      "consultationBenefit3Title": "Világos ár előre",
+      "consultationBenefit3Desc": "A kezelés végső költségét még a kezdés előtt megtudja, kötelezettség nélkül.",
       "consultationStep1Title": "Idopontfoglalas",
       "consultationStep1Desc": "Keressen minket konzultacio foglalasahoz.",
       "consultationStep2Title": "Vizsgalat",
@@ -541,7 +541,7 @@
   },
   "cta": {
     "badge": "Idopontfoglalas",
-    "title": "Foglaljon ingyenes konzultaciot",
+    "title": "Foglaljon konzultációt",
     "subtitle": "Tegye meg az elso lepest a tokeletes mosoly fele. Varjuk kliniánkon!",
     "workingHours": "Hetfo - Pentek: 10:00 - 18:00"
   },
@@ -633,7 +633,7 @@
     "sectionTitle": "Teljes árlista",
     "sectionSubtitle": "Minden szolgáltatásunk átlátható árakkal",
     "metaTitle": "Fogaszati Arak Szatmarnemeti 2026 | Implantatum, Fogszabalyozo Arak",
-    "metaDescription": "Teljes fogaszati arlista a DENTCRAFT Szatmarnemetiben. Atlathato arak: implantatum, fogszabalyozo, hejak, feherites, koronak. Ingyenes konzultacio!",
+    "metaDescription": "Teljes fogaszati arlista a DENTCRAFT Szatmarnemetiben. Atlathato arak: implantatum, fogszabalyozo, hejak, feherites, koronak.",
     "disclaimer": "* A feltuntetett arak tajekoztatoak es az eset osszettetsegétől fuggoen valtozhatnak. A vegleges arat a konzultacio utan allapitjuk meg.",
     "fromLabel": "-tól",
     "currency": "lej",
@@ -655,7 +655,7 @@
     "promotion": "Akcio",
     "tryCalculator": "Kezeles aranak szamitasa",
     "ctaTitle": "Szemelyre szabott ertekelest szeretne?",
-    "ctaSubtitle": "Foglaljon ingyenes konzultaciot kezelesi terv es szemelyre szabott arbecsles erdekeben.",
+    "ctaSubtitle": "Foglaljon konzultaciot kezelesi terv es szemelyre szabott arbecsles erdekeben.",
     "perTooth": "fog",
     "perImplant": "implantatum",
     "placeholder": {
@@ -698,7 +698,7 @@
       "sendByEmailContext": "Elküldjük a becslést emailben, hogy később át tudd nézni vagy meg tudd beszélni a családdal.",
       "doctorName": "Dr. Petric Razvan-Tudor",
       "investmentLabel": "Tájékoztató költség",
-      "freeConsult": "Az értékelő konzultáció ingyenes, kötelezettség nélkül",
+      "freeConsult": "A végső árat a konzultáción tudja meg, kötelezettség nélkül",
       "trustPlanLabel": "Egyéni terv",
       "trustMaterialsLabel": "Tanúsított anyagok",
       "trustWarrantyLabel": "Garancia a kezelésekre",
@@ -725,8 +725,8 @@
       "general": {
         "q1": "Milyen szolgaltatasokat kinal a DENTCRAFT klinika?",
         "a1": "Teljes koru fogaszati szolgaltatasokat kinalunk, beleertve az altalanos fogaszatot, esztetikai fogaszatot, implantologiat, fogszabalyozast, gyermekfogaszatot es surgossegi fogaszatot.",
-        "q2": "Ingyenes az elso konzultacio?",
-        "a2": "Igen, az elso konzultacio ingyenes. Teljes koru felmerest kap fogaszati allapotarol es szemelyreaszabott kezelesi tervet."
+        "q2": "Mennyibe kerül az első konzultáció?",
+        "a2": "A konzultáció díja az árlistánkban szerepel. Teljes körű felmérést kap fogászati állapotáról és személyre szabott kezelési tervet, a végső árral a kezelés előtt."
       },
       "pricing": {
         "q1": "Milyen fizetesi modokat fogadnak el?",
@@ -861,7 +861,7 @@
     "estimatedPrice": "Becsult ar",
     "priceRange": "Ar tartomany",
     "disclaimer": "A vegleges arat a konzultacio utan allapitjuk meg.",
-    "scheduleConsultation": "Ingyenes konzultacio foglalas",
+    "scheduleConsultation": "Konzultáció foglalása",
     "noServicesAvailable": "Nincs elerheto szolgaltatas a kalkulatorhoz.",
     "optionsTitle": "Kezelesi reszletek",
     "optionsSubtitle": "Adja meg a kezelesi reszleteket a pontosabb becsléshez.",

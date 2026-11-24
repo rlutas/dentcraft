@@ -641,7 +641,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       featured: true,
       seo: {
         metaTitle: 'Implant Dentar Satu Mare Pret 2026 | DENTCRAFT',
-        metaDescription: 'Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Consultatie gratuita DENTCRAFT.',
+        metaDescription: 'Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Plan de tratament la DENTCRAFT.',
         ogImage: null,
         noIndex: false,
       },
@@ -706,7 +706,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       featured: true,
       seo: {
         metaTitle: 'Dental Implant Satu Mare Price 2026 | DENTCRAFT',
-        metaDescription: 'How much does a dental implant cost in Satu Mare? Prices from 2,500 lei, factors that influence cost and what\'s included. Free consultation at DENTCRAFT.',
+        metaDescription: 'How much does a dental implant cost in Satu Mare? Prices from 2,500 lei, factors that influence cost and what\'s included. Treatment planning at DENTCRAFT.',
         ogImage: null,
         noIndex: false,
       },
@@ -729,7 +729,7 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       featured: true,
       seo: {
         metaTitle: 'Fogimplant\u00e1tum Szatm\u00e1rn\u00e9meti \u00c1r 2026 | DENTCRAFT',
-        metaDescription: 'Mennyibe ker\u00fcl egy fogimplant\u00e1tum Szatm\u00e1rn\u00e9metiben? \u00c1rak 2.500 lejt\u0151l, k\u00f6lts\u00e9get befoly\u00e1sol\u00f3 t\u00e9nyez\u0151k \u00e9s mit tartalmaz. Ingyenes konzult\u00e1ci\u00f3 a DENTCRAFT-n\u00e1l.',
+        metaDescription: 'Mennyibe ker\u00fcl egy fogimplant\u00e1tum Szatm\u00e1rn\u00e9metiben? \u00c1rak 2.500 lejt\u0151l, k\u00f6lts\u00e9get befoly\u00e1sol\u00f3 t\u00e9nyez\u0151k \u00e9s mit tartalmaz. Kezel\u00e9si terv a DENTCRAFT-n\u00e1l.',
         ogImage: null,
         noIndex: false,
       },

@@ -135,8 +135,8 @@
       "consultationBenefit1Desc": "Modern equipment for a detailed assessment of your dental health.",
       "consultationBenefit2Title": "Personalized plan",
       "consultationBenefit2Desc": "Receive a treatment plan tailored to your specific needs.",
-      "consultationBenefit3Title": "Free consultation",
-      "consultationBenefit3Desc": "The first consultation is free, with no obligation.",
+      "consultationBenefit3Title": "Clear price upfront",
+      "consultationBenefit3Desc": "You know the final cost of your treatment before we start, with no obligation.",
       "consultationStep1Title": "Scheduling",
       "consultationStep1Desc": "Contact us to schedule a consultation at a convenient time.",
       "consultationStep2Title": "Examination",
@@ -541,7 +541,7 @@
   },
   "cta": {
     "badge": "Appointment",
-    "title": "Book a free consultation",
+    "title": "Book a consultation",
     "subtitle": "Take the first step towards the perfect smile. We're waiting for you at our clinic!",
     "workingHours": "Monday - Friday: 10:00 AM - 6:00 PM"
   },
@@ -633,7 +633,7 @@
     "sectionTitle": "Full price list",
     "sectionSubtitle": "All our services with transparent pricing",
     "metaTitle": "Dental Prices Satu Mare 2026 | Implant, Braces & Veneers Costs",
-    "metaDescription": "Full dental price list at DENTCRAFT Satu Mare. Transparent costs for implants, braces, veneers, whitening, crowns. Free consultation!",
+    "metaDescription": "Full dental price list at DENTCRAFT Satu Mare. Transparent costs for implants, braces, veneers, whitening, crowns.",
     "disclaimer": "* Prices shown are indicative and may vary depending on the complexity of the case. The final price will be determined after consultation.",
     "fromLabel": "from",
     "currency": "lei",
@@ -655,7 +655,7 @@
     "promotion": "Promotion",
     "tryCalculator": "Calculate treatment price",
     "ctaTitle": "Want a personalized evaluation?",
-    "ctaSubtitle": "Book a free consultation to receive a treatment plan and personalized price estimate.",
+    "ctaSubtitle": "Book a consultation to receive a treatment plan and personalized price estimate.",
     "perTooth": "tooth",
     "perImplant": "implant",
     "placeholder": {
@@ -698,7 +698,7 @@
       "sendByEmailContext": "We'll send the estimate to your inbox so you can review it later or discuss with family.",
       "doctorName": "Dr. Petric Razvan-Tudor",
       "investmentLabel": "Indicative cost",
-      "freeConsult": "The evaluation consult is free, no commitment",
+      "freeConsult": "You get the final price at the consultation, no commitment",
       "trustPlanLabel": "Custom plan",
       "trustMaterialsLabel": "Certified materials",
       "trustWarrantyLabel": "Treatment warranty",
@@ -725,8 +725,8 @@
       "general": {
         "q1": "What services does DENTCRAFT clinic offer?",
         "a1": "We offer a complete range of dental services, including general dentistry, cosmetic dentistry, implantology, orthodontics, pediatric dentistry and dental emergencies.",
-        "q2": "Is the first consultation free?",
-        "a2": "Yes, the first consultation is free. You will receive a complete assessment of your dental health and a personalized treatment plan."
+        "q2": "How much is the first consultation?",
+        "a2": "The consultation fee is listed on our price list. You receive a complete assessment of your dental health and a personalized treatment plan, with the final price before we start."
       },
       "pricing": {
         "q1": "What payment methods are accepted?",
@@ -861,7 +861,7 @@
     "estimatedPrice": "Estimated price",
     "priceRange": "Price range",
     "disclaimer": "Final price will be determined after consultation.",
-    "scheduleConsultation": "Schedule free consultation",
+    "scheduleConsultation": "Schedule a consultation",
     "noServicesAvailable": "No services available for the calculator.",
     "optionsTitle": "Treatment Details",
     "optionsSubtitle": "Specify treatment details for a more accurate estimate.",

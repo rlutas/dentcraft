@@ -135,8 +135,8 @@
       "consultationBenefit1Desc": "Echipamente moderne pentru o evaluare detaliata a sanatatii tale dentare.",
       "consultationBenefit2Title": "Plan personalizat",
       "consultationBenefit2Desc": "Primesti un plan de tratament adaptat nevoilor tale specifice.",
-      "consultationBenefit3Title": "Consultatie gratuita",
-      "consultationBenefit3Desc": "Prima consultatie este gratuita, fara nicio obligatie.",
+      "consultationBenefit3Title": "Preț clar înainte",
+      "consultationBenefit3Desc": "Afli costul final al tratamentului înainte să începem, fără obligații.",
       "consultationStep1Title": "Programare",
       "consultationStep1Desc": "Contacteaza-ne pentru a programa o consultatie la ora convenabila.",
       "consultationStep2Title": "Examinare",
@@ -264,7 +264,7 @@
       "prostheticsStep4Title": "Cimentare definitiva",
       "prostheticsStep4Desc": "Montarea si cimentarea finala a coroanelor, puntilor sau protezelor dentare.",
       "implantology": "Implantologie",
-      "implantologyDesc": "Implanturi dentare Satu Mare de ultima generatie la clinica DENTCRAFT. Oferim solutii complete All-on-4 pentru restaurari totale si implanturi individuale. Afla implant dentar pret si beneficiaza de consultatie gratuita pentru zambetul perfect.",
+      "implantologyDesc": "Implanturi dentare Satu Mare de ultima generatie la clinica DENTCRAFT. Oferim solutii complete All-on-4 pentru restaurari totale si implanturi individuale. Afla pretul implantului dentar si planul de tratament la consultatie.",
       "implantologyBenefit1Title": "Implanturi premium",
       "implantologyBenefit1Desc": "Folosim implanturi dentare de top mondial cu rata de succes de peste 98% si garantie extinsa.",
       "implantologyBenefit2Title": "Tehnica All-on-4",
@@ -541,7 +541,7 @@
   },
   "cta": {
     "badge": "Programare",
-    "title": "Programeaza o consultatie gratuita",
+    "title": "Programează o consultație",
     "subtitle": "Fa primul pas catre zambetul perfect. Te asteptam la clinica noastra!",
     "workingHours": "Luni - Vineri: 10:00 - 18:00"
   },
@@ -633,7 +633,7 @@
     "sectionTitle": "Lista completă de prețuri",
     "sectionSubtitle": "Toate serviciile noastre cu prețuri transparente",
     "metaTitle": "Preturi Stomatologie Satu Mare 2026 | Tarife Implant, Aparat Dentar, Fatete",
-    "metaDescription": "Lista completa preturi stomatologie DENTCRAFT Satu Mare. Tarife transparente: implant dentar, aparat dentar, fatete, albire, coroane. Consultatie gratuita!",
+    "metaDescription": "Lista completa preturi stomatologie DENTCRAFT Satu Mare. Tarife transparente: implant dentar, aparat dentar, fatete, albire, coroane.",
     "disclaimer": "* Preturile afisate sunt orientative si pot varia in functie de complexitatea cazului. Pretul final va fi stabilit dupa consultatie.",
     "fromLabel": "de la",
     "currency": "lei",
@@ -655,7 +655,7 @@
     "promotion": "Promotie",
     "tryCalculator": "Calculeaza pretul tratamentului",
     "ctaTitle": "Vrei o evaluare personalizata?",
-    "ctaSubtitle": "Programeaza o consultatie gratuita pentru a primi un plan de tratament si o estimare de pret personalizata.",
+    "ctaSubtitle": "Programeaza o consultatie pentru a primi un plan de tratament si o estimare de pret personalizata.",
     "perTooth": "dinte",
     "perImplant": "implant",
     "placeholder": {
@@ -698,7 +698,7 @@
       "sendByEmailContext": "Îți trimitem estimarea pe email să o consulți mai târziu sau să o discuți cu familia.",
       "doctorName": "Dr. Petric Răzvan-Tudor",
       "investmentLabel": "Cost orientativ",
-      "freeConsult": "Consultul de evaluare e gratuit, fără obligații",
+      "freeConsult": "Prețul final îl afli la consultație, fără obligații",
       "trustPlanLabel": "Plan personalizat",
       "trustMaterialsLabel": "Materiale certificate",
       "trustWarrantyLabel": "Garanție pe lucrări",
@@ -725,8 +725,8 @@
       "general": {
         "q1": "Ce servicii ofera clinica DENTCRAFT?",
         "a1": "Oferim o gama completa de servicii stomatologice, inclusiv stomatologie generala, estetica dentara, implantologie, ortodontie, pedodontie si urgente dentare.",
-        "q2": "Este prima consultatie gratuita?",
-        "a2": "Da, prima consultatie este gratuita. Vei primi o evaluare completa a sanatatii tale dentare si un plan de tratament personalizat."
+        "q2": "Cât costă prima consultație?",
+        "a2": "Tariful consultației îl găsești în lista de prețuri. La consultație primești o evaluare completă a sănătății dentare și un plan de tratament personalizat, cu prețul final înainte de a începe."
       },
       "pricing": {
         "q1": "Care sunt modalitatile de plata acceptate?",
@@ -861,7 +861,7 @@
     "estimatedPrice": "Pret estimat",
     "priceRange": "Interval de pret",
     "disclaimer": "Pretul final va fi stabilit dupa consultatie.",
-    "scheduleConsultation": "Programeaza consultatie gratuita",
+    "scheduleConsultation": "Programează consultație",
     "noServicesAvailable": "Nu exista servicii disponibile pentru calculator.",
     "optionsTitle": "Detalii tratament",
     "optionsSubtitle": "Specifica detaliile tratamentului pentru o estimare mai precisa.",

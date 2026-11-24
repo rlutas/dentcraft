@@ -53,7 +53,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/clinic-10.webp',
-    alt: 'Sala de radiologie dentara',
+    alt: 'Cabinet de tratament cu unit dentar si microscop dentar',
     category: 'equipment',
   },
   {
