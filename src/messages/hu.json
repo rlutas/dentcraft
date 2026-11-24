@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Fogorvos Szatmárnémeti | DENTCRAFT Fogászati Klinika",
-    "description": "Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal és 1500+ kezelt beteggel. Implantátum, fogszabályozás, héjak, fehérítés. 5 fős szakértői csapat. Foglaljon időpontot!"
+    "description": "Fogászati klinika Szatmárnémetiben: implantátum, fogszabályozás, gyermekfogászat, esztétikai fogászat és sürgősségi ellátás. 6 fogorvos, 4,9 a Google-on."
   },
   "navigation": {
     "menuTitle": "Menü",
@@ -73,8 +73,8 @@
     "heroLabel": "Fogászati kezelések",
     "availableCount": "{count} elérhető szolgáltatás",
     "subtitle": "Teljes koru fogaszati szolgaltatasokat kinalunk, a megelozestol a komplex kezelesekig.",
-    "metaTitle": "Fogaszati Szolgaltatasok Szatmarnemeti | Implantatum, Fogszabalyozas",
-    "metaDescription": "Teljes koru fogaszati szolgaltatasok Szatmarnemetiben: implantatum, fogszabalyozas, hejak, feherites, gyermekfogaszat. DENTCRAFT klinika - 5 szakember.",
+    "metaTitle": "Fogászati Szolgáltatások Szatmárnémeti",
+    "metaDescription": "A DENTCRAFT szolgáltatásai Szatmárnémetiben: implantátum, fogszabályozás, héjak, fehérítés, gyermekfogászat, higiénia, sürgősség. 6 fogorvos.",
     "benefits": "Elonyok",
     "process": "Kezelesi folyamat",
     "step": "Lepes",
@@ -558,8 +558,8 @@
     "title": "Fogorvosi Csapatunk Szatmárnémetiben",
     "specialistsCount": "{count} szakember",
     "subtitle": "Elkotelezett szakemberek szeles koru tapasztalattal a modern fogaszatban.",
-    "metaTitle": "Fogorvosok Szatmarnemetiben | DENTCRAFT Csapat",
-    "metaDescription": "Ismerje meg a DENTCRAFT fogaszati csapatat Szatmarnemetiben - 3 fogorvos (Dr. Petric, Dr. Ghirasim, Dr. Tincu) es a recepcio/asszisztens csapat. 10+ ev tapasztalat, 1500+ kezelt beteg.",
+    "metaTitle": "Fogorvosok Szatmárnémetiben | Csapat",
+    "metaDescription": "Ismerje meg a DENTCRAFT 6 fogorvosát Szatmárnémetiben: implantológia, szájsebészet, parodontológia, fogszabályozás, gyermekfogászat és megelőzés.",
     "about": "Rolunk",
     "education": "Tanulmanyok",
     "certifications": "Tanusitvanyok",
@@ -632,8 +632,8 @@
     "sectionBadge": "Árak",
     "sectionTitle": "Teljes árlista",
     "sectionSubtitle": "Minden szolgáltatásunk átlátható árakkal",
-    "metaTitle": "Fogaszati Arak Szatmarnemeti 2026 | Implantatum, Fogszabalyozo Arak",
-    "metaDescription": "Teljes fogaszati arlista a DENTCRAFT Szatmarnemetiben. Atlathato arak: implantatum, fogszabalyozo, hejak, feherites, koronak.",
+    "metaTitle": "Fogászati Árak Szatmárnémeti 2026",
+    "metaDescription": "Teljes fogászati árlista a DENTCRAFT Szatmárnémetiben: implantátum, fogszabályozó, héjak, fehérítés, koronák. A végső árat a konzultáción tudja meg.",
     "disclaimer": "* A feltuntetett arak tajekoztatoak es az eset osszettetsegétől fuggoen valtozhatnak. A vegleges arat a konzultacio utan allapitjuk meg.",
     "fromLabel": "-tól",
     "currency": "lej",
@@ -711,7 +711,7 @@
   "faq": {
     "title": "Gyakran Ismetelt Kerdesek",
     "subtitle": "Valaszok a leggyakoribb kerdesekre fogaszati szolgaltatasainkrol.",
-    "metaTitle": "Fogaszati GYIK | Kerdesek Implantatum, Fogszabalyozo Temaban",
+    "metaTitle": "Fogászati GYIK | Gyakori Kérdések",
     "metaDescription": "Valaszok a leggyakoribb kerdesekre: fogimplantatum, fogszabalyozo, feherites, hejak es arak. DENTCRAFT fogaszati klinika Szatmarnemeti.",
     "stillHaveQuestions": "Meg mindig vannak kerdesei?",
     "contactUsText": "Csapatunk keszen all a segitsegere. Keressen minket barmilyen kerdessel.",

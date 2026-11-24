@@ -16,7 +16,7 @@ export const siteConfig = {
  * Locale-specific site titles
  */
 const localeTitles: Record<Locale, string> = {
-  ro: 'Dentist Satu Mare | Clinica Stomatologica DENTCRAFT',
+  ro: 'Stomatologie Satu Mare | Clinică Dentară DENTCRAFT',
   en: 'Dentist Satu Mare | DENTCRAFT Dental Clinic',
   hu: 'Fogorvos Szatmárnémeti | DENTCRAFT Fogászati Klinika',
 }
@@ -25,9 +25,9 @@ const localeTitles: Record<Locale, string> = {
  * Locale-specific site descriptions
  */
 const localeDescriptions: Record<Locale, string> = {
-  ro: 'Clinica stomatologica in Satu Mare cu 10+ ani experienta si 1500+ pacienti tratati. Implanturi, ortodontie, fatete, albire dentara. Echipa de 5 specialisti. Programeaza consultatie!',
-  en: 'Dental clinic in Satu Mare with 10+ years experience and 1500+ patients treated. Implants, orthodontics, veneers, teeth whitening. Team of 5 specialists. Book a consultation!',
-  hu: 'Fogászati klinika Szatmárnémetiben, 10+ év tapasztalattal és 1500+ kezelt beteggel. Implantátum, fogszabályozás, héjak, fehérítés. 5 fős szakértői csapat. Foglaljon időpontot!',
+  ro: "Clinică stomatologică în Satu Mare: implanturi, ortodonție, stomatologie pentru copii, estetică dentară și urgențe. 6 medici, nota 4,9 pe Google. Tel. 0741 199 977.",
+  en: "Dental clinic in Satu Mare: implants, orthodontics, children's dentistry, cosmetic dentistry and emergencies. 6 dentists, rated 4.9 on Google. Call 0741 199 977.",
+  hu: "Fogászati klinika Szatmárnémetiben: implantátum, fogszabályozás, gyermekfogászat, esztétikai fogászat és sürgősségi ellátás. 6 fogorvos, 4,9 a Google-on.",
 }
 
 /**

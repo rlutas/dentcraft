@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Dentist Satu Mare | DENTCRAFT Dental Clinic",
-    "description": "Dental clinic in Satu Mare with 10+ years experience and 1500+ patients treated. Implants, orthodontics, veneers, teeth whitening. Team of 5 specialists. Book a consultation!"
+    "description": "Dental clinic in Satu Mare: implants, orthodontics, children's dentistry, cosmetic dentistry and emergencies. 6 dentists, rated 4.9 on Google. Call 0741 199 977."
   },
   "navigation": {
     "menuTitle": "Menu",
@@ -73,8 +73,8 @@
     "heroLabel": "Dental treatments",
     "availableCount": "{count} services available",
     "subtitle": "We offer a complete range of dental services, from prevention to complex treatments.",
-    "metaTitle": "Dental Services Satu Mare | Implants, Orthodontics, Veneers",
-    "metaDescription": "Complete dental services in Satu Mare: implants, orthodontics, veneers, whitening, pediatric dentistry. DENTCRAFT clinic - team of 5 specialists.",
+    "metaTitle": "Dental Services in Satu Mare",
+    "metaDescription": "All DENTCRAFT Satu Mare services: implants, orthodontics, veneers, whitening, children's dentistry, hygiene and emergencies. 6 dentists, one clinic.",
     "benefits": "Benefits",
     "process": "Treatment process",
     "step": "Step",
@@ -558,8 +558,8 @@
     "title": "Our Dental Team",
     "specialistsCount": "{count} specialists",
     "subtitle": "Dedicated specialists with extensive experience in modern dentistry.",
-    "metaTitle": "Dentists in Satu Mare | DENTCRAFT Team",
-    "metaDescription": "Meet the DENTCRAFT dental team in Satu Mare - 3 dentists (Dr. Petric, Dr. Ghirasim, Dr. Tincu) plus reception/assistance team. 10+ years experience, 1500+ patients treated.",
+    "metaTitle": "Dentists in Satu Mare | Our Team",
+    "metaDescription": "Meet the 6 DENTCRAFT dentists in Satu Mare: implantology, oral surgery, periodontology, orthodontics, children's dentistry and preventive care.",
     "about": "About",
     "education": "Education",
     "certifications": "Certifications",
@@ -632,8 +632,8 @@
     "sectionBadge": "Prices",
     "sectionTitle": "Full price list",
     "sectionSubtitle": "All our services with transparent pricing",
-    "metaTitle": "Dental Prices Satu Mare 2026 | Implant, Braces & Veneers Costs",
-    "metaDescription": "Full dental price list at DENTCRAFT Satu Mare. Transparent costs for implants, braces, veneers, whitening, crowns.",
+    "metaTitle": "Dental Prices Satu Mare 2026",
+    "metaDescription": "Full dental price list at DENTCRAFT Satu Mare: implants, braces, veneers, whitening and crowns. You get the final price at the consultation.",
     "disclaimer": "* Prices shown are indicative and may vary depending on the complexity of the case. The final price will be determined after consultation.",
     "fromLabel": "from",
     "currency": "lei",
@@ -711,7 +711,7 @@
   "faq": {
     "title": "Frequently Asked Questions",
     "subtitle": "Answers to the most common questions about our dental services.",
-    "metaTitle": "Dental FAQ | Common Questions About Implants, Braces & More",
+    "metaTitle": "Dental FAQ | Implants, Braces & More",
     "metaDescription": "Answers to frequently asked questions about dental implants, braces, whitening, veneers and prices. DENTCRAFT dental clinic Satu Mare.",
     "stillHaveQuestions": "Still have questions?",
     "contactUsText": "Our team is here to help you. Contact us for any clarification.",
