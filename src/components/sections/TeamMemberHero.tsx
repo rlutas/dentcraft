@@ -42,11 +42,12 @@ export function TeamMemberHero({
   photoBadge,
 }: TeamMemberHeroProps) {
   const t = useTranslations('hero')
+  const tProfile = useTranslations('team.profile')
   const boldWords = nameBold.split(' ')
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] min-h-[calc(100svh-5rem)] md:min-h-[calc(100svh-6rem)] flex flex-col justify-center pt-10 pb-20 md:pt-6 md:pb-24">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#faf6f1] to-[#f5f0e8] min-h-[calc(100svh-5rem)] md:min-h-[calc(100svh-6rem)] flex flex-col justify-center pt-10 pb-20 md:pt-6 md:pb-24">
+      <div className="absolute top-28 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl translate-x-1/2" aria-hidden="true" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
 
       <div className="relative z-10 w-full mx-auto max-w-[1480px] px-5 sm:px-8 lg:px-12">
@@ -138,16 +139,33 @@ export function TeamMemberHero({
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.95, duration: 0.6 }}
-                className="flex flex-wrap gap-2 mb-6"
+                className="mb-8 max-w-md"
               >
-                {specializations.map((spec) => (
-                  <span
-                    key={spec}
-                    className="px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#8b7355] bg-white border border-[#e8e0d5] rounded-full"
-                  >
-                    {spec}
-                  </span>
-                ))}
+                <p className="text-[13px] font-medium text-[#8b7355] first-letter:uppercase mb-2">
+                  {tProfile('statSpecializations')}
+                </p>
+                <ul className="border-t border-[#e8e0d5]">
+                  {specializations.map((spec) => {
+                    // "Profilaxie (Guided Biofilm Therapy)" → main name + quieter qualifier
+                    const match = spec.match(/^(.*?)\s*\((.+)\)\s*$/)
+                    const main = match?.[1] ?? spec
+                    const qualifier = match?.[2]
+                    return (
+                      <li
+                        key={spec}
+                        className="flex items-baseline gap-3 py-2.5 border-b border-[#e8e0d5] text-[15px] md:text-base leading-snug text-[#2a2118]"
+                      >
+                        <span aria-hidden="true" className="relative top-[-0.15em] w-1.5 h-1.5 shrink-0 rounded-full bg-[#c9b69c]" />
+                        <span>
+                          {main}
+                          {qualifier && (
+                            <span className="text-[#8b7355] font-serif italic"> ({qualifier})</span>
+                          )}
+                        </span>
+                      </li>
+                    )
+                  })}
+                </ul>
               </motion.div>
             )}
 
