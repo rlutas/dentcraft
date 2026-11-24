@@ -124,14 +124,20 @@ Jurnalul zilei. Rapoartele de audit sunt în `docs/seo/*-2026-11-24.md`: SITE-AU
 Raportul complet: https://claude.ai/artifact/QP8g4bvoAGMHYE5BWNetvC
 
 - **30 de zile:** 2.285 RON, 22 de conversii, ~104 RON/conversie. Brand și Ortodonție ies la ~23–25 RON/conversie; Prețuri la 251 RON/conversie.
-- **Propuneri, încă neaplicate (aștept aprobarea lui Raul):**
-  - negative pe potrivire de expresie pentru concurenți și alte orașe;
+- **Pasul 1, aplicat pe 24 nov (aprobat de Raul):**
+  - 36 de negative pe potrivire de expresie;
   - locația pe „Prezență”;
-  - licitare -30% în afara programului;
-  - „dentist satu mare” mutat de pe potrivire amplă pe expresie;
-  - scos „invisalign”;
-  - grupuri noi: Copii, Detartraj, Urgențe, Chirurgie;
-  - apoi trecere pe „Maximizați conversiile”.
+  - licitare -30% în afara intervalului L–V 10–18;
+  - „dentist satu mare” pe potrivire de expresie, varianta amplă întreruptă;
+  - cele 3 cuvinte „invisalign”, întrerupte.
+- Detalii și pașii 2–3 în `docs/google-ads/AUDIT-2026-11-24.md`. Verificare ~8 dec.
+- **404 refăcut** (`62dba17`, `9de91d5`):
+  - hero pe tot ecranul, care trece pe sub meniu, fără dunga de culoare din jur;
+  - dinte mai mare, cu glow și cercuri subțiri;
+  - linkuri rapide ca pastile cu iconițe;
+  - card închis la culoare pentru urgențe.
+- `d07a633`: am pus la loc `services.metaTitle` în EN și HU; se pierduse la commit-ul 404.
+- Checklistul pentru Dr. Petric are acum secțiunea „7. Ce am făcut pe 24 noiembrie”.
 
 ## 8. De făcut / decizii
 
