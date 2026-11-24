@@ -23,7 +23,7 @@ export function getOrganizationSchema() {
       '@type': 'PostalAddress',
       streetAddress: 'Str. Barbu Ștefănescu Delavrancea nr.3',
       addressLocality: 'Satu Mare',
-      postalCode: '440187',
+      postalCode: '440055',
       addressCountry: 'RO',
     },
     geo: {
@@ -123,7 +123,7 @@ export function getServiceSchema(options: {
         '@type': 'PostalAddress',
         streetAddress: 'Str. Barbu Ștefănescu Delavrancea nr.3',
         addressLocality: 'Satu Mare',
-        postalCode: '440187',
+        postalCode: '440055',
         addressCountry: 'RO',
       },
     },
