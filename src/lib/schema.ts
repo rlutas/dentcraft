@@ -31,14 +31,10 @@ export function getOrganizationSchema() {
       latitude: CONTACT.coordinates.lat,
       longitude: CONTACT.coordinates.lng,
     },
-    hasMap: 'https://www.google.com/maps/place/DENTCRAFT/',
+    hasMap: 'https://www.google.com/maps?cid=14265364881416516889',
     openingHours: 'Mo-Fr 10:00-18:00',
     priceRange: '$$',
-    sameAs: [
-      'https://facebook.com/dentcraft.ro',
-      'https://instagram.com/dentcraft.ro',
-      'https://www.google.com/maps/place/DENTCRAFT/',
-    ],
+    sameAs: [CONTACT.facebook, CONTACT.instagram, CONTACT.youtube, 'https://www.google.com/maps?cid=14265364881416516889'],
     areaServed: [
       { '@type': 'City', name: 'Satu Mare' },
       { '@type': 'State', name: 'Județul Satu Mare' },
