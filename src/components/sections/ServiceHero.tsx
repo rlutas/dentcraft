@@ -1,7 +1,8 @@
 'use client'
 
+import { Fragment } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { MotionConfig, motion } from 'framer-motion'
 import { ArrowRight, Calculator, ChevronDown } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -48,6 +49,7 @@ export function ServiceHero({
   const titleWords = title.split(' ')
 
   return (
+    <MotionConfig reducedMotion="user">
     <section className="relative overflow-hidden bg-gradient-to-b from-[#faf6f1] to-[#f5f0e8] min-h-[calc(100svh-5rem)] md:min-h-[calc(100svh-6rem)] flex flex-col justify-center pt-10 pb-20 md:pt-6 md:pb-24">
       <div className="absolute top-28 right-0 w-96 h-96 bg-[#d4c4b0]/12 rounded-full blur-3xl translate-x-1/2" aria-hidden="true" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
@@ -57,7 +59,7 @@ export function ServiceHero({
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 mb-6 md:mb-8 text-sm"
+          className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-5 md:mb-8 text-sm"
           aria-label="Breadcrumb"
         >
           {breadcrumbs.map((item, idx) => (
@@ -76,54 +78,21 @@ export function ServiceHero({
 
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-24 items-center">
           <div>
-            {/* Headline — bold word stagger + italic letter stagger (mirrors landing) */}
-            <h1 className="font-bold text-[#2a2118] leading-[1.05] tracking-tight text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl">
-              <motion.span
-                className="block"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
-                }}
-              >
+            {/* Headline — same "Bold / serif italic" voice as the homepage hero, but static:
+                the h1 is the LCP text on mobile, so it renders visible from the server.
+                Mobile size tuned so the longest RO title (Pedodonție…) stays at 2+1 lines. */}
+            <h1 className="font-bold text-[#2a2118] leading-[1.02] tracking-tight text-[clamp(1.75rem,7.7vw,2.25rem)] sm:text-5xl lg:text-[3.25rem] xl:text-6xl">
+              <span className="block [text-wrap:balance]">
                 {titleWords.map((word, i) => (
-                  <motion.span
-                    key={i}
-                    className="inline-block mr-[0.25em] last:mr-0"
-                    variants={{
-                      hidden: { y: 24, opacity: 0 },
-                      visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 220, damping: 22 } },
-                    }}
-                  >
-                    {word}
-                  </motion.span>
+                  <Fragment key={i}>
+                    {i > 0 && ' '}
+                    <span className="whitespace-nowrap">{word}</span>
+                  </Fragment>
                 ))}
-              </motion.span>
-              <motion.span
-                className="font-serif italic font-medium text-[#8b7355] block mt-1 pb-1"
-                initial="hidden"
-                animate="visible"
-                aria-label={italicAccent}
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.55 } },
-                }}
-              >
-                {Array.from(italicAccent).map((char, i) => (
-                  <motion.span
-                    key={i}
-                    className="inline-block"
-                    aria-hidden="true"
-                    variants={{
-                      hidden: { x: -24, opacity: 0 },
-                      visible: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 140, damping: 20 } },
-                    }}
-                  >
-                    {char === ' ' ? ' ' : char}
-                  </motion.span>
-                ))}
-              </motion.span>
+              </span>{' '}
+              <span className="font-serif italic font-medium text-[#8b7355] block mt-1 pb-1 tracking-wide">
+                {italicAccent}
+              </span>
             </h1>
 
             {subtitle && (
@@ -139,7 +108,7 @@ export function ServiceHero({
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
               className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8"
             >
               <BookingButton
@@ -162,12 +131,8 @@ export function ServiceHero({
           </div>
 
           {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
-          >
+          {/* Holds the priority hero image (LCP on desktop) — visible from the server */}
+          <div className="relative">
             <div className="absolute -top-4 -right-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
             <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
 
@@ -200,7 +165,7 @@ export function ServiceHero({
               <span className="text-[#8b7355] text-xs font-bold uppercase tracking-[0.16em]">{badgeLabel}</span>
             </motion.div>
 
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -238,5 +203,6 @@ export function ServiceHero({
         </span>
       </motion.button>
     </section>
+    </MotionConfig>
   )
 }

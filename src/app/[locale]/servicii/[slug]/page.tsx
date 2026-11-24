@@ -236,6 +236,20 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
       })))
     : null
 
+  const showBenefits = Boolean(service.benefits && service.benefits.length > 0)
+  const showProcess = Boolean(service.process && service.process.length > 0)
+  // White / cream alternation, like the homepage — computed from the sections actually rendered
+  const tones = alternateTones([
+    ['description', Boolean(service.description && service.description.length > 0)],
+    ['benefits', showBenefits],
+    ['process', showProcess],
+    ['faq', faqs.length > 0],
+    ['localSeo', Boolean(getServiceLocalSeoContent(service.slug, locale))],
+    ['doctor', true],
+    ['reviews', true],
+    ['related', true],
+  ])
+
   return (
     <div className="flex flex-col">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -267,98 +281,42 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
       {service.description && service.description.length > 0 && (
         <section className="py-20 md:py-28 bg-white">
           <div className="container">
-            <div className="max-w-3xl mx-auto prose prose-lg">
-              <PortableTextRenderer content={service.description} />
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Benefits Section — editorial */}
-      {service.benefits && service.benefits.length > 0 && (
-        <section className="py-24 md:py-32 bg-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
-          <div className="container relative z-10">
             <ScrollReveal animation="fade-up">
-              <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                  {t('services.detail.whyChooseLabel')}
-                </span>
-                <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
+              <div className="max-w-3xl mx-auto prose prose-lg">
+                <PortableTextRenderer content={service.description} />
               </div>
             </ScrollReveal>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
-              {service.benefits.map((benefit, index) => (
-                <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
-                  <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 hover:border-[#d4c4b0] hover:shadow-[0_24px_60px_-16px_rgba(139,115,85,0.22)] hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden">
-                    {/* editorial serif-italic number — same system as the homepage "De ce clinica DENTCRAFT" list */}
-                    <span aria-hidden="true" className="block font-serif italic text-4xl md:text-5xl text-[#8b7355] leading-none mb-6 group-hover:text-[#2a2118] transition-colors duration-500">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="text-xl md:text-[1.375rem] font-bold text-[#2a2118] mb-3 leading-tight tracking-tight group-hover:text-[#8b7355] transition-colors">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm md:text-[15px] text-[#5a5048] leading-relaxed">{benefit.description}</p>
-                    <span aria-hidden="true" className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-[#d4c4b0] via-[#8b7355] to-[#d4c4b0] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
           </div>
         </section>
       )}
 
-      {/* Process Section — editorial timeline */}
-      {service.process && service.process.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
-          <div className="container relative z-10">
-            <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
-            </div>
-            <div className="max-w-4xl mx-auto">
-              <div className="relative">
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#e8e0d5]" aria-hidden="true" />
-                <div className="space-y-6 md:space-y-8">
-                  {service.process
-                    .sort((a, b) => a.stepNumber - b.stepNumber)
-                    .map((step, index) => (
-                      <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
-                        <div className="group relative flex gap-5 md:gap-6">
-                          <div className="relative z-10 w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
-                            {step.stepNumber}
-                          </div>
-                          <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
-                              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
-                            </div>
-                            <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">{step.title}</h3>
-                            <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
-                          </div>
-                        </div>
-                      </ScrollReveal>
-                    ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Benefits + process — shared editorial blocks (same as fallback path) */}
+      {showBenefits && service.benefits && (
+        <BenefitsSection
+          tone={tones.benefits ?? 'white'}
+          items={service.benefits.map((b) => ({ title: b.title, description: b.description }))}
+        />
+      )}
+      {showProcess && service.process && (
+        <ProcessSection
+          tone={tones.process ?? 'white'}
+          steps={[...service.process]
+            .sort((x, y) => x.stepNumber - y.stepNumber)
+            .map((st) => ({ stepNumber: st.stepNumber, title: st.title, description: st.description }))}
+        />
       )}
 
-      {/* FAQ Section — editorial (white) */}
+      {/* FAQ Section — editorial */}
       {faqs.length > 0 && (
-        <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tones.faq)}`}>
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
-            <div className="text-center mb-14 md:mb-16">
+            <div className="text-center mb-14 md:mb-20">
               <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
             </div>
             <div className="max-w-3xl mx-auto space-y-3">
               {faqs.map((faq, idx) => (
-                <ScrollReveal key={faq._id} animation="fade-up" delay={idx * 60}>
+                <ScrollReveal key={faq._id} animation="fade-up" delay={Math.min(idx, 3) * 60}>
                   <FAQAccordionItem answer={faq.answer} question={faq.question} />
                 </ScrollReveal>
               ))}
@@ -368,16 +326,16 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
       )}
 
       {/* Local SEO content — city + price intent for key services */}
-      <ServiceLocalSeo slug={service.slug} locale={locale} />
+      <ServiceLocalSeo slug={service.slug} locale={locale} tone={tones.localSeo ?? 'white'} />
 
       {/* Doctor profile — E-E-A-T + internal linking */}
-      <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(service.slug)} />
+      <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(service.slug)} tone={tones.doctor ?? 'white'} />
 
       {/* Reviews — social proof from Google */}
-      <ReviewsSection locale={locale} />
+      <ReviewsSection locale={locale} tone={tones.reviews ?? 'cream'} />
 
       {/* Servicii conexe — footer CTA banner closes the page */}
-      <RelatedServicesSection currentSlug={service.slug} />
+      <RelatedServicesSection currentSlug={service.slug} tone={tones.related ?? 'white'} />
 
     </div>
   )
@@ -430,7 +388,7 @@ function FAQAccordionItem({ question, answer }: { question: string; answer: Arra
     .join(' ')
 
   return (
-    <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-5 hover:border-[#d4c4b0] transition-colors duration-300">
+    <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-7 md:py-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] open:border-[#d4c4b0] transition-colors duration-300">
       <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
         <h3 className="text-base md:text-lg font-semibold text-[#2a2118] pr-2 leading-tight group-hover:text-[#8b7355] transition-colors">{question}</h3>
         <ChevronDown className="w-5 h-5 text-[#8b7355] transition-transform duration-300 group-open:rotate-180 shrink-0" strokeWidth={2} />
@@ -468,6 +426,20 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
     { name: t('breadcrumbs.home'), url: siteConfig.baseUrl },
     { name: t('navigation.services'), url: `${siteConfig.baseUrl}/servicii` },
     { name: serviceName, url: `${siteConfig.baseUrl}/servicii/${fallbackService.slug}` },
+  ])
+
+  const showBenefits = !hideLegacyBlocks && Boolean(fallbackService.benefits && fallbackService.benefits.length > 0)
+  const showProcess = !hideLegacyBlocks && Boolean(fallbackService.process && fallbackService.process.length > 0)
+  // White / cream alternation, like the homepage — computed from the sections actually rendered
+  const tones = alternateTones([
+    ['content', Boolean(serviceContent)],
+    ['benefits', showBenefits],
+    ['process', showProcess],
+    ['faq', Boolean(serviceContent && serviceContent.faqs.length > 0)],
+    ['doctor', true],
+    ['reviews', true],
+    ['localSeo', Boolean(getServiceLocalSeoContent(fallbackService.slug, locale))],
+    ['related', true],
   ])
 
   return (
@@ -509,95 +481,43 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
         <ServiceContentBlock content={serviceContent} locale={locale} slug={fallbackService.slug} />
       )}
 
-      {/* Benefits Section — editorial */}
-      {!hideLegacyBlocks && fallbackService.benefits && fallbackService.benefits.length > 0 && (
-        <section className="py-24 md:py-32 bg-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
-          <div className="container relative z-10">
-            <ScrollReveal animation="fade-up">
-              <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
-                  {t('services.detail.whyChooseLabel')}
-                </span>
-                <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
-              </div>
-            </ScrollReveal>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
-              {fallbackService.benefits.map((benefit, index) => (
-                <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
-                  <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 hover:border-[#d4c4b0] hover:shadow-[0_24px_60px_-16px_rgba(139,115,85,0.22)] hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden">
-                    {/* editorial serif-italic number — same system as the homepage "De ce clinica DENTCRAFT" list */}
-                    <span aria-hidden="true" className="block font-serif italic text-4xl md:text-5xl text-[#8b7355] leading-none mb-6 group-hover:text-[#2a2118] transition-colors duration-500">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="text-xl md:text-[1.375rem] font-bold text-[#2a2118] mb-3 leading-tight tracking-tight group-hover:text-[#8b7355] transition-colors">
-                      {t(`services.fallback.${benefit.titleKey}`)}
-                    </h3>
-                    <p className="text-sm md:text-[15px] text-[#5a5048] leading-relaxed">{t(`services.fallback.${benefit.descriptionKey}`)}</p>
-                    {/* bottom accent line that slides in on hover */}
-                    <span aria-hidden="true" className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-[#d4c4b0] via-[#8b7355] to-[#d4c4b0] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
+      {/* Benefits + process — shared editorial blocks */}
+      {showBenefits && (
+        <BenefitsSection
+          tone={tones.benefits ?? 'white'}
+          items={(fallbackService.benefits ?? []).map((b) => ({
+            title: t(`services.fallback.${b.titleKey}`),
+            description: t(`services.fallback.${b.descriptionKey}`),
+          }))}
+        />
       )}
-
-      {/* Process Section — editorial timeline */}
-      {!hideLegacyBlocks && fallbackService.process && fallbackService.process.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
-          <div className="container relative z-10">
-            <div className="text-center mb-14 md:mb-16">
-              <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
-            </div>
-            <div className="max-w-4xl mx-auto">
-              <div className="relative">
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#e8e0d5]" aria-hidden="true" />
-                <div className="space-y-6 md:space-y-8">
-                  {fallbackService.process.map((step, index) => (
-                    <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
-                      <div className="group relative flex gap-5 md:gap-6">
-                        <div className="relative z-10 w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center text-white font-bold shrink-0 ring-4 ring-white group-hover:bg-[#8b7355] group-hover:scale-110 transition-all duration-500">
-                          {step.stepNumber}
-                        </div>
-                        <div className="flex-1 bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.15)] transition-all duration-500">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
-                            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
-                          </div>
-                          <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">{t(`services.fallback.${step.titleKey}`)}</h3>
-                          <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{t(`services.fallback.${step.descriptionKey}`)}</p>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      {showProcess && (
+        <ProcessSection
+          tone={tones.process ?? 'white'}
+          steps={(fallbackService.process ?? []).map((st) => ({
+            stepNumber: st.stepNumber,
+            title: t(`services.fallback.${st.titleKey}`),
+            description: t(`services.fallback.${st.descriptionKey}`),
+          }))}
+        />
       )}
 
       {/* Per-service FAQ */}
       {serviceContent && serviceContent.faqs.length > 0 && (
-        <ServiceContentFaqSection faqs={serviceContent.faqs} />
+        <ServiceContentFaqSection faqs={serviceContent.faqs} tone={tones.faq ?? 'cream'} />
       )}
 
       {/* Doctor profile — E-E-A-T + internal linking */}
-      <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(fallbackService.slug)} />
+      <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(fallbackService.slug)} tone={tones.doctor ?? 'white'} />
 
       {/* Reviews — social proof from Google */}
-      <ReviewsSection locale={locale} />
+      <ReviewsSection locale={locale} tone={tones.reviews ?? 'cream'} />
 
       {/* Local SEO content — city + price intent for key services */}
-      <ServiceLocalSeo slug={fallbackService.slug} locale={locale} />
+      <ServiceLocalSeo slug={fallbackService.slug} locale={locale} tone={tones.localSeo ?? 'white'} />
 
       {/* Servicii conexe — footer CTA banner closes the page */}
-      <RelatedServicesSection currentSlug={fallbackService.slug} />
+      <RelatedServicesSection currentSlug={fallbackService.slug} tone={tones.related ?? 'white'} />
 
     </div>
   )
@@ -605,8 +525,107 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
 
 // ===== Shared section components for /servicii/[slug] =====
 
+type SectionTone = 'white' | 'cream'
+
+/** Homepage rhythm: sections alternate white / cream (#faf6f1). First rendered section after the hero is white. */
+function alternateTones<K extends string>(sections: Array<[K, boolean]>): Partial<Record<K, SectionTone>> {
+  const tones: Partial<Record<K, SectionTone>> = {}
+  let i = 0
+  for (const [key, shown] of sections) {
+    if (!shown) continue
+    tones[key] = i % 2 === 0 ? 'white' : 'cream'
+    i++
+  }
+  return tones
+}
+
+function sectionBg(tone: SectionTone | undefined) {
+  return tone === 'cream' ? 'bg-[#faf6f1]' : 'bg-white'
+}
+
+// Benefits — editorial numbered cards (01/02/03), same card language as the homepage service cards
+async function BenefitsSection({ items, tone }: { items: Array<{ title: string; description: string }>; tone: SectionTone }) {
+  const t = await getTranslations()
+  return (
+    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
+      <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
+          <ScrollReveal animation="fade-up">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#e8e0d5] mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] shadow-[0_2px_12px_rgba(139,115,85,0.06)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+              {t('services.detail.whyChooseLabel')}
+            </span>
+          </ScrollReveal>
+          <AnimatedServiceHeading bold={t('services.detail.benefitsBold')} italic={t('services.detail.benefitsItalic')} />
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
+          {items.map((benefit, index) => (
+            <ScrollReveal key={index} animation="fade-up" delay={(index % 3) * 100}>
+              <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] hover:-translate-y-1.5 transition-all duration-500 ease-out h-full overflow-hidden">
+                {/* editorial serif-italic number — same system as the homepage "De ce clinica DENTCRAFT" list */}
+                <span aria-hidden="true" className="block font-serif italic text-4xl md:text-5xl text-[#8b7355] leading-none mb-6 origin-left group-hover:text-[#2a2118] transition-colors duration-500">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-3 leading-tight group-hover:text-[#8b7355] transition-colors duration-300">
+                  {benefit.title}
+                </h3>
+                <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{benefit.description}</p>
+                <span aria-hidden="true" className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-[#d4c4b0] via-[#8b7355] to-[#d4c4b0] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Process — numbered timeline; serif-italic 01/02/03 nodes like the homepage calculator steps
+async function ProcessSection({ steps, tone }: { steps: Array<{ stepNumber: number; title: string; description: string }>; tone: SectionTone }) {
+  const t = await getTranslations()
+  const ring = tone === 'cream' ? 'ring-[#faf6f1]' : 'ring-white'
+  return (
+    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
+      <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
+        <div className="text-center mb-14 md:mb-20">
+          <AnimatedServiceHeading bold={t('services.detail.processBold')} italic={t('services.detail.processItalic')} />
+        </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            <div className="absolute left-6 md:left-7 top-0 bottom-0 w-px bg-[#e8e0d5]" aria-hidden="true" />
+            <div className="space-y-5 md:space-y-6">
+              {steps.map((step, index) => (
+                <ScrollReveal key={index} animation="fade-up">
+                  <div className="group relative flex gap-4 md:gap-6">
+                    <div className={`relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-[#e8e0d5] flex items-center justify-center shrink-0 ring-4 ${ring} group-hover:bg-[#1a1a1a] group-hover:border-[#1a1a1a] transition-colors duration-500`}>
+                      <span className="font-serif italic text-xl md:text-2xl text-[#8b7355] leading-none group-hover:text-[#d4c4b0] transition-colors duration-500">
+                        {String(step.stepNumber).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="flex-1 min-w-0 bg-white border border-[#e8e0d5] rounded-2xl md:rounded-3xl px-5 py-5 md:px-7 md:py-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] group-hover:border-[#d4c4b0] group-hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)] transition-all duration-500">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Clock className="w-3.5 h-3.5 text-[#8b7355]" strokeWidth={2} />
+                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">{t('services.step')} {step.stepNumber}</span>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors duration-300">{step.title}</h3>
+                      <p className="text-sm md:text-base text-[#5a5048] leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // Doctor profile — the doctor(s) mapped to this service (src/lib/service-content), Dr. Petric as fallback
-async function DoctorProfileSection({ doctorSlugs }: { doctorSlugs: string[] }) {
+async function DoctorProfileSection({ doctorSlugs, tone }: { doctorSlugs: string[]; tone: SectionTone }) {
   const found = doctorSlugs
     .map((slug) => fallbackTeamMembers.find((m) => m.slug === slug))
     .filter((m): m is (typeof fallbackTeamMembers)[number] => Boolean(m))
@@ -616,22 +635,19 @@ async function DoctorProfileSection({ doctorSlugs }: { doctorSlugs: string[] }) 
   const t = await getTranslations()
 
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <ScrollReveal animation="fade-up">
-          <div className="text-center mb-14 md:mb-16">
-            <AnimatedServiceHeading bold={t('services.detail.doctorBold')} italic={t('services.detail.doctorItalic')} />
-          </div>
-        </ScrollReveal>
+        <div className="text-center mb-14 md:mb-20">
+          <AnimatedServiceHeading bold={t('services.detail.doctorBold')} italic={t('services.detail.doctorItalic')} />
+        </div>
 
         <div className="max-w-5xl mx-auto space-y-16 md:space-y-20">
           {doctors.map((doctor) => (
-          <ScrollReveal key={doctor.slug} animation="fade-up" delay={150}>
-            <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
+            <div key={doctor.slug} className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
               {/* Doctor photo */}
-              <div className="relative">
+              <ScrollReveal animation="fade-up" className="relative max-w-md mx-auto w-full lg:max-w-none">
                 <div className="absolute -top-4 -left-4 w-20 h-20 border border-[#d4c4b0]/30 rounded-full hidden lg:block" aria-hidden="true" />
                 <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-[#d4c4b0]/15 rounded-full blur-2xl hidden lg:block" aria-hidden="true" />
                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[#f5f0e8] border border-[#e8e0d5] shadow-[0_30px_80px_-20px_rgba(139,115,85,0.25)]">
@@ -645,28 +661,25 @@ async function DoctorProfileSection({ doctorSlugs }: { doctorSlugs: string[] }) 
                     />
                   )}
                 </div>
-              </div>
+              </ScrollReveal>
 
               {/* Doctor info */}
-              <div>
+              <ScrollReveal animation="fade-up" delay={150}>
                 <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">
                   {translateTeamRole(doctor.role, t)}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4 leading-tight tracking-tight">
+                <h3 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4 leading-[1.05] tracking-tight [text-wrap:balance]">
                   {doctor.name}
                 </h3>
-                <p className="text-base md:text-lg text-[#5a5048] leading-relaxed mb-6">
+                {/* Short teaser only — the full bio lives on /echipa/[slug] (button below) */}
+                <p className="text-base md:text-lg text-[#5a5048] leading-relaxed mb-6 line-clamp-3">
                   {doctor.bio}
                 </p>
 
                 {doctor.specializations && doctor.specializations.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {doctor.specializations.map((spec) => (
-                      <span key={spec} className="px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#8b7355] bg-[#faf6f1] border border-[#e8e0d5] rounded-full">
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-sm text-[#8b7355] leading-relaxed mb-6">
+                    {doctor.specializations.join(' · ')}
+                  </p>
                 )}
 
                 {/* Quick stats */}
@@ -706,16 +719,15 @@ async function DoctorProfileSection({ doctorSlugs }: { doctorSlugs: string[] }) 
 
                 <Link
                   href={{ pathname: '/echipa/[slug]', params: { slug: doctor.slug } }}
-                  className="group inline-flex items-center px-7 py-3.5 bg-[#1a1a1a] text-white rounded-full text-sm md:text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
+                  className="group inline-flex items-center px-8 py-4 bg-[#1a1a1a] text-white rounded-full text-base font-semibold hover:shadow-[0_10px_40px_-10px_rgba(42,33,24,0.4)] transition-shadow duration-300"
                 >
                   <span>{t('services.detail.viewProfile')}</span>
                   <span aria-hidden="true" className="inline-flex items-center overflow-hidden ml-0 max-w-0 opacity-0 -translate-x-1 group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                     <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} />
                   </span>
                 </Link>
-              </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
           ))}
         </div>
       </div>
@@ -727,19 +739,23 @@ async function DoctorProfileSection({ doctorSlugs }: { doctorSlugs: string[] }) 
 async function ServiceContentBlock({ content, locale, slug }: { content: ServiceContentLocale; locale: string; slug: string }) {
   const labels = getServiceContentLabels(locale)
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container">
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+      <div className="container relative z-10">
         <div className="max-w-3xl mx-auto">
-          <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">
-            {labels.introLabel}
-          </span>
-          <p className="text-lg md:text-xl text-[#2a2118] leading-relaxed">{content.intro}</p>
-          <p className="mt-3 text-xs text-[#8b7355]">
-            {labels.updatedLabel}: {labels.updatedValue}
-          </p>
+          <ScrollReveal animation="fade-up">
+            <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-4">
+              {labels.introLabel}
+            </span>
+            <p className="text-lg md:text-2xl text-[#2a2118] leading-relaxed md:leading-[1.55]">{content.intro}</p>
+            <p className="mt-4 text-xs text-[#8b7355]">
+              {labels.updatedLabel}: {labels.updatedValue}
+            </p>
+          </ScrollReveal>
 
           {showsContactCallout(slug) && (
-            <div className="mt-8 rounded-3xl border border-[#d4c4b0] bg-[#faf6f1] p-6 md:p-8">
+            <ScrollReveal animation="fade-up">
+            <div className="mt-8 rounded-3xl border border-[#d4c4b0] bg-[#faf6f1] p-6 md:p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]">
               <p className="text-lg md:text-xl font-bold text-[#2a2118] mb-4">{labels.contactTitle}</p>
               <a
                 href={`tel:${CLINIC_PHONE_TEL}`}
@@ -760,16 +776,18 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
               </ul>
               <p className="mt-3 text-sm text-[#5a5048]">{labels.contactLanguages}</p>
             </div>
+            </ScrollReveal>
           )}
 
-          <div className="mt-12 space-y-12">
+          <div className="mt-14 md:mt-16 space-y-12 md:space-y-14">
             {content.sections.map((section, sectionIndex) => (
-              <div key={section.heading} className={sectionIndex > 0 ? 'pt-12 border-t border-[#e8e0d5]' : undefined}>
-                <div className="flex items-baseline gap-4 md:gap-5 mb-4">
-                  <span aria-hidden="true" className="font-serif italic text-3xl md:text-4xl text-[#8b7355] leading-none shrink-0">
+              <ScrollReveal key={section.heading} animation="fade-up" className={sectionIndex > 0 ? 'pt-12 md:pt-14 border-t border-[#e8e0d5]' : ''}>
+              <div className="group">
+                <div className="flex items-baseline gap-4 md:gap-6 mb-5">
+                  <span aria-hidden="true" className="font-serif italic text-3xl md:text-4xl text-[#8b7355] leading-none shrink-0 origin-left group-hover:text-[#2a2118] transition-colors duration-500">
                     {String(sectionIndex + 1).padStart(2, '0')}
                   </span>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-tight tracking-tight">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-tight tracking-tight [text-wrap:balance]">
                     {section.heading}
                   </h2>
                 </div>
@@ -790,26 +808,29 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
                   {section.after && <p>{section.after}</p>}
                 </div>
               </div>
+              </ScrollReveal>
             ))}
           </div>
 
           {content.links && content.links.length > 0 && (
+            <ScrollReveal animation="fade-up">
             <div className="mt-12 pt-6 border-t border-[#e8e0d5]">
               <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">{labels.linksLabel}</span>
-              <ul className="flex flex-wrap gap-3">
+              <ul className="flex flex-wrap gap-x-6 gap-y-2">
                 {content.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={'doctor' in link ? { pathname: '/echipa/[slug]', params: { slug: link.doctor } } : link.page}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#e8e0d5] text-sm font-semibold text-[#2a2118] hover:border-[#8b7355] hover:text-[#8b7355] transition-colors"
+                      className="group/cta inline-flex items-center gap-1.5 text-sm md:text-base font-semibold text-[#8b7355] hover:text-[#2a2118] transition-colors duration-300"
                     >
-                      {link.label}
-                      <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+                      <span className="border-b border-[#d4c4b0] group-hover/cta:border-[#2a2118] pb-0.5 transition-colors duration-300">{link.label}</span>
+                      <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" strokeWidth={2.25} />
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+            </ScrollReveal>
           )}
         </div>
       </div>
@@ -818,18 +839,19 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
 }
 
 // Per-service FAQ (plain-text answers), same look as the CMS FAQ block
-async function ServiceContentFaqSection({ faqs }: { faqs: ServiceContentLocale['faqs'] }) {
+async function ServiceContentFaqSection({ faqs, tone }: { faqs: ServiceContentLocale['faqs']; tone: SectionTone }) {
   const t = await getTranslations()
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/6 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="text-center mb-14 md:mb-16">
+        <div className="text-center mb-14 md:mb-20">
           <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
         </div>
         <div className="max-w-3xl mx-auto space-y-3">
           {faqs.map((faq, idx) => (
-            <ScrollReveal key={faq.question} animation="fade-up" delay={idx * 60}>
-              <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-5 hover:border-[#d4c4b0] transition-colors duration-300">
+            <ScrollReveal key={faq.question} animation="fade-up" delay={Math.min(idx, 3) * 60}>
+              <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-7 md:py-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] open:border-[#d4c4b0] transition-colors duration-300">
                 <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
                   <h3 className="text-base md:text-lg font-semibold text-[#2a2118] pr-2 leading-tight group-hover:text-[#8b7355] transition-colors">{faq.question}</h3>
                   <ChevronDown className="w-5 h-5 text-[#8b7355] transition-transform duration-300 group-open:rotate-180 shrink-0" strokeWidth={2} />
@@ -845,18 +867,16 @@ async function ServiceContentFaqSection({ faqs }: { faqs: ServiceContentLocale['
 }
 
 // Reviews — Google reviews marquee, mirrors the landing page section
-async function ReviewsSection({ locale }: { locale: Locale }) {
+async function ReviewsSection({ locale, tone }: { locale: Locale; tone: SectionTone }) {
   const t = await getTranslations('services.detail')
   return (
-    <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
+    <section className={`py-20 md:py-28 relative overflow-hidden ${sectionBg(tone)}`}>
       <div className="absolute top-0 left-0 w-80 h-80 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <ScrollReveal animation="fade-up">
-          <div className="text-center mb-14 md:mb-16">
-            <AnimatedServiceHeading bold={t('reviewsBold')} italic={t('reviewsItalic')} />
-          </div>
-        </ScrollReveal>
+        <div className="text-center mb-12 md:mb-16">
+          <AnimatedServiceHeading bold={t('reviewsBold')} italic={t('reviewsItalic')} />
+        </div>
       </div>
       <ScrollReveal animation="fade-up" delay={150}>
         <GoogleReviewsSlider
@@ -872,20 +892,18 @@ async function ReviewsSection({ locale }: { locale: Locale }) {
 }
 
 // Servicii conexe — pull 3 other main services (excluding current) with the photo card pattern
-async function RelatedServicesSection({ currentSlug }: { currentSlug: string }) {
+async function RelatedServicesSection({ currentSlug, tone }: { currentSlug: string; tone: SectionTone }) {
   const t = await getTranslations()
   const all = getMainFallbackServices().filter((s) => s.slug !== currentSlug).slice(0, 3)
   if (all.length === 0) return null
 
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className={`py-24 md:py-32 relative overflow-hidden ${sectionBg(tone)}`}>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl translate-y-1/3 translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
-        <ScrollReveal animation="fade-up">
-          <div className="text-center mb-14 md:mb-16">
-            <AnimatedServiceHeading bold={t('services.detail.relatedBold')} italic={t('services.detail.relatedItalic')} />
-          </div>
-        </ScrollReveal>
+        <div className="text-center mb-14 md:mb-20">
+          <AnimatedServiceHeading bold={t('services.detail.relatedBold')} italic={t('services.detail.relatedItalic')} />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {all.map((service, index) => {
@@ -911,7 +929,7 @@ async function RelatedServicesSection({ currentSlug }: { currentSlug: string }) 
                     )}
                   </div>
                   <div className="p-6 md:p-7 flex flex-col flex-1">
-                    <h3 className="text-xl font-semibold text-[#2a2118] mb-2 leading-tight group-hover:text-[#8b7355] transition-colors">
+                    <h3 className="text-xl md:text-2xl font-semibold text-[#2a2118] mb-2 leading-tight">
                       {t(`services.fallback.${service.titleKey}`)}
                     </h3>
                     <p className="text-[#5a5048] text-sm leading-relaxed mb-5 flex-1">

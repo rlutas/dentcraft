@@ -1,3 +1,4 @@
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Link } from '@/i18n/navigation'
 import { getFAQSchema } from '@/lib/schema'
 
@@ -80,66 +81,79 @@ export function getServiceLocalSeoContent(slug: string, locale: string): LocalSe
   return content[slug]?.[locale] ?? null
 }
 
-export function ServiceLocalSeo({ slug, locale }: { slug: string; locale: string }) {
+const h2Class = 'text-2xl md:text-3xl font-bold text-[#2a2118] leading-tight tracking-tight mb-6 [text-wrap:balance]'
+const pClass = 'text-[#5a5048] text-base md:text-lg leading-relaxed mb-4'
+
+export function ServiceLocalSeo({ slug, locale, tone = 'white' }: { slug: string; locale: string; tone?: 'white' | 'cream' }) {
   const data = getServiceLocalSeoContent(slug, locale)
   if (!data) return null
 
   const faqSchema = getFAQSchema(data.faqs)
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className={`py-20 md:py-28 relative overflow-hidden ${tone === 'cream' ? 'bg-[#faf6f1]' : 'bg-white'}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="container">
+      <div className="container relative z-10">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] mb-6">{data.heading}</h2>
-          {data.intro.map((p) => (
-            <p key={p.slice(0, 40)} className="text-[#5a5248] leading-relaxed mb-4">
-              {p}
+          <ScrollReveal animation="fade-up">
+            <h2 className={h2Class}>{data.heading}</h2>
+            {data.intro.map((p) => (
+              <p key={p.slice(0, 40)} className={pClass}>
+                {p}
+              </p>
+            ))}
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-up" className="mt-14 pt-12 border-t border-[#e8e0d5]">
+            <h2 className={h2Class}>{data.priceHeading}</h2>
+            <div className="overflow-hidden rounded-2xl md:rounded-3xl border border-[#e8e0d5] bg-white shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] mb-5">
+              <table className="w-full text-left">
+                <tbody>
+                  {data.priceRows.map((row, i) => (
+                    <tr key={row.label} className={i % 2 === 0 ? 'bg-[#faf6f1]' : 'bg-white'}>
+                      <td className="px-5 py-3.5 md:px-6 md:py-4 text-[#2a2118]">{row.label}</td>
+                      <td className="px-5 py-3.5 md:px-6 md:py-4 text-right font-semibold text-[#2a2118] whitespace-nowrap">
+                        {row.price}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className={pClass}>{data.priceNote}</p>
+            <p className={pClass}>
+              Lista completă de tarife, pentru toate tratamentele, este pe pagina de{' '}
+              <Link href="/preturi" className="font-semibold text-[#8b7355] underline underline-offset-4">
+                prețuri stomatologie Satu Mare
+              </Link>
+              . Pentru o programare, folosește pagina de{' '}
+              <Link href="/contact" className="font-semibold text-[#8b7355] underline underline-offset-4">
+                contact
+              </Link>{' '}
+              sau sună la 0741 199 977.
             </p>
-          ))}
+          </ScrollReveal>
 
-          <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] mt-12 mb-6">{data.priceHeading}</h2>
-          <div className="overflow-hidden rounded-2xl border border-[#e8e0d5] mb-4">
-            <table className="w-full text-left">
-              <tbody>
-                {data.priceRows.map((row, i) => (
-                  <tr key={row.label} className={i % 2 === 0 ? 'bg-[#faf6f1]' : 'bg-white'}>
-                    <td className="px-5 py-3.5 text-[#2a2118]">{row.label}</td>
-                    <td className="px-5 py-3.5 text-right font-semibold text-[#2a2118] whitespace-nowrap">
-                      {row.price}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="text-[#5a5248] leading-relaxed mb-4">{data.priceNote}</p>
-          <p className="text-[#5a5248] leading-relaxed mb-4">
-            Lista completă de tarife, pentru toate tratamentele, este pe pagina de{' '}
-            <Link href="/preturi" className="font-semibold text-[#8b7355] underline underline-offset-4">
-              prețuri stomatologie Satu Mare
-            </Link>
-            . Pentru o programare, folosește pagina de{' '}
-            <Link href="/contact" className="font-semibold text-[#8b7355] underline underline-offset-4">
-              contact
-            </Link>{' '}
-            sau sună la 0741 199 977.
-          </p>
+          <ScrollReveal animation="fade-up" className="mt-14 pt-12 border-t border-[#e8e0d5]">
+            <h2 className={h2Class}>{data.processHeading}</h2>
+            {data.processParagraphs.map((p) => (
+              <p key={p.slice(0, 40)} className={pClass}>
+                {p}
+              </p>
+            ))}
+          </ScrollReveal>
 
-          <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] mt-12 mb-6">{data.processHeading}</h2>
-          {data.processParagraphs.map((p) => (
-            <p key={p.slice(0, 40)} className="text-[#5a5248] leading-relaxed mb-4">
-              {p}
-            </p>
-          ))}
-
-          <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] mt-12 mb-6">{data.faqHeading}</h2>
+          <ScrollReveal animation="fade-up" className="mt-14 pt-12 border-t border-[#e8e0d5]">
+            <h2 className={h2Class}>{data.faqHeading}</h2>
+          </ScrollReveal>
           <div className="space-y-6">
             {data.faqs.map((faq) => (
-              <div key={faq.question} className="border-b border-[#e8e0d5] pb-6">
-                <h3 className="text-lg font-semibold text-[#2a2118] mb-2">{faq.question}</h3>
-                <p className="text-[#5a5248] leading-relaxed">{faq.answer}</p>
-              </div>
+              <ScrollReveal key={faq.question} animation="fade-up">
+                <div className="border-b border-[#e8e0d5] pb-6">
+                  <h3 className="text-lg md:text-xl font-semibold text-[#2a2118] mb-2 leading-tight">{faq.question}</h3>
+                  <p className="text-[#5a5048] text-base md:text-lg leading-relaxed">{faq.answer}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

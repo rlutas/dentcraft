@@ -31,21 +31,36 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
 
+    // Respect prefers-reduced-motion: show content right away, no transition.
+    // Read in the effect (not during render) to keep SSR/hydration identical.
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setReduceMotion(true)
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
+        // Tall blocks can never reach `threshold` as a ratio — also accept
+        // "covers a quarter of the viewport" so they don't stay hidden.
+        const shown =
+          !!entry?.isIntersecting &&
+          (entry.intersectionRatio >= threshold ||
+            entry.intersectionRect.height >= window.innerHeight * 0.25)
+        if (shown) {
           setIsVisible(true)
           if (once) observer.unobserve(el)
-        } else if (!once) {
+        } else if (!once && !entry?.isIntersecting) {
           setIsVisible(false)
         }
       },
-      { threshold, rootMargin: '0px 0px -40px 0px' }
+      { threshold: [0, 0.02, 0.05, 0.1, threshold, 0.25, 0.5], rootMargin: '0px 0px -40px 0px' }
     )
 
     observer.observe(el)
@@ -73,7 +88,9 @@ export function ScrollReveal({
     transform: 'none',
   }
 
-  const animStyle = isVisible
+  const animStyle = reduceMotion
+    ? visibleStyle
+    : isVisible
     ? { ...baseStyle, ...visibleStyle }
     : { ...baseStyle, ...hiddenStyles[animation] }
 
