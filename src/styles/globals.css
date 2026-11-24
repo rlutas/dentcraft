@@ -1601,11 +1601,11 @@
 }
 
 .animate-marquee-left {
-  animation: marquee-left 120s linear infinite;
+  animation: marquee-left var(--marquee-duration, 400s) linear infinite;
 }
 
 .animate-marquee-right {
-  animation: marquee-right 120s linear infinite;
+  animation: marquee-right var(--marquee-duration, 400s) linear infinite;
 }
 
 .animate-paused {
@@ -1619,6 +1619,26 @@
   .marquee-row:hover .animate-marquee-left,
   .marquee-row:hover .animate-marquee-right {
     animation-play-state: paused;
+  }
+}
+
+.marquee-row:focus-within .animate-marquee-left,
+.marquee-row:focus-within .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: no auto-scroll; let the visitor swipe/scroll the row. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
+    transform: none !important;
+  }
+  .marquee-row {
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    padding-inline: 1rem;
   }
 }
 
