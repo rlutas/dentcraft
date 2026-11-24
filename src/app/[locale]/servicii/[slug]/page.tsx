@@ -4,6 +4,8 @@ import {
   CheckCircle,
   ChevronDown,
   Clock,
+  MapPin,
+  Phone,
   Star,
 } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
@@ -28,6 +30,20 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
 import googleReviewsData from '@/data/google-reviews.json'
 import { ServiceHero } from '@/components/sections/ServiceHero'
+import { getServiceLocalSeoContent } from '@/components/sections/ServiceLocalSeo'
+import { translateTeamRole } from '@/lib/translate-team-role'
+import {
+  CLINIC_ADDRESS,
+  CLINIC_PHONE_DISPLAY,
+  CLINIC_PHONE_TEL,
+  DEFAULT_SERVICE_DOCTOR,
+  getServiceContent,
+  getServiceContentLabels,
+  getServiceDoctorSlugs,
+  shouldHideLegacyBlocks,
+  showsContactCallout,
+  type ServiceContentLocale,
+} from '@/lib/service-content'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -352,7 +368,7 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
       <ServiceLocalSeo slug={service.slug} locale={locale} />
 
       {/* Doctor profile — E-E-A-T + internal linking */}
-      <DoctorProfileSection />
+      <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(service.slug)} />
 
       {/* Reviews — social proof from Google */}
       <ReviewsSection locale={locale} />
@@ -431,6 +447,15 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
 
   const serviceName = t(`services.fallback.${fallbackService.titleKey}`)
   const serviceDescription = t(`services.fallback.${fallbackService.descriptionKey}`)
+
+  // Per-service editorial copy (src/lib/service-content). Missing locale → page renders as before.
+  const serviceContent = getServiceContent(fallbackService.slug, locale)
+  const hideLegacyBlocks = shouldHideLegacyBlocks(fallbackService.slug, locale)
+  // One FAQPage per page: ServiceLocalSeo already emits its own where it has content.
+  const contentFaqSchema =
+    serviceContent && serviceContent.faqs.length > 0 && !getServiceLocalSeoContent(fallbackService.slug, locale)
+      ? getFAQSchema(serviceContent.faqs)
+      : null
   const serviceSchema = getServiceSchema({
     serviceName,
     serviceDescription,
@@ -452,6 +477,9 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {contentFaqSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contentFaqSchema) }} />
+      )}
       <ServiceHero
         breadcrumbs={[
           { label: t('breadcrumbs.home'), href: '/' },
@@ -473,8 +501,13 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
 
       <div id="service-content" />
 
+      {/* Unique per-service copy: answer paragraph + sections */}
+      {serviceContent && (
+        <ServiceContentBlock content={serviceContent} locale={locale} slug={fallbackService.slug} />
+      )}
+
       {/* Benefits Section — editorial */}
-      {fallbackService.benefits && fallbackService.benefits.length > 0 && (
+      {!hideLegacyBlocks && fallbackService.benefits && fallbackService.benefits.length > 0 && (
         <section className="py-24 md:py-32 bg-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-[#d4c4b0]/8 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
@@ -515,7 +548,7 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
       )}
 
       {/* Process Section — editorial timeline */}
-      {fallbackService.process && fallbackService.process.length > 0 && (
+      {!hideLegacyBlocks && fallbackService.process && fallbackService.process.length > 0 && (
         <section className="py-20 md:py-28 bg-[#faf6f1] relative overflow-hidden">
           <div className="absolute top-0 left-0 w-72 h-72 bg-[#d4c4b0]/12 rounded-full blur-3xl -translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
           <div className="container relative z-10">
@@ -550,8 +583,13 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
         </section>
       )}
 
+      {/* Per-service FAQ */}
+      {serviceContent && serviceContent.faqs.length > 0 && (
+        <ServiceContentFaqSection faqs={serviceContent.faqs} />
+      )}
+
       {/* Doctor profile — E-E-A-T + internal linking */}
-      <DoctorProfileSection />
+      <DoctorProfileSection doctorSlugs={getServiceDoctorSlugs(fallbackService.slug)} />
 
       {/* Reviews — social proof from Google */}
       <ReviewsSection locale={locale} />
@@ -568,10 +606,14 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
 
 // ===== Shared section components for /servicii/[slug] =====
 
-// Doctor profile — show Dr. Petric (coordinator) by default for trust + E-E-A-T
-async function DoctorProfileSection() {
-  const doctor = fallbackTeamMembers.find((m) => m.slug === 'razvan-petric')
-  if (!doctor) return null
+// Doctor profile — the doctor(s) mapped to this service (src/lib/service-content), Dr. Petric as fallback
+async function DoctorProfileSection({ doctorSlugs }: { doctorSlugs: string[] }) {
+  const found = doctorSlugs
+    .map((slug) => fallbackTeamMembers.find((m) => m.slug === slug))
+    .filter((m): m is (typeof fallbackTeamMembers)[number] => Boolean(m))
+  const fallbackDoctor = fallbackTeamMembers.find((m) => m.slug === DEFAULT_SERVICE_DOCTOR)
+  const doctors = found.length > 0 ? found : fallbackDoctor ? [fallbackDoctor] : []
+  if (doctors.length === 0) return null
   const t = await getTranslations()
 
   return (
@@ -585,8 +627,9 @@ async function DoctorProfileSection() {
           </div>
         </ScrollReveal>
 
-        <div className="max-w-5xl mx-auto">
-          <ScrollReveal animation="fade-up" delay={150}>
+        <div className="max-w-5xl mx-auto space-y-16 md:space-y-20">
+          {doctors.map((doctor) => (
+          <ScrollReveal key={doctor.slug} animation="fade-up" delay={150}>
             <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
               {/* Doctor photo */}
               <div className="relative">
@@ -608,7 +651,7 @@ async function DoctorProfileSection() {
               {/* Doctor info */}
               <div>
                 <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">
-                  {doctor.role}
+                  {translateTeamRole(doctor.role, t)}
                 </span>
                 <h3 className="text-3xl md:text-4xl font-bold text-[#2a2118] mb-4 leading-tight tracking-tight">
                   {doctor.name}
@@ -628,7 +671,7 @@ async function DoctorProfileSection() {
                 )}
 
                 {/* Quick stats */}
-                {doctor.stats && (
+                {doctor.stats && !doctor.hideStats && (
                   <div className="flex items-center gap-6 mb-7 pb-6 border-b border-[#e8e0d5]">
                     {doctor.stats.yearsExperience && (
                       <div>
@@ -674,6 +717,104 @@ async function DoctorProfileSection() {
               </div>
             </div>
           </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Unique per-service copy: answer paragraph, optional contact callout, H2 sections
+async function ServiceContentBlock({ content, locale, slug }: { content: ServiceContentLocale; locale: string; slug: string }) {
+  const labels = getServiceContentLabels(locale)
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="container">
+        <div className="max-w-3xl mx-auto">
+          <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355] mb-3">
+            {labels.introLabel}
+          </span>
+          <p className="text-lg md:text-xl text-[#2a2118] leading-relaxed">{content.intro}</p>
+          <p className="mt-3 text-xs text-[#8b7355]">
+            {labels.updatedLabel}: {labels.updatedValue}
+          </p>
+
+          {showsContactCallout(slug) && (
+            <div className="mt-8 rounded-3xl border border-[#d4c4b0] bg-[#faf6f1] p-6 md:p-8">
+              <p className="text-lg md:text-xl font-bold text-[#2a2118] mb-4">{labels.contactTitle}</p>
+              <a
+                href={`tel:${CLINIC_PHONE_TEL}`}
+                className="inline-flex items-center gap-3 px-6 py-3 bg-[#1a1a1a] text-white rounded-full text-base md:text-lg font-semibold hover:bg-[#8b7355] transition-colors"
+              >
+                <Phone className="w-5 h-5" strokeWidth={2} />
+                <span>{labels.contactCall} {CLINIC_PHONE_DISPLAY}</span>
+              </a>
+              <ul className="mt-5 space-y-2 text-[#5a5048]">
+                <li className="flex items-start gap-2">
+                  <Clock className="w-4 h-4 mt-1 text-[#8b7355] shrink-0" strokeWidth={2} />
+                  <span><strong>{labels.contactHoursLabel}:</strong> {labels.contactHours}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 mt-1 text-[#8b7355] shrink-0" strokeWidth={2} />
+                  <span><strong>{labels.contactAddressLabel}:</strong> {CLINIC_ADDRESS}</span>
+                </li>
+              </ul>
+              <p className="mt-3 text-sm text-[#5a5048]">{labels.contactLanguages}</p>
+            </div>
+          )}
+
+          <div className="mt-12 space-y-12">
+            {content.sections.map((section) => (
+              <div key={section.heading}>
+                <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] mb-4 leading-tight tracking-tight">
+                  {section.heading}
+                </h2>
+                <div className="space-y-4 text-base md:text-lg text-[#5a5048] leading-relaxed">
+                  {section.paragraphs.map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+                  {section.bullets && section.bullets.length > 0 && (
+                    <ul className="space-y-2.5">
+                      {section.bullets.map((bullet, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 mt-1 text-[#8b7355] shrink-0" strokeWidth={1.75} />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {section.after && <p>{section.after}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Per-service FAQ (plain-text answers), same look as the CMS FAQ block
+async function ServiceContentFaqSection({ faqs }: { faqs: ServiceContentLocale['faqs'] }) {
+  const t = await getTranslations()
+  return (
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <div className="container relative z-10">
+        <div className="text-center mb-14 md:mb-16">
+          <AnimatedServiceHeading bold={t('services.detail.faqBold')} italic={t('services.detail.faqItalic')} />
+        </div>
+        <div className="max-w-3xl mx-auto space-y-3">
+          {faqs.map((faq, idx) => (
+            <ScrollReveal key={faq.question} animation="fade-up" delay={idx * 60}>
+              <details className="group bg-white border border-[#e8e0d5] rounded-2xl px-5 py-5 md:px-6 md:py-5 hover:border-[#d4c4b0] transition-colors duration-300">
+                <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
+                  <h3 className="text-base md:text-lg font-semibold text-[#2a2118] pr-2 leading-tight group-hover:text-[#8b7355] transition-colors">{faq.question}</h3>
+                  <ChevronDown className="w-5 h-5 text-[#8b7355] transition-transform duration-300 group-open:rotate-180 shrink-0" strokeWidth={2} />
+                </summary>
+                <p className="mt-4 text-sm md:text-base text-[#5a5048] leading-relaxed">{faq.answer}</p>
+              </details>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
