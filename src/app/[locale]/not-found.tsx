@@ -27,7 +27,10 @@ export default async function NotFound() {
   const t = await getTranslations('notFound')
 
   return (
-    <section className="relative overflow-hidden bg-[#f5e8dd]">
+    // Pulled up under the FramedNav spacer (h-20 / md:h-24) so the 404 fills the viewport and
+    // the strip behind the pill is this section, not the spacer. Like the other inner-page
+    // heroes (see c28afe1) it starts #faf6f1 along the top edge and settles into #f5e8dd.
+    <section className="relative -mt-20 flex min-h-[100svh] items-center overflow-hidden bg-[#f5e8dd] bg-[linear-gradient(180deg,#faf6f1_0%,#f5e8dd_11rem)] md:-mt-24">
       {/* Gentle bob for the tooth; off for reduced-motion users */}
       <style>{`
         @keyframes nf-bob { 0%,100% { transform: translateY(0) rotate(0deg) } 50% { transform: translateY(-10px) rotate(-1.2deg) } }
@@ -36,17 +39,17 @@ export default async function NotFound() {
         .nf-four { position: absolute; bottom: 17%; font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 400; font-size: 44cqw; line-height: 0.74; color: transparent; -webkit-text-stroke: 2px #a88a68; mix-blend-mode: multiply; pointer-events: none; user-select: none; }
       `}</style>
 
-      <div className="container relative grid items-center gap-4 pb-16 pt-20 md:pt-32 lg:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-32">
+      <div className="container relative grid w-full items-center gap-4 pb-16 pt-24 md:pt-32 lg:max-w-[1440px] lg:grid-cols-12 lg:gap-8 lg:pb-16 lg:pt-28">
         {/* Visual: the tooth stands in for the zero between two outlined serif 4s */}
-        <div className="relative lg:order-2 lg:col-span-6">
-          <div className="relative mx-auto aspect-[1400/930] w-full max-w-[680px] [container-type:inline-size]">
+        <div className="relative lg:order-2 lg:col-span-7">
+          <div className="relative mx-auto aspect-[1400/930] w-full max-w-[680px] [container-type:inline-size] lg:max-w-[900px]">
             <div className="nf-tooth absolute inset-0">
               <Image
                 src="/images/404-tooth.webp"
                 alt={t('imageAlt')}
                 fill
                 priority
-                sizes="(min-width: 1024px) 680px, 100vw"
+                sizes="(min-width: 1024px) 900px, 100vw"
                 className="object-cover"
                 style={{
                   maskImage: 'radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 98%)',
@@ -60,8 +63,8 @@ export default async function NotFound() {
         </div>
 
         {/* Copy + actions */}
-        <div className="relative text-center lg:order-1 lg:col-span-6 lg:text-left">
-          <h1 className="text-4xl font-bold leading-[0.95] tracking-normal text-[#2a2118] md:text-5xl lg:text-[3.5rem]">
+        <div className="relative text-center lg:order-1 lg:col-span-5 lg:text-left">
+          <h1 className="text-[2.5rem] font-bold leading-[0.95] tracking-normal text-[#2a2118] md:text-6xl lg:text-[clamp(3rem,3.9vw,4.25rem)]">
             <span className="block">{t('titleBold')}</span>{' '}
             <span className="mt-1 block pb-1 font-serif italic font-medium tracking-wide text-[#7a6248]">
               {t('titleItalic')}
