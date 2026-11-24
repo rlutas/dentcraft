@@ -20,6 +20,10 @@ export const routing = defineRouting({
   // Users must explicitly navigate to /en or /hu for other languages
   localeDetection: false,
 
+  // No NEXT_LOCALE cookie: with detection off it is unused, and a Set-Cookie
+  // header on every page response prevents CDN caching.
+  localeCookie: false,
+
   // Localized pathnames for SEO
   pathnames,
 })

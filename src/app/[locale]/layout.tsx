@@ -21,6 +21,10 @@ import '@/styles/globals.css'
 // Optional maintenance mode — only active when NEXT_PUBLIC_MAINTENANCE_MODE=true is set in env
 const isMaintenanceMode = process.env['NEXT_PUBLIC_MAINTENANCE_MODE'] === 'true'
 
+// Pages are now statically rendered and cached on the CDN; refresh hourly so
+// Sanity (CMS) edits still appear without a redeploy.
+export const revalidate = 3600
+
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   display: 'swap',
@@ -53,8 +57,11 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   // Maintenance bypass: authorized users (Dr. Petric) can view the real site
   // by visiting /api/preview?key=<PREVIEW_ACCESS_TOKEN> which sets this cookie.
-  const cookieStore = await cookies()
-  const hasPreviewCookie = cookieStore.get('dentcraft_preview')?.value === '1'
+  // Only read cookies in maintenance mode: calling cookies() opts every page
+  // out of static rendering / CDN caching (Cache-Control: no-store).
+  const hasPreviewCookie = isMaintenanceMode
+    ? (await cookies()).get('dentcraft_preview')?.value === '1'
+    : false
   const showMaintenance = isMaintenanceMode && !hasPreviewCookie
 
   return (
