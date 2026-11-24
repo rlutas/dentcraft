@@ -73,7 +73,6 @@
     "heroLabel": "Dental treatments",
     "availableCount": "{count} services available",
     "subtitle": "We offer a complete range of dental services, from prevention to complex treatments.",
-    "metaTitle": "Dental Services in Satu Mare",
     "metaDescription": "All DENTCRAFT Satu Mare services: implants, orthodontics, veneers, whitening, children's dentistry, hygiene and emergencies. 6 dentists, one clinic.",
     "benefits": "Benefits",
     "process": "Treatment process",
@@ -1050,5 +1049,22 @@
     "label": "Quick booking",
     "book": "Book now",
     "call": "Call 0741 199 977"
+  },
+  "notFound": {
+    "metaTitle": "Page not found",
+    "metaTitle": "Page not found",
+    "titleBold": "Oops, this page",
+    "titleItalic": "went to the dentist.",
+    "description": "We searched for it with a map in hand, but this address leads nowhere. The link may have a typo, or the page has moved since.",
+    "imageAlt": "An illustrated tooth with an ice pack tied on its head looks puzzled next to an unfolded map",
+    "backHome": "Back to the homepage",
+    "book": "Book a consultation",
+    "linksLabel": "Or go straight to:",
+    "linkServices": "Services",
+    "linkPrices": "Prices",
+    "linkTeam": "Team",
+    "linkEmergency": "Dental emergencies",
+    "painQuestion": "Actually in pain?",
+    "painCall": "Call us: 0741 199 977"
   }
 }

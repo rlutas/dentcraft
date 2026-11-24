@@ -73,7 +73,6 @@
     "heroLabel": "Tratamente stomatologice",
     "availableCount": "{count} servicii disponibile",
     "subtitle": "Oferim o gama completa de servicii stomatologice, de la preventie pana la tratamente complexe.",
-    "metaTitle": "Servicii Stomatologice Satu Mare",
     "metaDescription": "Toate serviciile DENTCRAFT Satu Mare: implanturi, ortodonție, stomatologie pentru copii, detartraj, estetică, proteze și urgențe. 6 medici, o singură clinică.",
     "benefits": "Beneficii",
     "process": "Procesul de tratament",
@@ -1050,5 +1049,22 @@
     "label": "Programare rapidă",
     "book": "Programează",
     "call": "Sună la 0741 199 977"
+  },
+  "notFound": {
+    "metaTitle": "Pagina nu a fost găsită",
+    "metaTitle": "Pagina nu a fost găsită",
+    "titleBold": "Ups, pagina asta",
+    "titleItalic": "a plecat la dentist.",
+    "description": "Am căutat-o cu harta în mână, dar adresa asta nu duce nicăieri. Poate linkul are o greșeală sau pagina s-a mutat între timp.",
+    "imageAlt": "Un dinte ilustrat, cu o pungă cu gheață legată pe cap, se uită nedumerit lângă o hartă desfăcută",
+    "backHome": "Înapoi la prima pagină",
+    "book": "Programează o consultație",
+    "linksLabel": "Sau mergi direct la:",
+    "linkServices": "Servicii",
+    "linkPrices": "Prețuri",
+    "linkTeam": "Echipa",
+    "linkEmergency": "Urgențe dentare",
+    "painQuestion": "Te doare de-adevăratelea?",
+    "painCall": "Sună-ne: 0741 199 977"
   }
 }

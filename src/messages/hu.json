@@ -73,7 +73,6 @@
     "heroLabel": "Fogászati kezelések",
     "availableCount": "{count} elérhető szolgáltatás",
     "subtitle": "Teljes koru fogaszati szolgaltatasokat kinalunk, a megelozestol a komplex kezelesekig.",
-    "metaTitle": "Fogászati Szolgáltatások Szatmárnémeti",
     "metaDescription": "A DENTCRAFT szolgáltatásai Szatmárnémetiben: implantátum, fogszabályozás, héjak, fehérítés, gyermekfogászat, higiénia, sürgősség. 6 fogorvos.",
     "benefits": "Elonyok",
     "process": "Kezelesi folyamat",
@@ -1050,5 +1049,22 @@
     "label": "Gyors foglalás",
     "book": "Foglalás",
     "call": "Hívás: 0741 199 977"
+  },
+  "notFound": {
+    "metaTitle": "Az oldal nem található",
+    "metaTitle": "Az oldal nem található",
+    "titleBold": "Hoppá, ez az oldal",
+    "titleItalic": "elment a fogorvoshoz.",
+    "description": "Térképpel a kézben kerestük, de ez a cím nem vezet sehová. Lehet, hogy elírás van a linkben, vagy az oldal közben elköltözött.",
+    "imageAlt": "Egy rajzolt fog jégtömlővel a fején tanácstalanul néz egy kiterített térkép mellett",
+    "backHome": "Vissza a főoldalra",
+    "book": "Konzultáció foglalása",
+    "linksLabel": "Vagy menjen egyenesen ide:",
+    "linkServices": "Szolgáltatások",
+    "linkPrices": "Árak",
+    "linkTeam": "Csapat",
+    "linkEmergency": "Fogászati sürgősség",
+    "painQuestion": "Tényleg fáj?",
+    "painCall": "Hívjon minket: 0741 199 977"
   }
 }

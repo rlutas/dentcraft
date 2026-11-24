@@ -41,18 +41,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   // Check if this is a valid legal page slug
   if (!ALL_LEGAL_SLUGS.includes(pageSlug)) {
-    return {
-      title: 'Page Not Found',
-    }
+    const t = await getTranslations({ locale, namespace: 'notFound' })
+    return { title: t('metaTitle'), robots: { index: false, follow: true } }
   }
 
   // Get hardcoded legal content
   const page = getLegalPageContent(pageSlug, locale)
 
   if (!page) {
-    return {
-      title: 'Page Not Found',
-    }
+    const t = await getTranslations({ locale, namespace: 'notFound' })
+    return { title: t('metaTitle'), robots: { index: false, follow: true } }
   }
 
   const pageId = SLUG_TO_PAGE_ID[pageSlug]
