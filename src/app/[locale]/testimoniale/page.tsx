@@ -3,6 +3,9 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getLocale, getTranslations, setRequestLocale } from 'next-intl/server'
 import googleReviews from '@/data/google-reviews.json'
+import { GoogleGMark } from '@/components/features/GoogleReviewsSlider/ReviewCard'
+import { ReviewsGrid } from '@/components/features/GoogleReviewsSlider/ReviewsGrid'
+import { EditorialHeading } from '@/components/ui/EditorialHeading'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllServices, getAllTestimonials, type Locale } from '@/lib/sanity/queries'
@@ -116,7 +119,7 @@ async function TestimonialsPageContent({
       <section className="gradient-hero">
         <div className="container section">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="mb-6">{t('testimonials.title')}</h1>
+            <EditorialHeading as="h1" bold={t('testimonials.titleBold')} className="mb-6" italic={t('testimonials.titleItalic')} size="hero" />
             <p className="text-body-lg text-muted max-w-2xl mx-auto">
               {t('testimonials.subtitle')}
             </p>
@@ -173,7 +176,7 @@ async function TestimonialsPageContent({
       <section className="py-16 md:py-20 bg-[var(--color-accent)]">
         <div className="container">
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <h2>{t('cta.title')}</h2>
+            <EditorialHeading bold={t('cta.titleBold')} italic={t('cta.titleItalic')} size="compact" />
             <p className="mt-4 text-muted text-body-lg">
               {t('cta.subtitle')}
             </p>
@@ -317,7 +320,7 @@ async function PlaceholderTestimonialsPage({
         <section className="gradient-hero">
           <div className="container section">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="mb-6">{t('testimonials.title')}</h1>
+              <EditorialHeading as="h1" bold={t('testimonials.titleBold')} className="mb-6" italic={t('testimonials.titleItalic')} size="hero" />
               <p className="text-body-lg text-muted max-w-2xl mx-auto">
                 {t('testimonials.subtitle')}
               </p>
@@ -371,7 +374,7 @@ async function PlaceholderTestimonialsPage({
         <section className="py-16 md:py-20 bg-[var(--color-accent)]">
           <div className="container">
             <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-              <h2>{t('cta.title')}</h2>
+              <EditorialHeading bold={t('cta.titleBold')} italic={t('cta.titleItalic')} size="compact" />
               <p className="mt-4 text-muted text-body-lg">
                 {t('cta.subtitle')}
               </p>
@@ -400,7 +403,7 @@ async function PlaceholderTestimonialsPage({
       <section className="gradient-hero">
         <div className="container section">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="mb-6">{t('testimonials.title')}</h1>
+            <EditorialHeading as="h1" bold={t('testimonials.titleBold')} className="mb-6" italic={t('testimonials.titleItalic')} size="hero" />
             <p className="text-body-lg text-muted max-w-2xl mx-auto">
               {t('testimonials.subtitle')}
             </p>
@@ -408,22 +411,23 @@ async function PlaceholderTestimonialsPage({
         </div>
       </section>
 
-      {/* Google rating summary */}
+      {/* Google rating summary — same trust badge as the homepage reviews section */}
       <section className="bg-white border-b border-[var(--color-accent)]">
         <div className="container py-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-          <div className="flex items-center gap-2">
-            <span className="text-3xl font-semibold text-[var(--color-text)]">{googleReviews.rating.toFixed(1).replace('.', locale === 'en' ? '.' : ',')}</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-[#faf6f1] border border-[#e8e0d5] rounded-full px-6 py-3">
+            <GoogleGMark />
+            <span className="text-base font-bold text-[#2a2118]">{googleReviews.rating.toFixed(1).replace('.', locale === 'en' ? '.' : ',')}</span>
             <div className="flex gap-0.5" aria-hidden="true">
               {Array.from({ length: 5 }).map((_, index) => (
-                <Star key={index} className="w-5 h-5 text-yellow-400 fill-yellow-400" strokeWidth={1.5} />
+                <Star key={index} className="w-4 h-4 fill-amber-400 text-amber-400" />
               ))}
             </div>
+            <span className="text-sm text-[#6b5a40]">
+              {t('testimonials.googleSummary', { count: googleReviews.totalReviews })}
+            </span>
           </div>
-          <p className="text-body text-muted">
-            {t('testimonials.googleSummary', { count: googleReviews.totalReviews })}
-          </p>
           <a
-            className="btn btn-secondary"
+            className="inline-flex min-h-[48px] items-center rounded-full border border-[#e8e0d5] bg-white px-6 py-3 text-sm font-semibold text-[#2a2118] transition-colors duration-300 hover:border-[#8b7355] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2"
             href={googleReviews.googleMapsUrl}
             rel="noopener noreferrer"
             target="_blank"
@@ -433,41 +437,18 @@ async function PlaceholderTestimonialsPage({
         </div>
       </section>
 
-      {/* Testimonials Grid */}
+      {/* Reviews — homepage card design, 12 at a time */}
       <section className="section bg-white">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((review) => (
-              <figure key={review.id} className="card flex flex-col h-full">
-                <Quote className="w-10 h-10 text-[var(--color-primary)] opacity-20 mb-4" strokeWidth={1} />
-                <div className="flex gap-1 mb-4" aria-label={`${review.rating}/5`}>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star
-                      key={index}
-                      className={`w-5 h-5 ${
-                        index < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
-                      }`}
-                      strokeWidth={1.5}
-                    />
-                  ))}
-                </div>
-                <blockquote className="text-body text-[var(--color-text)] mb-4 flex-grow whitespace-pre-line">
-                  &ldquo;{review.text[locale] || review.text.ro}&rdquo;
-                </blockquote>
-                <figcaption className="flex items-center gap-3 mt-auto pt-4 border-t border-[var(--color-accent)]">
-                  <div className="w-12 h-12 rounded-full bg-[var(--color-accent-light)] flex items-center justify-center">
-                    <User className="w-6 h-6 text-[var(--color-primary)] opacity-50" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[var(--color-text)]">{review.author}</p>
-                    <p className="text-body-sm text-muted">
-                      {t('testimonials.googleReviewOn', { date: review.date[locale] })}
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <ReviewsGrid
+            locale={locale}
+            metaById={Object.fromEntries(
+              reviews.map((review) => [review.id, t('testimonials.googleReviewOn', { date: review.date[locale] })])
+            )}
+            reviews={reviews}
+            showMoreLabel={t('testimonials.showMore')}
+            shownTemplate={t.raw('testimonials.shownCount') as string}
+          />
           <p className="text-body-sm text-muted text-center mt-8">{t('testimonials.googleNote')}</p>
         </div>
       </section>
@@ -476,7 +457,7 @@ async function PlaceholderTestimonialsPage({
       <section className="py-16 md:py-20 bg-[var(--color-accent)]">
         <div className="container">
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <h2>{t('cta.title')}</h2>
+            <EditorialHeading bold={t('cta.titleBold')} italic={t('cta.titleItalic')} size="compact" />
             <p className="mt-4 text-muted text-body-lg">
               {t('cta.subtitle')}
             </p>

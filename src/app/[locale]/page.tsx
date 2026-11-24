@@ -17,6 +17,7 @@ import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import { DoctorVideosGrid } from '@/components/sections/DoctorVideosGrid'
 import { SuccessCasesSection } from '@/components/sections/SuccessCasesSection'
 import { GoogleReviewsSlider } from '@/components/features/GoogleReviewsSlider'
+import { GoogleGMark } from '@/components/features/GoogleReviewsSlider/ReviewCard'
 import googleReviews from '@/data/google-reviews.json'
 import type { Locale } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
@@ -196,6 +197,8 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
   // Check if we have Sanity data
   const hasSanityTestimonials = testimonials && testimonials.length > 0
   const hasSanityTeamMembers = teamMembers && teamMembers.length > 0
+  // Pull quote: a short, specific Google review (Diana Sabou), rendered verbatim from the JSON
+  const pullQuote = googleReviews.reviews.find((r) => r.author === 'Diana Sabou' && r.text.ro.trim().length > 0)
 
   // Sanity before/after cases nu mai sunt afișate momentan — păstrate pentru viitor
   void beforeAfterCases
@@ -776,6 +779,27 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               </p>
             </ScrollReveal>
           </div>
+
+          {/* Editorial pull quote — one real Google review, verbatim */}
+          {pullQuote && (
+            <ScrollReveal animation="fade-up" className="mb-14 md:mb-20">
+              <figure className="relative max-w-3xl mx-auto text-center">
+                <span aria-hidden="true" className="block font-serif italic text-[#d4c4b0] text-7xl md:text-8xl leading-none h-10 md:h-14 select-none">&ldquo;</span>
+                <blockquote lang="ro" className="font-serif italic text-[#2a2118] text-2xl md:text-4xl leading-[1.3] md:leading-[1.25] text-balance">
+                  <p>{pullQuote.text.ro}</p>
+                </blockquote>
+                <figcaption className="mt-8 flex items-center justify-center gap-3">
+                  <GoogleGMark className="w-6 h-6 flex-shrink-0" />
+                  <span className="text-left">
+                    <span className="block font-semibold text-[#2a2118] text-sm md:text-base">{pullQuote.author}</span>
+                    <span className="block text-xs md:text-sm text-[#5a5048]">
+                      {t('home.reviewsSection.pullQuoteSource', { date: pullQuote.date[locale] })}
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
+            </ScrollReveal>
+          )}
 
           {/* Google Reviews Slider - includes overview, carousel, and action buttons */}
           <GoogleReviewsSlider
