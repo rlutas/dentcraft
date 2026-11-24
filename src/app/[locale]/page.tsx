@@ -298,7 +298,7 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
                                 <service.Icon className="w-20 h-20 text-[#8b7355]/30 group-hover:text-[#8b7355]/50 transition-colors" strokeWidth={1.25} />
                               )}
                               <span className="absolute bottom-3 right-3 text-[10px] uppercase tracking-wider text-[#8b7355]/50 font-semibold">
-                                Foto in curs
+                                Foto în curs
                               </span>
                             </div>
                           )}
@@ -723,15 +723,15 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               {
                 videoId: 'ZQnkXaijIXs',
                 posterSrc: '/images/stomatolog-satu-mare.png',
-                posterAlt: 'Dr. Petric Razvan-Tudor',
-                doctorName: 'Dr. Petric Razvan-Tudor',
+                posterAlt: 'Dr. Petric Răzvan-Tudor',
+                doctorName: 'Dr. Petric Răzvan-Tudor',
                 doctorRole: t('home.doctorRoles.coordinator'),
                 delay: '0.1s',
               },
               {
                 videoId: 'KuxT2zKlrao',
                 posterSrc: '/images/team/dr-ghirasim-denisa-stefania.webp',
-                posterAlt: 'Dr. Ghirasim Denisa-Stefania',
+                posterAlt: 'Dr. Ghirasim Denisa-Ștefania',
                 doctorName: 'Dr. Ghirasim Denisa',
                 doctorRole: t('home.doctorRoles.dentistPediatric'),
                 delay: '0.2s',

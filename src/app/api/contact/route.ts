@@ -40,9 +40,9 @@ const MAX_TOTAL_FILE_SIZE = 4 * 1024 * 1024 // 4MB combined
 // Subject labels for email
 const subjectLabels: Record<string, string> = {
   appointment: 'Reprogramare',
-  consultation: 'Programare consultatie',
+  consultation: 'Programare consultație',
   other: 'Altele',
-  pricing: 'Informatii preturi',
+  pricing: 'Informații prețuri',
 }
 
 // Validate email format
@@ -290,7 +290,7 @@ export async function POST(request: Request) {
         name: data.name,
         subjectLabel,
       }),
-      subject: 'Am primit mesajul tau - DENTCRAFT',
+      subject: 'Am primit mesajul tău - DENTCRAFT',
       to: data.email,
     }).catch((err) => {
       console.error('Failed to send confirmation email:', err)

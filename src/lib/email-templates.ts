@@ -111,10 +111,10 @@ export function contactConfirmationEmail(data: {
   const content = `
     <div style="padding: 32px 24px;">
       <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Am primit mesajul tau referitor la <strong>${esc(data.subjectLabel.toLowerCase())}</strong> si te vom contacta in cel mai scurt timp posibil.
+        Am primit mesajul tau referitor la <strong>${esc(data.subjectLabel.toLowerCase())}</strong> și te vom contacta în cel mai scurt timp posibil.
       </p>
       <p style="margin: 0 0 24px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Daca ai trimis mesajul in afara programului, te vom contacta in prima zi lucratoare.
+        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Dacă ai trimis mesajul în afară programului, te vom contacta în prima zi lucrătoare.
       </p>
       <div style="text-align: center; padding: 20px 0;">
         <a href="tel:+40741199977" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;">
@@ -124,8 +124,8 @@ export function contactConfirmationEmail(data: {
     </div>
   `
   return emailWrapper(content, {
-    headerTitle: `Multumim, ${firstName}!`,
-    headerSubtitle: 'Am primit mesajul tau',
+    headerTitle: `Mulțumim, ${firstName}!`,
+    headerSubtitle: 'Am primit mesajul tău',
   })
 }
 
@@ -186,8 +186,8 @@ export function callbackAdminEmail(data: {
   `
   return emailWrapper(content, {
     footerNote: `Trimis prin formularul de programare &middot; ${new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' })}`,
-    headerTitle: 'Cerere noua de programare',
-    headerSubtitle: 'Un client doreste sa fie contactat telefonic',
+    headerTitle: 'Cerere nouă de programare',
+    headerSubtitle: 'Un client dorește să fie contactat telefonic',
   })
 }
 
@@ -199,10 +199,10 @@ export function callbackConfirmationEmail(data: {
   const content = `
     <div style="padding: 32px 24px;">
       <p style="margin: 0 0 16px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Am primit cererea ta de programare si te vom contacta telefonic in cel mai scurt timp posibil.
+        Am primit cererea ta de programare și te vom contacta telefonic în cel mai scurt timp posibil.
       </p>
       <p style="margin: 0 0 24px; color: #4a4a4a; font-size: 15px; line-height: 1.6;">
-        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Daca ai trimis cererea in afara programului, te vom contacta in prima zi lucratoare.
+        Programul nostru este <strong>Luni - Vineri, 10:00 - 18:00</strong>. Dacă ai trimis cererea în afară programului, te vom contacta în prima zi lucrătoare.
       </p>
       <div style="text-align: center; padding: 20px 0;">
         <a href="tel:+40741199977" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px;">
@@ -212,7 +212,7 @@ export function callbackConfirmationEmail(data: {
     </div>
   `
   return emailWrapper(content, {
-    headerTitle: `Multumim, ${firstName}!`,
+    headerTitle: `Mulțumim, ${firstName}!`,
     headerSubtitle: 'Am primit cererea ta de programare',
   })
 }
@@ -251,13 +251,13 @@ export function priceEstimateAdminEmail(data: {
   const lineItemsSection = hasLineItems
     ? `
       <h3 style="margin: 24px 0 8px; color: ${BRAND_COLOR}; font-size: 15px; font-weight: 600;">Detaliu tratamente</h3>
-      <p style="margin: 0 0 12px; color: #6b6b6b; font-size: 13px; line-height: 1.5;">Detaliile sunt cele afisate clientului in calculator.</p>
+      <p style="margin: 0 0 12px; color: #6b6b6b; font-size: 13px; line-height: 1.5;">Detaliile sunt cele afișate clientului în calculator.</p>
       <table style="border-collapse: collapse; width: 100%; border: 1px solid ${BORDER_COLOR};">
         <thead>
           <tr style="background: ${BG_COLOR};">
             <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: left; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Tratament</th>
             <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: center; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Cant.</th>
-            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: right; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Pret unitar</th>
+            <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: right; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Preț unitar</th>
             <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: right; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Total</th>
             <th style="padding: 10px 12px; border-bottom: 1px solid ${BORDER_COLOR}; text-align: center; font-size: 12px; font-weight: 600; color: ${BRAND_COLOR}; text-transform: uppercase; letter-spacing: 0.5px;">Tip</th>
           </tr>
@@ -312,7 +312,7 @@ export function priceEstimateAdminEmail(data: {
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;">${materialLabels[data.materialType] || data.materialType}</td>
         </tr>` : ''}
         <tr>
-          <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Pret estimat:</td>
+          <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 160px;">Preț estimat:</td>
           <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: ${BRAND_COLOR}; font-weight: 700; font-size: 16px;">${formatPrice(data.priceMin)} - ${formatPrice(data.priceMax)} RON</td>
         </tr>
       </table>
@@ -331,9 +331,9 @@ export function priceEstimateAdminEmail(data: {
     </div>
   `
   return emailWrapper(content, {
-    footerNote: `Trimis prin calculatorul de preturi &middot; ${new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' })}`,
-    headerTitle: 'Noua estimare de pret',
-    headerSubtitle: 'Un client a solicitat o estimare de pret prin calculator',
+    footerNote: `Trimis prin calculatorul de prețuri &middot; ${new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' })}`,
+    headerTitle: 'Nouă estimare de preț',
+    headerSubtitle: 'Un client a solicitat o estimare de preț prin calculator',
   })
 }
 
@@ -420,7 +420,7 @@ export function priceEstimateConfirmationEmail(data: {
   const reassurance = `
     <div style="padding: 0 24px 8px;">
       <p style="margin: 0 0 12px; color: #4a4a4a; font-size: 14px; line-height: 1.6;">
-        Bună, <strong>${firstName}</strong>! Aceasta e estimarea pe care ai văzut-o în calculator. Am salvat-o pentru tine ca să o poți consulta mai târziu sau să o discuți cu cineva apropiat.
+        Bună, <strong>${firstName}</strong>! Această e estimarea pe care ai văzut-o în calculator. Am salvat-o pentru tine ca să o poți consulta mai târziu sau să o discuți cu cineva apropiat.
       </p>
       <p style="margin: 0 0 12px; color: #4a4a4a; font-size: 14px; line-height: 1.6;">
         E o estimare orientativă — prețul final se stabilește la consultație, după evaluare clinică și radiologică.

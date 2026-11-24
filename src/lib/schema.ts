@@ -10,7 +10,7 @@ export function getOrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'MedicalBusiness', 'Dentist'],
     name: 'DENTCRAFT',
-    description: 'Clinica stomatologica moderna in Satu Mare',
+    description: 'Clinica stomatologică modernă în Satu Mare',
     url: SITE_URL,
     telephone: CONTACT.phone,
     email: CONTACT.email,

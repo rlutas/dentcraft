@@ -16,7 +16,7 @@ export const defaultLocale: Locale = 'ro'
  * Locale metadata for UI display
  */
 export const localeNames: Record<Locale, string> = {
-  ro: 'Romana',
+  ro: 'Română',
   en: 'English',
   hu: 'Magyar',
 }

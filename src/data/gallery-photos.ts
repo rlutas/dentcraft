@@ -8,12 +8,12 @@ export const galleryPhotos: GalleryPhoto[] = [
   // Clinic interior photos
   {
     src: '/images/clinic/clinic-1.webp',
-    alt: 'Receptie Clinica DENTCRAFT',
+    alt: 'Recepție Clinica DENTCRAFT',
     category: 'clinic',
   },
   {
     src: '/images/clinic/clinic-2.webp',
-    alt: 'Sala de tratament moderna',
+    alt: 'Sala de tratament modernă',
     category: 'equipment',
   },
   {
@@ -28,17 +28,17 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/clinic-5.webp',
-    alt: 'Spatiu de asteptare confortabil',
+    alt: 'Spațiu de așteptare confortabil',
     category: 'clinic',
   },
   {
     src: '/images/clinic/clinic-6.webp',
-    alt: 'Echipament dentar de ultima generatie',
+    alt: 'Echipament dentar de ultimă generație',
     category: 'equipment',
   },
   {
     src: '/images/clinic/clinic-7.webp',
-    alt: 'Sala de consultatie',
+    alt: 'Sala de consultație',
     category: 'clinic',
   },
   {
@@ -53,7 +53,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/clinic-10.webp',
-    alt: 'Cabinet de tratament cu unit dentar si microscop dentar',
+    alt: 'Cabinet de tratament cu unit dentar și microscop dentar',
     category: 'equipment',
   },
   {
@@ -63,7 +63,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/toys-with-toothbrush.webp',
-    alt: 'Zona copii - periuta de dinti',
+    alt: 'Zona copii - periuta de dinți',
     category: 'clinic',
   },
   // Add more photos from /public/images/gallery/ below:

@@ -29,7 +29,7 @@ export function WhatsAppButton({
   phoneNumber,
   message,
   ariaLabel,
-  tooltipText = 'Ai o intrebare? Scrie-ne!',
+  tooltipText = 'Ai o întrebare? Scrie-ne!',
 }: WhatsAppButtonProps) {
   const [isPastHero, setIsPastHero] = useState(false)
   const [isPulsing, setIsPulsing] = useState(false)
