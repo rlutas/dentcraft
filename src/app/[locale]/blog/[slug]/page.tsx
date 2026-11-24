@@ -10,6 +10,7 @@ import { routing } from '@/i18n/routing'
 import { urlFor } from '@/lib/sanity/image'
 import { getBlogPostBySlug, getBlogPosts, getBlogPostSlugs, type Locale } from '@/lib/sanity/queries'
 import { getArticleSchema, getBreadcrumbSchema, getFAQSchema } from '@/lib/schema'
+import { fallbackBlogPosts } from '@/lib/fallback-blog'
 import { generateDynamicPageMetadata, siteConfig, type Locale as SEOLocale } from '@/lib/seo'
 import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
 
@@ -127,6 +128,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const metadata = await generateDynamicPageMetadata(metadataOptions)
+
+  // Fallback posts are not translated into every locale: drop hreflang links to
+  // locales where this post does not exist (they would point at 404 pages).
+  const postLocales = (['ro', 'en', 'hu'] as const).filter((loc) =>
+    (fallbackBlogPosts[loc] ?? []).some((p) => p.slug === slug)
+  )
+  const languages = metadata.alternates?.languages as Record<string, string> | undefined
+  if (postLocales.length > 0 && languages) {
+    for (const lang of Object.keys(languages)) {
+      if (lang !== 'x-default' && !(postLocales as readonly string[]).includes(lang)) delete languages[lang]
+    }
+  }
 
   // Add article-specific OG tags
   const articleUrl = locale === 'ro' ? `${siteConfig.baseUrl}/blog/${post.slug}` : `${siteConfig.baseUrl}/${locale}/blog/${post.slug}`

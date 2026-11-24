@@ -1,36 +1,44 @@
-# DentCraft - Clinica Stomatologica Satu Mare
+# DENTCRAFT - Clinica Stomatologica Satu Mare
 
-> Clinica stomatologica moderna in Satu Mare, Romania. 6 specialisti,
-> peste 10 ani experienta. Implantologie, ortodontie, estetica dentara,
-> pedodontie. Comunicam in romana, engleza si maghiara.
+> Clinica stomatologica moderna in Satu Mare, Romania. Echipa de 6 medici
+> stomatologi, peste 10 ani de experienta. Implantologie, ortodontie,
+> estetica dentara, pedodontie, parodontologie, chirurgie dento-alveolara,
+> profilaxie. Comunicam in romana, engleza si maghiara.
 
 ## Servicii principale
-- [Implantologie](https://www.dentcraft.ro/servicii/implantologie): Implanturi dentare premium cu garantie
-- [Ortodontie](https://www.dentcraft.ro/servicii/ortodontie): Aparate dentare fixe si mobile
-- [Estetica Dentara](https://www.dentcraft.ro/servicii/estetica-dentara): Fatete dentare, albire profesionala, bonding dentar
+- [Implanturi dentare](https://www.dentcraft.ro/servicii/implanturi-dentare): Implanturi dentare, planificare digitala
+- [Ortodontie](https://www.dentcraft.ro/servicii/ortodontie): Aparate dentare fixe si alignere
+- [Estetica Dentara](https://www.dentcraft.ro/servicii/estetica-dentara): Fatete dentare, albire profesionala
 - [Pedodontie](https://www.dentcraft.ro/servicii/pedodontie): Stomatologie pentru copii
-- [Stomatologie Generala](https://www.dentcraft.ro/servicii/stomatologie-generala): Tratamente complete, obturatii, detartraj
+- [Stomatologie Generala](https://www.dentcraft.ro/servicii/stomatologie-generala): Tratamente, obturatii, detartraj
 - [Protetica Dentara](https://www.dentcraft.ro/servicii/protetica): Coroane, punti, proteze dentare
+- [Urgente dentare](https://www.dentcraft.ro/servicii/urgente-dentare): Durere dentara, abces, dinte fracturat
+- [Toate serviciile](https://www.dentcraft.ro/servicii)
 
 ## Echipa medicala
-- Dr. Razvan Petric - Medic Stomatolog Principal, 10+ ani experienta, specializat in implantologie si estetica dentara
-- Dr. Ghirasim Alina-Cristina - Medic Stomatolog, UMF Cluj-Napoca
-- Dr. Tincu Sebastian-Mihai - Medic Stomatolog, specializat in pedodontie
+- [Dr. Petric Razvan-Tudor](https://www.dentcraft.ro/echipa/razvan-petric) - Medic Stomatolog Coordonator: implantologie, estetica dentara, protetica
+- [Dr. Buterchi Codrut-Ciprian](https://www.dentcraft.ro/echipa/codrut-buterchi) - Medic Specialist Chirurgie Dento-Alveolara
+- [Dr. Tincu Giovana-Nicoleta](https://www.dentcraft.ro/echipa/giovana-tincu) - Medic Specialist Parodontolog
+- [Dr. Ghirasim Denisa-Stefania](https://www.dentcraft.ro/echipa/denisa-ghirasim) - Medic Stomatolog: stomatologie pediatrica, endodontie
+- [Dr. Cozma Stefana](https://www.dentcraft.ro/echipa/stefana-cozma) - Medic Stomatolog: ortodontie
+- [Dr. Fernea Remus](https://www.dentcraft.ro/echipa/remus-fernea) - Medic Stomatolog: profilaxie (Guided Biofilm Therapy), odontoterapie, protetica
+- [Toata echipa](https://www.dentcraft.ro/echipa)
+
+## Preturi
+Lista de preturi actualizata: https://www.dentcraft.ro/preturi
+Pretul final se stabileste la consultatie, inainte de inceperea tratamentului.
 
 ## Blog
-- [Cat costa un implant dentar in Satu Mare?](https://www.dentcraft.ro/blog/cat-costa-implant-dentar-satu-mare): Ghid complet de preturi 2026
+- [Cat costa un implant dentar in Satu Mare?](https://www.dentcraft.ro/blog/cat-costa-implant-dentar-satu-mare)
+- [Aparat dentar in Satu Mare](https://www.dentcraft.ro/blog/aparat-dentar-satu-mare)
+- [Stomatolog pentru copii in Satu Mare](https://www.dentcraft.ro/blog/stomatolog-copii-satu-mare)
 
 ## Contact
 - Adresa: Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare, Romania
 - Telefon: +40 741 199 977
 - Email: dentcraftsm@gmail.com
 - Program: Luni-Vineri 10:00-18:00
+- Programari: https://www.dentcraft.ro/contact
+- Intrebari frecvente: https://www.dentcraft.ro/faq
 - Limbi: Romana, Engleza, Maghiara
 - Website: https://www.dentcraft.ro
-
-## Preturi orientative (2026)
-- Implant dentar (fara coroana): 2.500-4.500 lei
-- Coroana pe implant (zirconiu): 1.500-2.500 lei
-- Coroana pe implant (metalo-ceramica): 1.000-1.800 lei
-- Augmentare osoasa: 800-2.500 lei
-- Consultatie + radiografie 3D: Gratuit

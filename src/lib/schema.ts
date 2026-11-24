@@ -46,7 +46,7 @@ export function getOrganizationSchema() {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
-      reviewCount: '40',
+      reviewCount: '79', // Google Business Profile count, 24 Nov 2026 — update periodically
       bestRating: '5',
       worstRating: '1',
     },

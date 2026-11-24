@@ -26,9 +26,7 @@ const staticPages = [
   { key: '/contact', changeFrequency: 'weekly' as const, priority: 0.8 },
   { key: '/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
   { key: '/galerie', changeFrequency: 'weekly' as const, priority: 0.8 },
-  { key: '/politica-confidentialitate', changeFrequency: 'yearly' as const, priority: 0.3 },
-  { key: '/politica-cookies', changeFrequency: 'yearly' as const, priority: 0.3 },
-  { key: '/termeni-conditii', changeFrequency: 'yearly' as const, priority: 0.3 },
+  // Legal pages are noindex, so they are left out of the sitemap
 ]
 
 // Build full URL from a localized path
@@ -134,10 +132,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (!blogDateBySlug.has(post.slug)) blogDateBySlug.set(post.slug, post.publishedAt)
   }
 
+  // Only list a blog post in the locales where it actually exists (fallback
+  // posts are not all translated — listing every locale produced 404 URLs).
+  // Sanity-only slugs are listed for the default locale.
+  const blogLocales = (slug: string): Locale[] => {
+    const inFallback = locales.filter((loc) => (fallbackBlogPosts[loc] ?? []).some((p) => p.slug === slug))
+    return inFallback.length > 0 ? inFallback : ['ro']
+  }
+
   // Build blog post page entries with actual publish dates
   const blogEntries: MetadataRoute.Sitemap = [...blogDateBySlug.entries()].flatMap(
     ([slug, publishedAt]) =>
-      locales.map((locale) => ({
+      blogLocales(slug).map((locale) => ({
         url: buildDynamicUrl('/blog', slug, locale),
         lastModified: publishedAt ? new Date(publishedAt) : now,
         changeFrequency: 'monthly' as const,

@@ -356,7 +356,7 @@ const contentEn: PortableTextBlock[] = [
   richListItem('en15', [{ text: 'Sinus lift (if needed):', bold: true }, { text: ' 1,500 \u2013 3,500 lei (approx. 300 \u2013 700 EUR)' }]),
   richListItem('en16', [{ text: 'Total complete implant (average):', bold: true }, { text: ' 4,000 \u2013 6,500 lei (approx. 800 \u2013 1,300 EUR)', bold: true }]),
 
-  block('en17', 'normal', 'The prices above are estimates. Your final price is determined after a consultation and 3D X-ray \u2014 which is free of charge at our clinic.'),
+  block('en17', 'normal', 'The prices above are estimates. We set your final price after the consultation, before any treatment begins.'),
 
   // Section: What's included
   block('en18', 'h2', 'What\'s Included in the Price of an Implant at DENTCRAFT?'),
@@ -366,7 +366,6 @@ const contentEn: PortableTextBlock[] = [
   block('en20', 'normal', 'With us, the implant price includes:'),
 
   listItem('en21', 'Initial consultation and treatment plan'),
-  listItem('en22', '3D X-ray (CBCT) \u2014 done in-house with our own scanner'),
   listItem('en23', 'The implant itself (titanium, biocompatible)'),
   listItem('en24', 'The abutment (the piece that connects the implant to the crown)'),
   listItem('en25', 'Post-operative check-ups throughout the entire healing period'),
@@ -396,7 +395,7 @@ const contentEn: PortableTextBlock[] = [
 
   block('en37', 'normal', 'The complete timeline looks something like this:'),
 
-  richListItem('en38', [{ text: 'Day 1:', bold: true }, { text: ' Consultation + 3D X-ray + treatment plan' }], 'number'),
+  richListItem('en38', [{ text: 'Day 1:', bold: true }, { text: ' Consultation + treatment plan' }], 'number'),
   richListItem('en39', [{ text: 'Surgery day:', bold: true }, { text: ' Implant placement (30-45 min)' }], 'number'),
   richListItem('en40', [{ text: 'Month 1-2:', bold: true }, { text: ' Periodic check-ups, gum healing' }], 'number'),
   richListItem('en41', [{ text: 'Month 3-6:', bold: true }, { text: ' Osseointegration (the implant integrates with the bone)' }], 'number'),
@@ -420,7 +419,7 @@ const contentEn: PortableTextBlock[] = [
 
   block('en50', 'normal', 'I\'m not going to tell you we\'re "the best" \u2014 that\'s for each patient to decide. But I can tell you what sets us apart:'),
 
-  block('en51', 'normal', 'We work as a team of specialists, with a combined experience of over 10 years and 1500+ patients treated. We have an intraoral scanner and 3D X-ray right in the office \u2014 we don\'t send you somewhere else. We communicate in Romanian, English, and Hungarian.'),
+  block('en51', 'normal', 'We work as a team of specialists, with a combined experience of over 10 years. We have an intraoral scanner in the office. We communicate in Romanian, English, and Hungarian.'),
 
   block('en52', 'normal', 'And most importantly: we tell you the final price before we start. Many patients from Satu Mare and the neighboring counties (Maramures, Bihor) choose to come to us precisely for this \u2014 transparency.'),
 
@@ -453,7 +452,7 @@ const contentEn: PortableTextBlock[] = [
   block('en63', 'normal', 'From age 18 and up, once the bone has finished growing. There\'s no upper age limit \u2014 I\'ve successfully placed implants in patients aged 75 and older. What matters is your overall health, not your age.'),
 
   // CTA
-  block('en64', 'normal', 'Have questions about dental implants or want a personalized evaluation? Call us at 0741 199 977 or book online. The consultation and 3D X-ray are free.'),
+  block('en64', 'normal', 'Have questions about dental implants or want a personalized evaluation? Call us at 0741 199 977 or book online.'),
 
   block('en65', 'normal', 'See you at DENTCRAFT, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.'),
 ]
@@ -501,7 +500,7 @@ const contentHu: PortableTextBlock[] = [
   richListItem('hu15', [{ text: 'Arc\u00fcreg\u00e9mel\u00e9s (ha sz\u00fcks\u00e9ges):', bold: true }, { text: ' 1.500 \u2013 3.500 lej' }]),
   richListItem('hu16', [{ text: 'Teljes implant\u00e1tum \u00f6sszesen (\u00e1tlag):', bold: true }, { text: ' 4.000 \u2013 6.500 lej', bold: true }]),
 
-  block('hu17', 'normal', 'A fenti \u00e1rak t\u00e1j\u00e9koztat\u00f3 jelleg\u0171ek. A v\u00e9gleges \u00e1rat a konzult\u00e1ci\u00f3 \u00e9s a 3D r\u00f6ntgen ut\u00e1n \u00e1llap\u00edtjuk meg \u2014 amely n\u00e1lunk ingyenes.'),
+  block('hu17', 'normal', 'A fenti \u00e1rak t\u00e1j\u00e9koztat\u00f3 jelleg\u0171ek. A v\u00e9gleges \u00e1rat a konzult\u00e1ci\u00f3 ut\u00e1n, a kezel\u00e9s megkezd\u00e9se el\u0151tt \u00e1llap\u00edtjuk meg.'),
 
   // Section: Mit tartalmaz
   block('hu18', 'h2', 'Mit tartalmaz egy implant\u00e1tum \u00e1ra a DENTCRAFT-n\u00e1l?'),
@@ -511,7 +510,6 @@ const contentHu: PortableTextBlock[] = [
   block('hu20', 'normal', 'N\u00e1lunk az implant\u00e1tum \u00e1ra tartalmazza:'),
 
   listItem('hu21', 'A kezdeti konzult\u00e1ci\u00f3t \u00e9s a kezel\u00e9si tervet'),
-  listItem('hu22', 'A 3D r\u00f6ntgent (CBCT) \u2014 saj\u00e1t szkenner\u00fcnkkel k\u00e9sz\u00edtj\u00fck a rendel\u0151ben'),
   listItem('hu23', 'Mag\u00e1t az implant\u00e1tumot (tit\u00e1n, biokompatibilis)'),
   listItem('hu24', 'A fel\u00e9p\u00edtm\u00e9nyt (az az elem, amely \u00f6sszek\u00f6ti az implant\u00e1tumot a koron\u00e1val)'),
   listItem('hu25', 'A m\u0171t\u00e9t ut\u00e1ni kontrollvizsg\u00e1latokat a teljes gy\u00f3gyul\u00e1si időszakra'),
@@ -541,7 +539,7 @@ const contentHu: PortableTextBlock[] = [
 
   block('hu37', 'normal', 'A teljes időbeoszt\u00e1s \u00edgy n\u00e9z ki:'),
 
-  richListItem('hu38', [{ text: '1. nap:', bold: true }, { text: ' Konzult\u00e1ci\u00f3 + 3D r\u00f6ntgen + kezel\u00e9si terv' }], 'number'),
+  richListItem('hu38', [{ text: '1. nap:', bold: true }, { text: ' Konzult\u00e1ci\u00f3 + kezel\u00e9si terv' }], 'number'),
   richListItem('hu39', [{ text: 'A m\u0171t\u00e9t napja:', bold: true }, { text: ' Az implant\u00e1tum be\u00fcltet\u00e9se (30-45 perc)' }], 'number'),
   richListItem('hu40', [{ text: '1-2. h\u00f3nap:', bold: true }, { text: ' Rendszeres kontrollvizsg\u00e1latok, az \u00edny gy\u00f3gyul\u00e1sa' }], 'number'),
   richListItem('hu41', [{ text: '3-6. h\u00f3nap:', bold: true }, { text: ' Osszeointegr\u00e1ci\u00f3 (az implant\u00e1tum be\u00e9p\u00fcl a csontba)' }], 'number'),
@@ -565,7 +563,7 @@ const contentHu: PortableTextBlock[] = [
 
   block('hu50', 'normal', 'Nem fogom azt mondani, hogy \u201emi vagyunk a legjobbak\u201d \u2014 ezt minden p\u00e1ciens maga d\u00f6nti el. De el tudom mondani, mi k\u00fcl\u00f6nb\u00f6ztet meg minket:'),
 
-  block('hu51', 'normal', '6 szak\u00e9orvosb\u00f3l \u00e1ll\u00f3 csapattal dolgozunk, \u00f6sszesen t\u00f6bb mint 10 \u00e9v tapasztalattal. Rendelőnkben intraor\u00e1lis szkennerrel \u00e9s 3D r\u00f6ntgennel rendelkez\u00fcnk \u2014 nem k\u00fcld\u00fcnk m\u00e1shov\u00e1. Kommunik\u00e1lunk rom\u00e1nul, angolul \u00e9s magyarul.'),
+  block('hu51', 'normal', 'Szak\u00e9orvosokb\u00f3l \u00e1ll\u00f3 csapattal dolgozunk, \u00f6sszesen t\u00f6bb mint 10 \u00e9v tapasztalattal. Rendel\u0151nkben intraor\u00e1lis szkenner\u00fcnk van. Kommunik\u00e1lunk rom\u00e1nul, angolul \u00e9s magyarul.'),
 
   block('hu52', 'normal', '\u00c9s ami a legfontosabb: a v\u00e9gleges \u00e1rat a kezel\u00e9s megkezd\u00e9se el\u0151tt k\u00f6z\u00f6lj\u00fck. Sok p\u00e1ciens Szatm\u00e1rn\u00e9metiből \u00e9s a szomsz\u00e9dos megy\u00e9kből (M\u00e1ramaros, Bihar) \u00e9ppen ez\u00e9rt v\u00e1laszt minket \u2014 az \u00e1tl\u00e1that\u00f3s\u00e1g\u00e9rt.'),
 
@@ -598,7 +596,7 @@ const contentHu: PortableTextBlock[] = [
   block('hu63', 'normal', '18 \u00e9ves kort\u00f3l, amikor a csont befejezte a n\u00f6veked\u00e9st. Fels\u0151 korhat\u00e1r nincs \u2014 sikeresen \u00fcltetett\u00fcnk be implant\u00e1tumot 75 \u00e9v feletti p\u00e1cienseknek is. Az \u00e1ltal\u00e1nos eg\u00e9szs\u00e9gi \u00e1llapot sz\u00e1m\u00edt, nem az \u00e9letkor \u00f6nmag\u00e1ban.'),
 
   // CTA
-  block('hu64', 'normal', 'K\u00e9rd\u00e9sed van a fogimplant\u00e1tumr\u00f3l, vagy szem\u00e9lyre szabott \u00e9rt\u00e9kel\u00e9st szeretn\u00e9l? H\u00edvj minket a 0741 199 977 sz\u00e1mon, vagy foglalj online időpontot. A konzult\u00e1ci\u00f3 \u00e9s a 3D r\u00f6ntgen ingyenes.'),
+  block('hu64', 'normal', 'K\u00e9rd\u00e9sed van a fogimplant\u00e1tumr\u00f3l, vagy szem\u00e9lyre szabott \u00e9rt\u00e9kel\u00e9st szeretn\u00e9l? H\u00edvj minket a 0741 199 977 sz\u00e1mon, vagy foglalj online id\u0151pontot.'),
 
   block('hu65', 'normal', 'V\u00e1runk a DENTCRAFT-ban, Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.'),
 ]
