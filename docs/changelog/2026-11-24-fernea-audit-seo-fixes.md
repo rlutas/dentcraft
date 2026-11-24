@@ -96,26 +96,51 @@ Jurnalul zilei. Rapoartele de audit sunt în `docs/seo/*-2026-11-24.md`: SITE-AU
 ## 7b. Design și ilustrații (`5d79df8`…`524e93f`, `179684b`, `904e702`)
 
 - /testimoniale folosește cardul de pe homepage; arată 12 recenzii, apoi butonul „Vezi mai multe recenzii” (+12).
-- Pe homepage apare un citat mare din recenzia Dianei Sabou, verbatim.
+- Citatul mare de pe homepage a fost scos (`a86fa2f`): ocupa prea mult loc.
 - Pe mobil există o bară fixă cu „Programează”, WhatsApp și telefon. Nu apare pe /contact. Bula de WhatsApp apare doar de la md în sus.
 - Header-ul se ascunde la scroll în jos și reapare la scroll în sus.
 - Paginile de servicii au numerotare 01/02/03; titlurile au stilul Bold / *serif italic* pe /testimoniale, /preturi, /faq și în footer.
 - În timeline-ul Dr. Fernea, intrările fără dată au un punct în loc de o etichetă goală.
 - Toate cele 14 servicii au ilustrații 3D noi (GPT Image 2.6 prin Higgsfield, ~28 de credite), salvate ca `public/images/services/<slug>-v2.webp`. Sufixul `-v2` ocolește cache-ul de imagini.
-- Rămâne de făcut: multe texte RO din `messages/ro.json` sunt fără diacritice.
 - Checklist pentru Dr. Petric: https://claude.ai/artifact/VbbT8jEcjce13WhXFu8tiP
 
-## 7c. În lucru
+## 7c. Runda 2 de design, diacritice, 404 (`616b565`, `4069e7b`, `9c1bcd6`, `9ed399c`)
 
-- TikTok: contul clinicii e `@dentcraftsm`. În GBP apare `@petricr13`, contul personal al doctorului; aștept decizia lui Raul dacă îl înlocuim.
+- **Diacritice peste tot:** `ro.json`, textele scrise direct în cod, blogul, paginile legale, emailurile și `treatments.ts` (ş/ţ cu sedilă înlocuite cu ș/ț). Textele recenziilor Google au rămas neatinse. Atenție: `treatments.ts` e generat din Stomawin; dacă rulezi din nou `scripts/generate-treatments.mjs`, corecturile se pierd.
+- **Cardurile de servicii de pe homepage:** au texte noi, de lungimi apropiate (RO 115–139 caractere, EN/HU 125–140), fiecare cu numele serviciului și Satu Mare. Am scos „la microscop” de la endodonție, pentru că nu e confirmat.
+- **/testimoniale refăcut:** antet crem, bloc mare cu nota 4,9, o recenzie evidențiată ca citat, apoi coloane de recenzii pe crem. Avatarele și stelele folosesc culorile clinicii (la fel pe homepage).
+- **Sliderul de recenzii** merge cu ~24 px/s (înainte ~85). Se oprește la hover, la focus și la atingere.
+- **Profilul medicului:** etichetele cu specializări au fost înlocuite de o listă simplă cu linii subțiri.
+- **Header pe paginile fără poză:** dunga ciudată din lateral a dispărut (fundal crem sub meniu, decorul de colț coborât).
+- **Imagini OG:**
+  - 14 imagini noi pentru servicii, făcute cu ilustrațiile, cu `scripts/generate-service-og.py`.
+  - Cardurile medicilor sunt refăcute fără halou în jurul pozei.
+  - Camelia Gherman are acum card.
+- **Pagina 404 nouă:** un dinte cu pungă de gheață pe post de „0” din 404, texte în RO/EN/HU, butoane spre homepage și contact, telefon pentru durere, `noindex`.
+- **TikTok:** contul clinicii e `@dentcraftsm`. În GBP apare `@petricr13`, contul personal al doctorului; aștept decizia lui Raul dacă îl înlocuim.
+
+## 7d. Audit Google Ads (24 nov)
+
+Raportul complet: https://claude.ai/artifact/QP8g4bvoAGMHYE5BWNetvC
+
+- **30 de zile:** 2.285 RON, 22 de conversii, ~104 RON/conversie. Brand și Ortodonție ies la ~23–25 RON/conversie; Prețuri la 251 RON/conversie.
+- **Propuneri, încă neaplicate (aștept aprobarea lui Raul):**
+  - negative pe potrivire de expresie pentru concurenți și alte orașe;
+  - locația pe „Prezență”;
+  - licitare -30% în afara programului;
+  - „dentist satu mare” mutat de pe potrivire amplă pe expresie;
+  - scos „invisalign”;
+  - grupuri noi: Copii, Detartraj, Urgențe, Chirurgie;
+  - apoi trecere pe „Maximizați conversiile”.
 
 ## 8. De făcut / decizii
 
 - [ ] **Prețuri de la Dr. Petric.** Apoi unificăm `/preturi`, `/servicii/implanturi-dentare` (`ServiceLocalSeo.tsx` încă arată 2.200–4.000 lei), blogul și calculatorul.
 - [x] **GBP:** Instagram era `instagram.com/house_of_dentistry`, o clinică străină. L-am schimbat în `instagram.com/dentcraft.sm` pe 24 nov; schimbarea așteaptă aprobarea Google (~10 minute).
 - **GBP:** link-ul de programare rămâne așa (Raul preferă popup-ul; apex-ul redirecționează oricum spre www).
-- [ ] **Google Ads:** final URL-ul trebuie mutat de pe `/servicii/implantologie` pe `/servicii/implanturi-dentare`. Redirect-ul îl ține funcțional până atunci.
+- [x] **Google Ads:** final URL-ul anunțului de implant e acum `/servicii/implanturi-dentare` (24 nov).
 - [ ] GBP, categoria „Radiologie dentară”: rămâne așa, la decizia lui Raul.
-- [ ] Performanță: `cookies()` din `src/app/[locale]/layout.tsx` face ca toate paginile să fie `no-store`. Separat, homepage-ul are 725 KB de HTML. De rezolvat după raportul CWV, într-un commit separat (atinge consent-ul).
+- [x] Performanță: `cookies()` din `src/app/[locale]/layout.tsx` face ca toate paginile să fie `no-store`. Separat, homepage-ul are 725 KB de HTML. De rezolvat după raportul CWV, într-un commit separat (atinge consent-ul).
 - [ ] Recenzii: program de cereri, cu ținta de 10+ pe lună.
-- [ ] Imagine OG pentru Camelia; `og:url` lipsește pe ~100 de pagini; H1 pe /preturi și /contact.
+- [x] Imagine OG pentru Camelia (`438d678`).
+- [ ] `og:url` lipsește pe ~100 de pagini; H1 pe /preturi și /contact.
