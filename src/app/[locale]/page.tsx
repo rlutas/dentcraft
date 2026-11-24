@@ -568,10 +568,10 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
             </ScrollReveal>
           </div>
 
-          {/* Team Grid - 2 rows of 3: doctors row 1, doctors + head nurse row 2 (md+) */}
+          {/* Team Grid - 3+3+1 on md+ (6 doctors, head nurse centered on row 3) */}
           <div className="grid grid-cols-2 md:grid-cols-6 gap-5 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
             {(() => {
-              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'giovana-tincu', 'denisa-ghirasim', 'stefana-cozma', 'camelia-gherman']
+              const TEAM_SLUGS = ['razvan-petric', 'codrut-buterchi', 'giovana-tincu', 'denisa-ghirasim', 'stefana-cozma', 'remus-fernea', 'camelia-gherman']
               const sanityMembers = hasSanityTeamMembers ? teamMembers : []
               // Per-slug fallback so new members (e.g. Dr. Cozma) show even before they exist in Sanity
               const filtered = TEAM_SLUGS
@@ -581,7 +581,8 @@ function HomePageContent({ services: _services, testimonials, teamMembers, befor
               return filtered.map((member, index) => (
                 <div
                   key={'_id' in member ? member._id : member.key}
-                  className="md:col-span-2"
+                  // Odd last card (row of 1) is centered: md (6 cols) -> start at col 3; mobile (2 cols) -> span both and center
+                  className={`md:col-span-2 ${filtered.length % 3 === 1 && index === filtered.length - 1 ? 'md:col-start-3' : ''} ${filtered.length % 2 === 1 && index === filtered.length - 1 ? 'col-span-2 w-1/2 justify-self-center md:w-auto md:justify-self-auto' : ''}`}
                 >
                 <ScrollReveal
                   animation="fade-up"

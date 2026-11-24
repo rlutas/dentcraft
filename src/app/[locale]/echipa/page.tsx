@@ -112,7 +112,11 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
         <div className="container relative z-10">
           <h2 className="sr-only">{t('team.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {members.map((member) => {
+            {members.map((member, index) => {
+              // Center a lone last card: lg (3 cols) when count % 3 === 1, md (2 cols) when count is odd
+              const isLast = index === members.length - 1
+              const centerLg = isLast && members.length % 3 === 1 ? 'lg:col-start-2' : ''
+              const centerMd = isLast && members.length % 2 === 1 ? 'md:col-span-2 md:w-[calc(50%-1rem)] md:justify-self-center lg:col-span-1 lg:w-auto lg:justify-self-auto' : ''
               const isSanity = '_id' in member
               const photoNode = isSanity && member.photo && typeof member.photo !== 'string' && member.photo.asset ? (
                 <Image
@@ -140,13 +144,13 @@ async function TeamPageContent({ teamMembers }: { teamMembers: SanityTeamMember[
                 <Link
                   key={isSanity ? member._id : member.key}
                   href={{ pathname: '/echipa/[slug]', params: { slug: member.slug } }}
-                  className="group relative block h-full overflow-hidden rounded-3xl
+                  className={`${centerLg} ${centerMd} group relative block h-full overflow-hidden rounded-3xl
                     bg-white border border-[#e8e0d5]
                     shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]
                     hover:border-[#d4c4b0]
                     hover:shadow-[0_20px_50px_-12px_rgba(139,115,85,0.18)]
                     hover:-translate-y-1.5
-                    transition-all duration-500 ease-out flex flex-col"
+                    transition-all duration-500 ease-out flex flex-col`}
                 >
                   {/* Photo */}
                   <div className="relative aspect-[4/5] bg-[#faf6f1] overflow-hidden">

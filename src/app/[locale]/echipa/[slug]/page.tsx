@@ -208,7 +208,8 @@ type TimelineEntry = {
   type: 'education' | 'certification'
   title: string
   subtitle: string
-  year: number
+  /** Optional — entries without a known year render a neutral dot instead of a year pill. */
+  year?: number | undefined
 }
 
 async function StatsRow({
@@ -361,6 +362,7 @@ async function AboutSection({
   bioContent,
   gallery,
   hideGalleryPlaceholder,
+  hideStats,
 }: {
   firstName: string
   isDoctor: boolean
@@ -370,6 +372,8 @@ async function AboutSection({
   bioContent: React.ReactNode
   gallery?: Array<{ src: string; alt: string }>
   hideGalleryPlaceholder?: boolean
+  /** Hide the stats row when we don't have verified numbers for this member. */
+  hideStats?: boolean
 }) {
   const t = await getTranslations('team.profile')
   return (
@@ -385,14 +389,16 @@ async function AboutSection({
           </ScrollReveal>
 
           {/* Stats row */}
-          <ScrollReveal animation="fade-up" delay={100}>
-            <StatsRow
-              isDoctor={isDoctor}
-              yearsExperience={yearsExperience}
-              specializationsCount={specializationsCount}
-              {...(patientsCount !== undefined ? { patientsCount } : {})}
-            />
-          </ScrollReveal>
+          {!hideStats && (
+            <ScrollReveal animation="fade-up" delay={100}>
+              <StatsRow
+                isDoctor={isDoctor}
+                yearsExperience={yearsExperience}
+                specializationsCount={specializationsCount}
+                {...(patientsCount !== undefined ? { patientsCount } : {})}
+              />
+            </ScrollReveal>
+          )}
 
           {/* Bio content */}
           <ScrollReveal animation="fade-up" delay={200}>
@@ -423,7 +429,8 @@ async function ProfessionalJourneySection({
   entries: TimelineEntry[]
 }) {
   // Sort by year, newest first
-  const sorted = [...entries].sort((a, b) => b.year - a.year)
+  // Sort by year, newest first; undated entries keep their order after dated ones
+  const sorted = [...entries].sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
 
   if (sorted.length === 0) return null
 
@@ -460,7 +467,16 @@ async function ProfessionalJourneySection({
                       {/* Year pill + timeline dot */}
                       <div className="flex flex-col items-center shrink-0 z-10">
                         <span className="rounded-full bg-[#faf6f1] border border-[#e8e0d5] px-3 py-1.5 md:px-4 md:py-2 text-sm font-bold text-[#8b7355] whitespace-nowrap shadow-sm">
-                          {entry.year}
+                          {entry.year !== undefined ? (
+                            entry.year
+                          ) : (
+                            <span className="relative inline-block" aria-hidden="true">
+                              <span className="invisible">0000</span>
+                              <span className="absolute inset-0 flex items-center justify-center">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#d4c4b0]" />
+                              </span>
+                            </span>
+                          )}
                         </span>
                       </div>
 
@@ -503,12 +519,13 @@ async function ProfessionalJourneySection({
 
 // Helper to compute years of experience from earliest education year
 function computeYearsExperience(
-  education: Array<{ year: number }> | null,
-  certifications: Array<{ year: number }> | null
+  education: Array<{ year?: number | undefined }> | null,
+  certifications: Array<{ year?: number | undefined }> | null
 ): number {
   const years: number[] = []
-  if (education) years.push(...education.map((e) => e.year))
-  if (certifications) years.push(...certifications.map((c) => c.year))
+  const known = (y: number | undefined): y is number => typeof y === 'number'
+  if (education) years.push(...education.map((e) => e.year).filter(known))
+  if (certifications) years.push(...certifications.map((c) => c.year).filter(known))
   if (years.length === 0) return 5
   const earliest = Math.min(...years)
   return Math.max(1, new Date().getFullYear() - earliest)
@@ -516,8 +533,8 @@ function computeYearsExperience(
 
 // Helper to build timeline entries from education + certifications
 function buildTimelineEntries(
-  education: Array<{ institution: string; degree: string; year: number }> | null,
-  certifications: Array<{ name: string; issuer: string; year: number }> | null
+  education: Array<{ institution: string; degree: string; year?: number | undefined }> | null,
+  certifications: Array<{ name: string; issuer: string; year?: number | undefined }> | null
 ): TimelineEntry[] {
   const entries: TimelineEntry[] = []
   if (education) {
@@ -799,6 +816,7 @@ async function FallbackTeamMemberPageContent({ member }: { member: FallbackTeamM
             {...(member.stats?.patientsCount !== undefined ? { patientsCount: member.stats.patientsCount } : {})}
             {...(member.gallery && member.gallery.length > 0 ? { gallery: member.gallery } : {})}
             {...(member.hideGalleryPlaceholder ? { hideGalleryPlaceholder: true } : {})}
+            {...(member.hideStats ? { hideStats: true } : {})}
           />
 
           {/* ───── PROFESSIONAL JOURNEY (Education + Certifications Timeline) ───── */}

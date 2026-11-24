@@ -10,12 +10,12 @@ export type FallbackTeamMember = {
   education: Array<{
     institution: string
     degree: string
-    year: number
+    year?: number
   }>
   certifications: Array<{
     name: string
     issuer: string
-    year: number
+    year?: number
   }>
   gallery?: Array<{
     src: string
@@ -24,6 +24,8 @@ export type FallbackTeamMember = {
   }>
   /** When true, the "gallery coming soon" placeholder is suppressed on the profile page. */
   hideGalleryPlaceholder?: boolean
+  /** When true, the stats row (years / patients / specializations) is hidden — use until real numbers are known. */
+  hideStats?: boolean
   stats?: {
     yearsExperience?: number
     patientsCount?: number
@@ -165,6 +167,26 @@ export const fallbackTeamMembers: FallbackTeamMember[] = [
       yearsExperience: 5,
       patientsCount: 700,
     },
+  },
+  {
+    key: 'doctor6',
+    name: 'Dr. Fernea Remus',
+    slug: 'remus-fernea',
+    role: 'Medic Stomatolog',
+    photo: '/images/team/dr-fernea-remus.webp',
+    specializations: ['Profilaxie si Igienizare (Guided Biofilm Therapy)', 'Odontoterapie', 'Protetica Dentara'],
+    bio: 'Dr. Remus Fernea este medic dentist, absolvent al Universitatii de Medicina si Farmacie "Victor Babes" din Timisoara. Este certificat in Guided Biofilm Therapy de Swiss Dental Academy (EMS, Elvetia), un protocol modern de profilaxie si control al biofilmului oral bazat pe tehnologiile AIRFLOW®, PERIOFLOW® si PIEZON®. Interesul sau pentru biofilm se reflecta si in activitatea de cercetare, unde a evaluat colonizarea cu biofilm pe proteze dentare conventionale si pe cele printate 3D. A urmat workshopuri de protetica si odontoterapie si participa constant la congrese de profil. Dr. Fernea combina rigoarea clinica cu o comunicare deschisa.',
+    education: [
+      { institution: 'Universitatea de Medicina si Farmacie "Victor Babes" Timisoara, Facultatea de Medicina Dentara', degree: 'Medic Dentist (Medicina Dentara)' },
+    ],
+    certifications: [
+      { name: 'Guided Biofilm Therapy', issuer: 'Swiss Dental Academy (EMS), Elvetia', year: 2026 },
+      { name: 'Workshopuri de Protetica Dentara', issuer: 'Formare continua' },
+      { name: 'Workshopuri de Odontoterapie (endodontie si tratamente restauratoare)', issuer: 'Formare continua' },
+      { name: 'Congrese si conferinte de medicina dentara', issuer: 'Formare continua' },
+    ],
+    hideGalleryPlaceholder: true,
+    hideStats: true,
   },
   {
     key: 'assistant1',
