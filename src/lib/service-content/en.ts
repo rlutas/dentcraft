@@ -180,7 +180,7 @@ export const serviceContentEn: ServiceContentLocaleFile = {
         {
           question: 'What is fissure sealing and when is it done?',
           answer:
-            'Fissure sealing means covering the grooves on the permanent molars with a flowable material that then hardens. It’s done without anaesthetic and usually without drilling the tooth. The 6-year molars are usually sealed shortly after they come through, and the 12-year molars the same way.',
+            'Fissure sealing means covering the grooves on the permanent molars with a flowable material that then hardens. It’s done without anaesthetic and usually without drilling the tooth. It’s usually done soon after the molars come through: around age 6–7 for the first permanent molars and around 12–13 for the second ones.',
         },
         {
           question: 'Can I stay with my child in the surgery?',
@@ -374,7 +374,7 @@ export const serviceContentEn: ServiceContentLocaleFile = {
     // ------------------------------------------------------------------
     'implanturi-dentare': {
       intro:
-        'A dental implant is a small titanium screw placed in the bone, which takes the place of the root of a lost tooth. A crown, a bridge or a full arch is then fitted on top. At DENTCRAFT in Satu Mare, implants are placed by Dr. Buterchi Codruț-Ciprian, a specialist in dento-alveolar surgery, and the restoration on the implant is made by Dr. Petric Răzvan-Tudor.',
+        'A dental implant is a small titanium screw placed in the bone to replace the root of a lost tooth. A crown, a bridge or a full arch goes on top. At DENTCRAFT in Satu Mare, implants are placed by Dr. Buterchi Codruț-Ciprian, a specialist in dento-alveolar surgery, and the restoration on the implant is made by Dr. Petric Răzvan-Tudor.',
       sections: [
         {
           heading: 'Who can have an implant',

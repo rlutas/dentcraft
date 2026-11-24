@@ -179,7 +179,7 @@ export const serviceContentHu: ServiceContentLocaleFile = {
         {
           question: 'Mi a barázdazárás, és mikor végzik?',
           answer:
-            'A barázdazárás során a maradó őrlőfogak barázdáit folyékony, majd megkeményedő anyaggal fedjük be. Érzéstelenítés nélkül és általában a fog fúrása nélkül történik. A 6 éves őrlőfogakat általában röviddel előtörésük után zárjuk le, a 12 éves őrlőfogakat ugyanígy.',
+            'A barázdazárás során a maradó őrlőfogak barázdáit folyékony, majd megkeményedő anyaggal fedjük be. Érzéstelenítés nélkül és általában a fog fúrása nélkül történik. Általában röviddel az őrlőfogak előtörése után végezzük: az első maradó őrlőfogaknál 6–7 éves kor körül, a második őrlőfogaknál 12–13 éves kor körül.',
         },
         {
           question: 'Ott lehetek a gyerek mellett a rendelőben?',

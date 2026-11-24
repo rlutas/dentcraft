@@ -47,6 +47,15 @@ const HIDE_LEGACY_BLOCKS = new Set([
   'urgente-dentare',
   'pedodontie',
   'chirurgie-oro-maxilo-faciala',
+  // Legacy benefits here carry unverified stats or contradict the new copy
+  // ("dureaza o viata intreaga", "rezista peste 15 ani", "in doar 2 vizite",
+  // "pana la 8 nuante", "1-2 ani", "microscop dentar").
+  'implanturi-dentare',
+  'coroane-dentare',
+  'fatete-dentare',
+  'albire-dentara',
+  'estetica-dentara',
+  'endodontie',
 ])
 
 // Pages that show the phone / hours / address callout at the top of the content.

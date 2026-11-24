@@ -179,7 +179,7 @@ export const serviceContentRo: ServiceContentLocaleFile = {
         {
           question: 'Ce este sigilarea și când se face?',
           answer:
-            'Sigilarea înseamnă acoperirea șanțurilor de pe molarii permanenți cu un material fluid, care se întărește. Se face fără anestezie și, de obicei, fără frezarea dintelui. Molarii de 6 ani se sigilează de obicei la scurt timp după ce erup, iar cei de 12 ani tot atunci.',
+            'Sigilarea înseamnă acoperirea șanțurilor de pe molarii permanenți cu un material fluid, care se întărește. Se face fără anestezie și, de obicei, fără frezarea dintelui. De obicei se face la scurt timp după ce erup molarii: pe la 6–7 ani pentru primii molari permanenți și pe la 12–13 ani pentru cei de-al doilea.',
         },
         {
           question: 'Pot sta lângă copil în cabinet?',
