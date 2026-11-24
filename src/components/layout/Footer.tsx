@@ -176,7 +176,7 @@ export function Footer() {
                   alt="DENTCRAFT"
                   width={480}
                   height={67}
-                  className="h-10 w-auto"
+                  className="h-7 w-auto md:h-10"
                 />
               </Link>
               <p className="text-base leading-relaxed text-white/50 max-w-sm">
