@@ -1,5 +1,6 @@
 import { CONTACT } from './constants/contact'
 import { siteConfig } from './seo'
+import googleReviews from '@/data/google-reviews.json'
 
 const SITE_URL = siteConfig.baseUrl // https://www.dentcraft.ro
 
@@ -45,8 +46,8 @@ export function getOrganizationSchema() {
     availableLanguage: ['Romanian', 'English', 'Hungarian'],
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '79', // Google Business Profile count, 24 Nov 2026 — update periodically
+      ratingValue: googleReviews.rating.toFixed(1),
+      reviewCount: String(googleReviews.totalReviews), // from src/data/google-reviews.json
       bestRating: '5',
       worstRating: '1',
     },

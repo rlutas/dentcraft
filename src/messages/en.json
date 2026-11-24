@@ -515,6 +515,10 @@
     "noTestimonials": "Testimonials will be available soon."
   },
   "testimonials": {
+    "googleSummary": "out of 5 · {count} Google reviews",
+    "googleCta": "See all reviews on Google",
+    "googleReviewOn": "Google review · {date}",
+    "googleNote": "Reviews taken from Google, unedited and in their original language.",
     "badge": "Testimonials",
     "title": "What our patients say",
     "subtitle": "Real reviews from satisfied patients.",

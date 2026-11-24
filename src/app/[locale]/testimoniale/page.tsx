@@ -1,7 +1,8 @@
 import { Phone, Play, Quote, Star, User } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { getLocale, getTranslations, setRequestLocale } from 'next-intl/server'
+import googleReviews from '@/data/google-reviews.json'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllServices, getAllTestimonials, type Locale } from '@/lib/sanity/queries'
@@ -294,7 +295,7 @@ async function TestimonialCard({ testimonial }: { testimonial: SanityTestimonial
   )
 }
 
-// Placeholder component when Sanity has no data
+// Shown when Sanity has no testimonials: real Google reviews
 async function PlaceholderTestimonialsPage({
   services,
   currentFilter,
@@ -304,29 +305,9 @@ async function PlaceholderTestimonialsPage({
 }) {
   const t = await getTranslations()
 
-  const placeholderTestimonials = [
-    {
-      key: 'testimonial1',
-      patientName: 'Maria P.',
-      rating: 5,
-      text: t('testimonials.quotes.1'),
-      treatment: t('testimonials.treatments.veneers'),
-    },
-    {
-      key: 'testimonial2',
-      patientName: 'Andrei M.',
-      rating: 5,
-      text: t('testimonials.quotes.2'),
-      treatment: t('testimonials.treatments.implant'),
-    },
-    {
-      key: 'testimonial3',
-      patientName: 'Elena S.',
-      rating: 5,
-      text: t('testimonials.quotes.3'),
-      treatment: t('testimonials.treatments.whitening'),
-    },
-  ]
+  const locale = (await getLocale()) as 'ro' | 'en' | 'hu'
+  // Real Google reviews (verbatim), synced in src/data/google-reviews.json
+  const reviews = googleReviews.reviews.filter((r) => r.text.ro.trim().length > 0)
 
   // If filtering and no results
   if (currentFilter) {
@@ -427,50 +408,67 @@ async function PlaceholderTestimonialsPage({
         </div>
       </section>
 
+      {/* Google rating summary */}
+      <section className="bg-white border-b border-[var(--color-accent)]">
+        <div className="container py-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+          <div className="flex items-center gap-2">
+            <span className="text-3xl font-semibold text-[var(--color-text)]">{googleReviews.rating.toFixed(1).replace('.', locale === 'en' ? '.' : ',')}</span>
+            <div className="flex gap-0.5" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} className="w-5 h-5 text-yellow-400 fill-yellow-400" strokeWidth={1.5} />
+              ))}
+            </div>
+          </div>
+          <p className="text-body text-muted">
+            {t('testimonials.googleSummary', { count: googleReviews.totalReviews })}
+          </p>
+          <a
+            className="btn btn-secondary"
+            href={googleReviews.googleMapsUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {t('testimonials.googleCta')}
+          </a>
+        </div>
+      </section>
+
       {/* Testimonials Grid */}
       <section className="section bg-white">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {placeholderTestimonials.map((testimonial) => (
-              <div key={testimonial.key} className="card flex flex-col h-full">
-                {/* Quote Icon */}
+            {reviews.map((review) => (
+              <figure key={review.id} className="card flex flex-col h-full">
                 <Quote className="w-10 h-10 text-[var(--color-primary)] opacity-20 mb-4" strokeWidth={1} />
-
-                {/* Rating Stars */}
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-1 mb-4" aria-label={`${review.rating}/5`}>
                   {Array.from({ length: 5 }).map((_, index) => (
                     <Star
                       key={index}
                       className={`w-5 h-5 ${
-                        index < testimonial.rating
-                          ? 'text-yellow-400 fill-yellow-400'
-                          : 'text-gray-300'
+                        index < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
                       }`}
                       strokeWidth={1.5}
                     />
                   ))}
                 </div>
-
-                {/* Testimonial Text */}
-                <p className="text-body text-[var(--color-text)] mb-4 flex-grow">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-
-                {/* Patient Info */}
-                <div className="flex items-center gap-3 mt-auto pt-4 border-t border-[var(--color-accent)]">
+                <blockquote className="text-body text-[var(--color-text)] mb-4 flex-grow whitespace-pre-line">
+                  &ldquo;{review.text[locale] || review.text.ro}&rdquo;
+                </blockquote>
+                <figcaption className="flex items-center gap-3 mt-auto pt-4 border-t border-[var(--color-accent)]">
                   <div className="w-12 h-12 rounded-full bg-[var(--color-accent-light)] flex items-center justify-center">
                     <User className="w-6 h-6 text-[var(--color-primary)] opacity-50" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <p className="font-semibold text-[var(--color-text)]">{testimonial.patientName}</p>
+                    <p className="font-semibold text-[var(--color-text)]">{review.author}</p>
                     <p className="text-body-sm text-muted">
-                      {testimonial.treatment}
+                      {t('testimonials.googleReviewOn', { date: review.date[locale] })}
                     </p>
                   </div>
-                </div>
-              </div>
+                </figcaption>
+              </figure>
             ))}
           </div>
+          <p className="text-body-sm text-muted text-center mt-8">{t('testimonials.googleNote')}</p>
         </div>
       </section>
 

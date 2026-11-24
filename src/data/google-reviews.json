@@ -1,18 +1,363 @@
 {
   "placeId": "ChIJL242SZwFOEcRGfUpTMfB-MU",
   "rating": 4.9,
-  "totalReviews": 50,
-  "lastUpdated": "2026-01-19",
+  "totalReviews": 79,
+  "lastUpdated": "2026-11-24",
   "googleMapsUrl": "https://www.google.com/maps/place/DENTCRAFT/@47.7897,22.8747,17z/data=!4m8!3m7!1s0x4738059c49336e2f:0xc5f8c1c74c29f519!8m2!3d47.7897!4d22.8747!9m1!1b1!16s%2Fg%2F11j20h5jw3",
   "reviews": [
     {
       "id": "1",
+      "author": "Alexandra Sava",
+      "rating": 5,
+      "date": {
+        "ro": "noiembrie 2026",
+        "en": "November 2026",
+        "hu": "2026. november"
+      },
+      "text": {
+        "ro": "O experiență absolut excepțională, de la început până la sfârșit! Totul a fost la superlativ: profesionalism, atenție la detalii, răbdare, amabilitate și o grijă deosebită față de pacient. Am simțit că sunt pe mâini bune, într-un mediu elegant, primitor și plin de încredere. Se vede pasiunea pentru ceea ce faceți și respectul față de fiecare pacient. Sunt extrem de mulțumită și recomand cu toată încrederea! Un cabinet stomatologic de nota 10, unde excelența nu este doar o promisiune, ci o realitate. Felicitări întregii echipe! 🤍✨",
+        "en": "O experiență absolut excepțională, de la început până la sfârșit! Totul a fost la superlativ: profesionalism, atenție la detalii, răbdare, amabilitate și o grijă deosebită față de pacient. Am simțit că sunt pe mâini bune, într-un mediu elegant, primitor și plin de încredere. Se vede pasiunea pentru ceea ce faceți și respectul față de fiecare pacient. Sunt extrem de mulțumită și recomand cu toată încrederea! Un cabinet stomatologic de nota 10, unde excelența nu este doar o promisiune, ci o realitate. Felicitări întregii echipe! 🤍✨",
+        "hu": "O experiență absolut excepțională, de la început până la sfârșit! Totul a fost la superlativ: profesionalism, atenție la detalii, răbdare, amabilitate și o grijă deosebită față de pacient. Am simțit că sunt pe mâini bune, într-un mediu elegant, primitor și plin de încredere. Se vede pasiunea pentru ceea ce faceți și respectul față de fiecare pacient. Sunt extrem de mulțumită și recomand cu toată încrederea! Un cabinet stomatologic de nota 10, unde excelența nu este doar o promisiune, ci o realitate. Felicitări întregii echipe! 🤍✨"
+      }
+    },
+    {
+      "id": "2",
+      "author": "Lucian Pop",
+      "rating": 5,
+      "date": {
+        "ro": "noiembrie 2026",
+        "en": "November 2026",
+        "hu": "2026. november"
+      },
+      "text": {
+        "ro": "Minunat, un loc deosebit.",
+        "en": "Minunat, un loc deosebit.",
+        "hu": "Minunat, un loc deosebit."
+      }
+    },
+    {
+      "id": "3",
+      "author": "Cosmin Antoce",
+      "rating": 5,
+      "date": {
+        "ro": "octombrie 2026",
+        "en": "October 2026",
+        "hu": "2026. október"
+      },
+      "text": {
+        "ro": "Am fost foarte mulțumit de serviciile oferite de clinica dumneavoastră. Aveți un mediu foarte primitor și profesionist cu oameni care își fac top treaba. Am fost super mulțumit de serviciile oferite de domnul doctor Petric Răzvan, foarte bun pe ceea ce face cât și colaboratorii acestuia.\nRecomand cu încredere👏👏👏",
+        "en": "Am fost foarte mulțumit de serviciile oferite de clinica dumneavoastră. Aveți un mediu foarte primitor și profesionist cu oameni care își fac top treaba. Am fost super mulțumit de serviciile oferite de domnul doctor Petric Răzvan, foarte bun pe ceea ce face cât și colaboratorii acestuia.\nRecomand cu încredere👏👏👏",
+        "hu": "Am fost foarte mulțumit de serviciile oferite de clinica dumneavoastră. Aveți un mediu foarte primitor și profesionist cu oameni care își fac top treaba. Am fost super mulțumit de serviciile oferite de domnul doctor Petric Răzvan, foarte bun pe ceea ce face cât și colaboratorii acestuia.\nRecomand cu încredere👏👏👏"
+      }
+    },
+    {
+      "id": "4",
+      "author": "Andrei Raul",
+      "rating": 5,
+      "date": {
+        "ro": "octombrie 2026",
+        "en": "October 2026",
+        "hu": "2026. október"
+      },
+      "text": {
+        "ro": "Foarte bun, recomand cu încredere, cei mai buni!",
+        "en": "Foarte bun, recomand cu încredere, cei mai buni!",
+        "hu": "Foarte bun, recomand cu încredere, cei mai buni!"
+      }
+    },
+    {
+      "id": "5",
+      "author": "Diana Sabou",
+      "rating": 5,
+      "date": {
+        "ro": "septembrie 2026",
+        "en": "September 2026",
+        "hu": "2026. szeptember"
+      },
+      "text": {
+        "ro": "Personal amabil. Experiența copilului meu de 6 ani a fost minunată. Mulțumim d-nei doctor Giovana Tincu.",
+        "en": "Personal amabil. Experiența copilului meu de 6 ani a fost minunată. Mulțumim d-nei doctor Giovana Tincu.",
+        "hu": "Personal amabil. Experiența copilului meu de 6 ani a fost minunată. Mulțumim d-nei doctor Giovana Tincu."
+      }
+    },
+    {
+      "id": "6",
+      "author": "Stefania Florea",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "Am avut o experiență excelentă la acest cabinet dentar! Întregul personal este foarte amabil, profesionist și atent la nevoile pacienților. Cabinetul este modern, curat și oferă o atmosferă plăcută, care te face să te simți în largul tău încă de la intrare. Medicul a explicat fiecare etapă a tratamentului cu răbdare și a lucrat cu multă grijă și profesionalism. Recomand cu încredere acest cabinet tuturor celor care își doresc servicii stomatologice de calitate.",
+        "en": "Am avut o experiență excelentă la acest cabinet dentar! Întregul personal este foarte amabil, profesionist și atent la nevoile pacienților. Cabinetul este modern, curat și oferă o atmosferă plăcută, care te face să te simți în largul tău încă de la intrare. Medicul a explicat fiecare etapă a tratamentului cu răbdare și a lucrat cu multă grijă și profesionalism. Recomand cu încredere acest cabinet tuturor celor care își doresc servicii stomatologice de calitate.",
+        "hu": "Am avut o experiență excelentă la acest cabinet dentar! Întregul personal este foarte amabil, profesionist și atent la nevoile pacienților. Cabinetul este modern, curat și oferă o atmosferă plăcută, care te face să te simți în largul tău încă de la intrare. Medicul a explicat fiecare etapă a tratamentului cu răbdare și a lucrat cu multă grijă și profesionalism. Recomand cu încredere acest cabinet tuturor celor care își doresc servicii stomatologice de calitate."
+      }
+    },
+    {
+      "id": "7",
+      "author": "Mariana Pit",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "Am abut parte de servicii absolut ireprosabile cand am vizitat clinica dentcraft din Satu Mare. Am beneficiat de serviciile Razvan Petric medic stomatolog coordinator in data de 6/8/26 si nu am decat cuvinte de lauda. Interventia a constatat in implantarea a 3 implanturi plus aditie de os si grefa. Totul a decurs fara stress si durere, domnul doctor si echipa au dat dovada de maxim profesionslism si dedicare catre pacient utilizand servicii si aparatura Moderna si de cea mai inalta calitate. Recomand cu incredere serviciile Dentcraft , eu cu siguranta voi reveni!",
+        "en": "Am abut parte de servicii absolut ireprosabile cand am vizitat clinica dentcraft din Satu Mare. Am beneficiat de serviciile Razvan Petric medic stomatolog coordinator in data de 6/8/26 si nu am decat cuvinte de lauda. Interventia a constatat in implantarea a 3 implanturi plus aditie de os si grefa. Totul a decurs fara stress si durere, domnul doctor si echipa au dat dovada de maxim profesionslism si dedicare catre pacient utilizand servicii si aparatura Moderna si de cea mai inalta calitate. Recomand cu incredere serviciile Dentcraft , eu cu siguranta voi reveni!",
+        "hu": "Am abut parte de servicii absolut ireprosabile cand am vizitat clinica dentcraft din Satu Mare. Am beneficiat de serviciile Razvan Petric medic stomatolog coordinator in data de 6/8/26 si nu am decat cuvinte de lauda. Interventia a constatat in implantarea a 3 implanturi plus aditie de os si grefa. Totul a decurs fara stress si durere, domnul doctor si echipa au dat dovada de maxim profesionslism si dedicare catre pacient utilizand servicii si aparatura Moderna si de cea mai inalta calitate. Recomand cu incredere serviciile Dentcraft , eu cu siguranta voi reveni!"
+      }
+    },
+    {
+      "id": "8",
+      "author": "Steinauer Diana",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "Dr. Petric Rãzvan, este un medic deosebit de empatic, asta este doar prima impresie, cât despre profesionalism, net superior tuturor medicilor dentiști pe care eu îi cunosc, atât din Austria cât și din România, la dânsul aș veni zilnic pentru operație, sau orice intervenție mai sofisticată, fără stres sau alte dubii. Cu alte cuvinte îl recomand cu cea mai mare încredere, îi mulțumesc și pe această cale pentru intervenția dificilă care a durat o oră, în care m am simțit foarte comfortabil, sunt deosebit de mulțumită!",
+        "en": "Dr. Petric Rãzvan, este un medic deosebit de empatic, asta este doar prima impresie, cât despre profesionalism, net superior tuturor medicilor dentiști pe care eu îi cunosc, atât din Austria cât și din România, la dânsul aș veni zilnic pentru operație, sau orice intervenție mai sofisticată, fără stres sau alte dubii. Cu alte cuvinte îl recomand cu cea mai mare încredere, îi mulțumesc și pe această cale pentru intervenția dificilă care a durat o oră, în care m am simțit foarte comfortabil, sunt deosebit de mulțumită!",
+        "hu": "Dr. Petric Rãzvan, este un medic deosebit de empatic, asta este doar prima impresie, cât despre profesionalism, net superior tuturor medicilor dentiști pe care eu îi cunosc, atât din Austria cât și din România, la dânsul aș veni zilnic pentru operație, sau orice intervenție mai sofisticată, fără stres sau alte dubii. Cu alte cuvinte îl recomand cu cea mai mare încredere, îi mulțumesc și pe această cale pentru intervenția dificilă care a durat o oră, în care m am simțit foarte comfortabil, sunt deosebit de mulțumită!"
+      }
+    },
+    {
+      "id": "9",
+      "author": "Stefania Maier",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "O clinică în care chiar te simți în siguranță. Personalul este extrem de prietenos, iar medicii sunt dedicați și atenți la fiecare detaliu. Recomand din suflet!❤️",
+        "en": "O clinică în care chiar te simți în siguranță. Personalul este extrem de prietenos, iar medicii sunt dedicați și atenți la fiecare detaliu. Recomand din suflet!❤️",
+        "hu": "O clinică în care chiar te simți în siguranță. Personalul este extrem de prietenos, iar medicii sunt dedicați și atenți la fiecare detaliu. Recomand din suflet!❤️"
+      }
+    },
+    {
+      "id": "10",
+      "author": "Stefania Puskas",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "Am avut parte de o experiență plăcuta în cadrul clinicii, peste așteptări.\nPersonal amabil si atent la nevoile pacientului.\nRecomand cu drag!",
+        "en": "Am avut parte de o experiență plăcuta în cadrul clinicii, peste așteptări.\nPersonal amabil si atent la nevoile pacientului.\nRecomand cu drag!",
+        "hu": "Am avut parte de o experiență plăcuta în cadrul clinicii, peste așteptări.\nPersonal amabil si atent la nevoile pacientului.\nRecomand cu drag!"
+      }
+    },
+    {
+      "id": "11",
+      "author": "Antonia Bontesc",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "O echipă de nota 10! Profesionalism, răbdare și grija față de pacienți. Recomand cu mare drag! ❤️",
+        "en": "O echipă de nota 10! Profesionalism, răbdare și grija față de pacienți. Recomand cu mare drag! ❤️",
+        "hu": "O echipă de nota 10! Profesionalism, răbdare și grija față de pacienți. Recomand cu mare drag! ❤️"
+      }
+    },
+    {
+      "id": "12",
+      "author": "RoBestClips",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "o clinica moderna, cu personal amabil si medici dedicati. M-am simtit foarte bine pe tot parcursul vizitei.",
+        "en": "o clinica moderna, cu personal amabil si medici dedicati. M-am simtit foarte bine pe tot parcursul vizitei.",
+        "hu": "o clinica moderna, cu personal amabil si medici dedicati. M-am simtit foarte bine pe tot parcursul vizitei."
+      }
+    },
+    {
+      "id": "13",
+      "author": "József Attila Siket",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "Foarte profesioniști, totul modern, iar doctorii si asistentele sunt foarte atenți si amabili.",
+        "en": "Foarte profesioniști, totul modern, iar doctorii si asistentele sunt foarte atenți si amabili.",
+        "hu": "Foarte profesioniști, totul modern, iar doctorii si asistentele sunt foarte atenți si amabili."
+      }
+    },
+    {
+      "id": "14",
+      "author": "Eric Puskas",
+      "rating": 5,
+      "date": {
+        "ro": "august 2026",
+        "en": "August 2026",
+        "hu": "2026. augusztus"
+      },
+      "text": {
+        "ro": "Very professional, funny. No pain, modern treatments. 100% Recommend",
+        "en": "Very professional, funny. No pain, modern treatments. 100% Recommend",
+        "hu": "Very professional, funny. No pain, modern treatments. 100% Recommend"
+      }
+    },
+    {
+      "id": "15",
+      "author": "marti budai",
+      "rating": 5,
+      "date": {
+        "ro": "iulie 2026",
+        "en": "July 2026",
+        "hu": "2026. július"
+      },
+      "text": {
+        "ro": "Precizie incredibilă, amabilitate și răbdare – acestea caracterizează această clinică. Am început să venim aici cu băiețelul nostru de 4 ani pentru tratament, deoarece, din păcate, patru dintre dințișorii lui au început să se carieze. Ne era foarte teamă, pentru că nu îi plac deloc medicii, însă la această clinică am avut parte de o adevărată minune.\n\nÎnainte de tratament, doamna doctor se joacă cu el și reușește astfel să îi înlăture teama, iar apoi lucrează cu multă blândețe, zâmbind și transformând totul într-o joacă. Și asistenta este extraordinar de amabilă și săritoare, la fel ca întregul personal al clinicii.\n\nSuntem extrem de recunoscători echipei Dentcraft Clinic pentru profesionalismul și calitatea serviciilor oferite, dar mai ales pentru faptul că au transformat vizita la stomatolog într-o experiență pozitivă pentru băiețelul nostru. Îi recomandăm din toată inima tuturor, în special familiilor cu copii mici! ⭐⭐⭐⭐⭐",
+        "en": "Precizie incredibilă, amabilitate și răbdare – acestea caracterizează această clinică. Am început să venim aici cu băiețelul nostru de 4 ani pentru tratament, deoarece, din păcate, patru dintre dințișorii lui au început să se carieze. Ne era foarte teamă, pentru că nu îi plac deloc medicii, însă la această clinică am avut parte de o adevărată minune.\n\nÎnainte de tratament, doamna doctor se joacă cu el și reușește astfel să îi înlăture teama, iar apoi lucrează cu multă blândețe, zâmbind și transformând totul într-o joacă. Și asistenta este extraordinar de amabilă și săritoare, la fel ca întregul personal al clinicii.\n\nSuntem extrem de recunoscători echipei Dentcraft Clinic pentru profesionalismul și calitatea serviciilor oferite, dar mai ales pentru faptul că au transformat vizita la stomatolog într-o experiență pozitivă pentru băiețelul nostru. Îi recomandăm din toată inima tuturor, în special familiilor cu copii mici! ⭐⭐⭐⭐⭐",
+        "hu": "Precizie incredibilă, amabilitate și răbdare – acestea caracterizează această clinică. Am început să venim aici cu băiețelul nostru de 4 ani pentru tratament, deoarece, din păcate, patru dintre dințișorii lui au început să se carieze. Ne era foarte teamă, pentru că nu îi plac deloc medicii, însă la această clinică am avut parte de o adevărată minune.\n\nÎnainte de tratament, doamna doctor se joacă cu el și reușește astfel să îi înlăture teama, iar apoi lucrează cu multă blândețe, zâmbind și transformând totul într-o joacă. Și asistenta este extraordinar de amabilă și săritoare, la fel ca întregul personal al clinicii.\n\nSuntem extrem de recunoscători echipei Dentcraft Clinic pentru profesionalismul și calitatea serviciilor oferite, dar mai ales pentru faptul că au transformat vizita la stomatolog într-o experiență pozitivă pentru băiețelul nostru. Îi recomandăm din toată inima tuturor, în special familiilor cu copii mici! ⭐⭐⭐⭐⭐"
+      }
+    },
+    {
+      "id": "16",
+      "author": "Calin Popilian",
+      "rating": 5,
+      "date": {
+        "ro": "iulie 2026",
+        "en": "July 2026",
+        "hu": "2026. július"
+      },
+      "text": {
+        "ro": "Recomand cu încredere! Treabă excelentă!",
+        "en": "Recomand cu încredere! Treabă excelentă!",
+        "hu": "Recomand cu încredere! Treabă excelentă!"
+      }
+    },
+    {
+      "id": "17",
+      "author": "Patrick Rugan Vass",
+      "rating": 5,
+      "date": {
+        "ro": "iunie 2026",
+        "en": "June 2026",
+        "hu": "2026. június"
+      },
+      "text": {
+        "ro": "Am venit la această clinică cu destulă anxietate, dar echipa m-a pus imediat în largul meu. Doctorul a explicat pas cu pas ce urmează să facă, ceea ce m-a ajutat enorm. Tratamentul a fost rapid, fără dureri, iar rezultatul final arată excelent. Cabinetul este curat, modern, iar personalul de la recepție este foarte amabil și organizat. Recomand cu toată încrederea!",
+        "en": "Am venit la această clinică cu destulă anxietate, dar echipa m-a pus imediat în largul meu. Doctorul a explicat pas cu pas ce urmează să facă, ceea ce m-a ajutat enorm. Tratamentul a fost rapid, fără dureri, iar rezultatul final arată excelent. Cabinetul este curat, modern, iar personalul de la recepție este foarte amabil și organizat. Recomand cu toată încrederea!",
+        "hu": "Am venit la această clinică cu destulă anxietate, dar echipa m-a pus imediat în largul meu. Doctorul a explicat pas cu pas ce urmează să facă, ceea ce m-a ajutat enorm. Tratamentul a fost rapid, fără dureri, iar rezultatul final arată excelent. Cabinetul este curat, modern, iar personalul de la recepție este foarte amabil și organizat. Recomand cu toată încrederea!"
+      }
+    },
+    {
+      "id": "18",
+      "author": "Maria Nethut",
+      "rating": 5,
+      "date": {
+        "ro": "iunie 2026",
+        "en": "June 2026",
+        "hu": "2026. június"
+      },
+      "text": {
+        "ro": "Sunt foarte mulțumită de serviciile oferite de această clinică stomatologică. Personalul este amabil, profesionist și atent la nevoile pacienților. Am fost tratată cu răbdare și mi-au fost explicate toate procedurile în detaliu.",
+        "en": "Sunt foarte mulțumită de serviciile oferite de această clinică stomatologică. Personalul este amabil, profesionist și atent la nevoile pacienților. Am fost tratată cu răbdare și mi-au fost explicate toate procedurile în detaliu.",
+        "hu": "Sunt foarte mulțumită de serviciile oferite de această clinică stomatologică. Personalul este amabil, profesionist și atent la nevoile pacienților. Am fost tratată cu răbdare și mi-au fost explicate toate procedurile în detaliu."
+      }
+    },
+    {
+      "id": "19",
+      "author": "Csilla Vass",
+      "rating": 5,
+      "date": {
+        "ro": "iunie 2026",
+        "en": "June 2026",
+        "hu": "2026. június"
+      },
+      "text": {
+        "ro": "Tot respectul pentru echipa de aici — medici înțelegători, răbdători, care îți explică fiecare detaliu.",
+        "en": "Tot respectul pentru echipa de aici — medici înțelegători, răbdători, care îți explică fiecare detaliu.",
+        "hu": "Tot respectul pentru echipa de aici — medici înțelegători, răbdători, care îți explică fiecare detaliu."
+      }
+    },
+    {
+      "id": "20",
+      "author": "Helen Lochli",
+      "rating": 5,
+      "date": {
+        "ro": "iunie 2026",
+        "en": "June 2026",
+        "hu": "2026. június"
+      },
+      "text": {
+        "ro": "Experiență superbă! Medici empatici, calmi și răbdători, te fac să te simți ascultat.",
+        "en": "Experiență superbă! Medici empatici, calmi și răbdători, te fac să te simți ascultat.",
+        "hu": "Experiență superbă! Medici empatici, calmi și răbdători, te fac să te simți ascultat."
+      }
+    },
+    {
+      "id": "21",
+      "author": "Andrea Racsan",
+      "rating": 5,
+      "date": {
+        "ro": "iunie 2026",
+        "en": "June 2026",
+        "hu": "2026. június"
+      },
+      "text": {
+        "ro": "Clinica perfectă pentru cine vrea seriozitate și omenie. Personal răbdător, mereu cu un cuvânt bun.",
+        "en": "Clinica perfectă pentru cine vrea seriozitate și omenie. Personal răbdător, mereu cu un cuvânt bun.",
+        "hu": "Clinica perfectă pentru cine vrea seriozitate și omenie. Personal răbdător, mereu cu un cuvânt bun."
+      }
+    },
+    {
+      "id": "22",
+      "author": "Andreea Sebestyen",
+      "rating": 5,
+      "date": {
+        "ro": "mai 2026",
+        "en": "May 2026",
+        "hu": "2026. május"
+      },
+      "text": {
+        "ro": "Micuțul nostru a avut o experiență foarte plăcută! Personalul este foarte răbdător și prietenos, iar doamna doctor explică totul pe înțelesul copiilor, fără să îi sperie. Recomand cu drag părinților care caută profesionalism și grijă pentru cei mici!",
+        "en": "Micuțul nostru a avut o experiență foarte plăcută! Personalul este foarte răbdător și prietenos, iar doamna doctor explică totul pe înțelesul copiilor, fără să îi sperie. Recomand cu drag părinților care caută profesionalism și grijă pentru cei mici!",
+        "hu": "Micuțul nostru a avut o experiență foarte plăcută! Personalul este foarte răbdător și prietenos, iar doamna doctor explică totul pe înțelesul copiilor, fără să îi sperie. Recomand cu drag părinților care caută profesionalism și grijă pentru cei mici!"
+      }
+    },
+    {
+      "id": "23",
+      "author": "Pati Iacob Razvan",
+      "rating": 5,
+      "date": {
+        "ro": "martie 2026",
+        "en": "March 2026",
+        "hu": "2026. március"
+      },
+      "text": {
+        "ro": "Profesionalism maxim.   !!!!!",
+        "en": "Profesionalism maxim.   !!!!!",
+        "hu": "Profesionalism maxim.   !!!!!"
+      }
+    },
+    {
+      "id": "24",
       "author": "Diana Gabriela Oltean",
       "rating": 5,
       "date": {
-        "ro": "acum 14 ore",
-        "en": "14 hours ago",
-        "hu": "14 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "O clinică stomatologică de top, unde profesionalismul, tehnologia modernă și grija față de pacient se îmbină perfect. Personal extrem de prietenos, medici foarte bine pregătiți și o experiență fără durere. Recomand cu toată încrederea!",
@@ -22,29 +367,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKtp62N8G_mwY5WWjmcFR9HszLTxPHpyvKEUHBkd-SngWeHWA=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "2",
-      "author": "Melissa Lembac",
-      "rating": 5,
-      "date": {
-        "ro": "acum 19 ore",
-        "en": "19 hours ago",
-        "hu": "19 órával ezelőtt"
-      },
-      "text": {
-        "ro": "",
-        "en": "",
-        "hu": ""
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJWNtx1KKk-f1zOzuJLPIrMeuRnP21hbZeHjrsB9tusheg0xg=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "3",
+      "id": "25",
       "author": "Patricia Maria Ioana Breban",
       "rating": 5,
       "date": {
-        "ro": "acum 20 ore",
-        "en": "20 hours ago",
-        "hu": "20 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "O experiență excelentă! Clinica dentară este modernă, foarte curată și bine organizată, iar personalul este extrem de amabil și profesionist. Dr. Petric Răzvan este un medic excepțional, atent la detalii, calm și foarte bine pregătit. A explicat clar fiecare etapă a tratamentului și m-am simțit în siguranță pe tot parcursul intervenției. Rezultatul a depășit așteptările. Recomand cu căldură atât clinica, cât și pe Dr. Petric Răzvan!",
@@ -54,13 +383,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLSNit65db6jX3vCVKvTtP1rL_sDvfEKFXn6bHXpGvq2OejCg=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "4",
+      "id": "26",
       "author": "Rus George",
       "rating": 5,
       "date": {
-        "ro": "acum 22 ore",
-        "en": "22 hours ago",
-        "hu": "22 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Sunt pacient al acestei clinici stomatologice și sunt foarte mulțumit de serviciile oferite. Apreciez în mod deosebit profesionalismul Dr. Răzvan Petric, care își ia întotdeauna timp să explice clar procedurile, reușind astfel să mă liniștească înainte de intervenții. Atmosfera este plăcută, iar echipa este atentă și bine pregătită. Recomand cu toată încrederea!",
@@ -70,13 +399,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzBnWQFXRKKxD2MHKDiHiid2XeNAaNt_CsQcd4m4i0lQqUeg=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "5",
+      "id": "27",
       "author": "Rosca Rebeca",
       "rating": 5,
       "date": {
-        "ro": "editat acum 22 ore",
-        "en": "Edited 22 hours ago",
-        "hu": "szerkesztve 22 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "O clinică stomatologică unde profesionalismul și atenția față de pacient se simt din prima vizită. Echipa este calmă, bine pregătită și explică fiecare pas astfel încât pacientul să înțeleagă. Atmosfera este plăcută, iar tratamentele sunt efectuate cu grijă și atenție la detalii. Recomand cu încredere pentru servicii de calitate și o experiență fără durere și stres.",
@@ -86,13 +415,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ3SH3iTlE4or6U82igjrB4wf_5k_67Tb-2Y4RCgEoZ8D3yzQ=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "6",
+      "id": "28",
       "author": "Luce Sln",
       "rating": 5,
       "date": {
-        "ro": "acum 22 ore",
-        "en": "22 hours ago",
-        "hu": "22 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Recomand fără ezitare, de la calitate până la profesionalism totul este de top, mă bucur că am ales să-mi recapăt zâmbetul cu DENTCRAFT.",
@@ -102,13 +431,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIyR_dhTBEamD45IsjFU7n3MHqzQx2jZQeEM8sDRus1dLFuxHo=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "7",
+      "id": "29",
       "author": "Alisa M",
       "rating": 5,
       "date": {
-        "ro": "acum 22 ore",
-        "en": "22 hours ago",
-        "hu": "22 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Servicii de calitate, personal profesionist și atmosferă plăcută. Recomand.",
@@ -118,13 +447,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ81hvqRIOAqGG9RARGDKXiAMDqrafb384TlEHnu50oWr6vWw=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "8",
+      "id": "30",
       "author": "Alina Baias",
       "rating": 5,
       "date": {
-        "ro": "acum 22 ore",
-        "en": "22 hours ago",
-        "hu": "22 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Sunt foarte mulțumită, Dr. Petric are mână ușoară, este foarte calm și vorbește și explică întotdeauna clar următoarea procedură! Recomand!",
@@ -134,13 +463,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjWvb0B8SAM33EcBrlW4NNCxxf7COavj__TAdLZG6pGbRGyOZpMO=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "9",
+      "id": "31",
       "author": "Diana Filip",
       "rating": 5,
       "date": {
-        "ro": "acum 22 ore",
-        "en": "22 hours ago",
-        "hu": "22 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Servicii excelente. Dr. Răzvan Petric este un profesionist desăvârșit. Recomand!",
@@ -150,13 +479,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKe1AFaCqdEaLjCE2AA_ct038tCDdPBkxlbl4j8wTgA0dmoCQ=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "10",
+      "id": "32",
       "author": "Delia Maria Dan",
       "rating": 5,
       "date": {
-        "ro": "acum 23 ore",
-        "en": "23 hours ago",
-        "hu": "23 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Recomand cu toată încrederea! Am apreciat faptul că tratamentele sunt efectuate cu grijă, fără durere și cu rezultate excelente. Doctorul inspiră multă încredere, lucrează calm și precis și pune confortul pacientului pe primul loc. Un adevărat profesionist, pasionat de ceea ce face. Cu siguranță voi reveni și îl voi recomanda mai departe!",
@@ -166,13 +495,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKECk9R_1zbbUxAAq8_sIukQulE-qH_rBKXYHVDsMZXJm6bFw=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "11",
+      "id": "33",
       "author": "Vlad Bosca",
       "rating": 5,
       "date": {
-        "ro": "editat acum 23 ore",
-        "en": "Edited 23 hours ago",
-        "hu": "szerkesztve 23 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "O clinică stomatologică excepțională! Profesionalismul echipei este evident din primul moment, iar serviciile sunt impecabile, efectuate cu mare atenție și grijă pentru pacient. Recomand cu căldură.",
@@ -182,13 +511,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJVfdQBW0I9R6KmIlPoLC66EJQdRy0FfpekdZ9Vmj68d4bOcw=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "12",
+      "id": "34",
       "author": "Flaviu Ciorba",
       "rating": 5,
       "date": {
-        "ro": "acum 23 ore",
-        "en": "23 hours ago",
-        "hu": "23 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Clinica stomatologică oferă servicii de înaltă calitate, cu personal bine pregătit și echipamente moderne. Programările sunt respectate, iar comunicarea cu pacientul este foarte bună. Sunt foarte mulțumit de rezultatele obținute.",
@@ -198,13 +527,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXbS7rAy7Zv86RLMFNOqUCVrjvaPD9fAsubqOhIVbOnCtyKppRy=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "13",
+      "id": "35",
       "author": "Tomi Surd",
       "rating": 5,
       "date": {
-        "ro": "acum 23 ore",
-        "en": "23 hours ago",
-        "hu": "23 órával ezelőtt"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "O clinică stomatologică modernă, recent deschisă, care impresionează din prima vizită. Spațiul este foarte curat, luminos și amenajat cu bun gust, iar atmosfera te face să te simți în siguranță și relaxat. Personalul este extrem de amabil, profesionist și atent la fiecare detaliu, explicând clar fiecare procedură. Serviciile sunt de înaltă calitate, efectuate cu echipamente moderne și mare grijă pentru pacient. Recomand cu căldură această clinică tuturor celor care caută tratamente dentare la standarde înalte!",
@@ -214,45 +543,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLjhQcr5gwGk9mOmuLKAdIagWroCxDfS8WOn8qnQVRDFR7l2A=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "14",
-      "author": "Lutas Raul Catalin",
-      "rating": 5,
-      "date": {
-        "ro": "acum o zi",
-        "en": "a day ago",
-        "hu": "egy napja"
-      },
-      "text": {
-        "ro": "Clinică stomatologică modernă, cu servicii de calitate și personal profesionist. Experiență foarte bună. Recomand.",
-        "en": "Modern dental clinic, with quality services and professional staff. Very good experience. I recommend.",
-        "hu": "Modern fogászati klinika, minőségi szolgáltatásokkal és professzionális személyzettel. Nagyon jó élmény. Ajánlom."
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIudcHlExXCky-ap1BputtrLZMoRuG1NGtUe-qg_ppW4oukvc6B=w128-h128-p-rp-mo-ba2-br100"
-    },
-    {
-      "id": "15",
-      "author": "Ana Gabriela Tarta",
-      "rating": 5,
-      "date": {
-        "ro": "acum o zi",
-        "en": "a day ago",
-        "hu": "egy napja"
-      },
-      "text": {
-        "ro": "DENTCRAFT redefinește experiența stomatologică. Profesionalismul, atenția impecabilă la detalii și abordarea empatică transformă orice tratament într-o experiență fără stres. Doctorul explică clar fiecare pas, oferă soluții moderne și personalizate, iar sentimentul de siguranță și încredere este prezent din prima consultație. Clinica este modernă, impecabil organizată, iar echipa este extrem de amabilă și bine pregătită. O alegere excelentă pentru cei care caută nu doar tratamente dentare, ci servicii la cele mai înalte standarde. Recomand cu toată încrederea!",
-        "en": "DENTCRAFT redefines the dental experience. Professionalism, impeccable attention to detail and empathetic approach transform any treatment into a stress-free experience. The doctor clearly explains each step, offers modern and personalized solutions, and the feeling of safety and trust is present from the first consultation. The clinic is modern, impeccably organized, and the team is extremely kind and well-trained. An excellent choice for those looking for not just dental treatments, but services at the highest standards. I recommend with all confidence!",
-        "hu": "A DENTCRAFT újradefiniálja a fogászati élményt. A professzionalizmus, a részletekre való kifogástalan figyelem és az empatikus megközelítés minden kezelést stresszmentes élménnyé alakít. Az orvos világosan elmagyaráz minden lépést, modern és személyre szabott megoldásokat kínál, a biztonság és bizalom érzése pedig az első konzultációtól jelen van. A klinika modern, kifogástalanul szervezett, a csapat pedig rendkívül kedves és jól képzett. Kiváló választás azok számára, akik nem csak fogkezelést, hanem a legmagasabb színvonalú szolgáltatásokat keresik. Teljes bizalommal ajánlom!"
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ_lNoDqmXi3d0xvL23bL_04OeqCZlrqm_R8bdAlYiJam9syg=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "16",
+      "id": "36",
       "author": "Florin Ghiulai",
       "rating": 5,
       "date": {
-        "ro": "acum o zi",
-        "en": "a day ago",
-        "hu": "egy napja"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Am avut o experiență excelentă la această clinică stomatologică. Personalul este extrem de amabil, profesionist și atent la detalii, iar atmosfera este calmă și modernă, ceea ce te face să te simți în siguranță din momentul în care intri. Doctorul a explicat clar fiecare pas al tratamentului, fără grabă, și a răspuns răbdător la toate întrebările mele. Intervenția a fost efectuată fără durere, cu echipamente moderne, iar rezultatul a depășit așteptările. Recomand cu căldură această clinică oricui caută servicii stomatologice de calitate, profesionalism și respect pentru pacient. Cu siguranță voi reveni!",
@@ -262,29 +559,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIhDO_wOOQ524P2aq_aXyt5-eC55ywMQCuFwB44ltOX5swjmg=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "17",
-      "author": "Bianca Lutas",
-      "rating": 5,
-      "date": {
-        "ro": "acum o zi",
-        "en": "a day ago",
-        "hu": "egy napja"
-      },
-      "text": {
-        "ro": "Am mers la DENTCRAFT pentru un implant dentar și experiența a fost foarte bună. Totul a fost bine explicat și procedura a decurs fără probleme.",
-        "en": "I went to DENTCRAFT for a dental implant and the experience was very good. Everything was well explained and the procedure went smoothly.",
-        "hu": "A DENTCRAFT-hoz mentem fogimplantátumra, és az élmény nagyon jó volt. Mindent jól elmagyaráztak, és az eljárás simán zajlott."
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKGUC4pkRMb8dvxH3Kyqrq2hNosXfcNlj6jt2SkXtuWmfFBQA=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "18",
+      "id": "37",
       "author": "Catalin",
       "rating": 5,
       "date": {
-        "ro": "acum o zi",
-        "en": "a day ago",
-        "hu": "egy napja"
+        "ro": "ianuarie 2026",
+        "en": "January 2026",
+        "hu": "2026. január"
       },
       "text": {
         "ro": "Clinică stomatologică modernă, curată și bine organizată. Servicii profesionale.",
@@ -294,13 +575,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXvyA8xEaXdsttPM708oQ9VOZk07ckmjFp_Mh4h9H5oCXmCk8o=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "19",
+      "id": "38",
       "author": "Ioana Boros",
       "rating": 5,
       "date": {
-        "ro": "acum o lună",
-        "en": "a month ago",
-        "hu": "egy hónappal ezelőtt"
+        "ro": "decembrie 2025",
+        "en": "December 2025",
+        "hu": "2025. december"
       },
       "text": {
         "ro": "Un doctor foarte bun, recomand cu incredere! 👍",
@@ -310,13 +591,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjU0XWUByd1KzrNomHeydd3nRQRhqugeQV-9QQjUHggaSBAEtyz4=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "20",
+      "id": "39",
       "author": "Angela",
       "rating": 5,
       "date": {
-        "ro": "acum 2 luni",
-        "en": "2 months ago",
-        "hu": "2 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Am avut o experienta foarte buna, dl dr este un om foarte bun, atat și asistentii sunt rabdatori cu clientii, lucreaza calculat și foarte bine. Multumesc frumos pentru toate echipei, inca odata din Franta!",
@@ -326,13 +607,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocITSYwLKY7MFLdwO89u-p0mZ8QMGtZL1TTb5lGiOsTFDWo5iQ=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "21",
+      "id": "40",
       "author": "Ovidiu Carja",
       "rating": 5,
       "date": {
-        "ro": "acum 2 luni",
-        "en": "2 months ago",
-        "hu": "2 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Experienta placuta, fara durere. Un medic profesionist si dedicat. Recomand cu incredere.",
@@ -342,13 +623,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUzY0s08G5-HTRmMP2Xm7GDq_4-SwdRY_Sa2SNw4ssVmMZkJa4=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "22",
+      "id": "41",
       "author": "Dan Visan",
       "rating": 5,
       "date": {
-        "ro": "acum 2 luni",
-        "en": "2 months ago",
-        "hu": "2 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Am avut o experiență excelentă la cabinetul dentar al doctorului Petric Razvan. De la prima consultație, am fost impresionat de profesionalismul și amabilitatea cu care am fost întâmpinat.",
@@ -358,13 +639,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKF1KvDi2L2dkki2S26KuPzuePFbq5RjQDIEPOFfqr-FyofIw=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "23",
+      "id": "42",
       "author": "Delia Carausan",
       "rating": 5,
       "date": {
-        "ro": "acum 2 luni",
-        "en": "2 months ago",
-        "hu": "2 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Dr. Petric Razvan este un medic dedicat cu mare experienta si rabdare maxima pentru pacienti. Am avut cateva implanturi si cateva coroane de schimbat, totul a decurs impecabil.",
@@ -374,13 +655,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKp0EzudLV_qFoqM5E7R9OXQCPnGTRyrpCOvYRMUO4CMNhVjg=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "24",
+      "id": "43",
       "author": "Lavinia Dachman",
       "rating": 5,
       "date": {
-        "ro": "acum 4 luni",
-        "en": "4 months ago",
-        "hu": "4 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Doctor Petric Răzvan este un medic deosebit. Se vede pasiunea și respectul cu care își tratează pacienții. Îți explică totul pe înțeles, are răbdare și îți oferă încredere. Mă bucur că am avut norocul să îl întâlnesc și îl recomand din suflet.",
@@ -390,13 +671,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXrc3zK0C9smMi85S3ElhUQhhRjTSvIQg-RJ2TmGc7JnpzV6EmwUA=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "25",
+      "id": "44",
       "author": "Carla Carmen",
       "rating": 5,
       "date": {
-        "ro": "acum 6 luni",
-        "en": "6 months ago",
-        "hu": "6 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Recomand cu incredere. Adevarati profesionisti si preturi normale.",
@@ -406,13 +687,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIUYcFmLpqqc6ToKL_0XvjdyjPQFwQKCTM04klU8Ewn8VF4wB0=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "26",
+      "id": "45",
       "author": "Julieta Filip",
       "rating": 5,
       "date": {
-        "ro": "acum 9 luni",
-        "en": "9 months ago",
-        "hu": "9 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Adevărați profesioniști.",
@@ -422,29 +703,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIJHTdhKwEEkiUs2HzcLz6ql5Hp3eHYWSdCILKYB7ng0EJVww=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "27",
-      "author": "Doriana Pop",
-      "rating": 5,
-      "date": {
-        "ro": "acum 9 luni",
-        "en": "9 months ago",
-        "hu": "9 hónappal ezelőtt"
-      },
-      "text": {
-        "ro": "",
-        "en": "",
-        "hu": ""
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXnGn5uKMOgc1PGb8dbgMyu5V3NUA7KOfvYtEOvd0jJi_KmWWF7=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "28",
+      "id": "46",
       "author": "Bianca Andrei",
       "rating": 5,
       "date": {
-        "ro": "acum 10 luni",
-        "en": "10 months ago",
-        "hu": "10 hónappal ezelőtt"
+        "ro": "2025",
+        "en": "2025",
+        "hu": "2025"
       },
       "text": {
         "ro": "Profesionali, dedicați, înțelegători și amabili. Recomand cu încredere! Domnul doctor Răzvan foarte drăguț și profesional.",
@@ -454,13 +719,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjWtrkYUB3s-44lwKJaMaDPs2r2Khpqou9jeO2hKZ-O2AEepHZq8=w128-h128-p-rp-mo-ba3-br100"
     },
     {
-      "id": "29",
+      "id": "47",
       "author": "Vasile Chirila",
       "rating": 5,
       "date": {
-        "ro": "acum un an",
-        "en": "a year ago",
-        "hu": "egy évvel ezelőtt"
+        "ro": "2024",
+        "en": "2024",
+        "hu": "2024"
       },
       "text": {
         "ro": "Am vrut să-mi scot pantofii la intrare. L-am căutat pe Dr. Petric printr-o recomandare din Arad. Mi-a salvat ce alții voiau să extragă! Este împotriva conceptului «cât mai mult posibil». Pe deasupra am adormit în scaun. Următorul pas pentru mine sunt implanturile. Menționez prețurile - corecte!!",
@@ -470,13 +735,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjWmyiDIPsU7IS7EGL74yR0AAWrDa-U390b-wq0ZmZxrowBN9Y9L=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "30",
+      "id": "48",
       "author": "Comiathi Ovidiu",
       "rating": 5,
       "date": {
-        "ro": "acum un an",
-        "en": "a year ago",
-        "hu": "egy évvel ezelőtt"
+        "ro": "2024",
+        "en": "2024",
+        "hu": "2024"
       },
       "text": {
         "ro": "Personal, am avut parte de servicii excepționale. Am apreciat atenția, comunicarea și deschiderea către pacient. Am găsit înțelegere și am fost consiliat potrivit problemei mele.",
@@ -486,13 +751,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocINuaZAKQoUDdhx7bg6F4phXaq5MpvBwrBCybYCGNWqanyiIQ=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "31",
+      "id": "49",
       "author": "Corina Cretu",
       "rating": 5,
       "date": {
-        "ro": "acum un an",
-        "en": "a year ago",
-        "hu": "egy évvel ezelőtt"
+        "ro": "2024",
+        "en": "2024",
+        "hu": "2024"
       },
       "text": {
         "ro": "L-am căutat pe Dr. Petric printr-o recomandare făcută din Arad. Mi-a salvat ce alții doreau să extragă! Este împotriva extracțiilor și face tot posibilul să salveze dinții.",
@@ -502,45 +767,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXWYFDqthStmOilEugI_wPmApag3ynocYUiRGygwwYc3X8Mr5c9=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "32",
-      "author": "Raul Olteanu",
-      "rating": 5,
-      "date": {
-        "ro": "acum 3 ani",
-        "en": "3 years ago",
-        "hu": "3 évvel ezelőtt"
-      },
-      "text": {
-        "ro": "",
-        "en": "",
-        "hu": ""
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocI-o_H3BpUHQWoKdmDg6sbdAjaukaAz_2lPnNIWuFgmA8saTw=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "33",
-      "author": "Diana",
-      "rating": 1,
-      "date": {
-        "ro": "acum 3 ani",
-        "en": "3 years ago",
-        "hu": "3 évvel ezelőtt"
-      },
-      "text": {
-        "ro": "",
-        "en": "",
-        "hu": ""
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKcLM-iWIcn5wW4Er33e4xgq5qc1TkroWs6vL_tuHkgsJuJcwO2=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "34",
+      "id": "50",
       "author": "Felix Hrihorisan",
       "rating": 5,
       "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
+        "ro": "2022",
+        "en": "2022",
+        "hu": "2022"
       },
       "text": {
         "ro": "Răzvan Petric, dentistul întregii familii, copiii mei îl iubesc pentru răbdare, atenție, lipsa durerii. Îl recomand pentru profesionalism, servicii de top, igiena impecabilă, lucrări de calitate.",
@@ -550,13 +783,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUrQVUq7oQqdPN93gI2TT-S8Y9KcEsWeej5C74GKVl3miNWGI2o=w128-h128-p-rp-mo-ba3-br100"
     },
     {
-      "id": "35",
+      "id": "51",
       "author": "Andrei Donca",
       "rating": 5,
       "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
+        "ro": "2022",
+        "en": "2022",
+        "hu": "2022"
       },
       "text": {
         "ro": "Echipamente noi, materiale de calitate și personal super profesionist. Recomand!",
@@ -566,13 +799,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjX_EVKZmH9yLsniCwowvmky4zEMoX6jsbbxCnR3n-hwohLMOY5Q=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "36",
+      "id": "52",
       "author": "Petra Condurache",
       "rating": 5,
       "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
+        "ro": "2022",
+        "en": "2022",
+        "hu": "2022"
       },
       "text": {
         "ro": "Personal prietenos și dedicat, recomand cu căldură!",
@@ -582,13 +815,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjVz02KHeMT8SrQGlivDXCRyb14U73a9hTupSi3eWN31b7V-2cNY=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "37",
+      "id": "53",
       "author": "Alexis Saveanu",
       "rating": 5,
       "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
+        "ro": "2022",
+        "en": "2022",
+        "hu": "2022"
       },
       "text": {
         "ro": "Profesionalism, Seriozitate, Calitate",
@@ -598,13 +831,13 @@
       "photoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjWT0lZS221ChHOHrfaDB8a1jwFUg8Cj7wNjzqyOUfwlNPGD5sry=w128-h128-p-rp-mo-br100"
     },
     {
-      "id": "38",
+      "id": "54",
       "author": "Kreativ Estate",
       "rating": 5,
       "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
+        "ro": "2022",
+        "en": "2022",
+        "hu": "2022"
       },
       "text": {
         "ro": "Profesionalism, Seriozitate, Calitate",
@@ -612,38 +845,6 @@
         "hu": "Professzionalizmus, Komolyság, Minőség"
       },
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJcimjP1sYyQwHfUutEOGITtAdHdI5Aeao97y6n6xEzZcmTkQ=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "39",
-      "author": "Abrudan Bogdan",
-      "rating": 5,
-      "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
-      },
-      "text": {
-        "ro": "",
-        "en": "",
-        "hu": ""
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIMTZd6537jSj_rX5EKGte6TE_MzAi9YCE79lDjVgDJryAlkA=w128-h128-p-rp-mo-br100"
-    },
-    {
-      "id": "40",
-      "author": "Rares Petric",
-      "rating": 5,
-      "date": {
-        "ro": "acum 4 ani",
-        "en": "4 years ago",
-        "hu": "4 évvel ezelőtt"
-      },
-      "text": {
-        "ro": "",
-        "en": "",
-        "hu": ""
-      },
-      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKBIqw5zXjT88ow6F16q_DHEOe_AUs4w4JbbP_ChTkcO2lP=w128-h128-p-rp-mo-br100"
     }
   ]
 }

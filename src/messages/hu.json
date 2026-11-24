@@ -515,6 +515,10 @@
     "noTestimonials": "A velemenyek hamarosan elerhetek lesznek."
   },
   "testimonials": {
+    "googleSummary": "az 5-ből · {count} Google-értékelés",
+    "googleCta": "Összes értékelés a Google-on",
+    "googleReviewOn": "Google-értékelés · {date}",
+    "googleNote": "Az értékelések a Google-ról származnak, szerkesztés nélkül, eredeti nyelven.",
     "badge": "Velemenyek",
     "title": "Mit mondanak pacienseink",
     "subtitle": "Valos velemenyek elegedett paciensektol.",

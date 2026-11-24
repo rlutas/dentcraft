@@ -515,6 +515,10 @@
     "noTestimonials": "Testimonialele vor fi disponibile in curand."
   },
   "testimonials": {
+    "googleSummary": "din 5 · {count} recenzii pe Google",
+    "googleCta": "Vezi toate recenziile pe Google",
+    "googleReviewOn": "Recenzie Google · {date}",
+    "googleNote": "Recenzii preluate de pe Google, nemodificate.",
     "badge": "Recenzii Google",
     "title": "Ce spun pacientii nostri",
     "subtitle": "Recenzii reale de la pacienti multumiti.",
