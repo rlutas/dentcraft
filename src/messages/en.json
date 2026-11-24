@@ -515,6 +515,10 @@
     "noTestimonials": "Testimonials will be available soon."
   },
   "testimonials": {
+    "titleBold": "What our",
+    "titleItalic": "patients say",
+    "showMore": "Show more reviews",
+    "shownCount": "Showing {shown} of {total} reviews",
     "googleSummary": "out of 5 · {count} Google reviews",
     "googleCta": "See all reviews on Google",
     "googleReviewOn": "Google review · {date}",
@@ -544,6 +548,8 @@
     }
   },
   "cta": {
+    "titleBold": "Book a",
+    "titleItalic": "consultation",
     "badge": "Appointment",
     "title": "Book a consultation",
     "subtitle": "Take the first step towards the perfect smile. We're waiting for you at our clinic!",
@@ -628,6 +634,10 @@
     "viewAll": "View all team"
   },
   "prices": {
+    "faqTitleBold": "Frequently asked questions",
+    "faqTitleItalic": "about prices",
+    "listTitleBold": "Full price list",
+    "listTitleItalic": "Dentistry in Satu Mare",
     "title": "Dental Prices Satu Mare 2026",
     "subtitle": "Transparent prices for all our dental services.",
     "heroLabel": "Transparent pricing",
@@ -713,6 +723,10 @@
     }
   },
   "faq": {
+    "titleBold": "Frequently asked",
+    "titleItalic": "questions",
+    "stillHaveQuestionsBold": "Still have",
+    "stillHaveQuestionsItalic": "questions?",
     "title": "Frequently Asked Questions",
     "subtitle": "Answers to the most common questions about our dental services.",
     "metaTitle": "Dental FAQ | Implants, Braces & More",
@@ -880,6 +894,8 @@
     "service": "Service"
   },
   "footer": {
+    "ctaTitleBold": "Book a",
+    "ctaTitleItalic": "consultation",
     "description": "Modern dental clinic in Satu Mare, dedicated to the health and beauty of your smile.",
     "quickLinks": "Quick Links",
     "contactInfo": "Contact",
@@ -990,6 +1006,7 @@
       "instagramCta": "See more on Instagram"
     },
     "reviewsSection": {
+      "pullQuoteSource": "Google review, {date}",
       "headingBold": "What patients",
       "headingItalic": "are saying",
       "subtitle": "Our patients speak — every review is verified on Google and reflects their real experience at the DENTCRAFT clinic.",
@@ -1028,5 +1045,10 @@
     "callPrefix": "Call us",
     "language": "Language",
     "callUs": "Call us"
+  },
+  "stickyBar": {
+    "label": "Quick booking",
+    "book": "Book now",
+    "call": "Call 0741 199 977"
   }
 }

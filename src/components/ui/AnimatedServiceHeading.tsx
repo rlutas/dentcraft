@@ -20,7 +20,7 @@ export function AnimatedServiceHeading({ bold, italic }: Props) {
         ref={ref}
         className="font-bold text-[#2a2118] leading-[0.95] tracking-normal text-3xl md:text-4xl lg:text-5xl mb-6"
       >
-        {bold}
+        {bold}{' '}
         <span className="font-serif italic font-medium text-[#8b7355] block pb-1 mt-1 tracking-wide">
           {italic}
         </span>
@@ -43,7 +43,7 @@ export function AnimatedServiceHeading({ bold, italic }: Props) {
         className="block"
       >
         {bold}
-      </motion.span>
+      </motion.span>{' '}
 
       {/* Italic word — letter-by-letter slide in from left */}
       <motion.span

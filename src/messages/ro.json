@@ -515,6 +515,10 @@
     "noTestimonials": "Testimonialele vor fi disponibile in curand."
   },
   "testimonials": {
+    "titleBold": "Ce spun",
+    "titleItalic": "pacienții noștri",
+    "showMore": "Vezi mai multe recenzii",
+    "shownCount": "{shown} din {total} recenzii afișate",
     "googleSummary": "din 5 · {count} recenzii pe Google",
     "googleCta": "Vezi toate recenziile pe Google",
     "googleReviewOn": "Recenzie Google · {date}",
@@ -544,6 +548,8 @@
     }
   },
   "cta": {
+    "titleBold": "Programează o",
+    "titleItalic": "consultație",
     "badge": "Programare",
     "title": "Programează o consultație",
     "subtitle": "Fa primul pas catre zambetul perfect. Te asteptam la clinica noastra!",
@@ -628,6 +634,10 @@
     "viewAll": "Vezi toata echipa"
   },
   "prices": {
+    "faqTitleBold": "Întrebări frecvente",
+    "faqTitleItalic": "despre prețuri",
+    "listTitleBold": "Lista completă de prețuri",
+    "listTitleItalic": "Stomatologie Satu Mare",
     "title": "Prețuri Stomatologie Satu Mare 2026",
     "subtitle": "Prețuri transparente pentru toate serviciile noastre stomatologice.",
     "heroLabel": "Tarife transparente",
@@ -713,6 +723,10 @@
     }
   },
   "faq": {
+    "titleBold": "Întrebări",
+    "titleItalic": "frecvente",
+    "stillHaveQuestionsBold": "Mai ai",
+    "stillHaveQuestionsItalic": "întrebări?",
     "title": "Intrebari frecvente",
     "subtitle": "Raspunsuri la cele mai comune intrebari despre serviciile noastre stomatologice.",
     "metaTitle": "Întrebări Frecvente Stomatologie",
@@ -880,6 +894,8 @@
     "service": "Serviciu"
   },
   "footer": {
+    "ctaTitleBold": "Programează o",
+    "ctaTitleItalic": "consultație",
     "description": "Clinica stomatologica moderna in Satu Mare, dedicata sanatatii si frumusetii zambetului tau.",
     "quickLinks": "Link-uri rapide",
     "contactInfo": "Contact",
@@ -990,6 +1006,7 @@
       "instagramCta": "Vezi mai multe pe Instagram"
     },
     "reviewsSection": {
+      "pullQuoteSource": "Recenzie Google, {date}",
       "headingBold": "Ce spun",
       "headingItalic": "pacienții",
       "subtitle": "Pacienții noștri vorbesc — fiecare recenzie e verificată pe Google și reflectă experiența lor reală la clinica DENTCRAFT.",
@@ -1028,5 +1045,10 @@
     "callPrefix": "Sună-ne",
     "language": "Limbă",
     "callUs": "Sună-ne"
+  },
+  "stickyBar": {
+    "label": "Programare rapidă",
+    "book": "Programează",
+    "call": "Sună la 0741 199 977"
   }
 }
