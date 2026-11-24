@@ -11,7 +11,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp01s0",
-        "text": "Cea mai grea parte din a duce un copil la dentist nu e tratamentul. E momentul de dinainte — cand ii spui ca mergeti la \"doctorul de dinti\" si vezi cum i se schimba fata. Multi parinti din Satu Mare ne intreaba acelasi lucru: \"Cum fac sa nu-i fie frica?\"",
+        "text": "Cea mai grea parte din a duce un copil la dentist nu e tratamentul. E momentul de dinainte — când îi spui că mergeți la \"doctorul de dinți\" și vezi cum i se schimbă fața. Mulți părinți din Satu Mare ne întreabă același lucru: \"Cum fac să nu-i fie frică?\"",
         "marks": []
       }
     ]
@@ -25,7 +25,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp02s0",
-        "text": "Daca cauti un stomatolog pentru copii in Satu Mare si vrei ca prima experienta sa fie una buna — nu una pe care o tine minte cu groaza — citeste mai departe. Diferenta dintre un copil care plange si unul care iese zambind tine adesea de cum pregatesti vizita.",
+        "text": "Dacă cauți un stomatolog pentru copii în Satu Mare și vrei ca prima experiență să fie una bună — nu una pe care o ține minte cu groază — citește mai departe. Diferența dintre un copil care plânge și unul care iese zâmbind ține adesea de cum pregătești vizita.",
         "marks": []
       }
     ]
@@ -39,7 +39,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp03s0",
-        "text": "Cand sa mergi prima data cu copilul la dentist",
+        "text": "Când să mergi prima dată cu copilul la dentist",
         "marks": []
       }
     ]
@@ -53,7 +53,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp04s0",
-        "text": "Raspunsul scurta surprinde multi parinti: in jurul varstei de 1 an, sau cand apare primul dinte. Stiu, pare devreme. Dar prima vizita la aceasta varsta nu e despre tratament — e despre obisnuinta.",
+        "text": "Răspunsul scurt surprinde mulți părinți: în jurul vârstei de 1 an, sau când apare primul dinte. Știu, pare devreme. Dar prima vizită la această vârstă nu e despre tratament — e despre obișnuință.",
         "marks": []
       }
     ]
@@ -67,7 +67,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp05s0",
-        "text": "Ce facem la o astfel de vizita timpurie: ne uitam ca totul creste sanatos, le aratam parintilor cum sa curete dintisorii si, cel mai important, copilul invata ca locul asta nu e infricosator. Cand vine la 3-4 ani pentru un control real, deja cunoaste cabinetul.",
+        "text": "Ce facem la o astfel de vizită timpurie: ne uităm că totul crește sănătos, le arătăm părinților cum să curețe dințișorii și, cel mai important, copilul învață că locul asta nu e înfricoșător. Când vine la 3-4 ani pentru un control real, deja cunoaște cabinetul.",
         "marks": []
       }
     ]
@@ -81,7 +81,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp06s0",
-        "text": "Daca ai sarit peste vizita de la 1 an — nicio problema, o vad des. Atunci ideal e sa veniti pana in 3 ani. Mai bine mai tarziu decat deloc.",
+        "text": "Dacă ai sărit peste vizita de la 1 an — nicio problemă, o văd des. Atunci ideal e să veniți până în 3 ani. Mai bine mai târziu decât deloc.",
         "marks": []
       }
     ]
@@ -95,7 +95,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp07s0",
-        "text": "De ce dintii de lapte conteaza (chiar daca \"oricum cad\")",
+        "text": "De ce dinții de lapte contează (chiar dacă \"oricum cad\")",
         "marks": []
       }
     ]
@@ -109,7 +109,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp08s0",
-        "text": "E una dintre cele mai raspandite idei gresite pe care le aud: \"Sunt doar dinti de lapte, oricum ii pierde.\" Inteleg de unde vine, dar lucrurile nu stau chiar asa.",
+        "text": "E una dintre cele mai răspândite idei greșite pe care le aud: \"Sunt doar dinți de lapte, oricum îi pierde.\" Înțeleg de unde vine, dar lucrurile nu stau chiar așa.",
         "marks": []
       }
     ]
@@ -123,7 +123,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp09s0",
-        "text": "Dintii de lapte tin locul dintilor permanenti. Daca un dinte de lapte e pierdut prea devreme din cauza unei carii, dintii din jur se pot deplasa si dintele permanent nu mai are loc sa erupa corect — de aici probleme ortodontice mai tarziu. Plus ca o carie netratata doare. Iar un copil care are dureri de dinti nu doarme, nu mananca bine si nu se concentreaza la scoala.",
+        "text": "Dinții de lapte țin locul dinților permanenți. Dacă un dinte de lapte e pierdut prea devreme din cauza unei carii, dinții din jur se pot deplasa și dintele permanent nu mai are loc să erupă corect — de aici probleme ortodontice mai târziu. Plus că o carie netratată doare. Iar un copil care are dureri de dinți nu doarme, nu mănâncă bine și nu se concentrează la școala.",
         "marks": []
       }
     ]
@@ -137,7 +137,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp10s0",
-        "text": "Asa ca da, conteaza. Mult.",
+        "text": "Așa că da, contează. Mult.",
         "marks": []
       }
     ]
@@ -151,7 +151,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp11s0",
-        "text": "Cum pregatesti copilul pentru prima vizita",
+        "text": "Cum pregătești copilul pentru prima vizită",
         "marks": []
       }
     ]
@@ -165,7 +165,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp12s0",
-        "text": "Aici parintii au cea mai mare influenta. Cateva lucruri care chiar functioneaza:",
+        "text": "Aici părinții au cea mai mare influență. Câteva lucruri care chiar funcționează:",
         "marks": []
       }
     ]
@@ -179,7 +179,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp13s0",
-        "text": "Nu folosi cuvinte cu incarcatura negativa",
+        "text": "Nu folosi cuvinte cu încărcătură negativă",
         "marks": [
           "strong"
         ]
@@ -187,7 +187,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp13s1",
-        "text": " ca \"durere\", \"injectie\", \"nu te doare\" (paradoxal, cuvantul \"doare\" ii sperie chiar daca spui \"nu\"). Spune simplu ca mergeti sa \"numaram dintisorii\".",
+        "text": " ca \"durere\", \"injecție\", \"nu te doare\" (paradoxal, cuvântul \"doare\" îi sperie chiar dacă spui \"nu\"). Spune simplu că mergeți să \"numărăm dințișorii\".",
         "marks": []
       }
     ],
@@ -203,7 +203,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp14s0",
-        "text": "Citeste-i o poveste",
+        "text": "Citește-i o poveste",
         "marks": [
           "strong"
         ]
@@ -211,7 +211,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp14s1",
-        "text": " despre mersul la dentist sau jucati-va \"de-a doctorul\" acasa inainte.",
+        "text": " despre mersul la dentist sau jucați-vă \"de-a doctorul\" acasă înainte.",
         "marks": []
       }
     ],
@@ -235,7 +235,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp15s1",
-        "text": ", daca ai oricum un control. Sa vada ca nu e nimic infricosator.",
+        "text": ", dacă ai oricum un control. Să vadă că nu e nimic înfricoșător.",
         "marks": []
       }
     ],
@@ -251,7 +251,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp16s0",
-        "text": "Programeaza dimineata",
+        "text": "Programează dimineața",
         "marks": [
           "strong"
         ]
@@ -259,7 +259,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp16s1",
-        "text": ", cand copilul e odihnit si cooperant.",
+        "text": ", când copilul e odihnit și cooperant.",
         "marks": []
       }
     ],
@@ -275,7 +275,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp17s0",
-        "text": "Si inca ceva, poate cel mai important: lasa-ne pe noi sa conducem conversatia in cabinet. Avem experienta cu copiii anxiosi si stim cum sa le castigam increderea pas cu pas.",
+        "text": "Și încă ceva, poate cel mai important: lasă-ne pe noi să conducem conversația în cabinet. Avem experiență cu copiii anxioși și știm cum să le câștigăm încrederea pas cu pas.",
         "marks": []
       }
     ]
@@ -289,7 +289,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp18s0",
-        "text": "In cabinetul nostru: cum lucram cu cei mici",
+        "text": "În cabinetul nostru: cum lucrăm cu cei mici",
         "marks": []
       }
     ]
@@ -303,7 +303,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp19s0",
-        "text": "La DENTCRAFT abordam copiii altfel decat adultii — pentru ca sunt altfel. Prima data nu ne repezim cu instrumentele. Ii lasam sa atinga oglinda, sa vada lumina, sa inteleaga ce se intampla. Tehnica se numeste \"tell-show-do\": ii spunem ce urmeaza, ii aratam pe degetul lui sau pe o jucarie, si abia apoi facem.",
+        "text": "La DENTCRAFT abordăm copiii altfel decât adulții — pentru că sunt altfel. Prima dată nu ne repezim cu instrumentele. Îi lăsăm să atingă oglinda, să vadă lumina, să înțeleagă ce se întâmplă. Tehnica se numește \"tell-show-do\": îi spunem ce urmează, îi arătăm pe degetul lui sau pe o jucărie, și abia apoi facem.",
         "marks": []
       }
     ]
@@ -317,7 +317,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp20s0",
-        "text": "Multi copii anxiosi pe care i-am vazut prima data plangand au ajuns sa vina relaxati la controale. Nu e magie — e rabdare si lipsa de graba.",
+        "text": "Mulți copii anxioși pe care i-am văzut prima dată plângând au ajuns să vină relaxați la controale. Nu e magie — e răbdare și lipsă de grabă.",
         "marks": []
       }
     ]
@@ -345,7 +345,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp22s0",
-        "text": "Pe langa controlul de rutina si curatarea, cele mai frecvente sunt:",
+        "text": "Pe lângă controlul de rutină și curățarea, cele mai frecvente sunt:",
         "marks": []
       }
     ]
@@ -359,7 +359,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp23s0",
-        "text": "Sigilarea dentara.",
+        "text": "Sigilarea dentară.",
         "marks": [
           "strong"
         ]
@@ -367,7 +367,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp23s1",
-        "text": " O pelicula protectoare aplicata pe suprafata maselelor, in santurile unde se aadesc resturile alimentare. E rapida, nu doare deloc si previne cariile. Una dintre cele mai bune investitii preventive pentru un copil.",
+        "text": " O peliculă protectoare aplicată pe suprafața măselelor, în șanțurile unde se aadesc resturile alimentare. E rapidă, nu doare deloc și previne cariile. Una dintre cele mai bune investiții preventive pentru un copil.",
         "marks": []
       }
     ]
@@ -389,7 +389,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp24s1",
-        "text": " Aplicarea de fluor pentru a intari smaltul. Simpla si nedureroasa.",
+        "text": " Aplicarea de fluor pentru a întări smalțul. Simplă și nedureroasă.",
         "marks": []
       }
     ]
@@ -411,7 +411,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp25s1",
-        "text": " Cand e nevoie, da. Dar cu cat venim mai devreme, cu atat e mai usor — o carie mica se rezolva in cateva minute, una mare e o poveste mai complicata.",
+        "text": " Când e nevoie, da. Dar cu cât venim mai devreme, cu atât e mai ușor — o carie mică se rezolvă în câteva minute, una mare e o poveste mai complicată.",
         "marks": []
       }
     ]
@@ -425,7 +425,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp26s0",
-        "text": "Intrebari frecvente despre stomatologia pentru copii",
+        "text": "Întrebări frecvente despre stomatologia pentru copii",
         "marks": []
       }
     ]
@@ -439,7 +439,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp27s0",
-        "text": "La ce varsta merge copilul prima data la dentist?",
+        "text": "La ce vârstă merge copilul prima dată la dentist?",
         "marks": [
           "strong"
         ]
@@ -447,7 +447,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp27s1",
-        "text": " Ideal in jurul varstei de 1 an sau la aparitia primului dinte. Daca ati depasit aceasta varsta, mergeti cat mai curand — pana in 3 ani e foarte bine. Prima vizita e despre obisnuinta, nu despre tratament.",
+        "text": " Ideal în jurul vârstei de 1 an sau la apariția primului dinte. Dacă ați depășit această vârstă, mergeți cât mai curând — până în 3 ani e foarte bine. Prima vizită e despre obișnuință, nu despre tratament.",
         "marks": []
       }
     ]
@@ -467,7 +467,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp28s0",
-        "text": "Cat costa o consultatie pentru copii in Satu Mare?",
+        "text": "Cât costă o consultație pentru copii în Satu Mare?",
         "marks": [
           "strong"
         ]
@@ -475,13 +475,13 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp28s1",
-        "text": " La DENTCRAFT iti comunicam transparent costul consultatiei si al tratamentelor inainte sa incepem. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, preturile sunt accesibile — le poti vedea oricand in ",
+        "text": " La DENTCRAFT îți comunicăm transparent costul consultației și al tratamentelor înainte să începem. Pentru tratamentele preventive cum ar fi sigilarea sau fluorizarea, prețurile sunt accesibile — le poți vedea oricând în ",
         "marks": []
       },
       {
         "_type": "span",
         "_key": "cp28s2",
-        "text": "lista noastra de preturi",
+        "text": "lista noastră de prețuri",
         "marks": [
           "cp28l0"
         ]
@@ -489,7 +489,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp28s3",
-        "text": ". Suna-ne pentru detalii la 0741 199 977.",
+        "text": ". Sună-ne pentru detalii la 0741 199 977.",
         "marks": []
       }
     ]
@@ -503,7 +503,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp29s0",
-        "text": "Ce fac daca copilul refuza sa deschida gura?",
+        "text": "Ce fac dacă copilul refuza să deschidă gura?",
         "marks": [
           "strong"
         ]
@@ -511,7 +511,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp29s1",
-        "text": " Nu fortam niciodata. Daca un copil e foarte anxios, mergem mai incet — uneori prima vizita e doar de cunoastere, fara niciun tratament. Increderea se construieste in timp, si merita efortul.",
+        "text": " Nu forțăm niciodată. Dacă un copil e foarte anxios, mergem mai încet — uneori prima vizită e doar de cunoaștere, fără niciun tratament. Încrederea se construiește în timp, și merită efortul.",
         "marks": []
       }
     ]
@@ -525,7 +525,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp30s0",
-        "text": "Sunt dintii de lapte importanti daca oricum cad?",
+        "text": "Sunt dinții de lapte importanți dacă oricum cad?",
         "marks": [
           "strong"
         ]
@@ -533,7 +533,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp30s1",
-        "text": " Foarte importanti. Tin locul dintilor permanenti si ghideaza eruptia lor. O carie pe un dinte de lapte poate afecta dezvoltarea dintelui permanent de dedesubt si poate cauza dureri reale copilului.",
+        "text": " Foarte importanți. Țin locul dinților permanenți și ghidează erupția lor. O carie pe un dinte de lapte poate afecta dezvoltarea dintelui permanent de dedesubt și poate cauza dureri reale copilului.",
         "marks": []
       }
     ]
@@ -547,7 +547,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp31s0",
-        "text": "Copilul trebuie sa mearga la dentist daca nu-l doare nimic?",
+        "text": "Copilul trebuie să meargă la dentist dacă nu-l doare nimic?",
         "marks": [
           "strong"
         ]
@@ -555,7 +555,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp31s1",
-        "text": " Da, controlul periodic la 6 luni e exact ce previne durerea. La copii cariile evolueaza repede. Un control de rutina prinde problema cand e mica si usor de rezolvat.",
+        "text": " Da, controlul periodic la 6 luni e exact ce previne durerea. La copii cariile evoluează repede. Un control de rutină prinde problema când e mică și ușor de rezolvat.",
         "marks": []
       }
     ]
@@ -575,7 +575,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp32s0",
-        "text": "Vrei ca prima vizita a copilului tau sa fie una blanda si fara stres? Programeaza-l la ",
+        "text": "Vrei ca prima vizită a copilului tău să fie una blândă și fără stres? Programează-l la ",
         "marks": []
       },
       {
@@ -603,7 +603,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp32s4",
-        "text": ". Spune-ne ca e prima data si ne ocupam noi de rest.",
+        "text": ". Spune-ne că e prima dată și ne ocupăm noi de rest.",
         "marks": []
       }
     ]
@@ -638,13 +638,13 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s0",
-        "text": "Afla mai multe despre ",
+        "text": "Află mai multe despre ",
         "marks": []
       },
       {
         "_type": "span",
         "_key": "cp33s1",
-        "text": "stomatologia pentru copii (pedodontie)",
+        "text": "stomatologia pentru copii (pedodonție)",
         "marks": [
           "cp33l0"
         ]
@@ -658,7 +658,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s3",
-        "text": "lista de preturi",
+        "text": "lista de prețuri",
         "marks": [
           "cp33l1"
         ]
@@ -672,7 +672,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s5",
-        "text": "contacteaza-ne pentru o programare",
+        "text": "contactează-ne pentru o programare",
         "marks": [
           "cp33l2"
         ]
@@ -680,13 +680,13 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s6",
-        "text": ". Si daca dintii copilului au nevoie de aliniere mai tarziu, ",
+        "text": ". Și dacă dinții copilului au nevoie de aliniere mai târziu, ",
         "marks": []
       },
       {
         "_type": "span",
         "_key": "cp33s7",
-        "text": "aici gasesti ghidul nostru despre aparatul dentar",
+        "text": "aici găsești ghidul nostru despre aparatul dentar",
         "marks": [
           "cp33l3"
         ]
@@ -694,7 +694,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp33s8",
-        "text": ". Ne gasesti pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.",
+        "text": ". Ne găsești pe Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare.",
         "marks": []
       }
     ]

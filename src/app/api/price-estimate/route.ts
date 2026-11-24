@@ -288,7 +288,7 @@ export async function POST(request: Request) {
           ...(data.lineItems ? { lineItems: data.lineItems } : {}),
           ...(data.notes ? { notes: data.notes } : {}),
         }),
-        subject: `[DENTCRAFT] Estimare pret - ${data.service} - ${data.name}`,
+        subject: `[DENTCRAFT] Estimare preț - ${data.service} - ${data.name}`,
         to: recipientEmail,
       })
 
@@ -312,7 +312,7 @@ export async function POST(request: Request) {
         ...(data.lineItems ? { lineItems: data.lineItems } : {}),
         ...(data.notes ? { notes: data.notes } : {}),
       }),
-      subject: `Estimare pret - ${data.service} | DENTCRAFT`,
+      subject: `Estimare preț - ${data.service} | DENTCRAFT`,
       to: data.email,
     }).catch((err) => {
       console.error('Failed to send price estimate confirmation email:', err)

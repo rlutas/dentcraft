@@ -335,7 +335,7 @@ export function FramedNav() {
                     ))}
                   </div>
                   <Link href="/servicii" onClick={() => setIsServicesOpen(false)} className="mt-4 flex items-center justify-between rounded-2xl bg-[#1a1a1a] text-white px-5 py-3.5 text-[13px] font-semibold hover:bg-[#4a3d30] transition-colors">
-                    <span>Vezi toate serviciile si tratamentele</span>
+                    <span>Vezi toate serviciile și tratamentele</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>

@@ -11,7 +11,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad01s0",
-        "text": "Vine o pacienta acum cateva saptamani, 28 de ani, si imi spune din usa: \"Doctore, e prea tarziu pentru aparat dentar la varsta mea?\" A ramas surprinsa cand i-am raspuns ca jumatate dintre pacientii nostri ortodontici sunt adulti. Aparatul dentar nu mai e demult doar pentru adolescenti.",
+        "text": "Vine o pacienta acum câteva săptămâni, 28 de ani, și îmi spune din ușa: \"Doctore, e prea târziu pentru aparat dentar la varsta mea?\" A rămas surprinsă când i-am răspuns că jumătate dintre pacienții noștri ortodontici sunt adulți. Aparatul dentar nu mai e demult doar pentru adolescenți.",
         "marks": []
       }
     ]
@@ -25,7 +25,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad02s0",
-        "text": "Daca te-ai gandit la un aparat dentar in Satu Mare dar nu stii de unde sa incepi — ce tip sa alegi, cat costa, cat dureaza — ghidul asta e pentru tine. Iti explic exact ce optiuni ai, fara termeni complicati.",
+        "text": "Dacă te-ai gândit la un aparat dentar în Satu Mare dar nu știi de unde să începi — ce tip să alegi, cât costă, cât durează — ghidul asta e pentru tine. Îți explic exact ce opțiuni ai, fără termeni complicați.",
         "marks": []
       }
     ]
@@ -39,7 +39,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad03s0",
-        "text": "De ce conteaza un aparat dentar (dincolo de estetica)",
+        "text": "De ce contează un aparat dentar (dincolo de estetică)",
         "marks": []
       }
     ]
@@ -53,7 +53,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad04s0",
-        "text": "Multi vin la noi pentru ca nu le place cum arata un dinte strambit in poze. Si e un motiv perfect valid. Dar dintii nealiniati nu sunt doar o problema de aspect.",
+        "text": "Mulți vin la noi pentru că nu le place cum arată un dinte strâmb în poze. Și e un motiv perfect valid. Dar dinții nealiniați nu sunt doar o problemă de aspect.",
         "marks": []
       }
     ]
@@ -67,7 +67,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad05s0",
-        "text": "Cand dintii nu se inchid corect, apar probleme pe care nu le vezi imediat: uzura prematura a smaltului, dureri de articulatie (acel \"click\" cand deschizi gura), dificultati la curatat care duc la carii si probleme de gingie. Sincer, ortodontia e una dintre putinele investitii dentare care previn probleme in loc sa le repare.",
+        "text": "Când dinții nu se închid corect, apar probleme pe care nu le vezi imediat: uzura prematură a smalțului, dureri de articulație (acel \"click\" când deschizi gura), dificultăți la curățat care duc la carii și probleme de gingie. Sincer, ortodonția e una dintre puținele investiții dentare care previn probleme în loc să le repare.",
         "marks": []
       }
     ]
@@ -81,7 +81,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad06s0",
-        "text": "Ce tipuri de aparate dentare gasesti la DENTCRAFT",
+        "text": "Ce tipuri de aparate dentare găsești la DENTCRAFT",
         "marks": []
       }
     ]
@@ -95,7 +95,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad07s0",
-        "text": "Aici lucrurile devin interesante, pentru ca nu exista \"cel mai bun\" aparat — exista cel mai potrivit pentru tine. Hai sa le luam pe rand.",
+        "text": "Aici lucrurile devin interesante, pentru că nu există \"cel mai bun\" aparat — există cel mai potrivit pentru tine. Hai să le luăm pe rând.",
         "marks": []
       }
     ]
@@ -117,7 +117,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad08s1",
-        "text": " Clasicul. Bracketurile metalice fixate pe dinti, cu un arc care misca dintii treptat. E cel mai accesibil si, de departe, cel mai eficient pentru cazurile complexe. Da, se vede. Dar e si cel mai rapid in multe situatii.",
+        "text": " Clasicul. Bracketurile metalice fixate pe dinți, cu un arc care mișcă dinții treptat. E cel mai accesibil și, de departe, cel mai eficient pentru cazurile complexe. Da, se vede. Dar e și cel mai rapid în multe situații.",
         "marks": []
       }
     ]
@@ -139,7 +139,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad09s1",
-        "text": " Aceeasi tehnologie ca cel metalic, dar bracketurile sunt din ceramica de culoarea dintelui. Se observa mult mai putin. Pacientii care lucreaza cu publicul il aleg des — vrei sa-ti aranjezi dintii fara sa fie evident ca porti aparat.",
+        "text": " Aceeași tehnologie ca cel metalic, dar bracketurile sunt din ceramică de culoarea dintelui. Se observa mult mai puțin. Pacienții care lucrează cu publicul îl aleg des — vrei să-ți aranjezi dinții fără să fie evident că porți aparat.",
         "marks": []
       }
     ]
@@ -161,7 +161,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad10s1",
-        "text": " Versiunea premium a celui ceramic. Bracketuri transparente din safir, aproape invizibile. Costa mai mult, dar e cea mai discreta optiune fixa.",
+        "text": " Versiunea premium a celui ceramic. Bracketuri transparente din safir, aproape invizibile. Costă mai mult, dar e cea mai discretă opțiune fixă.",
         "marks": []
       }
     ]
@@ -183,7 +183,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad11s1",
-        "text": " Tip Invisalign. Niste gutiere transparente, detasabile, pe care le schimbi la cateva saptamani. Le scoti cand mananci si cand te speli pe dinti. Sunt aproape invizibile si foarte confortabile — dar nu se potrivesc tuturor cazurilor. Pentru aliniere usoara spre medie, sunt excelente.",
+        "text": " Tip Invisalign. Niște gutiere transparente, detașabile, pe care le schimbi la câteva săptămâni. Le scoți când mănânci și când te speli pe dinți. Sunt aproape invizibile și foarte confortabile — dar nu se potrivesc tuturor cazurilor. Pentru aliniere ușoară spre medie, sunt excelente.",
         "marks": []
       }
     ]
@@ -197,7 +197,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad12s0",
-        "text": "Preturi aparat dentar in Satu Mare (2026)",
+        "text": "Prețuri aparat dentar în Satu Mare (2026)",
         "marks": []
       }
     ]
@@ -211,7 +211,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad13s0",
-        "text": "Stiu ca asta e ce cauti de fapt. Iata o situatie realista — preturi orientative per arcada (un singur maxilar):",
+        "text": "Știu că asta e ce cauți de fapt. Iată o situație realistă — prețuri orientative per arcadă (un singur maxilar):",
         "marks": []
       }
     ]
@@ -321,7 +321,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad18s0",
-        "text": "Cateva precizari importante, ca sa nu fie surprize:",
+        "text": "Câteva precizări importante, ca să nu fie surprize:",
         "marks": []
       }
     ]
@@ -335,7 +335,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad19s0",
-        "text": "Pretul de mai sus e per arcada. Daca ai nevoie de aparat sus si jos — ceea ce e cazul cel mai des — costul se aproximativ dubleaza. Pretul include de obicei aplicarea, arcurile si controalele lunare pe durata tratamentului. Pretul final il stabilim dupa consultatie, pentru ca fiecare gura e diferita.",
+        "text": "Prețul de mai sus e per arcadă. Dacă ai nevoie de aparat sus și jos — ceea ce e cazul cel mai des — costul se aproximativ dublează. Prețul include de obicei aplicarea, arcurile și controalele lunare pe durata tratamentului. Prețul final îl stabilim după consultație, pentru că fiecare gură e diferită.",
         "marks": []
       }
     ]
@@ -349,7 +349,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad20s0",
-        "text": "Cat dureaza un tratament ortodontic?",
+        "text": "Cât durează un tratament ortodontic?",
         "marks": []
       }
     ]
@@ -363,7 +363,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad21s0",
-        "text": "Aici nu pot sa-ti mint: ortodontia cere rabdare. Un tratament tipic dureaza intre 12 si 24 de luni, in functie de cat de mult trebuie sa miscam dintii.",
+        "text": "Aici nu pot să-ți mint: ortodonția cere răbdare. Un tratament tipic durează între 12 și 24 de luni, în funcție de cât de mult trebuie să mișcăm dinții.",
         "marks": []
       }
     ]
@@ -377,7 +377,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad22s0",
-        "text": "Cazurile usoare — un dinte sau doi usor strambiti — se pot rezolva in 6-9 luni. Cazurile complexe, cu probleme de ocluzie, pot ajunge la 2-3 ani.",
+        "text": "Cazurile ușoare — un dinte sau doi ușor strâmbi — se pot rezolva în 6-9 luni. Cazurile complexe, cu probleme de ocluzie, pot ajunge la 2-3 ani.",
         "marks": []
       }
     ]
@@ -391,7 +391,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad23s0",
-        "text": "Dar partea buna? Vezi schimbari deja in primele 2-3 luni. Si vii la control o data pe luna, cam 20-30 de minute de fiecare data. Nu e un tratament care iti da viata peste cap.",
+        "text": "Dar partea bună? Vezi schimbări deja în primele 2-3 luni. Și vii la control o dată pe lună, cam 20-30 de minute de fiecare dată. Nu e un tratament care îți dă viața peste cap.",
         "marks": []
       }
     ]
@@ -419,7 +419,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad25s0",
-        "text": "La DENTCRAFT, prima consultatie ortodontica inseamna ca ne uitam la dintii tai si, daca e nevoie, facem o scanare 3D cu scanner-ul intraoral. Apoi iti aratam pe ecran exact ce avem de corectat si ce optiuni ai.",
+        "text": "La DENTCRAFT, prima consultație ortodontică înseamnă că ne uităm la dinții tăi și, dacă e nevoie, facem o scanare 3D cu scanner-ul intraoral. Apoi îți arătăm pe ecran exact ce avem de corectat și ce opțiuni ai.",
         "marks": []
       }
     ]
@@ -433,7 +433,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad26s0",
-        "text": "Nu te grabim sa decizi pe loc. Pleci acasa cu planul de tratament si pretul, te gandesti, intrebi familia. Multi pacienti din Satu Mare si din imprejurimi (Carei, Negresti-Oas, dar si din Maramures) vin tocmai pentru ca le explicam totul clar inainte sa inceapa.",
+        "text": "Nu te grăbim să decizi pe loc. Pleci acasă cu planul de tratament și prețul, te gândești, întrebi familia. Mulți pacienți din Satu Mare și din împrejurimi (Carei, Negrești-Oaș, dar și din Maramureș) vin tocmai pentru că le explicăm totul clar înainte să înceapă.",
         "marks": []
       }
     ]
@@ -461,7 +461,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad28s0",
-        "text": "O sa-ti dau sfatul pe care il dau in cabinet:",
+        "text": "O să-ți dau sfatul pe care îl dau în cabinet:",
         "marks": []
       }
     ]
@@ -475,7 +475,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad29s0",
-        "text": "Daca ",
+        "text": "Dacă ",
         "marks": []
       },
       {
@@ -489,7 +489,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad29s2",
-        "text": " e prioritatea ta si nu te deranjeaza aspectul — ",
+        "text": " e prioritatea ta și nu te deranjează aspectul — ",
         "marks": []
       },
       {
@@ -503,7 +503,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad29s4",
-        "text": ". Functioneaza impecabil.",
+        "text": ". Funcționează impecabil.",
         "marks": []
       }
     ],
@@ -519,7 +519,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad30s0",
-        "text": "Daca vrei discretie dar tot un aparat fix, eficient — ",
+        "text": "Dacă vrei discretie dar tot un aparat fix, eficient — ",
         "marks": []
       },
       {
@@ -563,7 +563,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad31s0",
-        "text": "Daca vrei sa nu se vada aproape deloc si ai un caz usor-mediu — ",
+        "text": "Dacă vrei să nu se vadă aproape deloc și ai un caz ușor-mediu — ",
         "marks": []
       },
       {
@@ -577,7 +577,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad31s2",
-        "text": ". Dar ai nevoie de disciplina sa le porti 22 de ore pe zi.",
+        "text": ". Dar ai nevoie de disciplină să le porți 22 de ore pe zi.",
         "marks": []
       }
     ],
@@ -593,7 +593,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad32s0",
-        "text": "Eu personal le spun pacientilor asa: alege tipul cu care stii ca vei merge pana la capat. Cel mai bun aparat e cel pe care il porti consecvent.",
+        "text": "Eu personal le spun pacienților așa: alege tipul cu care știi că vei merge până la capăt. Cel mai bun aparat e cel pe care îl porți consecvent.",
         "marks": []
       }
     ]
@@ -607,7 +607,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad33s0",
-        "text": "Intrebari frecvente despre aparatul dentar",
+        "text": "Întrebări frecvente despre aparatul dentar",
         "marks": []
       }
     ]
@@ -621,7 +621,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad34s0",
-        "text": "De la ce varsta se poate pune aparat dentar?",
+        "text": "De la ce vârstă se poate pune aparat dentar?",
         "marks": [
           "strong"
         ]
@@ -629,7 +629,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad34s1",
-        "text": " Pentru aparatul fix, ideal dupa ce au erupt dintii permanenti — cam de la 11-12 ani. La copii mai mici facem uneori tratamente interceptive cu aparate mobile. Iar pentru adulti nu exista limita de varsta — daca osul si gingia sunt sanatoase, se poate la orice varsta.",
+        "text": " Pentru aparatul fix, ideal după ce au erupt dinții permanenți — cam de la 11-12 ani. La copii mai mici facem uneori tratamente interceptive cu aparate mobile. Iar pentru adulți nu există limită de vârstă — dacă osul și gingia sunt sănătoase, se poate la orice vârstă.",
         "marks": []
       }
     ]
@@ -643,7 +643,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad35s0",
-        "text": "Doare cand pui aparatul dentar?",
+        "text": "Doare când pui aparatul dentar?",
         "marks": [
           "strong"
         ]
@@ -651,7 +651,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad35s1",
-        "text": " Aplicarea in sine nu doare. In primele 3-5 zile dupa montare si dupa fiecare ajustare lunara poti simti o presiune sau o sensibilitate la muscat — e normal, inseamna ca dintii se misca. Trece repede si se calmeaza cu analgezice obisnuite.",
+        "text": " Aplicarea în sine nu doare. În primele 3-5 zile după montare și după fiecare ajustare lunară poți simți o presiune sau o sensibilitate la mușcat — e normal, înseamnă că dinții se mișcă. Trece repede și se calmează cu analgezice obișnuite.",
         "marks": []
       }
     ]
@@ -665,7 +665,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad36s0",
-        "text": "Pot manca normal cu aparat dentar?",
+        "text": "Pot mânca normal cu aparat dentar?",
         "marks": [
           "strong"
         ]
@@ -673,7 +673,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad36s1",
-        "text": " In mare, da. Eviti lucrurile foarte tari sau lipicioase (nuci intregi, caramele, gheata) care pot desprinde bracketurile. Cu alignerele e si mai simplu — le scoti cand mananci.",
+        "text": " În mare, da. Eviți lucrurile foarte tari sau lipicioase (nuci întregi, caramele, gheață) care pot desprinde bracketurile. Cu alignerele e și mai simplu — le scoți când mănânci.",
         "marks": []
       }
     ]
@@ -687,7 +687,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad37s0",
-        "text": "Cat de des trebuie sa vin la control?",
+        "text": "Cât de des trebuie să vin la control?",
         "marks": [
           "strong"
         ]
@@ -695,7 +695,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad37s1",
-        "text": " La aparatul fix, o data pe luna pentru ajustari. La alignere, cam o data la 6-8 saptamani. Controalele sunt incluse in pretul tratamentului.",
+        "text": " La aparatul fix, o dată pe lună pentru ajustări. La alignere, cam o dată la 6-8 săptămâni. Controalele sunt incluse în prețul tratamentului.",
         "marks": []
       }
     ]
@@ -717,7 +717,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad38s1",
-        "text": " Pentru copii sub 18 ani, Casa de Asigurari deconteaza partial anumite tratamente ortodontice, in limita unui plafon. Pentru adulti, nu. Noi oferim posibilitatea de plata in rate ca sa fie mai usor de gestionat.",
+        "text": " Pentru copii sub 18 ani, Casa de Asigurări decontează partial anumite tratamente ortodontice, în limita unui plafon. Pentru adulți, nu. Noi oferim posibilitatea de plată în rate ca să fie mai ușor de gestionat.",
         "marks": []
       }
     ]
@@ -737,7 +737,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad39s0",
-        "text": "Vrei sa stii exact ce tip de aparat ti se potriveste si cat ar costa in cazul tau? Programeaza o consultatie ortodontica la ",
+        "text": "Vrei să știi exact ce tip de aparat ți se potrivește și cât ar costa în cazul tău? Programează o consultație ortodontică la ",
         "marks": []
       },
       {
@@ -765,7 +765,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad39s4",
-        "text": ". Iti aratam optiunile pe ecran si pleci cu un plan clar.",
+        "text": ". Îți arătăm opțiunile pe ecran și pleci cu un plan clar.",
         "marks": []
       }
     ]
@@ -810,7 +810,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad40s3",
-        "text": "lista noastra de preturi",
+        "text": "lista noastră de prețuri",
         "marks": [
           "ad40l1"
         ]
@@ -818,7 +818,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad40s4",
-        "text": ". Ne gasesti la DENTCRAFT, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare.",
+        "text": ". Ne găsești la DENTCRAFT, pe Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare.",
         "marks": []
       }
     ]

@@ -23,9 +23,9 @@ type CallbackFormData = {
 
 // Time preference labels for email
 const timePreferenceLabels: Record<string, string> = {
-  afternoon: 'Dupa-amiaza (12:00 - 15:00)',
+  afternoon: 'După-amiază (12:00 - 15:00)',
   evening: 'Seara (15:00 - 18:00)',
-  morning: 'Dimineata (10:00 - 12:00)',
+  morning: 'Dimineața (10:00 - 12:00)',
 }
 
 // Get client IP from headers

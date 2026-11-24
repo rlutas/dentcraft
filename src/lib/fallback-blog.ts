@@ -135,8 +135,8 @@ type FallbackBlogPost = {
 export const fallbackBlogCategories: Record<string, FallbackBlogCategory[]> = {
   ro: [
     { _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantologie' },
-    { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Ortodontie' },
-    { _id: 'cat-copii', slug: 'copii', title: 'Stomatologie pediatrica' },
+    { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Ortodonție' },
+    { _id: 'cat-copii', slug: 'copii', title: 'Stomatologie pediatrică' },
   ],
   en: [
     { _id: 'cat-implantologie', slug: 'implantologie', title: 'Implantology' },
@@ -156,159 +156,159 @@ export const fallbackBlogCategories: Record<string, FallbackBlogCategory[]> = {
 
 const contentRo: PortableTextBlock[] = [
   // Intro paragraphs
-  block('ro01', 'normal', '"Doctor, cat ma costa un implant?" E intrebarea pe care o aud de cel putin 3 ori pe zi. Si raspunsul sincer e: depinde. Dar nu iti spun asta ca sa te evit \u2014 ci pentru ca pretul unui implant dentar variaza real in functie de mai multi factori pe care ti-i explic mai jos.'),
+  block('ro01', 'normal', '"Doctor, cât mă costă un implant?" E întrebarea pe care o aud de cel puțin 3 ori pe zi. Și răspunsul sincer e: depinde. Dar nu îți spun asta ca să te evit \u2014 ci pentru că prețul unui implant dentar variază real în funcție de mai mulți factori pe care ți-i explic mai jos.'),
 
   richBlock('ro02', 'normal', [
-    { text: 'Am scris acest ghid ca sa ai toate informatiile inainte sa te programezi undeva. Fara surprize, fara costuri ascunse. Asa cum lucram noi la ' },
+    { text: 'Am scris acest ghid ca să ai toate informațiile înainte să te programezi undeva. Fără surprize, fără costuri ascunse. Așa cum lucrăm noi la ' },
     { text: 'DENTCRAFT', link: { key: 'lnk1', href: '/' } },
     { text: '.' },
   ]),
 
   // Section: De ce variaza pretul
-  block('ro03', 'h2', 'De ce variaza pretul unui implant dentar?'),
+  block('ro03', 'h2', 'De ce variază prețul unui implant dentar?'),
 
-  block('ro04', 'normal', 'Daca ai cautat "implant dentar satu mare pret" pe Google, probabil ai gasit cifre intre 2.000 si 7.000 de lei. Diferenta e mare, stiu. Dar nu e intamplatoare.'),
+  block('ro04', 'normal', 'Dacă ai căutat "implant dentar satu mare preț" pe Google, probabil ai găsit cifre între 2.000 și 7.000 de lei. Diferența e mare, știu. Dar nu e întâmplătoare.'),
 
-  block('ro05', 'normal', 'Pretul depinde de trei lucruri:'),
+  block('ro05', 'normal', 'Prețul depinde de trei lucruri:'),
 
   richBlock('ro06', 'normal', [
     { text: '1. Brandul implantului.', bold: true },
-    { text: ' Exista implanturi coreene, israeliene, germane, elvetiene. Un implant Straumann (Elvetia) costa altfel decat un MegaGen sau Osstem. Nu inseamna ca cele mai ieftine sunt proaste \u2014 dar diferenta de material, studii clinice si garantie exista.' },
+    { text: ' Există implanturi coreene, israeliene, germane, elvețiene. Un implant Straumann (Elveția) costă altfel decât un MegaGen sau Osstem. Nu înseamnă că cele mai ieftine sunt proaste \u2014 dar diferența de material, studii clinice și garanție există.' },
   ]),
 
   richBlock('ro07', 'normal', [
     { text: '2. Coroana de pe implant.', bold: true },
-    { text: ' Multi pacienti nu realizeaza ca pretul implantului si pretul coroanei sunt lucruri separate. Un implant fara coroana e ca o fundatie fara casa. Coroana poate fi din zirconiu monolitic, ceramica stratificata sau metal-ceramica \u2014 fiecare la alt pret.' },
+    { text: ' Mulți pacienți nu realizează că prețul implantului și prețul coroanei sunt lucruri separate. Un implant fără coroană e ca o fundație fără casă. Coroana poate fi din zirconiu monolitic, ceramică stratificată sau metal-ceramică \u2014 fiecare la alt preț.' },
   ]),
 
   richBlock('ro08', 'normal', [
-    { text: '3. Lucrarile suplimentare.', bold: true },
-    { text: ' Uneori osul nu e suficient de gros si trebuie facut un aditie osoasa (augmentare). Alteori gingiva trebuie corectata. Aceste proceduri se adauga la costul total.' },
+    { text: '3. Lucrările suplimentare.', bold: true },
+    { text: ' Uneori osul nu e suficient de gros și trebuie făcut un adiție osoasă (augmentare). Alteori gingiva trebuie corectată. Aceste proceduri se adaugă la costul total.' },
   ]),
 
   // Section: Preturi orientative
-  block('ro09', 'h2', 'Preturi orientative implant dentar la DENTCRAFT Satu Mare (2026)'),
+  block('ro09', 'h2', 'Prețuri orientative implant dentar la DENTCRAFT Satu Mare (2026)'),
 
-  block('ro10', 'normal', 'Iata o situatie realista, ca sa stii la ce sa te astepti:'),
+  block('ro10', 'normal', 'Iată o situație realistă, ca să știi la ce să te aștepți:'),
 
-  richListItem('ro11', [{ text: 'Implant dentar (fara coroana):', bold: true }, { text: ' 2.500 \u2013 4.500 lei' }]),
+  richListItem('ro11', [{ text: 'Implant dentar (fără coroană):', bold: true }, { text: ' 2.500 \u2013 4.500 lei' }]),
   richListItem('ro12', [{ text: 'Coroana pe implant (zirconiu):', bold: true }, { text: ' 1.500 \u2013 2.500 lei' }]),
-  richListItem('ro13', [{ text: 'Coroana pe implant (metal-ceramica):', bold: true }, { text: ' 1.000 \u2013 1.800 lei' }]),
-  richListItem('ro14', [{ text: 'Aditie osoasa (daca e necesara):', bold: true }, { text: ' 800 \u2013 2.500 lei' }]),
-  richListItem('ro15', [{ text: 'Sinus lift (daca e necesar):', bold: true }, { text: ' 1.500 \u2013 3.500 lei' }]),
+  richListItem('ro13', [{ text: 'Coroana pe implant (metal-ceramică):', bold: true }, { text: ' 1.000 \u2013 1.800 lei' }]),
+  richListItem('ro14', [{ text: 'Adiție osoasă (dacă e necesară):', bold: true }, { text: ' 800 \u2013 2.500 lei' }]),
+  richListItem('ro15', [{ text: 'Sinus lift (dacă e necesar):', bold: true }, { text: ' 1.500 \u2013 3.500 lei' }]),
   richListItem('ro16', [{ text: 'Total implant complet (medie):', bold: true }, { text: ' 4.000 \u2013 6.500 lei', bold: true }]),
 
-  block('ro17', 'normal', 'Preturile de mai sus sunt orientative. Pretul tau final il stabilim dupa consultatie, inainte sa inceapa orice tratament.'),
+  block('ro17', 'normal', 'Prețurile de mai sus sunt orientative. Prețul tău final îl stabilim după consultație, înainte să înceapă orice tratament.'),
 
   // Section: Ce include pretul
-  block('ro18', 'h2', 'Ce include pretul unui implant la DENTCRAFT?'),
+  block('ro18', 'h2', 'Ce include prețul unui implant la DENTCRAFT?'),
 
-  block('ro19', 'normal', 'Am vazut cazuri in care pacienti au platit mai putin la alta clinica, dar apoi au descoperit ca fiecare vizita de control era taxata separat. Sau ca radiografia nu era inclusa. Sau ca anestazia avea un cost extra.'),
+  block('ro19', 'normal', 'Am văzut cazuri în care pacienți au plătit mai puțin la altă clinică, dar apoi au descoperit că fiecare vizită de control era taxată separat. Sau că radiografia nu era inclusă. Sau că anestezia avea un cost extra.'),
 
-  block('ro20', 'normal', 'La noi, pretul implantului include:'),
+  block('ro20', 'normal', 'La noi, prețul implantului include:'),
 
-  listItem('ro21', 'Consultatia initiala si planul de tratament'),
+  listItem('ro21', 'Consultația inițială și planul de tratament'),
   listItem('ro23', 'Implantul propriu-zis (titan, biocompatibil)'),
-  listItem('ro24', 'Bontul protetic (piesa care leaga implantul de coroana)'),
-  listItem('ro25', 'Controalele post-operatorii pe toata perioada de vindecare'),
-  listItem('ro26', 'Garantie pe implant'),
+  listItem('ro24', 'Bontul protetic (piesa care leagă implantul de coroana)'),
+  listItem('ro25', 'Controalele post-operatorii pe toată perioada de vindecare'),
+  listItem('ro26', 'Garanție pe implant'),
 
-  block('ro27', 'normal', 'Coroana se plateste separat, dar stii pretul dinainte. Fara surprize.'),
+  block('ro27', 'normal', 'Coroana se plătește separat, dar știi prețul dinainte. Fără surprize.'),
 
   // Section: Ieftin vs scump
-  block('ro28', 'h2', 'Implant dentar ieftin vs. scump \u2014 merita diferenta?'),
+  block('ro28', 'h2', 'Implant dentar ieftin vs. scump \u2014 merită diferența?'),
 
   block('ro29', 'normal', 'Sincer? Uneori da, alteori nu.'),
 
-  block('ro30', 'normal', 'Am lucrat cu mai multe sisteme de-a lungul celor 10 ani de experienta si pot spune ca diferenta principala e in predictibilitate. Implanturile premium au studii clinice pe 20-30 de ani care demonstreaza rata de succes. Cele mai accesibile au studii pe 5-10 ani \u2014 care tot arata rezultate bune, dar cu mai putina istorie.'),
+  block('ro30', 'normal', 'Am lucrat cu mai multe sisteme de-a lungul celor 10 ani de experiență și pot spune că diferența principală e în predictibilitate. Implanturile premium au studii clinice pe 20-30 de ani care demonstrează rata de succes. Cele mai accesibile au studii pe 5-10 ani \u2014 care tot arată rezultate bune, dar cu mai puțină istorie.'),
 
-  block('ro31', 'normal', 'Ce recomand eu: nu alege doar dupa pret. Intreaba-l pe medic ce sistem foloseste si de ce. Un implant pus corect, in osul potrivit, cu igiena corecta dupa \u2014 dureaza o viata, indiferent de brand.'),
+  block('ro31', 'normal', 'Ce recomand eu: nu alege doar după preț. Întreabă-l pe medic ce sistem folosește și de ce. Un implant pus corect, în osul potrivit, cu igienă corectă după \u2014 durează o viață, indiferent de brand.'),
 
-  block('ro32', 'normal', 'Dar un implant pus gresit, chiar si cel mai scump, poate esua.'),
+  block('ro32', 'normal', 'Dar un implant pus greșit, chiar și cel mai scump, poate eșua.'),
 
   // Section: Cat dureaza
-  block('ro33', 'h2', 'Cat dureaza procedura de implant dentar?'),
+  block('ro33', 'h2', 'Cât durează procedura de implant dentar?'),
 
-  block('ro34', 'normal', 'Asta e a doua intrebare pe care o aud zilnic. Si raspunsul surprinde pe multi: procedura in sine \u2014 adica inserarea implantului in os \u2014 dureaza cam 30-45 de minute per implant.'),
+  block('ro34', 'normal', 'Asta e a doua întrebare pe care o aud zilnic. Și răspunsul surprinde pe mulți: procedura în sine \u2014 adică inserarea implantului în os \u2014 durează cam 30-45 de minute per implant.'),
 
-  block('ro35', 'normal', 'Nu doare. Se face cu anestezie locala, aceeasi pe care o folosim la o plomba. Multi pacienti imi spun dupa ca s-au asteptat sa fie mult mai rau.'),
+  block('ro35', 'normal', 'Nu doare. Se face cu anestezie locală, aceeași pe care o folosim la o plombă. Mulți pacienți îmi spun după că s-au așteptat să fie mult mai rău.'),
 
-  block('ro36', 'normal', 'Ce dureaza mai mult e vindecarea. Osul are nevoie de 3-6 luni sa se integreze cu implantul (procesul se numeste osteointegrare). In aceasta perioada porti o lucrare provizorie \u2014 deci nu stai fara dinte.'),
+  block('ro36', 'normal', 'Ce durează mai mult e vindecarea. Osul are nevoie de 3-6 luni să se integreze cu implantul (procesul se numește osteointegrare). În această perioada porți o lucrare provizorie \u2014 deci nu stai fără dinte.'),
 
-  block('ro37', 'normal', 'Timeline-ul complet arata cam asa:'),
+  block('ro37', 'normal', 'Timeline-ul complet arată cam așa:'),
 
-  richListItem('ro38', [{ text: 'Ziua 1:', bold: true }, { text: ' Consultatie + plan de tratament' }], 'number'),
+  richListItem('ro38', [{ text: 'Ziua 1:', bold: true }, { text: ' Consultație + plan de tratament' }], 'number'),
   richListItem('ro39', [{ text: 'Ziua chirurgiei:', bold: true }, { text: ' Inserarea implantului (30-45 min)' }], 'number'),
   richListItem('ro40', [{ text: 'Luna 1-2:', bold: true }, { text: ' Controale periodice, vindecarea gingiei' }], 'number'),
-  richListItem('ro41', [{ text: 'Luna 3-6:', bold: true }, { text: ' Osteointegrare (implantul se integreaza in os)' }], 'number'),
-  richListItem('ro42', [{ text: 'Dupa vindecare:', bold: true }, { text: ' Amprenta digitala + montarea coroanei definitive' }], 'number'),
+  richListItem('ro41', [{ text: 'Luna 3-6:', bold: true }, { text: ' Osteointegrare (implantul se integrează în os)' }], 'number'),
+  richListItem('ro42', [{ text: 'După vindecare:', bold: true }, { text: ' Amprenta digitală + montarea coroanei definitive' }], 'number'),
 
-  block('ro43', 'normal', 'Total? Cam 4-6 luni de la inserare la zambetul final. Dar in tot acest timp ai dinte provizoriu si te duci la treaba normal.'),
+  block('ro43', 'normal', 'Total? Cam 4-6 luni de la inserare la zâmbetul final. Dar în tot acest timp ai dinte provizoriu și te duci la treabă normal.'),
 
   // Section: All-on-4
-  block('ro44', 'h2', 'All-on-4 si All-on-6 \u2014 cand merita?'),
+  block('ro44', 'h2', 'All-on-4 și All-on-6 \u2014 când merită?'),
 
-  block('ro45', 'normal', 'Daca ti-au spus ca ai nevoie de mai multe implanturi \u2014 sa zicem 6 sau mai multe pe o arcada \u2014 exista o alternativa mai eficienta si mai accesibila decat implanturile individuale.'),
+  block('ro45', 'normal', 'Dacă ți-au spus că ai nevoie de mai multe implanturi \u2014 să zicem 6 sau mai multe pe o arcadă \u2014 există o alternativă mai eficientă și mai accesibilă decât implanturile individuale.'),
 
-  block('ro46', 'normal', 'Se numeste All-on-4 (sau All-on-6) si functioneaza asa: se plaseaza 4-6 implanturi strategic in maxilar, iar pe ele se fixeaza o proteza completa, fixa. Rezultatul? Dinti ficsi in 24 de ore, in unele cazuri chiar in aceeasi zi.'),
+  block('ro46', 'normal', 'Se numește All-on-4 (sau All-on-6) și funcționează așa: se plasează 4-6 implanturi strategic în maxilar, iar pe ele se fixează o proteză completă, fixă. Rezultatul? Dinți ficși în 24 de ore, în unele cazuri chiar în aceeași zi.'),
 
-  block('ro47', 'normal', 'Avantajul major: pretul total e mai mic decat daca ai pune 8-10 implanturi individuale cu coroane separate. Si timpul de tratament e mult redus.'),
+  block('ro47', 'normal', 'Avantajul major: prețul total e mai mic decât dacă ai pune 8-10 implanturi individuale cu coroane separate. Și timpul de tratament e mult redus.'),
 
-  block('ro48', 'normal', 'Pretul pentru All-on-4 porneste de la aproximativ 15.000 lei per arcada, dar variaza in functie de materialele alese si de complexitatea cazului.'),
+  block('ro48', 'normal', 'Prețul pentru All-on-4 pornește de la aproximativ 15.000 lei per arcadă, dar variază în funcție de materialele alese și de complexitatea cazului.'),
 
   // Section: De ce DENTCRAFT
-  block('ro49', 'h2', 'De ce sa alegi DENTCRAFT pentru implantul tau?'),
+  block('ro49', 'h2', 'De ce să alegi DENTCRAFT pentru implantul tău?'),
 
-  block('ro50', 'normal', 'Nu o sa iti spun ca suntem "cei mai buni" \u2014 asta decide fiecare pacient in parte. Dar iti pot spune ce ne diferentiaza:'),
+  block('ro50', 'normal', 'Nu o să îți spun că suntem "cei mai buni" \u2014 asta decide fiecare pacient în parte. Dar îți pot spune ce ne diferențiază:'),
 
   richBlock('ro51', 'normal', [
-    { text: 'Lucram cu ' },
-    { text: 'echipa noastra de specialisti', link: { key: 'lnk2', href: '/echipa' } },
-    { text: ', cu experienta combinata de peste 10 ani. Avem scanner intraoral in cabinet. Comunicam in romana, engleza si maghiara.' },
+    { text: 'Lucrăm cu ' },
+    { text: 'echipa noastră de specialiști', link: { key: 'lnk2', href: '/echipa' } },
+    { text: ', cu experiență combinată de peste 10 ani. Avem scanner intraoral în cabinet. Comunicăm în română, engleză și maghiară.' },
   ]),
 
-  block('ro52', 'normal', 'Si cel mai important: iti spunem pretul final inainte sa incepem. Multi pacienti din Satu Mare si din judetele vecine (Maramures, Bihor) aleg sa vina la noi tocmai pentru asta \u2014 transparenta.'),
+  block('ro52', 'normal', 'Și cel mai important: îți spunem prețul final înainte să începem. Mulți pacienți din Satu Mare și din județele vecine (Maramureș, Bihor) aleg să vină la noi tocmai pentru asta \u2014 transparență.'),
 
   // Section: FAQ
-  block('ro53', 'h2', 'Intrebari frecvente despre implanturile dentare'),
+  block('ro53', 'h2', 'Întrebări frecvente despre implanturile dentare'),
 
   richBlock('ro54', 'normal', [
-    { text: 'Cat de mult doare un implant dentar?', bold: true },
+    { text: 'Cât de mult doare un implant dentar?', bold: true },
   ]),
-  block('ro55', 'normal', 'Mai putin decat te astepti. Procedura se face cu anestezie locala si dureaza sub o ora. Dupa, poti avea un disconfort usor 2-3 zile, controlabil cu ibuprofen. Majoritatea pacientilor spun ca a fost mai ok decat o extractie.'),
+  block('ro55', 'normal', 'Mai puțin decât te aștepți. Procedura se face cu anestezie locală și durează sub o oră. După, poți avea un disconfort ușor 2-3 zile, controlabil cu ibuprofen. Majoritatea pacienților spun că a fost mai ok decât o extracție.'),
 
   richBlock('ro56', 'normal', [
-    { text: 'Cat dureaza un implant dentar?', bold: true },
+    { text: 'Cât durează un implant dentar?', bold: true },
   ]),
-  block('ro57', 'normal', 'Cu igiena corecta si controale anuale \u2014 o viata intreaga. Implanturile au rata de succes de peste 95% pe termen lung. Coroana de pe implant poate necesita inlocuire dupa 15-20 de ani, dar implantul in sine ramane.'),
+  block('ro57', 'normal', 'Cu igienă corectă și controale anuale \u2014 o viață întreagă. Implanturile au rata de succes de peste 95% pe termen lung. Coroana de pe implant poate necesită înlocuire după 15-20 de ani, dar implantul în sine rămâne.'),
 
   richBlock('ro58', 'normal', [
-    { text: 'Se poate face implant imediat dupa extractie?', bold: true },
+    { text: 'Se poate face implant imediat după extracție?', bold: true },
   ]),
-  block('ro59', 'normal', 'In unele cazuri, da. Se numeste "implant imediat post-extractional" si scurteaza timpul total de tratament. Dar nu se aplica in toate situatiile \u2014 depinde de starea osului si de zona. Discutam asta la consultatie.'),
+  block('ro59', 'normal', 'În unele cazuri, da. Se numește "implant imediat post-extractional" și scurtează timpul total de tratament. Dar nu se aplică în toate situațiile \u2014 depinde de starea osului și de zona. Discutăm asta la consultație.'),
 
   richBlock('ro60', 'normal', [
     { text: 'Implantul dentar e decontat de asigurare?', bold: true },
   ]),
-  block('ro61', 'normal', 'In Romania, implanturile dentare nu sunt decontate de Casa de Asigurari de Sanatate. Unele asigurari private pot acoperi partial costul \u2014 verifica cu asiguratorul tau. Noi oferim si posibilitatea de plata in rate.'),
+  block('ro61', 'normal', 'În România, implanturile dentare nu sunt decontate de Casa de Asigurări de Sănătate. Unele asigurări private pot acoperi partial costul \u2014 verifică cu asigurătorul tău. Noi oferim și posibilitatea de plată în rate.'),
 
   richBlock('ro62', 'normal', [
-    { text: 'La ce varsta se pot pune implanturi?', bold: true },
+    { text: 'La ce vârstă se pot pune implanturi?', bold: true },
   ]),
-  block('ro63', 'normal', 'De la 18 ani in sus, cand osul si-a terminat cresterea. Nu exista limita superioara de varsta \u2014 am pus implanturi cu succes la pacienti de 75+ ani. Conteaza starea generala de sanatate, nu varsta in sine.'),
+  block('ro63', 'normal', 'De la 18 ani în sus, când osul și-a terminat creșterea. Nu există limită superioară de vârstă \u2014 am pus implanturi cu succes la pacienți de 75+ ani. Contează starea generală de sănătate, nu varsta în sine.'),
 
   // CTA
   richBlock('ro64', 'normal', [
-    { text: 'Ai intrebari despre implantul dentar sau vrei o evaluare personalizata? Suna-ne la ' },
+    { text: 'Ai întrebări despre implantul dentar sau vrei o evaluare personalizată? Sună-ne la ' },
     { text: '0741 199 977', bold: true },
     { text: ' sau ' },
-    { text: 'programeaza online', link: { key: 'lnk3', href: '/contact' } },
+    { text: 'programează online', link: { key: 'lnk3', href: '/contact' } },
     { text: '.' },
   ]),
 
   richBlock('ro65', 'normal', [
     { text: 'Ne vedem la ' },
-    { text: 'DENTCRAFT, pe Str. Barbu Stefanescu Delavrancea nr.3, Satu Mare', link: { key: 'lnk4', href: '/contact' } },
+    { text: 'DENTCRAFT, pe Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare', link: { key: 'lnk4', href: '/contact' } },
     { text: '.' },
   ]),
 ]
@@ -611,7 +611,7 @@ const categoryHu = { _id: 'cat-implantologie', slug: 'implantologie', title: 'Im
 
 const author = {
   _id: 'author-petric',
-  name: 'Dr. Razvan Petric',
+  name: 'Dr. Răzvan Petric',
   photo: {
     asset: {
       _id: 'author-photo-petric',
@@ -619,7 +619,7 @@ const author = {
     },
   },
   slug: 'razvan-petric',
-  bio: 'Medic stomatolog principal al clinicii DENTCRAFT, cu peste 10 ani de experienta. Specializat in implantologie si estetica dentara.',
+  bio: 'Medic stomatolog principal al clinicii DENTCRAFT, cu peste 10 ani de experiență. Specializat în implantologie și estetică dentară.',
   jobTitle: 'Medic Stomatolog Principal',
 }
 
@@ -627,12 +627,12 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
   ro: [
     {
       _id: 'blog-implant-dentar-satu-mare',
-      title: 'Cat costa un implant dentar in Satu Mare? Ghid complet preturi 2026',
+      title: 'Cât costă un implant dentar în Satu Mare? Ghid complet prețuri 2026',
       slug: 'cat-costa-implant-dentar-satu-mare',
-      excerpt: '"Doctor, cat ma costa un implant?" E intrebarea pe care o aud de cel putin 3 ori pe zi. Am scris acest ghid ca sa ai toate informatiile inainte sa te programezi undeva. Fara surprize, fara costuri ascunse.',
+      excerpt: '"Doctor, cât mă costă un implant?" E întrebarea pe care o aud de cel puțin 3 ori pe zi. Am scris acest ghid ca să ai toate informațiile înainte să te programezi undeva. Fără surprize, fără costuri ascunse.',
       content: contentRo,
       coverImage: {
-        alt: 'Medic dentist prezentand un model de implant dentar intr-un cabinet stomatologic modern - DENTCRAFT Satu Mare',
+        alt: 'Medic dentist prezentând un model de implant dentar într-un cabinet stomatologic modern - DENTCRAFT Satu Mare',
         asset: { _id: 'local-cover-implant', url: '/images/blog/implant-dentar-satu-mare-cover.webp' },
       },
       category: categoryRo,
@@ -640,50 +640,50 @@ export const fallbackBlogPosts: Record<string, FallbackBlogPost[]> = {
       publishedAt: '2026-02-24T10:00:00.000Z',
       featured: true,
       seo: {
-        metaTitle: 'Implant Dentar Satu Mare Pret 2026 | DENTCRAFT',
-        metaDescription: 'Cat costa un implant dentar in Satu Mare? Preturi de la 2.500 lei, factori care influenteaza costul si ce include. Plan de tratament la DENTCRAFT.',
+        metaTitle: 'Implant Dentar Satu Mare Preț 2026 | DENTCRAFT',
+        metaDescription: 'Cât costă un implant dentar în Satu Mare? Prețuri de la 2.500 lei, factori care influențează costul și ce include. Plan de tratament la DENTCRAFT.',
         ogImage: null,
         noIndex: false,
       },
     },
     {
       _id: 'blog-aparat-dentar-satu-mare',
-      title: 'Aparat dentar in Satu Mare: tipuri, preturi si tot ce trebuie sa stii in 2026',
+      title: 'Aparat dentar în Satu Mare: tipuri, prețuri și tot ce trebuie să știi în 2026',
       slug: 'aparat-dentar-satu-mare',
-      excerpt: 'Metalic, ceramic, safir sau alignere transparente? Iti explic exact ce optiuni de aparat dentar ai in Satu Mare, cat costa fiecare si cat dureaza tratamentul. Fara termeni complicati.',
+      excerpt: 'Metalic, ceramic, safir sau alignere transparente? Îți explic exact ce opțiuni de aparat dentar ai în Satu Mare, cât costă fiecare și cât durează tratamentul. Fără termeni complicați.',
       content: contentRoAparat,
       coverImage: {
         alt: 'Aparat dentar ceramic la clinica DENTCRAFT Satu Mare',
         asset: { _id: 'local-cover-aparat', url: '/images/blog/aparat-dentar-satu-mare-cover.webp' },
       },
-      category: { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Ortodontie' },
+      category: { _id: 'cat-ortodontie', slug: 'ortodontie', title: 'Ortodonție' },
       author,
       publishedAt: '2026-06-18T10:00:00.000Z',
       featured: false,
       seo: {
-        metaTitle: 'Aparat Dentar Satu Mare: Tipuri si Preturi 2026 | DENTCRAFT',
-        metaDescription: 'Aparat dentar in Satu Mare: metalic, ceramic, safir sau alignere? Preturi, durata tratament si cum alegi. Consultatie ortodontica la DENTCRAFT.',
+        metaTitle: 'Aparat Dentar Satu Mare: Tipuri și Prețuri 2026 | DENTCRAFT',
+        metaDescription: 'Aparat dentar în Satu Mare: metalic, ceramic, safir sau alignere? Prețuri, durata tratament și cum alegi. Consultație ortodontică la DENTCRAFT.',
         ogImage: null,
         noIndex: false,
       },
     },
     {
       _id: 'blog-stomatolog-copii-satu-mare',
-      title: 'Stomatolog copii in Satu Mare: prima vizita la dentist si cum o faci usoara',
+      title: 'Stomatolog copii în Satu Mare: prima vizită la dentist și cum o faci ușoară',
       slug: 'stomatolog-copii-satu-mare',
-      excerpt: 'Cum faci ca primei vizite la dentist a copilului sa nu-i fie frica? Cand sa mergeti prima data, cum il pregatesti si cum lucram noi cu cei mici la DENTCRAFT Satu Mare.',
+      excerpt: 'Cum faci ca primei vizite la dentist a copilului să nu-i fie frică? Când să mergeți prima dată, cum îl pregătești și cum lucrăm noi cu cei mici la DENTCRAFT Satu Mare.',
       content: contentRoCopii,
       coverImage: {
-        alt: 'Stomatolog pentru copii la DENTCRAFT Satu Mare - prima vizita fara stres',
+        alt: 'Stomatolog pentru copii la DENTCRAFT Satu Mare - prima vizită fără stres',
         asset: { _id: 'local-cover-copii', url: '/images/blog/stomatolog-copii-satu-mare-cover.webp' },
       },
-      category: { _id: 'cat-copii', slug: 'copii', title: 'Stomatologie pediatrica' },
+      category: { _id: 'cat-copii', slug: 'copii', title: 'Stomatologie pediatrică' },
       author,
       publishedAt: '2026-06-18T11:00:00.000Z',
       featured: false,
       seo: {
-        metaTitle: 'Stomatolog Copii Satu Mare: Prima Vizita | DENTCRAFT',
-        metaDescription: 'Stomatolog copii in Satu Mare: cand sa mergi prima data, cum pregatesti copilul si ce facem la DENTCRAFT ca sa nu-i fie frica. Programare 0741 199 977.',
+        metaTitle: 'Stomatolog Copii Satu Mare: Prima Vizită | DENTCRAFT',
+        metaDescription: 'Stomatolog copii în Satu Mare: când să mergi prima dată, cum pregătești copilul și ce facem la DENTCRAFT ca să nu-i fie frică. Programare 0741 199 977.',
         ogImage: null,
         noIndex: false,
       },

@@ -72,7 +72,7 @@ const DIAL_CODES = [
   { iso: 'US', dial: '+1', name: 'SUA', flag: '🇺🇸' },
   { iso: 'CA', dial: '+1', name: 'Canada', flag: '🇨🇦' },
   { iso: 'AU', dial: '+61', name: 'Australia', flag: '🇦🇺' },
-  { iso: 'NZ', dial: '+64', name: 'Noua Zeelandă', flag: '🇳🇿' },
+  { iso: 'NZ', dial: '+64', name: 'Nouă Zeelandă', flag: '🇳🇿' },
   { iso: 'IL', dial: '+972', name: 'Israel', flag: '🇮🇱' },
   { iso: 'AE', dial: '+971', name: 'Emiratele Arabe Unite', flag: '🇦🇪' },
 ] as const
@@ -148,22 +148,22 @@ export default function PriceEstimatePopup({
     if (!formData.name.trim()) {
       newErrors['name'] = 'Numele este obligatoriu'
     } else if (formData.name.trim().length < 2) {
-      newErrors['name'] = 'Numele trebuie sa aiba cel putin 2 caractere'
+      newErrors['name'] = 'Numele trebuie să aibă cel puțin 2 caractere'
     }
 
     // Phone is not required in saveMode (we only email the estimate, no callback)
     if (!saveMode) {
       if (!formData.phone.trim()) {
-        newErrors['phone'] = 'Numarul de telefon este obligatoriu'
+        newErrors['phone'] = 'Numărul de telefon este obligatoriu'
       } else if (!/^[\d\s\-+()]{8,}$/.test(formData.phone)) {
-        newErrors['phone'] = 'Numarul de telefon nu este valid'
+        newErrors['phone'] = 'Numărul de telefon nu este valid'
       }
     }
 
     if (!formData.email.trim()) {
       newErrors['email'] = 'Adresa de email este obligatorie'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors['email'] = 'Adresa de email nu este valida'
+      newErrors['email'] = 'Adresa de email nu este validă'
     }
 
     setErrors(newErrors)
@@ -207,7 +207,7 @@ export default function PriceEstimatePopup({
         if (data?.errors) {
           setErrors(data.errors)
         } else {
-          setErrors({ general: data?.error || 'A aparut o eroare. Va rugam incercati din nou.' })
+          setErrors({ general: data?.error || 'A apărut o eroare. Vă rugăm încercați din nou.' })
         }
         setIsSubmitting(false)
         return
@@ -217,7 +217,7 @@ export default function PriceEstimatePopup({
       setIsSuccess(true)
       trackFormSubmission('price_estimate', { service: service.title })
     } catch {
-      setErrors({ general: 'Eroare de retea. Verificati conexiunea si incercati din nou.' })
+      setErrors({ general: 'Eroare de rețea. Verificați conexiunea și încercați din nou.' })
       setIsSubmitting(false)
     }
   }
@@ -267,7 +267,7 @@ export default function PriceEstimatePopup({
                 'bg-[#f5f0e8]/80 text-[#6b6b6b] transition-all duration-200',
                 'hover:bg-[#f5f0e8] hover:text-[#1a1a1a] hover:scale-105'
               )}
-              aria-label="Inchide"
+              aria-label="Închide"
             >
               <X className="h-4 w-4" strokeWidth={2} />
             </button>
@@ -298,7 +298,7 @@ export default function PriceEstimatePopup({
                     transition={{ delay: 0.2 }}
                     className="mb-3 text-2xl font-semibold text-[#1a1a1a]"
                   >
-                    Cerere trimisa cu succes!
+                    Cerere trimisă cu succes!
                   </motion.h3>
 
                   <motion.p
@@ -307,7 +307,7 @@ export default function PriceEstimatePopup({
                     transition={{ delay: 0.3 }}
                     className="mb-8 text-[#6b6b6b] leading-relaxed max-w-[280px]"
                   >
-                    Va vom contacta in cel mai scurt timp pentru a stabili o consultatie.
+                    Va vom contacta în cel mai scurt timp pentru a stabili o consultație.
                   </motion.p>
 
                   <motion.button
@@ -322,7 +322,7 @@ export default function PriceEstimatePopup({
                       'hover:bg-[#2a2a2a] hover:-translate-y-0.5 hover:shadow-lg'
                     )}
                   >
-                    Inchide
+                    Închide
                   </motion.button>
                 </motion.div>
               ) : (
@@ -340,18 +340,18 @@ export default function PriceEstimatePopup({
                     <div className="mb-2 sm:mb-4 inline-flex items-center gap-2 rounded-full bg-[#f5f0e8] px-3 py-1">
                       <Calculator className="h-3.5 w-3.5 text-[#8b8b8b]" />
                       <span className="text-xs font-semibold uppercase tracking-wider text-[#6b6b6b]">
-                        Estimare pret
+                        Estimare preț
                       </span>
                     </div>
 
                     <h2 className="mb-1 sm:mb-2 text-xl sm:text-2xl font-semibold text-[#1a1a1a] tracking-tight">
-                      {saveMode && saveModeTitle ? saveModeTitle : 'Programeaza consultatie'}
+                      {saveMode && saveModeTitle ? saveModeTitle : 'Programează consultație'}
                     </h2>
 
                     <p className="text-[13px] sm:text-[15px] text-[#6b6b6b] leading-relaxed">
                       {saveMode && saveModeContext
                         ? saveModeContext
-                        : 'Completeaza datele de contact si te vom suna pentru programare.'}
+                        : 'Completează datele de contact și te vom suna pentru programare.'}
                     </p>
                   </div>
 
@@ -399,7 +399,7 @@ export default function PriceEstimatePopup({
                       </div>
                     )}
                     <div className="flex items-center justify-between bg-white rounded-lg px-4 py-2.5">
-                      <span className="text-sm text-[#6b6b6b]">Pret estimat</span>
+                      <span className="text-sm text-[#6b6b6b]">Preț estimat</span>
                       <span className="font-bold text-[#1a1a1a]">
                         {formatPrice(priceRange.min)} - {formatPrice(priceRange.max)} RON
                       </span>
@@ -424,7 +424,7 @@ export default function PriceEstimatePopup({
                             setFormData((prev) => ({ ...prev, name: e.target.value }))
                             if (errors['name']) setErrors((prev) => ({ ...prev, name: '' }))
                           }}
-                          placeholder="Numele dumneavoastra"
+                          placeholder="Numele dumneavoastră"
                           className={cn(
                             'w-full rounded-xl border bg-white py-2.5 sm:py-3 pl-11 pr-4 text-[14px] sm:text-[15px]',
                             'placeholder:text-[#b0b0b0] text-[#1a1a1a]',
@@ -443,7 +443,7 @@ export default function PriceEstimatePopup({
                     {!saveMode && (
                       <div>
                         <label className="mb-1.5 sm:mb-2 block text-sm font-medium text-[#1a1a1a]">
-                          Numar de telefon
+                          Număr de telefon
                         </label>
                         <div className="flex gap-2">
                           {/* Country dial code selector — compact (flag + ISO only) */}
@@ -535,7 +535,7 @@ export default function PriceEstimatePopup({
                           <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white" />
                         </div>
                         <p className="text-[12px] sm:text-[13px] text-[#6b6b6b] leading-snug">
-                          Va vom contacta in maximum 30 de minute in programul de lucru.
+                          Va vom contacta în maximum 30 de minute în programul de lucru.
                         </p>
                       </div>
                     )}

@@ -597,7 +597,7 @@ export const scenarios: Scenario[] = [
             value: 'metal',
             labels: { ro: 'Metalic', en: 'Metal', hu: 'Fém' },
             hint: {
-              ro: 'Bracketi metalici clasici',
+              ro: 'Brackeți metalici clasici',
               en: 'Classic metal brackets',
               hu: 'Klasszikus fém zárak',
             },
@@ -606,7 +606,7 @@ export const scenarios: Scenario[] = [
             value: 'ceramic',
             labels: { ro: 'Ceramic', en: 'Ceramic', hu: 'Kerámia' },
             hint: {
-              ro: 'Bracketi fizionomici, mai discreți',
+              ro: 'Brackeți fizionomici, mai discreți',
               en: 'Tooth-colored brackets, more discreet',
               hu: 'Fogszínű zárak, diszkrétebbek',
             },

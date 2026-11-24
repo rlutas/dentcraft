@@ -21,9 +21,9 @@ export const treatmentCategories: TreatmentCategory[] = [
   {
     "id": "chirurgie-oro-maxilo-faciala",
     "labels": {
-      "ro": "Chirurgie Oro Maxilo Faciala",
-      "en": "Chirurgie Oro Maxilo Faciala",
-      "hu": "Chirurgie Oro Maxilo Faciala"
+      "ro": "Chirurgie Oro Maxilo Facială",
+      "en": "Chirurgie Oro Maxilo Facială",
+      "hu": "Chirurgie Oro Maxilo Facială"
     },
     "treatments": [
       {
@@ -49,7 +49,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "chistectomie-formatiune-mica",
         "labels": {
-          "ro": "Chistectomie - formaţiune mică",
+          "ro": "Chistectomie - formațiune mică",
           "en": "Cystectomy - small",
           "hu": "Cystaeltávolítás - kicsi"
         },
@@ -59,7 +59,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "chistectomie-formatiune-medie",
         "labels": {
-          "ro": "Chistectomie - formaţiune medie",
+          "ro": "Chistectomie - formațiune medie",
           "en": "Cystectomy - medium",
           "hu": "Cystaeltávolítás - közepes"
         },
@@ -69,7 +69,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "chistectomie-formatiune-mare",
         "labels": {
-          "ro": "Chistectomie - formaţiune mare",
+          "ro": "Chistectomie - formațiune mare",
           "en": "Cystectomy - large",
           "hu": "Cystaeltávolítás - nagy"
         },
@@ -99,7 +99,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-inclusi-submucos",
         "labels": {
-          "ro": "Extracţie dinţi incluşi submucos",
+          "ro": "Extracție dinți incluși submucos",
           "en": "Submucosal tooth extraction",
           "hu": "Nyálkahártya alatti fogeltávolítás"
         },
@@ -109,7 +109,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-inclusi-intraos",
         "labels": {
-          "ro": "Extracţie dinţi incluşi intraos",
+          "ro": "Extracție dinți incluși intraos",
           "en": "Intraosseous tooth extraction",
           "hu": "Intraossealis fogeltávolítás"
         },
@@ -121,15 +121,15 @@ export const treatmentCategories: TreatmentCategory[] = [
   {
     "id": "ortodontie",
     "labels": {
-      "ro": "Ortodontie",
-      "en": "Ortodontie",
-      "hu": "Ortodontie"
+      "ro": "Ortodonție",
+      "en": "Ortodonție",
+      "hu": "Ortodonție"
     },
     "treatments": [
       {
         "id": "aparat-fix-pe-o-arcada-cu-bracketi-metalici",
         "labels": {
-          "ro": "Aparat fix pe o arcadă (cu bracketi metalici)",
+          "ro": "Aparat fix pe o arcadă (cu brackeți metalici)",
           "en": "Fixed orthodontic appliances on one arch - metal brackets",
           "hu": "Fix készülék 1 fogívre"
         },
@@ -139,7 +139,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "aparat-fix-pe-o-arcada-cu-bracketi-ceramici-fizionomici",
         "labels": {
-          "ro": "Aparat fix pe o arcadă (cu bracketi ceramici/fizionomici)",
+          "ro": "Aparat fix pe o arcadă (cu brackeți ceramici/fizionomici)",
           "en": "Fixed orthodontic appliances on one arch - ceramic brackets",
           "hu": "Fix készülék 1 fogívre FIZIONOM"
         },
@@ -169,7 +169,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "activare-aparat-fix-arcada",
         "labels": {
-          "ro": "Activare aparat fix/arcada",
+          "ro": "Activare aparat fix/arcadă",
           "en": "Fixed braces exam",
           "hu": "Fix készülék ellenőrzése"
         },
@@ -189,7 +189,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "recolare-inlocuire-bracket",
         "labels": {
-          "ro": "Recolare/inlocuire bracket",
+          "ro": "Recolare/înlocuire bracket",
           "en": "Pediatric dental consultation",
           "hu": "Gyerek konzultáció"
         },
@@ -209,7 +209,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "aplicare-si-adaptare-elemente-speciale-de-tractiune",
         "labels": {
-          "ro": "Aplicare şi adaptare elemente speciale de tractiune",
+          "ro": "Aplicare și adaptare elemente speciale de tracțiune",
           "en": "Application and adaptation of special traction appliances",
           "hu": "Speciális húzó elemensek alkalmazása"
         },
@@ -229,7 +229,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "aparat-fix-autoligaturant-pe-o-arcada-cu-bracketi-transparenti",
         "labels": {
-          "ro": "Aparat fix autoligaturant pe o arcadă (cu bracketi transparenti)",
+          "ro": "Aparat fix autoligaturant pe o arcadă (cu brackeți transparenți)",
           "en": "Radiance fixed orthodontic appliances - safir transparent brackets",
           "hu": "Fix készülék 1 fogívre RADIANCE"
         },
@@ -239,7 +239,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "aparat-fix-autoligaturant-pe-o-arcada-cu-bracketi-metalici",
         "labels": {
-          "ro": "Aparat fix autoligaturant pe o arcadă (cu bracketi metalici)",
+          "ro": "Aparat fix autoligaturant pe o arcadă (cu brackeți metalici)",
           "en": "Invisalign",
           "hu": "Láthatatlan fogszabályozó készülék INVISALIGN"
         },
@@ -259,7 +259,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "consultatie-chirurgie-implantologie",
         "labels": {
-          "ro": "Consultaţie Chirurgie / Implantologie",
+          "ro": "Consultație Chirurgie / Implantologie",
           "en": "Oral surgery consultation / implant dentistry",
           "hu": "Sebészeti / Implantológiai ellenőrzés, szaktanácsadás"
         },
@@ -269,7 +269,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "consultatie-documentare-caz",
         "labels": {
-          "ro": "Consultaţie+Documentare caz",
+          "ro": "Consultație+Documentare caz",
           "en": "Pediatric dental consultation",
           "hu": "Gyerek konzultáció"
         },
@@ -279,7 +279,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "consultatie-primara-poze-scanare",
         "labels": {
-          "ro": "Consultaţie primara+poze+scanare",
+          "ro": "Consultație primară+poze+scanare",
           "en": "Dental consultation and hygiene training",
           "hu": "Elsődleges vizsgálat, a diagnózis megállapítása és a kezelési terv felállítása"
         },
@@ -299,7 +299,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "consultatie-discutie",
         "labels": {
-          "ro": "Consultatie/discutie",
+          "ro": "Consultație/discuție",
           "en": "Treatment planning",
           "hu": "Kezelési terv elkészítése"
         },
@@ -349,7 +349,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "sigilare-santuri-si-fosete",
         "labels": {
-          "ro": "Sigilare şanţuri şi fosete",
+          "ro": "Sigilare șanțuri și fosete",
           "en": "Pit and fisures sealing",
           "hu": "Barázdazárás (foganként)"
         },
@@ -419,7 +419,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "tratament-albire-dinti-devitali",
         "labels": {
-          "ro": "Tratament albire dinţi devitali",
+          "ro": "Tratament albire dinți devitali",
           "en": "Whitening therapy for devital teeth",
           "hu": "Fogfehérítés"
         },
@@ -499,7 +499,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-de-canal-retrograda",
         "labels": {
-          "ro": "Obturaţie de canal retrograda",
+          "ro": "Obturație de canal retrogradă",
           "en": "Retrograde root canal therapy",
           "hu": "Retrograd csatorna tömés"
         },
@@ -569,7 +569,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "tratamentul-infectiei-acute-parodontale",
         "labels": {
-          "ro": "Tratamentul infecţiei acute parodontale",
+          "ro": "Tratamentul infecției acute parodontale",
           "en": "Treatment of acute periodontal infection",
           "hu": "Akut parodontitis kezelése"
         },
@@ -579,7 +579,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "tratamentul-infectiei-parodontale",
         "labels": {
-          "ro": "Tratamentul infecţiei parodontale",
+          "ro": "Tratamentul infecției parodontale",
           "en": "Treatment of periodontal infection",
           "hu": "Parodontitis kezelése"
         },
@@ -609,7 +609,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "operatie-cu-lambou",
         "labels": {
-          "ro": "Operaţie cu lambou",
+          "ro": "Operație cu lambou",
           "en": "Flap surgery",
           "hu": "Lebeny műtét"
         },
@@ -619,7 +619,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "operatie-cu-lambou-pentru-lungirea-coroanei-dintelui",
         "labels": {
-          "ro": "Operaţie cu lambou pentru lungirea coroanei dintelui",
+          "ro": "Operație cu lambou pentru lungirea coroanei dintelui",
           "en": "Flap surgery for tooth crown lengthening",
           "hu": "Lebeny műtét, fogkorona hosszabbításért"
         },
@@ -649,7 +649,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "fisa-parodontala",
         "labels": {
-          "ro": "Fisa Parodontala",
+          "ro": "Fisa Parodontală",
           "en": "Treatment planning",
           "hu": "Kezelési terv elkészítése"
         },
@@ -669,7 +669,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-bont-protetic",
         "labels": {
-          "ro": "Obturatie bont protetic",
+          "ro": "Obturație bont protetic",
           "en": "Filling finishing",
           "hu": "Tömés finírozás"
         },
@@ -679,7 +679,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-compozit-anterior",
         "labels": {
-          "ro": "Obturaţie compozit anterior",
+          "ro": "Obturație compozit anterior",
           "en": "Dental filling - foto",
           "hu": "Fotos alábélelés"
         },
@@ -699,7 +699,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-compozit-mica",
         "labels": {
-          "ro": "Obturaţie compozit mica",
+          "ro": "Obturație compozit mică",
           "en": "Composite filling",
           "hu": "Kompozit tömés"
         },
@@ -709,7 +709,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-compozit-medie",
         "labels": {
-          "ro": "Obturaţie compozit medie",
+          "ro": "Obturație compozit medie",
           "en": "Amalgam filling 1 surface",
           "hu": "Egy felszínre kiterjedő amalgám fogtömés"
         },
@@ -719,7 +719,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-compozit-mare",
         "labels": {
-          "ro": "Obturaţie compozit mare",
+          "ro": "Obturație compozit mare",
           "en": "Amalgam filling 3 surface",
           "hu": "Három felszínre kiterjedő amalgám fogtömés"
         },
@@ -739,7 +739,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-monoradiculari",
         "labels": {
-          "ro": "Extracţie dinţi monoradiculari",
+          "ro": "Extracție dinți monoradiculari",
           "en": "Extraction monoradicular tooth",
           "hu": "Egy gyökerű fog eltávolítása"
         },
@@ -749,7 +749,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-pluriradiculari",
         "labels": {
-          "ro": "Extracţie dinţi pluriradiculari",
+          "ro": "Extracție dinți pluriradiculari",
           "en": "Extraction pluriradicular tooth",
           "hu": "Két gyökerű fog eltávolítása"
         },
@@ -759,7 +759,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-parodontotici-mobili",
         "labels": {
-          "ro": "Extracţie dinţi parodontotici mobili",
+          "ro": "Extracție dinți parodontotici mobili",
           "en": "Extraction periodontal mobile tooth",
           "hu": "Parodontalis fog eltávolitása"
         },
@@ -769,7 +769,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-rest-radicular",
         "labels": {
-          "ro": "Extracţie rest radicular",
+          "ro": "Extracție rest radicular",
           "en": "Remaining root extraction",
           "hu": "Gyökércsonk eltávolítása"
         },
@@ -789,7 +789,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-molari-erupti-maxilar",
         "labels": {
-          "ro": "Extracție molari erupti maxilar",
+          "ro": "Extracție molari erupți maxilar",
           "en": "Extraction maxillary molar teeth",
           "hu": "Bölcsességfog eltávolítása (maxiláris)"
         },
@@ -859,7 +859,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "rezectie-apicala-fara-obturatie-de-canal",
         "labels": {
-          "ro": "Rezecție apicala fără obturație de canal",
+          "ro": "Rezecție apicală fără obturație de canal",
           "en": "Root - end resection",
           "hu": "Gyökércsúcsi rezekció"
         },
@@ -889,7 +889,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "chistectomie-formatiune-mica",
         "labels": {
-          "ro": "Chistectomie - formaţiune mică",
+          "ro": "Chistectomie - formațiune mică",
           "en": "Cystectomy - small",
           "hu": "Cystaeltávolítás - kicsi"
         },
@@ -899,7 +899,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "chistectomie-formatiune-mare",
         "labels": {
-          "ro": "Chistectomie - formaţiune mare",
+          "ro": "Chistectomie - formațiune mare",
           "en": "Cystectomy - large",
           "hu": "Cystaeltávolítás - nagy"
         },
@@ -909,7 +909,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "decapusonare",
         "labels": {
-          "ro": "Decapuşonare",
+          "ro": "Decapușonare",
           "en": "Decapsulation",
           "hu": "Decapusonalas"
         },
@@ -919,7 +919,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-chirurgicala-dinte-inclus-sau-partial-erupt",
         "labels": {
-          "ro": "Extracţie chirurgicală (dinte inclus sau partial erupt)",
+          "ro": "Extracție chirurgicală (dinte inclus sau partial erupt)",
           "en": "Extraction included or partially erupted tooth",
           "hu": "Sebészeti fogeltávolítás"
         },
@@ -949,7 +949,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "sigilare-santuri-si-fosete",
         "labels": {
-          "ro": "Sigilare şanţuri şi fosete",
+          "ro": "Sigilare șanțuri și fosete",
           "en": "Sealing - one tooth",
           "hu": "Barázdazárás (foganként)"
         },
@@ -969,7 +969,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-de-lapte-fara-mobilitate",
         "labels": {
-          "ro": "Extracţie dinţi de lapte fără mobilitate",
+          "ro": "Extracție dinți de lapte fără mobilitate",
           "en": "Extraction temporary tooth",
           "hu": "Tejfog eltávolítása"
         },
@@ -979,7 +979,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "extractie-dinti-de-lapte-mobili",
         "labels": {
-          "ro": "Extracţie dinţi de lapte mobili",
+          "ro": "Extracție dinți de lapte mobili",
           "en": "Extraction of moving temporary tooth",
           "hu": "Mozgatható tejfog eltávolítása"
         },
@@ -999,7 +999,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-coronara-dinte-temporar-cu-compozit-fotopolimerizabil",
         "labels": {
-          "ro": "Obturaţie coronară dinte temporar cu compozit fotopolimerizabil",
+          "ro": "Obturație coronară dinte temporar cu compozit fotopolimerizabil",
           "en": "Composit coronar filling - temporary tooth",
           "hu": "Tejfog kompozit tömés"
         },
@@ -1009,7 +1009,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "amprente-in-scop-ortodontic-arcada-superioara-si-inferioara",
         "labels": {
-          "ro": "Amprente în scop ortodontic arcada superioară şi inferioară",
+          "ro": "Amprente în scop ortodontic arcada superioară și inferioară",
           "en": "Impressions for orthodontic purposes",
           "hu": "Ortodonciás lenyomat"
         },
@@ -1029,9 +1029,9 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "sigilare-santuri-si-fosete-dinti-temporar",
         "labels": {
-          "ro": "Sigilare santuri si fosete dinti temporar",
-          "en": "Sigilare santuri si fosete dinti temporar",
-          "hu": "Sigilare santuri si fosete dinti temporar"
+          "ro": "Sigilare șanțuri și fosete dinți temporar",
+          "en": "Sigilare șanțuri și fosete dinți temporar",
+          "hu": "Sigilare șanțuri și fosete dinți temporar"
         },
         "price": 200,
         "priceType": "from"
@@ -1059,7 +1059,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "obturatie-coronara-dinte-temporar-cu-glasionomer",
         "labels": {
-          "ro": "Obturaţie coronară dinte temporar cu glasionomer",
+          "ro": "Obturație coronară dinte temporar cu glasionomer",
           "en": "Glass ionomer coronar filling - temporary tooth",
           "hu": "Tejfog üvegionomér tömés"
         },
@@ -1089,7 +1089,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "ablatie-lucrare-dentara",
         "labels": {
-          "ro": "Ablatie lucrare dentara",
+          "ro": "Ablație lucrare dentară",
           "en": "Ablation",
           "hu": "Abláció"
         },
@@ -1099,7 +1099,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "ablatie-punte",
         "labels": {
-          "ro": "Ablatie punte",
+          "ro": "Ablație punte",
           "en": "Bridge ablation",
           "hu": "Híd ablációja"
         },
@@ -1109,7 +1109,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "cimentare-definitiva-fatete-coroane-integral-ceramice-ceramica-presata",
         "labels": {
-          "ro": "Cimentare definitivă faţete/coroane integral ceramice (ceramică presată)",
+          "ro": "Cimentare definitivă fațete/coroane integral ceramice (ceramică presată)",
           "en": "Final cementation - ceramic crown",
           "hu": "Préskerámia koronák/héjak végleges beragasztása"
         },
@@ -1149,7 +1149,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "echilibrarea-ocluzala-prin-slefuire-selectiva",
         "labels": {
-          "ro": "Echilibrarea ocluzală prin slefuire selectivă",
+          "ro": "Echilibrarea ocluzală prin șlefuire selectivă",
           "en": "Occlusal equilibrium by selective grinding",
           "hu": "Rágófelszíni kiegyensúlyozás, szelektív csiszolással"
         },
@@ -1159,7 +1159,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "incrustatii-ceramice-inlay-onlay-obturatii-turnate",
         "labels": {
-          "ro": "Incrustaţii ceramice INLAY, ONLAY (obturaţii turnate)",
+          "ro": "Incrustații ceramice INLAY, ONLAY (obturații turnate)",
           "en": "Ceramic INLAY, ONLAY",
           "hu": "Préskerámia betét INLAY, ONLAY"
         },
@@ -1229,7 +1229,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "coroana-fateta-feldspatica",
         "labels": {
-          "ro": "Coroană/Fateta Feldspatica",
+          "ro": "Coroană/Fațetă Feldspatică",
           "en": "All - ceramic crown",
           "hu": "Préskerámia korona"
         },
@@ -1239,7 +1239,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "fatete-din-ceramica-e-max",
         "labels": {
-          "ro": "Faţete din ceramică E-Max",
+          "ro": "Fațete din ceramică E-Max",
           "en": "Ceramic facets",
           "hu": "Préskerámia héj"
         },
@@ -1259,7 +1259,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "reparatie-proteza",
         "labels": {
-          "ro": "Reparatie proteză",
+          "ro": "Reparație proteză",
           "en": "Prosthesis repair",
           "hu": "Protézis javítás"
         },
@@ -1289,7 +1289,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "slefuire-dinte",
         "labels": {
-          "ro": "Slefuire dinte",
+          "ro": "Șlefuire dinte",
           "en": "Cast metal temporary crown",
           "hu": "Korona Fém"
         },
@@ -1379,7 +1379,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "all-on-6-cu-e-max-si-gingie-din-compozit",
         "labels": {
-          "ro": "All on 6 cu E-Max si gingie din compozit",
+          "ro": "All on 6 cu E-Max și gingie din compozit",
           "en": "Dental prosthesis on implants",
           "hu": "Implantátumra épülő protézis"
         },
@@ -1389,7 +1389,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "all-on-4-cu-e-max-si-gingie-din-compozit",
         "labels": {
-          "ro": "All on 4 cu E-Max si gingie din compozit",
+          "ro": "All on 4 cu E-Max și gingie din compozit",
           "en": "Dental prosthesis on implants",
           "hu": "Implantátumra épülő protézis"
         },
@@ -1399,7 +1399,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "all-on-6-cu-zirconiu-stratificat-si-gingie-din-compozit",
         "labels": {
-          "ro": "All on 6 cu zirconiu stratificat si gingie din compozit",
+          "ro": "All on 6 cu zirconiu stratificat și gingie din compozit",
           "en": "Dental prosthesis on implants",
           "hu": "Implantátumra épülő protézis"
         },
@@ -1409,7 +1409,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "all-on-4-cu-zirconiu-stratificat-si-gingie-din-compozit",
         "labels": {
-          "ro": "All on 4 cu zirconiu stratificat si gingie din compozit",
+          "ro": "All on 4 cu zirconiu stratificat și gingie din compozit",
           "en": "Dental prosthesis on implants",
           "hu": "Implantátumra épülő protézis"
         },
@@ -1429,7 +1429,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "all-on-6-4-metalo-ceramica-si-gingie-stratificata",
         "labels": {
-          "ro": "All on 6/4 Metalo ceramica si gingie stratificata",
+          "ro": "All on 6/4 Metalo ceramică și gingie stratificată",
           "en": "Dental prosthesis on implants",
           "hu": "Implantátumra épülő protézis"
         },
@@ -1569,7 +1569,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "descoperire-implant-surub-de-vindecare",
         "labels": {
-          "ro": "Descoperire implant/surub de vindecare",
+          "ro": "Descoperire implant/șurub de vindecare",
           "en": "Reimplantation",
           "hu": "Reimplantáció"
         },

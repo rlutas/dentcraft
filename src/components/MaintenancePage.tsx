@@ -53,10 +53,10 @@ export function MaintenancePage() {
             Site in constructie
           </h2>
           <p className="text-[#6b6b6b] leading-relaxed mb-2">
-            Lucram la noul nostru website pentru a va oferi cea mai buna experienta.
+            Lucrăm la noul nostru website pentru a vă oferi cea mai bună experiență.
           </p>
           <p className="text-[#6b6b6b] leading-relaxed">
-            Intre timp, ne puteti contacta direct pentru programari sau informatii.
+            Între timp, ne puteți contacta direct pentru programări sau informații.
           </p>
         </div>
 
@@ -111,7 +111,7 @@ export function MaintenancePage() {
             </div>
             <div className="text-left">
               <p className="text-xs text-[#8b7355] font-medium">Locatie</p>
-              <p className="text-sm font-semibold text-[#2a2118]">Satu Mare, Romania</p>
+              <p className="text-sm font-semibold text-[#2a2118]">Satu Mare, România</p>
             </div>
           </div>
         </div>
