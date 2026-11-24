@@ -109,8 +109,9 @@ export function Footer() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 py-16 lg:py-20">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
               <div className="text-center lg:text-left max-w-xl">
-                <h3 className="text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold text-white mb-4 tracking-tight leading-tight whitespace-normal lg:whitespace-nowrap">
-                  {t('ctaTitle')}
+                <h3 className="text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold text-white mb-4 leading-[0.95] tracking-normal">
+                  <span className="block">{t('ctaTitleBold')}</span>{' '}
+                  <span className="block font-serif italic font-medium text-[#d4c4b0] mt-1 pb-1 tracking-wide">{t('ctaTitleItalic')}</span>
                 </h3>
                 <p className="text-white/60 text-base md:text-lg leading-relaxed">
                   {t('ctaSubtitle')}
@@ -345,8 +346,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar - sleek minimal design */}
-        <div className="border-t border-white/5">
+        {/* Bottom bar - sleek minimal design. Mobile: extra bottom space so the sticky booking bar never covers it. */}
+        <div className="border-t border-white/5 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               {/* Copyright */}

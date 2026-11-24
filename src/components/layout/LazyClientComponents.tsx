@@ -12,10 +12,16 @@ const WhatsAppButtonWrapper = dynamic(
   { ssr: false }
 )
 
+const MobileBookingBar = dynamic(
+  () => import('@/components/layout/MobileBookingBar').then(m => ({ default: m.MobileBookingBar })),
+  { ssr: false }
+)
+
 export function LazyClientComponents() {
   return (
     <>
       <WhatsAppButtonWrapper />
+      <MobileBookingBar />
       <CookieConsentWrapper />
     </>
   )
