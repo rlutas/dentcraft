@@ -2,8 +2,9 @@
 
 import { Star } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import type { Locale } from '@/i18n/config'
-import { ReviewCard, type Review } from './ReviewCard'
+import { ReviewCard, STAR_GOLD, type Review } from './ReviewCard'
 
 interface GoogleReviewsSliderProps {
   reviews: Review[]
@@ -11,6 +12,72 @@ interface GoogleReviewsSliderProps {
   rating?: number
   totalReviews?: number
   googleMapsUrl?: string
+}
+
+// Target scroll speed of the marquee rows. ~24px/s lets a visitor actually
+// read a card while it drifts past (was ~85px/s with the fixed 120s loop).
+const MARQUEE_SPEED_PX_PER_S = 24
+// Card width (360) + gap-5 (20) — used before the row is measured.
+const CARD_STRIDE_PX = 380
+
+/**
+ * One marquee row. Duration is derived from the measured width of one copy
+ * of the content so the speed stays constant regardless of review count.
+ * Pauses on hover (CSS, fine pointers), keyboard focus and while touched.
+ */
+function MarqueeRow({ children, direction, itemCount }: { children: ReactNode; direction: 'left' | 'right'; itemCount: number }) {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [duration, setDuration] = useState(() => Math.max(40, (itemCount * CARD_STRIDE_PX) / MARQUEE_SPEED_PX_PER_S))
+  const [paused, setPaused] = useState(false)
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    const measure = () => {
+      // Track holds the content twice; one loop = half the track width.
+      const loopWidth = el.scrollWidth / 2
+      if (loopWidth > 0) setDuration(Math.max(40, loopWidth / MARQUEE_SPEED_PX_PER_S))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  useEffect(() => () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+  }, [])
+
+  const pause = useCallback(() => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    setPaused(true)
+  }, [])
+  // After a touch, keep the row still a little longer so the card can be read.
+  const resumeLater = useCallback(() => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    resumeTimer.current = setTimeout(() => setPaused(false), 2500)
+  }, [])
+
+  return (
+    <div
+      className="marquee-row relative outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+      tabIndex={0}
+      onBlur={() => setPaused(false)}
+      onFocus={pause}
+      onTouchCancel={resumeLater}
+      onTouchEnd={resumeLater}
+      onTouchStart={pause}
+    >
+      <div
+        ref={trackRef}
+        className={`marquee-track flex gap-5 w-max ${direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}`}
+        style={{ '--marquee-duration': `${duration}s`, animationPlayState: paused ? 'paused' : undefined } as CSSProperties}
+      >
+        {children}
+      </div>
+    </div>
+  )
 }
 
 export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, googleMapsUrl }: GoogleReviewsSliderProps) {
@@ -50,7 +117,7 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
             {/* Stars */}
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <Star key={i} className="w-4 h-4" fill={STAR_GOLD} stroke={STAR_GOLD} strokeWidth={1.25} />
               ))}
             </div>
 
@@ -63,23 +130,19 @@ export function GoogleReviewsSlider({ reviews, locale, rating, totalReviews, goo
       {/* Marquee Container - Full Screen Width */}
       <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
         <div className="space-y-8 md:space-y-10 overflow-hidden py-4">
-          {/* Top Row - Scrolls Left — CSS-only hover pause (hover-capable devices only) */}
-          <div className="marquee-row relative">
-            <div className="flex gap-5 w-max animate-marquee-left">
-              {topRowDuplicated.map((review, index) => (
-                <ReviewCard key={`top-${review.id}-${index}`} locale={locale} meta="Pacient verificat" review={review} />
-              ))}
-            </div>
-          </div>
+          {/* Top Row - scrolls left */}
+          <MarqueeRow direction="left" itemCount={topRowReviews.length}>
+            {topRowDuplicated.map((review, index) => (
+              <ReviewCard key={`top-${review.id}-${index}`} locale={locale} meta="Pacient verificat" review={review} />
+            ))}
+          </MarqueeRow>
 
-          {/* Bottom Row - Scrolls Right — CSS-only hover pause (hover-capable devices only) */}
-          <div className="marquee-row relative">
-            <div className="flex gap-5 w-max animate-marquee-right">
-              {bottomRowDuplicated.map((review, index) => (
-                <ReviewCard key={`bottom-${review.id}-${index}`} locale={locale} meta="Pacient verificat" review={review} />
-              ))}
-            </div>
-          </div>
+          {/* Bottom Row - scrolls right */}
+          <MarqueeRow direction="right" itemCount={bottomRowReviews.length}>
+            {bottomRowDuplicated.map((review, index) => (
+              <ReviewCard key={`bottom-${review.id}-${index}`} locale={locale} meta="Pacient verificat" review={review} />
+            ))}
+          </MarqueeRow>
         </div>
 
       </div>

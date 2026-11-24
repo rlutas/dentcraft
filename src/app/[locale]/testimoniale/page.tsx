@@ -1,11 +1,12 @@
-import { Phone, Play, Quote, Star, User } from 'lucide-react'
+import { ArrowUpRight, Play, Quote, Star, User } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getLocale, getTranslations, setRequestLocale } from 'next-intl/server'
 import googleReviews from '@/data/google-reviews.json'
-import { GoogleGMark } from '@/components/features/GoogleReviewsSlider/ReviewCard'
+import { GoogleGMark, STAR_GOLD } from '@/components/features/GoogleReviewsSlider/ReviewCard'
 import { ReviewsGrid } from '@/components/features/GoogleReviewsSlider/ReviewsGrid'
 import { EditorialHeading } from '@/components/ui/EditorialHeading'
+import { FloatingIcons } from '@/components/ui/FloatingIcons'
 import { Link } from '@/i18n/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import { getAllServices, getAllTestimonials, type Locale } from '@/lib/sanity/queries'
@@ -172,29 +173,6 @@ async function TestimonialsPageContent({
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-[var(--color-accent)]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <EditorialHeading bold={t('cta.titleBold')} italic={t('cta.titleItalic')} size="compact" />
-            <p className="mt-4 text-muted text-body-lg">
-              {t('cta.subtitle')}
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link className="btn btn-lg btn-primary" href="/contact">
-                {t('common.bookAppointment')}
-              </Link>
-              <a
-                className="btn btn-lg btn-secondary flex items-center gap-2"
-                href="tel:+40741199977"
-              >
-                <Phone className="w-5 h-5" strokeWidth={1.5} />
-                0741 199 977
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
@@ -253,8 +231,8 @@ async function TestimonialCard({ testimonial }: { testimonial: SanityTestimonial
             key={index}
             className={`w-5 h-5 ${
               index < testimonial.rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300'
+                ? 'text-[#c39a4a] fill-[#c39a4a]'
+                : 'text-[#e8e0d5]'
             }`}
             strokeWidth={1.5}
           />
@@ -370,110 +348,112 @@ async function PlaceholderTestimonialsPage({
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 md:py-20 bg-[var(--color-accent)]">
-          <div className="container">
-            <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-              <EditorialHeading bold={t('cta.titleBold')} italic={t('cta.titleItalic')} size="compact" />
-              <p className="mt-4 text-muted text-body-lg">
-                {t('cta.subtitle')}
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                <Link className="btn btn-lg btn-primary" href="/contact">
-                  {t('common.bookAppointment')}
-                </Link>
-                <a
-                  className="btn btn-lg btn-secondary flex items-center gap-2"
-                  href="tel:+40741199977"
-                >
-                  <Phone className="w-5 h-5" strokeWidth={1.5} />
-                  0741 199 977
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     )
   }
 
+  // Editorial highlight: one mid-length review set large (verbatim, never trimmed);
+  // it is left out of the grid below so it doesn't appear twice.
+  const featured = reviews.find((r) => r.text[locale].length >= 160 && r.text[locale].length <= 320) ?? reviews[0]
+  const gridReviews = featured ? reviews.filter((r) => r.id !== featured.id) : reviews
+  const ratingLabel = googleReviews.rating.toFixed(1).replace('.', locale === 'en' ? '.' : ',')
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="gradient-hero">
-        <div className="container section">
-          <div className="max-w-3xl mx-auto text-center">
-            <EditorialHeading as="h1" bold={t('testimonials.titleBold')} className="mb-6" italic={t('testimonials.titleItalic')} size="hero" />
-            <p className="text-body-lg text-muted max-w-2xl mx-auto">
+      {/* Hero — same light editorial treatment as /echipa and /servicii */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
+        <div className="absolute top-28 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl translate-x-1/3" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
+        <div className="container relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <EditorialHeading as="h1" bold={t('testimonials.titleBold')} italic={t('testimonials.titleItalic')} size="hero" />
+            <p className="text-lg text-[#5a5048] max-w-2xl mx-auto leading-relaxed mt-4">
               {t('testimonials.subtitle')}
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Google rating summary — same trust badge as the homepage reviews section */}
-      <section className="bg-white border-b border-[var(--color-accent)]">
-        <div className="container py-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-[#faf6f1] border border-[#e8e0d5] rounded-3xl sm:rounded-full px-6 py-3">
-            <GoogleGMark />
-            <span className="text-base font-bold text-[#2a2118]">{googleReviews.rating.toFixed(1).replace('.', locale === 'en' ? '.' : ',')}</span>
-            <div className="flex gap-0.5" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <Star key={index} className="w-4 h-4 fill-amber-400 text-amber-400" />
-              ))}
+            <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#e8e0d5]">
+              <GoogleGMark className="w-3.5 h-3.5 shrink-0" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b7355]">
+                {t('testimonials.badge')}
+              </span>
             </div>
-            <span className="text-sm text-[#6b5a40]">
-              {t('testimonials.googleSummary', { count: googleReviews.totalReviews })}
-            </span>
           </div>
-          <a
-            className="inline-flex min-h-[48px] items-center rounded-full border border-[#e8e0d5] bg-white px-6 py-3 text-sm font-semibold text-[#2a2118] transition-colors duration-300 hover:border-[#8b7355] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2"
-            href={googleReviews.googleMapsUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {t('testimonials.googleCta')}
-          </a>
         </div>
       </section>
 
-      {/* Reviews — homepage card design, 12 at a time */}
-      <section className="section bg-white">
-        <div className="container">
+      {/* Rating + highlighted review */}
+      <section className="relative overflow-hidden bg-white py-20 md:py-28">
+        <FloatingIcons
+          icons={[
+            { src: '/icons/010-smile.svg', className: 'top-6 right-3 w-12 h-12 md:top-10 md:right-10 md:w-20 md:h-20 lg:right-20 lg:w-24 lg:h-24', variant: 'driftA', duration: 28, opacity: 0.1 },
+            { src: '/icons/008-white-teeth.svg', className: 'bottom-6 left-3 w-12 h-12 md:bottom-10 md:left-10 md:w-20 md:h-20 lg:left-16 lg:w-24 lg:h-24', variant: 'driftC', duration: 26, delay: 2, opacity: 0.1 },
+          ]}
+        />
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)] gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
+            {/* Rating summary */}
+            <div className="text-center lg:text-left">
+              <p className="font-serif italic text-[#8b7355] leading-none text-[6.5rem] md:text-[8rem] tracking-tight">{ratingLabel}</p>
+              <div aria-hidden="true" className="mt-4 flex gap-1 justify-center lg:justify-start">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} className="w-5 h-5" fill={STAR_GOLD} stroke={STAR_GOLD} strokeWidth={1.25} />
+                ))}
+              </div>
+              <p className="mt-4 text-base md:text-lg text-[#2a2118] font-medium">
+                {t('testimonials.googleSummary', { count: googleReviews.totalReviews })}
+              </p>
+              <a
+                className="group mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-full border border-[#e8e0d5] bg-white px-6 py-3 text-sm font-semibold text-[#2a2118] transition-all duration-300 hover:border-[#d4c4b0] hover:shadow-[0_10px_40px_-10px_rgba(139,115,85,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7355] focus-visible:ring-offset-2"
+                href={googleReviews.googleMapsUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <GoogleGMark className="w-4 h-4 shrink-0" />
+                {t('testimonials.googleCta')}
+                <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-[#8b7355] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+              </a>
+            </div>
+
+            {/* Highlighted review — verbatim */}
+            {featured && (
+              <figure className="relative rounded-3xl bg-[#faf6f1] border border-[#e8e0d5] p-8 pt-14 md:p-12 md:pt-16">
+                <span aria-hidden="true" className="absolute top-2 left-7 md:left-11 font-serif italic text-[#d4c4b0] text-[6rem] leading-none select-none">&ldquo;</span>
+                <blockquote className="relative font-serif italic text-[#2a2118] text-lg md:text-2xl leading-relaxed whitespace-pre-line">
+                  {featured.text[locale]}
+                </blockquote>
+                <figcaption className="mt-8 flex items-center gap-4">
+                  <span aria-hidden="true" className="h-px w-10 shrink-0 bg-[#8b7355]" />
+                  <span className="text-sm">
+                    <span className="font-semibold text-[#2a2118]">{featured.author}</span>
+                    <span className="text-[#8b7355]"> · {t('testimonials.googleReviewOn', { date: featured.date[locale] })}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* All reviews — masonry on cream, 12 at a time */}
+      <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28 border-t border-[#f0ebe3]">
+        <FloatingIcons
+          icons={[
+            { src: '/icons/016-dentist-3.svg', className: 'top-6 left-3 w-14 h-14 md:top-10 md:left-10 md:w-24 md:h-24 lg:left-16 lg:w-28 lg:h-28', variant: 'driftB', duration: 28, opacity: 0.09 },
+            { src: '/icons/022-dental-care-1.svg', className: 'top-1/2 right-3 w-12 h-12 md:right-8 md:w-20 md:h-20 lg:right-12 lg:w-24 lg:h-24', variant: 'driftA', duration: 30, delay: 3, opacity: 0.09 },
+            { src: '/icons/009-teeth.svg', className: 'bottom-6 left-4 w-14 h-14 md:bottom-12 md:left-12 md:w-20 md:h-20 lg:left-20 lg:w-24 lg:h-24', variant: 'driftC', duration: 26, delay: 5, opacity: 0.09 },
+          ]}
+        />
+        <div className="container relative z-10">
+          <h2 className="sr-only">{t('testimonials.title')}</h2>
           <ReviewsGrid
             locale={locale}
             metaById={Object.fromEntries(
-              reviews.map((review) => [review.id, t('testimonials.googleReviewOn', { date: review.date[locale] })])
+              gridReviews.map((review) => [review.id, t('testimonials.googleReviewOn', { date: review.date[locale] })])
             )}
-            reviews={reviews}
+            reviews={gridReviews}
             showMoreLabel={t('testimonials.showMore')}
             shownTemplate={t.raw('testimonials.shownCount') as string}
           />
-          <p className="text-body-sm text-muted text-center mt-8">{t('testimonials.googleNote')}</p>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-[var(--color-accent)]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <EditorialHeading bold={t('cta.titleBold')} italic={t('cta.titleItalic')} size="compact" />
-            <p className="mt-4 text-muted text-body-lg">
-              {t('cta.subtitle')}
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link className="btn btn-lg btn-primary" href="/contact">
-                {t('common.bookAppointment')}
-              </Link>
-              <a
-                className="btn btn-lg btn-secondary flex items-center gap-2"
-                href="tel:+40741199977"
-              >
-                <Phone className="w-5 h-5" strokeWidth={1.5} />
-                0741 199 977
-              </a>
-            </div>
-          </div>
+          <p className="text-sm text-[#8b7355] text-center mt-6">{t('testimonials.googleNote')}</p>
         </div>
       </section>
     </div>

@@ -41,6 +41,7 @@ export const TEAM_OG_SLUGS = new Set([
   'denisa-ghirasim',
   'stefana-cozma',
   'remus-fernea',
+  'camelia-gherman',
 ])
 
 // Fallback team members data - used when Sanity has no data

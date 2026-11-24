@@ -412,8 +412,11 @@ export function FramedNav() {
       <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} onBookingOpen={() => setBookingOpen(true)} />
       <CallbackPopup isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
 
-      {/* Spacer — pushes content below the fixed pill nav on routes without a full-height hero. Skipped on homepage where FramedHero takes the full viewport. */}
-      {!isHomepage && <div aria-hidden="true" className="h-20 md:h-24" />}
+      {/* Spacer — pushes content below the fixed pill nav on routes without a full-height hero. Skipped on homepage where FramedHero takes the full viewport.
+          Painted in the page-hero cream (#faf6f1): left transparent it showed the darker body
+          (#f5f0e8) as a band behind the pill, visible on both sides of the nav. Every inner-page
+          hero starts at #faf6f1 along its top edge so the spacer blends in seamlessly. */}
+      {!isHomepage && <div aria-hidden="true" className="h-20 md:h-24 bg-[#faf6f1]" />}
     </>
   )
 }

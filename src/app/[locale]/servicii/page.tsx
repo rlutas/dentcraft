@@ -84,7 +84,7 @@ async function ServicesPageContent({ services }: { services: SanityService[] }) 
     <div className="flex flex-col">
       {/* Hero — light editorial matching landing rhythm */}
       <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute top-28 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl translate-x-1/3" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
@@ -188,7 +188,7 @@ async function PlaceholderServicesPage() {
     <div className="flex flex-col">
       {/* Hero — light editorial matching landing rhythm */}
       <section className="relative overflow-hidden bg-[#faf6f1] py-20 md:py-28">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
+        <div className="absolute top-28 right-0 w-96 h-96 bg-[#d4c4b0]/15 rounded-full blur-3xl translate-x-1/3" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b7355]/8 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
         <div className="container relative z-10">
