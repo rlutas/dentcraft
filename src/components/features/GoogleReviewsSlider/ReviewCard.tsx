@@ -4,19 +4,23 @@ import type { Locale } from '@/i18n/config'
 // Shared Google review card: homepage marquee + /testimoniale grid.
 // Hook-free so it renders in both server and client components.
 
-const avatarColors = [
-  '#4285F4', // Google Blue
-  '#34A853', // Google Green
-  '#FBBC05', // Google Yellow
-  '#EA4335', // Google Red
-  '#7B1FA2', // Purple
-  '#00897B', // Teal
+// Brand-palette avatars (sand / tan / walnut) instead of Google's teal/purple defaults.
+const avatarTones: Array<{ bg: string; fg: string }> = [
+  { bg: '#e8dccb', fg: '#6b5a40' }, // sand
+  { bg: '#d4c4b0', fg: '#4a3d30' }, // linen
+  { bg: '#8b7355', fg: '#faf6f1' }, // tan
+  { bg: '#6b5a40', fg: '#f5f0e8' }, // walnut
+  { bg: '#b89f80', fg: '#2a2118' }, // camel
+  { bg: '#2a2118', fg: '#e8dccb' }, // ink
 ]
 
-function getAvatarColor(name: string): string {
-  const index = name.charCodeAt(0) % avatarColors.length
-  return avatarColors[index] ?? avatarColors[0] ?? '#4285F4'
+function getAvatarTone(name: string) {
+  const index = name.charCodeAt(0) % avatarTones.length
+  return avatarTones[index] ?? avatarTones[0]!
 }
+
+/** Warm gold that sits in the cream/brown palette (Google's #FBBC05 reads neon here). */
+export const STAR_GOLD = '#c39a4a'
 
 export type LocalizedText = string | { ro: string; en: string; hu: string }
 
@@ -57,63 +61,73 @@ export function ReviewCard({ review, locale, meta, variant = 'marquee' }: Review
   const isGrid = variant === 'grid'
   const text = pickLocalized(review.text, locale)
   const metaLine = meta ?? pickLocalized(review.date, locale)
+  const tone = getAvatarTone(review.author)
 
   const Wrapper = isGrid ? 'figure' : 'div'
 
-  return (
-    <Wrapper
-      className={
-        isGrid
-          ? 'w-full bg-white rounded-2xl p-5 md:p-6 border border-[var(--color-border-light)] shadow-sm'
-          : 'flex-shrink-0 w-[360px] bg-white rounded-2xl p-5 border border-[var(--color-border-light)] shadow-sm hover:shadow-md transition-shadow duration-300'
-      }
-    >
-      {/* Header: Author + Google icon */}
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-3">
-          {review.photoUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              alt=""
-              className="w-10 h-10 rounded-full object-cover"
-              height={40}
-              loading="lazy"
-              referrerPolicy="no-referrer"
-              src={review.photoUrl}
-              width={40}
-            />
-          ) : (
-            <div
-              aria-hidden="true"
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              style={{ backgroundColor: getAvatarColor(review.author) }}
-            >
-              {review.author.charAt(0).toUpperCase()}
-            </div>
-          )}
-          <div>
-            <div className="font-semibold text-[var(--color-primary)] text-sm">{review.author}</div>
-            <div className="text-xs text-[var(--color-secondary)]">{metaLine}</div>
-          </div>
+  const stars = (
+    <div aria-label={`${review.rating}/5`} className="flex gap-0.5" role="img">
+      {[...Array(review.rating)].map((_, i) => (
+        <Star key={i} aria-hidden="true" className="w-4 h-4" fill={STAR_GOLD} stroke={STAR_GOLD} strokeWidth={1.25} />
+      ))}
+    </div>
+  )
+
+  const author = (
+    <div className="flex items-center gap-3 min-w-0">
+      {review.photoUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          alt=""
+          className="w-10 h-10 shrink-0 rounded-full object-cover ring-1 ring-[#e8e0d5]"
+          height={40}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          src={review.photoUrl}
+          width={40}
+        />
+      ) : (
+        <div
+          aria-hidden="true"
+          className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-serif italic text-base"
+          style={{ backgroundColor: tone.bg, color: tone.fg }}
+        >
+          {review.author.charAt(0).toUpperCase()}
         </div>
-        <GoogleGMark />
+      )}
+      <div className="min-w-0">
+        <div className="font-semibold text-[#2a2118] text-sm truncate">{review.author}</div>
+        <div className="text-xs text-[#8b7355]">{metaLine}</div>
       </div>
+    </div>
+  )
 
-      {/* Stars */}
-      <div aria-label={`${review.rating}/5`} className="flex gap-0.5 mb-3" role="img">
-        {[...Array(review.rating)].map((_, i) => (
-          <Star key={i} aria-hidden="true" className="w-4 h-4 fill-[var(--color-warning)] text-[var(--color-warning)]" />
-        ))}
-      </div>
-
-      {/* Review Text — verbatim */}
-      {isGrid ? (
-        <blockquote className="text-[#2a2118] leading-relaxed text-sm md:text-[15px] whitespace-pre-line">
+  if (isGrid) {
+    // Editorial card: stars + quote first, author signs off underneath (team/service card styling)
+    return (
+      <Wrapper className="w-full bg-white rounded-3xl p-6 md:p-7 border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]">
+        <div className="flex items-center justify-between mb-4">
+          {stars}
+          <GoogleGMark className="w-4 h-4 shrink-0 opacity-70" />
+        </div>
+        {/* Review Text — verbatim */}
+        <blockquote className="text-[#2a2118] leading-relaxed text-[15px] whitespace-pre-line">
           {text}
         </blockquote>
-      ) : (
-        <p className="text-[#2a2118] leading-relaxed line-clamp-4 text-sm">{text}</p>
-      )}
+        <figcaption className="mt-5 pt-5 border-t border-[#f0ebe3]">{author}</figcaption>
+      </Wrapper>
+    )
+  }
+
+  return (
+    <Wrapper className="flex-shrink-0 w-[360px] bg-white rounded-3xl p-5 border border-[#e8e0d5] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:border-[#d4c4b0] transition-colors duration-300">
+      {/* Header: Author + Google icon */}
+      <div className="flex items-start justify-between gap-3 mb-3">
+        {author}
+        <GoogleGMark className="w-4 h-4 shrink-0 opacity-70" />
+      </div>
+      <div className="mb-3">{stars}</div>
+      <p className="text-[#2a2118] leading-relaxed line-clamp-4 text-sm">{text}</p>
     </Wrapper>
   )
 }
