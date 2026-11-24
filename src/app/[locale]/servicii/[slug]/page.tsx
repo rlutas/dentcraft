@@ -783,14 +783,14 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
           <ScrollReveal animation="fade-up">
             <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-[#8b7355]/10 bg-gradient-to-br from-[#faf6f1] via-[#fdfbf8] to-white px-6 py-10 md:px-14 md:py-14 lg:px-16 lg:py-16 shadow-[0_30px_80px_-44px_rgba(139,115,85,0.5)]">
               <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#e8dccb] opacity-50 blur-3xl" />
-              {/* service emblem: thin ring + dashed outer ring (counter-rotating) around the service icon; hidden on small screens */}
-              <div aria-hidden="true" className="pointer-events-none absolute right-8 top-8 lg:right-12 lg:top-12 hidden md:flex h-28 w-28 lg:h-32 lg:w-32 items-center justify-center">
+              {/* service emblem: thin ring + dashed outer ring (counter-rotating) around the service icon; 64px on mobile, beside the label row */}
+              <div aria-hidden="true" className="pointer-events-none absolute right-5 top-6 md:right-8 md:top-8 lg:right-12 lg:top-12 flex h-16 w-16 md:h-28 md:w-28 lg:h-32 lg:w-32 items-center justify-center">
                 <span className="absolute inset-0 rounded-full border border-dashed border-[#c4ab8d]/45 motion-safe:animate-[spin_40s_linear_infinite]" />
                 <span className="absolute inset-[14%] rounded-full border border-[#c4ab8d]/50 motion-safe:animate-[spin_30s_linear_infinite_reverse]">
                   <span className="absolute -top-[3px] left-1/2 -ml-[3px] h-1.5 w-1.5 rounded-full bg-[#c4ab8d]" />
                 </span>
                 <span
-                  className="relative block h-10 w-10 lg:h-12 lg:w-12 bg-[#8b7355]"
+                  className="relative block h-7 w-7 md:h-10 md:w-10 lg:h-12 lg:w-12 bg-[#8b7355]"
                   style={{
                     maskImage: `url(/icons/${getServiceIcons(slug)[0]}.svg)`,
                     WebkitMaskImage: `url(/icons/${getServiceIcons(slug)[0]}.svg)`,
