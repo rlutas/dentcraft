@@ -13,7 +13,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { getFallbackServiceBySlug, getFallbackServiceSlugs, getMainFallbackServices } from '@/lib/fallback-services'
+import { getFallbackServiceBySlug, getFallbackServiceSlugs, getMainFallbackServices, SERVICE_OG_SLUGS } from '@/lib/fallback-services'
 import type { fallbackServices } from '@/lib/fallback-services'
 import { fallbackTeamMembers } from '@/lib/fallback-team'
 import { Link } from '@/i18n/navigation'
@@ -125,6 +125,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         locale: locale as SEOLocale,
         path: '/servicii/[slug]',
         slug,
+        ...(SERVICE_OG_SLUGS.has(slug) ? { fallbackImage: `/images/og/services/${slug}.jpg` } : {}),
       })
     }
     return {}
@@ -155,7 +156,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataOptions.description = service.shortDescription
   }
 
-  if (service.heroImage) {
+  // CMS seo.ogImage wins (handled in generateDynamicPageMetadata); otherwise prefer the
+  // branded share card (scripts/generate-service-og.py), then the CMS hero image.
+  if (SERVICE_OG_SLUGS.has(slug)) {
+    metadataOptions.fallbackImage = `/images/og/services/${slug}.jpg`
+  } else if (service.heroImage) {
     metadataOptions.fallbackImage = urlFor(service.heroImage).width(1200).height(630).url()
   }
 
