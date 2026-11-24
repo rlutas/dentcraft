@@ -414,7 +414,7 @@ async function PlaceholderTestimonialsPage({
       {/* Google rating summary — same trust badge as the homepage reviews section */}
       <section className="bg-white border-b border-[var(--color-accent)]">
         <div className="container py-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-[#faf6f1] border border-[#e8e0d5] rounded-full px-6 py-3">
+          <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-[#faf6f1] border border-[#e8e0d5] rounded-3xl sm:rounded-full px-6 py-3">
             <GoogleGMark />
             <span className="text-base font-bold text-[#2a2118]">{googleReviews.rating.toFixed(1).replace('.', locale === 'en' ? '.' : ',')}</span>
             <div className="flex gap-0.5" aria-hidden="true">
