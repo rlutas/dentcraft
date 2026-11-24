@@ -72,8 +72,8 @@ Jurnalul zilei. Rapoartele de audit sunt în `docs/seo/*-2026-11-24.md`: SITE-AU
 ## 8. De făcut / decizii
 
 - [ ] **Prețuri de la Dr. Petric.** Apoi unificăm `/preturi`, `/servicii/implanturi-dentare` (`ServiceLocalSeo.tsx` încă arată 2.200–4.000 lei), blogul și calculatorul.
-- [ ] **GBP:** Instagram trimite la `instagram.com/house_of_dentistry`, o clinică străină. Trebuie schimbat în `instagram.com/dentcraft.sm` (necesită acordul lui Raul).
-- [ ] **GBP:** link-ul de programare trimite la `https://dentcraft.ro/contact` (apex). De trecut pe `https://www.dentcraft.ro/contact`.
+- [x] **GBP:** Instagram era `instagram.com/house_of_dentistry`, o clinică străină. L-am schimbat în `instagram.com/dentcraft.sm` pe 24 nov; schimbarea așteaptă aprobarea Google (~10 minute).
+- **GBP:** link-ul de programare rămâne așa (Raul preferă popup-ul; apex-ul redirecționează oricum spre www).
 - [ ] **Google Ads:** final URL-ul trebuie mutat de pe `/servicii/implantologie` pe `/servicii/implanturi-dentare`. Redirect-ul îl ține funcțional până atunci.
 - [ ] GBP, categoria „Radiologie dentară”: rămâne așa, la decizia lui Raul.
 - [ ] Performanță: `cookies()` din `src/app/[locale]/layout.tsx` face ca toate paginile să fie `no-store`. Separat, homepage-ul are 725 KB de HTML. De rezolvat după raportul CWV, într-un commit separat (atinge consent-ul).
