@@ -46,6 +46,8 @@ DOCTORS = [
      "Ortodonție · Aparate dentare", "/images/team/dr-cozma-stefana.webp"),
     ("remus-fernea", "Dr. Fernea", "Remus", "Medic Stomatolog",
      "Profilaxie GBT · Odontoterapie · Protetică", "/images/team/dr-fernea-remus.webp"),
+    ("camelia-gherman", "Gherman", "Camelia", "Asistent Medical Coordonator",
+     "Asistență stomatologică · Igienă orală", "/images/team/asistent-gherman-camelia.webp"),
 ]
 
 
@@ -65,6 +67,24 @@ def cutout(photo_path: Path) -> Image.Image:
     return im.crop(bbox) if bbox else im
 
 
+def resize_premultiplied(im: Image.Image, size) -> Image.Image:
+    """Resize RGBA in premultiplied space so fully transparent pixels (often
+    stored as black or white) don't bleed into the edge as a dark/light fringe."""
+    return im.convert("RGBa").resize(size, Image.LANCZOS).convert("RGBA")
+
+
+def defringe(im: Image.Image) -> Image.Image:
+    """Choke the faint outer ring of the matte: semi-transparent edge pixels in
+    the source cutouts still carry the old studio background, which reads as a
+    pale halo on cream. Levels-crush alpha below ~16% and re-stretch the rest."""
+    r, g, b, a = im.split()
+    lo = 40
+    a = a.point(lambda v: 0 if v <= lo else min(255, round((v - lo) * 255 / (255 - lo - 20))))
+    # Sub-pixel feather softens stair-stepped mattes (e.g. hair) without a visible glow
+    a = a.filter(ImageFilter.GaussianBlur(0.6))
+    return Image.merge("RGBA", (r, g, b, a))
+
+
 def render(doc, fonts):
     slug, bold, italic, role, specs, photo = doc
     canvas = Image.new("RGB", (W, H), BG)
@@ -82,9 +102,13 @@ def render(doc, fonts):
     crop_h = min(person.height, int(person.width * box_h / box_w))
     person = person.crop((0, 0, person.width, crop_h))
     scale = min(box_w / person.width, box_h / person.height)
-    person = person.resize((int(person.width * scale), int(person.height * scale)), Image.LANCZOS)
+    person = resize_premultiplied(person, (int(person.width * scale), int(person.height * scale)))
+    person = defringe(person)
     px = box_x + (box_w - person.width) // 2
-    canvas.paste(person, (px, H - person.height), person)
+    # alpha_composite (not paste) so partial alpha blends with the cream correctly
+    base = canvas.convert("RGBA")
+    base.alpha_composite(person, (px, H - person.height))
+    canvas = base.convert("RGB")
 
     d = ImageDraw.Draw(canvas)
     x = 72
@@ -92,8 +116,11 @@ def render(doc, fonts):
     # Logo
     logo = Image.open(LOGO).convert("RGBA")
     lh = 30
-    logo = logo.resize((int(logo.width * lh / logo.height), lh), Image.LANCZOS)
-    canvas.paste(logo, (x, 64), logo)
+    logo = resize_premultiplied(logo, (int(logo.width * lh / logo.height), lh))
+    base = canvas.convert("RGBA")
+    base.alpha_composite(logo, (x, 64))
+    canvas = base.convert("RGB")
+    d = ImageDraw.Draw(canvas)
 
     text_w = 600
     f_bold = fit_font(fonts["bold"], bold, text_w, 76)
@@ -105,12 +132,11 @@ def render(doc, fonts):
     f_role = fit_font(fonts["medium"], role, 560, 30, 22)
     d.text((x, y), role, font=f_role, fill=MUTED)
 
-    # Specializations pill
-    f_spec = fit_font(fonts["medium"], specs.upper(), text_w - 40, 17, 13)
-    tw = f_spec.getlength(specs.upper())
-    py = y + f_role.size + 26
-    d.rounded_rectangle((x, py, x + tw + 36, py + 38), radius=19, fill=(255, 255, 255), outline=BORDER, width=2)
-    d.text((x + 18, py + 19), specs.upper(), font=f_spec, fill=ACCENT, anchor="lm")
+    # Specializations: quiet sentence-case line (matches the profile page list,
+    # no uppercase pill)
+    f_spec = fit_font(fonts["medium"], specs, text_w - 40, 22, 16)
+    py = y + f_role.size + 22
+    d.text((x, py), specs, font=f_spec, fill=ACCENT)
 
     # Footer
     f_foot = ImageFont.truetype(fonts["medium"], 22)
