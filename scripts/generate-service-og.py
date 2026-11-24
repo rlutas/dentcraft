@@ -39,7 +39,7 @@ SERVICES = [
     ("estetica-dentara", "Estetică dentară", "Fațete, albire și remodelarea zâmbetului"),
     ("protetica", "Protetică dentară", "Coroane, punți și lucrări pe implanturi"),
     ("ortodontie", "Ortodonție", "Aparate dentare și alignere transparente"),
-    ("endodontie", "Endodonție", "Tratament de canal sub microscop"),
+    ("endodontie", "Endodonție", "Tratament de canal, dintele salvat"),
     ("chirurgie-oro-maxilo-faciala", "Chirurgie oro-maxilo-facială", "Extracții, molari de minte, chirurgie pre-protetică"),
     ("pedodontie", "Stomatologie pediatrică", "Tratamente blânde pentru copii"),
     ("urgente-dentare", "Urgențe dentare", "Durere, abces, dinte fracturat"),
