@@ -152,6 +152,7 @@ Raportul complet: https://claude.ai/artifact/QP8g4bvoAGMHYE5BWNetvC
   - Beneficii în layout bento, etape pe o linie de timp care se desenează la scroll, cuprins sticky pe desktop, un singur FAQ în acordeon, carduri de medici cu poza întreagă, servicii conexe cu scroll orizontal pe mobil.
   - Implanturi dentare: cele două liste FAQ sunt unite (11 întrebări, o singură schemă FAQPage). Blocul de prețuri și local SEO e acum deasupra FAQ-ului, cu cardul de prețuri sticky.
   - Textele și JSON-LD sunt identice cu versiunea anterioară, cu o excepție: FAQ-ul unit de la implanturi.
+  - Ultima rundă (în lucru la ieșire): spațiu sub cardul cu bife din textul principal; în colțul „Pe scurt”, inel rotativ cu iconița serviciului.
   - De urmărit: pe desktop, LCP-ul e acum ilustrația din hero, care pornește de la opacitate 35%. Verificăm CWV peste câteva zile.
 
 ## 8. De făcut / decizii
