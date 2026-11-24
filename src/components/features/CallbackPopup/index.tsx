@@ -160,7 +160,9 @@ export default function CallbackPopup({ isOpen, onClose, defaultDoctor }: Callba
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
+          aria-modal="true"
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+          role="dialog"
           onClick={handleBackdropClick}
         >
           {/* Backdrop with blur */}

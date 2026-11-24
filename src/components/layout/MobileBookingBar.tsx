@@ -23,6 +23,7 @@ export function MobileBookingBar() {
   const tFooter = useTranslations('footer')
   const pathname = usePathname()
   const [pastHero, setPastHero] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   // The contact page is the booking form itself — no bar there.
   const hiddenOnRoute = pathname === '/contact'
@@ -50,9 +51,24 @@ export function MobileBookingBar() {
     return () => observer.disconnect()
   }, [pathname])
 
+  // Hide the dock while a modal is open (it would otherwise show through the dimmed
+  // backdrop): either a portaled aria-modal dialog (CallbackPopup) or a body scroll lock
+  // (lightboxes, menus, other popups).
+  useEffect(() => {
+    const body = document.body
+    const sync = () =>
+      setModalOpen(
+        body.style.overflow === 'hidden' || !!body.querySelector(':scope > [aria-modal="true"]'),
+      )
+    sync()
+    const observer = new MutationObserver(sync)
+    observer.observe(body, { attributes: true, attributeFilter: ['style'], childList: true })
+    return () => observer.disconnect()
+  }, [])
+
   if (hiddenOnRoute) return null
 
-  const visible = pastHero
+  const visible = pastHero && !modalOpen
   const waNumber = tFooter('phone').replace(/\s/g, '').replace(/^0/, '40')
   const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(tContact('whatsappPrefill'))}`
 
