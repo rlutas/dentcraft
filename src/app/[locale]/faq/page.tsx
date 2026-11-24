@@ -2,6 +2,7 @@ import { HelpCircle, Phone } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
+import { EditorialHeading } from '@/components/ui/EditorialHeading'
 import { getFAQsByCategory, type Locale } from '@/lib/sanity/queries'
 import { generatePageMetadata, type Locale as SEOLocale } from '@/lib/seo'
 import { getFAQSchema } from '@/lib/schema'
@@ -121,7 +122,7 @@ async function FAQPageContent({
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
               <HelpCircle className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
             </div>
-            <h1 className="mb-6">{t('faq.title')}</h1>
+            <EditorialHeading as="h1" bold={t('faq.titleBold')} className="mb-6" italic={t('faq.titleItalic')} size="hero" />
             <p className="text-body-lg text-muted max-w-2xl mx-auto">
               {t('faq.subtitle')}
             </p>
@@ -136,7 +137,7 @@ async function FAQPageContent({
       <section className="py-16 md:py-20 bg-[var(--color-accent)]">
         <div className="container">
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <h2>{t('faq.stillHaveQuestions')}</h2>
+            <EditorialHeading bold={t('faq.stillHaveQuestionsBold')} italic={t('faq.stillHaveQuestionsItalic')} size="compact" />
             <p className="mt-4 text-muted text-body-lg">
               {t('faq.contactUsText')}
             </p>
@@ -215,7 +216,7 @@ async function PlaceholderFAQPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 mb-6">
               <HelpCircle className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
             </div>
-            <h1 className="mb-6">{t('faq.title')}</h1>
+            <EditorialHeading as="h1" bold={t('faq.titleBold')} className="mb-6" italic={t('faq.titleItalic')} size="hero" />
             <p className="text-body-lg text-muted max-w-2xl mx-auto">
               {t('faq.subtitle')}
             </p>
@@ -274,7 +275,7 @@ async function PlaceholderFAQPage() {
       <section className="py-16 md:py-20 bg-[var(--color-accent)]">
         <div className="container">
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[var(--shadow-card)] p-10 md:p-12 text-center">
-            <h2>{t('faq.stillHaveQuestions')}</h2>
+            <EditorialHeading bold={t('faq.stillHaveQuestionsBold')} italic={t('faq.stillHaveQuestionsItalic')} size="compact" />
             <p className="mt-4 text-muted text-body-lg">
               {t('faq.contactUsText')}
             </p>

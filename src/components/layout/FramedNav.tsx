@@ -238,12 +238,40 @@ export function FramedNav() {
 
   const isHomepage = pathname === '/'
 
+  // Auto-hide: hide when scrolling down past HIDE_AFTER, reveal on scroll up.
+  const [isHidden, setIsHidden] = useState(false)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false)
+  const lastScrollY = useRef(0)
+
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 40)
+    const HIDE_AFTER = 120
+    const MIN_DELTA = 8
+    lastScrollY.current = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setIsScrolled(y > 40)
+      const delta = y - lastScrollY.current
+      if (y <= HIDE_AFTER) {
+        setIsHidden(false)
+        lastScrollY.current = y
+        return
+      }
+      if (Math.abs(delta) < MIN_DELTA) return
+      setIsHidden(delta > 0)
+      lastScrollY.current = y
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // New route → always show the header
+  useEffect(() => {
+    setIsHidden(false)
+  }, [pathname])
+
+  // Never hide while a menu/popup is open or keyboard focus is inside the nav
+  const shouldHide = isHidden && !mobileOpen && !isServicesOpen && !isLangOpen && !bookingOpen && !hasFocusWithin
 
   const openServices = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
@@ -255,7 +283,12 @@ export function FramedNav() {
 
   return (
     <>
-      <nav className={cn('fixed z-[150] transition-all duration-500 ease-out', isScrolled ? 'top-2 left-2 right-2 md:top-3 md:left-4 md:right-4 lg:left-6 lg:right-6' : 'top-3 left-3 right-3 md:top-6 md:left-8 md:right-8 lg:left-12 lg:right-12')}>
+      {/* Mega-menu is position:fixed inside <nav>; a transform would make <nav> its containing
+          block, so the translate class is applied only while hidden (menus are closed then). */}
+      <nav
+        onFocus={() => setHasFocusWithin(true)}
+        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHasFocusWithin(false) }}
+        className={cn('fixed z-[150] transition-all duration-500 ease-out motion-reduce:transition-none', shouldHide && '-translate-y-[calc(100%+1.5rem)] pointer-events-none', isScrolled ? 'top-2 left-2 right-2 md:top-3 md:left-4 md:right-4 lg:left-6 lg:right-6' : 'top-3 left-3 right-3 md:top-6 md:left-8 md:right-8 lg:left-12 lg:right-12')}>
         <div className={cn('flex items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] mx-auto rounded-full border transition-all duration-500 ease-out', isScrolled ? 'bg-white/98 backdrop-blur-xl border-[#e8e0d5] pl-5 pr-3 py-2 md:pl-6 md:pr-3 md:py-1.5 shadow-[0_10px_40px_-8px_rgba(42,33,24,0.25)]' : 'bg-white/95 backdrop-blur-md border-white/60 pl-5 pr-3 py-2.5 md:pl-8 md:pr-4 md:py-2 shadow-[0_10px_40px_-10px_rgba(42,33,24,0.35)]')}>
           <Link href="/" className="flex items-center shrink-0 group justify-self-start">
             <Image src="/branding/LOGO_BLACK_FINAL.png" alt="DENTCRAFT" width={420} height={59} priority className={cn('w-auto transition-all duration-500 group-hover:opacity-80', isScrolled ? 'h-5' : 'h-5 md:h-6')} />

@@ -515,6 +515,10 @@
     "noTestimonials": "A velemenyek hamarosan elerhetek lesznek."
   },
   "testimonials": {
+    "titleBold": "Mit mondanak",
+    "titleItalic": "pácienseink",
+    "showMore": "További értékelések",
+    "shownCount": "{shown} / {total} értékelés látható",
     "googleSummary": "az 5-ből · {count} Google-értékelés",
     "googleCta": "Összes értékelés a Google-on",
     "googleReviewOn": "Google-értékelés · {date}",
@@ -544,6 +548,8 @@
     }
   },
   "cta": {
+    "titleBold": "Foglaljon",
+    "titleItalic": "konzultációt",
     "badge": "Idopontfoglalas",
     "title": "Foglaljon konzultációt",
     "subtitle": "Tegye meg az elso lepest a tokeletes mosoly fele. Varjuk kliniánkon!",
@@ -628,6 +634,10 @@
     "viewAll": "Teljes csapat megtekintese"
   },
   "prices": {
+    "faqTitleBold": "Gyakori kérdések",
+    "faqTitleItalic": "az árakról",
+    "listTitleBold": "Teljes árlista",
+    "listTitleItalic": "Fogászat Szatmárnémetiben",
     "title": "Fogászati Árak Szatmárnémeti 2026",
     "subtitle": "Atlathato arak minden fogaszati szolgaltatasunkra.",
     "heroLabel": "Átlátható árak",
@@ -713,6 +723,10 @@
     }
   },
   "faq": {
+    "titleBold": "Gyakran ismételt",
+    "titleItalic": "kérdések",
+    "stillHaveQuestionsBold": "Még mindig vannak",
+    "stillHaveQuestionsItalic": "kérdései?",
     "title": "Gyakran Ismetelt Kerdesek",
     "subtitle": "Valaszok a leggyakoribb kerdesekre fogaszati szolgaltatasainkrol.",
     "metaTitle": "Fogászati GYIK | Gyakori Kérdések",
@@ -880,6 +894,8 @@
     "service": "Szolgáltatás"
   },
   "footer": {
+    "ctaTitleBold": "Foglaljon",
+    "ctaTitleItalic": "időpontot",
     "description": "Modern fogaszati klinika Szatmarneметiben, az On mosolyanak egeszsegere es szepsegere szentelve.",
     "quickLinks": "Gyors linkek",
     "contactInfo": "Kapcsolat",
@@ -990,6 +1006,7 @@
       "instagramCta": "Nézz többet az Instagramon"
     },
     "reviewsSection": {
+      "pullQuoteSource": "Google-értékelés, {date}",
       "headingBold": "Mit mondanak",
       "headingItalic": "a páciensek",
       "subtitle": "Pácienseink beszélnek — minden értékelés Google-on ellenőrzött és valós élményüket tükrözi a DENTCRAFT klinikán.",
@@ -1028,5 +1045,10 @@
     "callPrefix": "Hívj minket",
     "language": "Nyelv",
     "callUs": "Hívj minket"
+  },
+  "stickyBar": {
+    "label": "Gyors foglalás",
+    "book": "Foglalás",
+    "call": "Hívás: 0741 199 977"
   }
 }

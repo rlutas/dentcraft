@@ -3,6 +3,7 @@ import type { Locale } from '@/data/treatments'
 import { getPublicCategories } from '@/data/price-list'
 import { ChevronDown } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
+import { EditorialHeading } from '@/components/ui/EditorialHeading'
 import { PriceListTabs, type PriceListTab } from './PriceListTabs'
 
 /**
@@ -56,9 +57,7 @@ export async function PriceListSection({ locale }: { locale: Locale }) {
                 {t('listKicker')}
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] tracking-tight text-balance">
-              {t('listTitle')}
-            </h2>
+            <EditorialHeading bold={t('listTitleBold')} italic={t('listTitleItalic')} size="compact" />
             <p className="max-w-3xl text-base md:text-lg text-[#5a5048] leading-relaxed mt-4">
               {t('listIntro')}
             </p>
@@ -75,9 +74,7 @@ export async function PriceListSection({ locale }: { locale: Locale }) {
 
           {/* Price FAQ — crawlable + FAQPage schema */}
           <div className="mt-20 max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2118] tracking-tight">
-              {t('faqTitle')}
-            </h2>
+            <EditorialHeading bold={t('faqTitleBold')} italic={t('faqTitleItalic')} size="compact" />
             <div className="mt-8 space-y-4">
               {faqs.map((faq, i) => (
                 <details

@@ -288,12 +288,10 @@ async function ServicePageContent({ faqs, service, locale }: { faqs: FAQ[]; serv
               {service.benefits.map((benefit, index) => (
                 <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
                   <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 hover:border-[#d4c4b0] hover:shadow-[0_24px_60px_-16px_rgba(139,115,85,0.22)] hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden">
-                    <span className="absolute top-5 right-6 font-serif italic text-[#8b7355]/30 text-2xl leading-none select-none group-hover:text-[#8b7355]/50 transition-colors">
+                    {/* editorial serif-italic number — same system as the homepage "De ce clinica DENTCRAFT" list */}
+                    <span aria-hidden="true" className="block font-serif italic text-4xl md:text-5xl text-[#8b7355] leading-none mb-6 group-hover:text-[#2a2118] transition-colors duration-500">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] border border-[#e8e0d5] group-hover:from-[#d4c4b0]/30 group-hover:to-[#d4c4b0]/15 group-hover:border-[#d4c4b0] flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[-4deg]">
-                      <CheckCircle className="w-7 h-7 text-[#8b7355]" strokeWidth={1.75} />
-                    </div>
                     <h3 className="text-xl md:text-[1.375rem] font-bold text-[#2a2118] mb-3 leading-tight tracking-tight group-hover:text-[#8b7355] transition-colors">
                       {benefit.title}
                     </h3>
@@ -525,14 +523,10 @@ async function FallbackServicePageContent({ fallbackService, locale }: { fallbac
               {fallbackService.benefits.map((benefit, index) => (
                 <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
                   <div className="group relative bg-white border border-[#e8e0d5] rounded-3xl p-7 md:p-8 hover:border-[#d4c4b0] hover:shadow-[0_24px_60px_-16px_rgba(139,115,85,0.22)] hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden">
-                    {/* number top-right */}
-                    <span className="absolute top-5 right-6 font-serif italic text-[#8b7355]/30 text-2xl leading-none select-none group-hover:text-[#8b7355]/50 transition-colors">
+                    {/* editorial serif-italic number — same system as the homepage "De ce clinica DENTCRAFT" list */}
+                    <span aria-hidden="true" className="block font-serif italic text-4xl md:text-5xl text-[#8b7355] leading-none mb-6 group-hover:text-[#2a2118] transition-colors duration-500">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    {/* icon */}
-                    <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#faf6f1] to-[#f5f0e8] border border-[#e8e0d5] group-hover:from-[#d4c4b0]/30 group-hover:to-[#d4c4b0]/15 group-hover:border-[#d4c4b0] flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[-4deg]">
-                      <CheckCircle className="w-7 h-7 text-[#8b7355]" strokeWidth={1.75} />
-                    </div>
                     <h3 className="text-xl md:text-[1.375rem] font-bold text-[#2a2118] mb-3 leading-tight tracking-tight group-hover:text-[#8b7355] transition-colors">
                       {t(`services.fallback.${benefit.titleKey}`)}
                     </h3>
@@ -764,11 +758,16 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
           )}
 
           <div className="mt-12 space-y-12">
-            {content.sections.map((section) => (
-              <div key={section.heading}>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] mb-4 leading-tight tracking-tight">
-                  {section.heading}
-                </h2>
+            {content.sections.map((section, sectionIndex) => (
+              <div key={section.heading} className={sectionIndex > 0 ? 'pt-12 border-t border-[#e8e0d5]' : undefined}>
+                <div className="flex items-baseline gap-4 md:gap-5 mb-4">
+                  <span aria-hidden="true" className="font-serif italic text-3xl md:text-4xl text-[#8b7355] leading-none shrink-0">
+                    {String(sectionIndex + 1).padStart(2, '0')}
+                  </span>
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#2a2118] leading-tight tracking-tight">
+                    {section.heading}
+                  </h2>
+                </div>
                 <div className="space-y-4 text-base md:text-lg text-[#5a5048] leading-relaxed">
                   {section.paragraphs.map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>

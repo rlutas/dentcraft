@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Official WhatsApp glyph (white phone-with-chat) — used inside the green circle
-function WhatsAppGlyph({ className = '' }: { className?: string }) {
+export function WhatsAppGlyph({ className = '' }: { className?: string }) {
   return (
     <svg
       aria-hidden="true"
@@ -38,6 +38,7 @@ export function WhatsAppButton({
   const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const hasShownTooltipRef = useRef(false)
 
+  // Mobile (< md): hidden — WhatsApp lives inside MobileBookingBar instead.
   // Track scroll position - only show button after scrolling past hero
   useEffect(() => {
     const handleScroll = () => {
@@ -111,7 +112,7 @@ export function WhatsAppButton({
   return (
     <div
       className={`
-        fixed bottom-4 right-4 z-40 flex items-end gap-3
+        fixed bottom-4 right-4 z-40 hidden md:flex items-end gap-3
         transition-all duration-500 ease-out
         md:bottom-6 md:right-6
         ${isPastHero ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-8 opacity-0'}
