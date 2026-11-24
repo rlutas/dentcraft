@@ -207,7 +207,7 @@ export default function PriceEstimatePopup({
         if (data?.errors) {
           setErrors(data.errors)
         } else {
-          setErrors({ general: data?.error || 'A apărut o eroare. Va rugăm încercați din nou.' })
+          setErrors({ general: data?.error || 'A apărut o eroare. Vă rugăm încercați din nou.' })
         }
         setIsSubmitting(false)
         return

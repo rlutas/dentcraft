@@ -211,7 +211,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "cp14s1",
-        "text": " despre mersul la dentist sau jucați-va \"de-a doctorul\" acasă înainte.",
+        "text": " despre mersul la dentist sau jucați-vă \"de-a doctorul\" acasă înainte.",
         "marks": []
       }
     ],

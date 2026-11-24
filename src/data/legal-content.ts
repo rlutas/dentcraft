@@ -62,17 +62,17 @@ export const legalContent: LegalContent = {
 <h2>2. Operator de date</h2>
 <p><strong>DENTCRAFT SRL</strong></p>
 <ul>
-<li>Adresa: Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, Romania</li>
+<li>Adresa: Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, România</li>
 <li>Email: dentcraftsm@gmail.com</li>
 <li>Telefon: 0741 199 977</li>
 </ul>
 
 <h2>3. Datele personale colectate</h2>
 <p>Colectăm următoarele categorii de date personale:</p>
-<h3>3.1 Date furnizate direct de dumneavoastra</h3>
+<h3>3.1 Date furnizate direct de dumneavoastră</h3>
 <ul>
-<li><strong>Date de identificare:</strong> nume, prenume, data nasterii</li>
-<li><strong>Date de contact:</strong> adresa de email, număr de telefon, adresa postala</li>
+<li><strong>Date de identificare:</strong> nume, prenume, data nașterii</li>
+<li><strong>Date de contact:</strong> adresa de email, număr de telefon, adresa poștală</li>
 <li><strong>Date medicale:</strong> istoric medical, diagnostic stomatologic, plan de tratament, radiografii dentare, fotografii intra-orale</li>
 <li><strong>Date financiare:</strong> informații necesare facturării serviciilor</li>
 </ul>
@@ -90,14 +90,14 @@ export const legalContent: LegalContent = {
 <li><strong>Comunicarea:</strong> răspunsul la întrebările dumneavoastră, trimiterea confirmărilor de programare, notificări privind tratamentul</li>
 <li><strong>Obligații legale:</strong> respectarea legislației privind documentația medicală, obligații fiscale și contabile</li>
 <li><strong>Îmbunătățirea serviciilor:</strong> analiza anonimizată a utilizării site-ului, optimizarea experienței utilizatorului</li>
-<li><strong>Marketing (cu consimtamant):</strong> trimiterea de oferte promoționale, newslettere</li>
+<li><strong>Marketing (cu consimțământ):</strong> trimiterea de oferte promoționale, newslettere</li>
 </ul>
 
-<h2>5. Temeiurile juridice ale prelucrarii</h2>
+<h2>5. Temeiurile juridice ale prelucrării</h2>
 <ul>
 <li><strong>Executarea contractului:</strong> pentru furnizarea serviciilor medicale solicitate</li>
-<li><strong>Consimtamantul:</strong> pentru activități de marketing și cookie-uri non-esentiale</li>
-<li><strong>Obligația legala:</strong> pentru respectarea legislației medicale și fiscale</li>
+<li><strong>Consimțământul:</strong> pentru activități de marketing și cookie-uri non-esențiale</li>
+<li><strong>Obligația legală:</strong> pentru respectarea legislației medicale și fiscale</li>
 <li><strong>Interesul legitim:</strong> pentru îmbunătățirea serviciilor și securitatea site-ului</li>
 </ul>
 
@@ -105,7 +105,7 @@ export const legalContent: LegalContent = {
 <ul>
 <li><strong>Date medicale:</strong> conform legislației în vigoare privind documentația medicală (minim 10 ani de la ultimul act medical)</li>
 <li><strong>Date de facturare:</strong> 10 ani conform legislației fiscale</li>
-<li><strong>Date de marketing:</strong> până la retragerea consimtamantului</li>
+<li><strong>Date de marketing:</strong> până la retragerea consimțământului</li>
 <li><strong>Date de utilizare site:</strong> 26 luni de la colectare</li>
 </ul>
 
@@ -120,16 +120,16 @@ export const legalContent: LegalContent = {
 <li><strong>Vercel Speed Insights:</strong> măsurarea performanței reale a site-ului (Core Web Vitals). Nu utilizează cookie-uri și nu colectează date personale.</li>
 </ul>
 
-<h2>8. Drepturile dumneavoastra</h2>
+<h2>8. Drepturile dumneavoastră</h2>
 <p>În conformitate cu GDPR, aveți următoarele drepturi:</p>
 <ul>
 <li><strong>Dreptul de acces:</strong> puteți solicita o copie a datelor dumneavoastră personale</li>
 <li><strong>Dreptul la rectificare:</strong> puteți solicita corectarea datelor inexacte</li>
-<li><strong>Dreptul la stergere:</strong> puteți solicita ștergerea datelor (cu excepția celor păstrate din obligație legala)</li>
-<li><strong>Dreptul la restrictionare:</strong> puteți solicita limitarea prelucrării datelor</li>
+<li><strong>Dreptul la ștergere:</strong> puteți solicita ștergerea datelor (cu excepția celor păstrate din obligație legală)</li>
+<li><strong>Dreptul la restricționare:</strong> puteți solicita limitarea prelucrării datelor</li>
 <li><strong>Dreptul la portabilitate:</strong> puteți solicita transferul datelor către alt operator</li>
-<li><strong>Dreptul de opozitie:</strong> puteți obiecta la prelucrarea datelor în anumite situatii</li>
-<li><strong>Dreptul de a retrage consimtamantul:</strong> în orice moment, fără a afecta legalitatea prelucrării anterioare</li>
+<li><strong>Dreptul de opoziție:</strong> puteți obiecta la prelucrarea datelor în anumite situații</li>
+<li><strong>Dreptul de a retrage consimțământul:</strong> în orice moment, fără a afecta legalitatea prelucrării anterioare</li>
 </ul>
 <p>Pentru exercitarea acestor drepturi, contactați-ne la: <strong>dentcraftsm@gmail.com</strong></p>
 
@@ -142,7 +142,7 @@ export const legalContent: LegalContent = {
 <li>Instruirea personalului privind protecția datelor</li>
 </ul>
 
-<h2>10. Plangeri</h2>
+<h2>10. Plângeri</h2>
 <p>Dacă considerați că drepturile dumneavoastră au fost încălcate, aveți dreptul să depuneți o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP):</p>
 <ul>
 <li>Website: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">www.dataprotection.ro</a></li>
@@ -157,7 +157,7 @@ export const legalContent: LegalContent = {
 <ul>
 <li>Email: dentcraftsm@gmail.com</li>
 <li>Telefon: 0741 199 977</li>
-<li>Adresa: Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, Romania</li>
+<li>Adresa: Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, România</li>
 </ul>
       `,
     },
@@ -168,14 +168,14 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Ce sunt cookie-urile?</h2>
-<p>Cookie-urile sunt fișiere mici de text stocate pe dispozitivul dumneavoastră (computer, telefon, tabletă) atunci când vizitați site-ul nostru web. Acestea ne ajută să va oferim o experiență mai bună de navigare și să înțelegem cum este utilizat site-ul.</p>
+<p>Cookie-urile sunt fișiere mici de text stocate pe dispozitivul dumneavoastră (computer, telefon, tabletă) atunci când vizitați site-ul nostru web. Acestea ne ajută să vă oferim o experiență mai bună de navigare și să înțelegem cum este utilizat site-ul.</p>
 
 <h2>2. Tipuri de cookie-uri utilizate</h2>
 
 <h3>2.1 Cookie-uri esențiale (strict necesare)</h3>
 <p>Aceste cookie-uri sunt necesare pentru funcționarea de bază a site-ului și nu pot fi dezactivate. Ele includ:</p>
 <ul>
-<li><strong>Preferință de limba:</strong> stochează limba selectată (română, engleză sau maghiara)</li>
+<li><strong>Preferință de limbă:</strong> stochează limba selectată (română, engleză sau maghiară)</li>
 <li><strong>Consimțământul cookie-uri:</strong> memorează preferințele dumneavoastră privind cookie-urile</li>
 <li><strong>Securitate:</strong> protecție împotriva atacurilor CSRF și asigurarea securității sesiunii</li>
 </ul>
@@ -184,7 +184,7 @@ export const legalContent: LegalContent = {
 <tr><th>Nume cookie</th><th>Scop</th><th>Durata</th></tr>
 </thead>
 <tbody>
-<tr><td>NEXT_LOCALE</td><td>Preferinta de limba</td><td>1 an</td></tr>
+<tr><td>NEXT_LOCALE</td><td>Preferință de limbă</td><td>1 an</td></tr>
 <tr><td>cookie_consent</td><td>Stocarea preferințelor cookie</td><td>1 an</td></tr>
 </tbody>
 </table>
@@ -203,7 +203,7 @@ export const legalContent: LegalContent = {
 </table>
 
 <h3>2.3 Cookie-uri de marketing</h3>
-<p>Aceste cookie-uri sunt utilizate pentru a va afișa reclame relevante și pentru a măsura eficacitatea campaniilor publicitare.</p>
+<p>Aceste cookie-uri sunt utilizate pentru a vă afișa reclame relevante și pentru a măsura eficacitatea campaniilor publicitare.</p>
 <table>
 <thead>
 <tr><th>Nume cookie</th><th>Scop</th><th>Durata</th></tr>
@@ -215,26 +215,26 @@ export const legalContent: LegalContent = {
 </table>
 
 <h2>3. Gestionarea cookie-urilor</h2>
-<h3>3.1 Prin bannerul de consimtamant</h3>
-<p>La prima vizită pe site-ul nostru, veți vedea un banner care va permite sa:</p>
+<h3>3.1 Prin bannerul de consimțământ</h3>
+<p>La prima vizită pe site-ul nostru, veți vedea un banner care vă permite să:</p>
 <ul>
 <li>Acceptați toate cookie-urile</li>
-<li>Acceptați doar cookie-urile esentiale</li>
+<li>Acceptați doar cookie-urile esențiale</li>
 <li>Personalizați preferințele pentru fiecare categorie de cookie-uri</li>
 </ul>
 <p>Puteți modifica preferințele oricând accesând setările de cookie-uri din subsolul paginii.</p>
 
 <h3>3.2 Prin setările browserului</h3>
-<p>Puteți gestiona sau șterge cookie-urile direct din browserul dumneavoastra:</p>
+<p>Puteți gestiona sau șterge cookie-urile direct din browserul dumneavoastră:</p>
 <ul>
 <li><strong>Chrome:</strong> Setări &gt; Confidențialitate și securitate &gt; Cookie-uri</li>
 <li><strong>Firefox:</strong> Setări &gt; Confidențialitate și securitate &gt; Cookie-uri</li>
 <li><strong>Safari:</strong> Preferințe &gt; Confidențialitate &gt; Gestionare date site</li>
 <li><strong>Edge:</strong> Setări &gt; Cookie-uri și permisiuni site</li>
 </ul>
-<p><strong>Atentie:</strong> Dezactivarea cookie-urilor esențiale poate afecta funcționarea corecta a site-ului.</p>
+<p><strong>Atenție:</strong> Dezactivarea cookie-urilor esențiale poate afecta funcționarea corecta a site-ului.</p>
 
-<h2>4. Servicii terte</h2>
+<h2>4. Servicii terțe</h2>
 <p>Site-ul nostru utilizează următoarele servicii terțe care pot plasa cookie-uri:</p>
 <ul>
 <li><strong>Google Tag Manager:</strong> gestionarea scripturilor de tracking</li>
@@ -246,11 +246,11 @@ export const legalContent: LegalContent = {
 <h2>5. Transferul datelor</h2>
 <p>Unele servicii terțe pot transfera date în afară Spațiului Economic European (SEE). În aceste cazuri, ne asigurăm că există garanții adecvate conform GDPR (clauze contractuale standard, Cadru de protecție a datelor UE-SUA).</p>
 
-<h2>6. Actualizari</h2>
+<h2>6. Actualizări</h2>
 <p>Această politică poate fi actualizată periodic. Data ultimei actualizări este afișată în partea de sus a paginii.</p>
 
 <h2>7. Contact</h2>
-<p>Pentru întrebări despre cookie-uri, contactati-ne:</p>
+<p>Pentru întrebări despre cookie-uri, contactați-ne:</p>
 <ul>
 <li>Email: dentcraftsm@gmail.com</li>
 <li>Telefon: 0741 199 977</li>
@@ -264,8 +264,8 @@ export const legalContent: LegalContent = {
       lastUpdated: '2026-02-26',
       content: `
 <h2>1. Informații generale</h2>
-<p>Prezentii Termeni și Condiții reglementează utilizarea site-ului web www.dentcraft.ro și furnizarea serviciilor stomatologice de către DENTCRAFT SRL, cu sediul în Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, Romania.</p>
-<p>Prin accesarea site-ului si/sau utilizarea serviciilor noastre, sunteți de acord cu acești termeni. Va rugăm să îi citiți cu atentie.</p>
+<p>Prezenții Termeni și Condiții reglementează utilizarea site-ului web www.dentcraft.ro și furnizarea serviciilor stomatologice de către DENTCRAFT SRL, cu sediul în Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, România.</p>
+<p>Prin accesarea site-ului și/sau utilizarea serviciilor noastre, sunteți de acord cu acești termeni. Vă rugăm să îi citiți cu atenție.</p>
 
 <h2>2. Servicii stomatologice</h2>
 <h3>2.1 Natura serviciilor</h3>
@@ -273,20 +273,20 @@ export const legalContent: LegalContent = {
 <ul>
 <li>Consultații și diagnostic stomatologic</li>
 <li>Stomatologie generală (obturații, extracții, detartraj)</li>
-<li>Estetica dentară (fațete, albire dentara)</li>
+<li>Estetica dentară (fațete, albire dentară)</li>
 <li>Implantologie</li>
-<li>Ortodontie</li>
-<li>Protetica dentara</li>
+<li>Ortodonție</li>
+<li>Protetica dentară</li>
 <li>Endodonție (tratamente de canal)</li>
-<li>Chirurgie oro-maxilo-faciala</li>
-<li>Pedodonție (stomatologie pediatrica)</li>
+<li>Chirurgie oro-maxilo-facială</li>
+<li>Pedodonție (stomatologie pediatrică)</li>
 <li>Urgențe stomatologice</li>
 </ul>
 <h3>2.2 Informații pe site</h3>
 <p>Informațiile prezentate pe site au caracter informativ și nu constituie sfat medical. Diagnosticul și planul de tratament sunt stabilite exclusiv în urma consultației clinice.</p>
-<p>Prețurile afișate pe site sunt orientative și pot varia în funcție de complexitatea cazului. Prețul final va fi comunicat după consultatie.</p>
+<p>Prețurile afișate pe site sunt orientative și pot varia în funcție de complexitatea cazului. Prețul final va fi comunicat după consultație.</p>
 
-<h2>3. Programari</h2>
+<h2>3. Programări</h2>
 <h3>3.1 Modalități de programare</h3>
 <p>Programările pot fi realizate prin:</p>
 <ul>
@@ -296,9 +296,9 @@ export const legalContent: LegalContent = {
 <li>Email: dentcraftsm@gmail.com</li>
 </ul>
 <h3>3.2 Anulare și reprogramare</h3>
-<p>Va rugăm să ne anunțați cu cel puțin 24 de ore înainte dacă doriți să anulați sau să reprogramați o consultație. Neprezentările repetate fără anunțare prealabilă pot duce la restricționarea posibilitatii de programare online.</p>
-<h3>3.3 Intarzieri</h3>
-<p>Depunem toate eforturile să respectăm programul. În cazuri excepționale, tratamentele anterioare pot duce la întârzieri minore. Va mulțumim pentru intelegere.</p>
+<p>Vă rugăm să ne anunțați cu cel puțin 24 de ore înainte dacă doriți să anulați sau să reprogramați o consultație. Neprezentările repetate fără anunțare prealabilă pot duce la restricționarea posibilitatii de programare online.</p>
+<h3>3.3 Întârzieri</h3>
+<p>Depunem toate eforturile să respectăm programul. În cazuri excepționale, tratamentele anterioare pot duce la întârzieri minore. Vă mulțumim pentru înțelegere.</p>
 
 <h2>4. Consimțământul medical</h2>
 <p>Înainte de orice tratament, veți fi informat despre:</p>
@@ -311,8 +311,8 @@ export const legalContent: LegalContent = {
 <p>Consimțământul informat va fi obținut în scris pentru proceduri invazive sau complexe.</p>
 
 <h2>5. Plăți și facturare</h2>
-<h3>5.1 Modalități de plata</h3>
-<p>Acceptăm următoarele modalități de plata:</p>
+<h3>5.1 Modalități de plată</h3>
+<p>Acceptăm următoarele modalități de plată:</p>
 <ul>
 <li>Numerar</li>
 <li>Card bancar (Visa, Mastercard)</li>
@@ -321,18 +321,18 @@ export const legalContent: LegalContent = {
 <h3>5.2 Facturare</h3>
 <p>Factura fiscală va fi emisă pentru toate serviciile prestate, conform legislației în vigoare.</p>
 <h3>5.3 Plata în rate</h3>
-<p>Pentru tratamente complexe, putem oferi posibilitatea de plată în rate. Detaliile se stabilesc la receptie.</p>
+<p>Pentru tratamente complexe, putem oferi posibilitatea de plată în rate. Detaliile se stabilesc la recepție.</p>
 
-<h2>6. Garantii</h2>
+<h2>6. Garanții</h2>
 <p>Oferim garanții pentru lucrările protetice și implanturi dentare, conform recomandărilor producătorilor și standardelor profesionale. Condițiile exacte de garanție sunt comunicate pentru fiecare tratament în parte.</p>
 <p>Garanția este condiționată de:</p>
 <ul>
-<li>Respectarea recomandărilor de igienă orala</li>
+<li>Respectarea recomandărilor de igienă orală</li>
 <li>Prezentarea la controalele periodice programate</li>
 <li>Utilizarea normală a lucrărilor dentare</li>
 </ul>
 
-<h2>7. Limitarea raspunderii</h2>
+<h2>7. Limitarea răspunderii</h2>
 <h3>7.1 Servicii medicale</h3>
 <p>DENTCRAFT își asuma responsabilitatea pentru calitatea serviciilor medicale prestate, în limita standardelor profesionale în vigoare. Rezultatele tratamentelor pot varia în funcție de particularitățile biologice individuale.</p>
 <h3>7.2 Site web</h3>
@@ -340,9 +340,9 @@ export const legalContent: LegalContent = {
 
 <h2>8. Proprietate intelectuală, marca înregistrată și drepturi de autor</h2>
 <h3>8.1 Drepturi de autor</h3>
-<p>Întregul conținut al site-ului <strong>dentcraft.ro</strong> — incluzând, dar fără a se limita la: texte, articole, descrieri de servicii, fotografii, imagini, ilustrații, grafice, video-uri, logo-uri, iconițe, design-ul interfeței, codul sursă (HTML, CSS, JavaScript, TypeScript), structura site-ului, paleta de culori, tipografia, animațiile, layout-ul paginilor și orice alt element vizibil sau invizibil — sunt proprietatea exclusivă a <strong>DENTCRAFT SRL</strong> si/sau a colaboratorilor săi autorizați și sunt protejate de Legea nr. 8/1996 privind dreptul de autor și drepturile conexe, precum și de tratatele internaționale aplicabile în materie de proprietate intelectuala.</p>
+<p>Întregul conținut al site-ului <strong>dentcraft.ro</strong> — incluzând, dar fără a se limita la: texte, articole, descrieri de servicii, fotografii, imagini, ilustrații, grafice, video-uri, logo-uri, iconițe, design-ul interfeței, codul sursă (HTML, CSS, JavaScript, TypeScript), structura site-ului, paleta de culori, tipografia, animațiile, layout-ul paginilor și orice alt element vizibil sau invizibil — sunt proprietatea exclusivă a <strong>DENTCRAFT SRL</strong> și/sau a colaboratorilor săi autorizați și sunt protejate de Legea nr. 8/1996 privind dreptul de autor și drepturile conexe, precum și de tratatele internaționale aplicabile în materie de proprietate intelectuală.</p>
 
-<h3>8.2 Marca inregistrata</h3>
+<h3>8.2 Marca înregistrată</h3>
 <p><strong>„DENTCRAFT"</strong>, logo-ul DENTCRAFT, sloganele și elementele de identitate vizuală asociate sunt mărci ce aparțin DENTCRAFT SRL. Orice utilizare neautorizată a denumirii „DENTCRAFT" sau a elementelor de brand — inclusiv în domenii web, conturi de social media, materiale publicitare, ambalaje, semnături de email sau orice alt context comercial — constituie încălcare a drepturilor de proprietate intelectuală și va fi sancționată conform legii.</p>
 
 <h3>8.3 Interdicții exprese</h3>
@@ -366,27 +366,27 @@ export const legalContent: LegalContent = {
 <li>Solicitare către platformele de hosting, registrarii de domenii, rețelele sociale și motoarele de căutare pentru retragerea conținutului contrafăcut, conform procedurilor DMCA și reglementărilor UE aplicabile.</li>
 </ul>
 
-<h3>8.5 Citarea autorizata</h3>
+<h3>8.5 Citarea autorizată</h3>
 <p>Citarea unor fragmente scurte din conținut, în scop informativ, jurnalistic sau educational, este permisă cu condiția indicării clare a sursei (denumirea „DENTCRAFT" și link către <a href="https://www.dentcraft.ro">dentcraft.ro</a>) și fără modificarea sensului original. Pentru orice altă utilizare, contactați-ne în prealabil la dentcraftsm@gmail.com.</p>
 
 <h2>9. Linkuri externe</h2>
 <p>Site-ul poate conține linkuri către site-uri terțe. Nu suntem responsabili pentru conținutul sau politicile de confidențialitate ale acestor site-uri.</p>
 
-<h2>10. Forța majora</h2>
+<h2>10. Forța majoră</h2>
 <p>Nu suntem responsabili pentru întârzieri sau neexecutarea obligațiilor cauzate de circumstanțe în afară controlului nostru rezonabil (dezastre naturale, pandemii, restricții guvernamentale, etc.).</p>
 
-<h2>11. Legislație aplicabila</h2>
-<p>Prezentii termeni sunt guvernati de legislația României. Orice disputa va fi soluționată pe cale amiabilă sau, în caz contrar, de instanțele competente din Satu Mare, Romania.</p>
+<h2>11. Legislație aplicabilă</h2>
+<p>Prezenții termeni sunt guvernati de legislația României. Orice dispută va fi soluționată pe cale amiabilă sau, în caz contrar, de instanțele competente din Satu Mare, România.</p>
 
-<h2>12. Modificari</h2>
+<h2>12. Modificări</h2>
 <p>Ne rezervăm dreptul de a modifica acești termeni. Modificările intră în vigoare la data publicării pe site.</p>
 
 <h2>13. Contact</h2>
-<p>Pentru orice întrebări legate de acești termeni și conditii:</p>
+<p>Pentru orice întrebări legate de acești termeni și condiții:</p>
 <ul>
 <li>Email: dentcraftsm@gmail.com</li>
 <li>Telefon: 0741 199 977</li>
-<li>Adresa: Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, Romania</li>
+<li>Adresa: Str. Barbu Ștefănescu Delavrancea nr.3, Satu Mare, România</li>
 </ul>
       `,
     },

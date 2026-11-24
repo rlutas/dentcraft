@@ -695,7 +695,7 @@ export const content: PortableTextBlock[] = [
       {
         "_type": "span",
         "_key": "ad37s1",
-        "text": " La aparatul fix, o dată pe lună pentru ajustari. La alignere, cam o dată la 6-8 săptămâni. Controalele sunt incluse în prețul tratamentului.",
+        "text": " La aparatul fix, o dată pe lună pentru ajustări. La alignere, cam o dată la 6-8 săptămâni. Controalele sunt incluse în prețul tratamentului.",
         "marks": []
       }
     ]

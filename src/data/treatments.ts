@@ -169,7 +169,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "activare-aparat-fix-arcada",
         "labels": {
-          "ro": "Activare aparat fix/arcada",
+          "ro": "Activare aparat fix/arcadă",
           "en": "Fixed braces exam",
           "hu": "Fix készülék ellenőrzése"
         },
@@ -189,7 +189,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "recolare-inlocuire-bracket",
         "labels": {
-          "ro": "Recolare/inlocuire bracket",
+          "ro": "Recolare/înlocuire bracket",
           "en": "Pediatric dental consultation",
           "hu": "Gyerek konzultáció"
         },
@@ -299,7 +299,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "consultatie-discutie",
         "labels": {
-          "ro": "Consultatie/discutie",
+          "ro": "Consultație/discuție",
           "en": "Treatment planning",
           "hu": "Kezelési terv elkészítése"
         },
@@ -1229,7 +1229,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "coroana-fateta-feldspatica",
         "labels": {
-          "ro": "Coroană/Fateta Feldspatica",
+          "ro": "Coroană/Fațetă Feldspatică",
           "en": "All - ceramic crown",
           "hu": "Préskerámia korona"
         },
@@ -1569,7 +1569,7 @@ export const treatmentCategories: TreatmentCategory[] = [
       {
         "id": "descoperire-implant-surub-de-vindecare",
         "labels": {
-          "ro": "Descoperire implant/surub de vindecare",
+          "ro": "Descoperire implant/șurub de vindecare",
           "en": "Reimplantation",
           "hu": "Reimplantáció"
         },

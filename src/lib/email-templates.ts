@@ -172,7 +172,7 @@ export function callbackAdminEmail(data: {
 
   if (data.timePreference) {
     rows.push(`<tr>
-      <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 140px;">Preferinta:</td>
+      <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; font-weight: 600; color: ${BRAND_COLOR}; width: 140px;">Preferință:</td>
       <td style="padding: 12px 16px; border-bottom: 1px solid ${BORDER_COLOR}; color: #4a4a4a;">${esc(data.timePreference)}</td>
     </tr>`)
   }

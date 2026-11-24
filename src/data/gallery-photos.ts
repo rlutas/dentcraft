@@ -63,7 +63,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     src: '/images/clinic/toys-with-toothbrush.webp',
-    alt: 'Zona copii - periuta de dinți',
+    alt: 'Zona copii - periuța de dinți',
     category: 'clinic',
   },
   // Add more photos from /public/images/gallery/ below:

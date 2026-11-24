@@ -53,7 +53,7 @@ export function MaintenancePage() {
             Site in constructie
           </h2>
           <p className="text-[#6b6b6b] leading-relaxed mb-2">
-            Lucrăm la noul nostru website pentru a va oferi cea mai bună experiență.
+            Lucrăm la noul nostru website pentru a vă oferi cea mai bună experiență.
           </p>
           <p className="text-[#6b6b6b] leading-relaxed">
             Între timp, ne puteți contacta direct pentru programări sau informații.
