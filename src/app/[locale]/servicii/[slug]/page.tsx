@@ -360,6 +360,16 @@ function PortableTextRenderer({ content }: { content: Array<{ _type: string; [ke
   )
 }
 
+/** Wraps team-member names found in the text with an ink, medium-weight span (text unchanged). */
+function highlightDoctorNames(text: string) {
+  const names = fallbackTeamMembers.map((m) => m.name).filter(Boolean).sort((x, y) => y.length - x.length)
+  if (names.length === 0) return text
+  const re = new RegExp(`(${names.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')
+  return text.split(re).map((part, i) =>
+    names.includes(part) ? <span key={i} className="font-medium text-[#2a2118]">{part}</span> : part,
+  )
+}
+
 /** Concatenate FAQ lists, dropping exact duplicate questions (text kept verbatim). */
 function mergeFaqs(...lists: Array<Array<{ question: string; answer: string }>>) {
   const seen = new Set<string>()
@@ -766,17 +776,21 @@ async function ServiceContentBlock({ content, locale, slug }: { content: Service
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#d4c4b0]/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" aria-hidden="true" />
       <div className="container relative z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Intro — "Pe scurt" summary card: full content width, label column aligned with the outline below */}
+          {/* Intro — "Pe scurt" editorial highlight: centered card, serif quote mark, warm glow + thin halo in one corner */}
           <ScrollReveal animation="fade-up">
-            <div className="rounded-[2rem] bg-[#faf6f1] px-6 py-8 md:px-10 md:py-12 lg:px-12 lg:py-14 grid lg:grid-cols-[calc(15rem-3rem)_1fr] xl:grid-cols-[calc(17rem-3rem)_1fr] gap-4 lg:gap-16 xl:gap-24 shadow-[0_20px_60px_-36px_rgba(139,115,85,0.45)]">
-              <span className="block text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355] lg:pt-2">
-                {labels.introLabel}
-              </span>
-              <div className="min-w-0">
-                <p className="text-lg md:text-2xl lg:text-[1.65rem] text-[#2a2118] leading-[1.6] md:leading-[1.5] max-w-[46rem]">{content.intro}</p>
-                <p className="mt-5 text-xs text-[#8b7355]">
-                  {labels.updatedLabel}: {labels.updatedValue}
+            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-[#8b7355]/10 bg-gradient-to-br from-[#faf6f1] via-[#fdfbf8] to-white px-6 py-10 md:px-14 md:py-14 lg:px-16 lg:py-16 shadow-[0_30px_80px_-44px_rgba(139,115,85,0.5)]">
+              <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#e8dccb] opacity-50 blur-3xl" />
+              <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full border border-[#c4ab8d]/30" />
+              <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full border border-dashed border-[#c4ab8d]/20" />
+              <div className="relative">
+                <div className="flex items-center gap-4 mb-6 md:mb-8">
+                  <span aria-hidden="true" className="font-serif italic text-[5.5rem] md:text-[7rem] leading-none h-12 md:h-16 -mt-2 text-[#c4ab8d]/80 select-none">&ldquo;</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8b7355]">{labels.introLabel}</span>
+                </div>
+                <p className="max-w-[60ch] text-lg md:text-[1.4rem] text-[#3a3028] leading-[1.7] md:leading-[1.7]">
+                  {highlightDoctorNames(content.intro)}
                 </p>
+                <span aria-hidden="true" className="mt-8 md:mt-10 block h-px w-16 bg-[#c4ab8d]/60" />
               </div>
             </div>
           </ScrollReveal>
