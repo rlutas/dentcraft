@@ -2,7 +2,7 @@
 
 ## Overview
 
-DENTCRAFT uses **Google Tag Manager (GTM)** as the entry point for all tracking, plus **Google Ads gtag.js** installed directly for native conversion tracking.
+DENTCRAFT uses **Google Tag Manager (GTM)** as the entry point for all tracking, including the Google Ads tag (AW-18165025740) and Conversion Linker. (Until 24 Nov 2026 gtag.js was also loaded directly in layout.tsx; removed because it duplicated the GTM Google tag.)
 
 **Tracking IDs:**
 - **GTM:** `GTM-MHB5K5LL` (via @next/third-parties)
@@ -106,7 +106,7 @@ In addition to dataLayer events that route through GA4 → Google Ads import,
 maximum attribution precision and faster bidding optimization.
 
 ### Setup
-- Base tag `AW-18165025740` loaded in `src/app/[locale]/layout.tsx` (via `next/script`)
+- Base tag `AW-18165025740` loaded via GTM ("Eticheta Google AW-18165025740", Initialization - All Pages) + Conversion Linker tag
 - Conversion fires via GTM tag (not from code — avoids double-counting):
   - **Tag type:** Google Ads Conversion Tracking
   - **Conversion ID:** `18165025740` (no AW- prefix in this template field)
